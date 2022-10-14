@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:49" />
+    <title>Resolución de conflictos: cuando varios usuarios editan propiedades</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Resolución de conflictos: cuando varios usuarios editan propiedades";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp42539"> </a><p class="pBody">Si más de un usuario edita la página de propiedades de tuner y paquete al mismo tiempo y dos usuarios editan la misma propiedad, el último usuario que guardó los cambios en la página sobrescribirá los otros cambios en esa propiedad.</p>
+<a name="wp51693"> </a><p style="text-decoration: none" class="pStepIntro">
+Determinación de los resultados cuando varios usuarios editan políticas
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp42541"> </a><div class="pSmartList1"><li>El usuario 1 va a la página Propiedades de tuner y paquete y edita las propiedades para la máquina A de destino.</li></div>
+<a name="wp42542"> </a><div class="pSmartList1"><li>Antes de que el usuario 1 guarde los cambios en las propiedades, el usuario 2 edita y guarda las propiedades del mismo destino.</li></div>
+<a name="wp42543"> </a><div class="pSmartList1"><li>El usuario 1 guarda los cambios después de que el usuario 2 ha abandonado la página.</li></div>
+</ol></div>
+<a name="wp42544"> </a><p class="pBody">La política cargada originalmente por ambos usuarios es la política A. Se crean dos copias de la política A: la política A1, la copia que edita el usuario 1, y la política A2, la copia que el usuario 2 ha guardado. En la tabla siguiente se describen los resultados de los diferentes casos:</p>
+<a name="wp45058"> </a><p class="pBodyRelative"></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp49924table42545">
+  <caption><a name="wp49924"> </a><p class="pBody">Tabla&#160;4-10:&#160;&#160;Cuando varios usuarios editan propiedades</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp42547"> </a><div class="pCellHeading">
+Usuario 1:
+</div>
+</th>
+    <th><a name="wp42549"> </a><div class="pCellHeading">
+Usuario 2:
+</div>
+</th>
+    <th><a name="wp42551"> </a><div class="pCellHeading">
+Resultado final
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp42553"> </a><div class="pCellBody">
+Agrega una <em class="cEmphasis">nueva</em> propiedad que no consta en la política A.
+</div>
+</td>
+    <td><a name="wp42555"> </a><div class="pCellBody">
+Edita la política A, pero no agrega, edita ni elimina la misma propiedad.
+</div>
+</td>
+    <td><a name="wp42557"> </a><div class="pCellBody">
+Policy Manager agrega la nueva propiedad a la política A.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp42559"> </a><div class="pCellBody">
+Agrega una <em class="cEmphasis">nueva</em> propiedad que no consta en la política A.
+</div>
+</td>
+    <td><a name="wp42561"> </a><div class="pCellBody">
+Establece un valor diferente para la misma propiedad.
+</div>
+</td>
+    <td><a name="wp42563"> </a><div class="pCellBody">
+Policy Manager agrega la nueva propiedad a la política A con el valor especificado por el usuario 1.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp42565"> </a><div class="pCellBody">
+Elimina una propiedad de la política A.
+</div>
+</td>
+    <td><a name="wp42567"> </a><div class="pCellBody">
+Edita la política A, pero no edita ni elimina la misma propiedad.
+</div>
+</td>
+    <td><a name="wp42569"> </a><div class="pCellBody">
+Policy Manager elimina la propiedad de la política A.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp42571"> </a><div class="pCellBody">
+Elimina una propiedad de la política A.
+</div>
+</td>
+    <td><a name="wp42573"> </a><div class="pCellBody">
+Edita la misma propiedad (la establece en un valor) en la política A.
+</div>
+</td>
+    <td><a name="wp42575"> </a><div class="pCellBody">
+Policy Manager elimina la propiedad de la política A.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp42577"> </a><div class="pCellBody">
+Edita la política A, pero no agrega, edita ni elimina la misma propiedad que el usuario 2.
+</div>
+</td>
+    <td><a name="wp42579"> </a><div class="pCellBody">
+Edita o elimina una propiedad en la política A.
+</div>
+</td>
+    <td><a name="wp42581"> </a><div class="pCellBody">
+Policy Manager cambia o elimina la propiedad en que ha trabajado el usuario 2.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp42583"> </a><div class="pCellBody">
+Modifica el valor de una propiedad en la política A.
+</div>
+</td>
+    <td><a name="wp42585"> </a><div class="pCellBody">
+Modifica la misma propiedad en la política A.
+</div>
+</td>
+    <td><a name="wp42587"> </a><div class="pCellBody">
+Policy Manager guarda la propiedad con el valor que el usuario 1 ha especificado.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp42589"> </a><div class="pCellBody">
+Elimina los paquetes de la política A.
+</div>
+</td>
+    <td><a name="wp42591"> </a><div class="pCellBody">
+Modifica las propiedades de paquete para paquetes eliminados por el usuario 1.
+</div>
+</td>
+    <td><a name="wp42593"> </a><div class="pCellBody">
+Policy Manager elimina los paquetes y no guarda las propiedades que ha modificado el usuario 2.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp42595"> </a><div class="pCellBody">
+Agrega nuevos paquetes a la política A.
+</div>
+</td>
+    <td><a name="wp42597"> </a><div class="pCellBody">
+Edita la política A y modifica propiedades no relacionadas con los nuevos paquetes que ha agregado el usuario 1.
+</div>
+</td>
+    <td><a name="wp42599"> </a><div class="pCellBody">
+Policy Manager guarda los paquetes que ha agregado el usuario 1.
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBodyRelative">
+</p>
+
+<a name="wp37106"> </a><p class="pBody">Para obtener información sobre la resolución de conflictos cuando varios usuarios editan la misma política, consulte .<a href="javascript:WWHClickedPopup('Policy', 'policies-23.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-23.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">&quot;Resolución de conflictos: cuando varios usuarios editan la misma política&quot;</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

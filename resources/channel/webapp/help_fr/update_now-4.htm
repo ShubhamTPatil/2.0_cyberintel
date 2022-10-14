@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/09/06 17:57:40" />
+    <title>Exécution d&#39;une mise à jour immédiate de la policy</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Exécution d&#39;une mise à jour immédiate de la policy";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp262839"> </a><p class="pBody">Vous pouvez effectuer une mise à jour immédiate de la policy si vous avez des applications, des patchs, des données ou des mises à jour que vous souhaitez distribuer immédiatement aux machines cibles.</p>
+<a name="wp262841"> </a><p class="pBody">Vous ne pouvez effectuer des mises à jour de la policy que sur les cibles machines. Si vous sélectionnez une cible agrégée (par exemple la cible Toutes les machines cibles, un domaine, un container, ou un groupe) qui contient des cibles autres que des machines, seules les cibles machines obtiennent les mises à jour de la policy. Vous ne pouvez effectuer des mises à jour immédiates de la policy qu&#39;en mode de sélection unitaire.</p>
+<hr class="NoteRuleTop"/><a name="wp262843"> </a><p class="pNote"><span style="color: #003366">Remarque&#160;: </span> la restriction aux machines cibles s&#39;applique uniquement aux mises à jour immédiates de la policy. Lors de son exécution, Policy Service vérifie les policies propres aux utilisateurs et aux machines.</p><hr class="NoteRuleBottom"/><a name="wp262845"> </a><p style="text-decoration: none" class="pStepIntro">
+Pour effectuer une mise à jour immédiate de la policy
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp262847"> </a><div class="pSmartList1"><li>Dans la page Vue Cible, ou la page Détails de la cible, sélectionnez une cible.</li></div>
+<a name="wp262849"> </a><div class="pSmartList1"><li>Cliquez sur <b class="cBold">Mettre à jour</b> et choisissez l&#39;une des options suivantes :</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp262851"> </a><div class="pSmartList2"><li><b class="cBold">Mettre à jour la policy directement attribuée</b>—Choisissez cette option si vous souhaitez mettre à jour uniquement la policy attribuée directement à cette cible, et non des policies qu&#39;elle hérite dans le cadre de son appartenance à un groupe, un container, un domaine, ou à Toutes les machines cibles.</li></div>
+<a name="wp262853"> </a><div class="pSmartList2"><li><b class="cBold">Mettre à jour toutes les policies</b>—Choisissez cette option si vous souhaitez mettre à jour toutes les policies qui s&#39;appliquent à cette cible, y compris la policy directement attribuée à cette cible et toutes les policies qu&#39;elle hérite dans le cadre de son appartenance à un groupe, un container, un domaine, ou à Toutes les machines cibles.</li></div>
+<a name="wp262855"> </a><p class="pIndented1">
+La page Mise à jour de l&#39;aperçu s&#39;affiche et vous permet de confirmer la mise à jour de la policy (ou des policies) pour la cible appropriée.
+</p>
+</ul></div>
+<a name="wp262857"> </a><div class="pSmartList1"><li>Confirmez votre choix en cliquant sur <b class="cBold">Mettre à jour la policy directement attribuée</b> ou sur <b class="cBold">Mettre à jour toutes les policies</b>.</li></div>
+<a name="wp262867"> </a><p class="pIndented1">
+Policy Manager démarre la mise à jour de la policy (ou des policies) pour la cible spécifiée. Pour plus d&#39;informations sur le processus de mise à jour de policies, reportez-vous à la section <a href="javascript:WWHClickedPopup('sm', 'update_now-7.htm');" onMouseOver="WWHShowPopup('sm', 'update_now-7.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Comment fonctionne la mise à jour immédiate de la policy&#160;?</a>.
+</p>
+<a name="wp262873"> </a><p class="pIndented1">
+La page Statut de la mise à jour de la policy s&#39;affiche et vous permet de contrôler le statut des machines de la cible. La page s&#39;actualise automatiquement toutes les dix secondes. Pour plus d&#39;informations, reportez-vous à la section <a href="javascript:WWHClickedPopup('sm', 'update_now-5.htm');" onMouseOver="WWHShowPopup('sm', 'update_now-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Contrôle et affichage du statut d&#39;une mise à jour de la policy</a>.
+</p>
+<a name="wp262879"> </a><div class="pSmartList1"><li>Une fois que les mises à jour de la policy ont été effectuées sur toutes les machines de la cible que vous avez spécifiée, Policy Manager affiche la liste des machines et indique si la mise à jour s&#39;est achevée avec succès.</li></div>
+<a name="wp262881"> </a><p class="pIndented1">
+Pour les machines sur lesquelles la mise à jour a échoué, vous pouvez cliquer sur le statut <b class="cBold">Échec</b> afin d&#39;afficher les logs spécifiques à la machine. Vous pouvez également cliquer sur Échec de la nouvelle tentative afin de réessayer une mise à jour de la policy pour les machines de la cible sur lesquelles elle a échoué.
+</p>
+<a name="wp262883"> </a><div class="pSmartList1"><li>Cliquez sur <b class="cBold">Terminé</b> pour revenir à la page Vue cible ou à la page Détails de la cible.</li></div>
+<a name="wp262890"> </a><p class="pIndented1">
+Notez qu&#39;une icône représentant une coche <img src="images/update-policy-done.gif" id="wp55028" border="0" hspace="0" vspace="0"/> s&#39;affiche à côté du bouton <b class="cBold">Mettre à jour</b> pour indiquer qu&#39;une mise à jour de la policy a été effectuée pour cette cible. Si vous cliquez sur le bouton <b class="cBold">Mettre à jour</b>, l&#39;option supplémentaire <b class="cBold">Afficher le statut de la dernière mise à jour</b> s&#39;affiche en bas de la liste déroulante. Pour plus d&#39;informations, reportez-vous à la section <a href="javascript:WWHClickedPopup('sm', 'update_now-5.htm');" onMouseOver="WWHShowPopup('sm', 'update_now-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Contrôle et affichage du statut d&#39;une mise à jour de la policy</a>.
+</p>
+</ol></div>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Tous droits réservés.<br/>
+
+Pour obtenir d'autres documents relatifs à BMC Configuration Management,
+visitez le site Web de l'assistance à la clientèle <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+Si vous avez des questions ou des commentaires sur
+la documentation BMC CM, envoyez un message électronique à l'adresse <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Si vous avez des questions ou des problèmes quelconques à signaler concernant les produits, envoyez un message électronique au service d'assistance à la clientèle à l'adresse <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

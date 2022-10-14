@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:21" />
+    <title>Anzeigen von Zielen</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Anzeigen von Zielen";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp11060"> </a><p class="pBody">Im linken Bereich der Zielansicht werden die Ziele angezeigt, denen Sie Packages zuweisen können. Wenn Sie ein Ziel auswählen, werden im rechten Bereich der Seite die dem Ziel direkt und indirekt zugewiesenen Packages angezeigt.</p>
+<a name="wp11062"> </a><p class="pBody">Durch Navigieren im linken Bereich der Seite können Sie alle verfügbaren Ziele anzeigen. Im linken Bereich der Seite wird eine Liste der Ziele angezeigt: einzelne Benutzer und Computer, Benutzer- und Computergruppen sowie Collections, die über eine Datenbank- bzw. LDAP-Abfrage ermittelt wurden.</p>
+<a name="wp11072"> </a><p class="pBody">Wenn Sie die Seite zum ersten Mal besuchen, wird die Home-Ansicht des Ziels angezeigt. Sie besteht aus den übergeordneten Containern des Verzeichnisdienstes, in dem die Zielinformationen gespeichert sind. In Active Directory werden in der Regel die Stammdomänen der Gesamtstrukturumgebung angezeigt. Sie können die Stammdomänen erweitern, um die Objekte anzuzeigen, die in dieser Domäne als Ziele verwendet werden können. Weitere Informationen dazu finden Sie im Abschnitt über Active Directory im <em class="cEmphasis">Administratorhandbuch für Policy Management</em>, das auf der BMC Customer Support-Website verfügbar ist. </p>
+<a name="wp11078"> </a><p class="pBody">Die Zielsymbole auf der Seite &quot;Zielansicht&quot; zeigen an, wie Policy Manager die Liste der Ziele abruft:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp11081"> </a><div class="pSmartList2"><li><b class="cBold">Domänen: </b>Ein erweiterbares Domänensymbol <img src="images/root-domain.gif" id="wp50196" border="0" hspace="0" vspace="0"/> zeigt an, dass die Ziele aus einer Active Directory-Gesamtstrukturumgebung abgerufen werden. Das Symbol steht für Stammdomänen und untergeordnete Domänen.</li></div>
+<a name="wp11084"> </a><div class="pSmartList2"><li><b class="cBold">Container</b>: Ein erweiterbares Ordnersymbol <img src="images/folder-target.gif" id="wp50200" border="0" hspace="0" vspace="0"/> weist darauf hin, dass die Ziele vom Verzeichnisdienst abgerufen werden. Das Symbol steht für Organisationseinheiten und Container.</li></div>
+<a name="wp11091"> </a><div class="pSmartList2"><li><b class="cBold">Benutzer (bezogen vom Transmitter)</b>: Ein erweiterbares Transmitter-Symbol <img src="images/Tx.gif" id="wp50204" border="0" hspace="0" vspace="0"/> weist darauf hin, dass Benutzer und Benutzergruppen von dem Transmitter abgerufen werden, auf dem Sie das Policy Service-Plugin veröffentlicht haben (über die Seite &quot;Plugin-Konfiguration&quot;).</li></div>
+<hr class="NoteRuleTop"/><a name="wp11107"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Wenn Sie (oder ein Primäradministrator) das Policy Service-Plugin noch nicht auf dem Transmitter veröffentlicht haben, erhält Policy Manager keine Anweisungen, welcher Transmitter verwendet werden soll. Policy Manager kann in diesem Fall keine Benutzer- und Benutzergruppeninformationen abrufen. Wenn der Zugriff auf den Transmitter beschränkt ist, müssen Sie außerdem den Benutzernamen und das Passwort für die Authentifizierung beim Transmitter einrichten. Führen Sie dazu folgende Befehlszeilenoption aus:</p><hr class="NoteRuleBottom"/><a name="wp11109"> </a><p class="pIndented1">
+<b class="cBold">-txadminacess &lt;</b><em class="cEmphasis">Benutzername</em><b class="cBold">&gt; &lt;</b><em class="cEmphasis">Passwort</em><b class="cBold">&gt;</b>
+</p>
+<a name="wp11119"> </a><p class="pIndented1">
+Mit diesem Befehl legen Sie den Benutzernamen und das Passwort für den Transmitter fest. Sie müssen dennoch den Benutzernamen und das Passwort für die Authentifizierung bei Policy Manager angeben.
+</p>
+<a name="wp11125"> </a><p class="pIndented1">
+Weitere Informationen zu den Befehlszeilenoptionen finden Sie im Abschnitt über Befehlszeilen im <em class="cEmphasis">Administratorhandbuch für Policy Management</em>, das auf der BMC Customer Support-Website verfügbar ist.
+</p>
+</ul></div>
+</ul></div>
+<a name="wp11133"> </a><p class="pBody">Zusätzlich wird das Ziel &quot;Alle Clients&quot; angezeigt. Dabei handelt es sich um ein virtuelles Ziel, das alle Clients an Ihrem Standort enthält, auf denen Policy Service installiert ist.</p>
+<a name="wp11135"> </a><p class="pBody">Wenn Sie eine Gesamtstrukturumgebung mit mehreren Domänen (Active Directory) anzeigen, können Sie verschiedene Strukturen und Domänen übergreifend durchsuchen.</p>
+<a name="wp11137"> </a><h5 class="pHeading4">
+Siehe auch:
+</h5>
+<a name="wp11143"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-09.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-09.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Anzeigen der Mitglieder eines Ziels</a>
+</p><a name="wp11149"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-10.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-10.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Suchen nach Zielen</a>
+</p>
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://www.bmc.com/schemas/scm/cms/security"  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.bmc.com/schemas/scm/cms/security">
+    <wsdl:types>
+        <schema targetNamespace="http://www.bmc.com/schemas/scm/cms/security" xmlns="http://www.w3.org/2001/XMLSchema">
+            <element name="verifyTask" type="impl:verifyTaskInputType"/>
+            <element name="verifyTaskReturn" type="xsd:string"/>
+            <xsd:element name="SecurityTicket" type="xsd:string"/>
+            <xsd:complexType name="verifyTaskInputType">
+                <xsd:sequence>
+                    <xsd:element name="taskid" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="verifyTaskRequest">
+        <wsdl:part name="part" element="impl:verifyTask"/>
+    </wsdl:message>
+    <wsdl:message name="verifyTaskResponse">
+        <wsdl:part name="verifyTaskReturn" element="impl:verifyTaskReturn"/>
+    </wsdl:message>
+    <wsdl:message name="Authenticate">
+        <wsdl:part name="parameters" element="impl:SecurityTicket"/>
+    </wsdl:message>
+    <wsdl:portType name="PolicyMgrTaskService">
+        <wsdl:operation name="verifyTask">
+            <wsdl:input name="verifyTaskRequest" message="impl:verifyTaskRequest"/>
+            <wsdl:output name="verifyTaskResponse" message="impl:verifyTaskResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="PolicyMgrTaskServiceSoapBinding" type="impl:PolicyMgrTaskService">
+        <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="verifyTask">
+            <wsdlsoap:operation/>
+            <wsdl:input>
+                <wsdlsoap:header message="impl:Authenticate" part="parameters" use="literal"/>
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="PolicyMgrTaskServiceService">
+        <wsdl:port name="PolicyMgrTaskService" binding="impl:PolicyMgrTaskServiceSoapBinding">
+		<wsdlsoap:address location="http://cms host:port/shell/services/PolicyMgrTaskService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

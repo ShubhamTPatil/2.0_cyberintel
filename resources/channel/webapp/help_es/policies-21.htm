@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:45" />
+    <title>¿Qué es una prioridad de instalación?</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "¿Qué es una prioridad de instalación?";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp51800"> </a><p class="pBody">La <em class="cEmphasis">prioridad de instalación</em> determina qué paquete deberá instalarse antes cuando se ha planificado la instalación de dos o más paquetes a la vez en un destino. Para obtener instrucciones acerca de cómo modificar la prioridad de instalación, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-21.htm#wp51845');" onMouseOver="WWHShowPopup('Policy', 'policies-21.htm#wp51845', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Consideraciones acerca de la prioridad de instalación</a>.</p>
+<a name="wp60924"> </a><p class="pBody">Las reglas de prioridad de instalación son directrices generales en las que no se especifica qué orden debe seguir la instalación. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-21.htm#wp52663');" onMouseOver="WWHShowPopup('Policy', 'policies-21.htm#wp52663', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Excepciones a la prioridad de instalación</a>.</p>
+<a name="wp77803"> </a><p class="pBody">Puede especificar qué paquetes deben instalarse como requisito previo a la instalación de otros paquetes. No obstante, es preciso observar los procedimientos recomendados en relación con la actualización de planificación. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-26.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-26.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">&quot;Administración del software, datos y actualizaciones&quot;</a>.</p>
+<a name="wp60929"> </a><h4 class="pHeading3">
+Conceptos de prioridad de instalación
+</h4>
+<a name="wp60930"> </a><p class="pBody">Cuando se asigna un paquete a un destino, el valor numérico predeterminado asignado a la prioridad de instalación del paquete es <b class="cBold">99999</b>. Puede ver este valor consultando el atributo <b class="cBold">mrbachannelorder</b> del paquete correspondiente al objeto de la política asignada al destino en la herramienta navegador/editor LDAP, tal y como se muestra en la <a href="javascript:WWHClickedPopup('Policy', 'policies-21.htm#wp65644');" onMouseOver="WWHShowPopup('Policy', 'policies-21.htm#wp65644', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Figure&#160;4-5</a>.</p>
+<a name="wp51808"> </a><p class="pBody">Cuando establezca una prioridad de instalación (tal y como se describe en <a href="javascript:WWHClickedPopup('Policy', 'policies-21.htm#wp61030');" onMouseOver="WWHShowPopup('Policy', 'policies-21.htm#wp61030', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Configuración de prioridad de instalación de los paquetes</a>), el valor numérico del atributo <b class="cBold">mrbachannelorder</b> cambiará en función de la prioridad de instalación que especifique. El valor numérico del atributo <b class="cBold">mrbachannelorder</b> se corresponde con el número que aparece en la columna Prioridad de instalación de la página Detalles de destino o de la página Editar política.</p>
+<a name="wp51839"> </a><p class="pBodyRelative"><img src="images/mrbachannelorder.gif" id="wp51837" border="0" hspace="0" vspace="0"/></p>
+
+<a name="wp51842"> </a><p class="pBody">El paquete que tenga asignado un valor más bajo será el primero en instalarse. En este ejemplo, el paquete con el valor 1 se instalará en primer lugar, seguido por el 2 y el 3.</p>
+<a name="wp52663"> </a><h4 class="pHeading3">
+Excepciones a la prioridad de instalación
+</h4>
+<a name="wp52664"> </a><p class="pBody">Esta sección describe las situaciones en las que Policy Manager no observa la prioridad de instalación especificada.</p>
+<a name="wp52671"> </a><p class="pBody"><b class="cBold">Tiempo de espera y scripts de postinstalación.</b> Normalmente, Policy Service espera a que finalice la instalación de los paquetes (incluidos los scripts de postinstalación) antes de instalar el siguiente paquete especificado en la prioridad de instalación. Policy Manager ignora la prioridad de instalación en las siguientes situaciones:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp52672"> </a><div class="pSmartList2"><li>La descarga e instalación de los paquetes tarda más tiempo que el especificado como tiempo de espera (consulte <a href="javascript:WWHClickedPopup('Policy', 'props-2.htm#wp45079');" onMouseOver="WWHShowPopup('Policy', 'props-2.htm#wp45079', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">marimba.subscription.timeout</a>). El valor predeterminado de tiempo de espera es 60 minutos. Cuando se alcance este valor, Policy Service comenzará a instalar el siguiente paquete.</li></div>
+<a name="wp52679"> </a><div class="pSmartList2"><li>Se ha configurado el paquete para que ejecute el script de postinstalación como un proceso separado. En este caso, Policy Service considera que el paquete se ha instalado cuando comienza a ejecutarse el script de postinstalación e iniciará el proceso de instalación del siguiente paquete.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp52684"> </a><p class="pBody"><b class="cBold">Dependencias.</b> En Application Packager puede establecer dependencias para los paquetes, como espacio libre en el disco duro, memoria RAM instalada o la existencia de otros paquetes que tienen prioridad en la instalación. Si ha establecido dependencias para un paquete, dichas dependencias tendrán prioridad frente a los valores especificados en la prioridad de instalación.</p>
+<a name="wp51845"> </a><h4 class="pHeading3">
+Consideraciones acerca de la prioridad de instalación
+</h4>
+<a name="wp51960"> </a><p class="pBody">Cuando establezca la prioridad de instalación de los paquetes, deberá tener en cuenta las siguientes opciones de Vista de destino de la ficha Paquetes en la página Editar política:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp52040"> </a><div class="pSmartList2"><li><b class="cBold">Prioridad inicial</b>. El valor numérico que especifique como prioridad inicial determinará el orden de instalación de los paquetes en relación con los paquetes de otras políticas. Es importante establecer un valor de prioridad inicial en el caso de que varios clientes finales pertenezcan a varios destinos o grupos y desee controlar si los paquetes asignados a un destino deberán tener una prioridad más alta que los asignados a otro destino. Por ejemplo, si los paquetes asignados al destino Todos los clientes finales deben tener una prioridad más alta que los asignados a otros destinos y grupos, podrá reservar los números de prioridad de instalación del 1 al 100 para el destino Todos los clientes finales. Posteriormente, podrá asignar al resto de destinos una prioridad inicial de 101 o superior.</li></div>
+<a name="wp52049"> </a><div class="pSmartList2"><li><b class="cBold">Prioridad</b>. El orden en que se muestran los paquetes en la ficha Paquetes de la página Editar política determina su prioridad de instalación. El valor predeterminado de prioridad es <b class="cBold">N/D</b>, lo que equivale al valor del atributo <b class="cBold">mrbachannelorder</b> de <b class="cBold">99999</b>.</li></div>
+<a name="wp76787"> </a><div class="pSmartList2"><li><b class="cBold"><br />
+<img src="images/new100dpi.jpg" id="wp76841" border="0" hspace="0" vspace="0"/><br />
+Prioridad de actualización</b>. Utilice este botón para aplicar los cambios de prioridad que haya especificado para los paquetes en las cuadros de texto <b class="cBold">Prioridad</b>. Si desea cambiar la prioridad de un paquete para asignarle el valor predeterminado (<b class="cBold">N/D</b> ó <b class="cBold">99999</b>), elimine los valores introducidos en el cuadro de texto Prioridad de dicho paquete y haga clic en <b class="cBold">Prioridad de actualización</b>. Recuerde hacer clic en el botón <b class="cBold">Prioridad de actualización</b> antes de hacer clic en Vista previa para guardar los cambios realizados.</li></div>
+<a name="wp76820"> </a><div class="pSmartList2"><li><b class="cBold">Volver a la prioridad</b>. Utilice este botón para deshacer los últimos cambios que haya realizado en los valores de prioridad. Una vez que haya guardado los cambios, no podrá restablecer los valores iniciales de prioridad.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp52039"> </a><p class="pBody">Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-04.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Instrucciones generales para la creación y edición de políticas</a>.</p>
+<a name="wp61030"> </a><h4 class="pHeading3">
+Configuración de prioridad de instalación de los paquetes
+</h4>
+<a name="wp51852"> </a><p style="text-decoration: none" class="pStepIntro">
+Para establecer la prioridad de instalación de los paquetes
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp51990"> </a><div class="pSmartList1"><li>En la ficha Paquetes de la página Editar política, especifique la prioridad inicial de los paquetes de la política:</li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp52011"> </a><div class="pSmartList2"><li>En el cuadro de texto <b class="cBold">Prioridad inicial</b>, introduzca un valor numérico que indique la prioridad de esta política en relación con las demás políticas. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-21.htm#wp60929');" onMouseOver="WWHShowPopup('Policy', 'policies-21.htm#wp60929', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Conceptos de prioridad de instalación</a>.</li></div>
+<a name="wp52018"> </a><div class="pSmartList2"><li>Haga clic en <b class="cBold">Aplicar</b>.</li></div>
+<a name="wp52032"> </a><p class="pIndented1">
+Tenga en cuenta que al primer paquete de la política se le asignará el valor numérico que haya especificado en el cuadro de texto <b class="cBold">Prioridad inicial</b>, por ejemplo, 101. Los valores asignados a los siguientes paquetes se corresponderán con el lugar que ocupen en la política (al segundo paquete se le asigna el valor 102, al tercer paquete el valor 103, etc.).
+</p>
+</ol></div>
+<a name="wp52009"> </a><div class="pSmartList1"><li>Si desea incrementar o disminuir el valor de prioridad de instalación de un paquete, localice la fila correspondiente al paquete.</li></div>
+<a name="wp51857"> </a><div class="pSmartList1"><li>Para asignar otro valor de prioridad de instalación, escriba el número en el campo Prioridad.</li></div>
+<hr class="NoteRuleTop"/><a name="wp60999"> </a><p class="pNote"><span style="color: #003366">Nota: </span> Por ejemplo, si asigna el valor 5 en el campo Prioridad, y ya existe un paquete al que se le asignado la prioridad 5, Policy Manager incrementará en uno el valor de prioridad de instalación del paquete actual y de aquellos que vayan después de éste, hasta que la aplicación resuelva los conflictos de numeración.</p><hr class="NoteRuleBottom"/></ol></div>
+<a name="wp53856"> </a><p class="pBody">Cuando haya terminado de editar la política, visualice los cambios efectuados en Vista previa y guárdela. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-05.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Visualizar previamente y almacenar cambios en las políticas</a>.</p>
+<a name="wp87931"> </a><h5 class="pHeading4">
+Véase también:
+</h5>
+<a name="wp87934"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'policies-22.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-22.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Resolución de conflictos: paquetes con la misma prioridad de instalación</a>
+</p><a name="wp87938"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'policies-23.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-23.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Resolución de conflictos: cuando varios usuarios editan la misma política</a>
+</p>
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

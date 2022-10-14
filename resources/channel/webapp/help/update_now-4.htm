@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Apr-13-06 v6.2 ANSI)" />
+    <meta name="LASTUPDATED" content="11/16/09 16:17:12" />
+    <title>Performing an immediate policy update</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Performing an immediate policy update";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp61777"> </a><p class="pBody">You might want to perform an immediate policy update if you have applications, patches, content, or updates that you want to immediately distribute to target machines.</p>
+<a name="wp55117"> </a><p class="pBody">You can perform policy updates to machine targets only. If you select an aggregate target (such as the all endpoints target, a domain, a container, or a group) that contains non-machine targets, only machine targets get policy updates. You can perform immediate policy updates while in single selection mode only.</p>
+<hr class="NoteRuleTop"/><a name="wp61758"> </a><p class="pNote"><span style="color: #003366">Note: </span> The restriction to machine targets applies only to immediate policy updates. When Policy Service runs, it checks for both user- and machine-based policies.</p><hr class="NoteRuleBottom"/><a name="wp54803"> </a><p style="text-decoration: none" class="pStepIntro">
+To perform an immediate policy update
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp54812"> </a><div class="pSmartList1"><li>From the Target View page or Target Details page, select a target.</li></div>
+<a name="wp54839"> </a><div class="pSmartList1"><li>Click Update and choose one of the following options:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp54782"> </a><div class="pSmartList2"><li><b class="cBold">Update Directly Assigned Policy</b>-Choose this option if you want to update the policy directly assigned to this target only and not any policies that the target inherits because it is a member of a group, container, domain, or the all endpoints target.</li></div>
+<a name="wp54783"> </a><div class="pSmartList2"><li><b class="cBold">Update All Policies</b>-Choose this option if you want to update all the policies that apply to this target, including the policy directly assigned to this target and any policies that the target inherits because it is a member of a group, container, domain, or the all endpoints target.</li></div>
+<a name="wp54892"> </a><p class="pIndented1">
+The Update Preview page appears and allows you to confirm that you are updating the policy or policies for the correct target.
+</p>
+</ul></div>
+<a name="wp54908"> </a><div class="pSmartList1"><li>Confirm your choice by clicking Update Directly Assigned Policy or Update All Policies.</li></div>
+<a name="wp54918"> </a><p class="pIndented1">
+Policy Manager starts to update the policy or policies for the target that you specified. For more information about how policy updates take place, see <a href="javascript:WWHClickedPopup('sm', 'update_now-7.htm');" onMouseOver="WWHShowPopup('sm', 'update_now-7.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">How does the immediate policy update work?</a>.
+</p>
+<a name="wp54941"> </a><p class="pIndented1">
+The Status of Policy Update page appears and allows you to monitor the status of machines in the target. The page refreshes automatically every ten seconds. See <a href="javascript:WWHClickedPopup('sm', 'update_now-5.htm');" onMouseOver="WWHShowPopup('sm', 'update_now-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Monitoring and viewing the status of a policy update</a>.
+</p>
+<a name="wp54980"> </a><div class="pSmartList1"><li>When policy updates are complete for all the machines in the target you specified, Policy Manager displays the list of machines and indicates whether or not the update was successful.</li></div>
+<a name="wp54984"> </a><p class="pIndented1">
+For machines on which the update failed, you can click the Failed status to view the logs for that specific machine. You can also click Retry Failed to retry policy updates for machines in the target on which they failed.
+</p>
+<a name="wp55026"> </a><div class="pSmartList1"><li>Click Done to return to the Target View or Target Details page.</li></div>
+<a name="wp55030"> </a><p class="pIndented1">
+Notice that a check mark icon <img src="images/update-policy-done.gif" id="wp55028" border="0" hspace="0" vspace="0"/> appears next to the Update button to indicate that a policy update has completed for this target. If you click the Update button, the additional option View status of last update appears at the bottom of the drop-down list. See <a href="javascript:WWHClickedPopup('sm', 'update_now-5.htm');" onMouseOver="WWHShowPopup('sm', 'update_now-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Monitoring and viewing the status of a policy update</a>.
+</p>
+</ol></div>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. All rights reserved.<br/>
+
+ For additional BMC Configuration Management documentation, go to the Customer
+Support website at <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+For questions or comments about BMC CM documentation, send
+an email to <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+For product related issues or questions, send an email to Customer Support at <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

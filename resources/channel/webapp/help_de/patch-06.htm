@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:41:02" />
+    <title>Zuweisen von Patch-Gruppen zu Zielen</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Zuweisen von Patch-Gruppen zu Zielen";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp999754"> </a><p class="pBody">Das Zuweisen von Patch-Gruppen zu Zielcomputern in Policy Manager erfolgt ähnlich wie das Zuweisen von Packages zu Zielcomputern. Wählen Sie einen oder mehrere Zielcomputer aus, bearbeiten Sie die Policys, und fügen Sie die Patch-Gruppen hinzu, die Sie zuweisen möchten.</p>
+<hr class="NoteRuleTop"/><a name="wp999756"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Obwohl Sie über die Schnittstelle allen Zieltypen Patch-Gruppen zuweisen können, sollten Sie Patch-Gruppen nur Computern, Computergruppen und Collections hinzufügen. Wenn Sie Patch-Gruppen Containern zuweisen, achten Sie darauf, dass die Container nur Computer und Computergruppen enthalten. In den meisten Fällen ist es nicht sinnvoll, Patch-Gruppen anderen Zielen als Computern zuzuweisen. Wenn Sie Patch-Gruppen beispielsweise Benutzern zuweisen, werden die Patch-Gruppen eventuell auf alle Computer angewandt, bei denen sich die Benutzer anmelden. Dies wäre dann selbst bei Computern der Fall, auf die die Patch-Gruppen nicht anwendbar sind. </p><hr class="NoteRuleBottom"/><a name="wp999758"> </a><p class="pBody">Eine Policy erstellen Sie, indem Sie ein Ziel auswählen und anschließend die Patch-Gruppen angeben, die dem Ziel zugewiesen werden sollen. Sie können für jede Patch-Gruppe folgende Informationen angeben:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp999760"> </a><div class="pSmartList2"><li>Zuweisungsstatus</li></div>
+<a name="wp999762"> </a><div class="pSmartList2"><li>Blackout-Ausnahme</li></div>
+</ul></div>
+</ul></div>
+<a name="wp999764"> </a><p class="pBody">Zusätzlich können Sie in einer Policy folgende Patch-Informationen angeben:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp999766"> </a><div class="pSmartList2"><li>Die Einstellungen für den Neustart eines Ziels nach einer Patch-Installation</li></div>
+<a name="wp999768"> </a><div class="pSmartList2"><li>Die Blackout-Periode eines Ziels und die Ausnahme des Patch Service von der Blackout-Periode</li></div>
+<a name="wp999770"> </a><div class="pSmartList2"><li>Den Aktualisierungszeitplan für Patch Service auf dem Ziel</li></div>
+<hr class="NoteRuleTop"/><a name="wp999776"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Wenn Sie sich im Mehrfachauswahlmodus befinden und gleichzeitig Policys für mehrere Ziele bearbeiten, können Sie nur Package- und Patch-Gruppe-Informationen, wie den Status und Blackout-Ausnahmen, bearbeiten. Die gespeicherten Package- und Patch-Gruppe-Informationen gelten für alle angegebenen Ziele. Die Registerkarten für die Bearbeitung anderer Informationen, wie beispielsweise der Blackout-Zeitplan und Policy Service, werden nur dann angezeigt, wenn die Policy für ein einzelnes Ziel bearbeitet wird.</p><hr class="NoteRuleBottom"/></ul></div>
+</ul></div>
+<a name="wp999778"> </a><p class="pBody">Das folgende Verfahren beschreibt, wie eine Policy über die Seite „Zielansicht“ erstellt oder bearbeitet wird. Sie können eine Policy auch von den folgenden Seiten aus erstellen oder bearbeiten:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp999780"> </a><div class="pSmartList2"><li>Zielinformationen</li></div>
+<a name="wp999782"> </a><div class="pSmartList2"><li>Package-Ansicht</li></div>
+<a name="wp999784"> </a><div class="pSmartList2"><li>Package-Informationen</li></div>
+</ul></div>
+</ul></div>
+<a name="wp999786"> </a><p class="pBody">Wenn Sie die Erstellung oder Bearbeitung einer Policy über diese Seiten vornehmen, unterscheidet sich nur der erste Schritt im folgenden Verfahren. Die verbleibenden Schritte sind identisch.</p>
+<a name="wp999788"> </a><p style="text-decoration: none" class="pStepIntro">
+Zielcomputern Patch-Gruppen zuweisen
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp999794"> </a><div class="pSmartList1"><li>Wählen Sie in Policy Manager auf der Seite „Zielansicht“ das Ziel aus, für das eine Policy erstellt oder bearbeitet werden soll, und klicken Sie dann auf <b class="cBold">Bearbeiten</b>.</li></div>
+<a name="wp999800"> </a><p class="pIndented1">
+Die Seite „Policy bearbeiten“ wird angezeigt. Auf der Registerkarte „Packages“ werden die dem Ziel zugewiesenen Packages angezeigt. Da hier der Schwerpunkt auf Patches und Patch-Gruppen liegt, wird an dieser Stelle nicht vertiefend auf Packages eingegangen. Weitere Informationen über das Zuweisen von Packages zu Zielen finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-04.htm');" onMouseOver="WWHShowPopup('sm', 'policies-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Allgemeine Anweisungen zum Erstellen und Bearbeiten von Policys</a>.
+</p>
+<a name="wp999802"> </a><div class="pSmartList1"><li>Klicken Sie auf die Registerkarte <b class="cBold">Patches</b>.</li></div>
+<a name="wp999804"> </a><p class="pIndented1">
+Die Registerkarte „Patch-Gruppen“ wird angezeigt. Darauf sind alle dem Ziel zugewiesenen Patch-Gruppen aufgeführt. Angezeigt werden sowohl direkt als auch indirekt dem Ziel zugewiesene Patch-Gruppen. Indirekt zugewiesene Patch-Gruppen sind dann gegeben, wenn das Ziel Teil einer anderen Gruppe oder eines anderen Containers ist.
+</p>
+<a name="wp999808"> </a><div class="pSmartList1"><li>So fügen Sie Patch-Gruppen zur Policy hinzu oder entfernen sie:</li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp999810"> </a><div class="pSmartList2"><li>Klicken Sie auf <b class="cBold">Patch-Gruppen-Liste bearbeiten</b>.</li></div>
+<a name="wp999814"> </a><p class="pIndented1">
+Auf der linken Seite werden die auf dem Transmitter veröffentlichten Patch-Gruppen angezeigt. Die Patch-Gruppen werden auf dem Transmitter im Ordner <b class="cBold">PatchManagement/PatchGroups</b> gespeichert.
+</p>
+<a name="wp999816"> </a><div class="pSmartList2"><li>Um einer Policy eine Patch-Gruppe hinzuzufügen, wählen Sie im linken Bereich der Seite eine Patch-Gruppe aus. Sie wird dann im rechten Bereich der Seite angezeigt. </li></div>
+<a name="wp999818"> </a><div class="pSmartList2"><li>Wenn angezeigt werden soll, welche Patches zu einer Patch-Gruppe gehören, klicken Sie unter der Patch-Gruppe-Liste auf den Namen der Patch-Gruppe (wird normalerweise als blauer Link angezeigt).</li></div>
+<a name="wp999820"> </a><p class="pIndented1">
+<b class="cBold">Hinweis</b>: Die Mitglieder einer Patch-Gruppe werden nur angezeigt, wenn die Patch-Gruppe auf dem bei der Konfiguration von Patch Manager festgelegten Master Transmitter veröffentlicht wurde. Die Mitglieder einer Patch-Gruppe werden auch dann nicht angezeigt, wenn Sie die Patch-Gruppe einem Ziel mit einem anderen URL zuweisen als demjenigen, den Sie bei der Veröffentlichung der Patch-Gruppe verwendet haben. Dies ist beispielsweise dann der Fall, wenn Sie beim Veröffentlichen der Patch-Gruppe den Hostnamen, bei der Zuweisung der Patch-Gruppe zu einem Ziel aber die IP-Adresse verwendet haben.
+</p>
+<a name="wp999826"> </a><div class="pSmartList2"><li>Um eine Patch-Gruppe aus einer Policy zu entfernen, wählen Sie diese im rechten Bereich der Seite aus, und klicken Sie dann auf <b class="cBold">Entfernen</b>. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'patch-07.htm');" onMouseOver="WWHShowPopup('sm', 'patch-07.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Entfernen von Patch-Gruppen aus einer Policy</a>.</li></div>
+<a name="wp999828"> </a><div class="pSmartList2"><li>Klicken Sie nach dem Hinzufügen und Entfernen der Patch-Gruppen auf <b class="cBold">OK</b>.</li></div>
+</ol></div>
+<a name="wp999834"> </a><div class="pSmartList1"><li>Geben Sie auf der Registerkarte <b class="cBold">Patch-Gruppen</b> den Zuweisungsstatus für die Patch-Gruppen an, die Sie der Policy hinzugefügt haben. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'patch-04.htm');" onMouseOver="WWHShowPopup('sm', 'patch-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was ist ein Patch-Gruppe-Zuweisungsstatus?</a>.</li></div>
+<a name="wp999848"> </a><div class="pSmartList1"><li>Wenn Sie Patch-Gruppen von der Blackout-Periode ausnehmen möchten, aktivieren Sie auf der Registerkarte <b class="cBold">Patch-Gruppen</b> die Kontrollkästchen für die entsprechenden Patch-Gruppen. Sie müssen außerdem Policy Service und Patch Service von der Blackout-Periode ausnehmen. Weitere Informationen zu Blackout-Perioden finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'blackout-1.htm');" onMouseOver="WWHShowPopup('sm', 'blackout-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Festlegen einer Blackout-Periode für ein Ziel</a> und <a href="javascript:WWHClickedPopup('sm', 'patch-13.htm');" onMouseOver="WWHShowPopup('sm', 'patch-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Ausnehmen von Patch Service von der Blackout-Periode.</a>.</li></div>
+<a name="wp999854"> </a><div class="pSmartList1"><li>Klicken Sie auf <b class="cBold"> Simulation ausführen</b>, um die Installation der dem Zielcomputer zugewiesenen Patch-Gruppen zu simulieren. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'patch-08.htm');" onMouseOver="WWHShowPopup('sm', 'patch-08.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Simulation der Patch-Installation</a>.</li></div>
+<a name="wp999856"> </a><p class="pIndented1">
+<b class="cBold">Hinweis</b>: Zur Simulation einer Patch-Installation sollte das für Patch-Gruppen ausgewählte Ziel ein einzelner Computer sein.
+</p>
+<a name="wp999862"> </a><div class="pSmartList1"><li>Klicken Sie auf die Registerkarte <b class="cBold"> Neustarteinstellungen</b>. Dort können Sie festlegen, in welchem Umfang Sie den Benutzern Steuerungsmöglichkeiten gewähren möchten, wenn die Computer nach dem Erhalt eines Patches neu gestartet werden müssen. Sie können die Computer automatisch neu starten, Warnmeldungen anzeigen und eine gewisse Zeit mit dem Neustart warten oder den Benutzern erlauben, den Neustart aufzuschieben. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'patch-10.htm');" onMouseOver="WWHShowPopup('sm', 'patch-10.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Konfigurieren der Neustarteinstellungen für Patch-Installationen</a>.</li></div>
+<a name="wp999864"> </a><div class="pSmartList1"><li>Klicken Sie auf die Registerkarte <b class="cBold">Patch Service-Zeitplan</b>, um einen Zeitplan für die Aktualisierung von Patch Service auf einem Ziel festzulegen.</li></div>
+<a name="wp999874"> </a><p class="pIndented1">
+Während der Aktualisierung sucht Patch Service auf dem Ziel nach der Liste mit den erforderlichen und bereits installierten Patches. Außerdem werden den Abhängigkeiten jedes Patches entsprechend eine Reihe weiterer Patches installiert. Sie können angeben, dass Aktualisierungen anhand eines wiederkehrenden Zeitplans durchgeführt werden. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'patch-12.htm');" onMouseOver="WWHShowPopup('sm', 'patch-12.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Außerkraftsetzen des Patch Service-Aktualisierungszeitplans für Zielcomputer.</a> und <a href="javascript:WWHClickedPopup('sm', 'patch-13.htm');" onMouseOver="WWHShowPopup('sm', 'patch-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Ausnehmen von Patch Service von der Blackout-Periode.</a>.
+</p>
+<a name="wp999876"> </a><div class="pSmartList1"><li>Wenn Sie eine Policy für ein einzelnes Ziel erstellen oder bearbeiten, können Sie auch folgende Tasks ausführen:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp999882"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'blackout-1.htm');" onMouseOver="WWHShowPopup('sm', 'blackout-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Festlegen einer Blackout-Periode für ein Ziel</a></li></div>
+<a name="wp999888"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'sub_serv-1.htm');" onMouseOver="WWHShowPopup('sm', 'sub_serv-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Angeben des Policy Service-Zeitplans für ein Ziel</a></li></div>
+<a name="wp999894"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'props-1.htm');" onMouseOver="WWHShowPopup('sm', 'props-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Einstellen der Tuner- und Package-Eigenschaften für ein Ziel</a></li></div>
+<a name="wp999900"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'tx_login-1.htm');" onMouseOver="WWHShowPopup('sm', 'tx_login-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Festlegen von Transmitter-Berechtigungen für ein Ziel</a></li></div>
+<a name="wp999906"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'tx_login-5.htm');" onMouseOver="WWHShowPopup('sm', 'tx_login-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Festlegen des Profils für ein Ziel</a></li></div>
+</ul></div>
+<a name="wp999908"> </a><div class="pSmartList1"><li>Klicken Sie nach dem Erstellen oder Bearbeiten der Policy auf <b class="cBold">Vorschau</b>.</li></div>
+<a name="wp999914"> </a><p class="pIndented1">
+Auf der Seite „Vorschau“ können Sie sich die Änderungen der Policy noch einmal ansehen, bevor Sie diese speichern und auf das Ziel anwenden. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Erstellen der Vorschau und Speichern von Policy-Änderungen</a>.
+</p>
+<a name="wp999916"> </a><div class="pSmartList1"><li>Nachdem Sie sich die Änderungen der Policy noch einmal angesehen haben, klicken Sie auf <b class="cBold">Speichern</b>, um die Änderungen zu bestätigen und zu speichern.</li></div>
+</ol></div>
+<a name="wp999922"> </a><p class="pBody">Wenn Policy Service das nächste Mal aktualisiert und auf dem Client ausgeführt wird, wird die erstellte oder bearbeitete Policy heruntergeladen und angewendet.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

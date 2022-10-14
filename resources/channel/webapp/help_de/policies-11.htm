@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:29" />
+    <title>Übersicht über Installationsstatus</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Übersicht über Installationsstatus";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp83267"> </a><p class="pBody">Der Installationsstatus bestimmt, ob und wie ein Package auf einem Ziel installiert wird. Sie können für jedes einem Ziel zugewiesene Package einen Primäsrstatus festlegen. Mit Hilfe von Policy Manager können Sie einem Package als Teil der Policy für einen oder mehr Clients Installationsstatus zuweisen.</p>
+<a name="wp83271"> </a><p class="pBody">In der folgenden Tabelle werden die für Packages verfügbaren, unterschiedlichen Status beschrieben. Mit den beiden Primärstatus <em class="cEmphasis">Bereitstellen</em> und <em class="cEmphasis">Ankündigen</em> können Sie einen Sekundärstatus festlegen, mit dem die Installation des Package gesteuert werden kann. Sie können mit dem Sekundärstatus einen Aktivierungszeitplan verknüpfen, um für die Zukunft einen Zeitraum zu bestimmen, innerhalb dessen Package-Installationen im gesamten Unternehmen durchgeführt werden. Dies gilt selbst für Clients, die nur selten eine Verbindung zum Netzwerk herstellen. Der Standardwert des Sekundärstatus ist <em class="cEmphasis">Installieren</em>.</p>
+<a name="wp83274"> </a><p class="pBodyRelative"></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp81983table52838">
+  <caption><a name="wp81983"> </a><p class="pBody">Tabelle&#160;4-3:&#160;&#160;Installationsstatus für Packages &#160;</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp81993"> </a><div class="pCellHeading">
+Primär&#160;status
+</div>
+</th>
+    <th><a name="wp81995"> </a><div class="pCellHeading">
+Beschreibung
+</div>
+</th>
+    <th><a name="wp81999"> </a><div class="pCellHeading">
+Sekundär&#160;status
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp82009"> </a><div class="pCellHeading">
+Bereitstellen
+</div>
+</td>
+    <td><a name="wp82016"> </a><div class="pCellBody">
+Das Package wird heruntergeladen, aber nicht installiert. Der Benutzer kann auf jedem Client eine interaktive Installation durchführen. Wenn Sie einen Sekundärstatus festgelegt haben, können Sie aber auch eine Zeit festlegen, zu der das heruntergeladene Package automatisch installiert wird. (Dieser Status wird als <em class="cEmphasis">Installation ausstehend</em> angezeigt, wenn der Tuner mit Tuner Administrator betrachtet wird. In früheren Versionen hieß dieser Status <em class="cEmphasis">Subscription einrichten und nicht installieren (subscribe and no install)</em>.)<a href="#wp82013"><sup class="Footnote">1</sup></a>
+</div>
+</td>
+    <td><a name="wp82018"> </a><div class="pCellBody">
+Installieren
+</div>
+<a name="wp82020"> </a><div class="pCellBody">
+Installieren-Starten
+</div>
+<a name="wp82022"> </a><div class="pCellBody">
+Installieren-Beibehalten
+</div>
+<a name="wp82024"> </a><div class="pCellBody">
+Installieren-Starten-Beibehalten
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp82034"> </a><div class="pCellHeading">
+Ankündigen
+</div>
+</td>
+    <td><a name="wp82036"> </a><div class="pCellBody">
+Das Package wird als zum Herunterladen bereit gekennzeichnet. Wenn Sie einen Sekundärstatus festgelegt haben, können Sie auch eine Zeit festlegen, zu der das Package tatsächlich heruntergeladen und installiert werden soll. (Dieser Status wird als <em class="cEmphasis">verfügbar</em> angezeigt, wenn der Tuner mit Tuner Administrator betrachtet wird.)
+</div>
+</td>
+    <td><a name="wp82038"> </a><div class="pCellBody">
+Installieren
+</div>
+<a name="wp82040"> </a><div class="pCellBody">
+Installieren-Starten
+</div>
+<a name="wp82042"> </a><div class="pCellBody">
+Installieren-Beibehalten
+</div>
+<a name="wp82044"> </a><div class="pCellBody">
+Installieren-Starten-Beibehalten
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp82054"> </a><div class="pCellHeading">
+Installieren
+</div>
+</td>
+    <td><a name="wp82056"> </a><div class="pCellBody">
+Das Package wird heruntergeladen und im Hintergrund installiert. (In früheren Versionen hieß dieser Status <em class="cEmphasis">Subscription einrichten (subscribe)</em>.)
+</div>
+</td>
+    <td><a name="wp82058"> </a><div class="pCellBody">
+Deinstallieren
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp82068"> </a><div class="pCellHeading">
+Installieren-Starten
+</div>
+</td>
+    <td><a name="wp82078"> </a><div class="pCellBody">
+Das Package wird installiert, und die installierte Software wird gestartet. (In früheren Versionen hieß dieser Status <em class="cEmphasis">Subscription einrichten und starten (subscribe and start)</em>.) Das Package wird jedes Mal gestartet, wenn Policy Service ausgeführt wird. Wird das Package bereits ausgeführt, wird es von Policy Service nicht neu gestartet.
+</div>
+</td>
+    <td><a name="wp82080"> </a><div class="pCellBody">
+Deinstallieren
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp82090"> </a><div class="pCellHeading">
+Installieren-Beibehalten
+</div>
+</td>
+    <td><a name="wp82092"> </a><div class="pCellBody">
+Das Package wird installiert und kann nicht gelöscht werden, selbst wenn der Client aus einer Zielgruppe entfernt wird. Dieser Status ist nützlich, wenn Sie Aktualisierungen der Systemsoftware installieren. Das Package kann immer noch mit dem Deinstallationsstatus gelöscht werden. (In früheren Versionen hieß dieser Status <em class="cEmphasis">Subscription einrichten-Beibehalten (subscribe-persist)</em>.)
+</div>
+</td>
+    <td><a name="wp82094"> </a><div class="pCellBody">
+N/A
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp82104"> </a><div class="pCellHeading">
+Installieren-Starten-Beibehalten
+</div>
+</td>
+    <td><a name="wp82114"> </a><div class="pCellBody">
+Das Package wird installiert und kann wie beim Status &quot;Installieren-Beibehalten&quot; nicht gelöscht werden, selbst wenn der Client aus einer Zielgruppe entfernt wird. Die installierte Software wird nach der Installation gestartet. Das Package wird jedes Mal gestartet, wenn Policy Service ausgeführt wird. Wird das Package bereits ausgeführt, wird es von Policy Service nicht neu gestartet.
+</div>
+</td>
+    <td><a name="wp82116"> </a><div class="pCellBody">
+N/A
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp82126"> </a><div class="pCellHeading">
+Ausschließen
+</div>
+</td>
+    <td><a name="wp82132"> </a><div class="pCellBody">
+Das Package wird für einen Client ausgeschlossen, selbst wenn er Teil eine Gruppe mit Subscription ist. Dieser Status ist vor allem dann nützlich, wenn Sie außer für ein oder zwei Mitglieder einer Gruppe für alle eine Package-Subscription einrichten möchten. Dieser Status hat stets Vorrang. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-11.htm#wp83312');" onMouseOver="WWHShowPopup('sm', 'policies-11.htm#wp83312', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Statusvorrang</a>.
+</div>
+<a name="wp82134"> </a><div class="pCellBody">
+<b class="cBold">Hinweis:</b> Um den Status &quot;Ausschließen&quot; verwenden zu können, müssen Sie eine Policy erstellen, in der Sie die Clients angeben, die (vom Erhalt des Package) ausgeschlossen werden sollen. Diese Policy wird zusätzlich zu der Policy erstellt, die ursprünglich für die größere Gruppe eine Subscription für das Package eingerichtet hat.
+</div>
+</td>
+    <td><a name="wp82136"> </a><div class="pCellBody">
+N/A
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp82146"> </a><div class="pCellHeading">
+Deinstallieren
+</div>
+</td>
+    <td><a name="wp82148"> </a><div class="pCellBody">
+Das Package wird gelöscht. Wenn die Ausführung der installierten Software über den Tuner gesteuert wird, wird sie zunächst und ohne Vorwarnung gestoppt und anschließend gelöscht. Beachten Sie, dass dieser Installationsstatus Packages löscht, die mit dem Status &quot;Beibehalten&quot; installiert wurden. (In früheren Versionen hieß dieser Status <em class="cEmphasis">Löschen (delete)</em>.)
+</div>
+</td>
+    <td><a name="wp82150"> </a><div class="pCellBody">
+N/A
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp82160"> </a><div class="pCellHeading">
+Primär
+</div>
+</td>
+    <td><a name="wp82162"> </a><div class="pCellBody">
+Das Package wird heruntergeladen und als Primär-Channel des Tuner gekennzeichnet. Dies ist ein Channel, der jedes Mal gestartet wird, wenn der Tuner gestartet wird und oft als grafische Benutzeroberfläche für den Tuner dient.
+</div>
+</td>
+    <td><a name="wp82164"> </a><div class="pCellBody">
+N/A
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBodyRelative">
+</p>
+
+<a name="wp83276"> </a><h5 class="pHeading4">
+Siehe auch:
+</h5>
+<a name="wp83282"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-02.htm');" onMouseOver="WWHShowPopup('sm', 'policies-02.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was ist eine Policy?</a>
+</p><a name="wp83288"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-13.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was ist ein Package?</a>
+</p><a name="wp83294"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-02.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-02.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Zieltypen</a>
+</p><a name="wp83300"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-11.htm#wp83312');" onMouseOver="WWHShowPopup('sm', 'policies-11.htm#wp83312', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Statusvorrang</a>
+</p><a name="wp83306"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-18.htm');" onMouseOver="WWHShowPopup('sm', 'policies-18.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Konfliktlösung: Status und Zeitpläne in Policys</a>
+</p><a name="wp83312"> </a><h4 style="margin-top: 14pt" class="pHeading3">
+Statusvorrang
+</h4>
+<a name="wp83318"> </a><p style="text-decoration: none" class="pStepIntro">
+Zwischen den verschiedenen Package-Status können Konflikte auftreten, wenn ein Client in zwei oder mehr Gruppen vertreten ist oder wenn eine Policy sowohl einem einzelnen Client als auch den Mitgliedern einer Gruppe zugewiesen ist, zu der der Client gehört. In diesen Fällen gelten die folgenden Vorrangsregeln. Policy Manager setzt den Status mit dem höchsten Vorrang durch.
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp83320"> </a><div class="pSmartList1"><li>Ausschließen (höchster Rang)</li></div>
+<a name="wp83322"> </a><div class="pSmartList1"><li>Deinstallieren</li></div>
+<a name="wp83324"> </a><div class="pSmartList1"><li>Primär</li></div>
+<a name="wp83326"> </a><div class="pSmartList1"><li>Installieren-Starten-Beibehalten</li></div>
+<a name="wp83328"> </a><div class="pSmartList1"><li>Installieren-Starten</li></div>
+<a name="wp83330"> </a><div class="pSmartList1"><li>Installieren-Beibehalten</li></div>
+<a name="wp83332"> </a><div class="pSmartList1"><li>Installieren</li></div>
+<a name="wp83334"> </a><div class="pSmartList1"><li>Bereitstellen</li></div>
+<a name="wp83336"> </a><div class="pSmartList1"><li>Ankündigen (niedrigster Rang)</li></div>
+<hr class="NoteRuleTop"/><a name="wp83342"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Konflikte treten zwischen verschiedenen Package-Status auf und resultieren nicht aus der Art, wie eine Policy einem Ziel zugewiesen wird. Daher beruht die Konfliktlösung nicht darauf, ob ein Client ein direktes Ziel oder als Mitglied einer Gruppe ein indirektes Ziel ist. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-18.htm');" onMouseOver="WWHShowPopup('sm', 'policies-18.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Konfliktlösung: Status und Zeitpläne in Policys</a>.</p><hr class="NoteRuleBottom"/></ol></div>
+<a name="wp83344"> </a><h5 class="pHeading4">
+Siehe auch:
+</h5>
+<a name="wp83350"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-02.htm');" onMouseOver="WWHShowPopup('sm', 'policies-02.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was ist eine Policy?</a>
+</p><a name="wp83356"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-13.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was ist ein Package?</a>
+</p><a name="wp83362"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-02.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-02.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Zieltypen</a>
+</p><a name="wp83368"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-11.htm#wp83312');" onMouseOver="WWHShowPopup('sm', 'policies-11.htm#wp83312', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Statusvorrang</a>
+</p>
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

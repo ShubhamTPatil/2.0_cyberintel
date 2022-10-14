@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:29" />
+    <title>Konfliktlösung: Packages mit der gleichen Installationspriorität</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Konfliktlösung: Packages mit der gleichen Installationspriorität";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp84295"> </a><p class="pBody">Beim Anzeigen der Seite &quot;Zielinformationen&quot; kann es vorkommen, dass verschiedene Packages die gleiche Installationspriorität besitzen. Sie legen beispielsweise folgende Installationsprioritäten für den Benutzer &quot;Alan&quot; fest:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp84297"> </a><div class="pSmartList2"><li>Package A, Installationspriorität 1</li></div>
+<a name="wp84299"> </a><div class="pSmartList2"><li>Package B, Installationspriorität 2</li></div>
+<a name="wp84301"> </a><div class="pSmartList2"><li>Package C, Installationspriorität 3</li></div>
+</ul></div>
+</ul></div>
+<a name="wp84303"> </a><p class="pBody">Sie legen darüber hinaus folgende Installationsprioritäten für die Benutzergruppe &quot;Engineering&quot; fest:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp84305"> </a><div class="pSmartList2"><li>Package D, Installationspriorität 1</li></div>
+<a name="wp84307"> </a><div class="pSmartList2"><li>Package E, Installationspriorität 2</li></div>
+<a name="wp84309"> </a><div class="pSmartList2"><li>Package F, Installationspriorität 3</li></div>
+</ul></div>
+</ul></div>
+<a name="wp84315"> </a><p class="pBody">Wenn &quot;Alan&quot; Mitglied der Gruppe &quot;Engineering&quot; ist, zeigt die Seite &quot;Zielinformationen&quot; sich überschneidende Installationsprioritäten an (zwei Mal 1, zwei Mal 2, zwei Mal 3). In diesen Fällen haben alle Packages mit Installationspriorität 1 Vorrang vor denjenigen mit Installationspriorität 2 usw. Sie können weitere Konflikte bei der Installationspriorität auch mit dem Wert der Startpriorität lösen, indem Sie Packages mit sich überschneidenden Zielen verschiedene Blöcke von Prioritätsnummern zuweisen. Siehe <a href="javascript:WWHClickedPopup('sm', 'policies-21.htm#wp84243');" onMouseOver="WWHShowPopup('sm', 'policies-21.htm#wp84243', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Festlegen der Installationspriorität für Packages</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

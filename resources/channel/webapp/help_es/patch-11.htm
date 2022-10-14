@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:52" />
+    <title>Avanzadas: propiedades de configuración de reinicio de Tuner</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Avanzadas: propiedades de configuración de reinicio de Tuner";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp52434"> </a><p class="pBody">Este tema se incluye como referencia para ayudarle a llevar a cabo el procedimiento descrito en <a href="javascript:WWHClickedPopup('Policy', 'patch-10.htm');" onMouseOver="WWHShowPopup('Policy', 'patch-10.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Configurar parámetros de reinicio de instalaciones de parches</a>. La configuración de reinicio afecta a las siguientes propiedades de tuner:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp52439"> </a><div class="pSmartList2"><li><b class="cBold">marimba.reboot.interact</b>: especifica si se mostrará o no un mensaje de aviso advirtiendo a los usuarios acerca del reinicio. El valor predeterminado es verdadero (se mostrará un mensaje de aviso).</li></div>
+<a name="wp52442"> </a><div class="pSmartList2"><li><b class="cBold">marimba.reboot.interact.allowSnooze</b>: especifica si se permite a los usuarios posponer el reinicio. Si se establece como verdadero, aparecerá un cuadro de diálogo en el que los usuarios podrán posponer el reinicio. Si se establece como falso, aparecerá un cuadro de diálogo de aviso en el que se mostrará el temporizador de cuenta atrás para el reinicio. El valor predeterminado es verdadero.</li></div>
+<a name="wp53734"> </a><div class="pSmartList2"><li><b class="cBold">marimba.reboot.interact.snooze.maxTime</b>: especifica el tiempo máximo (en milisegundos) que los usuarios podrán posponer el reinicio. El valor predeterminado es 0 (no existe un tiempo máximo).</li></div>
+<a name="wp52735"> </a><div class="pSmartList2"><li><b class="cBold">marimba.reboot.interact.timer</b>: especifica el tiempo de espera o de cuenta atrás en segundos para el reinicio. Este valor es la hora de inicio que se mostrará en el cuadro de diálogo de aviso en caso de que establezca <b class="cBold">marimba.reboot.interact.allowSnooze</b> como falso. El valor predeterminado es 60 segundos. Si establece este valor como 0, la máquina se reiniciará inmediatamente.</li></div>
+<a name="wp53598"> </a><div class="pSmartList2"><li><b class="cBold">marimba.reboot.never</b>: especifica si se reiniciará o no la máquina automáticamente en caso de que sea necesario (por ejemplo, tras la instalación de parches). Establezca el valor como verdadero si no desea que la máquina se reinicie automáticamente.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp52956"> </a><p class="pBody">Puede acceder a estas propiedades en la ficha Avanzado &gt; Propiedades de Tuner/paquete cuando esté editando una política.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

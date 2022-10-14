@@ -1,0 +1,11 @@
+/* Default style for links */
+a.panel {
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  font-size: 12px;
+}
+a:active  { color: #0000CC}
+a:hover   { color: #CC0033}
+a:link    { color: #3366CC}
+a:visited { color: #9999CC}
+
+

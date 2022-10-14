@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:45" />
+    <title>Resolución de conflictos: cuando varios usuarios editan la misma política </title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Resolución de conflictos: cuando varios usuarios editan la misma política ";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp53466"> </a><p class="pBody">En esta sección se muestra lo que sucede si varios usuarios editan una política al mismo tiempo.</p>
+<a name="wp53467"> </a><p style="text-decoration: none" class="pStepIntro">
+En la tabla siguiente se parte del supuesto de que se sigue la secuencia de eventos que se indica a continuación
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp53468"> </a><div class="pSmartList1"><li>El usuario 1 accede a la página Editar política y comienza a editar una política.</li></div>
+<a name="wp53469"> </a><div class="pSmartList1"><li>El usuario 2 accede a la página Editar política y comienza también a editar una política.</li></div>
+<a name="wp53470"> </a><div class="pSmartList1"><li>El usuario 2 termina de editar la política y la guarda en la página Editar política.</li></div>
+<a name="wp53471"> </a><div class="pSmartList1"><li>El usuario 1 termina de editar la política y la guarda en la página Editar política.<div align="left">
+<table border="1" cellpadding="3" id="wp68306table53472">
+  <caption><a name="wp68306"> </a><p class="pBody">Tabla&#160;4-6:&#160;&#160;Cuando varios usuarios editan la misma política</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp53474"> </a><div class="pCellHeading">
+Usuario 1:
+</div>
+</th>
+    <th><a name="wp53476"> </a><div class="pCellHeading">
+Usuario 2:
+</div>
+</th>
+    <th><a name="wp53478"> </a><div class="pCellHeading">
+Resultado final
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp53480"> </a><div class="pCellBody">
+Edita los paquetes A y B
+</div>
+</td>
+    <td><a name="wp53482"> </a><div class="pCellBody">
+Agrega el paquete C
+</div>
+</td>
+    <td><a name="wp53484"> </a><div class="pCellBody">
+La política incluye los paquetes A, B y C.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp53486"> </a><div class="pCellBody">
+Edita el paquete A
+</div>
+</td>
+    <td><a name="wp53488"> </a><div class="pCellBody">
+Agrega o edita el paquete A
+</div>
+</td>
+    <td><a name="wp53490"> </a><div class="pCellBody">
+El ganador del conflicto es el usuario 1. Los cambios realizados por el usuario 2 se sobrescriben con los cambios realizados por el usuario 1.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp53492"> </a><div class="pCellBody">
+Agrega o edita el paquete A
+</div>
+</td>
+    <td><a name="wp53494"> </a><div class="pCellBody">
+Edita el paquete B
+</div>
+</td>
+    <td><a name="wp53496"> </a><div class="pCellBody">
+El ganador del conflicto es el usuario 1. Aún cuando el usuario 1 no haya editado el paquete B, los cambios realizados por el usuario 2 se sobrescribirán con los estados y las planificaciones anteriormente establecidos para el paquete B.
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li></div>
+</ol></div>
+<a name="wp53042"> </a><p class="pBody">Para obtener información sobre la resolución de conflictos cuando varios usuarios editan las propiedades del tuner y de los paquetes, consulte <a href="javascript:WWHClickedPopup('Policy', 'props-8.htm');" onMouseOver="WWHShowPopup('Policy', 'props-8.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">&quot;Resolución de conflictos: cuando varios usuarios editan propiedades&quot;</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

@@ -1,0 +1,784 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:48" />
+    <title>Überblick über Tuner- und Package-Policys</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Überblick über Tuner- und Package-Policys";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp667918"> </a><p class="pBody">Wenn Sie eine Policy mit Hilfe von Policy Manager erstellen oder bearbeiten, können Sie auch die Tuner- und Package-Eigenschaften für ein Ziel festlegen. Mit Tuner- und Package-Eigenschaften können Sie das Verhalten des Ziels oder der Packages auf den Zielclients steuern. So können Sie beispielsweise die Anzahl und Häufigkeit von Wiederholungsversuchen bei einem fehlgeschlagenen Download oder das Neustartverhalten eines bestimmten Package steuern.</p>
+<a name="wp667920"> </a><p class="pBody">Dieser Abschnitt umfasst folgende Themen:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp667926"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp667950');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp667950', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was sind Tuner-Eigenschaften?</a></li></div>
+<a name="wp667932"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp667982');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp667982', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Welche Tuner-Eigenschaften werden üblicherweise mit Policy Manager festgelegt?</a></li></div>
+<a name="wp667938"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp668025');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp668025', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was sind Package-Eigenschaften?</a></li></div>
+<a name="wp667944"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp668049');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp668049', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Eigenschaften zur Steuerung des Neustart von Packages (nur Windows)</a></li></div>
+</ul></div>
+</ul></div>
+<a name="wp667950"> </a><h4 style="margin-top: 14pt" class="pHeading3">
+Was sind Tuner-Eigenschaften?
+</h4>
+<a name="wp667956"> </a><p class="pBody">Viele Eigenschaften und Einstellungen eines Tuner werden durch Tuner-Eigenschaften konfiguriert. Dies umfasst beispielsweise die URL-Adresse seines Primär-Channel, die URL-Adresse für Tuner-Aktualisierungen sowie Informationen zu Lizenzen und Proxies. Mit Hilfe von Policy Manager können Sie (in der Datei <b class="cBold">prefs.txt</b>) Tuner-Eigenschaften für den Ziel-Tuner hinzufügen, bearbeiten und löschen.</p>
+<a name="wp667966"> </a><p class="pBody">Eine Liste von Tuner-Eigenschaften, die üblicherweise mit Policy Manager festgelegt werden, finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp667982');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp667982', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Welche Tuner-Eigenschaften werden üblicherweise mit Policy Manager festgelegt?</a>. Ein Liste von Tuner-Eigenschaften finden Sie im Kapitel über Tuner-Eigenschaften im <em class="cEmphasis">BMC CM-Referenzhandbuch (BMC Configuration Management Reference Guide)</em>, das auf der BMC Customer Support-Website erhältlich ist.</p>
+<a name="wp667972"> </a><p class="pBody">Eine Anleitung zum Festlegen von Tuner-Eigenschaften finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'props-3.htm');" onMouseOver="WWHShowPopup('sm', 'props-3.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Festlegen von Tuner-Eigenschaften</a>.</p>
+<a name="wp667982"> </a><h4 style="margin-top: 14pt" class="pHeading3">
+Welche Tuner-Eigenschaften werden üblicherweise mit Policy Manager festgelegt?
+</h4>
+<a name="wp667992"> </a><p class="pBody">Wenn Sie Policy Service installiert haben, können Sie für den Tuner zusätzliche Eigenschaften einstellen. Mit einer der folgenden Vorgehensweisen können Sie die zusätzlichen Tuner-Eigenschaften festlegen, und so die Interaktion des Tuner mit Policy Service verändern.</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp667994"> </a><div class="pSmartList2"><li>Beim Erstellen eines Tuner-Installationsprogramms während Setup und Deployment</li></div>
+<a name="wp667996"> </a><div class="pSmartList2"><li>Über eine Profilaktualisierung</li></div>
+<a name="wp667998"> </a><div class="pSmartList2"><li>Über Tuner Administrator</li></div>
+<a name="wp668004"> </a><div class="pSmartList2"><li>Über Policy Manager</li></div>
+</ul></div>
+</ul></div>
+<a name="wp668014"> </a><p class="pBody">Die ersten neun Eigenschaften, die in der <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp666557');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp666557', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Tabelle&#160;4-7</a> dargestellt sind, werden in der Liste auf der Policy Manager-Seite &quot;Tuner- und Package-Eigenschaften&quot; angezeigt. Sie sind in der Reihenfolge aufgelistet, in der sie auf der Seite angezeigt werden. Die übrigen Eigenschaften in der Tabelle müssen mit ihrem vollständigen Eigenschaftsnamen eingegeben werden. Sie sind in alphabetischer Reihenfolge aufgelistet.</p>
+<a name="wp668017"> </a><p class="pBodyRelative"></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp666557table38466">
+  <caption><a name="wp666557"> </a><p class="pBody">Tabelle&#160;4-7:&#160;&#160;<span style="font-style: normal; font-weight: normal; text-decoration: none; vertical-align: baseline">Häufig verwendete Tuner-Eigenschaften&#160;</span></p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp666565"> </a><div class="pCellHeading">
+Eigenschaftsname
+</div>
+</th>
+    <th><a name="wp666567"> </a><div class="pCellHeading">
+Mögliche Werte
+</div>
+</th>
+    <th><a name="wp666569"> </a><div class="pCellHeading">
+Beschreibung
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp666577"> </a><div class="pCellBody">
+<b class="cBold">Nicht löschen</b>
+</div>
+<a name="wp666579"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666583"> </a><div class="pCellBody">
+marimba.subscription.nodelete
+</div>
+<a name="wp666585"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+    <td><a name="wp666587"> </a><div class="pCellBody">
+ &quot;true&quot; oder &quot;false&quot;
+</div>
+<a name="wp666589"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666591"> </a><div class="pCellBody">
+Standard: false
+</div>
+</td>
+    <td><a name="wp666597"> </a><div class="pCellBody">
+Standardmäßig werden Packages gelöscht, wenn ein Benutzer oder ein Computer aus einer Gruppe im zu Grunde liegenden Verzeichnisdienst entfernt wird. Wenn Sie diese Eigenschaft auf &quot;true&quot; setzen, werden Packages nicht gelöscht. Dies gilt selbst dann, wenn Sie Packages mit Hilfe der Seite &quot;Zielinformationen&quot; vom Ziel löschen. Sie bleiben auf dem Ziel erhalten und werden nicht mehr mit Policy Manager verwaltet. Sie müssen den Status &quot;Deinstallieren&quot; verwenden, um die Packages vom Ziel zu löschen.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp666605"> </a><div class="pCellBody">
+<b class="cBold">Neustart durchführen</b>
+</div>
+<a name="wp666607"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666613"> </a><div class="pCellBody">
+marimba.subscription.reboot
+</div>
+</td>
+    <td><a name="wp666615"> </a><div class="pCellBody">
+&quot;true&quot; oder &quot;false&quot;
+</div>
+<a name="wp666617"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666619"> </a><div class="pCellBody">
+Standard: false
+</div>
+</td>
+    <td><a name="wp666625"> </a><div class="pCellBody">
+Bei &quot;true&quot; bestimmt Policy Service, ob nach der Anwendung der Policy ein Neustart erforderlich ist, und startet den Computer, falls erforderlich, neu.
+</div>
+<a name="wp666631"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp666639"> </a><div class="pCellBody">
+<b class="cBold">Abbruch zulassen</b>
+</div>
+<a name="wp666641"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666645"> </a><div class="pCellBody">
+marimba.subscription.reboot.allowcancel
+</div>
+</td>
+    <td><a name="wp666647"> </a><div class="pCellBody">
+&quot;true&quot; oder &quot;false&quot;
+</div>
+<a name="wp666649"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666651"> </a><div class="pCellBody">
+Standard: true
+</div>
+</td>
+    <td><a name="wp666657"> </a><div class="pCellBody">
+Standardmäßig wird in Policy Service im Dialogfeld „Neustart“ die Schaltfläche &quot;Abbrechen&quot; und daneben die Schaltfläche &quot;Neustart jetzt durchführen&quot; angezeigt. Wenn diese Eigenschaft auf &quot;false&quot; festgelegt ist, wird die Schaltfläche &quot;Abbrechen&quot; nicht angezeigt.
+</div>
+<a name="wp666663"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp666671"> </a><div class="pCellBody">
+<b class="cBold">Neustartzeit</b>
+</div>
+<a name="wp666673"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666679"> </a><div class="pCellBody">
+marimba.subscription.reboot.time
+</div>
+</td>
+    <td><a name="wp666681"> </a><div class="pCellBody">
+Integer
+</div>
+<a name="wp666683"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666685"> </a><div class="pCellBody">
+Standard: 300
+</div>
+<a name="wp666687"> </a><div class="pCellBody">
+(300 Sekunden oder 5 Minuten)
+</div>
+</td>
+    <td><a name="wp666693"> </a><div class="pCellBody">
+Diese Eigenschaft legt die Verzögerung in Sekunden fest, bevor Policy Service nach der Anwendung einer Policy das System neu startet.
+</div>
+<a name="wp666695"> </a><div class="pCellBody">
+Die Neustartzeit beginnt, sobald die Installation des letzten Package in der Policy abgeschlossen ist.
+</div>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp666697"> </a><div class="pSmartList1"><li>Wenn Sie eine negative ganze Zahl angeben (z. B. -1), gibt es keinen Countdown für einen Systemneustart. Client-Benutzern wird ein Dialogfeld angezeigt, in dem sie gefragt werden, ob sie mit dem Neustart fortfahren möchten oder nicht. (Benutzer können darauf mittels der Schaltflächen &quot;OK&quot; und &quot;Abbrechen&quot; antworten.)</li></div>
+<a name="wp666699"> </a><div class="pSmartList1"><li>Wenn Sie 0 (Null) angeben, sehen die Benutzer das Dialogfeld nur kurz aufleuchten (es wird angezeigt und verschwindet sofort wieder), und der Neustart beginnt unmittelbar.</li></div>
+<a name="wp666701"> </a><div class="pSmartList1"><li>Wenn Sie einen ungültigen oder keinen Wert angeben, wird der Standardwert von 300 Sekunden verwendet.</li></div>
+</ul></div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp666709"> </a><div class="pCellBody">
+<b class="cBold">Wiederholungszeit</b>
+</div>
+<a name="wp666711"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666717"> </a><div class="pCellBody">
+marimba.subscription.retrytime
+</div>
+</td>
+    <td><a name="wp666719"> </a><div class="pCellBody">
+Integer
+</div>
+<a name="wp666721"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666723"> </a><div class="pCellBody">
+Standard: 60
+</div>
+<a name="wp666725"> </a><div class="pCellBody">
+(60 Sekunden oder 1 Minute)
+</div>
+</td>
+    <td><a name="wp666737"> </a><div class="pCellBody">
+Diese Eigenschaft legt die Verzögerung in Sekunden fest, bevor Policy Service versucht, eine Subscription für fehlgeschlagene Packages einzurichten. 
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp666745"> </a><div class="pCellBody">
+<b class="cBold">Anzahl Wiederholungen</b>
+</div>
+<a name="wp666747"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666753"> </a><div class="pCellBody">
+marimba.subscription.retrycount
+</div>
+</td>
+    <td><a name="wp666755"> </a><div class="pCellBody">
+Integer
+</div>
+<a name="wp666757"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666759"> </a><div class="pCellBody">
+Standard: 5
+</div>
+</td>
+    <td><a name="wp666771"> </a><div class="pCellBody">
+Diese Eigenschaft legt die Anzahl der Wiederholungen fest, bevor Policy Service nicht mehr versucht, eine Subscription für fehlgeschlagene Packages einzurichten. 
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp666779"> </a><div class="pCellBody">
+<b class="cBold">Verknüpfungen verwenden</b>
+</div>
+<a name="wp666781"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666785"> </a><div class="pCellBody">
+marimba.subscription.useshortcuts
+</div>
+</td>
+    <td><a name="wp666787"> </a><div class="pCellBody">
+&quot;true&quot; oder &quot;false&quot;
+</div>
+<a name="wp666789"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666791"> </a><div class="pCellBody">
+Standard: false
+</div>
+</td>
+    <td><a name="wp666793"> </a><div class="pCellBody">
+Wenn diese Eigenschaft auf &quot;true&quot; gesetzt wird, werden angekündigte Packages als Desktopverknüpfungen (nur unter Windows) dargestellt.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp666801"> </a><div class="pCellBody">
+<b class="cBold">Installationsmodus</b>
+</div>
+<a name="wp666803"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666807"> </a><div class="pCellBody">
+marimba.subscription.installmode
+</div>
+</td>
+    <td><a name="wp666809"> </a><div class="pCellBody">
+&quot;silent&quot; oder &quot;aspackaged&quot;
+</div>
+<a name="wp666811"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666813"> </a><div class="pCellBody">
+Standard: Hintergrund (silent)
+</div>
+</td>
+    <td><a name="wp666819"> </a><div class="pCellBody">
+Diese Eigenschaft bestimmt den Modus, der von Policy Service beim Installieren oder Deinstallieren von Channels verwendet wird. Sie können dafür folgende Werte festlegen:
+</div>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp666825"> </a><div class="pSmartList1"><li><b class="cBold">silent</b>: Policy Service Alle Packages werden auf dem Ziel-Tuner im Hintergrundmodus installiert. Dies ist der Standardwert.</li></div>
+<a name="wp666831"> </a><div class="pSmartList1"><li><b class="cBold">aspackaged</b>: Policy Service verwendet den im Package angegebenen Installationsmodus.</li></div>
+</ul></div>
+<a name="wp666841"> </a><div class="pCellBody">
+Wenn Sie möchten, dass die Installation vollständig im Hintergrund ausgeführt wird, sollten Sie die folgenden Tuner-Eigenschaften festlegen, um zu verhindern, dass bei den Clients Statusanzeigen oder Fehlermeldungen angezeigt werden: <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp667083');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp667083', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">marimba.tuner.display.noprogress</a> und <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp667063');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp667063', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">marimba.tuner.display.noerrors</a>.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp666849"> </a><div class="pCellBody">
+<b class="cBold">Konfiguration bei Fehler erneut anwenden</b>
+</div>
+<a name="wp666851"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666855"> </a><div class="pCellBody">
+marimba.subscription.reapplyconfigonfail
+</div>
+</td>
+    <td><a name="wp666857"> </a><div class="pCellBody">
+&quot;true&quot; oder &quot;false&quot;
+</div>
+<a name="wp666859"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666861"> </a><div class="pCellBody">
+Standard: true
+</div>
+</td>
+    <td><a name="wp666867"> </a><div class="pCellBody">
+Diese Eigenschaft bestimmt, ob eine zwischengespeicherte Policy erneut angewendet werden soll, wenn Policy Service beim Versuch, eine aktualisierte Policy abzurufen, nicht mit dem Plugin kommunizieren kann.
+</div>
+<a name="wp666877"> </a><div class="pCellBody">
+Bei &quot;true&quot; wendet Policy Service die zwischengespeicherte Policy (die zuletzt heruntergeladene Policy) erneut an, wenn die Kommunikation mit dem Plugin zum Abrufen einer aktualisierten Policy fehlschlägt. Bei &quot;false&quot; versucht Policy Service nicht, die zwischengespeicherte Policy erneut anzuwenden.
+</div>
+<a name="wp666879"> </a><div class="pCellBody">
+(Neu in Version 6.0.)
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp666889"> </a><div class="pCellBody">
+marimba.subscription.adminusers
+</div>
+</td>
+    <td><a name="wp666891"> </a><div class="pCellBody">
+&lt;<em class="cEmphasis">Benutzer1</em>&gt;,<br />&lt;<em class="cEmphasis">Benutzer2</em>&gt;,...
+</div>
+<a name="wp666893"> </a><div class="pCellBody">
+Gibt eine durch Kommata getrennte Liste der Administratoren an. Die Liste der Administratoren kann den Namen jedes beliebigen Benutzers enthalten, der sich an den Clientcomputern anmelden kann.
+</div>
+<a name="wp666895"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666897"> </a><div class="pCellBody">
+Standard: none
+</div>
+</td>
+    <td><a name="wp666903"> </a><div class="pCellBody">
+Wenn auf dem Computer des Client-Benutzers Policy Service 5.0.1 oder höher installiert ist, können Sie diese Tuner-Eigenschaft festlegen, um die Administratoren anzugeben, die sich temporär auf Computern von Benutzern anmelden können, wenn sie benutzerbasierte Ziele verwenden (z. B. zur Fehlerbehebung). Mit dieser Eigenschaft können Sie sich als Administrator anmelden, ohne dass die Channel des Benutzers gelöscht werden.
+</div>
+<a name="wp666905"> </a><div class="pCellBody">
+Bei der Anmeldung des Administrators geschieht Folgendes:
+</div>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp666907"> </a><div class="pSmartList1"><li>Channel-Subscriptions anderer Benutzer werden nicht entfernt.</li></div>
+<a name="wp666909"> </a><div class="pSmartList1"><li>Wenn Channel vorhanden sind, die einem Administrator zugeordnet sind, werden diese Channel an den Client geliefert.</li></div>
+<a name="wp666915"> </a><div class="pSmartList1"><li>Die für den Administrator festgelegten Eigenschaften werden eingestellt. Möglicherweise werden die für die Endanwender festgelegten Einstellungen durch die des Administrators überschrieben. Wenn die Benutzer sich erneut anmelden und Policy Service eine Aktualisierung durchführt, erhalten die Endanwender ihre Einstellungen wieder.</li></div>
+</ul></div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp666925"> </a><div class="pCellBody">
+marimba.subscription.autostart
+</div>
+</td>
+    <td><a name="wp666927"> </a><div class="pCellBody">
+&lt;<em class="cEmphasis">Channel_<br />Name</em>&gt;, “&lt;<em class="cEmphasis">Argument1</em>&gt;, &lt;<em class="cEmphasis">Argument2</em>&gt;, &lt;<em class="cEmphasis">Argument3</em>&gt;“,true oder false
+</div>
+<a name="wp666929"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666931"> </a><div class="pCellBody">
+Standard: kein Wert
+</div>
+</td>
+    <td><a name="wp666937"> </a><div class="pCellBody">
+Damit können Sie den angegebenen Channel starten, sobald Policy Service ausgeführt wird. 
+</div>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp666939"> </a><div class="pSmartList1"><li>&lt;<em class="cEmphasis">Channel_Name</em>&gt; gibt den Namen des Channel an, der gestartet werden soll. Diese Angabe ist erforderlich.</li></div>
+<a name="wp666941"> </a><div class="pSmartList1"><li>“&lt;<em class="cEmphasis">Argument1</em>&gt;,&lt;<em class="cEmphasis">Argument2</em>&gt;,&lt;<em class="cEmphasis">Argument3</em>&gt;“<br />sind alle Argumente, die dem Channel übergeben werden sollen. Sie sind optional.</li></div>
+<a name="wp666943"> </a><div class="pSmartList1"><li>true oder false gibt an, ob der Channel vor seinem Start aktualisiert werden soll. Dieses letzte Argument ist optional.</li></div>
+</ul></div>
+<a name="wp666945"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666947"> </a><div class="pCellBody">
+Beispiel:
+</div>
+<a name="wp666951"> </a><div class="pCellBody">
+<b class="cBold">marimba.subscription.autostart=ChannelManager,”Arg1,Arg2,Arg3”,true</b>
+</div>
+<a name="wp666953"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666959"> </a><div class="pCellBody">
+<b class="cBold">Hinweis:</b> Gehen Sie bei der Verwendung dieser Eigenschaft für BMC CM-Channel vorsichtig vor. Einige Channel sind evtl. so konfiguriert, dass sie Policy Service starten und so zu einer Rekursion führen.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp666969"> </a><div class="pCellBody">
+marimba.subscription.machinename
+</div>
+</td>
+    <td><a name="wp666971"> </a><div class="pCellBody">
+eine Zeichenfolge, die den Namen des Computers darstellt.
+</div>
+<a name="wp666973"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666975"> </a><div class="pCellBody">
+Standard: kein Wert
+</div>
+</td>
+    <td><a name="wp666981"> </a><div class="pCellBody">
+Damit können Sie den von Policy Service zurückgegebenen Computernamen außer Kraft setzen. Der Name, den Sie hier eingeben, muss mit dem Namen übereinstimmen, der in der flachen Datei des Computers verwendet wird. Standardmäßig ist dieser Eigenschaft kein Wert zugewiesen, und als Computername wird einfach der DNS-Hostname ohne Domäneninformationen verwendet.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp666991"> </a><div class="pCellBody">
+marimba.subscription.retryintervalsec
+</div>
+</td>
+    <td><a name="wp666993"> </a><div class="pCellBody">
+Integer
+</div>
+<a name="wp666995"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp666997"> </a><div class="pCellBody">
+Standard: 30
+</div>
+<a name="wp666999"> </a><div class="pCellBody">
+(30 Sekunden)
+</div>
+</td>
+    <td><a name="wp667005"> </a><div class="pCellBody">
+Diese Eigenschaft legt das Intervall in Sekunden fest, bevor erneut versucht wird, eine Verbindung mit LDAP herzustellen. Diese Eigenschaft wird auf dem Tuner festgelegt, der als Host für den Transmitter dient, auf dem Policy Service-Plugin veröffentlicht wurde.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp667017"> </a><div class="pCellBody">
+marimba.subscription.timeout
+</div>
+</td>
+    <td><a name="wp667019"> </a><div class="pCellBody">
+Integer
+</div>
+<a name="wp667021"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp667023"> </a><div class="pCellBody">
+Standard: 3600
+</div>
+<a name="wp667025"> </a><div class="pCellBody">
+(3600 Sekunden oder 1 Stunde)
+</div>
+</td>
+    <td><a name="wp667031"> </a><div class="pCellBody">
+Diese Eigenschaft legt die maximale Zeitdauer in Sekunden fest, innerhalb der Policy Service die Vervollständigung eines Vorgangs abwartet, bevor er fortfährt (wie beispielsweise, dass ein Package eine Mitteilung sendet, dass es einen bestimmten Status erreicht hat).
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp667041"> </a><div class="pCellBody">
+marimba.subscription.varytime
+</div>
+</td>
+    <td><a name="wp667043"> </a><div class="pCellBody">
+Integer
+</div>
+<a name="wp667045"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp667047"> </a><div class="pCellBody">
+Standard: 10
+</div>
+<a name="wp667049"> </a><div class="pCellBody">
+(10 Minuten)
+</div>
+</td>
+    <td><a name="wp667051"> </a><div class="pCellBody">
+Diese Eigenschaft legt die maximale Zeitdauer in Minuten fest, in der geplante Ereignisse (z. B. das Herunterladen oder die Aktualisierung eines Package) aufgeschoben werden können. Dies verbessert die Leistung des Transmitter, da Client-Anfragen bei hoher Auslastung über den gesamten Zeitraum verteilt werden. Wenn beispielsweise diese Eigenschaft auf 10 Minuten festgelegt ist und ein Ereignis um 10:00 Uhr ablaufen soll, kann das Ereignis irgendwann zwischen 10:00 und 10:10 Uhr ablaufen.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp667063"> </a><div class="pCellBody">
+marimba.tuner.display.noerrors
+</div>
+</td>
+    <td><a name="wp667065"> </a><div class="pCellBody">
+true oder false
+</div>
+<a name="wp667067"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp667069"> </a><div class="pCellBody">
+Standard: false
+</div>
+</td>
+    <td><a name="wp667071"> </a><div class="pCellBody">
+Diese Eigenschaft legt fest, ob der Tuner Fehler- oder Warnmeldungen anzeigen soll oder nicht. Um Fehler- oder Warnmeldungen auszublenden, muss diese Eigenschaft auf true festgelegt werden. Die Fehler- oder Warnmeldungen werden auf eine Systemkonsole ausgegeben. Bitte beachten Sie, dass diese Eigenschaft nicht für Tuner gilt, die ohne Anzeige ausgeführt werden.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp667083"> </a><div class="pCellBody">
+marimba.tuner.display.noprogress
+</div>
+</td>
+    <td><a name="wp667085"> </a><div class="pCellBody">
+true oder false
+</div>
+<a name="wp667087"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp667089"> </a><div class="pCellBody">
+Standard: false
+</div>
+</td>
+    <td><a name="wp667091"> </a><div class="pCellBody">
+Diese Eigenschaft zeigt an, ob der Tuner eine Statusanzeige anzeigen soll, wenn eine Channel-Subscription eingerichtet wird oder wenn Channel aktualisiert werden. Um die Statusanzeige zu verbergen, setzen Sie diese Eigenschaft auf &quot;true&quot;. Bitte beachten Sie, dass diese Eigenschaft nicht für Tuner gilt, die ohne Anzeige ausgeführt werden.
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBodyRelative">
+</p>
+
+<a name="wp668019"> </a><p class="pBody">Einzelheiten zu allen verfügbaren Tuner-Eigenschaften finden Sie im Kapitel über Tuner-Eigenschaften im <em class="cEmphasis">BMC CM-Referenzhandbuch (BMC Configuration Management Reference Guide)</em>, das auf der BMC Customer Support-Website erhältlich ist.</p>
+<a name="wp668025"> </a><h4 style="margin-top: 14pt" class="pHeading3">
+Was sind Package-Eigenschaften?
+</h4>
+<a name="wp668029"> </a><p class="pBody"><em class="cEmphasis">Package-Eigenschaften</em> stellen Informationen über das Package sowie über dessen Ausführung zur Verfügung. Sie werden auch <em class="cEmphasis">Channel-Eigenschaften</em> genannt. Diese Informationen werden normalerweise vom Ziel-Tuner verwendet. Packages (dies sind üblicherweise Applikationen, die mit Hilfe von Application Packager in Channel gepackt wurden) verfügen über zusätzliche Eigenschaften, die Channel-Parameter genannt werden. <em class="cEmphasis">Channel-Parameter</em> stellen Informationen und Einstellungen bereit, die bei der Installation und beim Ausführen der Packages verwendet werden.</p>
+<a name="wp668031"> </a><p class="pBody">Eigenschaften und Parameter von Packages werden in den Dateien <b class="cBold">properties.txt</b> bzw. <b class="cBold">parameters.txt</b> gespeichert. Diese Dateien werden normalerweise (im Channel-Verzeichnis) erstellt, wenn der Channel oder das Package erstellt werden. Sie können die Dateien manuell oder mit Hilfe von Channel Copier oder Publisher bearbeiten.</p>
+<a name="wp668033"> </a><p class="pBody">Ein Liste von Package-Eigenschaften und Channel-Parametern finden Sie im Kapitel über Channel-Eigenschaften und -Parameter im <em class="cEmphasis">BMC CM-Referenzhandbuch (Configuration Management Reference Guide)</em>, das auf der BMC Customer Support-Website erhältlich ist<b class="cBold">.</b></p>
+<a name="wp668035"> </a><p class="pBody">Eigenschaften und Parameter von Packages werden normalerweise in folgender Form angezeigt:</p>
+<a name="wp668037"> </a><p class="pBody">&lt;<em class="cEmphasis">Eigenschaftsname</em>&gt;=&lt;<em class="cEmphasis">Eigenschaftswert</em>&gt; </p>
+<a name="wp668043"> </a><p class="pBody">Eine Anleitung zum Festlegen von Package-Eigenschaften finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'props-4.htm');" onMouseOver="WWHShowPopup('sm', 'props-4.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Festlegen von Package-Eigenschaften</a>.</p>
+<a name="wp668049"> </a><h4 style="margin-top: 14pt" class="pHeading3">
+Eigenschaften zur Steuerung des Neustart von Packages (nur Windows)
+</h4>
+<a name="wp668053"> </a><p class="pBody">Während der Installation von Packages, die mit Application Packager erstellt wurden, können einige Dateien nicht geschrieben werden, weil sie vom Betriebssystem gesperrt wurden. Die Sperrung von Dateien tritt meist auf, wenn eine Datei geöffnet ist oder eine DLL geladen wird. In diesen Fällen wird die neue Datei unter einem temporären Namen auf der Festplatte gespeichert. Sie ist gekennzeichnet, um nach dem Systemstart in den korrekten Namen und Speicherort umbenannt zu werden.</p>
+<a name="wp668063"> </a><p class="pBody">Policy Service installiert während einer Policy-Aktualisierung eventuell mehrere Packages. Wenn in einer Sitzung mehrere Packages installiert werden, schiebt Policy Service den Systemneustart auf, bis alle Packages aktualisiert und installiert sind. Der Neustart kann selbst dann stattfinden, wenn die Installation fehlschlägt, je nachdem, wie weit die Installation fortgeschritten war. </p>
+<a name="wp668085"> </a><p class="pBody">Von Seiten des Policy Service wird das Neustartverhalten von den Tuner-Eigenschaften <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp666613');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp666613', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">marimba.subscription.reboot</a> und <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp666679');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp666679', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">marimba.subscription.reboot.time</a> gesteuert. Unabhängig von den Einstellungen der einzelnen Packages, überprüft Policy Service die Erforderlichkeit eines Neustarts nur dann, wenn die Eigenschaft <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp666613');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp666613', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">marimba.subscription.reboot</a> auf <b class="cBold">true</b> gesetzt ist.</p>
+<a name="wp668099"> </a><p class="pBody">Policy Service kann die Neustarteigenschaften einzelner Packages berücksichtigen, die mit Hilfe des Application Packager gepackt wurden. Diese Package-Eigenschaften sind in <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp667253');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp667253', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Tabelle&#160;4-8</a> beschrieben. Zwei dieser Eigenschaften, <b class="cBold">reboot.allow</b> und <b class="cBold">reboot.force</b>, bestimmen das Neustartverhalten, wie in <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp667353');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp667353', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Tabelle&#160;4-9</a> beschrieben. Zwei andere Package-Eigenschaften, <b class="cBold">reboot.showdialog</b> und <b class="cBold">reboot.allowcancel</b>, ermöglichen die Steuerung über das Dialogfeld, das angezeigt wird, wenn ein Neustart erforderlich ist.</p>
+<a name="wp668102"> </a><p class="pBodyRelative"></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp667253table39799">
+  <caption><a name="wp667253"> </a><p class="pBody">Tabelle&#160;4-8:&#160;&#160;Neustarteigenschaften des Package&#160;</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp667261"> </a><div class="pCellHeading">
+Eigenschaftsname
+</div>
+</th>
+    <th><a name="wp667263"> </a><div class="pCellHeading">
+Mögliche Werte
+</div>
+</th>
+    <th><a name="wp667265"> </a><div class="pCellHeading">
+Beschreibung
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp667275"> </a><div class="pCellBody">
+reboot.allow
+</div>
+</td>
+    <td><a name="wp667277"> </a><div class="pCellBody">
+&quot;true&quot; oder &quot;false&quot;
+</div>
+<a name="wp667279"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp667281"> </a><div class="pCellBody">
+Standard: true
+</div>
+</td>
+    <td><a name="wp667283"> </a><div class="pCellBody">
+Dieser Parameter zeigt an, dass der Channel den Computer, wenn erforderlich, neu starten kann. Der Standardwert ist &quot;true&quot;. Setzen Sie diesen Parameter auf &quot;false&quot;, wenn dieses Verhalten nicht erwünscht ist.
+</div>
+<a name="wp667285"> </a><div class="pCellBody">
+<b class="cBold">Hinweis:</b> Im Hintergrundmodus werden Computer von Channels <em class="cEmphasis">nicht</em> neu gestartet, es sei denn der Parameter &quot;reboot.force&quot; wird auf &quot;true&quot; gesetzt.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp667295"> </a><div class="pCellBody">
+reboot.allowcancel
+</div>
+</td>
+    <td><a name="wp667297"> </a><div class="pCellBody">
+&quot;true&quot; oder &quot;false&quot;
+</div>
+<a name="wp667299"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp667301"> </a><div class="pCellBody">
+Standard: true
+</div>
+</td>
+    <td><a name="wp667303"> </a><div class="pCellBody">
+Wenn dieser Parameter auf &quot;true&quot; gesetzt und ein Neustart beim Client erforderlich ist, wird im Neustart-Dialogfeld (nur wenn Benutzeroberfläche im Vordergrund oder teilweise im Hintergrund) eine Neustartoption angezeigt, mit deren Hilfe der Benutzer den Neustart abbrechen kann. Wenn sich das Installationsprogramm im Hintergrundmodus befindet, wird kein Neustart ausgeführt. Dies gilt selbst dann, wenn ein Neustart erforderlich ist.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp667313"> </a><div class="pCellBody">
+reboot.force
+</div>
+</td>
+    <td><a name="wp667315"> </a><div class="pCellBody">
+&quot;true&quot; oder &quot;false&quot;
+</div>
+<a name="wp667317"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp667319"> </a><div class="pCellBody">
+Standard: false
+</div>
+</td>
+    <td><a name="wp667323"> </a><div class="pCellBody">
+Bei &quot;true&quot; wird nach Abschluss der Installation ein Neustart des Computers erzwungen. Der Standardwert ist &quot;false&quot;. Verwenden Sie diesen Parameter vorsichtig, da er zu unerwünschten Benutzerinteraktionen führen kann. 
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp667333"> </a><div class="pCellBody">
+reboot.showdialog
+</div>
+</td>
+    <td><a name="wp667335"> </a><div class="pCellBody">
+Gültige Werte: &quot;true&quot; oder &quot;false&quot;
+</div>
+<a name="wp667337"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp667339"> </a><div class="pCellBody">
+Standard: true
+</div>
+<a name="wp667341"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+    <td><a name="wp667343"> </a><div class="pCellBody">
+Dieser Parameter zeigt an, ob der Channel im interaktiven Modus (nicht im Hintergrund- oder teilweisen Hintergrundmodus) das Neustart-Dialogfeld anzeigen soll, falls ein Neustart erforderlich ist. Der Standardwert ist &quot;true&quot;. Setzen Sie diesen Parameter auf &quot;false&quot;, wenn dieses Verhalten nicht erwünscht ist.
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBodyRelative">
+</p>
+
+<a name="wp668108"> </a><p class="pBody"><a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp667353');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp667353', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Tabelle&#160;4-9</a> zeigt eine Übersicht darüber, wie das Neustartverhalten durch die Package-Eigenschaften <b class="cBold">reboot.allow</b> und <b class="cBold">reboot.force</b> bestimmt wird, wenn die Tuner-Eigenschaft <b class="cBold">marimba.subscription.reboot</b> auf <b class="cBold">true</b> gesetzt ist.</p>
+<a name="wp668111"> </a><p class="pBodyRelative"></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp667353table40242">
+  <caption><a name="wp667353"> </a><p class="pBody">Tabelle&#160;4-9:&#160;&#160;Auswirkungen von &quot;reboot.allow&quot; und &quot;reboot.force&quot; auf den Systemneustart</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp667363"> </a><div class="pCellHeading">
+reboot.allow
+</div>
+</th>
+    <th><a name="wp667367"> </a><div class="pCellHeading">
+reboot.force
+</div>
+</th>
+    <th><a name="wp667369"> </a><div class="pCellHeading">
+Systemneustart durchführen?
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp667377"> </a><div class="pCellBody">
+true
+</div>
+</td>
+    <td><a name="wp667379"> </a><div class="pCellBody">
+true
+</div>
+</td>
+    <td><a name="wp667385"> </a><div class="pCellBody">
+Ja, Policy Service startet das System neu, unabhängig davon, ob ein Neustart erforderlich ist.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp667393"> </a><div class="pCellBody">
+true
+</div>
+</td>
+    <td><a name="wp667395"> </a><div class="pCellBody">
+false
+</div>
+</td>
+    <td><a name="wp667401"> </a><div class="pCellBody">
+Ja, wenn erforderlich. Policy Service prüft, ob ein Neustart erforderlich ist, und startet das System, wenn erforderlich, neu.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp667409"> </a><div class="pCellBody">
+false
+</div>
+</td>
+    <td><a name="wp667411"> </a><div class="pCellBody">
+true
+</div>
+</td>
+    <td><a name="wp667413"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp667421"> </a><div class="pCellBody">
+false
+</div>
+</td>
+    <td><a name="wp667423"> </a><div class="pCellBody">
+false
+</div>
+</td>
+    <td><a name="wp667425"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBodyRelative">
+</p>
+
+<a name="wp668129"> </a><p class="pBody">Wenn für alle von Policy Service installierten Packages sowohl <b class="cBold">reboot.allow</b> als auch <b class="cBold">reboot.force</b> auf &quot;true&quot; gesetzt sind, startet Policy Service das System neu, unabhängig davon, ob ein Neustart erforderlich ist oder nicht. Wenn bei allen von Policy Service installierten Packages <b class="cBold">reboot.force</b> auf &quot;false&quot;, aber bei wenigstens einem Package <b class="cBold">reboot.allow</b> auf &quot;true&quot; gesetzt ist, prüft Policy Service, ob ein Neustart erforderlich ist, und startet das System, wenn erforderlich, neu.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:45" />
+    <title>Eliminar paquetes de una política</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Eliminar paquetes de una política";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp50371"> </a><p class="pBody">Este procedimiento da por hecho que se encuentra en la página Editar lista de paquetes. Para acceder a esta página, haga clic en el botón Editar lista de paquetes en la ficha Paquetes de la página Editar política. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-04.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Instrucciones generales para la creación y edición de políticas</a>.</p>
+<a name="wp53196"> </a><p class="pBody">Si elimina un paquete de una política, éste se eliminará del destino la próxima vez que Policy Service se actualice. Sin embargo, el paquete no se eliminará del destino si se da alguna de las situaciones siguientes:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp53200"> </a><div class="pSmartList2"><li>El estado del paquete establecido es <b class="cBold">instalar-persistir</b> o <b class="cBold">instalar-iniciar-persistir</b>.</li></div>
+<a name="wp53201"> </a><div class="pSmartList2"><li>La propiedad de tuner <b class="cBold">No eliminar</b> (<b class="cBold">marimba.subscription.nodelete</b>) se ha establecido como <b class="cBold">true</b>.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp53202"> </a><p class="pBody">Si se diera cualquiera de estas situaciones, el paquete permanecerá en los destinos, aunque éste ya no podrá ser gestionado mediante Policy Manager. Para eliminar definitivamente el paquete de los destinos, deberá configurar explícitamente el estado principal del paquete como <b class="cBold">desinstalar</b>.</p>
+<a name="wp50306"> </a><p style="text-decoration: none" class="pStepIntro">
+Para eliminar paquetes de una política
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp50307"> </a><div class="pSmartList1"><li>En el lado derecho de la página Editar lista de paquetes, seleccione los paquetes que desea eliminar de la <b class="cBold">Lista de paquetes</b>.</li></div>
+<a name="wp50308"> </a><div class="pSmartList1"><li>Haga clic en <b class="cBold">Eliminar</b>.</li></div>
+<a name="wp50396"> </a><div class="pSmartList1"><li>Haga clic en <b class="cBold">Aceptar</b> para guardar los cambios y volver a la página Editar política.</li></div>
+</ol></div>
+<a name="wp53814"> </a><p class="pBody">Cuando haya terminado de editar la política, visualice los cambios efectuados en Vista previa y guárdela. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-05.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Visualizar previamente y almacenar cambios en las políticas</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

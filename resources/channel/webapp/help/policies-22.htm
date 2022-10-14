@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Apr-13-06 v6.2 ANSI)" />
+    <meta name="LASTUPDATED" content="11/16/09 16:16:45" />
+    <title>What is install priority?</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "What is install priority?";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp51800"> </a><p class="pBody">The <em class="cEmphasis">install priority</em> determines which package is installed first when you schedule two or more packages for installation on a target at the same time. For instructions on changing install priority, see <a href="javascript:WWHClickedPopup('sm', 'policies-22.htm#wp51845');" onMouseOver="WWHShowPopup('sm', 'policies-22.htm#wp51845', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Install priority considerations</a>.</p>
+<a name="wp60924"> </a><p class="pBody">The install priority rules are guidelines that do not guarantee a specific installation order. See <a href="javascript:WWHClickedPopup('sm', 'policies-22.htm#wp52663');" onMouseOver="WWHShowPopup('sm', 'policies-22.htm#wp52663', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Exceptions to install priority</a>.</p>
+<a name="wp77803"> </a><p class="pBody">You can specify prerequisite packages that other packages require before installing the latter. But you must observe best practices relating to scheduling updates. See <a href="javascript:WWHClickedPopup('sm', 'policies-27.htm');" onMouseOver="WWHShowPopup('sm', 'policies-27.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">&quot;Managing software, data, and updates&quot;</a>.</p>
+<a name="wp60929"> </a><h4 class="pHeading3">
+Install priority concepts
+</h4>
+<a name="wp60930"> </a><p class="pBody">When you assign a package to a target, the default numeric value assigned to the install priority of the package is <b class="cBold">99999</b>. You can view this value by looking at the package&#39;s <b class="cBold">mrbachannelorder</b> attribute in the policy object for the target using an LDAP browser/editor tool, as shown in <a href="javascript:WWHClickedPopup('sm', 'policies-22.htm#wp65644');" onMouseOver="WWHShowPopup('sm', 'policies-22.htm#wp65644', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Figure&#160;4-5</a>.</p>
+<a name="wp51808"> </a><p class="pBody">When you set install priority (as described in <a href="javascript:WWHClickedPopup('sm', 'policies-22.htm#wp61030');" onMouseOver="WWHShowPopup('sm', 'policies-22.htm#wp61030', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Setting install priority for packages</a>), the numeric value for the <b class="cBold">mrbachannelorder</b> attribute changes corresponding to the install priority you set. The numeric value for the <b class="cBold">mrbachannelorder</b> attribute matches the number that appears in the Install Priority column on the Target Details or Edit Policy page.</p>
+<a name="wp51839"> </a><p class="pBodyRelative"><img src="images/mrbachannelorder.gif" id="wp51837" border="0" hspace="0" vspace="0"/></p>
+
+<a name="wp51842"> </a><p class="pBody">The package with the lowest value is installed first. In this example, the package with the value 1 is installed first, followed by 2 and 3.</p>
+<a name="wp52663"> </a><h4 class="pHeading3">
+Exceptions to install priority
+</h4>
+<a name="wp52664"> </a><p class="pBody">This section describes situations where Policy Manager doesn&#39;t follow your specified install priority.</p>
+<a name="wp52671"> </a><p class="pBody"><b class="cBold">Timeouts and post-install scripts.</b> Typically, Policy Service waits for packages to complete installation (including any post-install scripts) before installing the next package specified by the install priority. Policy Manager ignores install priority under the following conditions:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp52672"> </a><div class="pSmartList2"><li>Download and installation of the package takes longer than the specified timeout (see <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp45079');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp45079', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">marimba.subscription.timeout</a>). The default timeout is 60 minutes. When the timeout is reached, Policy Service begins installing the next package.</li></div>
+<a name="wp52679"> </a><div class="pSmartList2"><li>You have configured the package to run the post-install script as a detached process. In this case, Policy Service considers the package installed when the post-install script starts running, and begins installation of the next package.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp52684"> </a><p class="pBody"><b class="cBold">Dependencies.</b> You can use Application Packager to set dependencies for packages, such as available hard disk space, installed RAM, or the presence of other packages prior to installation. If you have set dependencies for a package, the dependencies take precedence over install priority.</p>
+<a name="wp51845"> </a><h4 class="pHeading3">
+Install priority considerations
+</h4>
+<a name="wp51960"> </a><p class="pBody">When you set install priority for packages, consider the following Target View settings on the Packages tab of the Edit Policy page:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp52040"> </a><div class="pSmartList2"><li><b class="cBold">Starting priority</b>. The number you specify as the starting priority determines the package installation sequence in comparison to packages in other policies. The starting priority is important if certain endpoints belong to multiple targets or groups, and you want to control whether packages assigned to one target have a higher priority than those assigned to another target. For example, if you want packages assigned to the All Endpoints target to have a higher priority than those assigned to other targets and groups, you can reserve install priority numbers 1 to 100 for the All Endpoints target. Then you can assign all other targets a starting priority of 101 and higher.</li></div>
+<a name="wp52049"> </a><div class="pSmartList2"><li><b class="cBold">Priority</b>. The order in which packages appear in the Packages tab of the Edit Policy page determines their install priority. The default priority displays as N/A, which is equivalent to a <b class="cBold">mrbachannelorder</b> attribute value of <b class="cBold">99999</b>.</li></div>
+<a name="wp76787"> </a><div class="pSmartList2"><li><b class="cBold"><br />
+<img src="images/new100dpi.jpg" id="wp76841" border="0" hspace="0" vspace="0"/><br />
+Update Priority</b>. Use this button to change the installation order of a package to a new installation order. When the installation order is changed from one position to the other, if there is another package with the same priority, the installation order of that other package and the remaining packages will be rearranged to maintain the sequence. </li></div>
+<a name="wp104345"> </a><p class="pIndented1">
+To change the priority of a package to the default (N/A or 99999), delete the contents of its Priority text box and click Update Priority. You must always click the Update Priority button before clicking Preview to save your changes.
+</p>
+<a name="wp76820"> </a><div class="pSmartList2"><li><b class="cBold">Revert Priority</b>. Use this button to undo the most recent priority change you made. After you save changes, you cannot revert priority.</li></div>
+<a name="wp52039"> </a><p class="pIndented1">
+See <a href="javascript:WWHClickedPopup('sm', 'policies-03.htm');" onMouseOver="WWHShowPopup('sm', 'policies-03.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">General directions for creating and editing policies</a>.
+</p>
+</ul></div>
+</ul></div>
+<a name="wp61030"> </a><h4 class="pHeading3">
+Setting install priority for packages
+</h4>
+<a name="wp51852"> </a><p style="text-decoration: none" class="pStepIntro">
+To set the install priority for packages
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp51990"> </a><div class="pSmartList1"><li>On the Packages tab of the Edit Policy page, set the starting priority for the packages in this policy:</li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp52011"> </a><div class="pSmartList2"><li>In the Starting priority text box, enter a numeric value indicating this policy&#39;s priority compared with other policies. See <a href="javascript:WWHClickedPopup('sm', 'policies-22.htm#wp60929');" onMouseOver="WWHShowPopup('sm', 'policies-22.htm#wp60929', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Install priority concepts</a>.</li></div>
+<a name="wp52018"> </a><div class="pSmartList2"><li>Click Apply.</li></div>
+<a name="wp52032"> </a><p class="pIndented1">
+Notice that the first package in the policy gets the number that you specified in the Starting priority text box, such as 101. The following packages get numbers corresponding to their order in the policy (the second package gets 102, the third gets 103, and so on).
+</p>
+</ol></div>
+<a name="wp52009"> </a><div class="pSmartList1"><li>If you want to promote or demote the install priority of a package, locate the row of that package.</li></div>
+<a name="wp51857"> </a><div class="pSmartList1"><li>To assign a new install priority, type a different number into the Priority field.</li></div>
+<hr class="NoteRuleTop"/><a name="wp60999"> </a><p class="pNote"><span style="color: #003366">Note: &#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#64258;&#64258;&#64258;&#64258;</span> As an example, if you assign 5 in the Priority field-and you already have a package with an install priority of 5-Policy Manager increments the existing install priority and those that follow by one, until the application resolves all numbering conflicts.</p><hr class="NoteRuleBottom"/></ol></div>
+<a name="wp53856"> </a><p class="pBody">When you are finished editing the policy, preview and save the policy. See <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Previewing and saving policy changes</a>.</p>
+<a name="wp136761"> </a><h5 class="pHeading4">
+See Also:
+</h5>
+<a name="wp136764"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-23.htm');" onMouseOver="WWHShowPopup('sm', 'policies-23.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Conflict resolution: Packages with the same install priority</a>
+</p><a name="wp136768"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-24.htm');" onMouseOver="WWHShowPopup('sm', 'policies-24.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Conflict resolution: when multiple users edit the same policy</a>
+</p>
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. All rights reserved.<br/>
+
+ For additional BMC Configuration Management documentation, go to the Customer
+Support website at <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+For questions or comments about BMC CM documentation, send
+an email to <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+For product related issues or questions, send an email to Customer Support at <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

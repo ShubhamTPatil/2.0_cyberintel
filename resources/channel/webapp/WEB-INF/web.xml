@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+        PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/j2ee/dtds/web-app_2_3.dtd">
+
+<web-app>
+
+    <display-name>Subscription</display-name>
+
+    <listener>
+        <listener-class>com.marimba.webapps.tools.util.CMSMessageResourcesFactory</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>action</servlet-name>
+        <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+        <init-param>
+            <param-name>internalErrorPage</param-name>
+            <param-value>/includes/internalerror.jsp</param-value>
+        </init-param>
+        <init-param>
+            <param-name>logs_rsrc</param-name>
+            <param-value>ApplicationResources</param-value>
+        </init-param>
+        <init-param>
+            <param-name>config</param-name>
+            <param-value>/WEB-INF/struts-config.xml</param-value>
+        </init-param>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>0</param-value>
+        </init-param>
+        <init-param>
+            <param-name>detail</param-name>
+            <param-value>0</param-value>
+        </init-param>
+        <init-param>
+            <param-name>validate</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>nocache</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>subscriptioninit</servlet-name>
+        <servlet-class>com.marimba.apps.subscriptionmanager.webapp.SubscriptionInitServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>subscriptioncli</servlet-name>
+        <servlet-class>com.marimba.apps.subscriptionmanager.cli.SubscriptionCLIServlet</servlet-class>
+        <init-param>
+            <param-name>application</param-name>
+            <param-value>/WEB-INF/classes/ApplicationResources</param-value>
+        </init-param>
+        <init-param>
+            <param-name>systemerrors_rsrc</param-name>
+            <param-value>/WEB-INF/classes/SysErrorsResources</param-value>
+        </init-param>
+        <init-param>
+            <param-name>logs_rsrc</param-name>
+            <param-value>/WEB-INF/classes/ApplicationResources</param-value>
+        </init-param>
+        <load-on-startup>3</load-on-startup>
+    </servlet>
+
+    <!-- JSON-RPC Controller servlet -->
+    <servlet>
+        <servlet-name>com.metaparadigm.jsonrpc.JSONRPCServlet</servlet-name>
+        <servlet-class>com.metaparadigm.jsonrpc.JSONRPCServlet</servlet-class>
+    </servlet>
+    <!-- Ajax Controller servlet -->
+    <servlet>
+        <servlet-name>AjaxController</servlet-name>
+        <servlet-class>com.bmc.web.ajax.AjaxControllerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ApprovalServlet</servlet-name>
+        <servlet-class>com.marimba.apps.subscriptionmanager.approval.ajax.ApprovalHandlerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SecurityCompliance</servlet-name>
+        <servlet-class>com.marimba.apps.subscriptionmanager.compliance.helper.SecurityComplianceHelper</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SecurityMgmt</servlet-name>
+        <servlet-class>com.marimba.apps.subscriptionmanager.webapp.util.SecurityMgmtHelper</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>BinaryDataWriterServlet</servlet-name>
+        <servlet-class>com.marimba.apps.securitymgr.servlets.BinaryDataWriterServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>MailSenderServlet</servlet-name>
+        <servlet-class>com.marimba.apps.securitymgr.servlets.MailSenderServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>FileDownloaderServlet</servlet-name>
+        <servlet-class>com.marimba.apps.securitymgr.servlets.FileDownloaderServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>MachineOverallDownloadServlet</servlet-name>
+        <servlet-class>com.marimba.apps.securitymgr.servlets.MachineOverallDownloadServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ReportGenerationStatusServlet</servlet-name>
+        <servlet-class>com.marimba.apps.securitymgr.servlets.ReportGenerationStatusServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>PDFGenerator</servlet-name>
+        <servlet-class>com.marimba.apps.securitymgr.servlets.PDFGeneratorrServlet</servlet-class>
+    </servlet>
+
+
+    <servlet>
+        <servlet-name>JavascriptStrings</servlet-name>
+        <servlet-class>com.bmc.web.ajax.JSStringResourceServlet</servlet-class>
+    </servlet>
+    <!-- Standard Action Servlet Mapping -->
+
+    <servlet-mapping>
+        <servlet-name>JavascriptStrings</servlet-name>
+        <url-pattern>/dynamic-js/strings/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>action</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+
+    <!-- JSON-RPC servlet mapping-->
+    <servlet-mapping>
+        <servlet-name>com.metaparadigm.jsonrpc.JSONRPCServlet</servlet-name>
+        <url-pattern>/JSON-RPC</url-pattern>
+    </servlet-mapping>
+    <!-- AjaxController servlet mapping-->
+    <servlet-mapping>
+        <servlet-name>AjaxController</servlet-name>
+        <url-pattern>/ajax</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApprovalServlet</servlet-name>
+        <url-pattern>/approval</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SecurityCompliance</servlet-name>
+        <url-pattern>/securitycompliance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SecurityMgmt</servlet-name>
+        <url-pattern>/securitymgmt</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>BinaryDataWriterServlet</servlet-name>
+        <url-pattern>/binaryDataWriterServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>MailSenderServlet</servlet-name>
+        <url-pattern>/mailsender</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>FileDownloaderServlet</servlet-name>
+        <url-pattern>/filedownloader</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>MachineOverallDownloadServlet</servlet-name>
+        <url-pattern>/machineoverallfiledownloader</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ReportGenerationStatusServlet</servlet-name>
+        <url-pattern>/reportgenerationstatus</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PDFGenerator</servlet-name>
+        <url-pattern>/pdfgenerator</url-pattern>
+    </servlet-mapping>
+
+    <!-- The Usual Welcome File List -->
+    <welcome-file-list>
+        <welcome-file>init.jsp</welcome-file>
+    </welcome-file-list>
+
+    <error-page>
+        <exception-type>javax.servlet.jsp.JspException</exception-type>
+        <location>/includes/internalerror.jsp</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>com.marimba.webapps.intf.WebAppJspException</exception-type>
+        <location>/includes/internalerror.jsp</location>
+    </error-page>
+
+    <!-- Struts Tag Library Descriptors -->
+    <taglib>
+        <taglib-uri>/WEB-INF/struts-bean.tld</taglib-uri>
+        <taglib-location>/WEB-INF/struts-bean.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>/WEB-INF/struts-html.tld</taglib-uri>
+        <taglib-location>/WEB-INF/struts-html.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>/WEB-INF/struts-logic.tld</taglib-uri>
+        <taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>/WEB-INF/struts-nested.tld</taglib-uri>
+        <taglib-location>/WEB-INF/struts-nested.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>/WEB-INF/struts-tiles.tld</taglib-uri>
+        <taglib-location>/WEB-INF/struts-tiles.tld</taglib-location>
+    </taglib>
+
+    <!-- Page Access security -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Protected Area</web-resource-name>
+            <!-- Define the context-relative URL(s) to be protected -->
+            <!-- Note that /login.jsp should be in this list -->
+            <url-pattern>*.do</url-pattern>
+            <url-pattern>/config/*</url-pattern>
+            <url-pattern>/distribution/*</url-pattern>
+            <url-pattern>/help/*</url-pattern>
+            <url-pattern>/includes/*</url-pattern>
+            <url-pattern>/main_ldap_nav.jsp</url-pattern>
+            <url-pattern>/main_view.jsp</url-pattern>
+            <url-pattern>/main_view_top.jsp</url-pattern>
+            <url-pattern>/package/*</url-pattern>
+            <url-pattern>/target/*</url-pattern>
+            <url-pattern>/reboot/*</url-pattern>
+            <!-- If you list http methods, only those methods are protected -->
+            <http-method>DELETE</http-method>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+            <http-method>PUT</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>subuser</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Configuration</web-resource-name>
+            <url-pattern>/pluginEdit.do</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>pluginPublish</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Assignments</web-resource-name>
+            <url-pattern>/main_view.jsp</url-pattern>
+            <url-pattern>/initTargetView.do</url-pattern>
+            <url-pattern>/distEdit.do</url-pattern>
+            <url-pattern>/distDelete.do</url-pattern>
+            <url-pattern>/target/delete_preview.jsp</url-pattern>
+            <url-pattern>/copy/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>policyAssignment</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Settings</web-resource-name>
+            <url-pattern>/config.do</url-pattern>
+            <url-pattern>/namespaceLoad.do</url-pattern>
+            <url-pattern>/scapSecurityTemplateListing.do</url-pattern>
+            <url-pattern>/usgcbSecurityTemplateListing.do</url-pattern>
+            <url-pattern>/customSecurityTemplateListing.do</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>securitySettings</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>Login Page</realm-name>
+        <form-login-config>
+            <form-login-page>/login/login.jsp</form-login-page>
+            <form-error-page>/common-rsrc/login/login.jsp?error=true</form-error-page>
+        </form-login-config>
+    </login-config>
+
+</web-app>

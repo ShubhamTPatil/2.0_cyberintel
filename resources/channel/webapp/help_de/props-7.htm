@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:48" />
+    <title>Konfliktlösung: Eigenschaftswerte</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Konfliktlösung: Eigenschaftswerte";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp668467"> </a><p class="pBody">Bei Nichtbeachtung der Best Practices kann es zu Konflikten bei Tuner- und Channel-Eigenschaften kommen, wenn verschiedene Werte für die gleiche Eigenschaft in unterschiedlichen Gruppen festgelegt werden. In diesem Abschnitt wird beschrieben, wie Konflikte bei Eigenschaftswerten behoben werden. Weitere Informationen zu Tuner- und Package-Eigenschaften finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'props-1.htm');" onMouseOver="WWHShowPopup('sm', 'props-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Einstellen der Tuner- und Package-Eigenschaften für ein Ziel</a>.</p>
+<a name="wp668471"> </a><p class="pBody"><b class="cBold">Tuner-Eigenschaften. </b>Wenn Sie einen Client in mehr als eine Gruppe einbinden, können Sie theoretisch für eine einzelne Tuner-Eigenschaft in der Policy jeder Gruppe unterschiedliche Werte festlegen. Da Konflikte bei den Tuner-Eigenschaften nicht mit einem Vorrangsschema gelöst werden können, ist keine Voraussage darüber möglich, welcher Wert sich durchsetzt.</p>
+<a name="wp668474"> </a><p class="pBody"></p>
+<div align="left"><img src="images/bestPractice110dpibc.jpg" id="wp46729" border="0" hspace="0" vspace="0"/></div><p class="pBody">
+BMC empfiehlt, die Tuner-Eigenschaften einheitlich für alle Gruppen festzulegen, in denen ein Client Mitglied ist.</p>
+<a name="wp668476"> </a><p class="pBody"><b class="cBold">Package-Eigenschaften.</b> Wenn eine Package-Eigenschaft sowohl für alle Packages mit Subscription als auch für ein einzelnes Package angegeben ist, hat der Eigenschaftswert für das einzelne Package Vorrang. Stellen Sie sich beispielsweise folgende Eigenschaftseinstellungen vor:</p>
+<a name="wp668478"> </a><p class="pIndented1">
+<b class="cBold">semisilent=false	</b> für alle Packages mit Subscription<br />(Die Syntax lautet <b class="cBold">semisilent,subscribers=false</b>.)
+</p>
+<a name="wp668480"> </a><p class="pIndented1">
+<b class="cBold">semisilent=true</b> für das Package „WordProcessor App“<br />(Die Syntax lautet <b class="cBold">semisilent,http://trans.company.com:5282/Applications/WordProcessorApp=true</b>.)
+</p>
+<a name="wp668486"> </a><p class="pBody">In diesem Fall wird der Wert der Eigenschaft <b class="cBold">semisilent</b> für das Package &quot;WordProcessorApp&quot; auf <b class="cBold">true</b> gesetzt. Wenn die Eigenschaft <b class="cBold">semisilent</b> für andere Subscription-Packages Null ist, legt Policy Manager den Wert auf <b class="cBold">false</b> fest.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

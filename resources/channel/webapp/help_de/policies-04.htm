@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:29" />
+    <title>Allgemeine Anweisungen zum Erstellen und Bearbeiten von Policys</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Allgemeine Anweisungen zum Erstellen und Bearbeiten von Policys";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp82901"> </a><p class="pBody">Eine Policy erstellen Sie, indem Sie ein Ziel auswählen und anschließend die Packages angeben, die dem Ziel zugewiesen werden sollen. Sie können für jedes Package folgende Informationen angeben:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp82903"> </a><div class="pSmartList2"><li>Primär- und Sekundärstatus</li></div>
+<a name="wp82905"> </a><div class="pSmartList2"><li>Primär-, Sekundär-, Aktualisierungs- und Reparaturzeitplan</li></div>
+<a name="wp82907"> </a><div class="pSmartList2"><li>Installationspriorität</li></div>
+<a name="wp82909"> </a><div class="pSmartList2"><li>Blackout-Ausnahme</li></div>
+</ul></div>
+</ul></div>
+<a name="wp82911"> </a><p class="pBody">Zusätzlich können Sie in einer Policy folgende Informationen angeben:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp82913"> </a><div class="pSmartList2"><li>Status und Zeitpläne für die Packages</li></div>
+<a name="wp82919"> </a><div class="pSmartList2"><li>Blackout-Periode eines Ziels und die Ausnahme des Policy Service von der Blackout-Periode</li></div>
+<a name="wp82925"> </a><div class="pSmartList2"><li>Aktualisierungszeitplan für Policy Service auf dem Ziel</li></div>
+<a name="wp82927"> </a><div class="pSmartList2"><li>Tuner- und Package-Eigenschaften, die für das Ziele festlegt werden sollen</li></div>
+<a name="wp82929"> </a><div class="pSmartList2"><li>Für das Ziel erforderliche Transmitter-Berechtigungen</li></div>
+<a name="wp82931"> </a><div class="pSmartList2"><li>Profilinformationen für das Ziel</li></div>
+<hr class="NoteRuleTop"/><a name="wp82937"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Wenn Sie sich im Mehrfachauswahlmodus befinden und gleichzeitig Policys für mehrere Ziele bearbeiten, können Sie nur Packages und Package-Informationen bearbeiten, wie beispielsweise Status, Zeitpläne, Installationspriorität und Blackout-Ausnahmen. Package-Status, Zeitpläne, Installationspriorität und Blackout-Ausnahmen, die Sie speichern, gelten für alle von Ihnen angegebenen Ziele. Die Registerkarten für die Bearbeitung anderer Informationen, wie beispielsweise Blackout-Zeitplan und Aktualisierungszeitplan für Policy Service, werden nur dann angezeigt, wenn Sie die Policy für ein einzelnes Ziel bearbeiten.</p><hr class="NoteRuleBottom"/></ul></div>
+</ul></div>
+<a name="wp82939"> </a><p class="pBody">Das folgende Verfahren beschreibt, wie eine Policy von der Seite &quot;Zielansicht&quot; aus erstellt oder bearbeitet wird. Sie können eine Policy auch von den folgenden Seiten aus erstellen oder bearbeiten:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp82941"> </a><div class="pSmartList2"><li>Zielinformationen</li></div>
+<a name="wp82943"> </a><div class="pSmartList2"><li>Package-Ansicht</li></div>
+<a name="wp82945"> </a><div class="pSmartList2"><li>Package-Informationen</li></div>
+</ul></div>
+</ul></div>
+<a name="wp82947"> </a><p class="pBody">Wenn Sie die Erstellung oder Bearbeitung einer Policy über diese Seiten vornehmen, unterscheidet sich nur der erste Schritt im folgenden Verfahren. Die verbleibenden Schritte sind identisch.</p>
+<a name="wp82949"> </a><p style="text-decoration: none" class="pStepIntro">
+So erstellen oder bearbeiten Sie eine Policy:
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp82955"> </a><div class="pSmartList1"><li>Wählen Sie auf der Policy Manager-Seite &quot;Zielansicht&quot; das Ziel aus, für das eine Policy erstellt oder bearbeitet werden soll, und klicken Sie danach auf <b class="cBold">Bearbeiten</b>.</li></div>
+<a name="wp82957"> </a><p class="pIndented1">
+Die Seite &quot;Policy bearbeiten&quot; wird angezeigt. Auf der Registerkarte &quot;Packages&quot; werden die dem Ziel zugewiesenen Packages angezeigt.
+</p>
+<a name="wp82959"> </a><div class="pSmartList1"><li>So fügen Sie Packages zur Policy hinzu, oder entfernen diese:</li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp82961"> </a><div class="pSmartList2"><li>Klicken Sie auf <b class="cBold">Package-Liste bearbeiten</b>.</li></div>
+<a name="wp82967"> </a><div class="pSmartList2"><li>Sie fügen ein Package hinzu, indem Sie links auf der Seite einen Transmitter angeben, der als Host für die Packages fungiert, oder indem Sie ihn aus der Liste der aktuell bereitgestellten Packages auswählen. Wählen Sie anschließend ein Package aus, so dass es rechts auf der Seite angezeigt wird. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-08.htm');" onMouseOver="WWHShowPopup('sm', 'policies-08.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Hinzufügen von Packages zu einer Policy</a>.</li></div>
+<a name="wp82973"> </a><div class="pSmartList2"><li>Um ein Package zu entfernen, wählen Sie dieses im rechten Bereich der Seite aus. Klicken Sie anschließend auf <b class="cBold">Entfernen</b>. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-09.htm');" onMouseOver="WWHShowPopup('sm', 'policies-09.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Entfernen von Packages aus einer Policy</a>.</li></div>
+<a name="wp82975"> </a><div class="pSmartList2"><li>Klicken Sie nach dem Hinzufügen und Entfernen der Packages auf <b class="cBold">OK</b>.</li></div>
+</ol></div>
+<a name="wp82981"> </a><div class="pSmartList1"><li>Geben Sie auf der Seite &quot;Policy bearbeiten&quot; auf der Registerkarte <b class="cBold">Packages</b> die Status und Zeitpläne für die Packages an, die Sie der Policy hinzugefügt haben. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-10.htm');" onMouseOver="WWHShowPopup('sm', 'policies-10.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Festlegen von Status und Zeitplänen für Packages in einer Policy</a>.</li></div>
+<a name="wp82987"> </a><div class="pSmartList1"><li>Geben Sie auf der Seite &quot;Policy bearbeiten&quot; auf der Registerkarte <b class="cBold">Packages</b> die Installationspriorität für die Packages in der Policy an. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-20.htm');" onMouseOver="WWHShowPopup('sm', 'policies-20.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Festlegen der Installationspriorität für Packages in einer Policy</a>.</li></div>
+<a name="wp82993"> </a><div class="pSmartList1"><li>Geben Sie auf der Seite &quot;Policy bearbeiten&quot; auf der Registerkarte <b class="cBold">Packages</b> die Packages an, die von der Blackout-Periode ausgenommen werden sollen. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'blackout-4.htm');" onMouseOver="WWHShowPopup('sm', 'blackout-4.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Ausnehmen von Packages von der Blackout-Periode</a>.</li></div>
+<a name="wp82995"> </a><div class="pSmartList1"><li>Wenn Sie eine Policy für ein einzelnes Ziel erstellen oder bearbeiten, können Sie folgende Tasks ausführen:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp83001"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'blackout-1.htm');" onMouseOver="WWHShowPopup('sm', 'blackout-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Festlegen einer Blackout-Periode für ein Ziel</a></li></div>
+<a name="wp83007"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'sub_serv-1.htm');" onMouseOver="WWHShowPopup('sm', 'sub_serv-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Angeben des Policy Service-Zeitplans für ein Ziel</a></li></div>
+<a name="wp83013"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'props-1.htm');" onMouseOver="WWHShowPopup('sm', 'props-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Einstellen der Tuner- und Package-Eigenschaften für ein Ziel</a></li></div>
+<a name="wp83019"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'tx_login-1.htm');" onMouseOver="WWHShowPopup('sm', 'tx_login-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Festlegen von Transmitter-Berechtigungen für ein Ziel</a></li></div>
+<a name="wp83025"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'tx_login-5.htm');" onMouseOver="WWHShowPopup('sm', 'tx_login-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Festlegen des Profils für ein Ziel</a></li></div>
+</ul></div>
+<a name="wp83027"> </a><div class="pSmartList1"><li>Klicken Sie nach dem Erstellen oder Bearbeiten der Policy auf <b class="cBold">Vorschau</b>.</li></div>
+<a name="wp83033"> </a><p class="pIndented1">
+Auf der Seite &quot;Vorschau&quot; können Sie sich die Änderungen der Policy noch einmal ansehen, bevor Sie diese speichern und auf das Ziel anwenden. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Erstellen der Vorschau und Speichern von Policy-Änderungen</a>.
+</p>
+<a name="wp83035"> </a><div class="pSmartList1"><li>Nachdem Sie sich die Änderungen der Policy noch einmal angesehen haben, klicken Sie auf <b class="cBold">Speichern</b>, um die Änderungen zu bestätigen und zu speichern.</li></div>
+</ol></div>
+<a name="wp83041"> </a><p class="pBody">Wenn Policy Service das nächste Mal aktualisiert und auf dem Client ausgeführt wird, wird die erstellte oder bearbeitete Policy heruntergeladen und angewendet.</p>
+<a name="wp83043"> </a><h5 class="pHeading4">
+Siehe auch:
+</h5>
+<a name="wp83049"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-02.htm');" onMouseOver="WWHShowPopup('sm', 'policies-02.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was ist eine Policy?</a>
+</p><a name="wp83055"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Erstellen der Vorschau und Speichern von Policy-Änderungen</a>
+</p>
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

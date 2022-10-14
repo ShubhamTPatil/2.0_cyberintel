@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Apr-13-06 v6.2 ANSI)" />
+    <meta name="LASTUPDATED" content="11/16/09 16:16:58" />
+    <title>Setting the schedule for Policy Service updates</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Setting the schedule for Policy Service updates";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp36511"> </a><p class="pBody">This topic describes how to set the update schedule for Policy Service. If you do not set a schedule, the default is to update every 90 minutes.</p>
+<a name="wp36516"> </a><p class="pBody">If you have set a blackout period for the target, you can exempt Policy Service from the blackout period. This exemption is useful if you anticipate emergency situations when you want to update or install packages during the blackout period. See <a href="javascript:WWHClickedPopup('sm', 'blackout-3.htm');" onMouseOver="WWHShowPopup('sm', 'blackout-3.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Setting the blackout period for a target</a>.</p>
+<a name="wp35146"> </a><p class="pBody">When multiple users edit the Policy Service Schedule page for the same target, the most recent edits to be saved are applied.</p>
+<hr class="NoteRuleTop"/><a name="wp36253"> </a><p class="pNote"><span style="color: #003366">Note: </span> You can set target-level settings, such as the update schedule for Policy Service, for one target at a time only. You cannot set target-level settings if you are in multiple-selection mode and are editing policies for multiple targets at one time. However, you can set target-level settings for all targets by selecting the All Endpoints target.</p><hr class="NoteRuleBottom"/><a name="wp36254"> </a><p class="pBody">This procedure assumes you are on the Packages tab of the Edit Policy page. See <a href="javascript:WWHClickedPopup('sm', 'policies-03.htm');" onMouseOver="WWHShowPopup('sm', 'policies-03.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">General directions for creating and editing policies</a>.</p>
+<a name="wp34373"> </a><p style="text-decoration: none" class="pStepIntro">
+To set the update schedule for Policy Service
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp36282"> </a><div class="pSmartList1"><li>On the Edit Policy page, click the Policy Service Schedule tab.</li></div>
+<a name="wp34383"> </a><div class="pSmartList1"><li>Choose Use Policy Manager to set the Policy Service update schedule.</li></div>
+<a name="wp37185"> </a><p class="pIndented1">
+If you do not choose this option, you cannot set a schedule. Policy Service follows the default update schedule (every 90 minutes).
+</p>
+<a name="wp37177"> </a><div class="pSmartList1"><li>In the Recurrence section, specify how often you want to update Policy Service:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp34385"> </a><div class="pSmartList2"><li><b class="cBold">Daily</b>-Policy Service can be updated every day, only on weekdays (Monday through Friday), or every 1 to 365 days, depending on the number you set.</li></div>
+<a name="wp34386"> </a><div class="pSmartList2"><li><b class="cBold">Weekly</b>-Policy Service can be updated every 1 to 52 weeks, depending on the number you set. During the week when an update is scheduled, an update occurs only on the days you select. You must select at least one day of the week.</li></div>
+<a name="wp34387"> </a><div class="pSmartList2"><li><b class="cBold">Monthly</b>-Policy Service can be updated every 1 to 12 months on the day you set. If you choose day 30 or 31 and the month when an update occurs doesn&#39;t have that day (such as February), the update occurs on the first day of the next month.</li></div>
+</ul></div>
+<a name="wp34388"> </a><div class="pSmartList1"><li>In the Update time section, specify the time of the day when you want to update the Policy Service:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp34389"> </a><div class="pSmartList2"><li><b class="cBold">Update at</b>-Specify one time of the day when updates occur.</li></div>
+<a name="wp34390"> </a><div class="pSmartList2"><li><b class="cBold">Update every</b>-Specify multiple times during the day when updates occur. You can set updates to happen every specified number of minutes or hours during the day, and you can limit updates to a single range of hours during the day. For example, you can have updates occur every hour between 9 AM and 5 PM or every 30 minutes from 5 PM to 9 AM.</li></div>
+</ul></div>
+</ol></div>
+<a name="wp36527"> </a><p class="pBody">When you are finished editing the policy, preview and save the policy. See <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Previewing and saving policy changes</a>.</p>
+<hr class="NoteRuleTop"/><a name="wp35568"> </a><p class="pNote"><span style="color: #003366">Note: </span> If you delete the Policy Service update schedule as a result of deleting the policy for a target, the Policy Service still updates according to the schedule that was previously set. The default Policy Service update schedule is not restored. The Policy Service continues to use the previously set update schedule until you set a new Policy Service update schedule.</p><hr class="NoteRuleBottom"/><a name="wp32754"> </a><p class="pBody"></p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. All rights reserved.<br/>
+
+ For additional BMC Configuration Management documentation, go to the Customer
+Support website at <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+For questions or comments about BMC CM documentation, send
+an email to <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+For product related issues or questions, send an email to Customer Support at <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

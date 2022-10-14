@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:52" />
+    <title>Asignar grupos de parches a destinos</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Asignar grupos de parches a destinos";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp51584"> </a><p class="pBody">En Policy Manager, la asignación de grupos de parches a las máquinas de destino se realiza de forma similar a la asignación de paquetes. Para empezar, se seleccionan una o más máquinas de destino, se editan a continuación las políticas de aplicación y finalmente se agregan los grupos de destino que desea asignar.</p>
+<hr class="NoteRuleTop"/><a name="wp51608"> </a><p class="pNote"><span style="color: #003366">Nota: </span> Aunque la interfaz permite la asignación de grupos de parches a todo tipo de destinos, los grupos de parches se deben asignar únicamente a máquinas, grupos de máquinas y colecciones. También hay que tener cuidado cuando se asignan grupos de parches a contenedores. En estos casos, asegúrese de que los contenedores sólo incluyan máquinas y grupos de máquinas. En la mayoría de los casos, no tiene sentido asignar grupos de parches a destinos que no sean máquinas. Por ejemplo, si asigna grupos de parches a usuarios, los grupos de parches podrían aplicarse a cada máquina en la que los usuarios iniciaran una sesión, incluidas las máquinas para las que no se haya asignado la instalación de grupos de parches. </p><hr class="NoteRuleBottom"/><a name="wp53379"> </a><p class="pBody">Las políticas se crean seleccionando un destino y especificando posteriormente los grupos de parches que deberán suministrarse a dicho destino. Para cada grupo de parches, es necesario especificar la siguiente información:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp51609"> </a><div class="pSmartList2"><li>Estado de la asignación</li></div>
+<a name="wp51612"> </a><div class="pSmartList2"><li>Exención de exclusión</li></div>
+</ul></div>
+</ul></div>
+<a name="wp51613"> </a><p class="pBody">De manera adicional, puede especificar la siguiente información de parches en una política:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp51617"> </a><div class="pSmartList2"><li>La configuración de reinicio del destino tras la instalación de un parche</li></div>
+<a name="wp51752"> </a><div class="pSmartList2"><li>El período de exclusión del destino y la exención de Patch Service del periodo de exclusión</li></div>
+<a name="wp51622"> </a><div class="pSmartList2"><li>La planificación de la actualización de Patch Service en el destino</li></div>
+<hr class="NoteRuleTop"/><a name="wp51626"> </a><p class="pNote"><span style="color: #003366">Nota: </span> Si está habilitado el modo de selección múltiple y está editando las políticas de múltiples destinos a la vez, sólo podrá editar la información de los paquetes y de los grupos de parches, como estados y exenciones de exclusión. La información de los paquetes y de los grupos de parches que guarde se aplicará a todos los destinos especificados. Las fichas para editar otro tipo de información, como la planificación de exclusión y la planificación de la actualización de Policy Service, sólo aparecerán cuando esté editando las políticas para un solo destino.</p><hr class="NoteRuleBottom"/></ul></div>
+</ul></div>
+<a name="wp51630"> </a><p class="pBody">El siguiente procedimiento describe cómo crear o editar una política en la página Vista de destino. También se pueden crear o editar políticas en las siguientes páginas:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp51631"> </a><div class="pSmartList2"><li>Detalles de destino</li></div>
+<a name="wp51632"> </a><div class="pSmartList2"><li>Vista de paquete</li></div>
+<a name="wp51633"> </a><div class="pSmartList2"><li>Detalles del paquete</li></div>
+</ul></div>
+</ul></div>
+<a name="wp51634"> </a><p class="pBody">En caso de que utilice estas otras páginas para crear o editar políticas, el primer paso del procedimiento que se indica a continuación será diferente. Sin embargo, el resto de los pasos serán iguales.</p>
+<a name="wp51635"> </a><p style="text-decoration: none" class="pStepIntro">
+Para asignar grupos de parches a las máquinas de destino
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp51639"> </a><div class="pSmartList1"><li>En la página Vista de destino de Policy Manager, localice y seleccione el destino para el que desea crear o editar una política y haga clic en <b class="cBold">Editar</b>.</li></div>
+<a name="wp51640"> </a><p class="pIndented1">
+Aparecerá la página Editar política y, en la ficha Paquetes, se mostrarán los paquetes asignados al destino. Debido a que este procedimiento se limita a los parches y grupos de parches, no se incluye información sobre los paquetes. Para obtener más información sobre la asignación de paquetes a los destinos, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-04.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Instrucciones generales para la creación y edición de políticas</a>.
+</p>
+<a name="wp51641"> </a><div class="pSmartList1"><li>Haga clic en la ficha <b class="cBold">Parches</b>.</li></div>
+<a name="wp51780"> </a><p class="pIndented1">
+Aparecerá la ficha Grupos de parches, en la que se muestran los grupos de parches asignados al destino. Esta ficha muestra tanto los grupos de parches asignados directamente al destino como los grupos de parches asignados indirectamente como consecuencia de la pertenencia del equipo de destino a otros grupos o contenedores.
+</p>
+<a name="wp51776"> </a><div class="pSmartList1"><li>Para agregar o eliminar grupos de parches de una política:</li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp51642"> </a><div class="pSmartList2"><li>Haga clic en <b class="cBold">Editar la lista de Patch Group</b>.</li></div>
+<a name="wp54196"> </a><p class="pIndented1">
+En el lado izquierdo de la página se mostrarán los grupos de parches que han sido publicados en el transmitter. Los grupos de parches se guardan en la carpeta <b class="cBold">PatchManagement/PatchGroups</b> del transmitter.
+</p>
+<a name="wp51643"> </a><div class="pSmartList2"><li>Para agregar un grupo de parches a una política, seleccione el grupo de parches en el lado izquierdo de la página de modo que se muestre en el lado derecho de la misma. </li></div>
+<a name="wp66090"> </a><div class="pSmartList2"><li>Si desea ver los parches asignados a un grupo de parches, haga clic en el nombre del grupo de parches correspondiente (éste aparecerá representado normalmente mediante un vínculo azul) bajo la Lista de?Patch Group.</li></div>
+<hr class="NoteRuleTop"/><a name="wp66091"> </a><p class="pNote"><span style="color: #003366">Nota: </span> sólo podrá ver los parches que son miembros de un grupo de parches si dicho grupo ha sido publicado en el transmitter principal especificado al configurar Patch Manager. De igual modo, no podrá ver los miembros del grupo de parches si asigna el grupo de parches a un destino utilizando una dirección URL diferente a la utilizada en el momento de publicar el grupo de parches. Esto ocurriría, por ejemplo, en el caso de que utilizara un nombre de host al publicar el grupo de parches y, sin embargo, utilizara la dirección IP al asignar el grupo de parches al equipo destino.</p><hr class="NoteRuleBottom"/><a name="wp51647"> </a><div class="pSmartList2"><li>Para eliminar un grupo de parches de una política, selecciónelo en el lado izquierdo de la página y haga clic en <b class="cBold">Eliminar</b>. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'patch-07.htm');" onMouseOver="WWHShowPopup('Policy', 'patch-07.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Eliminar grupos de parches de una política</a>.</li></div>
+<a name="wp51651"> </a><div class="pSmartList2"><li>Cuando haya terminado de agregar y eliminar los grupos de parches, haga clic en <b class="cBold">Aceptar</b>.</li></div>
+</ol></div>
+<a name="wp51652"> </a><div class="pSmartList1"><li>En la ficha <b class="cBold">Grupos de parches </b>, especifique los estados de asignación de los grupos de parches que haya agregado a la política. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'patch-04.htm');" onMouseOver="WWHShowPopup('Policy', 'patch-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">¿Qué es un estado de asignación de un grupo de parches?</a>.</li></div>
+<a name="wp51818"> </a><div class="pSmartList1"><li>En caso de que desee que no se aplique el periodo de exención a los grupos de parches, marque las casillas de verificación de los grupos de parches correspondientes en la ficha <b class="cBold">Grupos de parches</b>. Deberá asimismo excluir Policy Service y Patch Service del periodo de exclusión. Para obtener más información sobre los periodos de exclusión, consulte <a href="javascript:WWHClickedPopup('Policy', 'blackout-1.htm');" onMouseOver="WWHShowPopup('Policy', 'blackout-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Establecer un periodo de exclusión para un destino</a> y <a href="javascript:WWHClickedPopup('Policy', 'patch-13.htm');" onMouseOver="WWHShowPopup('Policy', 'patch-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Exención de Patch Service del periodo de exclusión</a>.</li></div>
+<a name="wp51833"> </a><div class="pSmartList1"><li>En caso de que desee simular la instalación del grupo de parches asignados a la máquina de destino, haga clic en <b class="cBold">Ejecutar simulación</b>. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'patch-08.htm');" onMouseOver="WWHShowPopup('Policy', 'patch-08.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Simular la instalación de parches</a>.</li></div>
+<hr class="NoteRuleTop"/><a name="wp53755"> </a><p class="pNote"><span style="color: #003366">Nota: </span> para simular la instalación de parches, el destino que seleccione para los grupos de parches deberá ser una sola máquina.</p><hr class="NoteRuleBottom"/><a name="wp51838"> </a><div class="pSmartList1"><li>Haga clic en la ficha <b class="cBold">Configuración de reinicio</b> para especificar los permisos que desea asignar a los usuarios para reiniciar sus máquinas tras la recepción de los parches. Puede reiniciar las máquinas automáticamente, mostrar mensajes de aviso, esperar un tiempo antes del reinicio y permitir a los usuarios que pospongan los reinicios. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'patch-10.htm');" onMouseOver="WWHShowPopup('Policy', 'patch-10.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Configurar parámetros de reinicio de instalaciones de parches</a>.</li></div>
+<a name="wp51852"> </a><div class="pSmartList1"><li>Haga clic en la ficha <b class="cBold">Planificación de Patch Service</b> para establecer la planificación de Patch Service en un destino.</li></div>
+<a name="wp54805"> </a><p class="pIndented1">
+Durante la actualización, Patch Service escanea el destino en busca de la lista de parches requeridos y de parches ya instalados. También instala un conjunto de parches, considerando las dependencias de cada parche. Puede especificar que las actualizaciones se efectúen siguiendo una planificación recurrente. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'patch-12.htm');" onMouseOver="WWHShowPopup('Policy', 'patch-12.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Sustituir la planificación de actualización de Patch Service de las máquinas de destino</a> y <a href="javascript:WWHClickedPopup('Policy', 'patch-13.htm');" onMouseOver="WWHShowPopup('Policy', 'patch-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Exención de Patch Service del periodo de exclusión</a>.
+</p>
+<a name="wp51664"> </a><div class="pSmartList1"><li>Si está creando o editando la política para un solo destino, también podrá llevar a cabo las siguientes tareas:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp51668"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('Policy', 'blackout-1.htm');" onMouseOver="WWHShowPopup('Policy', 'blackout-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Establecer un periodo de exclusión para un destino</a></li></div>
+<a name="wp51671"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('Policy', 'sub_serv-1.htm');" onMouseOver="WWHShowPopup('Policy', 'sub_serv-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Especificar la planificación de Policy Service para un destino</a></li></div>
+<a name="wp51676"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('Policy', 'props-1.htm');" onMouseOver="WWHShowPopup('Policy', 'props-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Definir propiedades de tuner y paquete para un destino</a></li></div>
+<a name="wp51680"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('Policy', 'tx_login-1.htm');" onMouseOver="WWHShowPopup('Policy', 'tx_login-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Especificar permisos de transmitter para un destino</a></li></div>
+<a name="wp51684"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('Policy', 'tx_login-5.htm');" onMouseOver="WWHShowPopup('Policy', 'tx_login-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Especificar el perfil de un destino</a></li></div>
+</ul></div>
+<a name="wp51685"> </a><div class="pSmartList1"><li>Cuando haya terminado de crear o editar la política, haga clic en <b class="cBold">Vista previa</b>.</li></div>
+<a name="wp51686"> </a><p class="pIndented1">
+La página Vista previa le permite revisar los cambios efectuados en la política antes de guardarlos y aplicarlos al destino. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-05.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Visualizar previamente y almacenar cambios en las políticas</a>.
+</p>
+<a name="wp51690"> </a><div class="pSmartList1"><li>Cuando haya revisado los cambios efectuados en la política, haga clic en <b class="cBold">Guardar</b> para confirmar los cambios y guardarlos.</li></div>
+</ol></div>
+<a name="wp51694"> </a><p class="pBody">La próxima vez que Policy Service se actualice y ejecute en el cliente final, descargará y aplicará la política que haya creado o editado.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

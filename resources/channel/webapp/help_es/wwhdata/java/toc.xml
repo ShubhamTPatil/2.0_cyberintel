@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<WebWorksHelpTOC version="4.0">
+ <i t="Ayuda en línea de Policy Management" l="0" />
+ <i t="Introducción" l="1">
+  <i t="¿Qué es Policy Manager?" l="2" />
+  <i t="Policy Manager: la línea de comandos frente a las interfaces de navegador" l="3" />
+  <i t="Acceder a la documentación de BMC Configuration Management" l="4" />
+  <i t="Usar la ayuda" l="5" />
+ </i>
+ <i t="Configuración de Policy Manager" l="6">
+  <i t="El complemento Policy Management" l="7" />
+  <i t="Configurar y publicar el complemento Policy Service" l="8" />
+  <i t="Página Configuración de complemento: campos del servicio de directorios" l="9" />
+  <i t="Configurar listas de control de acceso" l="10">
+   <i t="Usar la función de control de acceso" l="11" />
+  </i>
+  <i t="Configurar Policy Compliance" l="12" />
+ </i>
+ <i t="Vista de destinos y de paquetes" l="13">
+  <i t="Tipos de destinos" l="14">
+   <i t="¿Qué es el destino Todos los clientes finales?" l="15" />
+   <i t="¿Qué es una colección?" l="16" />
+   <i t="¿Qué es un destino excluido?" l="17" />
+   <i t="¿Qué es un destino asignado directamente?" l="18" />
+  </i>
+  <i t="Visualizar destinos" l="19">
+   <i t="Navegar por destinos" l="20" />
+   <i t="Visualizar los miembros de un destino" l="21" />
+   <i t="Búscar destinos" l="22" />
+   <i t="Visualizar detalles de destino" l="23" />
+   <i t="Visualizar paquetes asignados a un destino" l="24" />
+  </i>
+  <i t="¿Qué es un paquete?" l="25" />
+  <i t="Vista de paquetes" l="26">
+   <i t="Navegar por paquetes" l="27" />
+   <i t="Búscar paquetes" l="28" />
+   <i t="Visualizar destinos asignados a un paquete" l="29" />
+   <i t="Visualizar detalles de paquete" l="30" />
+  </i>
+ </i>
+ <i t="Crear y editar políticas" l="31">
+  <i t="¿Qué es una política?" l="32" />
+  <i t="Gestión de tareas" l="33" />
+  <i t="Instrucciones generales para la creación y edición de políticas" l="34">
+   <i t="Visualizar previamente y almacenar cambios en las políticas" l="35" />
+   <i t="Notas sobre el almacenamiento de políticas" l="36" />
+  </i>
+  <i t="Agregar y eliminar paquetes de una política" l="37">
+   <i t="Adición de paquetes a una política" l="38" />
+   <i t="Eliminar paquetes de una política" l="39" />
+  </i>
+  <i t="Especificar estados y planificaciones de paquetes de una política" l="40">
+   <i t="Descripción general de estados de instalación" l="41" />
+   <i t="Especificar estados principal y secundario" l="42" />
+   <i t="Descripción general de planificaciones de paquetes" l="43" />
+   <i t="Configurar la planificación principal y secundaria de los paquetes" l="44" />
+   <i t="Configurar la planificación de actualización de los paquetes" l="45" />
+   <i t="Configurar la planificación de reparación de los paquetes" l="46" />
+   <i t="Configurar planificaciones comunes para varios paquetes" l="47" />
+   <i t="Resolución de conflictos: estados y planificaciones de políticas" l="48" />
+   <i t="Resolver diferencias en los estados o las planificaciones de los paquetes" l="49" />
+  </i>
+  <i t="Configurar la prioridad de instalación de los paquetes de una política" l="50">
+   <i t="¿Qué es una prioridad de instalación?" l="51" />
+   <i t="Resolución de conflictos: paquetes con la misma prioridad de instalación" l="52" />
+   <i t="Resolución de conflictos: cuando varios usuarios editan la misma política" l="53" />
+  </i>
+  <i t="Copiar políticas" l="54" />
+  <i t="Eliminar políticas" l="55" />
+  <i t="Administración del software, datos y actualizaciones" l="56">
+   <i t="Conceptos relativos a la administración del entorno del cliente final" l="56#wp61057" />
+   <i t="Posibles situaciones" l="57" />
+  </i>
+  <i t="Editar políticas en Vista de paquete" l="58" />
+  <i t="Establecer un periodo de exclusión para un destino" l="59">
+   <i t="¿Qué es un periodo de exclusión?" l="60" />
+   <i t="Establecer el periodo de exclusión para un destino" l="61" />
+   <i t="Exención de los paquetes del periodo de exclusión" l="62" />
+  </i>
+  <i t="Especificar la planificación de Policy Service para un destino" l="63">
+   <i t="¿Qué es Policy Service?" l="64" />
+   <i t="Configurar la planificación para llevar a cabo las actualizaciones de Policy Service" l="65" />
+  </i>
+  <i t="Definir propiedades de tuner y paquete para un destino" l="66">
+   <i t="Aspectos generales de las políticas de tuner y paquete" l="67" />
+   <i t="Definir propiedades de tuner" l="68" />
+   <i t="Definir propiedades de paquete" l="69" />
+   <i t="Formato de propiedades de tuner y de paquete" l="70" />
+   <i t="Eliminar propiedades de tuner y de paquete" l="71" />
+   <i t="Resolución de conflictos: valores de propiedad" l="72" />
+   <i t="Resolución de conflictos: cuando varios usuarios editan propiedades" l="73" />
+  </i>
+  <i t="Especificar permisos de transmitter para un destino" l="74">
+   <i t="¿Qué son los permisos de transmitter?" l="75" />
+   <i t="Agregar o editar permisos de transmitter" l="76" />
+   <i t="Eliminar permisos de transmitter" l="77" />
+  </i>
+  <i t="Especificar el perfil de un destino" l="78">
+   <i t="¿Qué es un perfil?" l="79" />
+   <i t="Cambiar el perfil para un destino" l="80" />
+  </i>
+ </i>
+ <i t="Visualizar cumplimiento de políticas" l="81">
+  <i t="¿Qué es Policy Compliance?" l="82" />
+  <i t="Definición de cumplimiento" l="83" />
+  <i t="Requisitos previos de Policy Compliance" l="84">
+   <i t="Configurar el servidor de consola para Policy Compliance" l="85" />
+   <i t="Configurar clientes finales para Policy Compliance" l="86" />
+  </i>
+  <i t="Visualizar cumplimiento de políticas de paquetes y destinos" l="87">
+   <i t="Descripción general" l="87#wp81468" />
+   <i t="Consultas e informes de cumplimiento general" l="88" />
+  </i>
+  <i t="Consultas de cumplimiento" l="89" />
+  <i t="Informes de cumplimiento" l="90" />
+ </i>
+ <i t="Integración con Patch Management" l="91">
+  <i t="Requisitos previos para la integración con Patch Management" l="92" />
+  <i t="¿Qué es un grupo de parches?" l="93" />
+  <i t="¿Qué es un estado de asignación de un grupo de parches?" l="94" />
+  <i t="¿Qué es Patch Service?" l="95" />
+  <i t="Asignar grupos de parches a destinos" l="96">
+   <i t="Eliminar grupos de parches de una política" l="97" />
+  </i>
+  <i t="Simular la instalación de parches" l="98" />
+  <i t="Visualizar de información adicional sobre la instalación de grupos de parches" l="99" />
+  <i t="Configurar parámetros de reinicio de instalaciones de parches" l="100">
+   <i t="Avanzadas: propiedades de configuración de reinicio de Tuner" l="101" />
+  </i>
+  <i t="Sustituir la planificación de actualización de Patch Service de las máquinas de destino" l="102" />
+  <i t="Exención de Patch Service del periodo de exclusión" l="103" />
+  <i t="Cumplimiento de políticas de los grupos de parches" l="104" />
+ </i>
+ <i t="Actualizaciones inmediatas de políticas: integración con Deployment Manager" l="105">
+  <i t="Prerrequisitos para la integración con Deployment Manager" l="106" />
+  <i t="Habilitar y deshabilitar actualizaciones inmediatas de política" l="107" />
+  <i t="Realizar una actualización inmediata de política" l="108" />
+  <i t="Supervisar y visualizar del estado de una actualización de política" l="109">
+   <i t="Detener y reiniciar las actualizaciones de políticas" l="110" />
+  </i>
+  <i t="¿Cómo funciona la actualización inmediata de una política?" l="111" />
+  <i t="Periodos de exclusión y actualizaciones inmediatas de políticas" l="112" />
+ </i>
+</WebWorksHelpTOC>

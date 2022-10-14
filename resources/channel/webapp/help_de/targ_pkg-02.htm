@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:21" />
+    <title>Zieltypen</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Zieltypen";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp10762"> </a><p class="pBody">Folgende Zieltypen stehen zur Auswahl:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp10765"> </a><div class="pSmartList2"><li><img src="images/s-user.gif" id="wp57762" border="0" hspace="0" vspace="0"/> Benutzer (Client mit Anmeldename)</li></div>
+<a name="wp10768"> </a><div class="pSmartList2"><li><img src="images/machine.gif" id="wp57740" border="0" hspace="0" vspace="0"/> Computer</li></div>
+<a name="wp10771"> </a><div class="pSmartList2"><li><img src="images/s-group.gif" id="wp57744" border="0" hspace="0" vspace="0"/> Benutzergruppe</li></div>
+<a name="wp10774"> </a><div class="pSmartList2"><li><img src="images/machine-group.gif" id="wp57747" border="0" hspace="0" vspace="0"/> Computergruppe</li></div>
+<a name="wp10777"> </a><div class="pSmartList2"><li><img src="images/s-container.gif" id="wp57750" border="0" hspace="0" vspace="0"/> Container oder Organisationseinheit (OU)</li></div>
+<a name="wp10780"> </a><div class="pSmartList2"><li><img src="images/s-domain.gif" id="wp57753" border="0" hspace="0" vspace="0"/> Domäne in Active Directory</li></div>
+<a name="wp10789"> </a><div class="pSmartList2"><li><img src="images/collection-target.gif" id="wp57756" border="0" hspace="0" vspace="0"/> Collection, die das Ergebnis einer Datenbank- oder LDAP-Abfrage ist. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'targ_pkg-04.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was ist eine Collection?</a>.</li></div>
+<a name="wp10798"> </a><div class="pSmartList2"><li><em class="cEmphasis"><img src="images/all-endpoints.gif" id="wp57759" border="0" hspace="0" vspace="0"/> Alle Clients</em>, eine spezielle virtuelle Gruppe, die alle Clients umfasst. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'targ_pkg-03.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-03.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was ist das Ziel &quot;Alle Clients&quot;?</a>.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp10800"> </a><p class="pBody">Nachdem Sie einem Ziel ein Package zugewiesen haben, können Sie jedem Package einen Installationsstatus sowie Zeitpläne und Eigenschaftseinstellungen zuweisen, die sich auf die Installation bei den einzelnen Clients auswirken.  Alle Informationen, die Sie einem Ziel zuweisen, werden als <em class="cEmphasis">Policy</em> bezeichnet.</p>
+<a name="wp10802"> </a><p class="pBody"><b class="cBold">Hierarchische Auflösung von Policys.</b> Die Auflösung von Policys für Targets erfolgt hierarchisch. Zum Beispiel ist folgender Client gegeben:</p>
+<a name="wp10804"> </a><p class="pIndented1">
+<b class="cBold">cn=user1,cn=computers,ou=finance,dc=</b><em class="cEmphasis">company</em><b class="cBold">,dc=</b><em class="cEmphasis">com</em>
+</p>
+<a name="wp10806"> </a><p class="pBody">Der Client erhält Policys, die den folgenden Zielen zugewiesen sind:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp10808"> </a><div class="pSmartList2"><li><b class="cBold">cn=computer,ou=finance,dc=</b><em class="cEmphasis">company</em><b class="cBold">,dc=</b><em class="cEmphasis">com</em></li></div>
+<a name="wp10810"> </a><div class="pSmartList2"><li><b class="cBold">ou=finance,dc=</b><em class="cEmphasis">company</em><b class="cBold">,dc=</b><em class="cEmphasis">com</em></li></div>
+<a name="wp10812"> </a><div class="pSmartList2"><li><b class="cBold">dc=</b><em class="cEmphasis">company</em><b class="cBold">,dc=</b><em class="cEmphasis">com</em></li></div>
+</ul></div>
+</ul></div>
+<a name="wp10814"> </a><h5 class="pHeading4">
+Siehe auch:
+</h5>
+<a name="wp10820"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-02.htm');" onMouseOver="WWHShowPopup('sm', 'policies-02.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was ist eine Policy?</a>
+</p><a name="wp10826"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-13.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was ist ein Package?</a>
+</p><a name="wp10832"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-11.htm');" onMouseOver="WWHShowPopup('sm', 'policies-11.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Übersicht über Installationsstatus</a>
+</p><a name="wp10838"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-04.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was ist eine Collection?</a>
+</p><a name="wp10844"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-05.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was ist ein ausgeschlossenes Ziel?</a>
+</p><a name="wp10850"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-03.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-03.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was ist das Ziel &quot;Alle Clients&quot;?</a>
+</p>
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

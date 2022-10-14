@@ -1,0 +1,314 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:43" />
+    <title>Búscar destinos</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Búscar destinos";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp50275"> </a><p class="pBody">Hay dos opciones disponibles a la hora de realizar una búsqueda de destinos:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp51203"> </a><div class="pSmartList2"><li><b class="cBold">Búsqueda básica.</b> Esta opción le permite buscar destinos usando el nombre común (CN). También puede especificar un tipo de destino para limitar la búsqueda. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-10.htm#wp51227');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-10.htm#wp51227', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Búsqueda básica de destinos</a>.</li></div>
+<a name="wp51207"> </a><div class="pSmartList2"><li><b class="cBold">Búsqueda avanzada.</b> Para usuarios avanzados que estén familiarizados con consultas LDAP y filtros de búsqueda, esta opción permite buscar destinos con más flexibilidad. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-10.htm#wp51328');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-10.htm#wp51328', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Búsqueda avanzada de destinos</a>.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp51202"> </a><p class="pBody">Puede buscar destinos dentro del contenedor o grupo de destino expandido. Esta propiedad es útil cuando se gestionan contenedores con grandes cantidades de subcontenedores o unidades organizativas con muchos miembros.</p>
+<hr class="NoteRuleTop"/><a name="wp51364"> </a><p class="pNote"><span style="color: #003366">Nota: </span> Active Directory y ADAM no disponen del número total de entradas hasta que el usuario no ha examinado todos los resultados de la búsqueda. Por tanto, la lista desplegable muestra “...” como el número total de entradas hasta que el usuario alcanza la última página.</p><hr class="NoteRuleBottom"/><a name="wp51227"> </a><h4 class="pHeading3">
+Búsqueda básica de destinos
+</h4>
+<a name="wp50276"> </a><p style="text-decoration: none" class="pStepIntro">
+Para realizar una búsqueda básica de destinos
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp50277"> </a><div class="pSmartList1"><li>En la parte izquierda de la página Vista de destino, haga clic en el contenedor en que desee realizar la búsqueda.</li></div>
+<a name="wp51243"> </a><div class="pSmartList1"><li>En la parte izquierda de esta misma página, haga clic en el vínculo Búsqueda básica.</li></div>
+<a name="wp50278"> </a><p class="pIndented1">
+Aparece el área <b class="cBold">Búsqueda básica</b>.
+</p>
+<a name="wp51822"> </a><p class="pBodyRelative"><img src="images/search-basic.gif" id="wp51820" border="0" hspace="0" vspace="0"/></p>
+
+<a name="wp50279"> </a><div class="pSmartList1"><li>Proporcione la siguiente información: </li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp51253"> </a><div class="pSmartList2"><li>En el cuadro de texto <b class="cBold">Buscar</b>, introduzca el nombre común (CN), o parte de éste, de un destino.</li></div>
+<a name="wp50280"> </a><p class="pIndented1">
+No necesita saber el nombre completo del destino. Puede utilizar el asterisco (*) como carácter comodín para sustituir por cero o más caracteres del nombre. Si el asterisco es parte del nombre, tiene que evitarlo de forma que no sea considerado un carácter comodín. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-10.htm#wp50303');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-10.htm#wp50303', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Caracteres especiales en cadenas de búsqueda</a>.
+</p>
+<a name="wp51302"> </a><p class="pIndented1">
+<b class="cBold">Nota</b>: la búsqueda <em class="cEmphasis">no</em> distingue entre mayúsculas y minúsculas.
+</p>
+<a name="wp51275"> </a><div class="pSmartList2"><li>De la lista <b class="cBold">Limitar a</b>, elija el tipo de destino que esté buscando, o elija <b class="cBold">Todos los tipos</b>.</li></div>
+<a name="wp51267"> </a><div class="pSmartList2"><li>Para limitar aún más la búsqueda, puede seleccionar el cuadro de texto <b class="cBold">No buscar en subcontenedores</b>.</li></div>
+</ul></div>
+<a name="wp50285"> </a><div class="pSmartList1"><li>Haga clic en <b class="cBold">Ir</b>.</li></div>
+</ol></div>
+<a name="wp50288"> </a><p class="pBody">Los resultados de la búsqueda se muestran más abajo en el área de búsqueda. Cuando aparecen los resultados en un lista, la etiqueta del menú de navegación cambia para indicarle que está visualizando los resultados de la búsqueda.</p>
+<a name="wp52026"> </a><p class="pBody">Para volver a la vista superior del destino, haga clic en el vínculo de <b class="cBold">Inicio</b>.</p>
+<a name="wp52021"> </a><p class="pBody">Para volver a la vista donde se encontraba originalmente al principio de la búsqueda, haga clic en la ficha <b class="cBold">Vista de destino</b>.</p>
+<a name="wp84800"> </a><h5 class="pHeading4">
+Véase también:
+</h5>
+<a name="wp84804"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-09.htm');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-09.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Visualizar los miembros de un destino</a>
+</p><a name="wp84808"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-10.htm#wp50303');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-10.htm#wp50303', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Caracteres especiales en cadenas de búsqueda</a>
+</p><a name="wp51328"> </a><h4 class="pHeading3">
+Búsqueda avanzada de destinos
+</h4>
+<a name="wp51862"> </a><p class="pBody">Utilice la búsqueda avanzada si está familiarizado con las consultas LDAP y los filtros de búsqueda del servicio de directorios que esté usando. Como Policy Manager pasa la consulta directamente al servicio de directorios, la búsqueda es más rápida que la búsqueda básica. Puede introducir consultas simples, tales como buscar destinos con <b class="cBold">usuarios</b> en el CN:</p>
+<a name="wp51863"> </a><p class="pIndented1">
+<b class="cBold">cn=usuarios</b>
+</p>
+<a name="wp51864"> </a><p class="pBody">Puede introducir consultas más complejas que hagan uso de otras condiciones, tales como la búsqueda de destinos con <b class="cBold">usuarios</b> o <b class="cBold">grupos</b> en el CN, usando la notación <b class="cBold">o </b>(<b class="cBold">|</b>):</p>
+<a name="wp51868"> </a><p class="pIndented1">
+<b class="cBold">(|(cn=usuarios) (cn=grupos))</b>
+</p>
+<a name="wp51906"> </a><p class="pBody">Para obtener más información sobre los filtros de búsqueda LDAP, consulte&#160;<a href="http://www.ietf.org/rfc/rfc2254.txt" target="_window">http://www.ietf.org/rfc/rfc2254.txt</a>.</p>
+<hr class="NoteRuleTop"/><a name="wp51921"> </a><p class="pNote"><span style="color: #003366">Nota: </span> No puede utilizar la búsqueda avanzada para buscar destinos usando el nombre distinguido completo (DN).</p><hr class="NoteRuleBottom"/><a name="wp51329"> </a><p style="text-decoration: none" class="pStepIntro">
+Para realizar una búsqueda avanzada de destinos
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp51330"> </a><div class="pSmartList1"><li>En la parte izquierda de la página Vista de destino, haga clic en el contenedor en que desee realizar la búsqueda.</li></div>
+<a name="wp51331"> </a><div class="pSmartList1"><li>Haga clic en el vínculo de Búsqueda avanzada que encontrará en la parte izquierda de la página Vista de destino.</li></div>
+<a name="wp51332"> </a><p class="pIndented1">
+Aparece el área <b class="cBold">Búsqueda avanzada</b>.
+</p>
+<a name="wp51838"> </a><p class="pBodyRelative"><img src="images/search-adv.gif" id="wp51836" border="0" hspace="0" vspace="0"/></p>
+
+<a name="wp51387"> </a><div class="pSmartList1"><li>En el cuadro de texto <b class="cBold">consulta LDAP</b>, introduzca un filtro de búsqueda.</li></div>
+<a name="wp51389"> </a><p class="pIndented1">
+Puede introducir consultas simples o complejas, que Policy Manager pasará directamente al servicio de directorios. Si su consulta incluye algún carácter especial (como, por ejemplo, <b class="cBold">*</b>, <b class="cBold">(</b>, <b class="cBold">)</b>, <b class="cBold">\</b>), consulte <a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-10.htm#wp50303');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-10.htm#wp50303', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Caracteres especiales en cadenas de búsqueda</a>.
+</p>
+<a name="wp51393"> </a><p class="pIndented1">
+<b class="cBold">Nota</b>: la búsqueda <em class="cEmphasis">no</em> distingue entre mayúsculas y minúsculas.
+</p>
+<a name="wp51854"> </a><div class="pSmartList1"><li>Para limitar aún más la búsqueda, puede seleccionar el cuadro de texto <b class="cBold">No buscar en subcontenedores</b>.</li></div>
+<a name="wp51342"> </a><div class="pSmartList1"><li>Haga clic en <b class="cBold">Ir</b>.</li></div>
+</ol></div>
+<a name="wp51343"> </a><p class="pBody">Los resultados de la búsqueda se muestran más abajo en el área de búsqueda. Cuando aparecen los resultados en un lista, la etiqueta del menú de navegación cambia para indicarle que está visualizando los resultados de la búsqueda.</p>
+<a name="wp52046"> </a><p class="pBody">Para volver a la vista superior del destino, haga clic en el vínculo de <b class="cBold">Inicio</b>.</p>
+<a name="wp52047"> </a><p class="pBody">Para volver a la vista donde se encontraba originalmente al principio de la búsqueda, haga clic en la ficha <b class="cBold">Vista de destino</b>.</p>
+<a name="wp84813"> </a><h5 class="pHeading4">
+Véase también:
+</h5>
+<a name="wp84817"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-09.htm');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-09.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Visualizar los miembros de un destino</a>
+</p><a name="wp84821"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-10.htm#wp50303');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-10.htm#wp50303', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Caracteres especiales en cadenas de búsqueda</a>
+</p><a name="wp50303"> </a><h4 class="pHeading3">
+Caracteres especiales en cadenas de búsqueda
+</h4>
+<a name="wp50304"> </a><p class="pBody">Algunos caracteres requieren una representación especial al introducirlos en cadenas de búsqueda, ya sea desde la interfaz basada en el navegador o desde la línea de comandos. Para introducir estos caracteres en las cadenas de búsqueda, debe utilizar el código hexadecimal ASCII de caracteres, precedido por una barra invertida. Los caracteres especiales se recogen en <a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-10.htm#wp50311');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-10.htm#wp50311', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">TableESES&#160;3-1</a></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp50311table50308">
+  <caption><a name="wp50311"> </a><p class="pBody">Tabla&#160;3-1:&#160;&#160;Caracteres especiales en cadenas de búsqueda</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp50317"> </a><div class="pCellHeading">
+Caracteres especiales
+</div>
+</th>
+    <th><a name="wp50319"> </a><div class="pCellHeading">
+Valor ASCII (hexadecimal)
+</div>
+</th>
+    <th><a name="wp50321"> </a><div class="pCellHeading">
+Cadena de búsqueda<br />representación
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50323"> </a><div class="pCellBody">
+<b class="cBold">*</b>
+</div>
+</td>
+    <td><a name="wp50325"> </a><div class="pCellBody">
+<b class="cBold">0x2a</b>
+</div>
+</td>
+    <td><a name="wp50327"> </a><div class="pCellBody">
+<b class="cBold">\2a</b>
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50329"> </a><div class="pCellBody">
+<b class="cBold">(</b>
+</div>
+</td>
+    <td><a name="wp50331"> </a><div class="pCellBody">
+<b class="cBold">0x28</b>
+</div>
+</td>
+    <td><a name="wp50333"> </a><div class="pCellBody">
+<b class="cBold">\28</b>
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50335"> </a><div class="pCellBody">
+<b class="cBold">)</b>
+</div>
+</td>
+    <td><a name="wp50337"> </a><div class="pCellBody">
+<b class="cBold">0x29</b>
+</div>
+</td>
+    <td><a name="wp50339"> </a><div class="pCellBody">
+<b class="cBold">\29</b>
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50341"> </a><div class="pCellBody">
+<b class="cBold">\</b>
+</div>
+</td>
+    <td><a name="wp50343"> </a><div class="pCellBody">
+<b class="cBold">0x5c </b>
+</div>
+</td>
+    <td><a name="wp50345"> </a><div class="pCellBody">
+<b class="cBold">\5c </b>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBody">
+.</p>
+<a name="wp50348"> </a><p class="pBody">Encontrará algunos ejemplos de uso de caracteres especiales en las cadenas de búsqueda en <a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-10.htm#wp50353');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-10.htm#wp50353', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">TableESES&#160;3-2</a></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp50353table50350">
+  <caption><a name="wp50353"> </a><p class="pBody">Tabla&#160;3-2:&#160;&#160;Ejemplos de búsqueda de caracteres especiales</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp50359"> </a><div class="pCellHeading">
+Buscar…
+</div>
+</th>
+    <th><a name="wp50361"> </a><div class="pCellHeading">
+Introducir los siguientes…
+</div>
+</th>
+    <th><a name="wp50363"> </a><div class="pCellHeading">
+Comentarios
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50365"> </a><div class="pCellBody">
+Cualquier cadena que empiece con “<b class="cBold">abc(</b>“
+</div>
+</td>
+    <td><a name="wp50367"> </a><div class="pCellBody">
+<b class="cBold">abc\28*</b>
+</div>
+</td>
+    <td><a name="wp50369"> </a><div class="pCellBody">
+Muestra cómo representar un carácter de paréntesis.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50371"> </a><div class="pCellBody">
+Cualquier cadena que contenga un asterisco (“<b class="cBold">*</b>”).
+</div>
+</td>
+    <td><a name="wp50373"> </a><div class="pCellBody">
+<b class="cBold">*\2A*</b>
+</div>
+</td>
+    <td><a name="wp50375"> </a><div class="pCellBody">
+Muestra cómo representar un asterisco en un valor, evitando que sea interpretado como un indicador de subcadena. 
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50377"> </a><div class="pCellBody">
+La cadena “<b class="cBold">C:\MyTarg</b>”
+</div>
+</td>
+    <td><a name="wp50379"> </a><div class="pCellBody">
+<b class="cBold">C:\5cMyTarg</b>
+</div>
+</td>
+    <td><a name="wp50381"> </a><div class="pCellBody">
+Muestra cómo evitar el carácter de la barra invertida.
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBody">
+.</p>
+<a name="wp84826"> </a><h5 class="pHeading4">
+Véase también:
+</h5>
+<a name="wp84830"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-09.htm');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-09.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Visualizar los miembros de un destino</a>
+</p><a name="wp84834"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-10.htm');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-10.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Búscar destinos</a>
+</p>
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

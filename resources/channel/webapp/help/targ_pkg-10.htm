@@ -1,0 +1,315 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Apr-13-06 v6.2 ANSI)" />
+    <meta name="LASTUPDATED" content="11/16/09 16:16:39" />
+    <title>Searching for targets</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Searching for targets";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp50275"> </a><p class="pBody">There are two options available when searching for targets:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp51203"> </a><div class="pSmartList2"><li><b class="cBold">Basic search.</b> This option allows searching for targets using the common name (CN). You can also specify a type to narrow your search. See <a href="javascript:WWHClickedPopup('sm', 'targ_pkg-10.htm#wp51227');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-10.htm#wp51227', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Basic search for targets</a>.</li></div>
+<a name="wp51207"> </a><div class="pSmartList2"><li><b class="cBold">Advanced search.</b> For advanced users who are familiar with LDAP queries and search filters, this option allows searching for targets with more flexibility. See <a href="javascript:WWHClickedPopup('sm', 'targ_pkg-10.htm#wp51328');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-10.htm#wp51328', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Advanced search for targets</a>.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp51202"> </a><p class="pBody">You can search for targets in the current expanded target group or container. This feature is useful when dealing with containers that contain large numbers of sub-containers or organizational units that contain large numbers of members.</p>
+<hr class="NoteRuleTop"/><a name="wp51364"> </a><p class="pNote"><span style="color: #003366">Note: </span> Active Directory and ADAM do not get the total number of entries until you have paged through all of the search results. Therefore, the drop-down list displays &quot;...&quot; for the total number of entries until you reach the last page.</p><hr class="NoteRuleBottom"/><a name="wp51227"> </a><h4 class="pHeading3">
+Basic search for targets
+</h4>
+<a name="wp50276"> </a><p style="text-decoration: none" class="pStepIntro">
+To perform a basic search for targets
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp50277"> </a><div class="pSmartList1"><li>On the left side of the Target View page, click the container in which you want to perform a search.</li></div>
+<a name="wp51243"> </a><div class="pSmartList1"><li>On the left side of the Target View page, click the Basic Search link.</li></div>
+<a name="wp50278"> </a><p class="pIndented1">
+The Basic Search area appears.
+</p>
+<a name="wp51822"> </a><p class="pBodyRelative"><img src="images/search-basic.gif" id="wp51820" border="0" hspace="0" vspace="0"/></p>
+
+<a name="wp50279"> </a><div class="pSmartList1"><li>Provide the following information:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp51253"> </a><div class="pSmartList2"><li>In the Search for text box, enter the common name (CN) or part of the CN for a target.</li></div>
+<a name="wp50280"> </a><p class="pIndented1">
+You are not required to know the complete name of the target. You can use the asterisk (*) as a wildcard character to substitute for zero or more characters in the name. If an asterisk is part of the name, you must escape it so that it is not considered a wildcard character. See <a href="javascript:WWHClickedPopup('sm', 'targ_pkg-10.htm#wp50303');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-10.htm#wp50303', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Special characters in search strings</a>.
+</p>
+<a name="wp51302"> </a><p class="pIndented1">
+<b class="cBold">Note</b>: The search is <em class="cEmphasis">not</em> case-sensitive.
+</p>
+<a name="wp51275"> </a><div class="pSmartList2"><li>In the Limit to list, choose the type of target for which you are searching, or choose All types.</li></div>
+<a name="wp51267"> </a><div class="pSmartList2"><li>To further limit your search, you can select the Do not search sub-containers check box.</li></div>
+</ul></div>
+<a name="wp50285"> </a><div class="pSmartList1"><li>Click Go.</li></div>
+</ol></div>
+<a name="wp50288"> </a><p class="pBody">Search results are displayed below the search area. When results are displayed in the list, the breadcrumb trail label changes to indicate that you are viewing search results.</p>
+<a name="wp52026"> </a><p class="pBody">To return to the top-level target view, click the Home link.</p>
+<a name="wp52021"> </a><p class="pBody">To return to the view where you originally started the search, click the Target View tab.</p>
+<a name="wp115030"> </a><h5 class="pHeading4">
+See Also:
+</h5>
+<a name="wp115034"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-09.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-09.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Viewing members of a target</a>
+</p><a name="wp115038"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-10.htm#wp50303');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-10.htm#wp50303', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Special characters in search strings</a>
+</p><a name="wp51328"> </a><h4 class="pHeading3">
+Advanced search for targets
+</h4>
+<a name="wp51862"> </a><p class="pBody">Use advanced search if you are familiar with LDAP queries and search filters for the directory service you are using. Because Policy Manager passes the query directly to the directory service, the search is faster than basic search. You can enter simple queries, such as searching for targets with <b class="cBold">users</b> in the CN:</p>
+<a name="wp51863"> </a><p class="pIndented1">
+<b class="cBold">cn=users</b>
+</p>
+<a name="wp51864"> </a><p class="pBody">You can enter more complex queries that use conditions, such as searching for targets with either <b class="cBold">users</b> or <b class="cBold">groups</b> in the CN by using the <b class="cBold">or</b> notation (<b class="cBold">|</b>):</p>
+<a name="wp51868"> </a><p class="pIndented1">
+<b class="cBold">(|(cn=users) (cn=groups))</b>
+</p>
+<a name="wp51906"> </a><p class="pBody">For more information about LDAP search filters, see <a href="http://www.ietf.org/rfc/rfc2254.txt" target="_window">http://www.ietf.org/rfc/rfc2254.txt</a>.</p>
+<hr class="NoteRuleTop"/><a name="wp51921"> </a><p class="pNote"><span style="color: #003366">Note: </span> You cannot use advanced search to look for targets using the complete distinguished name (DN).</p><hr class="NoteRuleBottom"/><a name="wp51329"> </a><p style="text-decoration: none" class="pStepIntro">
+To perform an advanced search for targets
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp51330"> </a><div class="pSmartList1"><li>On the left side of the Target View page, click the container in which you want to perform a search.</li></div>
+<a name="wp51331"> </a><div class="pSmartList1"><li>On the left side of the Target View page, click the Advanced Search link.</li></div>
+<a name="wp51332"> </a><p class="pIndented1">
+The Advanced Search area appears.
+</p>
+<a name="wp51838"> </a><p class="pBodyRelative"><img src="images/search-adv.gif" id="wp51836" border="0" hspace="0" vspace="0"/></p>
+
+<a name="wp51387"> </a><div class="pSmartList1"><li>In the LDAP query text box, enter an LDAP search filter.</li></div>
+<a name="wp51389"> </a><p class="pIndented1">
+You can enter simple or complex queries, which Policy Manager passes directly to the directory service. If your query includes any special characters (such as, <b class="cBold">*</b>, <b class="cBold">(</b>, <b class="cBold">)</b>, <b class="cBold">\</b>), see <a href="javascript:WWHClickedPopup('sm', 'targ_pkg-10.htm#wp50303');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-10.htm#wp50303', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Special characters in search strings</a>.
+</p>
+<a name="wp51393"> </a><p class="pIndented1">
+<b class="cBold">Note</b>: The search is <em class="cEmphasis">not</em> case-sensitive.
+</p>
+<a name="wp51854"> </a><div class="pSmartList1"><li>To further limit your search, you can select the Do not search sub-containers check box.</li></div>
+<a name="wp51342"> </a><div class="pSmartList1"><li>Click Go.</li></div>
+</ol></div>
+<a name="wp51343"> </a><p class="pBody">Search results are displayed below the search area. When results are displayed in the list, the breadcrumb trail label changes to indicate that you are viewing search results.</p>
+<a name="wp52046"> </a><p class="pBody">To return to the top-level target view, click the Home link.</p>
+<a name="wp52047"> </a><p class="pBody">To return to the view where you originally started the search, click the Target View tab.</p>
+<a name="wp115043"> </a><h5 class="pHeading4">
+See Also:
+</h5>
+<a name="wp115047"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-09.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-09.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Viewing members of a target</a>
+</p><a name="wp115051"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-10.htm#wp50303');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-10.htm#wp50303', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Special characters in search strings</a>
+</p><a name="wp50303"> </a><h4 class="pHeading3">
+Special characters in search strings
+</h4>
+<a name="wp50304"> </a><p class="pBody">Certain characters require special representation when you enter them in search strings, either from the browser-based interface or the command line. To enter these characters in search strings, you must use the hexadecimal ASCII code for the character, preceded by a backslash. The special characters are summarized in <a href="javascript:WWHClickedPopup('sm', 'targ_pkg-10.htm#wp50311');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-10.htm#wp50311', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Table&#160;3-1</a></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp50311table50308">
+  <caption><a name="wp50311"> </a><p class="pBody">Table&#160;3-1:&#160;&#160;Special characters in search strings</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp50317"> </a><div class="pCellHeading">
+Special characters
+</div>
+</th>
+    <th><a name="wp50319"> </a><div class="pCellHeading">
+ASCII value (Hexadecimal)
+</div>
+</th>
+    <th><a name="wp50321"> </a><div class="pCellHeading">
+Search string<br />representation
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50323"> </a><div class="pCellBody">
+<b class="cBold">*</b>
+</div>
+</td>
+    <td><a name="wp50325"> </a><div class="pCellBody">
+<b class="cBold">0x2a</b>
+</div>
+</td>
+    <td><a name="wp50327"> </a><div class="pCellBody">
+<b class="cBold">\2a</b>
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50329"> </a><div class="pCellBody">
+<b class="cBold">(</b>
+</div>
+</td>
+    <td><a name="wp50331"> </a><div class="pCellBody">
+<b class="cBold">0x28</b>
+</div>
+</td>
+    <td><a name="wp50333"> </a><div class="pCellBody">
+<b class="cBold">\28</b>
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50335"> </a><div class="pCellBody">
+<b class="cBold">)</b>
+</div>
+</td>
+    <td><a name="wp50337"> </a><div class="pCellBody">
+<b class="cBold">0x29</b>
+</div>
+</td>
+    <td><a name="wp50339"> </a><div class="pCellBody">
+<b class="cBold">\29</b>
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50341"> </a><div class="pCellBody">
+<b class="cBold">\</b>
+</div>
+</td>
+    <td><a name="wp50343"> </a><div class="pCellBody">
+<b class="cBold">0x5c </b>
+</div>
+</td>
+    <td><a name="wp50345"> </a><div class="pCellBody">
+<b class="cBold">\5c </b>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBody">
+</p>
+<a name="wp50348"> </a><p class="pBody">Some examples of using special characters in search strings are shown in <a href="javascript:WWHClickedPopup('sm', 'targ_pkg-10.htm#wp50353');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-10.htm#wp50353', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Table&#160;3-2</a></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp50353table50350">
+  <caption><a name="wp50353"> </a><p class="pBody">Table&#160;3-2:&#160;&#160;Examples of searching for special characters</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp50359"> </a><div class="pCellHeading">
+To search for...
+</div>
+</th>
+    <th><a name="wp50361"> </a><div class="pCellHeading">
+Enter the following...
+</div>
+</th>
+    <th><a name="wp50363"> </a><div class="pCellHeading">
+Comment
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50365"> </a><div class="pCellBody">
+Any string beginning with &quot;<b class="cBold">abc(</b>&quot;
+</div>
+</td>
+    <td><a name="wp50367"> </a><div class="pCellBody">
+<b class="cBold">abc\28*</b>
+</div>
+</td>
+    <td><a name="wp50369"> </a><div class="pCellBody">
+Shows how to represent a parenthesis character.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50371"> </a><div class="pCellBody">
+Any string containing an asterisk (&quot;<b class="cBold">*</b>&quot;).
+</div>
+</td>
+    <td><a name="wp50373"> </a><div class="pCellBody">
+<b class="cBold">*\2A*</b>
+</div>
+</td>
+    <td><a name="wp50375"> </a><div class="pCellBody">
+Shows how to represent an asterisk in a value, preventing it from being interpreted as a substring indicator. 
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50377"> </a><div class="pCellBody">
+The string &quot;<b class="cBold">C:\MyTarg</b>&quot;
+</div>
+</td>
+    <td><a name="wp50379"> </a><div class="pCellBody">
+<b class="cBold">C:\5cMyTarg</b>
+</div>
+</td>
+    <td><a name="wp50381"> </a><div class="pCellBody">
+Shows how to escape the backslash character.
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBody">
+</p>
+<a name="wp115056"> </a><h5 class="pHeading4">
+See Also:
+</h5>
+<a name="wp115060"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-09.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-09.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Viewing members of a target</a>
+</p><a name="wp115064"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-10.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-10.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Searching for targets</a>
+</p>
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. All rights reserved.<br/>
+
+ For additional BMC Configuration Management documentation, go to the Customer
+Support website at <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+For questions or comments about BMC CM documentation, send
+an email to <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+For product related issues or questions, send an email to Customer Support at <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

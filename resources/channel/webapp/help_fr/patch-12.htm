@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/09/06 17:57:38" />
+    <title>Remplacement de la planification des mises à jour de Patch Service pour les machines cibles</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Remplacement de la planification des mises à jour de Patch Service pour les machines cibles";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp940157"> </a><p class="pBody">Cette rubrique explique comment utiliser Policy Manager pour remplacer la planification des mises à jour de Patch Service pour des machines cibles spécifiques. Par défaut, Patch Service s&#39;exécute conformément à la planification des mises à jour spécifiée à l&#39;aide de Patch Manager. Pour plus d&#39;informations sur la définition de la planification des mises à jour par défaut pour Patch Service, reportez-vous à l&#39;aide en ligne de Patch Manager.</p>
+<a name="wp940167"> </a><p class="pBody">Lors d&#39;une mise à jour, Patch Service effectue un scan de la cible et dresse la liste des patchs requis et des patchs déjà installés. Un jeu de patch est également installé en prenant en compte les dépendances de chaque patch. Vous pouvez spécifier que les mises à jour soient effectuées de manière récurrente. Si vous ne définissez pas de planification à l&#39;aide de Policy Manager, celle spécifiée à l&#39;aide de Patch Manager est utilisée. Si Patch Service n&#39;est pas directement attribué à la cible dans le cadre de la policy, Policy Manager considère qu&#39;il provient du même transmitter que Patch Manager.</p>
+<a name="wp940173"> </a><p class="pBody">Si vous avez défini une période d&#39;inactivité pour la cible, vous pouvez en exempter Patch Service. Cette exemption est intéressante si vous pensez devoir faire face à des cas d&#39;urgence où vous devez mettre à jour ou installer des patchs pendant la période d&#39;inactivité. Pour plus d&#39;informations, reportez-vous à la section <a href="javascript:WWHClickedPopup('sm', 'patch-13.htm');" onMouseOver="WWHShowPopup('sm', 'patch-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Exemption de Patch Service de la période d&#39;inactivité</a>.</p>
+<hr class="NoteRuleTop"/><a name="wp940175"> </a><p class="pNote"><span style="color: #003366">Remarque&#160;: </span> vous pouvez définir des paramètres au niveau de la cible, comme la planification des mises à jour de Patch Service, pour une seule cible à la fois. En revanche, si vous êtes en mode de sélection multiple et que vous modifiez des policies pour plusieurs cibles à la fois, la définition de paramètres au niveau de la cible n&#39;est pas autorisée. Vous pouvez toutefois définir des paramètres au niveau de la cible pour l&#39;ensemble des cibles en sélectionnant la cible <b class="cBold">Toutes les machines cibles</b>.</p><hr class="NoteRuleBottom"/><a name="wp940181"> </a><p class="pBody">Cette procédure présuppose que vous vous trouvez à la page Modifier Policy. Pour plus d&#39;informations, reportez-vous à la section <a href="javascript:WWHClickedPopup('sm', 'policies-04.htm');" onMouseOver="WWHShowPopup('sm', 'policies-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Instructions générales pour la création et la modification de policies</a>.</p>
+<a name="wp940183"> </a><p style="text-decoration: none" class="pStepIntro">
+Pour remplacer la planification des mises à jour par défaut de Patch Service
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp940185"> </a><div class="pSmartList1"><li>Dans la page Modifier Policy, cliquez sur l&#39;onglet <b class="cBold">Patch &gt; Planification de Patch Service</b>.</li></div>
+<a name="wp940187"> </a><p class="pIndented1">
+La page Planification de Patch Service s&#39;affiche.
+</p>
+<a name="wp940193"> </a><div class="pSmartList1"><li>Choisissez <b class="cBold">Utiliser Policy Manager pour définir la planification des mises à jour de Patch Service</b>.</li></div>
+<a name="wp940195"> </a><div class="pSmartList1"><li>Dans la section <b class="cBold">Récurrence</b>, indiquez la fréquence de mise à jour de Patch Service :</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp940197"> </a><div class="pSmartList2"><li><b class="cBold">Quotidienne</b>—Patch Service peut être mis à jour tous les jours, seulement les jours de semaine (du lundi au vendredi), ou de 1 à 365 jours d&#39;intervalle, selon le chiffre que vous définissez.</li></div>
+<a name="wp940199"> </a><div class="pSmartList2"><li><b class="cBold">Hebdomadaire</b>—Patch Service peut être mis à jour toutes les 1 à 52 semaines, selon le chiffre que vous définissez. Pendant la semaine où elle est planifiée, la mise à jour a lieu uniquement les jours sélectionnés. Sélectionnez au moins un jour de la semaine.</li></div>
+<a name="wp940201"> </a><div class="pSmartList2"><li><b class="cBold">Mensuelle</b>—Patch Service peut être mis à jour tous les 1 à 12 mois, le jour sélectionné. Si vous choisissez le 30 ou le 31 et que ce jour n&#39;existe pas dans le mois prévu pour la mise à jour (le mois de février, par exemple), celle-ci a lieu le premier jour du mois suivant.</li></div>
+</ul></div>
+<a name="wp940203"> </a><div class="pSmartList1"><li>Dans la section <b class="cBold">Heure de mise à jour</b>, indiquez l&#39;heure de la journée à laquelle vous souhaitez mettre à jour Patch Service :</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp940205"> </a><div class="pSmartList2"><li><b class="cBold">Mettre à jour à</b> — Indiquez une heure de la journée pour les mises à jour.</li></div>
+<a name="wp940207"> </a><div class="pSmartList2"><li><b class="cBold">Mettre à jour toutes les</b> — Indiquez plusieurs heures de la journée pour les mises à jour. Vous pouvez définir les mises à jour de sorte qu&#39;elles se produisent avec une fréquence spécifique, exprimée en nombre de minutes ou d&#39;heures, et vous pouvez les limiter à un seul intervalle d&#39;heures pendant la journée. Par exemple, les mises à jour peuvent avoir lieu toutes les heures entre 9 heures et 17 heures ou toutes les 30 minutes de 17 heures à 9 heures.</li></div>
+</ul></div>
+</ol></div>
+<a name="wp940213"> </a><p class="pBody">Lorsque vous avez terminé de modifier la policy, affichez l&#39;aperçu, puis enregistrez-la. Pour plus d&#39;informations, reportez-vous à la section <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Aperçu et enregistrement des modifications de policy</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Tous droits réservés.<br/>
+
+Pour obtenir d'autres documents relatifs à BMC Configuration Management,
+visitez le site Web de l'assistance à la clientèle <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+Si vous avez des questions ou des commentaires sur
+la documentation BMC CM, envoyez un message électronique à l'adresse <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Si vous avez des questions ou des problèmes quelconques à signaler concernant les produits, envoyez un message électronique au service d'assistance à la clientèle à l'adresse <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

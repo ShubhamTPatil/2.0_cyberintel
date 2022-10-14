@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/09/06 17:57:38" />
+    <title>Configuration des machines cibles pour la policy compliance</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Configuration des machines cibles pour la policy compliance";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp905602"> </a><p class="pBody">La policy compliance nécessite la présence de channels Scanner Service et Policy Service sur les machines cibles (également appelées <em class="cEmphasis">nœuds gérés</em>). Si vous avez suivi les instructions sur la création de profils et de programmes d&#39;installation pour les nœuds gérés, telles que décrites dans le <em class="cEmphasis">Guide d&#39;installation et de déploiement de BMC Configuration Management</em>, disponible sur le site Web de l&#39;assistance à la clientèle BMC, les channels suivants devraient être inclus dans vos nœuds gérés&#160;:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp905604"> </a><div class="pSmartList2"><li>Infrastructure Service</li></div>
+<a name="wp905606"> </a><div class="pSmartList2"><li>Scanner Service</li></div>
+<a name="wp905612"> </a><div class="pSmartList2"><li>Policy Service</li></div>
+<a name="wp905781"> </a><div class="pSmartList2"><li><b class="cBold">Transmitters maîtres multiples</b>. Les requêtes et rapports de conformité ne font pas la distinction entre les packages que vous avez publiés à des moments différents sur les différents transmitters maîtres de votre environnement. Supposons par exemple que le transmitter&#160;A et le transmitter&#160;B disposent de packages dont les URL sont identiques, mais contiennent des versions différentes d&#39;un même logiciel. Dans ce cas de figure, Policy Manager est incapable de calculer précisément la conformité de ces packages.</li></div>
+<a name="wp905787"> </a><div class="pSmartList2"><li><b class="cBold">Segments de channel multiples</b>. Les requêtes et rapports de conformité ne font pas la distinction entre les segments de channels multiples que vous avez publiés à des moments différents. Supposons par exemple que vous publiez le segment&#160;A sous Solaris à 9h00 et le segment&#160;B sous Windows à 10h00. Dans ce cas de figure, Policy Manager est incapable de calculer précisément la conformité.</li></div>
+</ul></div>
+</ul></div>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Tous droits réservés.<br/>
+
+Pour obtenir d'autres documents relatifs à BMC Configuration Management,
+visitez le site Web de l'assistance à la clientèle <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+Si vous avez des questions ou des commentaires sur
+la documentation BMC CM, envoyez un message électronique à l'adresse <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Si vous avez des questions ou des problèmes quelconques à signaler concernant les produits, envoyez un message électronique au service d'assistance à la clientèle à l'adresse <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

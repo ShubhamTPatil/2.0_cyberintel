@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:29" />
+    <title>Auflösen von Unterschieden in Package-Status oder Package-Zeitplänen</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Auflösen von Unterschieden in Package-Status oder Package-Zeitplänen";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp84062"> </a><p class="pBody">In den Fällen, in denen sich die für Packages festgelegten Status und Zeitpläne von denen für die Ziele in einer Policy unterscheiden, müssen Sie angeben, ob Sie den Unterschied beibehalten oder eine Einstellung für alle Ziele verwenden möchten.</p>
+<a name="wp84064"> </a><p class="pBody">Wenn Unterschiede bestehen, die aufgelöst werden müssen, wird auf der Seite &quot;Policy bearbeiten&quot; folgende Meldung angezeigt:</p>
+<a name="wp84067"> </a><p class="pIndented1">
+Mit <img src="images/warningsmall.gif" id="wp50447" border="0" hspace="0" vspace="0"/> gekennzeichnete Packages und Zeitpläne haben unterschiedliche Status und Zeitpläne über die ausgewählten Ziele hinweg. Sie können diese Unterschiede beibehalten oder einen Status oder Zeitplan auswählen, der auf alle ausgewählten Ziele angewendet wird.
+</p>
+<a name="wp84069"> </a><p style="text-decoration: none" class="pStepIntro">
+So lösen Sie Unterschiede in den Status und Zeitplänen eines Package auf:
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp84071"> </a><div class="pSmartList1"><li>Suchen Sie auf der Seite &quot;Policy bearbeiten&quot; die Packages, die für die ausgewählten Ziele unterschiedliche Status oder Zeitpläne aufweisen.</li></div>
+<a name="wp84073"> </a><div class="pSmartList1"><li>Wählen Sie auf der Registerkarte &quot;Packages&quot; in der Spalte &quot;Primärstatus&quot; oder &quot;Sekundärstatus&quot; eine der folgenden Optionen aus:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp84075"> </a><div class="pSmartList2"><li><b class="cBold">Unterschiede für Ziele beibehalten</b>: Wählen Sie diese Option aus, wenn Sie für die Ziele unterschiedliche Package-Status beibehalten möchten, so etwa, wenn Sie für ein Ziel den Status <em class="cEmphasis">Bereitstellen</em> und für ein anderes den Status <em class="cEmphasis">Installieren</em> beibehalten möchten.</li></div>
+<a name="wp84077"> </a><div class="pSmartList2"><li><b class="cBold">&lt;Status&gt;</b>: Wählen Sie diese Option aus, wenn Sie einen einzigen Package-Status festlegen möchten, der von allen Zielen übernommen wird.</li></div>
+</ul></div>
+<a name="wp84079"> </a><div class="pSmartList1"><li>Wählen Sie für Zeitpläne, die für die ausgewählten Ziele unterschiedlich sind, im Abschnitt „Zeitplan“ eine der folgenden Optionen aus:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp84081"> </a><div class="pSmartList2"><li><b style="font-weight: bold" class="cBold">Unterschiede im &lt;</b><em style="font-style: italic; font-weight: normal" class="cEmphasis">Primärzeitplan, Sekundärzeitplan, Aktualisierungszeitplan, Reparaturzeitplan</em><b style="font-style: normal" class="cBold">&gt; für Ziele beibehalten</b>: Wählen Sie diese Option aus, wenn Sie unterschiedliche Package-Zeitpläne für die Ziele beibehalten möchten, etwa, wenn ein Package auf jedem Ziel zu verschiedenen Zeiten für die Installation verfügbar sein soll.</li></div>
+<a name="wp84087"> </a><div class="pSmartList2"><li><b style="font-weight: bold" class="cBold">Bearbeiteten &lt;</b><em style="font-style: italic; font-weight: normal" class="cEmphasis">Primärzeitplan, Sekundärzeitplan, Aktualisierungszeitplan, Reparaturzeitplan</em><b style="font-style: normal" class="cBold">&gt; auf alle ausgewählten Ziele anwenden</b>: Wählen Sie diese Option aus, wenn Sie einen Zeitplan für das Package festlegen möchten, der auf alle Ziele angewendet wird. Sie müssen den Zeitplan festlegen, der angewendet werden soll. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-13.htm');" onMouseOver="WWHShowPopup('sm', 'policies-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Überblick über Package-Zeitpläne</a>.</li></div>
+</ul></div>
+</ol></div>
+<a name="wp84093"> </a><p class="pBody">Nachdem Sie die Policy bearbeitet haben, sehen Sie sich die Vorschau an, und speichern Sie die Policy. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Erstellen der Vorschau und Speichern von Policy-Änderungen</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

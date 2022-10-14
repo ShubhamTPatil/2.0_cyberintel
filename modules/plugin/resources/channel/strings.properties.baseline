@@ -1,0 +1,5 @@
+#Baseline property file
+#Mon Nov 06 16:30:15 PST 2006
+dummy2=This {0} can be removed. For testing only.
+dummy1=This can be removed. For testing only.
+dummy3=This {0} can be removed. {1} is for testing only.

@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:41:09" />
+    <title>Überwachen und Anzeigen des Status einer Policy-Aktualisierung</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Überwachen und Anzeigen des Status einer Policy-Aktualisierung";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp386299"> </a><p class="pBody">Wenn Sie eine Policy-Aktualisierung für ein Ziel gestartet haben, wird die Seite „Status der Policy-Aktualisierung“ angezeigt, auf der Sie den Status der zum Ziel gehörenden Computer überwachen können.</p>
+<a name="wp386303"> </a><p class="pBody">Wenn Sie nach dem Starten einer Policy-Aktualisierung zur Seite &quot;Zielansicht&quot; bzw. &quot;Zielinformationen&quot; zurückkehren, wird neben der Schaltfläche <b class="cBold">Aktualisieren</b> das Symbol für die laufende Aktualisierung <img src="images/update-policy.gif" id="wp55056" border="0" hspace="0" vspace="0"/> angezeigt. Dadurch wird angezeigt, dass die Policy-Aktualisierung für dieses Ziel gerade ausgeführt wird. Wenn Sie während einer Policy-Aktualisierung auf die Seite &quot;Zielansicht&quot; oder &quot;Zielinformationen&quot; für ein anderes Ziel wechseln, wird neben der Schaltfläche <b class="cBold">Aktualisieren</b> eine abgeblendete Version des Symbols <img src="images/update-policy-bw.gif" id="wp55053" border="0" hspace="0" vspace="0"/> angezeigt. Damit wird angegeben, dass Sie keine weitere Policy-Aktualisierung starten können (auch nicht für ein anderes Ziel), da gegenwärtig bereits eine solche ausgeführt wird. Durch Klicken auf <b class="cBold">Aktualisieren</b> wird die zusätzliche Option <b class="cBold">Status eines anderen Ziels anzeigen</b> unten in der Dropdownliste angezeigt.</p>
+<a name="wp386313"> </a><p class="pBody">Nach Ausführung einer Policy-Aktualisierung kann der Status der letzten Ausführung auf der Seite „Zielansicht“ oder der Seite „Zielinformationen“ angezeigt werden. Durch Klicken auf <b class="cBold">Aktualisieren</b> wird die zusätzliche Option <b class="cBold">Status der letzten Aktualisierung anzeigen</b> unten in der Dropdownliste angezeigt. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'update_now-5.htm');" onMouseOver="WWHShowPopup('sm', 'update_now-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Überwachen und Anzeigen des Status einer Policy-Aktualisierung</a>. Policy Manager speichert kein Verlaufsprotokoll für ausgeführte Policy-Aktualisierungen.</p>
+<a name="wp386317"> </a><p class="pBody">Auf der Seite „Status der Policy-Aktualisierung“ können Sie Informationen zur Policy-Aktualisierung anzeigen, und zwar zu folgenden Punkten:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp386319"> </a><div class="pSmartList2"><li><b class="cBold">Ziel.</b> Name des Ziels, das Sie für die Policy-Aktualisierung ausgewählt haben.</li></div>
+<a name="wp386325"> </a><div class="pSmartList2"><li><b class="cBold">Gestartet am.</b> Datum und Uhrzeit, zu der Policy Manager eine Verbindung mit den zum Ziel gehörenden Clients hergestellt und die angegebene Policy-Aktualisierung gestartet hat.</li></div>
+<a name="wp386331"> </a><div class="pSmartList2"><li><b class="cBold">Verbindungsgröße.</b> Die Gesamtzahl der Clients, mit denen Policy Manager eine Verbindung herzustellen versucht, um die angegebene Policy-Aktualisierung auszuführen.</li></div>
+<a name="wp386337"> </a><div class="pSmartList2"><li><b class="cBold">Fortschritt.</b> Der Stand der Policy-Aktualisierung. Dabei handelt es sich um den Prozentsatz der Clients, mit denen Policy Manager eine Verbindung hergestellt hat und auf denen die angegebene Policy-Aktualisierung gestartet wurde.</li></div>
+<hr class="NoteRuleTop"/><a name="wp386343"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Der Fortschritt der Policy-Aktualisierung gibt an, ob Policy Manager eine Verbindung zu den Clients herstellen und die Policy-Aktualisierung starten konnte. Es wird nicht angegeben, ob die angegebene Aktualisierung auf den Clients erfolgreich war.</p><hr class="NoteRuleBottom"/></ul></div>
+</ul></div>
+<a name="wp386345"> </a><p class="pBody">Sie können außerdem den aktuellen Status der einzelnen Clients (Tuner) anzeigen, auf denen Sie die Policy-Aktualisierung ausführen. Die Clients können einen der folgenden Status aufweisen:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp386351"> </a><div class="pSmartList2"><li><b class="cBold">Ausstehend.</b> Gibt an, dass Policy Manager derzeit versucht oder demnächst versuchen wird, eine Verbindung herzustellen und die Policy-Aktualisierung auf dem Client zu starten.</li></div>
+<a name="wp386359"> </a><div class="pSmartList2"><li><b class="cBold">Angehalten.</b> Gibt an, dass Sie oder ein anderer Administrator die Policy-Aktualisierung über Policy Manager angehalten haben. Dieser Status wird evtl. auch angezeigt, wenn die Policy-Aktualisierung angehalten wurde, weil der Mindestwert nicht erreicht wurde. („Mindestwert“ ist ein Wert von Deployment Manager.) Der Standardmindestwert ist 0. Das bedeutet, dass das Deployment für alle Clients in der Gruppe fortgesetzt wird, unabhängig davon, auf wie vielen Clients es bereits fehlgeschlagen ist oder erfolgreich war.</li></div>
+<a name="wp386365"> </a><div class="pSmartList2"><li><b class="cBold">Erfolgreich.</b> Gibt an, dass Policy Manager eine Verbindung mit dem Client hergestellt und die Ausführung gestartet hat.</li></div>
+<a name="wp386371"> </a><div class="pSmartList2"><li><b class="cBold">Fehlgeschlagen.</b> Gibt an, dass Policy Manager eine Verbindung mit dem Tuner hergestellt hat, die Policy-Aktualisierung auf dem Client jedoch nicht abgeschlossen werden konnte.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp386373"> </a><p class="pBody">Durch Klicken auf <b class="cBold">Erfolgreich</b> oder <b class="cBold">Fehlgeschlagen</b> können Sie die Logs für einen bestimmten Computer anzeigen.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

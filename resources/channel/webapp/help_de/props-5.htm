@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:48" />
+    <title>Tuner- und Package-Eigenschaften, Format</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Tuner- und Package-Eigenschaften, Format";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp668283"> </a><p class="pBody">Nachdem Sie Tuner- oder Package-Eigenschaften hinzugefügt haben, werden diese im Textfeld <b class="cBold">Eigenschaften</b> im folgenden Format angezeigt:</p>
+<a name="wp668285"> </a><p class="pIndented1">
+<em class="cEmphasis">&lt;Eigenschaft</em><b style="font-style: normal" class="cBold">&gt;[,</b><em style="font-style: oblique" class="cEmphasis">Bereich</em><b style="font-style: normal" class="cBold">]=</b><em style="font-style: oblique" class="cEmphasis">&lt;Wert</em><b class="cBold">&gt;</b>
+</p>
+<a name="wp668287"> </a><p class="pBody">Dieses Format wird auch verwendet, wenn Sie die Schlüsselwert-Paare der Tuner- oder Package-Eigenschaft direkt in das Textfeld oder über die Befehlszeile eingeben.</p>
+<a name="wp668289"> </a><p class="pBody">Die Einträge <b class="cBold">&lt;</b><em class="cEmphasis">Eigenschaft</em><b class="cBold">&gt;</b> und <b class="cBold">&lt;</b><em class="cEmphasis">Bereich</em><b class="cBold">&gt;</b> können in einem der folgenden Formate eingegeben werden:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp668291"> </a><div class="pSmartList2"><li>Tuner-Eigenschaften:</li></div>
+<a name="wp668293"> </a><p class="pIndented1">
+<em class="cEmphasis">&lt;Eigenschaft&gt;</em><b class="cBold">=</b><em class="cEmphasis">&lt;Wert&gt;</em>
+</p>
+<a name="wp668295"> </a><p class="pIndented1">
+Beispiel:
+</p>
+<a name="wp668297"> </a><p class="pIndented1">
+<b class="cBold">marimba.subscription.retrycount=100</b>
+</p>
+<a name="wp668299"> </a><div class="pSmartList2"><li>Alle Packages mit Subscription:</li></div>
+<a name="wp668301"> </a><p class="pIndented1">
+<b class="cBold">&lt;</b><em class="cEmphasis">Eigenschaft</em><b class="cBold">&gt;,subscribers=&lt;</b><em class="cEmphasis">Wert</em><b class="cBold">&gt;</b>: Hiermit wird eine Eigenschaft für alle Packages festgelegt, die Teil der Policy sind. Dies gilt nicht für Channel, die den Status <b class="cBold">Deinstallieren</b>, <b class="cBold">Ausschließen</b>, <b class="cBold">Primär</b> oder <b class="cBold">Ankündigen</b> besitzen. 
+</p>
+<a name="wp668303"> </a><div class="pSmartList2"><li>Alle Packages:</li></div>
+<a name="wp668309"> </a><p class="pIndented1">
+<b class="cBold">&lt;</b><em class="cEmphasis">Eigenschaft</em><b class="cBold">&gt;,*=&lt;</b><em class="cEmphasis">Wert</em><b class="cBold">&gt;</b>: Legt eine Eigenschaft für alle Packages auf dem Tuner fest, <em class="cEmphasis">außer</em> für den Policy Service-Channel.
+</p>
+<a name="wp668311"> </a><div class="pSmartList2"><li>Ein bestimmtes Package:</li></div>
+<a name="wp668313"> </a><p class="pIndented1">
+<b class="cBold">&lt;</b><em class="cEmphasis">Eigenschaft</em><b class="cBold">&gt;,&lt;</b><em class="cEmphasis">URL</em><b class="cBold">&gt;=&lt;</b><em class="cEmphasis">Wert</em><b class="cBold">&gt;</b>: Legt eine Eigenschaft für das Package fest, das durch <b class="cBold">&lt;</b><em class="cEmphasis">URL</em><b class="cBold">&gt;</b> definiert ist.
+</p>
+<a name="wp668319"> </a><div class="pSmartList2"><li>Policy Service-Channel:</li></div>
+<a name="wp668321"> </a><p class="pIndented1">
+<b class="cBold">&lt;</b><em class="cEmphasis">Eigenschaft</em><b class="cBold">&gt;,service=&lt;</b><em class="cEmphasis">Wert</em><b class="cBold">&gt;</b> 
+</p>
+<a name="wp668325"> </a><p class="pIndented1">
+<b class="cBold">Hinweise:</b>
+</p>
+<a name="wp668333"> </a><div class="pSmartList2"><li> Durch Löschen einer Eigenschaft aus dem Textfeld <b class="cBold">Eigenschaften</b> wird diese nicht von den Zielclients entfernt. Daher bleibt die Eigenschaft auf dem Ziel-Tuner bestehen (nicht von Policy Manager verwaltet). Zum Entfernen einer Tuner- oder Package-Eigenschaft von den Zielclients setzen Sie deren Wert auf <b class="cBold">&lt;default&gt;</b>, (einschließlich der spitzen Klammern), wie in dem folgenden Beispiel gezeigt:</li></div>
+<a name="wp668335"> </a><p class="pIndented1">
+<b class="cBold">&lt;</b><em class="cEmphasis">Eigenschaft</em><b class="cBold">&gt;=&lt;default&gt;</b>
+</p>
+<a name="wp668339"> </a><div class="pSmartList2"><li>Leerzeichen vor oder nach dem Gleichheitszeichen (=) oder nach dem Eigenschaftswert sind nicht erlaubt. Das folgende Beispiel hat das korrekte Format:</li></div>
+<a name="wp668341"> </a><p class="pIndented1">
+<em class="cEmphasis">&lt;Eigenschaftsname&gt;</em><b class="cBold">=</b><em class="cEmphasis">&lt;Eigenschaftswert&gt;</em> 
+</p>
+<a name="wp668343"> </a><p class="pIndented1">
+Das Format in folgendem Beispiel ist nicht korrekt:
+</p>
+<a name="wp668345"> </a><p class="pIndented1">
+<em class="cEmphasis">&lt;Eigenschaftsname&gt; </em><b class="cBold">=&lt;</b><em class="cEmphasis">Eigenschaftswert</em><b class="cBold">&gt;</b>
+</p>
+<a name="wp668347"> </a><p class="pIndented1">
+Je nach Eigenschaft können die Leerzeichen im Eigenschaftswert akzeptiert werden, wenn der Eigenschaftswert selbst Leerzeichen enthält. Beispiel:
+</p>
+<a name="wp668349"> </a><p class="pIndented1">
+<b class="cBold">marimba.schedule.filter=ANYTIME on sun+mon+tue</b>
+</p>
+</ul></div>
+</ul></div>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

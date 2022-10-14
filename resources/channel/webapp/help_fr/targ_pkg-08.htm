@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/09/06 17:57:29" />
+    <title>Exploration des cibles</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Exploration des cibles";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp281911"> </a><p class="pBody">La partie gauche de la page Vue cible affiche les cibles auxquelles vous voulez attribuer des packages. Lorsque vous sélectionnez une cible, vous pouvez afficher les packages leur ayant été affectés directement et indirectement (côté droit de la page).</p>
+<a name="wp281913"> </a><p class="pBody">Vous pouvez consulter les cibles disponibles en navigant sur la partie gauche de la page. La partie gauche de la page répertorie les cibles : les utilisateurs et machines spécifiques, les groupes d&#39;utilisateurs et de machines et les collections résultant de requêtes de base de données ou LDAP.</p>
+<a name="wp281923"> </a><p class="pBody">Lorsque vous consultez cette page pour la première fois, la page d&#39;accueil de la cible, composée de containers de niveau supérieur du service d&#39;annuaire dans lesquels les informations sont stockées, s&#39;affiche. Par exemple, dans Active Directory, vous pouvez généralement voir les domaines racines de l&#39;environnement forêt. Vous pouvez développer les domaines racines afin d&#39;afficher les objets qui peuvent être utilisés en tant que cibles dans ce domaine. Pour plus d&#39;informations, reportez-vous au chapitre sur Active Directory dans le <em class="cEmphasis">Guide de l’administrateur de Policy Management</em>, disponible sur le site Web du support BMC Software.</p>
+<a name="wp281929"> </a><p class="pBody">Les icônes de cible de la page Vue cible indiquent comment Policy Manager obtient sa liste de cibles :</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp281932"> </a><div class="pSmartList2"><li><b class="cBold">Domaines</b>&#160;: icône de domaine <img src="images/root-domain.gif" id="wp50196" border="0" hspace="0" vspace="0"/> qui peut être développée et qui indique que les cibles sont en cours d&#39;obtention à partir d&#39;un environnement forêt d&#39;Active Directory. Cette icône représente les domaines racines et les domaines subordonnés.</li></div>
+<a name="wp281935"> </a><div class="pSmartList2"><li><b class="cBold">Containers</b>&#160;: icône de dossier <img src="images/folder-target.gif" id="wp50200" border="0" hspace="0" vspace="0"/> qui peut être développée et qui indique que les cibles sont en cours d&#39;obtention à partir du service d&#39;annuaire. Cette icône représente les unités organisationnelles et les containers.</li></div>
+<a name="wp281942"> </a><div class="pSmartList2"><li><b class="cBold">Utilisateurs (provenant du transmitter)</b>&#160;: icône du transmitter <img src="images/Tx.gif" id="wp50204" border="0" hspace="0" vspace="0"/> qui peut être développée et qui indique que les utilisateurs et les groupes d&#39;utilisateurs sont obtenus à partir du transmitter sur lequel vous avez publié le plugin Policy Service (à l&#39;aide de la page Configuration du plugin).</li></div>
+<hr class="NoteRuleTop"/><a name="wp281958"> </a><p class="pNote"><span style="color: #003366">Remarque&#160;: </span> si vous (ou un administrateur primaire) n&#39;avez pas encore publié le plugin Policy Service sur le transmitter, Policy Manager ignore quel transmitter utiliser ; plugin Policy Service ne peut alors pas obtenir les informations sur les utilisateurs et groupes d&#39;utilisateurs. De plus, si le transmitter dispose d&#39;un accès restreint, vous devez paramétrer le nom d&#39;utilisateur et le mot de passe à utiliser pour une authentification à l&#39;aide du transmitter en exécutant l&#39;option de ligne de commande suivante :</p><hr class="NoteRuleBottom"/><a name="wp281960"> </a><p class="pIndented1">
+<b class="cBold">-txadminacess &lt;</b><em class="cEmphasis">nom_utilisateur</em><b class="cBold">&gt; &lt;</b><em class="cEmphasis">mot_de_passe</em><b class="cBold">&gt;</b>
+</p>
+<a name="wp281970"> </a><p class="pIndented1">
+Le nom d’utilisateur et le mot de passe que vous spécifiez avec cette option sont ceux qui sont nécessaires au transmitter. Vous devez quand même spécifier le nom d&#39;utilisateur et le mot de passe requis pour l&#39;authentification par Policy Manager.
+</p>
+<a name="wp281976"> </a><p class="pIndented1">
+Pour plus d&#39;informations sur les options de ligne de commande, reportez-vous à la section sur la ligne de commande dans le <em class="cEmphasis">Guide de l’administrateur de Policy Management</em>, disponible sur le site Web du support BMC Software.
+</p>
+</ul></div>
+</ul></div>
+<a name="wp281984"> </a><p class="pBody">De plus, la cible Toutes les machines cibles s&#39;affiche. Il s&#39;agit d&#39;une cible virtuelle contenant toutes les machines cibles de votre site sur lesquelles Policy Service est installé.</p>
+<a name="wp281986"> </a><p class="pBody">Si vous explorez un environnement forêt à plusieurs domaines (Active Directory), vous pouvez explorer les arbres et les domaines.</p>
+<a name="wp281988"> </a><h5 class="pHeading4">
+Voir aussi&#160;:
+</h5>
+<a name="wp281994"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-09.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-09.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Affichage des membres d&#39;une cible</a>
+</p><a name="wp282000"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-10.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-10.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Recherche de cibles</a>
+</p>
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Tous droits réservés.<br/>
+
+Pour obtenir d'autres documents relatifs à BMC Configuration Management,
+visitez le site Web de l'assistance à la clientèle <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+Si vous avez des questions ou des commentaires sur
+la documentation BMC CM, envoyez un message électronique à l'adresse <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Si vous avez des questions ou des problèmes quelconques à signaler concernant les produits, envoyez un message électronique au service d'assistance à la clientèle à l'adresse <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

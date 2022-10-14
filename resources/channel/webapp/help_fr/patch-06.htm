@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/09/06 17:57:38" />
+    <title>Attribution de groupes de patch aux cibles</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Attribution de groupes de patch aux cibles";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp939801"> </a><p class="pBody">Dans Policy Manager, l&#39;attribution de groupes de patch à des machines cibles est similaire à l&#39;attribution de packages. Vous sélectionnez une ou plusieurs machines cibles, vous modifiez les policies, puis vous ajoutez les groupes de patch que vous souhaitez attribuer.</p>
+<hr class="NoteRuleTop"/><a name="wp939803"> </a><p class="pNote"><span style="color: #003366">Remarque&#160;: </span> même si l&#39;interface vous permet d&#39;attribuer des groupes de patch à tous les types de cibles, n&#39;attribuez des groupes de patch qu&#39;à des machines, groupes de machines et collections. Vous devez également être vigilant lors de l&#39;attribution de groupes de patch aux containers ; assurez-vous que le container ne comporte que des machines et des groupes de machines. La plupart du temps, il n&#39;est pas raisonnable d&#39;attribuer des groupes de patch à des cibles autres que des machines. Par exemple, si vous attribuez des groupes de patch à des utilisateurs, les groupes de patch pourraient être appliqués à chaque machine à laquelle les utilisateurs se connectent y compris des machines auxquelles les groupes de patch ne s&#39;appliquent pas. </p><hr class="NoteRuleBottom"/><a name="wp939805"> </a><p class="pBody">Vous créez une policy en choisissant une cible, puis en indiquant les groupes de patch que la cible doit contenir. Pour chaque groupe de patch, vous pouvez spécifier les informations suivantes :</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp939807"> </a><div class="pSmartList2"><li>L&#39;état d&#39;attribution</li></div>
+<a name="wp939809"> </a><div class="pSmartList2"><li>Exemption de période d&#39;inactivité</li></div>
+</ul></div>
+</ul></div>
+<a name="wp939811"> </a><p class="pBody">Vous pouvez aussi inclure dans une policy les informations de patch suivantes :</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp939813"> </a><div class="pSmartList2"><li>Les paramètres de redémarrage pour la cible suite à une installation de patch</li></div>
+<a name="wp939815"> </a><div class="pSmartList2"><li>La période d&#39;inactivité pour la cible et l&#39;exemption pour Patch Service</li></div>
+<a name="wp939817"> </a><div class="pSmartList2"><li>La planification pour la mise à jour de Patch Service sur la cible</li></div>
+<hr class="NoteRuleTop"/><a name="wp939823"> </a><p class="pNote"><span style="color: #003366">Remarque&#160;: </span> si vous êtes en mode de sélection multiple et que vous modifiez les policies pour plusieurs cibles à la fois, vous ne pouvez modifier que les informations sur le package et les groupes de patch, comme les états et les exemptions de période d&#39;inactivité. Les informations sur le package et les groupes de patch que vous enregistrez s&#39;appliquent à toutes les cibles indiquées. Les onglets permettant de modifier d&#39;autres informations, telles que la planification des périodes d&#39;inactivité et la planification des mises à jour de Policy Service, apparaissent uniquement lorsque vous modifiez la policy pour une seule cible.</p><hr class="NoteRuleBottom"/></ul></div>
+</ul></div>
+<a name="wp939825"> </a><p class="pBody">La procédure suivante explique comment créer et modifier une policy à partir de la page Vue Cible. Vous pouvez aussi créer ou modifier une policy à partir des pages suivantes :</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp939827"> </a><div class="pSmartList2"><li>Détails de la cible</li></div>
+<a name="wp939829"> </a><div class="pSmartList2"><li>Vue Package</li></div>
+<a name="wp939831"> </a><div class="pSmartList2"><li>Détails du package</li></div>
+</ul></div>
+</ul></div>
+<a name="wp939833"> </a><p class="pBody">Si vous utilisez ces autres pages pour créer ou modifier une policy, la première étape de la procédure ci-dessous est différente, mais les étapes suivantes devraient être les mêmes.</p>
+<a name="wp939835"> </a><p style="text-decoration: none" class="pStepIntro">
+Pour attribuer des groupes de patch à des machines cibles
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp939841"> </a><div class="pSmartList1"><li>Dans la page Vue Cible de Policy Manager, recherchez et sélectionnez la cible pour laquelle vous souhaitez créer ou modifier une policy, puis cliquez sur <b class="cBold">Modifier</b>.</li></div>
+<a name="wp939847"> </a><p class="pIndented1">
+La page Modification de policy s&#39;affiche et, dans l&#39;onglet Packages, vous indique les packages attribués à la cible. Étant donné que cette procédure concerne principalement les patchs et groupes de patch, elle n&#39;inclut pas d&#39;informations sur les packages. Pour plus d&#39;informations sur l&#39;attribution de packages aux cibles, reportez-vous à la section <a href="javascript:WWHClickedPopup('sm', 'policies-04.htm');" onMouseOver="WWHShowPopup('sm', 'policies-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Instructions générales pour la création et la modification de policies</a>.
+</p>
+<a name="wp939849"> </a><div class="pSmartList1"><li>Cliquez sur l&#39;onglet <b class="cBold">Patch</b>.</li></div>
+<a name="wp939851"> </a><p class="pIndented1">
+L&#39;onglet Groupes de patch s&#39;affiche et indique les groupes de patch attribués à la cible. Cet onglet indique à la fois les groupes de patch attribués directement à la cible et ceux attribués de manière indirecte, suite à l&#39;appartenance de la cible à un autre groupe ou container.
+</p>
+<a name="wp939855"> </a><div class="pSmartList1"><li>Pour ajouter ou supprimer des groupes de patch inclus dans la policy :</li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp939857"> </a><div class="pSmartList2"><li>Cliquez sur <b class="cBold">Modification de la liste de groupes de patch</b>.</li></div>
+<a name="wp939861"> </a><p class="pIndented1">
+Les groupes de patch publiés sur le transmitter s&#39;affichent dans la partie gauche de la page. Les groupes de patch sont stockés dans le dossier <b class="cBold">PatchManagement/PatchGroups</b> sur le transmitter.
+</p>
+<a name="wp939863"> </a><div class="pSmartList2"><li>Pour ajouter un groupe de patch à la policy, sélectionnez-le dans la partie gauche de la page de sorte qu&#39;il s&#39;affiche dans la partie droite. </li></div>
+<a name="wp939865"> </a><div class="pSmartList2"><li>Si vous souhaitez savoir quels patchs appartiennent à un groupe de patch, cliquez sur le nom du groupe de patch (qui s&#39;affiche généralement sous forme de lien de couleur bleu) sous la Liste de groupes de patch.</li></div>
+<a name="wp939867"> </a><p class="pIndented1">
+<b class="cBold">Remarque</b> : vous pouvez visualiser les patchs membres d&#39;un groupe de patch à condition que ce dernier ait été publié sur le transmitter maître spécifié lors de la configuration de Patch Manager. Aussi, vous ne pouvez pas afficher les membres d&#39;un groupe de patch si vous attribuez le groupe patch à une cible en utilisant une URL différente de celle choisie pour sa publication. Par exemple, vous utilisez l&#39;adresse IP pour attribuer le groupe de patch à une cible alors que vous aviez utilisé le hostname pour sa publication.
+</p>
+<a name="wp939873"> </a><div class="pSmartList2"><li>Pour supprimer un groupe de patch de la policy, sélectionnez-le dans la partie droite de la page, puis cliquez sur <b class="cBold">Supprimer</b>. Pour plus d&#39;informations, reportez-vous à la section <a href="javascript:WWHClickedPopup('sm', 'patch-07.htm');" onMouseOver="WWHShowPopup('sm', 'patch-07.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Suppression de groupes de patch d&#39;une policy</a>.</li></div>
+<a name="wp939875"> </a><div class="pSmartList2"><li>Lorsque vous avez terminé d&#39;ajouter et de supprimer des groupes de patch, cliquez sur <b class="cBold">OK</b>.</li></div>
+</ol></div>
+<a name="wp939881"> </a><div class="pSmartList1"><li>Dans l&#39;onglet <b class="cBold">Groupes de patch</b>, indiquez les états d&#39;attribution pour les groupes de patch que vous avez ajoutés à la policy. Pour plus d&#39;informations, reportez-vous à la section <a href="javascript:WWHClickedPopup('sm', 'patch-04.htm');" onMouseOver="WWHShowPopup('sm', 'patch-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Définition d&#39;un état d&#39;attribution de groupe de patch</a>.</li></div>
+<a name="wp939895"> </a><div class="pSmartList1"><li>Si vous souhaitez exempter des groupes de patch de la période d&#39;inactivité, dans l&#39;onglet <b class="cBold">Groupes de patch </b>, cochez les cases pour les groupes de patch correspondants. Vous devez également exempter Policy Service et Patch Service de la période d&#39;inactivité. Pour plus d&#39;informations sur les périodes d&#39;inactivité, reportez-vous aux sections <a href="javascript:WWHClickedPopup('sm', 'blackout-1.htm');" onMouseOver="WWHShowPopup('sm', 'blackout-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Définition de la période d’inactivité d’une cible</a> et <a href="javascript:WWHClickedPopup('sm', 'patch-13.htm');" onMouseOver="WWHShowPopup('sm', 'patch-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Exemption de Patch Service de la période d&#39;inactivité</a>.</li></div>
+<a name="wp939901"> </a><div class="pSmartList1"><li>Si vous souhaitez simuler l&#39;installation des groupes de patch attribués à la machine cible, cliquez sur <b class="cBold">Exécuter la simulation</b>. Pour plus d&#39;informations, reportez-vous à la section <a href="javascript:WWHClickedPopup('sm', 'patch-08.htm');" onMouseOver="WWHShowPopup('sm', 'patch-08.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Simulation de l&#39;installation de patchs</a>.</li></div>
+<a name="wp939903"> </a><p class="pIndented1">
+<b class="cBold">Remarque</b> : pour simuler l&#39;installation d&#39;un patch, la cible que vous sélectionnez pour les groupes de patch doit être une seule machine.
+</p>
+<a name="wp939909"> </a><div class="pSmartList1"><li>Cliquez sur l&#39;onglet <b class="cBold">Paramètres de redémarrage</b> pour indiquer le niveau de contrôle que vous souhaitez accorder aux utilisateurs lorsque leurs machines doivent être redémarrées après réception d&#39;un patch. Vous avez la possibilité de redémarrer automatiquement des machines, d&#39;afficher des messages d&#39;alerte, d&#39;attendre un moment avant de redémarrer et de permettre aux utilisateurs de reporter le redémarrage. Pour plus d&#39;informations, reportez-vous à la section <a href="javascript:WWHClickedPopup('sm', 'patch-10.htm');" onMouseOver="WWHShowPopup('sm', 'patch-10.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Configuration des paramètres de redémarrage pour les installations de patchs</a>.</li></div>
+<a name="wp939911"> </a><div class="pSmartList1"><li>Cliquez sur l&#39;onglet <b class="cBold">Planification de Patch Service</b> pour définir une planification pour les mises à jour de Patch Service sur une cible.</li></div>
+<a name="wp939921"> </a><p class="pIndented1">
+Lors d&#39;une mise à jour, Patch Service effectue un scan de la cible et dresse la liste des patchs requis et des patchs déjà installés. Un jeu de patch est également installé en prenant en compte les dépendances de chaque patch. Vous pouvez spécifier que les mises à jour soient effectuées de manière récurrente. Pour plus d&#39;informations, reportez-vous aux sections <a href="javascript:WWHClickedPopup('sm', 'patch-12.htm');" onMouseOver="WWHShowPopup('sm', 'patch-12.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Remplacement de la planification des mises à jour de Patch Service pour les machines cibles</a> et <a href="javascript:WWHClickedPopup('sm', 'patch-13.htm');" onMouseOver="WWHShowPopup('sm', 'patch-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Exemption de Patch Service de la période d&#39;inactivité</a>.
+</p>
+<a name="wp939923"> </a><div class="pSmartList1"><li>Si vous créez ou modifiez la policy pour une seule cible, vous pouvez également accomplir les tâches suivantes :</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp939929"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'blackout-1.htm');" onMouseOver="WWHShowPopup('sm', 'blackout-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Définition de la période d’inactivité d’une cible</a></li></div>
+<a name="wp939935"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'sub_serv-1.htm');" onMouseOver="WWHShowPopup('sm', 'sub_serv-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Définition de la planification de Policy Service pour une cible</a></li></div>
+<a name="wp939941"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'props-1.htm');" onMouseOver="WWHShowPopup('sm', 'props-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Paramétrage des propriétés de tuner et de package d&#39;une cible</a></li></div>
+<a name="wp939947"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'tx_login-1.htm');" onMouseOver="WWHShowPopup('sm', 'tx_login-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Définition des droits du transmitter pour une cible</a></li></div>
+<a name="wp939953"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'tx_login-5.htm');" onMouseOver="WWHShowPopup('sm', 'tx_login-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Définition du profil pour une cible</a></li></div>
+</ul></div>
+<a name="wp939955"> </a><div class="pSmartList1"><li>Lorsque vous avez terminé de créer ou de modifier la policy, cliquez sur <b class="cBold">Aperçu</b>.</li></div>
+<a name="wp939961"> </a><p class="pIndented1">
+La page Aperçu vous permet d&#39;afficher un aperçu des modifications de la policy avant de les enregistrer et de les appliquer à la cible. Pour plus d&#39;informations, reportez-vous à la section <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Aperçu et enregistrement des modifications de policy</a>.
+</p>
+<a name="wp939963"> </a><div class="pSmartList1"><li>Après avoir vérifié les modifications apportées à la policy, cliquez sur <b class="cBold">Enregistrer</b> pour les confirmer et les enregistrer.</li></div>
+</ol></div>
+<a name="wp939969"> </a><p class="pBody">La prochaine fois que Policy Service est mis à jour et s&#39;exécute sur la machine cible, il télécharge et applique la policy que vous avez créée ou modifiée.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Tous droits réservés.<br/>
+
+Pour obtenir d'autres documents relatifs à BMC Configuration Management,
+visitez le site Web de l'assistance à la clientèle <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+Si vous avez des questions ou des commentaires sur
+la documentation BMC CM, envoyez un message électronique à l'adresse <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Si vous avez des questions ou des problèmes quelconques à signaler concernant les produits, envoyez un message électronique au service d'assistance à la clientèle à l'adresse <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

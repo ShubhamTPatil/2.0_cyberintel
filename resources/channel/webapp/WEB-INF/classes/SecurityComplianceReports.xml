@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<tree version="1">
+  <metadata>
+    <property name="database">sqlserver</property>
+  </metadata>
+  <dirnode name="" type="root-directory" class="com.marimba.tools.dbtree.DirNode">
+    <dirnode name="public" type="directory" class="com.marimba.tools.dbtree.DirNode">
+      <property name="displayName_fr">Requêtes</property>
+      <property name="atlas.folder">true</property>
+      <property name="displayName_de">Abfragen</property>
+      <property name="displayName">Queries</property>
+      <property name="displayName_ja">クエリー</property>
+      <property name="displayName_es">Consultas</property>
+      <property name="displayName_zh">查询</property>
+      <dirnode name="Configuration Assessment" type="directory" class="com.marimba.tools.dbtree.DirNode">
+        <property name="atlas.node.dateCreated">1496090495973</property>
+        <property name="atlas.folder">true</property>
+        <property name="atlas.node.createdBy">sumit</property>
+        <node name="Detailed Report - Machine Compliance based on Security Scanner" class="com.marimba.tools.dbtree.Node">
+          <property name="an_0">Machine Name</property>
+          <property name="atlas.node.descVisible">
+          </property>
+          <property name="atlas.args">1</property>
+          <property name="aid_0">$1</property>
+          <property name="atlas.node.filtered">false</property>
+          <property name="ax_0">false</property>
+          <property name="atlas.query.type">f</property>
+          <property name="av_0_0">*</property>
+          <property name="atlas.node.autoFilteredFlag">false</property>
+          <property name="atlas.node.dateCreated">1496414579152</property>
+          <property name="at_0">string</property>
+          <property name="atlas.node.desc">Machine Compliance based on Security Scanner details reports</property>
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+          <property name="atlas.node.createdBy">sumit</property>
+          <property name="atlas.node.sql.arg1.criteria">upper(machine_name) like upper( $1 )</property>
+          <property name="atlas.node.sql">select isxc.machine_name  as &apos;Machine Name&apos;,ios.product+&apos; &apos;+ios.description as &apos;Operating System&apos;, isxc.content_title as &apos;Security Content&apos;, isxc.profile_title as &apos;Security Profile&apos;, overall_compliant_level as &apos;Scan Status&apos;, isxc.assigned_target_name as &apos;Policy&apos;, isxc.assigned_policy_lastupdated as &apos;Last Scan Time&apos; from inv_security_xccdf_compliance isxc , inv_os ios where upper(machine_name) like upper( $1 ) and ios.machine_id = isxc.machine_id</property>
+          <property name="av_0_null">false</property>
+        </node>
+        <node name="Machine Compliance based on Security Policy" class="com.marimba.tools.dbtree.Node">
+          <property name="an_0">Machine Name</property>
+          <property name="atlas.args">1</property>
+          <property name="aid_0">$1</property>
+          <property name="atlas.node.filtered">false</property>
+          <property name="ax_0">false</property>
+          <property name="atlas.query.type">f</property>
+          <property name="av_0_0">*</property>
+          <property name="atlas.node.autoFilteredFlag">false</property>
+          <property name="atlas.node.dateCreated">1496202428225</property>
+          <property name="at_0">string</property>
+          <property name="atlas.node.desc">List all the machine with Security Policy compliance details.</property>
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+          <property name="atlas.node.createdBy">ciautomation</property>
+          <property name="atlas.node.sql.arg1.criteria">upper(machine_name) like upper( $1 )</property>
+          <property name="atlas.node.sql">select a.machine_name as &apos;Machine Name&apos;,a.machine_domain as &apos;Machine Domain&apos; ,a.product + &apos; &apos; + a.description as &apos;Operating System&apos;, dbo.MachinePolicyCount(a.machine_id) as &apos;Number of Scanners assigned&apos;, dbo.MachineLastScan(a.machine_id) as &apos;Last Scan Time&apos; ,a.assigned_target_name as &apos;Policy Names (Collection, Directly assigned)&apos;, dbo.MachineOverallCompStatus(a.machine_id) as &apos;Security Compliance Status&apos; from (select distinct isxc.machine_id ,isxc.machine_name,isxc.machine_domain ,ios.product,ios.description,isxc.assigned_target_name from inv_security_xccdf_compliance isxc , inv_os ios where upper(machine_name) like upper( $1 ) and ios.machine_id = isxc.machine_id) a order by product</property>
+          <property name="av_0_null">false</property>
+        </node>
+		<node name="Machine Level Compliance" class="com.marimba.tools.dbtree.Node">
+              <property name="an_0">Machine Name</property>
+              <property name="atlas.args">1</property>
+              <property name="aid_0">$1</property>
+              <property name="atlas.node.filtered">false</property>
+              <property name="ax_0">false</property>
+              <property name="atlas.query.type">f</property>
+              <property name="av_0_0">*</property>
+              <property name="atlas.node.autoFilteredFlag">false</property>
+              <property name="atlas.node.dateCreated">1496202428225</property>
+              <property name="at_0">string</property>
+              <property name="atlas.node.desc">List all the machine with Security Policy compliance details.</property>
+              <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+              <property name="atlas.node.createdBy">ciautomation</property>
+              <property name="atlas.node.sql.arg1.criteria">upper(machine_name) like upper( $1 )</property>
+              <property name="atlas.node.sql">select DISTINCT machine_name as &apos;Machine Name&apos;, machine_domain as &apos;Machine Domain&apos;, content_id as "Content Id", profile_id as "Profile Id", content_title "Content Title",profile_title as "Profile Title", rules_compliance from inv_security_xccdf_compliance where upper(machine_name) like upper( $1 )</property>
+              <property name="av_0_null">false</property>
+          </node>
+        <node name="Machine Overall Compliance" class="com.marimba.tools.dbtree.Node">
+          <property name="an_0">Machine Name</property>
+          <property name="atlas.args">1</property>
+          <property name="aid_0">$1</property>
+          <property name="atlas.node.filtered">false</property>
+          <property name="ax_0">false</property>
+          <property name="atlas.query.type">f</property>
+          <property name="av_0_0">*</property>
+          <property name="atlas.node.autoFilteredFlag">false</property>
+          <property name="atlas.node.dateCreated">1496202470842</property>
+          <property name="at_0">string</property>
+          <property name="atlas.node.desc">Report list the Machine Overall Compliance against all the assigned security polices.</property>
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+          <property name="atlas.node.createdBy">ciautomation</property>
+          <property name="atlas.node.sql.arg1.criteria">upper(machine_name) like upper( $1 )</property>
+          <property name="atlas.node.sql">select a.machine_name as &apos;Machine Name&apos;,a.machine_domain as &apos;Machine Domain&apos; ,a.product + &apos; &apos; + a.description &apos;Operating System&apos;, dbo.MachinePolicyCount(a.machine_id) as &apos;Number of Scanners assigned&apos;, dbo.MachineLastScan(a.machine_id) as &apos;Last Scan Time&apos; , dbo.MachineOverallCompStatus(a.machine_id) as &apos;Security Compliance Status&apos; from (select distinct isxc.machine_id ,isxc.machine_name,isxc.machine_domain ,ios.product,ios.description from inv_security_xccdf_compliance isxc , inv_os ios where upper(machine_name) like upper( $1 ) and ios.machine_id = isxc.machine_id) a order by product</property>
+          <property name="av_0_null">false</property>
+        </node>
+        <node name="Machines assessed in last 24 hours" class="com.marimba.tools.dbtree.Node">
+          <property name="an_0">Assigned Target Name</property>
+          <property name="atlas.args">1</property>
+          <property name="aid_0">$1</property>
+          <property name="atlas.node.filtered">false</property>
+          <property name="ax_0">false</property>
+          <property name="atlas.query.type">f</property>
+          <property name="av_0_0">*</property>
+          <property name="atlas.node.autoFilteredFlag">false</property>
+          <property name="atlas.node.dateCreated">1496202509286</property>
+          <property name="at_0">string</property>
+          <property name="atlas.node.desc">List of machines security scanner executed in last 24 hours.</property>
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+          <property name="atlas.node.createdBy">ciautomation</property>
+          <property name="atlas.node.sql.arg1.criteria">upper(sxc.assigned_target_name) like upper( $1 )</property>
+          <property name="atlas.node.sql">select machine_name, max(finished_at) as &apos;Scanned Time&apos; from inv_security_xccdf_compliance sxc where upper(sxc.assigned_target_name) like upper( $1 ) and finished_at &gt;= DATEADD(day, -1, GETDATE()) group by machine_name</property>
+          <property name="av_0_null">false</property>
+        </node>
+        <node name="Operating System Overall Compliance" class="com.marimba.tools.dbtree.Node">
+          <property name="an_0">Machine Name</property>
+          <property name="atlas.args">1</property>
+          <property name="aid_0">$1</property>
+          <property name="atlas.node.filtered">false</property>
+          <property name="ax_0">false</property>
+          <property name="atlas.query.type">f</property>
+          <property name="av_0_0">*</property>
+          <property name="atlas.node.autoFilteredFlag">false</property>
+          <property name="atlas.node.dateCreated">1496244210825</property>
+          <property name="at_0">string</property>
+          <property name="atlas.node.desc">Report list the Operating System wise overall Compliance against the assigned security scanner.</property>
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+          <property name="atlas.node.createdBy">sumit</property>
+          <property name="atlas.node.sql.arg1.criteria">upper(machine_name) like upper( $1 )</property>
+          <property name="atlas.node.sql">select product + &apos; &apos; + description as &apos;Operating System&apos;,[NON-COMPLIANT],[NOT APPLICABLE],COMPLIANT,([Count of Machines that have security policy assigned] - [Scanned Machines Count]) as &apos;NOT-CHECKEDIN&apos; ,[Scanned Machines Count],[Count of Machines that have security policy assigned] from ( select *, dbo.OSDtlCounts(product ,description,&apos;scanned&apos;) as &apos;Scanned Machines Count&apos; , dbo.OSDtlCounts(product ,description,&apos;policy&apos;) as &apos;Count of Machines that have security policy assigned&apos; from ( select product ,description, machine_id, overall_compliant_level from( select distinct ios.product,ios.description,ios.machine_id , dbo.MachineOverallCompStatus(ios.machine_id) as &apos;overall_compliant_level&apos; from inv_security_xccdf_compliance isxc , inv_os ios where ios.machine_id = isxc.machine_id and upper(machine_name) like upper( $1 ) )aa )d pivot( count(machine_id) for overall_compliant_level in ([NON-COMPLIANT],[NOT APPLICABLE],[COMPLIANT]) ) p )ab</property>
+          <property name="av_0_null">false</property>
+        </node>
+        <node name="Overall Security Compliance" class="com.marimba.tools.dbtree.Node">
+          <property name="an_0">Machine Name</property>
+          <property name="atlas.node.descVisible">
+          </property>
+          <property name="atlas.args">1</property>
+          <property name="aid_0">$1</property>
+          <property name="atlas.node.filtered">false</property>
+          <property name="ax_0">false</property>
+          <property name="atlas.query.type">f</property>
+          <property name="av_0_0">*</property>
+          <property name="atlas.node.autoFilteredFlag">false</property>
+          <property name="atlas.node.dateCreated">1496414432354</property>
+          <property name="at_0">string</property>
+          <property name="atlas.node.desc">Operating system wise overall Security Compliance for assigned policies.</property>
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+          <property name="atlas.node.createdBy">sumit</property>
+          <property name="atlas.node.sql.arg1.criteria">upper(machine_name) like upper( $1 )</property>
+          <property name="atlas.node.sql">select &apos;Windows&apos; as OS, isnull(sum([NON-COMPLIANT]),0) as [NON-COMPLIANT] ,isnull(sum([NOT APPLICABLE]),0) as [NOT APPLICABLE],isnull(sum(COMPLIANT),0) as COMPLIANT,isnull(sum([NOT-CHECKEDIN]),0) as [NOT-CHECKEDIN],isnull(sum([Scanned Machines Count]),0) as [Scanned Machines Count],isnull(sum([Count of Machines that have security policy assigned]),0) as [Count of Machines that have security policy assigned] from (
+ select &apos;Windows&apos; as OS, [NON-COMPLIANT],[NOT APPLICABLE],COMPLIANT,([Count of Machines that have security policy assigned] - [Scanned Machines Count]) as &apos;NOT-CHECKEDIN&apos; ,[Scanned Machines Count],[Count of Machines that have security policy assigned] from (
+ select *, dbo.OSDtlCounts(product ,description,&apos;scanned&apos;) as &apos;Scanned Machines Count&apos; ,
+ dbo.OSDtlCounts(product ,description,&apos;policy&apos;) as &apos;Count of Machines that have security policy assigned&apos; 
+ from ( select product ,description, machine_id, overall_compliant_level 
+ from( select distinct ios.product,ios.description,ios.machine_id , 
+ dbo.MachineOverallCompStatus(ios.machine_id) as &apos;overall_compliant_level&apos; 
+ from inv_security_xccdf_compliance isxc , inv_os ios 
+ where ios.machine_id = isxc.machine_id 
+ and upper(machine_name) like upper( $1 ) )aa )d
+ pivot( count(machine_id) for overall_compliant_level in ([NON-COMPLIANT],[NOT APPLICABLE],[COMPLIANT]) ) p
+ )ab
+ where upper(ab.product) like upper(&apos;%windows%&apos;)
+)ac
+
+union
+
+ select &apos;Linux&apos; as OS, isnull(sum([NON-COMPLIANT]),0) as [NON-COMPLIANT] ,isnull(sum([NOT APPLICABLE]),0) as [NOT APPLICABLE],isnull(sum(COMPLIANT),0) as COMPLIANT,isnull(sum([NOT-CHECKEDIN]),0) as [NOT-CHECKEDIN],isnull(sum([Scanned Machines Count]),0) as [Scanned Machines Count],isnull(sum([Count of Machines that have security policy assigned]),0) as [Count of Machines that have security policy assigned] from (   
+ select &apos;Linux&apos; as OS, [NON-COMPLIANT],[NOT APPLICABLE],COMPLIANT,([Count of Machines that have security policy assigned] - [Scanned Machines Count]) as &apos;NOT-CHECKEDIN&apos; ,[Scanned Machines Count],[Count of Machines that have security policy assigned] from (
+ select *, dbo.OSDtlCounts(product ,description,&apos;scanned&apos;) as &apos;Scanned Machines Count&apos; ,
+ dbo.OSDtlCounts(product ,description,&apos;policy&apos;) as &apos;Count of Machines that have security policy assigned&apos; 
+ from ( select product ,description, machine_id, overall_compliant_level 
+ from( select distinct ios.product,ios.description,ios.machine_id , 
+ dbo.MachineOverallCompStatus(ios.machine_id) as &apos;overall_compliant_level&apos; 
+ from inv_security_xccdf_compliance isxc , inv_os ios 
+ where ios.machine_id = isxc.machine_id 
+ and upper(machine_name) like upper( $1 ) )aa )d
+ pivot( count(machine_id) for overall_compliant_level in ([NON-COMPLIANT],[NOT APPLICABLE],[COMPLIANT]) ) p
+ )ab
+ where upper(ab.product) like upper(&apos;%linux%&apos;)
+)ac
+
+union
+ select &apos;Mac&apos; as OS, isnull(sum([NON-COMPLIANT]),0) as [NON-COMPLIANT] ,isnull(sum([NOT APPLICABLE]),0) as [NOT APPLICABLE],isnull(sum(COMPLIANT),0) as COMPLIANT,isnull(sum([NOT-CHECKEDIN]),0) as [NOT-CHECKEDIN],isnull(sum([Scanned Machines Count]),0) as [Scanned Machines Count],isnull(sum([Count of Machines that have security policy assigned]),0) as [Count of Machines that have security policy assigned] from (   
+ select &apos;Mac&apos; as OS, [NON-COMPLIANT],[NOT APPLICABLE],COMPLIANT,([Count of Machines that have security policy assigned] - [Scanned Machines Count]) as &apos;NOT-CHECKEDIN&apos; ,[Scanned Machines Count],[Count of Machines that have security policy assigned] from (
+ select *, dbo.OSDtlCounts(product ,description,&apos;scanned&apos;) as &apos;Scanned Machines Count&apos; ,
+ dbo.OSDtlCounts(product ,description,&apos;policy&apos;) as &apos;Count of Machines that have security policy assigned&apos; 
+ from ( select product ,description, machine_id, overall_compliant_level 
+ from( select distinct ios.product,ios.description,ios.machine_id , 
+ dbo.MachineOverallCompStatus(ios.machine_id) as &apos;overall_compliant_level&apos; 
+ from inv_security_xccdf_compliance isxc , inv_os ios 
+ where ios.machine_id = isxc.machine_id 
+ and upper(machine_name) like upper( $1 ) )aa )d
+ pivot( count(machine_id) for overall_compliant_level in ([NON-COMPLIANT],[NOT APPLICABLE],[COMPLIANT]) ) p
+ )ab
+ where upper(ab.product) like upper(&apos;%mac%&apos;)
+)ac</property>
+          <property name="av_0_null">false</property>
+        </node>
+        <node name="Scanner wise Overall Compliance" class="com.marimba.tools.dbtree.Node">
+          <property name="atlas.node.autoFilteredFlag">false</property>
+          <property name="atlas.node.dateCreated">1496202679511</property>
+          <property name="atlas.node.desc">Scanner wise Overall Compliance for the assigned targets.</property>
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+          <property name="atlas.node.createdBy">ciautomation</property>
+          <property name="atlas.node.filtered">false</property>
+          <property name="atlas.node.sql">select [Security Content],[Security Profile],[NON-COMPLIANT],[NOT APPLICABLE],COMPLIANT,([Count of Machines that have security policy assigned] - [Scanned Machines Count]) as &apos;NOT-CHECKEDIN&apos; ,[Scanned Machines Count],[Count of Machines that have security policy assigned] from ( select *, dbo.PolicyCounts([Security Content],[Security Profile],&apos;scanned&apos;) as &apos;Scanned Machines Count&apos; ,dbo.PolicyCounts([Security Content],[Security Profile],&apos;policy&apos;) as &apos;Count of Machines that have security policy assigned&apos; from ( select distinct content_title as &apos;Security Content&apos;, profile_title as &apos;Security Profile&apos;, machine_id,overall_compliant_level from inv_security_xccdf_compliance ) d pivot(count(machine_id) for overall_compliant_level in ([NON-COMPLIANT],[NOT APPLICABLE],[COMPLIANT])) p) aa</property>
+          <property name="atlas.query.type">s</property>
+        </node>
+      </dirnode>
+        <dirnode name="Vulnerability Assessment" type="directory" class="com.marimba.tools.dbtree.DirNode">
+            <property name="atlas.node.dateCreated">1496090495973</property>
+            <property name="atlas.folder">true</property>
+            <property name="atlas.node.createdBy">sumit</property>
+            <node name="Detailed Report - Machine Compliance based on Security Scanner" class="com.marimba.tools.dbtree.Node">
+                <property name="an_0">Machine Name</property>
+                <property name="atlas.node.descVisible">
+                </property>
+                <property name="atlas.args">1</property>
+                <property name="aid_0">$1</property>
+                <property name="atlas.node.filtered">false</property>
+                <property name="ax_0">false</property>
+                <property name="atlas.query.type">f</property>
+                <property name="av_0_0">*</property>
+                <property name="atlas.node.autoFilteredFlag">false</property>
+                <property name="atlas.node.dateCreated">1496414579152</property>
+                <property name="at_0">string</property>
+                <property name="atlas.node.desc">Machine Compliance based on Security Scanner details reports</property>
+                <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+                <property name="atlas.node.createdBy">sumit</property>
+                <property name="atlas.node.sql.arg1.criteria">upper(machine_name) like upper( $1 )</property>
+                <property name="atlas.node.sql">select isxc.machine_name  as &apos;Machine Name&apos;,ios.product+&apos; &apos;+ios.description as &apos;Operating System&apos;, isxc.content_title as &apos;Security Content&apos;, isxc.profile_title as &apos;Security Profile&apos;, overall_compliant_level as &apos;Scan Status&apos;, isxc.assigned_target_name as &apos;Policy&apos;, isxc.assigned_policy_lastupdated as &apos;Last Scan Time&apos; from inv_security_oval_compliance isxc , inv_os ios where upper(machine_name) like upper( $1 ) and ios.machine_id = isxc.machine_id</property>
+                <property name="av_0_null">false</property>
+            </node>
+            <node name="Machine Compliance based on Security Policy" class="com.marimba.tools.dbtree.Node">
+                <property name="an_0">Machine Name</property>
+                <property name="atlas.args">1</property>
+                <property name="aid_0">$1</property>
+                <property name="atlas.node.filtered">false</property>
+                <property name="ax_0">false</property>
+                <property name="atlas.query.type">f</property>
+                <property name="av_0_0">*</property>
+                <property name="atlas.node.autoFilteredFlag">false</property>
+                <property name="atlas.node.dateCreated">1496202428225</property>
+                <property name="at_0">string</property>
+                <property name="atlas.node.desc">List all the machine with Security Policy compliance details.</property>
+                <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+                <property name="atlas.node.createdBy">ciautomation</property>
+                <property name="atlas.node.sql.arg1.criteria">upper(machine_name) like upper( $1 )</property>
+                <property name="atlas.node.sql">select a.machine_name as &apos;Machine Name&apos;,a.machine_domain as &apos;Machine Domain&apos; ,a.product + &apos; &apos; + a.description as &apos;Operating System&apos;, dbo.OVALMachinePolicyCount(a.machine_id) as &apos;Number of Scanners assigned&apos;, dbo.OVALMachineLastScan(a.machine_id) as &apos;Last Scan Time&apos; ,a.assigned_target_name as &apos;Policy Names (Collection, Directly assigned)&apos;, dbo.MachineOverallCompStatus(a.machine_id) as &apos;Security Compliance Status&apos; from (select distinct isxc.machine_id ,isxc.machine_name,isxc.machine_domain ,ios.product,ios.description,isxc.assigned_target_name from inv_security_oval_compliance isxc , inv_os ios where upper(machine_name) like upper( $1 ) and ios.machine_id = isxc.machine_id) a order by product</property>
+                <property name="av_0_null">false</property>
+            </node>
+            <node name="Machine Level Compliance" class="com.marimba.tools.dbtree.Node">
+                <property name="an_0">Machine Name</property>
+                <property name="atlas.args">1</property>
+                <property name="aid_0">$1</property>
+                <property name="atlas.node.filtered">false</property>
+                <property name="ax_0">false</property>
+                <property name="atlas.query.type">f</property>
+                <property name="av_0_0">*</property>
+                <property name="atlas.node.autoFilteredFlag">false</property>
+                <property name="atlas.node.dateCreated">1496202428225</property>
+                <property name="at_0">string</property>
+                <property name="atlas.node.desc">List all the machine with Security Policy compliance details.</property>
+                <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+                <property name="atlas.node.createdBy">ciautomation</property>
+                <property name="atlas.node.sql.arg1.criteria">upper(machine_name) like upper( $1 )</property>
+                <property name="atlas.node.sql">select DISTINCT machine_name as &apos;Machine Name&apos;, machine_domain as &apos;Machine Domain&apos;, content_id as "Content Id", profile_id as "Profile Id", content_title "Content Title",profile_title as "Profile Title", rules_compliance from inv_security_oval_compliance where upper(machine_name) like upper( $1 )</property>
+                <property name="av_0_null">false</property>
+            </node>
+            <node name="Machine Overall Compliance" class="com.marimba.tools.dbtree.Node">
+                <property name="an_0">Machine Name</property>
+                <property name="atlas.args">1</property>
+                <property name="aid_0">$1</property>
+                <property name="atlas.node.filtered">false</property>
+                <property name="ax_0">false</property>
+                <property name="atlas.query.type">f</property>
+                <property name="av_0_0">*</property>
+                <property name="atlas.node.autoFilteredFlag">false</property>
+                <property name="atlas.node.dateCreated">1496202470842</property>
+                <property name="at_0">string</property>
+                <property name="atlas.node.desc">Report list the Machine Overall Compliance against all the assigned security polices.</property>
+                <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+                <property name="atlas.node.createdBy">ciautomation</property>
+                <property name="atlas.node.sql.arg1.criteria">upper(machine_name) like upper( $1 )</property>
+                <property name="atlas.node.sql">select a.machine_name as &apos;Machine Name&apos;,a.machine_domain as &apos;Machine Domain&apos; ,a.product + &apos; &apos; + a.description &apos;Operating System&apos;, dbo.OVALMachinePolicyCount(a.machine_id) as &apos;Number of Scanners assigned&apos;, dbo.OVALMachineLastScan(a.machine_id) as &apos;Last Scan Time&apos; , dbo.OVALMachineOverallCompStatus(a.machine_id) as &apos;Security Compliance Status&apos; from (select distinct isxc.machine_id ,isxc.machine_name,isxc.machine_domain ,ios.product,ios.description from inv_security_oval_compliance isxc , inv_os ios where upper(machine_name) like upper( $1 ) and ios.machine_id = isxc.machine_id) a order by product</property>
+                <property name="av_0_null">false</property>
+            </node>
+            <node name="Machines assessed in last 24 hours" class="com.marimba.tools.dbtree.Node">
+                <property name="an_0">Assigned Target Name</property>
+                <property name="atlas.args">1</property>
+                <property name="aid_0">$1</property>
+                <property name="atlas.node.filtered">false</property>
+                <property name="ax_0">false</property>
+                <property name="atlas.query.type">f</property>
+                <property name="av_0_0">*</property>
+                <property name="atlas.node.autoFilteredFlag">false</property>
+                <property name="atlas.node.dateCreated">1496202509286</property>
+                <property name="at_0">string</property>
+                <property name="atlas.node.desc">List of machines security scanner executed in last 24 hours.</property>
+                <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+                <property name="atlas.node.createdBy">ciautomation</property>
+                <property name="atlas.node.sql.arg1.criteria">upper(sxc.assigned_target_name) like upper( $1 )</property>
+                <property name="atlas.node.sql">select machine_name, max(finished_at) as &apos;Scanned Time&apos; from inv_security_oval_compliance sxc where upper(sxc.assigned_target_name) like upper( $1 ) and finished_at &gt;= DATEADD(day, -1, GETDATE()) group by machine_name</property>
+                <property name="av_0_null">false</property>
+            </node>
+            <node name="Operating System Overall Compliance" class="com.marimba.tools.dbtree.Node">
+                <property name="an_0">Machine Name</property>
+                <property name="atlas.args">1</property>
+                <property name="aid_0">$1</property>
+                <property name="atlas.node.filtered">false</property>
+                <property name="ax_0">false</property>
+                <property name="atlas.query.type">f</property>
+                <property name="av_0_0">*</property>
+                <property name="atlas.node.autoFilteredFlag">false</property>
+                <property name="atlas.node.dateCreated">1496244210825</property>
+                <property name="at_0">string</property>
+                <property name="atlas.node.desc">Report list the Operating System wise overall Compliance against the assigned security scanner.</property>
+                <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+                <property name="atlas.node.createdBy">sumit</property>
+                <property name="atlas.node.sql.arg1.criteria">upper(machine_name) like upper( $1 )</property>
+                <property name="atlas.node.sql">select product + &apos; &apos; + description as &apos;Operating System&apos;,[NON-COMPLIANT],[NOT APPLICABLE],COMPLIANT,([Count of Machines that have security policy assigned] - [Scanned Machines Count]) as &apos;NOT-CHECKEDIN&apos; ,[Scanned Machines Count],[Count of Machines that have security policy assigned] from ( select *, dbo.OVALOSDtlCounts(product ,description,&apos;scanned&apos;) as &apos;Scanned Machines Count&apos; , dbo.OVALOSDtlCounts(product ,description,&apos;policy&apos;) as &apos;Count of Machines that have security policy assigned&apos; from ( select product ,description, machine_id, overall_compliant_level from( select distinct ios.product,ios.description,ios.machine_id , dbo.OVALMachineOverallCompStatus(ios.machine_id) as &apos;overall_compliant_level&apos; from inv_security_oval_compliance isxc , inv_os ios where ios.machine_id = isxc.machine_id and upper(machine_name) like upper( $1 ) )aa )d pivot( count(machine_id) for overall_compliant_level in ([NON-COMPLIANT],[NOT APPLICABLE],[COMPLIANT]) ) p )ab</property>
+                <property name="av_0_null">false</property>
+            </node>
+            <node name="Overall Security Compliance" class="com.marimba.tools.dbtree.Node">
+                <property name="an_0">Machine Name</property>
+                <property name="atlas.node.descVisible">
+                </property>
+                <property name="atlas.args">1</property>
+                <property name="aid_0">$1</property>
+                <property name="atlas.node.filtered">false</property>
+                <property name="ax_0">false</property>
+                <property name="atlas.query.type">f</property>
+                <property name="av_0_0">*</property>
+                <property name="atlas.node.autoFilteredFlag">false</property>
+                <property name="atlas.node.dateCreated">1496414432354</property>
+                <property name="at_0">string</property>
+                <property name="atlas.node.desc">Operating system wise overall Security Compliance for assigned policies.</property>
+                <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+                <property name="atlas.node.createdBy">sumit</property>
+                <property name="atlas.node.sql.arg1.criteria">upper(machine_name) like upper( $1 )</property>
+                <property name="atlas.node.sql">select &apos;Windows&apos; as OS, isnull(sum([NON-COMPLIANT]),0) as [NON-COMPLIANT] ,isnull(sum([NOT APPLICABLE]),0) as [NOT APPLICABLE],isnull(sum(COMPLIANT),0) as COMPLIANT,isnull(sum([NOT-CHECKEDIN]),0) as [NOT-CHECKEDIN],isnull(sum([Scanned Machines Count]),0) as [Scanned Machines Count],isnull(sum([Count of Machines that have security policy assigned]),0) as [Count of Machines that have security policy assigned] from (
+                    select &apos;Windows&apos; as OS, [NON-COMPLIANT],[NOT APPLICABLE],COMPLIANT,([Count of Machines that have security policy assigned] - [Scanned Machines Count]) as &apos;NOT-CHECKEDIN&apos; ,[Scanned Machines Count],[Count of Machines that have security policy assigned] from (
+                    select *, dbo.OVALOSDtlCounts(product ,description,&apos;scanned&apos;) as &apos;Scanned Machines Count&apos; ,
+                    dbo.OVALOSDtlCounts(product ,description,&apos;policy&apos;) as &apos;Count of Machines that have security policy assigned&apos;
+                    from ( select product ,description, machine_id, overall_compliant_level
+                    from( select distinct ios.product,ios.description,ios.machine_id ,
+                    dbo.OVALMachineOverallCompStatus(ios.machine_id) as &apos;overall_compliant_level&apos;
+                    from inv_security_oval_compliance isxc , inv_os ios
+                    where ios.machine_id = isxc.machine_id
+                    and upper(machine_name) like upper( $1 ) )aa )d
+                    pivot( count(machine_id) for overall_compliant_level in ([NON-COMPLIANT],[NOT APPLICABLE],[COMPLIANT]) ) p
+                    )ab
+                    where upper(ab.product) like upper(&apos;%windows%&apos;)
+                    )ac
+
+                    union
+
+                    select &apos;Linux&apos; as OS, isnull(sum([NON-COMPLIANT]),0) as [NON-COMPLIANT] ,isnull(sum([NOT APPLICABLE]),0) as [NOT APPLICABLE],isnull(sum(COMPLIANT),0) as COMPLIANT,isnull(sum([NOT-CHECKEDIN]),0) as [NOT-CHECKEDIN],isnull(sum([Scanned Machines Count]),0) as [Scanned Machines Count],isnull(sum([Count of Machines that have security policy assigned]),0) as [Count of Machines that have security policy assigned] from (
+                    select &apos;Linux&apos; as OS, [NON-COMPLIANT],[NOT APPLICABLE],COMPLIANT,([Count of Machines that have security policy assigned] - [Scanned Machines Count]) as &apos;NOT-CHECKEDIN&apos; ,[Scanned Machines Count],[Count of Machines that have security policy assigned] from (
+                    select *, dbo.OVALOSDtlCounts(product ,description,&apos;scanned&apos;) as &apos;Scanned Machines Count&apos; ,
+                    dbo.OVALOSDtlCounts(product ,description,&apos;policy&apos;) as &apos;Count of Machines that have security policy assigned&apos;
+                    from ( select product ,description, machine_id, overall_compliant_level
+                    from( select distinct ios.product,ios.description,ios.machine_id ,
+                    dbo.OVALMachineOverallCompStatus(ios.machine_id) as &apos;overall_compliant_level&apos;
+                    from inv_security_oval_compliance isxc , inv_os ios
+                    where ios.machine_id = isxc.machine_id
+                    and upper(machine_name) like upper( $1 ) )aa )d
+                    pivot( count(machine_id) for overall_compliant_level in ([NON-COMPLIANT],[NOT APPLICABLE],[COMPLIANT]) ) p
+                    )ab
+                    where upper(ab.product) like upper(&apos;%linux%&apos;)
+                    )ac
+
+                    union
+                    select &apos;Mac&apos; as OS, isnull(sum([NON-COMPLIANT]),0) as [NON-COMPLIANT] ,isnull(sum([NOT APPLICABLE]),0) as [NOT APPLICABLE],isnull(sum(COMPLIANT),0) as COMPLIANT,isnull(sum([NOT-CHECKEDIN]),0) as [NOT-CHECKEDIN],isnull(sum([Scanned Machines Count]),0) as [Scanned Machines Count],isnull(sum([Count of Machines that have security policy assigned]),0) as [Count of Machines that have security policy assigned] from (
+                    select &apos;Mac&apos; as OS, [NON-COMPLIANT],[NOT APPLICABLE],COMPLIANT,([Count of Machines that have security policy assigned] - [Scanned Machines Count]) as &apos;NOT-CHECKEDIN&apos; ,[Scanned Machines Count],[Count of Machines that have security policy assigned] from (
+                    select *, dbo.OVALOSDtlCounts(product ,description,&apos;scanned&apos;) as &apos;Scanned Machines Count&apos; ,
+                    dbo.OVALOSDtlCounts(product ,description,&apos;policy&apos;) as &apos;Count of Machines that have security policy assigned&apos;
+                    from ( select product ,description, machine_id, overall_compliant_level
+                    from( select distinct ios.product,ios.description,ios.machine_id ,
+                    dbo.OVALMachineOverallCompStatus(ios.machine_id) as &apos;overall_compliant_level&apos;
+                    from inv_security_oval_compliance isxc , inv_os ios
+                    where ios.machine_id = isxc.machine_id
+                    and upper(machine_name) like upper( $1 ) )aa )d
+                    pivot( count(machine_id) for overall_compliant_level in ([NON-COMPLIANT],[NOT APPLICABLE],[COMPLIANT]) ) p
+                    )ab
+                    where upper(ab.product) like upper(&apos;%mac%&apos;)
+                    )ac</property>
+                <property name="av_0_null">false</property>
+            </node>
+            <node name="Scanner wise Overall Compliance" class="com.marimba.tools.dbtree.Node">
+                <property name="atlas.node.autoFilteredFlag">false</property>
+                <property name="atlas.node.dateCreated">1496202679511</property>
+                <property name="atlas.node.desc">Scanner wise Overall Compliance for the assigned targets.</property>
+                <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+                <property name="atlas.node.createdBy">ciautomation</property>
+                <property name="atlas.node.filtered">false</property>
+                <property name="atlas.node.sql">select [Security Content],[Security Profile],[NON-COMPLIANT],[NOT APPLICABLE],COMPLIANT,([Count of Machines that have security policy assigned] - [Scanned Machines Count]) as &apos;NOT-CHECKEDIN&apos; ,[Scanned Machines Count],[Count of Machines that have security policy assigned] from ( select *, dbo.OVALPolicyCounts([Security Content],[Security Profile],&apos;scanned&apos;) as &apos;Scanned Machines Count&apos; ,dbo.OVALPolicyCounts([Security Content],[Security Profile],&apos;policy&apos;) as &apos;Count of Machines that have security policy assigned&apos; from ( select distinct content_title as &apos;Security Content&apos;, profile_title as &apos;Security Profile&apos;, machine_id,overall_compliant_level from inv_security_oval_compliance ) d pivot(count(machine_id) for overall_compliant_level in ([NON-COMPLIANT],[NOT APPLICABLE],[COMPLIANT])) p) aa</property>
+                <property name="atlas.query.type">s</property>
+            </node>
+        </dirnode>
+    </dirnode>
+  </dirnode>
+</tree>

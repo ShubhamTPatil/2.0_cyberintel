@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/09/06 17:57:31" />
+    <title>Définition de la planification de mise à jour pour les packages</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Définition de la planification de mise à jour pour les packages";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp284220"> </a><p class="pBody">Vous pouvez définir la planification de mise à jour pour les packages. Quand une mise à jour est planifiée, le tuner cible vérifie si le package a été mis à jour sur le transmitter dont le package reçoit les mises à jour. Si le package a déjà été mis à jour, il télécharge tous les fichiers nouveaux ou modifiés et les installe sur la cible. La planification de mise à jour ne prend effet sur la machine cible que si le package est déjà abonné ou installé.</p>
+<hr class="NoteRuleTop"/><a name="wp284234"> </a><p class="pNote"><span style="color: #003366">Remarque&#160;: </span> la planification de mise à jour de package indique <em class="cEmphasis">never</em> (jamais) quand elle est affichée avec Tuner Administrator, même si une planification différente a été définie en utilisant Policy Manager. Policy Service définit la planification de mise à jour du package sur <em class="cEmphasis">never</em> (jamais) afin que le package n&#39;effectue pas la mise à jour de lui-même et qu&#39;il mette à jour selon la planification définie à l&#39;aide Policy Manager.</p><hr class="NoteRuleBottom"/><a name="wp284240"> </a><p class="pBody">Les packages peuvent déjà avoir une planification de mise à jour qui leur est associée. Vous avez donc la possibilité d&#39;utiliser cette planification de mise à jour ou de la remplacer via Policy Manager.</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp284246"> </a><div class="pSmartList2"><li>Différents utilisateurs peuvent effectuer le packaging de logiciels et la distribution de logiciels. Si vous êtes chargé de distribuer les logiciels en utilisant Policy Manager, vous voudrez peut-être remplacer les planifications définies par ceux chargés du packaging. </li></div>
+<a name="wp284248"> </a><div class="pSmartList2"><li>Vous pouvez aussi choisir de définir une planification par défaut lors du packaging, puis de remplacer la planification par défaut quand vous distribuez des logiciels à des groupes spécifiques. </li></div>
+<a name="wp284254"> </a><div class="pSmartList2"><li>Une fois la planification définie lors du packaging, il n&#39;est pas facile de la modifier. Il est plus facile de modifier les planifications à l&#39;aide de Policy Manager. </li></div>
+</ul></div>
+</ul></div>
+<a name="wp284260"> </a><p class="pBody">Cette procédure présuppose que vous vous trouvez dans l&#39;onglet Packages de la page Modification de policy. Pour plus d&#39;informations, reportez-vous à la section <a href="javascript:WWHClickedPopup('sm', 'policies-04.htm');" onMouseOver="WWHShowPopup('sm', 'policies-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Instructions générales pour la création et la modification de policies</a>.</p>
+<a name="wp284262"> </a><p style="text-decoration: none" class="pStepIntro">
+Pour définir la planification de mise à jour pour un package
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp284264"> </a><div class="pSmartList1"><li>Dans l&#39;onglet Packages de la page Modification de policy, trouvez la ligne du package pour lequel vous voulez définir des planifications.</li></div>
+<a name="wp284266"> </a><div class="pSmartList1"><li>Sur la ligne du package, cliquez sur la flèche dans la première colonne dans la partie gauche de la page afin d&#39;afficher les informations de planification pour le package.</li></div>
+<a name="wp284268"> </a><div class="pSmartList1"><li>Dans la section <b class="cBold">Planification de mise à jour</b>, cliquez sur <b class="cBold">Modifier</b>.</li></div>
+<a name="wp284270"> </a><p class="pIndented1">
+La page Modification de planification de mise à jour apparaît.
+</p>
+<a name="wp284272"> </a><div class="pSmartList1"><li>Utilisez la liste déroulante pour indiquer la planification que vous voulez appliquer au package :</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp284274"> </a><div class="pSmartList2"><li><b class="cBold">Suivre la planification spécifiée lors de la création et publication du package. </b>Choisissez cette option si vous avez indiqué une planification pour le package au moment de sa création et de sa publication et souhaitez suivre cette planification.</li></div>
+<a name="wp284284"> </a><div class="pSmartList2"><li><b class="cBold">Utiliser Policy Manager pour définir la planification de mise à jour.</b> Choisissez cette option si vous voulez que Policy Manager gère la planification de mise à jour.</li></div>
+</ul></div>
+<a name="wp284290"> </a><div class="pSmartList1"><li>Si vous choisissez d&#39;utiliser Policy Manager pour gérer la planification de mise à jour, indiquez les informations suivantes :</li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp284292"> </a><div class="pSmartList2"><li>Dans la zone <b class="cBold">Récurrence</b>, indiquez la fréquence de mise à jour du package :</li></div>
+<div class="pSmartList3"><ul class="pSmartList3">
+<a name="wp284294"> </a><div class="pSmartList3"><li><b class="cBold">Jamais</b>—Le package n&#39;est jamais mis à jour automatiquement. Vous devez mettre à jour le package manuellement, au besoin.</li></div>
+<a name="wp284296"> </a><div class="pSmartList3"><li><b class="cBold">Quotidienne</b>—Le package peut être mis à jour tous les jours, seulement les jours de semaine (du lundi au vendredi) ou tous les 1 à 365 jours selon le chiffre que vous définissez.</li></div>
+<a name="wp284298"> </a><div class="pSmartList3"><li><b class="cBold">Hebdomadaire</b>—Le package peut être mis à jour toutes les 1 à 52 semaines, selon le chiffre que vous définissez. Pendant la semaine où elle est planifiée, la mise à jour a lieu uniquement les jours sélectionnés. Sélectionnez au moins un jour de la semaine.</li></div>
+<a name="wp284300"> </a><div class="pSmartList3"><li><b class="cBold">Mensuelle</b>—Le package peut être mis à jour tous les 1 à 12 mois, le jour défini. Si vous choisissez le 30 ou 31 et si le mois où une mise à jour est prévue ne contient pas ce jour-là (le mois de février, par exemple), la mise à jour se produit le premier jour du mois suivant.</li></div>
+</ul></div>
+<a name="wp284302"> </a><div class="pSmartList2"><li>Dans la zone <b class="cBold">Heure de mise à jour</b>, indiquez l&#39;heure du jour à laquelle vous voulez mettre à jour le package.</li></div>
+<div class="pSmartList3"><ul class="pSmartList3">
+<a name="wp284304"> </a><div class="pSmartList3"><li><b class="cBold">Mettre à jour à</b>—À sélectionner pour indiquer une heure du jour à laquelle les mises à jour ont lieu.</li></div>
+<a name="wp284306"> </a><div class="pSmartList3"><li><b class="cBold">Mettre à jour toutes les</b>— À sélectionner pour indiquer plusieurs heures du jour à laquelle les mises à jour ont lieu. Vous pouvez définir les mises à jour de sorte qu&#39;elles se produisent à chaque nombre de minutes ou d&#39;heures spécifiées pendant la journée et vous pouvez les limiter à un seul intervalle d&#39;heures pendant la journée. Par exemple, vous pouvez avoir des mises à jour toutes les heures entre 9 heures et 17 heures ou toutes les 30 minutes de 17 heures à 9 heures.</li></div>
+</ul></div>
+<a name="wp284308"> </a><div class="pSmartList2"><li>Dans les zones <b class="cBold">Activation</b> et <b class="cBold">Expiration</b>, indiquez les dates et heures auxquelles vous souhaitez commencer à et arrêter de suivre cette planification de mise à jour.</li></div>
+<a name="wp284314"> </a><p class="pIndented1">
+Pour plus d&#39;informations, reportez-vous à la section <a href="javascript:WWHClickedPopup('sm', 'policies-13.htm#wp284028');" onMouseOver="WWHShowPopup('sm', 'policies-13.htm#wp284028', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Définition de l&#39;activation et de l&#39;expiration</a>.
+</p>
+</ol></div>
+<a name="wp284316"> </a><div class="pSmartList1"><li>Cliquez sur <b class="cBold">OK</b> pour enregistrer la planification et revenir à la page Modification de policy.</li></div>
+<hr class="NoteRuleTop"/><a name="wp284318"> </a><p class="pNote"><span style="color: #003366">Remarque&#160;: </span> la planification apparaît désormais dans la section Planification de mise à jour.</p><hr class="NoteRuleBottom"/></ol></div>
+<a name="wp284324"> </a><p class="pBody">Lorsque vous avez terminé de modifier la policy, affichez l&#39;aperçu, puis enregistrez-la. Pour plus d&#39;informations, reportez-vous à la section <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Aperçu et enregistrement des modifications de policy</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Tous droits réservés.<br/>
+
+Pour obtenir d'autres documents relatifs à BMC Configuration Management,
+visitez le site Web de l'assistance à la clientèle <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+Si vous avez des questions ou des commentaires sur
+la documentation BMC CM, envoyez un message électronique à l'adresse <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Si vous avez des questions ou des problèmes quelconques à signaler concernant les produits, envoyez un message électronique au service d'assistance à la clientèle à l'adresse <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

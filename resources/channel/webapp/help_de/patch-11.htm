@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:41:02" />
+    <title>Erweitert: Tuner-Eigenschaften für die Neustarteinstellungen</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Erweitert: Tuner-Eigenschaften für die Neustarteinstellungen";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp1000076"> </a><p class="pBody">Dieser Abschnitt dient der Referenz und soll Sie dabei unterstützen, die unter <a href="javascript:WWHClickedPopup('sm', 'patch-10.htm');" onMouseOver="WWHShowPopup('sm', 'patch-10.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Konfigurieren der Neustarteinstellungen für Patch-Installationen</a> beschriebenen Verfahren durchzuführen. Das Konfigurieren der Neustarteinstellungen beeinflusst folgende Tuner-Eigenschaften:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp1000080"> </a><div class="pSmartList2"><li><b class="cBold">marimba.reboot.interact</b> - Legt fest, ob den Benutzern eine Warnmeldung bezüglich des Neustarts angezeigt werden soll. Der Standardwert ist &quot;true&quot; (eine Warnmeldung wird angezeigt).</li></div>
+<a name="wp1000084"> </a><div class="pSmartList2"><li><b class="cBold">marimba.reboot.interact.allowSnooze</b> - Legt fest, ob Benutzer einen Neustart aufschieben dürfen. Wenn auf „true“ gesetzt, wird ein Dialogfeld angezeigt, das es dem Benutzer ermöglicht, einen Neustart aufzuschieben. Wenn die Eigenschaft auf &quot;false&quot; festgelegt ist, wird ein Dialogfeld angezeigt, in dem die verbleibende Zeit als Countdown bis zum Neustart angezeigt wird. Der Standardwert ist &quot;true&quot;.</li></div>
+<a name="wp1000088"> </a><div class="pSmartList2"><li><b class="cBold">marimba.reboot.interact.snooze.maxTime</b> - Legt die maximale Dauer (in Millisekunden) fest, innerhalb derer es dem Benutzer möglich sein soll, einen Neustart aufzuschieben. Der Standardwert ist 0 (null), keine maximale Zeitspanne.</li></div>
+<a name="wp1000092"> </a><div class="pSmartList2"><li><b class="cBold">marimba.reboot.interact.timer</b> - Legt die Wartezeit oder die Countdown-Zeit vor einem Neustart in Sekunden fest. Wenn <b class="cBold">marimba.reboot.interact.allowSnooze</b> auf &quot;false&quot; festgelegt wird, gilt dieser Wert als Startzeit und wird im Warndialogfeld angezeigt. Der Standardwert ist 60 Sekunden. Wenn Sie diesen Wert auf 0 setzen, wird der Computer sofort neu gestartet.</li></div>
+<a name="wp1000096"> </a><div class="pSmartList2"><li><b class="cBold">marimba.reboot.never</b> - Legt fest, ob der Computer bei einem erforderlichen Neustart automatisch neu gestartet wird oder nicht (z. B. nach einer Patch-Installation). Legen Sie den Wert auf &quot;true&quot; fest, wenn der Computer nicht automatisch neu gestartet werden soll.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp1000098"> </a><p class="pBody">Diese Eigenschaften werden Ihnen möglicherweise auf der Registerkarte „Erweitert“ &gt; „Tuner/Package-Eigenschaften“ angezeigt, wenn Sie eine Policy bearbeiten.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

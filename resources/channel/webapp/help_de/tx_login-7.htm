@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:53" />
+    <title>Ändern des Profils für ein Ziel</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Ändern des Profils für ein Ziel";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp341922"> </a><p class="pBody">Wenn Sie einem Ziel ein anderes Profil zuweisen (oder einem Ziel ohne Profil ein solches zuweisen) möchten, können Sie diese Änderung in der Policy des Ziels vornehmen. Weitere Informationen zum Erstellen und Bearbeiten von Profilen und Profiltypen finden Sie in der Hilfe zu Setup und Deployment.</p>
+<a name="wp341924"> </a><p class="pBody">Beachten Sie beim Ändern des Profils auf Zielen die folgenden Punkte:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp341942"> </a><div class="pSmartList2"><li>Zielen wird ein neues Profil zugewiesen, indem Sie in Policy Manager die Registerkarte „Profile“ verwenden oder die Tuner-Eigenschaft <b class="cBold">marimba.tuner.update.profile</b> in Tuner Administrator festlegen. Dieses Dokument enthält eine Anleitung zum Verwenden von Policy Manager für die Zuweisung eines neuen Profils. Wenn Sie Policy Manager zum Zuweisen eines Profils verwenden, können Sie Collections nutzen. Eine Collection ist eine Liste von Benutzern oder Computern, die bestimmten Kriterien entsprechen, die Sie in einer LDAP- oder Datenbankabfrage angeben. Nach Ausführen der Abfrage können Sie der daraus resultierenden Liste (der Collection) mit Policy Manager ein Profil zuweisen.</li></div>
+<a name="wp341944"> </a><div class="pSmartList2"><li>Der Infrastructure Service-Channel wird nach einem Zeitplan ausgeführt. Beim nächsten Start des Infrastructure Service auf einem Computer werden alle verfügbaren Änderungen an Profileinstellungen und Tuner-Binärdateien heruntergeladen und übernommen. Einige Änderungen werden auf die Computer erst angewendet, nachdem der Tuner auf dem Computer neu gestartet wurde. Informationen zum Aktualisieren der Binärdateien des Tuner finden Sie im <em class="cEmphasis">BMC CM-Aktualisierungshandbuch </em> <em class="cEmphasis">(BMC Configuration Management Upgrade Guide)</em>, das auf der BMC Customer Support-Website erhältlich ist.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp341946"> </a><p class="pBody">Vor dem Zuweisen der Policy müssen Sie folgende Tasks ausführen:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp341948"> </a><div class="pSmartList2"><li>Wenn das Profil noch nicht vorhanden ist, erstellen Sie das neue Profil, das Sie dem Ziel zuweisen möchten.</li></div>
+<a name="wp341950"> </a><div class="pSmartList2"><li>Wenn Sie das Profil einer Collection zuweisen möchten, definieren Sie eine Collection, die den Satz von Computern enthält, denen Sie das neue Profil zuweisen möchten:</li></div>
+<a name="wp341956"> </a><div class="pSmartList2"><li>Erstellen Sie eine Abfrage, und geben Sie die Kriterien für den gewünschten Satz von Computern an. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'targ_pkg-04.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was ist eine Collection?</a>.</li></div>
+<a name="wp341958"> </a><div class="pSmartList2"><li>Führen Sie die Abfrage entweder durch Festlegen eines Zeitplans oder manuell aus.</li></div>
+<a name="wp341964"> </a><p class="pIndented1">
+Nach Ausführung der Abfrage wird die daraus resultierende Liste der Computer (die Collection) in Policy Manager als Ziel angezeigt.
+</p>
+<hr class="NoteRuleTop"/><a name="wp341966"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Sie können Einstellungen auf Zielebene wie das Profil nur für jeweils ein Ziel einrichten. Sie können keine Einstellungen auf Zielebene einrichten, wenn Sie sich im Mehrfachauswahlmodus befinden und gleichzeitig Policys für mehrere Ziele bearbeiten. Sie können jedoch für alle Ziele Einstellungen auf Zielebene einrichten, indem Sie das Ziel <b class="cBold">Alle Clients</b> auswählen.</p><hr class="NoteRuleBottom"/></ul></div>
+</ul></div>
+<a name="wp341972"> </a><p class="pBody">Bei diesem Vorgang wird davon ausgegangen, dass Sie sich auf der Seite „Policy bearbeiten“ auf der Registerkarte „Packages“ befinden. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-04.htm');" onMouseOver="WWHShowPopup('sm', 'policies-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Allgemeine Anweisungen zum Erstellen und Bearbeiten von Policys</a>.</p>
+<a name="wp341974"> </a><p style="text-decoration: none" class="pStepIntro">
+So ändern Sie das Profil für ein Ziel:
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp341976"> </a><div class="pSmartList1"><li>Klicken Sie auf der Seite „Policy bearbeiten“ für das Ziel auf <b class="cBold">Erweitert &gt; Profil</b>.</li></div>
+<a name="wp341978"> </a><p class="pIndented1">
+Wenn dem Ziel bereits ein Profil zugewiesen ist, werden der Name des Profils und die URL-Adresse des Infrastructure Service-Channel (die Quelle des Profils) auf dieser Registerkarte angezeigt. Wenn dem Ziel kein Profil zugewiesen ist, wird kein Profilname angezeigt.
+</p>
+<a name="wp341980"> </a><div class="pSmartList1"><li>Klicken Sie auf der Registerkarte „Profil“ auf <b class="cBold">Bearbeiten</b>.</li></div>
+<a name="wp341994"> </a><p class="pIndented1">
+Die Seite „Profil auswählen“ wird angezeigt. Wenn dem Ziel kein Profil zugewiesen ist, zeigt Policy Manager die Profile im ersten Infrastructure Service-Channel auf dem Transmitter an, von dem der Policy Manager-Channel per Subscription bezogen wird. Beispiel: Wenn eine Subscription des Policy Manager-Channel von <b class="cBold">http://trans.company.com:5282/Marimba/Current/SubscriptionManager</b> eingerichtet ist, werden die Profile im ersten Infrastructure Service-Channel angezeigt, der sich auf demselben Transmitter befindet, z. B. <b class="cBold">http://trans.company.com:5282/Marimba/Current/InfrastructureService</b>.
+</p>
+<a name="wp341998"> </a><div class="pSmartList1"><li>Um die Profile eines anderen Standorts anzuzeigen, geben Sie die URL-Adresse des Transmitter (z. B. <b class="cBold">http://trans.company.com:5282</b>) und, falls Zugriffsberechtigungen für den Transmitter festgelegt sind, den Benutzernamen und das Passwort für Channel-Subscriptions ein. Klicken Sie auf <b class="cBold">Start</b>.</li></div>
+<a name="wp342000"> </a><p class="pIndented1">
+Im linken Bereich der Seite wird eine Liste der Profile angezeigt. Diese Profile stehen im Infrastructure Service auf dem angegebenen Transmitter zur Verfügung. Jedes Profil wird als ein Segment des Infrastructure Service-Channel gespeichert. Welche Profile in der Profilliste angezeigt werden, ist daher vom angezeigten Infrastructure Service abhängig.
+</p>
+<a name="wp342002"> </a><div class="pSmartList1"><li>Klicken Sie auf ein Profil, so dass dieses im rechten Bereich der Seite unter <b class="cBold">Ausgewähltes Profil</b> angezeigt wird, und klicken Sie dann auf <b class="cBold">OK</b>.</li></div>
+<a name="wp342004"> </a><p class="pIndented1">
+Sie kehren zur Registerkarte „Profil“ zurück, auf der das ausgewählte Profil angezeigt wird.
+</p>
+<a name="wp342010"> </a><div class="pSmartList1"><li>Nachdem Sie die Policy bearbeitet haben, sehen Sie sich die Vorschau an, und speichern Sie die Policy. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Erstellen der Vorschau und Speichern von Policy-Änderungen</a>.</li></div>
+</ol></div>
+<a name="wp342012"> </a><p class="pBody">Durch dieses Verfahren wird folgende Tuner-Eigenschaft für Zielcomputer eingestellt:</p>
+<a name="wp342016"> </a><p class="pIndented1">
+<b class="cBold">marimba.tuner.update.profile</b>
+</p>
+<a name="wp342018"> </a><p class="pBody">Der Wert dieser Eigenschaft ist der Name des neuen Profilsegments, das Sie den Zielcomputern zuweisen möchten. Der Name eines Profilsegments hat folgendes Format: <b class="cBold">.profile_</b><em class="cEmphasis">&lt;Name&gt;</em></p>
+<a name="wp342020"> </a><p class="pIndented1">
+Beispiel: <b class="cBold">marimba.tuner.update.profile=.profile_ny_mirrors</b>
+</p>
+<a name="wp342022"> </a><p class="pBody">Beim nächsten Ausführen von Policy Service auf einem Computer wird diese Tuner-Eigenschaft in der Datei <b class="cBold">prefs.txt</b> des Tuners festgelegt. Beim nächsten Ausführen von Infrastructure Service auf dem Computer, und nachdem der Tuner neu gestartet wurde, wird das neue Profil auf diesen Computer angewendet.</p>
+<a name="wp342024"> </a><p class="pBody"></p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Apr-13-06 v6.2 ANSI)" />
+    <meta name="LASTUPDATED" content="11/16/09 16:16:45" />
+    <title>Overview of installation states</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Overview of installation states";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp52829"> </a><p class="pBody">Installation states determine how, and if, a package is installed on a target. For each package assigned to a target, you can set a primary state. Using Policy Manager, you can assign installation states to a package as part of the policy for one or more endpoint targets.</p>
+<a name="wp52836"> </a><p class="pBody">You can control how a package is installed by setting a secondary state to some of the<em class="cEmphasis"> </em>primary states, such as <em class="cEmphasis">stage</em> and <em class="cEmphasis">advertise</em>.</p>
+<a name="wp91864"> </a><p class="pBody">You can associate an activation schedule with the secondary state to specify a window of time in the future when package installation should occur across your organization, even for endpoint targets that connect to the network infrequently. The default secondary state is <em class="cEmphasis">install</em>. </p>
+<a name="wp91977"> </a><p class="pBody">Some states take precedence over others. See <a href="javascript:WWHClickedPopup('sm', 'policies-11.htm#wp58502');" onMouseOver="WWHShowPopup('sm', 'policies-11.htm#wp58502', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">State precedence</a>.</p>
+<a name="wp91993"> </a><p class="pBody"><a href="javascript:WWHClickedPopup('sm', 'policies-11.htm#wp91871');" onMouseOver="WWHShowPopup('sm', 'policies-11.htm#wp91871', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Table&#160;4-3</a> describes the states that are available for packages, and the secondary states that can be associated:</p>
+<a name="wp91972"> </a><p class="pBodyRelative"></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp91871table91865">
+  <caption><a name="wp91871"> </a><p class="pBody">Table&#160;4-3:&#160;&#160;Installation states for packages &#160;</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp91878"> </a><div class="pCellHeading">
+Primary&#160;state
+</div>
+</th>
+    <th><a name="wp91880"> </a><div class="pCellHeading">
+Description
+</div>
+</th>
+    <th><a name="wp91883"> </a><div class="pCellHeading">
+Secondary&#160;state
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp91886"> </a><div class="pCellHeading">
+Stage
+</div>
+</td>
+    <td><a name="wp91888"> </a><div class="pCellBody">
+Downloads a package but does not install it. The user at each endpoint can perform an interactive installation, or, if you set a secondary state, you can schedule a time when the downloaded package is installed automatically. (This state might appear as <em class="cEmphasis">install-pending</em> when the tuner is viewed using Tuner Administrator. This state was called <em class="cEmphasis">subscribe and no install</em> in a previous release.)<a href="#wp91891"><sup class="Footnote">1</sup></a>
+</div>
+</td>
+    <td><a name="wp91893"> </a><div class="pCellBody">
+Install
+</div>
+<a name="wp91894"> </a><div class="pCellBody">
+Install-Start
+</div>
+<a name="wp91895"> </a><div class="pCellBody">
+Install-Persist
+</div>
+<a name="wp91896"> </a><div class="pCellBody">
+Install-Start-Persist
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp91899"> </a><div class="pCellHeading">
+Advertise
+</div>
+</td>
+    <td><a name="wp91901"> </a><div class="pCellBody">
+Describes the package as available to be downloaded. If you set a secondary state, you can schedule a time when the download and installation actually takes place. (This state might appear as <em class="cEmphasis">available</em> when the tuner is viewed using Tuner Administrator.)
+</div>
+</td>
+    <td><a name="wp91903"> </a><div class="pCellBody">
+Install
+</div>
+<a name="wp91904"> </a><div class="pCellBody">
+Install-Start
+</div>
+<a name="wp91905"> </a><div class="pCellBody">
+Install-Persist
+</div>
+<a name="wp91906"> </a><div class="pCellBody">
+Install-Start-Persist
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp91909"> </a><div class="pCellHeading">
+Install
+</div>
+</td>
+    <td><a name="wp91911"> </a><div class="pCellBody">
+Downloads and silently installs a package. (This state was called <em class="cEmphasis">subscribe</em> in a previous release.)
+</div>
+</td>
+    <td><a name="wp91913"> </a><div class="pCellBody">
+Uninstall
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp91916"> </a><div class="pCellHeading">
+Install-Start
+</div>
+</td>
+    <td><a name="wp91918"> </a><div class="pCellBody">
+Installs a package, and starts the installed software. The package starts every time Policy Service runs. If the package is already running, Policy Service does not restart it. (This state was called <em class="cEmphasis">subscribe and start</em> in previous releases.)
+</div>
+</td>
+    <td><a name="wp91926"> </a><div class="pCellBody">
+Uninstall
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp91929"> </a><div class="pCellHeading">
+Install-Persist
+</div>
+</td>
+    <td><a name="wp91931"> </a><div class="pCellBody">
+Installs a package and does not permit it to be deleted even if the endpoint is removed from a target group. This state is useful for installing system software upgrades. The package can still be deleted with the uninstall state. (This state was called <em class="cEmphasis">subscribe-persist </em>in a previous release.)
+</div>
+</td>
+    <td><a name="wp91933"> </a><div class="pCellBody">
+N/A
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp91936"> </a><div class="pCellHeading">
+Install-Start-Persist
+</div>
+</td>
+    <td><a name="wp91938"> </a><div class="pCellBody">
+Installs a package, starts the installed software, and does not permit it to be deleted even if the endpoint is removed from a target group, as with the install-persist state. The package starts every time Policy Service runs. If the package is already running, Policy Service does not restart it.
+</div>
+</td>
+    <td><a name="wp91946"> </a><div class="pCellBody">
+N/A
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp91949"> </a><div class="pCellHeading">
+Exclude
+</div>
+</td>
+    <td><a name="wp91951"> </a><div class="pCellBody">
+Excludes a package from an endpoint even if it is part of a subscribed group. This state is useful when you want to subscribe a large group but exclude a small subset. This state has the highest precedence. (See <a href="javascript:WWHClickedPopup('sm', 'policies-11.htm#wp58502');" onMouseOver="WWHShowPopup('sm', 'policies-11.htm#wp58502', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">State precedence</a>.)
+</div>
+<a name="wp91955"> </a><div class="pCellBody">
+<b class="cBold">Note:</b> To use the exclude state, you must create a policy that specifies the endpoints to exclude from receiving the package, as well as identifying the larger group to the package.
+</div>
+</td>
+    <td><a name="wp91957"> </a><div class="pCellBody">
+N/A
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp91960"> </a><div class="pCellHeading">
+Uninstall
+</div>
+</td>
+    <td><a name="wp91962"> </a><div class="pCellBody">
+Deletes the package. If the installed software is running under control of the tuner, it is stopped without warning and then deleted. Note that this installation state deletes packages that were installed with persistence. (This state was called <em class="cEmphasis">delete </em>in previous releases.)
+</div>
+</td>
+    <td><a name="wp91964"> </a><div class="pCellBody">
+N/A
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp91967"> </a><div class="pCellHeading">
+Primary
+</div>
+</td>
+    <td><a name="wp91969"> </a><div class="pCellBody">
+Downloads the package and designates it as the tuner&#39;s primary channel-one that is started each time the tuner starts and often serves as the GUI for the tuner.
+</div>
+</td>
+    <td><a name="wp91971"> </a><div class="pCellBody">
+N/A
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBodyRelative">
+</p>
+
+<a name="wp136643"> </a><h5 class="pHeading4">
+See Also:
+</h5>
+<a name="wp136647"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-02.htm');" onMouseOver="WWHShowPopup('sm', 'policies-02.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">What is a policy?</a>
+</p><a name="wp136651"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-13.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">What is a package?</a>
+</p><a name="wp136655"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-02.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-02.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Types of targets</a>
+</p><a name="wp136659"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-11.htm#wp58502');" onMouseOver="WWHShowPopup('sm', 'policies-11.htm#wp58502', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">State precedence</a>
+</p><a name="wp136663"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-19.htm');" onMouseOver="WWHShowPopup('sm', 'policies-19.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Conflict resolution: states and schedules in policies</a>
+</p><a name="wp58502"> </a><h4 class="pHeading3">
+State precedence
+</h4>
+<a name="wp92147"> </a><p class="pBody">Conflicts between package states can occur when an endpoint is present in two or more groups, or when a policy has been assigned to both a single endpoint and the members of a group to which the endpoint belongs. Policy Manager enforces a precedence to each state and enforces the state with the highest precedence. In such cases, the order of precedence is as follows:</p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp92184table92182">
+  <caption></caption>
+  <tr align="left" valign="top">    <td><a name="wp92184"> </a><div class="pCellBody">
+1 (highest precedence)
+</div>
+</td>
+    <td><a name="wp92245"> </a><div class="pCellBody">
+Exclude
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp92188"> </a><div class="pCellBody">
+2
+</div>
+</td>
+    <td><a name="wp92190"> </a><div class="pCellBody">
+Uninstall
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp92192"> </a><div class="pCellBody">
+3
+</div>
+</td>
+    <td><a name="wp92194"> </a><div class="pCellBody">
+Primary
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp92200"> </a><div class="pCellBody">
+4
+</div>
+</td>
+    <td><a name="wp92202"> </a><div class="pCellBody">
+Install-Start-Persist
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp92204"> </a><div class="pCellBody">
+5
+</div>
+</td>
+    <td><a name="wp92206"> </a><div class="pCellBody">
+Install-Start
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp92208"> </a><div class="pCellBody">
+6
+</div>
+</td>
+    <td><a name="wp92414"> </a><div class="pCellBody">
+Install-Persist
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp92212"> </a><div class="pCellBody">
+7
+</div>
+</td>
+    <td><a name="wp92214"> </a><div class="pCellBody">
+Install
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp92216"> </a><div class="pCellBody">
+8
+</div>
+</td>
+    <td><a name="wp92218"> </a><div class="pCellBody">
+Stage
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp92196"> </a><div class="pCellBody">
+9 (lowest precedence)
+</div>
+</td>
+    <td><a name="wp92388"> </a><div class="pCellBody">
+Advertise
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBody">
+</p>
+<hr class="NoteRuleTop"/><a name="wp52977"> </a><p class="pNote"><span style="color: #003366">Note: &#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#64258;&#64258;&#64258;&#64258;</span> Conflicts can occur between package states that are not caused by the way a policy is targeted. Therefore, conflict resolution is not based on whether an endpoint is targeted directly or indirectly as a member of a group. See <a href="javascript:WWHClickedPopup('sm', 'policies-19.htm');" onMouseOver="WWHShowPopup('sm', 'policies-19.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Conflict resolution: states and schedules in policies</a>.</p><hr class="NoteRuleBottom"/><a name="wp136668"> </a><h5 class="pHeading4">
+See Also:
+</h5>
+<a name="wp136672"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-02.htm');" onMouseOver="WWHShowPopup('sm', 'policies-02.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">What is a policy?</a>
+</p><a name="wp136676"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-13.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">What is a package?</a>
+</p><a name="wp136680"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-02.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-02.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Types of targets</a>
+</p><a name="wp136684"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-11.htm#wp58502');" onMouseOver="WWHShowPopup('sm', 'policies-11.htm#wp58502', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">State precedence</a>
+</p>
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. All rights reserved.<br/>
+
+ For additional BMC Configuration Management documentation, go to the Customer
+Support website at <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+For questions or comments about BMC CM documentation, send
+an email to <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+For product related issues or questions, send an email to Customer Support at <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:43" />
+    <title>Tipos de destinos</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Tipos de destinos";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp49777"> </a><p class="pBody">Puede encontrar los siguientes tipos de destinos:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp49778"> </a><div class="pSmartList2"><li><img src="images/s-user.gif" id="wp57762" border="0" hspace="0" vspace="0"/> Un usuario (un cliente final identificado por un nombre de inicio de&#160;sesión)</li></div>
+<a name="wp49779"> </a><div class="pSmartList2"><li><img src="images/machine.gif" id="wp57740" border="0" hspace="0" vspace="0"/> Una máquina</li></div>
+<a name="wp49780"> </a><div class="pSmartList2"><li><img src="images/s-group.gif" id="wp57744" border="0" hspace="0" vspace="0"/> Un grupo de usuarios</li></div>
+<a name="wp49781"> </a><div class="pSmartList2"><li><img src="images/machine-group.gif" id="wp57747" border="0" hspace="0" vspace="0"/> Un grupo de máquinas</li></div>
+<a name="wp49782"> </a><div class="pSmartList2"><li><img src="images/s-container.gif" id="wp57750" border="0" hspace="0" vspace="0"/> Un contenedor o una unidad organizativa (OU)</li></div>
+<a name="wp49783"> </a><div class="pSmartList2"><li><img src="images/s-domain.gif" id="wp57753" border="0" hspace="0" vspace="0"/> Un dominio en el Active Directory</li></div>
+<a name="wp49785"> </a><div class="pSmartList2"><li><img src="images/collection-target.gif" id="wp57756" border="0" hspace="0" vspace="0"/> Una colección, que es lo que se obtiene de una base de datos o de una consulta LDAP. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-04.htm');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">¿Qué es una colección?</a>.</li></div>
+<a name="wp49787"> </a><div class="pSmartList2"><li><em class="cEmphasis"><img src="images/all-endpoints.gif" id="wp57759" border="0" hspace="0" vspace="0"/> Todos los clientes finales</em>, que es un grupo virtual especial compuesto por todos los clientes finales. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-03.htm');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-03.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">¿Qué es el destino Todos los clientes finales?</a>.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp49788"> </a><p class="pBody">Después de haber asignado un paquete a un destino, puede asignar un estado de instalación a cada paquete, así como las planificaciones y la configuración de propiedades que tengan relación con la instalación de cada cliente final. Toda la información que usted asigna a un destino se llama <em class="cEmphasis">política</em>.</p>
+<a name="wp49789"> </a><p class="pBody"><b class="cBold">Resolución jerárquica de políticas.</b> La resolución de políticas de los destinos es jerárquica. Por ejemplo, éste es el cliente final:</p>
+<a name="wp49790"> </a><p class="pIndented1">
+<b class="cBold">cn=usuario1,cn=ordenadores,ou=finanzas,dc=</b><em class="cEmphasis">compañía</em><b class="cBold">,dc=</b><em class="cEmphasis">com</em>
+</p>
+<a name="wp49791"> </a><p class="pBody">El cliente final recibe políticas asignadas a los siguientes destinos:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp49792"> </a><div class="pSmartList2"><li><b class="cBold">cn=ordenador,ou=finanzas,dc=</b><em class="cEmphasis">compañía</em><b class="cBold">,dc=</b><em class="cEmphasis">com</em></li></div>
+<a name="wp65616"> </a><div class="pSmartList2"><li><b class="cBold">ou=finanzas,dc=</b><em class="cEmphasis">compañía</em><b class="cBold">,dc=</b><em class="cEmphasis">com</em></li></div>
+<a name="wp65617"> </a><div class="pSmartList2"><li><b class="cBold">dc=</b><em class="cEmphasis">compañía</em><b class="cBold">,dc=</b><em class="cEmphasis">com</em></li></div>
+</ul></div>
+</ul></div>
+<a name="wp84619"> </a><h5 class="pHeading4">
+Véase también:
+</h5>
+<a name="wp84623"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'policies-02.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-02.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">¿Qué es una política?</a>
+</p><a name="wp84627"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-13.htm');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">¿Qué es un paquete?</a>
+</p><a name="wp84631"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'policies-11.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-11.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Descripción general de estados de instalación</a>
+</p><a name="wp84635"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-04.htm');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">¿Qué es una colección?</a>
+</p><a name="wp84639"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-05.htm');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">¿Qué es un destino excluido?</a>
+</p><a name="wp84643"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-03.htm');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-03.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">¿Qué es el destino Todos los clientes finales?</a>
+</p>
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

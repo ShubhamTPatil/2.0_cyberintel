@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:52" />
+    <title>Sustituir la planificación de actualización de Patch Service de las máquinas de destino</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Sustituir la planificación de actualización de Patch Service de las máquinas de destino";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp54137"> </a><p class="pBody">Este tema describe cómo utilizar Policy Manager para sustituir la planificación de actualización de Patch Service en las máquinas de destino específicas. De forma predeterminada, Patch Service sigue la planificación de actualización especificada en Patch Manager. Para obtener más información sobre la configuración de planificación de actualización predeterminada de Patch Service, consulte la ayuda en línea de Patch Manager.</p>
+<a name="wp52757"> </a><p class="pBody">Durante la actualización, Patch Service escanea el destino en busca de la lista de parches requeridos y de parches ya instalados. También instala un conjunto de parches, considerando las dependencias de cada parche. Puede especificar que las actualizaciones se efectúen siguiendo una planificación recurrente. Si no establece una planificación en Policy Manager, se utilizará la planificación especificada en Patch Manager. Si Patch Service no se ha asignado directamente al destino como parte de la política, Policy Manager dará por hecho que Patch Service proviene del mismo transmitter que Patch Manager.</p>
+<a name="wp52761"> </a><p class="pBody">Si ha establecido un periodo de exclusión para el destino, podrá excluir a Patch Service del mismo. Esta exención puede resultar útil si prevé situaciones de emergencia durante las cuales puede ser necesario actualizar o instalar parches durante el periodo de exclusión. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'patch-13.htm');" onMouseOver="WWHShowPopup('Policy', 'patch-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Exención de Patch Service del periodo de exclusión</a>.</p>
+<hr class="NoteRuleTop"/><a name="wp52770"> </a><p class="pNote"><span style="color: #003366">Nota: </span> Sólo se puede establecer una configuración de nivel de destino, como la planificación de actualización de Patch Service, para un destino a la vez. Si tiene habilitado el modo de selección múltiple y está editando las políticas de múltiples destinos a la vez, no podrá establecer una configuración de nivel de destino. Sin embargo, podrá establecer una configuración de nivel de destino para todos los destinos seleccionando el destino<b class="cBold"> Todos los clientes finales</b>.</p><hr class="NoteRuleBottom"/><a name="wp52774"> </a><p class="pBody">Este procedimiento da por hecho que se encuentra en la página Editar política. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-04.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Instrucciones generales para la creación y edición de políticas</a>.</p>
+<a name="wp52781"> </a><p style="text-decoration: none" class="pStepIntro">
+Para sustituir la planificación de actualización predeterminada de Patch Service
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp52782"> </a><div class="pSmartList1"><li>En la página Editar política, haga clic en la ficha <b class="cBold">Parches &gt; Planificación de Patch Service</b>.</li></div>
+<a name="wp52783"> </a><p class="pIndented1">
+Aparecerá la página Planificación de Patch Service.
+</p>
+<a name="wp52784"> </a><div class="pSmartList1"><li>Seleccione <b class="cBold">Utilizar Policy Manager para establecer la planificación de actualización de Patch Service</b>.</li></div>
+<a name="wp55022"> </a><div class="pSmartList1"><li>En la sección <b class="cBold">Repetición</b>, especifique con qué frecuencia desea que se actualice Patch Service:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp52791"> </a><div class="pSmartList2"><li><b class="cBold">Diariamente</b>: Patch Service podrá actualizarse a diario, sólo los fines de semana (de lunes a viernes) o una vez cada 1-365 días, dependiendo del valor que especifique.</li></div>
+<a name="wp52795"> </a><div class="pSmartList2"><li><b class="cBold">Semanalmente</b>: Patch Service podrá actualizarse una vez cada 1-52 semanas, dependiendo del valor que especifique. Durante la semana para la que se haya planificado la actualización, ésta se llevará a cabo sólo en los días seleccionados. Debe seleccionar por lo menos un día de la semana.</li></div>
+<a name="wp52799"> </a><div class="pSmartList2"><li><b class="cBold">Mensualmente</b>: Patch Service podrá actualizarse una vez cada 1-12 meses en el día especificado. Si selecciona el día 30 ó 31 y el mes durante el cual deberá llevarse a cabo la actualización no incluye ese día (por ejemplo, febrero), ésta se llevará a cabo el primer día del mes siguiente.</li></div>
+</ul></div>
+<a name="wp52800"> </a><div class="pSmartList1"><li>En la sección <b class="cBold">Hora de actualización</b>, especifique la hora del día durante la cual deberá llevarse a cabo la actualización de Patch Service:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp52804"> </a><div class="pSmartList2"><li><b class="cBold">Actualizar a las</b>: especifique la hora del día durante la cual deberá llevarse a cabo la actualización.</li></div>
+<a name="wp52805"> </a><div class="pSmartList2"><li><b class="cBold">Actualizar cada</b>: especifique varias horas del día durante las cuales deberá llevarse a cabo la actualización. Podrá establecer que las actualizaciones se lleven a cabo cada determinado número de minutos o de horas durante el día, o restringir las actualizaciones a un intervalo de horas durante el día. Por ejemplo, puede especificar que las actualizaciones se lleven a cabo cada hora entre las 9:00 h y las 17:00 h o cada 30 minutos entre las 17:00 h y las 9:00 h.</li></div>
+</ul></div>
+</ol></div>
+<a name="wp52978"> </a><p class="pBody">Cuando haya terminado de editar la política, visualice los cambios efectuados en Vista previa y guárdela. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-05.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Visualizar previamente y almacenar cambios en las políticas</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

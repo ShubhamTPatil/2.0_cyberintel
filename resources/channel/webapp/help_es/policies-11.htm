@@ -1,0 +1,283 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:45" />
+    <title>Descripción general de estados de instalación</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Descripción general de estados de instalación";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp52829"> </a><p class="pBody">Los estados de instalación determinan de qué modo se instalará, y si se instalará o no, un paquete en un destino. Para cada paquete asignado a un destino, puede establecer un estado principal. En Policy Manager, puede asignar estados de instalación a un paquete que forme parte de la política de uno o más clientes finales.</p>
+<a name="wp52836"> </a><p class="pBody">La siguiente tabla describe los diferentes estados disponibles para los paquetes. Los estados principales <em class="cEmphasis">descargar</em> y <em class="cEmphasis">anunciar</em> le permiten establecer un estado secundario para controlar el modo en que se instalará el paquete. Puede asociar una planificación de activación al estado secundario para especificar un periodo de tiempo en el futuro durante el cual deberá llevarse a cabo la instalación en todos los equipos de la empresa, incluidos aquellos clientes finales que se conectan a la red en raras ocasiones. El estado secundario predeterminado es <em class="cEmphasis">instalar</em>.</p>
+<a name="wp52942"> </a><p class="pBodyRelative"></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp52844table52838">
+  <caption><a name="wp52844"> </a><p class="pBody">Tabla&#160;4-3:&#160;&#160;Estados de instalación de los paquetes&#160;</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp52851"> </a><div class="pCellHeading">
+Estado principal
+</div>
+</th>
+    <th><a name="wp52853"> </a><div class="pCellHeading">
+Descripción
+</div>
+</th>
+    <th><a name="wp52856"> </a><div class="pCellHeading">
+Estado secundario
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp52859"> </a><div class="pCellHeading">
+Descargar
+</div>
+</td>
+    <td><a name="wp52861"> </a><div class="pCellBody">
+Descarga un paquete sin instalarlo. El usuario de cada cliente final podrá realizar la instalación de forma interactiva, o en el caso de que se haya establecido un estado secundario, podrá planificar la hora en la que deberá llevarse a cabo la instalación automáticamente. (Este estado puede aparecer como <em class="cEmphasis">pendiente de instalación</em> cuando se visualiza el tuner en Tuner Administrator. En una versión anterior, este estado se llamaba <em class="cEmphasis">subscribir y no instalar</em>.)<span style="vertical-align: super"><a href="#wp58523"><sup class="Footnote">1</sup></a></span>
+</div>
+</td>
+    <td><a name="wp52863"> </a><div class="pCellBody">
+Instalar
+</div>
+<a name="wp52864"> </a><div class="pCellBody">
+Instalar-iniciar
+</div>
+<a name="wp52865"> </a><div class="pCellBody">
+Instalar-persistir
+</div>
+<a name="wp52866"> </a><div class="pCellBody">
+Instalar-iniciar-persistir
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp52869"> </a><div class="pCellHeading">
+Anunciar
+</div>
+</td>
+    <td><a name="wp52871"> </a><div class="pCellBody">
+Describe el paquete que se encuentra disponible para su descarga. Si establece un estado secundario, podrá planificar la hora a la que deberá llevarse a cabo la descarga e instalación. (Este estado puede aparecer como <em class="cEmphasis">disponible</em> cuando se visualiza el tuner en Tuner Administrator.)
+</div>
+</td>
+    <td><a name="wp52873"> </a><div class="pCellBody">
+Instalar
+</div>
+<a name="wp52874"> </a><div class="pCellBody">
+Instalar-iniciar
+</div>
+<a name="wp52875"> </a><div class="pCellBody">
+Instalar-persistir
+</div>
+<a name="wp52876"> </a><div class="pCellBody">
+Instalar-iniciar-persistir
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp52879"> </a><div class="pCellHeading">
+Instalar
+</div>
+</td>
+    <td><a name="wp52881"> </a><div class="pCellBody">
+Descarga e instala el paquete en modo silencioso. (En una versión anterior, este estado se llamaba <em class="cEmphasis">suscribir</em>.)
+</div>
+</td>
+    <td><a name="wp52883"> </a><div class="pCellBody">
+Desinstalar
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp52886"> </a><div class="pCellHeading">
+Instalar-iniciar
+</div>
+</td>
+    <td><a name="wp52888"> </a><div class="pCellBody">
+Instala el paquete y ejecuta a continuación el software instalado. (En una versión anterior, este estado se llamaba <em class="cEmphasis">suscribir e iniciar</em>.) El paquete se inicia cada vez que se ejecuta Policy Service. Si el paquete ya está ejecutándose, Policy Service no se reiniciará.
+</div>
+</td>
+    <td><a name="wp52896"> </a><div class="pCellBody">
+Desinstalar
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp52899"> </a><div class="pCellHeading">
+Instalar-persistir
+</div>
+</td>
+    <td><a name="wp52901"> </a><div class="pCellBody">
+Instala el paquete y no permite eliminarlo, aun cuando se haya eliminado el cliente final del grupo de destino. Este estado es muy útil para instalar actualizaciones de software del sistema. El paquete puede eliminarse incluso cuando esté habilitado el estado desinstalar. (En una versión anterior, este estado se llamaba <em class="cEmphasis">suscribir-persistir</em>.)
+</div>
+</td>
+    <td><a name="wp52903"> </a><div class="pCellBody">
+N/D
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp52906"> </a><div class="pCellHeading">
+Instalar-iniciar-persistir
+</div>
+</td>
+    <td><a name="wp52908"> </a><div class="pCellBody">
+Instala el paquete y no permite eliminarlo aunque se haya eliminado el cliente final del grupo de destino, al igual que sucede en el estado instalar-persistir. Inicia el software instalado tras la operación de instalación. El paquete se inicia cada vez que se ejecuta Policy Service. Si el paquete ya está ejecutándose, Policy Service no se reiniciará.
+</div>
+</td>
+    <td><a name="wp52916"> </a><div class="pCellBody">
+N/D
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp52919"> </a><div class="pCellHeading">
+Excluir
+</div>
+</td>
+    <td><a name="wp52921"> </a><div class="pCellBody">
+Excluye el paquete del cliente final aunque éste sea miembro de un grupo suscrito. Este estado es muy útil cuando desea suscribir todos los miembros de un grupo muy amplio de un paquete excepto dos de ellos. Este estado tiene la prioridad más alta. (Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-11.htm#wp58502');" onMouseOver="WWHShowPopup('Policy', 'policies-11.htm#wp58502', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Prioridad de estados</a>.)
+</div>
+<a name="wp52925"> </a><div class="pCellBody">
+<b class="cBold">Nota:</b> para utilizar el estado excluir, debe crear una política en la que se especifiquen los clientes finales que desea excluir (de la recepción del paquete), además de la política que haya suscrito inicialmente el grupo más amplio del paquete.
+</div>
+</td>
+    <td><a name="wp52927"> </a><div class="pCellBody">
+N/D
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp52930"> </a><div class="pCellHeading">
+Desinstalar
+</div>
+</td>
+    <td><a name="wp52932"> </a><div class="pCellBody">
+Elimina el paquete. Si el software instalado está ejecutándose gestionado por el tuner, primero se detendrá sin previo aviso y, a continuación, se eliminará. Tenga en cuenta que este estado de instalación elimina los paquetes que fueron instalados con el estado de persistir. (En una versión anterior, este estado recibía el nombre de <em class="cEmphasis">eliminar</em>.)
+</div>
+</td>
+    <td><a name="wp52934"> </a><div class="pCellBody">
+N/D
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp52937"> </a><div class="pCellHeading">
+Principal
+</div>
+</td>
+    <td><a name="wp52939"> </a><div class="pCellBody">
+Descarga el paquete y lo designa como channel principal del tuner; es decir, como channel que se inicia cada vez que se ejecuta el tuner y a menudo se utiliza como GUI del tuner.
+</div>
+</td>
+    <td><a name="wp52941"> </a><div class="pCellBody">
+N/D
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBodyRelative">
+</p>
+
+<a name="wp87804"> </a><h5 class="pHeading4">
+Véase también:
+</h5>
+<a name="wp87808"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'policies-02.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-02.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">¿Qué es una política?</a>
+</p><a name="wp87812"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-13.htm');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">¿Qué es un paquete?</a>
+</p><a name="wp87816"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-02.htm');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-02.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Tipos de destinos</a>
+</p><a name="wp87820"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'policies-11.htm#wp58502');" onMouseOver="WWHShowPopup('Policy', 'policies-11.htm#wp58502', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Prioridad de estados</a>
+</p><a name="wp87823"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'policies-18.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-18.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Resolución de conflictos: estados y planificaciones de políticas</a>
+</p><a name="wp58502"> </a><h4 class="pHeading3">
+Prioridad de estados
+</h4>
+<a name="wp52967"> </a><p style="text-decoration: none" class="pStepIntro">
+Pueden producirse conflictos entre los estados de los paquetes cuando un cliente final es miembro de dos o más grupos o cuando se ha asignado una política a un cliente final y a los miembros de un grupo al que pertenece dicho cliente final. En tales casos, se aplican las siguientes reglas de prioridad. Policy Manager aplicará el estado que tenga la prioridad más alta.
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp52968"> </a><div class="pSmartList1"><li>Excluir (prioridad más alta)</li></div>
+<a name="wp53764"> </a><div class="pSmartList1"><li>Desinstalar</li></div>
+<a name="wp52969"> </a><div class="pSmartList1"><li>Principal</li></div>
+<a name="wp52970"> </a><div class="pSmartList1"><li>Instalar-iniciar-persistir</li></div>
+<a name="wp52971"> </a><div class="pSmartList1"><li>Instalar-iniciar</li></div>
+<a name="wp52972"> </a><div class="pSmartList1"><li>Instalar-persistir</li></div>
+<a name="wp52973"> </a><div class="pSmartList1"><li>Instalar</li></div>
+<a name="wp52974"> </a><div class="pSmartList1"><li>Descargar</li></div>
+<a name="wp52976"> </a><div class="pSmartList1"><li>Anunciar (prioridad más baja)</li></div>
+<hr class="NoteRuleTop"/><a name="wp52977"> </a><p class="pNote"><span style="color: #003366">Nota: </span> Los conflictos se dan entre los estados de los paquetes, no como consecuencia de la manera en que se asignan las políticas. Así pues, la resolución de conflictos no depende de que se asigne un cliente final directa o indirectamente como miembro de un grupo. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-18.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-18.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Resolución de conflictos: estados y planificaciones de políticas</a>.</p><hr class="NoteRuleBottom"/></ol></div>
+<a name="wp87829"> </a><h5 class="pHeading4">
+Véase también:
+</h5>
+<a name="wp87833"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'policies-02.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-02.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">¿Qué es una política?</a>
+</p><a name="wp87837"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-13.htm');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">¿Qué es un paquete?</a>
+</p><a name="wp87841"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'targ_pkg-02.htm');" onMouseOver="WWHShowPopup('Policy', 'targ_pkg-02.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Tipos de destinos</a>
+</p><a name="wp87845"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('Policy', 'policies-11.htm#wp58502');" onMouseOver="WWHShowPopup('Policy', 'policies-11.htm#wp58502', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Prioridad de estados</a>
+</p>
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

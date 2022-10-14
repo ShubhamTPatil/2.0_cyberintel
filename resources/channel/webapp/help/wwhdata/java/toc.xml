@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+
+<WebWorksHelpTOC version="4.0">
+ <i t="Online help for Policy Management" l="0">
+  <i t="What is Policy Manager?" l="2" />
+  <i t="Policy Manager command-line vs. browser interfaces" l="3" />
+  <i t="Accessing BMC CM documentation" l="4">
+   <i t="Using the CM Documentation channel" l="5" />
+   <i t="Using the BMC Customer Support website" l="6" />
+  </i>
+  <i t="Using help" l="7" />
+ </i>
+ <i t="Configuring Policy Manager" l="8">
+  <i t="The Policy Management plug-in" l="9" />
+  <i t="Configuring and publishing the Policy Service plug-in" l="10" />
+  <i t="Starting or stopping the plug-in" l="11" />
+  <i t="Plug-in configuration page: directory service fields" l="12" />
+  <i t="Setting up access control lists" l="13">
+   <i t="Using the access control feature" l="14" />
+  </i>
+  <i t="Configuring policy compliance settings" l="15" />
+  <i t="Creating and managing profiles for Windows Power Options" l="16" />
+ </i>
+ <i t="Viewing targets and packages" l="17">
+  <i t="Types of targets" l="18">
+   <i t="What is the All Endpoints target?" l="19" />
+   <i t="What is a collection?" l="20" />
+   <i t="What is an excluded target?" l="21" />
+   <i t="What is a directly assigned target?" l="22" />
+  </i>
+  <i t="Viewing targets" l="23">
+   <i t="Browsing targets" l="24" />
+   <i t="Viewing members of a target" l="25" />
+   <i t="Searching for targets" l="26" />
+   <i t="Viewing target details" l="27" />
+   <i t="Viewing packages assigned to a target" l="28" />
+  </i>
+  <i t="What is a package?" l="29" />
+  <i t="Viewing packages" l="30">
+   <i t="Browsing packages" l="31" />
+   <i t="Searching for packages" l="32" />
+   <i t="Viewing targets that have been assigned a package" l="33" />
+   <i t="Viewing package details" l="34" />
+  </i>
+ </i>
+ <i t="Creating and editing policies" l="35">
+  <i t="What is a policy?" l="36" />
+  <i t="General directions for creating and editing policies" l="37">
+   <i t="Editing a policy for multiple packages (Edit All)" l="38" />
+   <i t="Previewing and saving policy changes" l="39" />
+   <i t="Notes about saving policies" l="40" />
+  </i>
+  <i t="Adding and removing packages from a policy" l="41">
+   <i t="Adding packages to a policy" l="42" />
+   <i t="Removing packages from a policy" l="43" />
+  </i>
+  <i t="Specifying states and schedules for packages in a policy" l="44">
+   <i t="Overview of installation states" l="45" />
+   <i t="Setting the primary and secondary states" l="46" />
+   <i t="Creating WoW deployments" l="47" />
+   <i t="Overview of schedules" l="48" />
+   <i t="Setting the primary and secondary schedule for packages" l="49" />
+   <i t="Setting the update schedule for packages" l="50" />
+   <i t="Setting the repair schedule for packages" l="51" />
+   <i t="Setting common schedules for multiple packages" l="52" />
+   <i t="Conflict resolution: states and schedules in policies" l="53" />
+   <i t="Resolving differences in package states or schedules" l="54" />
+  </i>
+  <i t="Setting the install priority for packages in a policy" l="55">
+   <i t="What is install priority?" l="56" />
+   <i t="Conflict resolution: Packages with the same install priority" l="57" />
+   <i t="Conflict resolution: when multiple users edit the same policy" l="58" />
+  </i>
+  <i t="Copying policies" l="59" />
+  <i t="Deleting policies" l="60" />
+  <i t="Managing software, data, and updates" l="61">
+   <i t="Endpoint environment management concepts" l="62" />
+   <i t="Use cases" l="63" />
+  </i>
+  <i t="Editing policies from Package View" l="64" />
+  <i t="Setting a blackout period for a target" l="65">
+   <i t="What is a blackout period?" l="66" />
+   <i t="Setting the blackout period for a target" l="67" />
+   <i t="Exempting packages from the blackout period" l="68" />
+  </i>
+  <i t="Specifying the Policy Service schedule for a target" l="69">
+   <i t="What is the Policy Service?" l="70" />
+   <i t="Setting the schedule for Policy Service updates" l="71" />
+  </i>
+  <i t="Specifying reboot settings for Windows targets" l="72" />
+  <i t="Setting Power Options for Windows targets" l="73" />
+  <i t="Setting tuner and package properties for a target" l="74">
+   <i t="Overview of tuner and package policies" l="75" />
+   <i t="Setting tuner properties" l="76" />
+   <i t="Setting package properties" l="77" />
+   <i t="Tuner and package properties format" l="78" />
+   <i t="Deleting tuner and package properties" l="79" />
+   <i t="Conflict resolution: property values" l="80" />
+   <i t="Conflict resolution: When multiple users edit properties" l="81" />
+  </i>
+  <i t="Specifying transmitter permissions for a target" l="82">
+   <i t="What are transmitter permissions?" l="83" />
+   <i t="Adding or editing transmitter permissions" l="84" />
+   <i t="Deleting transmitter permissions" l="85" />
+  </i>
+  <i t="Specifying the profile for a target" l="86">
+   <i t="What is a profile?" l="87" />
+   <i t="Changing the profile for a target" l="88" />
+  </i>
+ </i>
+ <i t="Viewing policy compliance" l="89">
+  <i t="What is policy compliance?" l="90" />
+  <i t="Definition of compliance" l="91" />
+  <i t="BMC BladeLogic Client Automation BMC BladeLogic Client Automation Prerequisites for policy compliance" l="92">
+   <i t="Setting up the console server for policy compliance" l="93" />
+   <i t="Setting up endpoints for policy compliance" l="94" />
+  </i>
+  <i t="Viewing policy compliance for targets and packages" l="95">
+   <i t="Overall compliance queries and compliance reports" l="96" />
+   <i t="Locating targets and running queries" l="97" />
+  </i>
+  <i t="Compliance reports" l="98" />
+ </i>
+ <i t="Integration with Patch Management" l="99">
+  <i t="Prerequisites for integration with Patch Management" l="100" />
+  <i t="What is a patch group?" l="101" />
+  <i t="What is a patch group assignment state?" l="102" />
+  <i t="What is Patch Service?" l="103" />
+  <i t="Assigning patch groups to targets" l="104">
+   <i t="Removing patch groups from a policy" l="105" />
+  </i>
+  <i t="Simulating the installation of patches" l="106" />
+  <i t="Viewing more details about the installation of patch groups" l="107" />
+  <i t="Overriding the Patch Service update schedule for target machines" l="108" />
+  <i t="Exempting Patch Service from the blackout period" l="109" />
+  <i t="Policy compliance for patch groups" l="110" />
+ </i>
+ <i t="Integrating with Deployment Manager" l="111">
+  <i t="Prerequisites for integration with Deployment Manager" l="112" />
+  <i t="Enabling and disabling immediate policy updates" l="113" />
+  <i t="Performing an immediate policy update" l="114" />
+  <i t="Monitoring and viewing the status of a policy update" l="115">
+   <i t="Stopping and retrying policy updates" l="116" />
+  </i>
+  <i t="How does the immediate policy update work?" l="117" />
+  <i t="Blackout periods and immediate policy updates" l="118" />
+ </i>
+</WebWorksHelpTOC>

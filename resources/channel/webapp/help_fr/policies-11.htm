@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/09/06 17:57:31" />
+    <title>Présentation des états d&#39;installation</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Présentation des états d&#39;installation";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp283757"> </a><p class="pBody">Les états d&#39;installation déterminent comment et si un package est installé sur une cible. Pour chaque package attribué à une cible, vous pouvez définir un état primaire. À l&#39;aide de Policy Manager, vous pouvez attribuer des états d&#39;installation à un package dans le cadre de la policy pour une ou plusieurs machines cibles.</p>
+<a name="wp283761"> </a><p class="pBody">Le tableau suivant présente les différents états disponibles pour les packages. Les états primaires <em class="cEmphasis">mettre en attente</em> et <em class="cEmphasis">annoncer </em>vous permettent de définir un état secondaire pour contrôler l&#39;installation d&#39;un package. Vous pouvez associer une planification d&#39;activation à l&#39;état secondaire pour indiquer une fenêtre temporelle dans l&#39;avenir pendant laquelle l&#39;installation du package doit avoir lieu dans toute votre organisation, même pour les machines cibles qui ne se connectent pas fréquemment au réseau. L&#39;état secondaire par défaut est <em class="cEmphasis">installer</em>.</p>
+<a name="wp283764"> </a><p class="pBodyRelative"></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp282473table52838">
+  <caption><a name="wp282473"> </a><p class="pBody">Tableau&#160;4-3 :&#160;&#160;États d&#39;installation pour packages &#160;</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp282483"> </a><div class="pCellHeading">
+État&#160;primaire
+</div>
+</th>
+    <th><a name="wp282485"> </a><div class="pCellHeading">
+Description
+</div>
+</th>
+    <th><a name="wp282489"> </a><div class="pCellHeading">
+État&#160;secondaire
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp282499"> </a><div class="pCellHeading">
+Mettre en attente
+</div>
+</td>
+    <td><a name="wp282506"> </a><div class="pCellBody">
+Télécharge un package mais ne l&#39;installe pas. L&#39;utilisateur sur chaque machine cible peut effectuer une installation interactive ou, si vous définissez un état secondaire, vous pouvez planifier l&#39;heure à laquelle le package téléchargé est automatiquement installé. (Cet état peut apparaître comme <em class="cEmphasis">en attente d&#39;installation</em> quand le tuner est affiché via Tuner Administrator. Cet état était appelé <em class="cEmphasis">abonner et ne pas installer</em> dans une version précédente.)<a href="#wp282503"><sup class="Footnote">1</sup></a>
+</div>
+</td>
+    <td><a name="wp282508"> </a><div class="pCellBody">
+Installer
+</div>
+<a name="wp282510"> </a><div class="pCellBody">
+Installer-Démarrer
+</div>
+<a name="wp282512"> </a><div class="pCellBody">
+Installer-Persister
+</div>
+<a name="wp282514"> </a><div class="pCellBody">
+Installer-Démarrer-Persister
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp282524"> </a><div class="pCellHeading">
+Annoncer
+</div>
+</td>
+    <td><a name="wp282526"> </a><div class="pCellBody">
+Décrit le package comme étant disponible pour le téléchargement. Si vous définissez un état secondaire, vous pouvez planifier l&#39;heure à laquelle le téléchargement et l&#39;installation ont effectivement lieu. (Cet état peut apparaître comme <em class="cEmphasis">disponible</em> quand le tuner est affiché via Tuner Administrator.)
+</div>
+</td>
+    <td><a name="wp282528"> </a><div class="pCellBody">
+Installer
+</div>
+<a name="wp282530"> </a><div class="pCellBody">
+Installer-Démarrer
+</div>
+<a name="wp282532"> </a><div class="pCellBody">
+Installer-Persister
+</div>
+<a name="wp282534"> </a><div class="pCellBody">
+Installer-Démarrer-Persister
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp282544"> </a><div class="pCellHeading">
+Installer
+</div>
+</td>
+    <td><a name="wp282546"> </a><div class="pCellBody">
+Télécharge et installe un package en mode silencieux. (Cet état était appelé <em class="cEmphasis">abonner</em> dans une version précédente.)
+</div>
+</td>
+    <td><a name="wp282548"> </a><div class="pCellBody">
+Désinstaller
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp282558"> </a><div class="pCellHeading">
+Installer-Démarrer
+</div>
+</td>
+    <td><a name="wp282568"> </a><div class="pCellBody">
+Installe un package, puis démarre le logiciel installé. (Cet état était appelé <em class="cEmphasis">abonner et démarrer</em> dans une version précédente.) Le package démarre chaque fois que Policy Service est exécuté. Si le package est déjà en cours d&#39;exécution, Policy Service ne le redémarre pas.
+</div>
+</td>
+    <td><a name="wp282570"> </a><div class="pCellBody">
+Désinstaller
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp282580"> </a><div class="pCellHeading">
+Installer-Persister
+</div>
+</td>
+    <td><a name="wp282582"> </a><div class="pCellBody">
+Installe un package et n&#39;autorise pas sa suppression même si la machine cible est supprimée d&#39;un groupe cible. Cet état est utile pour l&#39;installation de mises à niveau de logiciel sur le système. Le package peut être quand même supprimé avec l&#39;état désinstaller. (Cet état était appelé <em class="cEmphasis">abonner-persister</em> dans une version précédente.)
+</div>
+</td>
+    <td><a name="wp282584"> </a><div class="pCellBody">
+S/O
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp282594"> </a><div class="pCellHeading">
+Installer-Démarrer-Persister
+</div>
+</td>
+    <td><a name="wp282604"> </a><div class="pCellBody">
+Installe un package et n&#39;autorise pas sa suppression même si la machine cible est supprimée d&#39;un groupe cible - comme c&#39;est le cas avec l&#39;état installer-persister. Démarre le logiciel installé après l&#39;installation. Le package démarre chaque fois que Policy Service est exécuté. Si le package est déjà en cours d&#39;exécution, Policy Service ne le redémarre pas.
+</div>
+</td>
+    <td><a name="wp282606"> </a><div class="pCellBody">
+S/O
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp282616"> </a><div class="pCellHeading">
+Exclure
+</div>
+</td>
+    <td><a name="wp282622"> </a><div class="pCellBody">
+Exclut un package d&#39;une machine cible même s&#39;il fait partie d&#39;un groupe abonné. Cet état est utile quand vous voulez abonner tous les membres d&#39;un large groupe, à l&#39;exception d&#39;un ou deux, à un package. Cet état a la priorité la plus élevée. (Pour plus d&#39;informations, reportez-vous à la section <a href="javascript:WWHClickedPopup('sm', 'policies-11.htm#wp283802');" onMouseOver="WWHShowPopup('sm', 'policies-11.htm#wp283802', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Priorité des états</a>).
+</div>
+<a name="wp282624"> </a><div class="pCellBody">
+<b class="cBold">Remarque&#160;:</b> pour utiliser l&#39;état exclure, vous devez créer une policy indiquant les machines cibles à exclure (pour qu&#39;elles ne reçoivent pas le package), en plus de la policy qui abonne initialement le groupe le plus large au package.
+</div>
+</td>
+    <td><a name="wp282626"> </a><div class="pCellBody">
+S/O
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp282636"> </a><div class="pCellHeading">
+Désinstaller
+</div>
+</td>
+    <td><a name="wp282638"> </a><div class="pCellBody">
+Supprime le package. Si le logiciel installé s&#39;exécute sous le contrôle du tuner, il est d&#39;abord arrêté sans avertissement puis supprimé. Notez que cet état d&#39;installation supprimes les packages installés avec persistance. (Cet état était appelé <em class="cEmphasis">supprimer</em> dans une version précédente.)
+</div>
+</td>
+    <td><a name="wp282640"> </a><div class="pCellBody">
+S/O
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp282650"> </a><div class="pCellHeading">
+Primaire
+</div>
+</td>
+    <td><a name="wp282652"> </a><div class="pCellBody">
+Télécharge le package et le désigne comme le channel primaire du tuner—celui qui est démarré chaque fois que le tuner démarre et sert souvent d&#39;interface graphique pour le tuner.
+</div>
+</td>
+    <td><a name="wp282654"> </a><div class="pCellBody">
+S/O
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBodyRelative">
+</p>
+
+<a name="wp283766"> </a><h5 class="pHeading4">
+Voir aussi&#160;:
+</h5>
+<a name="wp283772"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-02.htm');" onMouseOver="WWHShowPopup('sm', 'policies-02.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Définition d&#39;une policy</a>
+</p><a name="wp283778"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-13.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Définition d&#39;un package</a>
+</p><a name="wp283784"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-02.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-02.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Types de cibles</a>
+</p><a name="wp283790"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-11.htm#wp283802');" onMouseOver="WWHShowPopup('sm', 'policies-11.htm#wp283802', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Priorité des états</a>
+</p><a name="wp283796"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-18.htm');" onMouseOver="WWHShowPopup('sm', 'policies-18.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Résolution de conflit&#160;: états et planifications dans les policies</a>
+</p><a name="wp283802"> </a><h4 style="margin-top: 14pt" class="pHeading3">
+Priorité des états
+</h4>
+<a name="wp283808"> </a><p style="text-decoration: none" class="pStepIntro">
+Des conflits entre les états de package peuvent arriver quand une machine cible est présente dans au moins deux groupes ou quand une policy a été attribuée à la fois à une machine cible unique et aux membres d&#39;un groupe auquel cette machine cible appartient. Dans de tels cas de figure, les règles de priorité suivantes sont appliquées. Policy Manager applique l&#39;état dont la priorité est la plus élevée.
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp283810"> </a><div class="pSmartList1"><li>Exclure (priorité la plus élevée)</li></div>
+<a name="wp283812"> </a><div class="pSmartList1"><li>Désinstaller</li></div>
+<a name="wp283814"> </a><div class="pSmartList1"><li>Primaire</li></div>
+<a name="wp283816"> </a><div class="pSmartList1"><li>Installer-Démarrer-Persister</li></div>
+<a name="wp283818"> </a><div class="pSmartList1"><li>Installer-Démarrer</li></div>
+<a name="wp283820"> </a><div class="pSmartList1"><li>Installer-Persister</li></div>
+<a name="wp283822"> </a><div class="pSmartList1"><li>Installer</li></div>
+<a name="wp283824"> </a><div class="pSmartList1"><li>Mettre en attente</li></div>
+<a name="wp283826"> </a><div class="pSmartList1"><li>Annoncer (priorité la plus basse)</li></div>
+<hr class="NoteRuleTop"/><a name="wp283832"> </a><p class="pNote"><span style="color: #003366">Remarque&#160;: </span> les conflits se produisent entre les états de package et ne sont pas dus à la manière dont une policy est ciblée. La résolution de conflit ne dépend donc pas du fait qu&#39;une machine cible est ciblée directement ou indirectement en tant que membre d&#39;un groupe. Pour plus d&#39;informations, reportez-vous à la section <a href="javascript:WWHClickedPopup('sm', 'policies-18.htm');" onMouseOver="WWHShowPopup('sm', 'policies-18.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Résolution de conflit&#160;: états et planifications dans les policies</a>.</p><hr class="NoteRuleBottom"/></ol></div>
+<a name="wp283834"> </a><h5 class="pHeading4">
+Voir aussi&#160;:
+</h5>
+<a name="wp283840"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-02.htm');" onMouseOver="WWHShowPopup('sm', 'policies-02.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Définition d&#39;une policy</a>
+</p><a name="wp283846"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-13.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Définition d&#39;un package</a>
+</p><a name="wp283852"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-02.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-02.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Types de cibles</a>
+</p><a name="wp283858"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'policies-11.htm#wp283802');" onMouseOver="WWHShowPopup('sm', 'policies-11.htm#wp283802', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Priorité des états</a>
+</p>
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Tous droits réservés.<br/>
+
+Pour obtenir d'autres documents relatifs à BMC Configuration Management,
+visitez le site Web de l'assistance à la clientèle <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+Si vous avez des questions ou des commentaires sur
+la documentation BMC CM, envoyez un message électronique à l'adresse <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Si vous avez des questions ou des problèmes quelconques à signaler concernant les produits, envoyez un message électronique au service d'assistance à la clientèle à l'adresse <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

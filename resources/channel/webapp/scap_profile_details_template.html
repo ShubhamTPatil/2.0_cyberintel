@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>XCCDF Content</title>
+		<script src="/spm/includes/latest/jquery.min.js"></script>
+		<script>
+			var comma = '';
+			function toggleDivDisplay(anchor, divId) {
+				if (anchor.id == "/spm/images/arrow-dn.png") {
+				anchor.id = "/spm/images/arrow-right.png";
+				document.getElementById(divId).style.display = "none";
+				} else {
+				anchor.id = "/spm/images/arrow-dn.png";
+				document.getElementById(divId).style.display = "block";
+				}
+				document.getElementById(divId + "Img").setAttribute("src", anchor.id);
+			}
+			function displayInfo(anchor, divId) {
+				var infos = document.getElementsByName("infoDiv");
+				var i;
+				for (i=0; i < infos.length; i++) {
+				infos[i].style.display = "none";
+				}
+                if (document.getElementById(divId + "Info") != '') {
+                    document.getElementById(divId + "Info").style.display = "block";
+                }
+                var infoLinks = document.getElementsByName("infoLink");
+				var j;
+				for (j=0; j < infoLinks.length; j++) {
+				infoLinks[j].style.backgroundColor = "white";
+				}
+				anchor.style.backgroundColor = "lightgrey";
+			}
+			function showAll(isExpand) {
+				var links = document.getElementsByName("expandCollapseLink");
+				var i;
+				for (i=0; i < links.length; i++) {
+				if (isExpand == "true") {
+				if (links[i].id == "/spm/images/arrow-right.png") {
+				links[i].click();
+				}
+				} else {
+				if (links[i].id == "/spm/images/arrow-dn.png") {
+				links[i].click();
+				}
+				}
+				}
+				if (isExpand == "true") {
+				document.getElementById("expandDiv").style.display = "none";
+				document.getElementById("collapseDiv").style.display = "block";
+				} else {
+				document.getElementById("expandDiv").style.display = "block";
+				document.getElementById("collapseDiv").style.display = "none";
+				}
+			}
+		</script>
+		<style>
+			.loader {
+			position: fixed;
+			left: 0px;
+			top: 0px;
+			width: 100%;
+			height: 100%;
+			z-index: 9999;
+			background: url('/spm/images/page-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+		</style>
+	</head>
+	<body>
+		<div class="loader"></div>
+		<table width="100%" border=1><tr>
+			<td valign="top" width="60%" style="padding-left:5px;">
+				<div style="overflow:auto;height:522px;">
+				</div>
+			</td>
+			<td valign="top" width="40%" style="padding-left:5px;">
+				<div style="overflow:auto;height:522px;">
+				</div>
+			</td>
+		</tr></table>
+	</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:29" />
+    <title>Festlegen des Reparaturzeitplans für Packages</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Festlegen des Reparaturzeitplans für Packages";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp83842"> </a><p class="pBody">Applikationen und Inhalte, die Sie packen und an Benutzer verteilen, können manchmal unbenutzbar oder nicht korrekt ausgeführt werden. Sie können die Reparaturfunktionen dazu verwenden, automatisch nach Problemen, wie fehlenden oder fehlerhaften Dateien, zu suchen und diese zu beheben.</p>
+<a name="wp83844"> </a><p class="pBody">Sie können den Reparaturzeitplan für Packages festlegen. Bei einer geplanten Reparatur werden die Dateien neu installiert, die sich seit der Installation des Package geändert haben. Bevor das Package repariert wird, stellt der Ziel-Tuner eine Verbindung mit dem Transmitter her, von dem das Package Aktualisierungen erhält.</p>
+<a name="wp83854"> </a><p class="pBody">Der Reparaturzeitplan hat lediglich dann Auswirkungen auf den Client, wenn bereits eine Subscription für das Package eingerichtet oder wenn das Package bereits installiert ist. Außerdem funktionieren Reparaturvorgänge nur bei Packages, die mit BMC CM Application Packager erstellt wurden. Es kann sein, dass Packages bereits ein Reparaturzeitplan zugewiesen wurde, so dass Sie diesen Reparaturzeitplan verwenden oder ihn mit Policy Manager außer Kraft setzen können. Im Folgenden sind einige Situationen genannt, in denen Sie Policy Manager zum Festlegen eines Reparaturzeitplans verwenden sollten:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp83860"> </a><div class="pSmartList2"><li>Die Erstellung des Package für die Software sowie die Softwareverteilung kann von unterschiedlichen Benutzern vorgenommen werden. Wenn Sie verantwortlich sind, den Policy Manager zur Verteilung der Software zu verwenden, können Sie den Zeitplan außer Kraft setzen, der von denjenigen, die Packages für die Software erstellen, festgelegt wurde. </li></div>
+<a name="wp83862"> </a><div class="pSmartList2"><li>Sie können sich auch entscheiden, während der Erstellung des Package einen Standardzeitplan festzulegen und diesen anschließend, wenn Sie Software an bestimmte Gruppen verteilen, außer Kraft setzen. </li></div>
+<a name="wp83868"> </a><div class="pSmartList2"><li>Sobald Sie den Zeitplan während der Erstellung des Package festlegen, können Sie ihn nicht einfach ändern. Es ist einfacher, Zeitpläne mit Hilfe von Policy Manager zu ändern. </li></div>
+</ul></div>
+</ul></div>
+<a name="wp83874"> </a><p class="pBody">Bei diesem Vorgang wird davon ausgegangen, dass Sie sich auf der Seite &quot;Policy bearbeiten&quot; auf der Registerkarte &quot;Packages&quot; befinden. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-04.htm');" onMouseOver="WWHShowPopup('sm', 'policies-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Allgemeine Anweisungen zum Erstellen und Bearbeiten von Policys</a>.</p>
+<a name="wp83876"> </a><p style="text-decoration: none" class="pStepIntro">
+So legen Sie den Reparaturzeitplan für ein Package fest:
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp83878"> </a><div class="pSmartList1"><li>Suchen Sie auf der Seite &quot;Policy bearbeiten&quot; auf der Registerkarte &quot;Packages&quot; die Zeilen der Packages, für die Zeitpläne festgelegt werden sollen.</li></div>
+<a name="wp83880"> </a><div class="pSmartList1"><li>Klicken Sie in der Zeile des Package auf den Pfeil in der ersten Spalte links auf der Seite, um die Zeitplaninformationen für das Package anzuzeigen.</li></div>
+<a name="wp83882"> </a><div class="pSmartList1"><li>Klicken Sie im Abschnitt <b class="cBold">Reparaturzeitplan</b> auf <b class="cBold">Bearbeiten</b>.</li></div>
+<a name="wp83884"> </a><p class="pIndented1">
+Die Seite &quot;Reparaturzeitplan bearbeiten&quot; wird angezeigt.
+</p>
+<a name="wp83886"> </a><div class="pSmartList1"><li>Verwenden Sie die Dropdown-Liste, um den Zeitplan auszuwählen, dem das Package folgen soll:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp83888"> </a><div class="pSmartList2"><li><b class="cBold">Den bei Erstellung und Veröffentlichung des Package angegebenen Zeitplan befolgen. </b>Wählen Sie diese Option aus, wenn Sie einen Zeitplan für das Package angegeben haben, als dieses erstellt und veröffentlicht wurde, und wenn Sie diesem Zeitplan folgen möchten.</li></div>
+<a name="wp83898"> </a><div class="pSmartList2"><li><b class="cBold">Policy Manager zum Festlegen des Reparaturzeitplans verwenden.</b> Wählen Sie diese Option aus, wenn Sie den Reparaturzeitplan mit Policy Manager verwalten möchten.</li></div>
+</ul></div>
+<a name="wp83904"> </a><div class="pSmartList1"><li>Wenn Sie Policy Manager verwenden möchten, um den Reparaturzeitplan zu verwalten, geben Sie folgende Informationen an:</li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp83906"> </a><div class="pSmartList2"><li>Geben Sie im Bereich <b class="cBold">Wiederholung</b> an, wie häufig das Package repariert werden soll:</li></div>
+<div class="pSmartList3"><ul class="pSmartList3">
+<a name="wp83908"> </a><div class="pSmartList3"><li><b class="cBold">Nie</b>: Das Package wird nie automatisch überprüft und repariert. Sie müssen das Package, wenn erforderlich, manuell reparieren.</li></div>
+<a name="wp83910"> </a><div class="pSmartList3"><li><b class="cBold">Täglich</b>: Das Package wird an jedem Wochentag (Montag bis Freitag) oder alle 1 bis 365 Tage überprüft und repariert, je nachdem, welchen Wert Sie festlegen.</li></div>
+<a name="wp83912"> </a><div class="pSmartList3"><li><b class="cBold">Wöchentlich</b>: Das Package kann alle 1 bis 52 Wochen überprüft und repariert werden, je nachdem, welchen Wert Sie festlegen Anzahl..Dabei wird die Reparatur in der festgelegten Woche nur an den von Ihnen ausgewählten Tagen durchgeführt. Sie müssen mindestens einen Wochentag auswählen.</li></div>
+<a name="wp83914"> </a><div class="pSmartList3"><li><b class="cBold">Monatlich</b>: Das Package kann alle 1 bis 12 Monate an dem festgelegten Tag überprüft und repariert werden. Wenn Sie den 30. oder 31. wählen und der Monat der Reparatur keinen solchen Tag hat (z. B. Februar), wird die Reparatur am ersten Tag des Folgemonats durchgeführt.</li></div>
+</ul></div>
+<a name="wp83916"> </a><div class="pSmartList2"><li>Geben Sie im Bereich <b class="cBold">Reparaturzeit</b> die Uhrzeit an, zu der das Package repariert werden soll.</li></div>
+<div class="pSmartList3"><ul class="pSmartList3">
+<a name="wp83918"> </a><div class="pSmartList3"><li><b class="cBold">Reparieren um</b>: Legen Sie die Uhrzeit fest, zu der die Reparatur erfolgen soll.</li></div>
+<a name="wp83920"> </a><div class="pSmartList3"><li><b class="cBold">Reparieren alle</b>: Legen Sie mehrere Uhrzeiten fest, zu denen Reparaturen erfolgen sollen. Sie können festlegen, dass Reparaturen in einem bestimmten Intervall von Minuten oder Stunden am Tag der Reparatur stattfinden sollen. Sie können die Reparatur aber auch für einen bestimmten Zeitraum innerhalb des Tages festlegen. Reparaturen können beispielsweise zwischen 9:00 und 17:00 Uhr jede Stunde erfolgen oder zwischen 17:00 und 9:00 Uhr alle 30 Minuten.</li></div>
+</ul></div>
+<a name="wp83922"> </a><div class="pSmartList2"><li>Geben Sie in den Bereichen <b class="cBold">Aktivierung</b> und <b class="cBold">Verfall</b> die Zeitpunkte an, ab und bis wann diesem Reparaturzeitplan gefolgt werden soll.</li></div>
+<a name="wp83928"> </a><p class="pIndented1">
+Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-13.htm#wp83538');" onMouseOver="WWHShowPopup('sm', 'policies-13.htm#wp83538', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was sind Aktivierung und Verfall?</a>.
+</p>
+</ol></div>
+<a name="wp83930"> </a><div class="pSmartList1"><li>Klicken Sie auf <b class="cBold">OK</b>, um den Zeitplan zu speichern und zur Seite &quot;Policy bearbeiten&quot; zurückzukehren.</li></div>
+<a name="wp83932"> </a><p class="pIndented1">
+Beachten Sie, dass der Zeitplan jetzt im Abschnitt &quot;Reparaturzeitplan&quot; angezeigt wird.
+</p>
+</ol></div>
+<a name="wp83938"> </a><p class="pBody">Nachdem Sie die Policy bearbeitet haben, sehen Sie sich die Vorschau an, und speichern Sie die Policy. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Erstellen der Vorschau und Speichern von Policy-Änderungen</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

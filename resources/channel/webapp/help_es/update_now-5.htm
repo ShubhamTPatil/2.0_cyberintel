@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:54" />
+    <title>Supervisar y visualizar del estado de una actualización de política</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Supervisar y visualizar del estado de una actualización de política";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp55049"> </a><p class="pBody">Después de iniciar una actualización de política para un destino, aparece la página Estado de actualización de política, que le permite hacer un seguimiento del estado de las máquinas del destino.</p>
+<a name="wp55050"> </a><p class="pBody">Si vuelve a las páginas Vista de destino o Detalles de destino después de iniciar una actualización de política, aparecerá el icono de actualización en curso en ese momento <img src="images/update-policy.gif" id="wp55056" border="0" hspace="0" vspace="0"/> junto al botón <b class="cBold">Actualizar</b> para indicarle que se está ejecutando actualmente una actualización de política para ese destino. Si va a las páginas Vista de destino o Detalles de destino mientras se está actualizando una política para otro destino, aparecerá una versión sombreada del mismo icono <img src="images/update-policy-bw.gif" id="wp55053" border="0" hspace="0" vspace="0"/> junto al botón <b class="cBold">Actualizar</b> para indicarle que no puede iniciar otra actualización (incluso si se trata de un destino diferente) mientras ya se esté ejecutando una. Si hace clic en el botón <b class="cBold">Actualizar</b>, aparecerá la opción adicional <b class="cBold">Ver estado de otro destino</b> en la parte inferior de la lista desplegable.</p>
+<a name="wp55598"> </a><p class="pBody">Después de ejecutar una actualización de política, el estado de la última ejecución se encuentra disponible en las páginas Ver destino o Detalles de destino. Si hace clic en el botón <b class="cBold">Actualizar</b>, aparecerá la opción adicional <b class="cBold">Ver estado de la última actualización</b> en la parte inferior de la lista desplegable. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'update_now-5.htm');" onMouseOver="WWHShowPopup('Policy', 'update_now-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Supervisar y visualizar del estado de una actualización de política</a>. Policy Manager no mantiene un historial de las actualizaciones de política anteriores.</p>
+<a name="wp55141"> </a><p class="pBody">En la página Estado de actualización de política, puede ver la información relativa a la actualización, entre la que también se incluyen los siguientes elementos:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp55142"> </a><div class="pSmartList2"><li><b class="cBold">Destino.</b> El nombre del destino en el que ha elegido realizar una actualización de política.</li></div>
+<a name="wp55146"> </a><div class="pSmartList2"><li><b class="cBold">Iniciado el.</b> La hora y la fecha en que Policy Manager inició la conexión con los clientes finales que pertenecen al destino, así como la actualización de política que usted especificó.</li></div>
+<a name="wp55149"> </a><div class="pSmartList2"><li><b class="cBold">Tamaño de la conexión.</b> El número total de clientes finales a los que Policy Manager intenta conectarse y llevar a cabo una actualización de política especificados por usted.</li></div>
+<a name="wp55151"> </a><div class="pSmartList2"><li><b class="cBold">Progreso.</b> El progreso de la actualización de política. Es el porcentaje de clientes finales a los que Policy Manager se ha conectado e iniciado la actualización que usted especificó.</li></div>
+<hr class="NoteRuleTop"/><a name="wp55158"> </a><p class="pNote"><span style="color: #003366">Nota: </span> Su progreso refleja si Policy Manager pudo o no conectarse a los clientes finales e iniciar así la actualización de política. No refleja si la actualización especificada se ha completado con éxito o no en los clientes finales.</p><hr class="NoteRuleBottom"/></ul></div>
+</ul></div>
+<a name="wp55167"> </a><p class="pBody">También puede ver el estado actual de los clientes finales por separado (tuners) en los que está realizando las actualizaciones de política. El estado de un cliente final puede ser cualquiera de los que se exponen a continuación:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp56862"> </a><div class="pSmartList2"><li><b class="cBold">Pendiente.</b> Indica que Policy Manager todavía está intentando, o pronto intentará, conectarse e iniciará la actualización de política en el cliente final.</li></div>
+<a name="wp57402"> </a><div class="pSmartList2"><li><b class="cBold">Detenido.</b> Indica que usted u otro administrador utilizó Policy Manager para detener la actualización de política. También podría ver este estado si la actualización de política en los clientes finales se detiene debido a que no hay quórum. (Quórum es una propiedad de configuración de Deployment Manager.) El valor de quórum predeterminado es 0, lo que significa que el despliegue continua ejecutándose en todos los clientes finales del grupo sin tener en cuenta cuántos de ellos se han completado con éxito y cuántos no.</li></div>
+<a name="wp56866"> </a><div class="pSmartList2"><li><b class="cBold">Correcto.</b> Indica que Policy Manager se ha conectado e iniciado la acción en el cliente final.</li></div>
+<a name="wp55753"> </a><div class="pSmartList2"><li><b class="cBold">Ha fallado.</b> Indica que Policy Manager pudo conectarse al tuner, pero hubo un error al finalizar la actualización de política en el cliente final.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp56523"> </a><p class="pBody">Puede hacer clic en el estado <b class="cBold">Correcto</b> o <b class="cBold">Ha fallado</b> para ver los logs de esa máquina específica.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

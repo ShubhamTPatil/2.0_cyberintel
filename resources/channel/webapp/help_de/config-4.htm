@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:19" />
+    <title>Plugin-Konfigurationsseite: Verzeichnisdienstfelder</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Plugin-Konfigurationsseite: Verzeichnisdienstfelder";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp69947"> </a><p class="pBody">Normalerweise sind die Verzeichnisdienstfelder auf der Seite &quot;Plugin-Konfiguration&quot; bereits mit Informationen aus dem für CMS angegebenen Verzeichnisdienst ausgefüllt. Die Liste der auszufüllenden Felder hängt von dem Verzeichnisdienst ab, den Sie verwenden. Die Seite &quot;Plugin-Konfiguration&quot; enthält die folgenden Verzeichnisdienstfelder:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp69949"> </a><div class="pSmartList2"><li><b class="cBold">Hostname und Port—</b>Hostname und Port des Verzeichnisdienstes in der Form <b class="cBold">&lt;</b><em class="cEmphasis">Hostname</em><b class="cBold">&gt;:&lt;</b><em class="cEmphasis">Port</em><b class="cBold">&gt;</b>. Der von Ihnen hier festgelegte Verzeichnisdienst wird zum Speichern von Policys verwendet. Standardmäßig entsprechen die Einträge dem für CMS angegebenen Verzeichnisdienst, der für die Anmeldeauthentifizierung verwendet wird. (Normalerweise muss dieses Feld für Active Directory nicht ausgefüllt werden.)</li></div>
+<a name="wp69969"> </a><p class="pIndented1">
+Stellt Ihr Unternehmen replizierte Verzeichnisdienste zum Speichern von Policys zur Verfügung, verwenden Sie eine Verzeichnisdienst-zu-Repeater-Zuordnung. Sie können den Vorteil replizierter Verzeichnisdienste ausnutzen, indem Sie Policy Management so konfigurieren, dass jeder Repeater einen nahegelegenen Verzeichnisdienst kontaktiert und nicht denjenigen, der dem Master Transmitter zugewiesen wurde. Zudem können Sie jedem Repeater eine Liste mit Verzeichnisdiensten zuweisen. Tritt bei einem der Verzeichnisdienste aus der Liste ein Fehler auf, dann versucht der Repeater den nächsten zu kontaktieren. Dadurch wird verhindert, dass bei Ausfall eines Verzeichnisdienstes das gesamte System beeinträchtigt wird. Informationen über das Zuordnen von Transmittern zu Verzeichnisdiensten finden Sie im <em class="cEmphasis">Administratorhandbuch für Policy Management</em>.  beschriebene Befehlszeilenoption <b class="cBold">-ldapservers</b> verwenden.
+</p>
+<a name="wp69975"> </a><div class="pSmartList2"><li><b class="cBold">SSL-Verbindung zwischen Transmitter und Verzeichnisdienst verwenden</b>: Aktivieren Sie dieses Kontrollkästchen, um Secure Sockets Layer (SSL) für eine sichere Kommunikation zwischen dem Transmitter und dem Verzeichnisdienst zu aktivieren. Weitere Informationen dazu finden Sie im Abschnitt über Sicherheit und SSL im <em class="cEmphasis">BMC CM-Administratorhandbuch für die Infrastruktur (Infrastructure Administrator&#39;s Guide)</em>, das auf der BMC Customer Support-Website verfügbar ist. </li></div>
+<a name="wp69979"> </a><div class="pSmartList2"><li><b class="cBold">Base DN</b>: Grundlegender Distinguished Name für die Verzeichnisdienstverbindung. Der Base DN definiert den Umfang der Verzeichnisansicht für das Plugin. In den meisten Fällen entspricht dieser dem Sun ONE Directory-Suffix. (Normalerweise muss dieses Feld für Active Directory nicht ausgefüllt werden).</li></div>
+<a name="wp69985"> </a><p class="pIndented1">
+Beispiel: Verwenden Sie für ADAM oder Sun ONE Directory <b class="cBold">dc=</b><em class="cEmphasis">company</em><b class="cBold">,dc=</b><em class="cEmphasis">com</em>.
+</p>
+<a name="wp69993"> </a><div class="pSmartList2"><li><b class="cBold">Bind DN</b>: Der Distinguished Name des Benutzerkontos, welches das Policy Service-Plugin beim Erstellen einer Verbindung zum Verzeichnisdienst verwendet. Dieses Benutzerkonto sollte Leseberechtigungen für den Bereich des durch den <b class="cBold">Base DN</b>-Eintrag festgelegten Verzeichnisses haben. Dieser Bereich wird normalerweise dem gesamten Verzeichnisbaum zugeordnet.</li></div>
+<a name="wp69997"> </a><p class="pIndented1">
+Verwenden Sie für <b class="cBold">Active Directory</b> eines der folgenden Formate:
+</p>
+<a name="wp69999"> </a><div class="pSmartList2"><li>Der vollständige Distinguished Name (DN), wie zum Beispiel <b class="cBold">cn=Administrator,cn=Users,dc=</b>company<b class="cBold">,dc=</b>com</li></div>
+<a name="wp70003"> </a><div class="pSmartList2"><li>Der Benutzerprinzipalname (UPN), wie zum Beispiel <b class="cBold">Administrator@company.com</b></li></div>
+<a name="wp70007"> </a><p class="pIndented1">
+Verwenden Sie für <b class="cBold">ADAM</b> den vollständigen Distinguished Name (DN), wie zum Beispiel <b class="cBold">cn=Administrator,cn=Users,dc=</b><em class="cEmphasis">company</em><b class="cBold">,dc=</b><em class="cEmphasis">com</em>
+</p>
+<a name="wp70011"> </a><p class="pIndented1">
+Verwenden Sie für <b class="cBold">Sun ONE Directory</b> eines der folgenden Formate:
+</p>
+<a name="wp70013"> </a><div class="pSmartList2"><li>Der vollständige Distinguished Name (DN), wie zum Beispiel <b class="cBold">uid=Administrator,ou=People,dc=</b><em class="cEmphasis">company</em><b class="cBold">,dc=</b><em class="cEmphasis">com</em></li></div>
+<a name="wp70015"> </a><div class="pSmartList2"><li>Der allgemeine Name (CN) für den Verzeichnisadministrator, wie zum Beispiel <b class="cBold">cn=Directory Manager</b></li></div>
+<a name="wp70019"> </a><div class="pSmartList2"><li><b class="cBold">Bind DN-Passwort—</b>Das für den Zugriff auf den Verzeichnisdienst benötigte Passwort. Dieses Passwort wird vom Plugin für die Verzeichnisdienstverbindung verwendet.</li></div>
+<a name="wp70027"> </a><div class="pSmartList2"><li><b class="cBold">Größe des Verbindungspools für Verzeichnisdienst</b>: Das Policy Service-Plugin verwendet einen Pooling-Mechanismus zum Erstellen und Aufrechterhalten von Verbindungen mit dem Verzeichnisdienst. Dieser Parameter legt die maximale Anzahl der im Pool hergestellten Verbindungen fest und kann normalerweise auf dem Standardwert von 25 belassen werden.</li></div>
+<a name="wp70039"> </a><div class="pSmartList2"><li><b class="cBold">Die Gültigkeitsdauer (in Minuten) der letzten erfolgreichen Hostverbindung</b>: Wenn Sie für Verzeichnisdienst eine Liste mit Failover-Hostnamen angeben, geht Policy Manager die Liste solange durch, bis erfolgreich eine Verbindung zu einem Host hergestellt wurde. Policy Manager verwendet diese erfolgreiche Hostverbindung, bis die von Ihnen festgelegte Gültigkeitsdauer abgelaufen ist. Danach wird erneut versucht, eine Verbindung zum ersten Hostnamen aus der Liste herzustellen.</li></div>
+<a name="wp70043"> </a><div class="pSmartList2"><li><b class="cBold">Verwendung von Policys als Modelle für neu bereitgestellte Computer zulassen</b>: Wenn Sie die Tuner-Installation in die Bereitstellung der Betriebssysteme integrieren, können Sie durch Markieren dieses Kontrollkästchens Gruppen im Verzeichnisdienst identifizieren, deren Policy Sie als Modell für die Installation neuer Applikationen und Inhalte auf den neu bereitgestellten Computern verwenden möchten. Weitere Informationen finden Sie im Kapitel über die Integration der Tuner-Installationen in die Bereitstellung von Betriebssystemen im <em class="cEmphasis">BMC CM-Deployment-Handbuch</em>, das auf der BMC Customer Support-Website verfügbar ist.</li></div>
+</ul></div>
+</ul></div>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

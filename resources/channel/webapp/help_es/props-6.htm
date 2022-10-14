@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:49" />
+    <title>Eliminar propiedades de tuner y de paquete</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Eliminar propiedades de tuner y de paquete";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp37628"> </a><p class="pBody">Si no desea que se establezcan más propiedades de paquete en los tuners de cliente final, puede eliminarlos utilizando Policy Manager. Para llevar esto a cabo, establezca el valor de la propiedad en <b class="cBold">&lt;default&gt;</b>, incluidos los corchetes (<b class="cBold">&lt;&gt;</b>).</p>
+<a name="wp37633"> </a><p class="pBody">Cuando se elimina una propiedad de tuner utilizando Policy Manager, se elimina del archivo <b class="cBold">prefs.txt</b> en el directorio del espacio de trabajo del tuner y suele dejar de ser efectivo. Sin embargo, si previamente ha configurado esa propiedad en el momento de empaquetar el tuner, no podrá ser eliminada con Policy Manager. Esto se debe a que, al establecer la propiedad durante el empaquetado, se establece la propiedad en el archivo <b class="cBold">properties.txt</b>, ubicado en el directorio del espacio de trabajo del tuner (generalmente en <b class="cBold">C:\Archivos de programa\Marimba\Tuner\.marimba\Marimba\properties.txt</b> en Windows), y Policy Manager no elimina la propiedad del archivo <b class="cBold">properties.txt</b>. Normalmente las propiedades de tuner del archivo <b class="cBold">prefs.txt</b> anulan las propiedades de tuner predeterminadas en el archivo <b class="cBold">properties.txt</b>. Sin embargo, en este caso la propiedad de tuner solo existe en el archivo <b class="cBold">properties.txt</b>, de modo que entra en vigor.</p>
+<hr class="NoteRuleTop"/><a name="wp42449"> </a><p class="pNote"><span style="color: #003366">Nota: </span> Puede establecer valores de nivel de destino, como las propiedades de tuner y paquete, solo para un destino cada vez. Si tiene habilitado el modo de selección múltiple y está editando las políticas de múltiples destinos a la vez, no podrá establecer una configuración de nivel de destino. Sin embargo, podrá establecer una configuración de nivel de destino para todos los destinos seleccionando el destino<b class="cBold"> Todos los clientes finales</b>.</p><hr class="NoteRuleBottom"/><a name="wp42450"> </a><p class="pBody">Este procedimiento da por hecho que se encuentra en la ficha Paquetes de la página Editar política. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-04.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Instrucciones generales para la creación y edición de políticas</a>.</p>
+<a name="wp34423"> </a><p style="text-decoration: none" class="pStepIntro">
+Eliminación de propiedades de los destinos
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp42464"> </a><div class="pSmartList1"><li>En la página Editar directiva, haga clic en la ficha <b class="cBold">Opciones avanzadas &gt; Propiedades de tuner/paquete</b>.</li></div>
+<a name="wp42465"> </a><p class="pIndented1">
+Aparece la página Propiedades de tuner y paquete.
+</p>
+<a name="wp37749"> </a><div class="pSmartList1"><li>Para las propiedades de tuner, busque el cuadro de texto <b class="cBold">Propiedades</b> e introduzca el nombre y el valor de propiedad con el valor establecido en <b class="cBold">&lt;default&gt;</b>, incluidos los corchetes (<b class="cBold">&lt;&gt;</b>).</li></div>
+<a name="wp37758"> </a><p class="pIndented1">
+Por ejemplo: <b class="cBold">marimba.subscription.retrycount=&lt;default&gt;</b>
+</p>
+<a name="wp37756"> </a><p class="pIndented1">
+Siga el formato descrito en <a href="javascript:WWHClickedPopup('Policy', 'props-5.htm');" onMouseOver="WWHShowPopup('Policy', 'props-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Formato de propiedades de tuner y de paquete</a>.
+</p>
+<a name="wp34720"> </a><div class="pSmartList1"><li>Para las propiedades de paquete, lleve a cabo los pasos siguientes en la tabla Propiedades de paquete:</li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp34721"> </a><div class="pSmartList2"><li>En la lista <b class="cBold">Paquete</b>, seleccione el paquete o el grupo de paquetes para el que desea establecer propiedades. Puede seleccionar uno de los siguientes:</li></div>
+<div class="pSmartList3"><ul class="pSmartList3">
+<a name="wp35725"> </a><div class="pSmartList3"><li>La URL de un paquete específico: seleccione esta opción si desea establecer la propiedad sólo para un paquete específico.</li></div>
+<a name="wp36418"> </a><div class="pSmartList3"><li><b class="cBold">Todos los paquetes</b>: seleccione esta opción si desea establecer la propiedad para todos los paquetes del tuner (para los destinos), salvo para el channel de Policy Service.</li></div>
+<a name="wp35728"> </a><div class="pSmartList3"><li><b class="cBold">Todos los paquetes suscritos</b>: seleccione esta opción si desea establecer la propiedad para todos los paquetes que forman parte de la política, salvo para los que tengan los estados <b class="cBold">desinstalar</b>, <b class="cBold">excluir</b>, <b class="cBold">principal</b> o <b class="cBold">anunciar</b>. Además, el channel de Policy Service no se incluye.</li></div>
+<a name="wp35715"> </a><div class="pSmartList3"><li><b class="cBold">Channel de Policy Service</b>: seleccione esta opción si desea establecer la propiedad solo para el channel de Policy Service.</li></div>
+</ul></div>
+<a name="wp34739"> </a><div class="pSmartList2"><li>Introduzca el nombre y el valor de la propiedad, con el valor establecido en <b class="cBold">&lt;default&gt;</b>.</li></div>
+<a name="wp34740"> </a><div class="pSmartList2"><li>Haga clic en <b class="cBold">Aplicar</b>.</li></div>
+<a name="wp34766"> </a><p class="pIndented1">
+La propiedad se agrega al cuadro de texto Propiedades.
+</p>
+<a name="wp43858"> </a><p class="pIndented1">
+<b class="cBold">Nota:</b> también puede introducir la URL de paquete, el nombre y el valor de la propiedad de paquete directamente en el cuadro de texto <b class="cBold">Propiedades</b>. Siga el formato descrito en <a href="javascript:WWHClickedPopup('Policy', 'props-5.htm');" onMouseOver="WWHShowPopup('Policy', 'props-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Formato de propiedades de tuner y de paquete</a>.
+</p>
+</ol></div>
+<a name="wp34770"> </a><div class="pSmartList1"><li>Revise las propiedades de tuner y paquete enumeradas en el cuadro de texto <b class="cBold">Propiedades</b>.</li></div>
+<hr class="NoteRuleTop"/><a name="wp35502"> </a><p class="pNote"><span style="color: #003366">Nota: </span> Eliminar una propiedad del cuadro de texto <b class="cBold">Propiedades</b> no la elimina de los clientes finales de destino. Esto provoca que la propiedad permanezca intacta en el tuner de destino (no gestionado por Policy Manager). Para eliminar una propiedad de tuner o paquete de los clientes finales de destino, establezca este valor en <b class="cBold">&lt;default&gt;</b>.</p><hr class="NoteRuleBottom"/></ol></div>
+<a name="wp43169"> </a><p class="pBody">Cuando haya terminado de editar la política, visualice los cambios efectuados en Vista previa y guárdela. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-05.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Visualizar previamente y almacenar cambios en las políticas</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

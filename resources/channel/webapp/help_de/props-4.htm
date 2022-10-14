@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:48" />
+    <title>Festlegen von Package-Eigenschaften</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Festlegen von Package-Eigenschaften";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp668203"> </a><p class="pBody">In diesem Abschnitt wird beschrieben, wie Package-Eigenschaften für Packages festgelegt werden. <em class="cEmphasis">Package-Eigenschaften</em> stellen Informationen über das Package sowie über dessen Ausführung zur Verfügung. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp668025');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp668025', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was sind Package-Eigenschaften?</a>.</p>
+<hr class="NoteRuleTop"/><a name="wp668205"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Sie können Einstellungen auf Zielebene, wie die Tuner- oder Package-Eigenschaften, nur für jeweils ein Ziel festlegen. Sie können keine Einstellungen auf Zielebene einrichten, wenn Sie sich im Mehrfachauswahlmodus befinden und gleichzeitig Policys für mehrere Ziele bearbeiten. Sie können jedoch für alle Ziele Einstellungen auf Zielebene einrichten, indem Sie das Ziel <b class="cBold">Alle Clients</b> auswählen.</p><hr class="NoteRuleBottom"/><a name="wp668211"> </a><p class="pBody">Bei diesem Vorgang wird davon ausgegangen, dass Sie sich auf der Seite &quot;Policy bearbeiten&quot; auf der Registerkarte &quot;Packages&quot; befinden. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-04.htm');" onMouseOver="WWHShowPopup('sm', 'policies-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Allgemeine Anweisungen zum Erstellen und Bearbeiten von Policys</a>.</p>
+<a name="wp668213"> </a><p style="text-decoration: none" class="pStepIntro">
+So legen Sie Package-Eigenschaften für ein Ziel fest:
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp668215"> </a><div class="pSmartList1"><li>Klicken Sie auf der Seite &quot;Policy bearbeiten&quot; auf die Registerkarte <b class="cBold">Erweitert &gt; Tuner/Package-Eigenschaften</b>.</li></div>
+<a name="wp668217"> </a><p class="pIndented1">
+Die Seite &quot;Tuner- und Package-Eigenschaften&quot; wird angezeigt.
+</p>
+<a name="wp668219"> </a><div class="pSmartList1"><li>Führen Sie zum Festlegen der Package-Eigenschaften in der Tabelle &quot;Package-Eigenschaften&quot; die folgenden Schritte aus:</li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp668221"> </a><div class="pSmartList2"><li>Wählen Sie aus der Liste <b class="cBold">Package</b> das Package oder die Gruppe von Packages aus, für die Sie Eigenschaften festlegen möchten. Wählen Sie eine der folgenden Optionen aus:</li></div>
+<div class="pSmartList3"><ul class="pSmartList3">
+<a name="wp668223"> </a><div class="pSmartList3"><li>URL-Adresse eines bestimmten Package: Wählen Sie diese Option aus, wenn Sie lediglich die Eigenschaft eines bestimmten Packages festlegen möchten.</li></div>
+<a name="wp668229"> </a><div class="pSmartList3"><li><b class="cBold">Alle Packages</b>: Wählen Sie diese Option aus, wenn Sie die Eigenschaft für alle Packages auf den Client-Tunern, außer für den Policy Service-Channel, festlegen möchten.</li></div>
+<a name="wp668235"> </a><div class="pSmartList3"><li><b class="cBold">Alle Packages mit Subscription</b>: Wählen Sie diese Option aus, wenn Sie die Eigenschaft für alle Packages festlegen möchten, die Teil der Policy sind, außer wenn diese den Status <b class="cBold">Deinstallieren</b>, <b class="cBold">Ausschließen</b>, <b class="cBold">Primär</b> oder <b class="cBold">Ankündigen</b> besitzen. Auch der Policy Service-Channel ist nicht betroffen.</li></div>
+<a name="wp668245"> </a><div class="pSmartList3"><li><b class="cBold">Policy Service Channel</b>: Wählen Sie diese Option aus, wenn Sie die Eigenschaft lediglich für den Policy Service-Channel festlegen möchten.</li></div>
+</ul></div>
+<a name="wp668247"> </a><div class="pSmartList2"><li>Geben Sie den Name und Wert der Eigenschaft ein.</li></div>
+<a name="wp668249"> </a><div class="pSmartList2"><li>Klicken Sie auf <b class="cBold">Übernehmen</b>.</li></div>
+<a name="wp668251"> </a><p class="pIndented1">
+Die Eigenschaft wird dem Textfeld &quot;Eigenschaften&quot; hinzugefügt.
+</p>
+<a name="wp668257"> </a><p class="pIndented1">
+<b class="cBold">Hinweis:</b> Sie können die URL-Adresse des Package sowie den Namen und den Wert der Package-Eigenschaft auch direkt in das Textfeld <b class="cBold">Eigenschaften</b> eingeben. Verwenden Sie das unter <a href="javascript:WWHClickedPopup('sm', 'props-5.htm');" onMouseOver="WWHShowPopup('sm', 'props-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Tuner- und Package-Eigenschaften, Format</a> beschriebene Format.
+</p>
+</ol></div>
+<a name="wp668259"> </a><div class="pSmartList1"><li>Überprüfen Sie die im Textfeld <b class="cBold">Eigenschaften</b> aufgelisteten Eigenschaften.</li></div>
+<hr class="NoteRuleTop"/><a name="wp668269"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Durch Löschen einer Eigenschaft aus dem Textfeld <b class="cBold">Eigenschaften</b> wird diese nicht von den Zielclients entfernt. Daher bleibt die Eigenschaft auf dem Ziel-Tuner bestehen (nicht von Policy Management verwaltet). Eine Anleitung zum Löschen von Eigenschaften finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'props-6.htm');" onMouseOver="WWHShowPopup('sm', 'props-6.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Löschen von Tuner- und Package-Eigenschaften</a>.</p><hr class="NoteRuleBottom"/></ol></div>
+<a name="wp668275"> </a><p class="pBody">Nachdem Sie die Policy bearbeitet haben, sehen Sie sich die Vorschau an, und speichern Sie die Policy. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Erstellen der Vorschau und Speichern von Policy-Änderungen</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

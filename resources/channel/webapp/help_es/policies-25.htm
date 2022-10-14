@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:45" />
+    <title>Eliminar políticas</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Eliminar políticas";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp53044"> </a><p class="pBody">Para eliminar una política, deberá utilizar una de las siguientes páginas:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp53045"> </a><div class="pSmartList2"><li>Página Vista de destino</li></div>
+<a name="wp53046"> </a><div class="pSmartList2"><li>Página Detalles de destino</li></div>
+</ul></div>
+</ul></div>
+<a name="wp53049"> </a><p class="pBody">Si utiliza este método para eliminar políticas, los paquetes (y el resto de información) incluidos en la política se eliminarán del destino la próxima vez que Policy Service se actualice. Sin embargo, los paquetes no se eliminarán de los destinos si se da alguna de las situaciones siguientes:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp53053"> </a><div class="pSmartList2"><li>El estado de los paquetes se ha establecido como <b class="cBold">instalar-persistir</b> o como <b class="cBold">instalar-iniciar-persistir</b>.</li></div>
+<a name="wp53054"> </a><div class="pSmartList2"><li>La propiedad de tuner <b class="cBold">No eliminar</b> (<b class="cBold">marimba.subscription.nodelete</b>) se ha establecido como <b class="cBold">true</b>.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp53055"> </a><p class="pBody">Si se diera cualquiera de estas situaciones, el paquete permanecerá en los destinos, aunque éste ya no podrá ser gestionado mediante Policy Manager. Para eliminar definitivamente estos paquetes de los destinos, deberá configurar explícitamente el estado principal de los paquetes como <b class="cBold">desinstalar</b>.</p>
+<hr class="NoteRuleTop"/><a name="wp54381"> </a><p class="pNote"><span style="color: #003366">Nota: </span> Si está habilitado el modo de selección múltiple y desea eliminar las políticas de múltiples destinos a la vez, tenga en cuenta que sólo podrá eliminar las políticas (incluidos todos los paquetes e información relacionada con los paquetes, como los estados y las planificaciones) de todos los destinos, aún cuando sólo se muestren los paquetes comunes a todos los destinos.</p><hr class="NoteRuleBottom"/><a name="wp53060"> </a><p style="text-decoration: none" class="pStepIntro">
+Para eliminar una política en la página Vista de destino o en la página Detalles de destino
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp53061"> </a><div class="pSmartList1"><li>En la página Vista de destino o en la página Detalles de destino, seleccione uno o más destinos.</li></div>
+<a name="wp53063"> </a><p class="pIndented1">
+<b class="cBold">Nota:</b> sólo podrá eliminar una política de un destino en el caso de que dicha política se haya <em class="cEmphasis">asignado directamente</em> al destino. La columna Asignado directamente a muestra el destino al que se han asignado directamente determinados paquetes.
+</p>
+<a name="wp53064"> </a><div class="pSmartList1"><li>Haga clic en <b class="cBold">Eliminar</b>.</li></div>
+<a name="wp53065"> </a><p class="pIndented1">
+Aparecerá la página Eliminar vista previa. Esta página le permitirá revisar la política que va a eliminar de los destinos. También le permitirá especificar si desea eliminar la política completa o sólo algunos paquetes de ésta.
+</p>
+<a name="wp53066"> </a><p class="pIndented1">
+Si elimina todos los paquetes asignados directamente a los destinos, tendrá la opción de eliminar los parámetros y las propiedades adicionales de los destinos. Esto incluirá las propiedades del tuner y de los paquetes, el periodo de exclusión, los permisos de transmitter, y la planificación de actualización de Policy Service.
+</p>
+<a name="wp53070"> </a><div class="pSmartList1"><li>Seleccione una de las opciones siguientes:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp53281"> </a><div class="pSmartList2"><li>Haga clic en <b class="cBold">Eliminar la política completa</b> en caso de que desee especificar que deberán eliminarse todos los paquetes de la política, así como la configuración y las propiedades adicionales de la política. Esto incluirá las propiedades del tuner y de los paquetes, el periodo de exclusión, los permisos de transmitter, y la planificación de actualización de Policy Service.</li></div>
+<a name="wp53311"> </a><div class="pSmartList2"><li>Haga clic en <b class="cBold">Eliminar sólo los paquetes</b> en caso de que desee especificar que deberán eliminarse todos los paquetes de la política, pero desee mantener las propiedades de los paquetes y del tuner, el periodo de exclusión, los permisos de transmitter y la planificación de actualización de Policy Service.</li></div>
+<a name="wp53309"> </a><div class="pSmartList2"><li>Haga clic en <b class="cBold">Cancelar</b> si decide no eliminar la política.</li></div>
+<hr class="NoteRuleTop"/><a name="wp54221"> </a><p class="pNote"><span style="color: #003366">Nota: </span> Si al eliminarse la política de un destino, se elimina la planificación de actualización de Policy Service como consecuencia, Policy Service seguirá actualizándose según la planificación anteriormente establecida. La planificación de actualización predeterminada de Policy Service no se restaurará. Policy Service mantendrá la planificación de actualización anteriormente establecida hasta que configure una nueva planificación de actualización en Policy Service.</p><hr class="NoteRuleBottom"/><a name="wp54235"> </a><p class="pIndented1">
+Al volver a la página Vista de destino o a la página Detalles de destino, la política eliminada no se encontrará ya en dicha página. Los paquetes (y demás información de la política, en caso de que haya especificado dicha información) se eliminarán del destino la próxima vez que se actualice Policy Service. Si ha seleccionado eliminar sólo los paquetes, el icono asignado directamente de la política <img src="images/policyaz.gif" id="wp54212" border="0" hspace="0" vspace="0"/> seguirá asociado al destino. Si ha seleccionado eliminar la política completa, el icono de la política desaparecerá del destino.
+</p>
+</ul></div>
+</ol></div>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

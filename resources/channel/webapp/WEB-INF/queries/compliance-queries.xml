@@ -1,0 +1,1304 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<tree version="1">
+
+  <metadata>
+
+    <property name="database">oracle</property>
+
+  </metadata>
+
+  <dirnode name="" type="root-directory" class="com.marimba.tools.dbtree.DirNode">
+
+    <dirnode name="public" type="directory" class="com.marimba.tools.dbtree.DirNode">
+
+      <property name="atlas.folder">true</property>
+
+      <dirnode name="compliance" type="directory" class="com.marimba.tools.dbtree.DirNode">
+
+        <property name="atlas.folder">true</property>
+
+        <property name="atlas.node.createdBy">manoj</property>
+
+        <property name="atlas.node.dateCreated">1116631033204</property>
+
+        <property name="atlas.node.desc">Queries for Policy Compliance</property>
+
+        <node name="AllPackagesGreaterThanGivenDate" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">manoj</property>
+
+          <property name="atlas.node.dateCreated">1116631290367</property>
+
+          <property name="atlas.node.desc">Get a list of packages where lastupdated date &gt; given date</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">1</property>
+
+          <property name="atlas.node.sql">select mp.url,min(ts.lastupdated) from inventory.subscription_policy mp LEFT OUTER JOIN inventory.txchsegment ts on substr( substr(mp.url,8,length(mp.url)) ,instr( substr(mp.url,8,length(mp.url)),&apos;/&apos;)+1) = ts.url and ts.lastupdated &gt; $1 group by mp.url</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">lastupdated</property>
+
+          <property name="at_0">date</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+        </node>
+
+        <node name="ComplianceCacheHeaderInfo" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">cn=zxia,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.dateCreated">1118871620949</property>
+
+          <property name="atlas.node.desc">Given a calculation id, get the cache header information</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">1</property>
+
+          <property name="atlas.node.sql">select target_name, start_time, end_time, calculation_id
+
+from inventory.compliance_cache_header
+
+where calculation_id = $1</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">Calculation id</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="av_0_0">6</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+        </node>
+
+        <node name="ComplianceReportListByTarget" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">cn=zxia,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.dateCreated">1118727495078</property>
+
+          <property name="atlas.node.desc">Given a target name, return a list of cached compliance reports</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">1</property>
+
+          <property name="atlas.node.sql">select calculation_id, target_name, start_time, end_time
+
+from inventory.compliance_cache_header
+
+where target_name like $1 order by start_time desc</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">target name</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="av_0_0">%</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+        </node>
+
+        <node name="ComplianceSummaryReportByCID" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">cn=zxia,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.dateCreated">1118708712048</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">1</property>
+
+          <property name="atlas.node.sql">select count(*) count, compliance_level 
+
+from inventory.compliance_cache_detail
+
+where calculation_id = $1 group by compliance_level</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">Calculation id</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="av_0_0">0</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+        </node>
+
+        <node name="CompliantMachineByTargetPolicyURL" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">cn=zxia,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.dateCreated">1118422981479</property>
+
+          <property name="atlas.node.desc">Given target, policy and url, return a list of compliant machines</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">3</property>
+
+          <property name="atlas.node.sql">select m.name machine_name, mc.compliance_level, mc.endpoint_state, mc.policy_state
+
+from inventory.machinecompliance mc, inventory.subscription_policy sp, targets p, (select cmt.marimba_table_primary_id as machine_id from targets_membership ctm, targets cp, targets cc, targets_marimba cmt where ctm.memberof_target_id = cp.id and ctm.target_id = cc.id and cp.target_name = $1 and cc.TYPE =&apos;machine&apos; and cc.id = cmt.target_id) macs, inventory.machine m
+
+where 
+
+m.id = macs.machine_id and
+
+mc.URL = sp.URL and 
+
+mc.POLICY_NAME = p.target_name and 
+
+p.id = sp.target_id and 
+
+(mc.POLICY_STATE = sp.PRIMARY_STATE or mc.POLICY_STATE = sp.SECONDARY_STATE) and 
+
+macs.machine_id = mc.machine_id and 
+
+p.target_name = $2 and 
+
+mc.URL = $3 and
+
+mc.compliance_level = &apos;COMPLIANT&apos;</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">target</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="an_1">policy</property>
+
+          <property name="at_1">string</property>
+
+          <property name="ax_1">false</property>
+
+          <property name="av_1_null">false</property>
+
+          <property name="aid_1">$2</property>
+
+          <property name="av_0_0">cn=computers,ou=marimba,dc=marimba,dc=com</property>
+
+          <property name="av_1_0">cn=marimbacomputers,cn=computers,ou=marimba,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+          <property name="aid_2">$3</property>
+
+          <property name="an_2">url</property>
+
+          <property name="at_2">string</property>
+
+          <property name="ax_2">false</property>
+
+          <property name="av_2_null">false</property>
+
+          <property name="av_2_0">http://staging:80/m6000/Current/ChannelCopier</property>
+
+        </node>
+
+        <node name="CompliantMachineReportByCID" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">cn=zxia,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.dateCreated">1118708971942</property>
+
+          <property name="atlas.node.desc">Give a calculation id, report all compliance machines</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">1</property>
+
+          <property name="atlas.node.sql">select m.name machine_name, m.scantime
+
+from inventory.compliance_cache_detail c, inventory.machine m
+
+where 
+
+c.calculation_id = $1 and
+
+m.id = c.machine_id and
+
+c.compliance_level = &apos;COMPLIANT&apos;</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">calculation id</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="av_0_0">0</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+        </node>
+
+        <node name="ListPackageLessThanGivenDateAndPackageName" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">manoj</property>
+
+          <property name="atlas.node.dateCreated">1116631418078</property>
+
+          <property name="atlas.node.desc">et a list of packages where lastupdated date &lt; given date and package name like given packagename</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">2</property>
+
+          <property name="atlas.node.sql">select mp.url,min(ts.lastupdated) from inventory.subscription_policy mp LEFT OUTER JOIN inventory.txchsegment ts on substr( substr(mp.url,8,length(mp.url)) ,instr( substr(mp.url,8,length(mp.url)),&apos;/&apos;)+1) like $1 and ts.lastupdated &lt; $2 group by mp.url</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">url</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="an_1">lastupdated</property>
+
+          <property name="at_1">date</property>
+
+          <property name="ax_1">false</property>
+
+          <property name="av_1_null">false</property>
+
+          <property name="aid_1">$2</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+        </node>
+
+        <node name="ListPackagesByPackageName" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">x</property>
+
+          <property name="atlas.node.dateCreated">1118099062347</property>
+
+          <property name="atlas.node.desc">Return a list of packages given a package url.</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">1</property>
+
+          <property name="atlas.node.sql">select distinct url from inventory.subscription_policy where package_title like $1</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">url</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="av_0_0">%JSON%</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+        </node>
+
+        <node name="ListPackagesEqualToGivenDateAndPackageName" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">manoj</property>
+
+          <property name="atlas.node.dateCreated">1116631506731</property>
+
+          <property name="atlas.node.desc">Get a list of packages where lastupdated date = given date and package name like given packagename</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">2</property>
+
+          <property name="atlas.node.sql">select mp.url,min(ts.lastupdated) from inventory.subscription_policy mp LEFT OUTER JOIN inventory.txchsegment ts on substr( substr(mp.url,8,length(mp.url)) ,instr( substr(mp.url,8,length(mp.url)),&apos;/&apos;)+1) like $1 and ts.lastupdated = $2 group by mp.url</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">url</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="an_1">lastupdated</property>
+
+          <property name="at_1">date</property>
+
+          <property name="ax_1">false</property>
+
+          <property name="av_1_null">false</property>
+
+          <property name="aid_1">$2</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+        </node>
+
+        <node name="MachineComplianceDetail" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">cn=zxia,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.dateCreated">1118362748921</property>
+
+          <property name="atlas.node.desc">Given a machine, show it&apos;s package-level compliance information</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">2</property>
+
+          <property name="atlas.node.sql">select tserver.url, tserver.package_title, tserver.primary_state, tclient.endpoint_state, 
+
+       tclient.compliance_level, tserver.target_name, tserver.type, tclient.policy_lastupdated, tserver.last_updated
+
+from
+
+    (select p.target_name, p.type, sp.package_title, sp.url, sp.primary_state, sp.secondary_state, sp.last_updated
+
+     from targets p, targets c, targets_membership tm, subscription_policy sp  
+
+     where  
+
+     p.id = tm.memberof_target_id and 
+
+     c.id = tm.target_id and
+
+     c.target_name = $1 and
+
+     sp.target_id = p.id) tserver,
+
+    (select mmc.policy_name, mmc.url, mmc.compliance_level, mmc.endpoint_state, mmc.policy_state, mmc.policy_lastupdated
+
+     from targets mt, targets_marimba mtm, machinecompliance mmc 
+
+     where mt.target_name = $2 and 
+
+     mt.id = mtm.target_id and
+
+     mmc.machine_id = mtm.marimba_table_primary_id) tclient
+
+where 
+
+tclient.policy_name (+) = tserver.target_name and
+
+tclient.url (+) = tserver.url</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">target</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="an_1">target</property>
+
+          <property name="at_1">string</property>
+
+          <property name="ax_1">false</property>
+
+          <property name="av_1_null">false</property>
+
+          <property name="aid_1">$2</property>
+
+          <property name="av_0_0">cn=zxia,cn=marimbacomputers,cn=computers,ou=marimba,dc=marimba,dc=com</property>
+
+          <property name="av_1_0">cn=zxia,cn=marimbacomputers,cn=computers,ou=marimba,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+        </node>
+
+        <node name="NonCompliantMachineByTargetPolicyURL" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">cn=zxia,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.dateCreated">1118423037480</property>
+
+          <property name="atlas.node.desc">Given target, policy and url, return a list of non compliant machines</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">3</property>
+
+          <property name="atlas.node.sql">select m.name machine_name, mc.compliance_level, mc.endpoint_state, mc.policy_state 
+
+from inventory.machinecompliance mc, inventory.subscription_policy sp, targets p, (select cmt.marimba_table_primary_id as machine_id from targets_membership ctm, targets cp, targets cc, targets_marimba cmt where ctm.memberof_target_id = cp.id and ctm.target_id = cc.id and cp.target_name = $1 and cc.TYPE =&apos;machine&apos; and cc.id = cmt.target_id) macs, inventory.machine m 
+
+where 
+
+m.id = macs.machine_id and
+
+mc.URL = sp.URL and 
+
+mc.POLICY_NAME = p.target_name and 
+
+p.id = sp.target_id and 
+
+(mc.POLICY_STATE = sp.PRIMARY_STATE or mc.POLICY_STATE = sp.SECONDARY_STATE) and 
+
+macs.machine_id = mc.machine_id and 
+
+p.target_name = $2 and 
+
+mc.URL = $3 and
+
+mc.compliance_level = &apos;NON_COMPLIANT&apos;</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">target</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="an_1">policy</property>
+
+          <property name="at_1">string</property>
+
+          <property name="ax_1">false</property>
+
+          <property name="av_1_null">false</property>
+
+          <property name="aid_1">$2</property>
+
+          <property name="av_0_0">cn=computers,ou=marimba,dc=marimba,dc=com</property>
+
+          <property name="av_1_0">cn=marimbacomputers,cn=computers,ou=marimba,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+          <property name="aid_2">$3</property>
+
+          <property name="an_2">url</property>
+
+          <property name="at_2">string</property>
+
+          <property name="ax_2">false</property>
+
+          <property name="av_2_null">false</property>
+
+          <property name="av_2_0">http://staging:80/m6000/Current/ChannelCopier</property>
+
+        </node>
+
+        <node name="NonCompliantMachineReportByCID" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">cn=zxia,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.dateCreated">1118727077258</property>
+
+          <property name="atlas.node.desc">Give a calculation id, report all non compliant machines</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">1</property>
+
+          <property name="atlas.node.sql">select m.name machine_name, m.scantime, c.package_title, c.policy_name, c.policy_state,c.endpoint_state, c.policy_lastupdated
+
+from inventory.compliance_cache_detail c, inventory.machine m
+
+where 
+
+c.calculation_id = $1 and
+
+m.id = c.machine_id and
+
+c.compliance_level = &apos;NON_COMPLIANT&apos;</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">calculation id</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="av_0_0">0</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+        </node>
+
+        <node name="NotCheckInMachineByTargetPolicyURL" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">cn=zxia,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.dateCreated">1118422919179</property>
+
+          <property name="atlas.node.desc">Given target, policy and url, return a list of not check in machines</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">3</property>
+
+          <property name="atlas.node.sql">select m.name machine_name, m.scantime
+
+from inventory.subscription_policy sp, targets p, (select cmt.marimba_table_primary_id as machine_id from targets_membership ctm, targets cp, targets cc, targets_marimba cmt where ctm.memberof_target_id = cp.id and ctm.target_id = cc.id and cp.target_name = $1 and cc.TYPE =&apos;machine&apos; and cc.id = cmt.target_id) macs, inventory.machine m
+
+where 
+
+m.id = macs.machine_id and
+
+p.target_name = $2 and 
+
+sp.URL = $3 and
+
+p.id = sp.target_id and
+
+not exists (select * from inventory.machinecompliance mc
+
+                where mc.URL = sp.URL and 
+
+                          mc.POLICY_NAME = p.target_name and 
+
+                          (mc.POLICY_STATE = sp.PRIMARY_STATE or mc.POLICY_STATE = sp.SECONDARY_STATE) and 
+
+                          macs.machine_id = mc.machine_id)</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">target</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="an_1">policy</property>
+
+          <property name="at_1">string</property>
+
+          <property name="ax_1">false</property>
+
+          <property name="av_1_null">false</property>
+
+          <property name="aid_1">$2</property>
+
+          <property name="av_0_0">cn=computers,ou=marimba,dc=marimba,dc=com</property>
+
+          <property name="av_1_0">cn=computers,ou=marimba,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+          <property name="aid_2">$3</property>
+
+          <property name="an_2">url</property>
+
+          <property name="at_2">string</property>
+
+          <property name="ax_2">false</property>
+
+          <property name="av_2_null">false</property>
+
+          <property name="av_2_0">http://staging:80/m6000/Current/NTAuth</property>
+
+        </node>
+
+        <node name="NotCheckInMachineReportByCID" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">cn=zxia,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.dateCreated">1118709112314</property>
+
+          <property name="atlas.node.desc">Give a calculation id, report all not checked in machines</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">1</property>
+
+          <property name="atlas.node.sql">select m.name machine_name, m.scantime, c.package_title, c.policy_name, c.policy_state, c.policy_lastupdated
+
+from inventory.compliance_cache_detail c, inventory.machine m
+
+where 
+
+c.calculation_id = $1 and
+
+m.id = c.machine_id and
+
+c.compliance_level = &apos;NOT_CHECK_IN&apos;</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">calculation id</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="av_0_0">0</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+        </node>
+
+        <node name="OverallCompliantMachineByInventory" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">cn=zxia,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.dateCreated">1118700393426</property>
+
+          <property name="atlas.node.desc">Overall compliance machine list by inventory report, given a target group and scantime</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">2</property>
+
+          <property name="atlas.node.sql">select mt.name machine_name, mt.scantime
+
+from inventory.machinecompstatus ms, inventory.machine mt,   
+
+    (select m.marimba_table_primary_id as machine_id
+
+     from targets p, targets c, targets_membership tm, targets_marimba m
+
+     where  
+
+     p.id = tm.memberof_target_id and 
+
+     c.id = tm.target_id and
+
+     p.target_name = $1 and 
+
+     c.id = m.target_id and
+
+     m.marimba_table_name = &apos;machine&apos; and
+
+     m.marimba_table_primary_key = &apos;id&apos;) ml
+
+where ml.machine_id = mt.id and
+
+          mt.id = ms.machine_id and
+
+          mt.scantime &gt; $2 and
+
+          compliance_level = &apos;COMPLIANT&apos;</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">target</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="an_1">scantime</property>
+
+          <property name="at_1">time</property>
+
+          <property name="ax_1">false</property>
+
+          <property name="av_1_null">false</property>
+
+          <property name="aid_1">$2</property>
+
+          <property name="av_0_0">cn=computers,ou=marimba,dc=marimba,dc=com</property>
+
+          <property name="av_1_0">6</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+          <property name="av_1_1">9</property>
+
+          <property name="av_1_2">2005</property>
+
+          <property name="av_1_3">12</property>
+
+          <property name="av_1_4">00</property>
+
+          <property name="av_1_5">00</property>
+
+          <property name="av_1_6">AM</property>
+
+        </node>
+
+        <node name="OverallNonCompliantMachineByInventory" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">cn=zxia,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.dateCreated">1118383877197</property>
+
+          <property name="atlas.node.desc">Overall non compliant machine list by inventory report, given a target group and scantime</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">2</property>
+
+          <property name="atlas.node.sql">select mt.name machine_name, mt.scantime, mc.url, mc.endpoint_state, mc.policy_state
+
+from inventory.machinecompstatus ms, inventory.machine mt, machinecompliance mc,  
+
+    (select m.marimba_table_primary_id as machine_id
+
+     from targets p, targets c, targets_membership tm, targets_marimba m
+
+     where  
+
+     p.id = tm.memberof_target_id and 
+
+     c.id = tm.target_id and
+
+     p.target_name = $1 and 
+
+     c.id = m.target_id and
+
+     m.marimba_table_name = &apos;machine&apos; and
+
+     m.marimba_table_primary_key = &apos;id&apos;) ml
+
+where ml.machine_id = mt.id and
+
+          mt.id = ms.machine_id and
+
+          mt.scantime &gt; $2 and
+
+          ms.compliance_level = &apos;NON_COMPLIANT&apos; and
+
+          mc.compliance_level = &apos;NON_COMPLIANT&apos; and
+
+          mc.machine_id = ml.machine_id</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">target</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="an_1">scantime</property>
+
+          <property name="at_1">time</property>
+
+          <property name="ax_1">false</property>
+
+          <property name="av_1_null">false</property>
+
+          <property name="aid_1">$2</property>
+
+          <property name="av_0_0">cn=computers,ou=marimba,dc=marimba,dc=com</property>
+
+          <property name="av_1_0">6</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+          <property name="av_1_1">9</property>
+
+          <property name="av_1_2">2005</property>
+
+          <property name="av_1_3">12</property>
+
+          <property name="av_1_4">00</property>
+
+          <property name="av_1_5">00</property>
+
+          <property name="av_1_6">AM</property>
+
+        </node>
+
+        <node name="OverallNotCheckInMachineListByInventory" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">cn=zxia,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.dateCreated">1118383599367</property>
+
+          <property name="atlas.node.desc">Overall not check in state machines by inventory report, given a target and scantime</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">2</property>
+
+          <property name="atlas.node.sql">select mt.name machine_name, mt.scantime
+
+from inventory.machinecompstatus ms, inventory.machine mt,   
+
+    (select m.marimba_table_primary_id as machine_id
+
+     from targets p, targets c, targets_membership tm, targets_marimba m
+
+     where  
+
+     p.id = tm.memberof_target_id and 
+
+     c.id = tm.target_id and
+
+     p.target_name = $1 and 
+
+     c.id = m.target_id and
+
+     m.marimba_table_name = &apos;machine&apos; and
+
+     m.marimba_table_primary_key = &apos;id&apos;) ml
+
+where ml.machine_id = mt.id and
+
+          mt.id = ms.machine_id and
+
+          mt.scantime &lt; $2</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">target</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="an_1">scantime</property>
+
+          <property name="at_1">time</property>
+
+          <property name="ax_1">false</property>
+
+          <property name="av_1_null">false</property>
+
+          <property name="aid_1">$2</property>
+
+          <property name="av_0_0">cn=computers,ou=marimba,dc=marimba,dc=com</property>
+
+          <property name="av_1_0">6</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+          <property name="av_1_1">10</property>
+
+          <property name="av_1_2">2005</property>
+
+          <property name="av_1_3">12</property>
+
+          <property name="av_1_4">00</property>
+
+          <property name="av_1_5">00</property>
+
+          <property name="av_1_6">AM</property>
+
+        </node>
+
+        <node name="OverallSummaryByInventory" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">cn=zxia,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.dateCreated">1118380070243</property>
+
+          <property name="atlas.node.desc">Overall compliance summary information based on inventory reports</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">3</property>
+
+          <property name="atlas.node.sql">select count(*), &apos;TOTAL&apos;
+
+from targets p, targets c, targets_membership tm, targets_marimba m
+
+where  
+
+p.id = tm.memberof_target_id and 
+
+c.id = tm.target_id and
+
+p.target_name = $1 and 
+
+c.id = m.target_id and
+
+m.marimba_table_name = &apos;machine&apos; and
+
+m.marimba_table_primary_key = &apos;id&apos;
+
+union
+
+select count(*), compliance_level
+
+from inventory.machinecompstatus ms, inventory.machine mt,   
+
+    (select m.marimba_table_primary_id as machine_id
+
+     from targets p, targets c, targets_membership tm, targets_marimba m
+
+     where  
+
+     p.id = tm.memberof_target_id and 
+
+     c.id = tm.target_id and
+
+     p.target_name = $2 and 
+
+     c.id = m.target_id and
+
+     m.marimba_table_name = &apos;machine&apos; and
+
+     m.marimba_table_primary_key = &apos;id&apos;) ml
+
+where ml.machine_id = mt.id and
+
+          mt.id = ms.machine_id and
+
+          mt.scantime &gt; $3 group by ms.compliance_level</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">target</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="an_1">target</property>
+
+          <property name="at_1">string</property>
+
+          <property name="ax_1">false</property>
+
+          <property name="av_1_null">false</property>
+
+          <property name="aid_1">$2</property>
+
+          <property name="av_0_0">cn=computers,ou=marimba,dc=marimba,dc=com</property>
+
+          <property name="av_1_0">cn=computers,ou=marimba,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+          <property name="aid_2">$3</property>
+
+          <property name="an_2">scan time</property>
+
+          <property name="at_2">time</property>
+
+          <property name="ax_2">false</property>
+
+          <property name="av_2_null">false</property>
+
+          <property name="av_2_0">6</property>
+
+          <property name="av_2_1">11</property>
+
+          <property name="av_2_2">2005</property>
+
+          <property name="av_2_3">12</property>
+
+          <property name="av_2_4">00</property>
+
+          <property name="av_2_5">00</property>
+
+          <property name="av_2_6">AM</property>
+
+        </node>
+
+        <node name="PackagesByTarget" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">cn=zxia,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.dateCreated">1118351732570</property>
+
+          <property name="atlas.node.desc">Given a target, find all directly and indirectly assigned packages</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">1</property>
+
+          <property name="atlas.node.sql">select p.target_name, p.type, sp.package_title, sp.url, sp.primary_state, sp.secondary_state, sp.last_updated, sp.content_type
+
+from targets p, targets c, targets_membership tm, subscription_policy sp
+
+where 
+
+p.id = tm.memberof_target_id and 
+
+c.id = tm.target_id and
+
+c.target_name = $1 and
+
+sp.target_id = p.id</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">target</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="av_0_0">cn=marimbacomputers,cn=computers,ou=marimba,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+        </node>
+
+        <node name="SummaryByPolicyByTarget" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">x</property>
+
+          <property name="atlas.node.dateCreated">1118272719591</property>
+
+          <property name="atlas.node.desc">compliance summary given a policy, target and url</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">4</property>
+
+          <property name="atlas.node.sql">select count(c.id), &apos;TOTAL&apos; from targets_membership tm, targets p, targets c where tm.memberof_target_id = p.id and tm.target_id = c.id and p.target_name = $1 and c.TYPE =&apos;machine&apos; union select count(distinct mc.machine_id), compliance_level from inventory.machinecompliance mc, inventory.subscription_policy sp, targets p, (select cmt.marimba_table_primary_id as machine_id from targets_membership ctm, targets cp, targets cc, targets_marimba cmt where ctm.memberof_target_id = cp.id and ctm.target_id = cc.id and cp.target_name = $2 and cc.TYPE =&apos;machine&apos; and cc.id = cmt.target_id) macs where mc.URL = sp.URL and mc.POLICY_NAME = p.target_name and p.id = sp.target_id and (mc.POLICY_STATE = sp.PRIMARY_STATE or mc.POLICY_STATE = sp.SECONDARY_STATE) and macs.machine_id = mc.machine_id and p.target_name = $3 and mc.URL = $4 group by mc.COMPLIANCE_LEVEL</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">target</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="an_1">target</property>
+
+          <property name="at_1">string</property>
+
+          <property name="ax_1">false</property>
+
+          <property name="av_1_null">false</property>
+
+          <property name="aid_1">$2</property>
+
+          <property name="av_0_0">cn=marimbacomputers,cn=computers,ou=marimba,dc=marimba,dc=com</property>
+
+          <property name="av_1_0">cn=marimbacomputers,cn=computers,ou=marimba,dc=marimba,dc=com</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+          <property name="aid_2">$3</property>
+
+          <property name="an_2">policy</property>
+
+          <property name="at_2">string</property>
+
+          <property name="ax_2">false</property>
+
+          <property name="av_2_null">false</property>
+
+          <property name="av_2_0">cn=marimbacomputers,cn=computers,ou=marimba,dc=marimba,dc=com</property>
+
+          <property name="aid_3">$4</property>
+
+          <property name="an_3">url</property>
+
+          <property name="at_3">string</property>
+
+          <property name="ax_3">false</property>
+
+          <property name="av_3_null">false</property>
+
+          <property name="av_3_0">http://localhost:5282/mkumar/JSON</property>
+
+        </node>
+
+        <node name="TargetsByPackage" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">manoj</property>
+
+          <property name="atlas.node.dateCreated">1118266965705</property>
+
+          <property name="atlas.node.desc">Get targets given a package url</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">1</property>
+
+          <property name="atlas.node.sql">select target_name as policyname, a.type as type, b.primary_state,b.last_updated from targets a, subscription_policy b where a.id=b.target_id and b.url = $1</property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">url</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+        </node>
+
+        <node name="TargetsListDetail" class="com.marimba.tools.dbtree.Node">
+
+          <property name="atlas.node.createdBy">manoj</property>
+
+          <property name="atlas.node.dateCreated">1118266965705</property>
+
+          <property name="atlas.node.desc">Get targets List from the given target groups</property>
+
+          <property name="atlas.query.type">f</property>
+
+          <property name="atlas.args">1</property>
+
+          <property name="atlas.node.sql">select * from targets t, ldapsync_target_membership l where t.id = l.target_id and l.memberof_name = $1 and t.type='machine' </property>
+
+          <property name="atlas.node.autoFilteredFlag">false</property>
+
+          <property name="atlas.node.filtered">false</property>
+
+          <property name="aid_0">$1</property>
+
+          <property name="an_0">memberof_name</property>
+
+          <property name="at_0">string</property>
+
+          <property name="ax_0">false</property>
+
+          <property name="av_0_null">false</property>
+
+          <property name="atlas.node.overrideAutoFilteredFlag">false</property>
+
+        </node>
+
+      </dirnode>
+
+    </dirnode>
+
+  </dirnode>
+
+</tree>
+

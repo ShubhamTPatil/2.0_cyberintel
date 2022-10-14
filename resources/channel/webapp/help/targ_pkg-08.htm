@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Apr-13-06 v6.2 ANSI)" />
+    <meta name="LASTUPDATED" content="11/16/09 16:16:39" />
+    <title>Browsing targets</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Browsing targets";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp50181"> </a><p class="pBody">The left side of the Target View page shows the targets to which you can assign packages. When you select a target, you can view the packages assigned to it, directly and indirectly, on the right side of the page.</p>
+<a name="wp50182"> </a><p class="pBody">You can view all the available targets by navigating through the left side of the page. The left side of the page shows a list of targets-individual users and machines, groups of users and machines, and collections resulting from database and LDAP queries.</p>
+<a name="wp50183"> </a><p class="pBody">When you first view this page, you see the target&#39;s Home, which consists of the high-level containers in the directory service where target information is stored. For example, in Active Directory, you usually see the root domains in the forest environment. You can expand the root domains to display the objects that can be used as targets in that domain. See the chapter about Active Directory in the <em class="cEmphasis">Policy Management Administrator&#39;s Guide</em>, available on the BMC Customer Support web site.</p>
+<a name="wp50193"> </a><p class="pBody">The target icons in the Target View page indicate how Policy Manager is obtaining its list of targets:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp50198"> </a><div class="pSmartList2"><li><b class="cBold">Domains-</b>An expandable domain icon <img src="images/root-domain.gif" id="wp50196" border="0" hspace="0" vspace="0"/> indicates that targets are being obtained from an Active Directory forest environment. Root domains and subordinate domains are represented by this icon.</li></div>
+<a name="wp50202"> </a><div class="pSmartList2"><li><b class="cBold">Containers-</b>An expandable folder icon <img src="images/folder-target.gif" id="wp50200" border="0" hspace="0" vspace="0"/> indicates that targets are obtained from the directory service. Organizational units and containers are represented by this icon.</li></div>
+<a name="wp50206"> </a><div class="pSmartList2"><li><b class="cBold">Users (sourced from transmitter)-</b>An expandable transmitter icon <img src="images/Tx.gif" id="wp50204" border="0" hspace="0" vspace="0"/> indicates that users and user groups are obtained from the transmitter where you have published the Policy Service plug-in (using the Plug-in Configuration page).</li></div>
+<hr class="NoteRuleTop"/><a name="wp50208"> </a><p class="pNote"><span style="color: #003366">Note: </span> If you (or your primary administrator) have not yet published the Policy Service plug-in to the transmitter, Policy Manager does not know which transmitter to use. Policy Manager cannot obtain user and user group information. Additionally, if the transmitter has restricted access, you must set up the user name and password to use for authentication against the transmitter by running the following command-line option:</p><hr class="NoteRuleBottom"/><a name="wp50212"> </a><p class="pIndented1">
+<b class="cBold">-txadminacess &lt;</b><em class="cEmphasis">username</em><b class="cBold">&gt; &lt;</b><em class="cEmphasis">password</em><b class="cBold">&gt;</b>
+</p>
+<a name="wp50213"> </a><p class="pIndented1">
+The user name and password that you specify with this option are the ones required by the transmitter. You still need to specify the user name and password required for authentication by Policy Manager.
+</p>
+<a name="wp114998"> </a><p class="pIndented1">
+For more information about the command-line options, see the command-line section of <em class="cEmphasis">Policy Management Administrator&#39;s Guide</em>, available on the BMC Customer Support web site.
+</p>
+</ul></div>
+</ul></div>
+<a name="wp51148"> </a><p class="pBody">In addition, the All Endpoints target is displayed. This is a virtual target that contains all of the endpoints at your site that have Policy Service installed.</p>
+<a name="wp50227"> </a><p class="pBody">If you are browsing a multidomain forest environment (Active Directory), you can browse across trees and domains.</p>
+<a name="wp115004"> </a><h5 class="pHeading4">
+See Also:
+</h5>
+<a name="wp115008"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-09.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-09.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Viewing members of a target</a>
+</p><a name="wp115012"> </a><p class="pIndentedRelative">
+<a href="javascript:WWHClickedPopup('sm', 'targ_pkg-10.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-10.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Searching for targets</a>
+</p>
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. All rights reserved.<br/>
+
+ For additional BMC Configuration Management documentation, go to the Customer
+Support website at <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+For questions or comments about BMC CM documentation, send
+an email to <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+For product related issues or questions, send an email to Customer Support at <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

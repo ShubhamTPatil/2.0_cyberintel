@@ -1,0 +1,162 @@
+<!--
+  Project: Subscription Manager
+  Author:  Theen-Theen Tan
+  Version: $Revision$, $Date$
+-->
+<project name="security-policy-mgr" default="install">
+
+    <!-- Project properties -->
+    <property name="base"                 location="../../.."/>
+    <basename property="project.version"  file="."/>
+
+    <property name="project"              value="security-policy-mgr"/>
+    <property name="project.dep"          value="ajax, castanet-tools, checksum, cms-interfaces, cms-webmain, common, debug, http, index, io, ldap-intf, osm-ws-client, policy-api, publish-sdk, schedule, sdm-common, security, segment-selector, storage, subscription-common, tools-collections, tools-config, tools-db, tools-dbscript, tools-dbtree, tools-dns, tools-i18n, tools-ldap, tools-logs, tools-mail, tools-net, tools-ptree, tools-regex, tools-remoteadmin, tools-target, tools-token, tools-txlisting, tools-xml, transmitter-interfaces, web-common, webservices, xccdf-util, oval-util"/>
+    <property name="project.dep.3rdparty" value="apache-log4j, apache-oro, apache-regex, apache-poi, axis, commons-codec, commons-fileupload, commons-io, commons-lang, commons-logging, commons-mail, commons-validator, gson, jabsorb, itext, javax-mail, jndi-sasl, json-rpc, json-simple, junit, mssql, oracle, oscache, pagination-tag, saaj, struts, wsdl4j, xml-apis, yahp, mapdb"/>
+    <property name="channel.name"         value="vDesk"/>
+    <property name="channel.title"        value="vDesk"/>
+
+    <property name="move-shared-jsp-and-compile"   value="true"/>
+
+    <property name="javac.deprecation"  value="off"/>
+
+    <property name="javac.deprecation"  value="off"/>
+
+    <property name="jsp.encoding"       value="UTF-8"/>
+
+    <property name="common.packages"    value="com/marimba/castanet/tuner/**,
+					                           com/marimba/castanet/util/**,
+					                           com/marimba/intf/admin/**,
+                                               com/marimba/webapps/tools/**,
+                                               com/marimba/intf/certificates/**,
+                                               com/marimba/intf/logs/ILogConstants.class,
+                                               com/marimba/intf/logs/ILogPlus.class,
+                                               com/marimba/intf/ptree/**,
+                                               com/marimba/intf/ssl/**,
+                                               com/marimba/intf/util/**,
+                                               com/marimba/tools/gui/StringResources.class,
+                                               com/marimba/tools/util/**"/>
+
+    <property name="storage.packages"   value="com/marimba/castanet/storage/PlainFile.class,
+					                           com/marimba/castanet/storage/URLFile.class"/>
+
+    <property name="tools-db.noexpand"  value="true" />
+    <property name="tools-dbscript.noexpand" value="true" />
+    <property name="tools-dbtree.noexpand" value="true" />
+    <property name="jsp.encoding"       value="UTF-8"/>
+
+    <import file="${base}/shared/build/${project.version}/shared-web.xml"/>
+
+    <!-- Install target -->
+    <target name="install" depends="init,create-channel,compile,copy-rsrc,compile-jsp,copy-struts,copy-web-classes,build-submodules,copy-security-plugin,copy-subscription-common,copy-jquery-easyui,copy-adminlte,publish-channel"/>
+
+    <!-- Install without compiling webapp's JSP file -->
+    <target name="install-noprecompile" depends="init,create-channel,compile,copy-rsrc,noprecompile-jsp,copy-struts,copy-web-classes,build-submodules,copy-security-plugin,copy-subscription-common,copy-jquery-easyui,publish-channel"/>
+
+    <!-- Compile product classes and sub-module classes without clean -->
+    <target name="javac" depends="init0,create-channel,shared.javac,copy-web-main-classes"/>
+
+    <!-- Delegating the jspc request to shared-web jspc target -->
+    <target name="jspc" depends="shared-web.jspc"/>
+
+    <!-- build SPM files only -->
+    <target name="spm" depends="compile,copy-rsrc,noprecompile-jsp,copy-struts,copy-web-classes,build-submodules,copy-security-plugin,copy-subscription-common,publish-channel"/>
+
+
+    <target name="copy-subscription-common">
+        <var name="mod.ver" value="current"/>
+        <propertycopy name="mod.ver" from="subscription-common.version" override="true" silent="true"/>
+        <concat destfile="${web-classes.dir}/SysErrorsResources.properties" append="true">
+            <filelist dir="${subscription-common.rsrc.path}" files="channel/CommonErrors.properties"/>
+        </concat>
+        <concat destfile="${web-classes.dir}/SysErrorsResources_de.properties" append="true">
+            <filelist dir="${subscription-common.rsrc.path}" files="channel/CommonErrors_de.properties"/>
+        </concat>
+        <concat destfile="${web-classes.dir}/SysErrorsResources_fr.properties" append="true">
+            <filelist dir="${subscription-common.rsrc.path}" files="channel/CommonErrors_fr.properties"/>
+        </concat>
+        <!-- Just commecnting below extensions, we are not using this anymore-->
+        <!--<concat destfile="${web-classes.dir}/SysErrorsResources_ja.properties" append="true">-->
+        <!--<filelist dir="${subscription-common.rsrc.path}" files="channel/CommonErrors_ja.properties"/>-->
+        <!--</concat>-->
+        <!--<concat destfile="${web-classes.dir}/SysErrorsResources_ko.properties" append="true">-->
+        <!--<filelist dir="${subscription-common.rsrc.path}" files="channel/CommonErrors_ko.properties"/>-->
+        <!--</concat>-->
+        <!--<concat destfile="${web-classes.dir}/SysErrorsResources_zh.properties" append="true">-->
+        <!--<filelist dir="${subscription-common.rsrc.path}" files="channel/CommonErrors_zh.properties"/>-->
+        <!--</concat>-->
+    </target>
+
+    <target name="copy-security-plugin">
+        <echo>Copy Subscription Config</echo>
+        <mkdir dir="${web.dir}/pluginlib" />
+        <copy todir="${web.dir}/pluginlib">
+            <fileset file="${build-root-common}/${project.version}/security-plugin/dist/subconfig.zip">
+                <include name="WEB-INF/**"/>
+            </fileset>
+            <!-- Plugin Libaries related to Web Services client operations -->
+            <fileset dir="${env.TOPDIR}\3rd-party\apache-axis\${apache-axis.version}\resources\lib" >
+                <include name="**"/>
+            </fileset>
+            <fileset dir="${env.TOPDIR}\3rd-party\xerces\${xerces.version}\resources\lib" >
+                <include name="**"/>
+            </fileset>
+            <fileset dir="${env.TOPDIR}\3rd-party\saaj\${saaj.version}\resources\lib" >
+                <include name="**"/>
+            </fileset>
+            <fileset dir="${env.TOPDIR}\3rd-party\wsdl4j\${wsdl4j.version}\resources\lib" >
+                <include name="**"/>
+            </fileset>
+            <fileset dir="${env.TOPDIR}\3rd-party\apache-commons\logging\${commons-logging.version}\resources\lib" >
+                <include name="**"/>
+            </fileset>
+            <fileset dir="${env.TOPDIR}\3rd-party\apache-log4j\${apache-log4j.version}\resources\lib" >
+                <include name="**"/>
+            </fileset>
+            <fileset dir="${env.TOPDIR}\3rd-party\apache-commons\discovery\${commons-discovery.version}\resources\lib" >
+                <include name="**"/>
+            </fileset>
+            <fileset dir="${env.TOPDIR}\3rd-party\geronimo-jaxrpc\${geronimo-jaxrpc.version}\resources\lib" >
+                <include name="**"/>
+            </fileset>
+            <fileset dir="${env.TOPDIR}\3rd-party\jaf\${jaf.version}\resources\lib" >
+                <include name="**"/>
+            </fileset>
+            <fileset dir="${env.TOPDIR}\3rd-party\apache-commons\httpclient\${commons-httpclient.version}\resources\lib" >
+                <include name="**"/>
+            </fileset>
+            <fileset dir="${env.TOPDIR}\3rd-party\apache-commons\codec\${commons-codec.version}\resources\lib" >
+                <include name="**"/>
+            </fileset>
+            <fileset dir="${env.TOPDIR}\3rd-party\jndi-sasl\${jndi-sasl.version}\resources\lib" >
+                <include name="**"/>
+            </fileset>
+            <fileset dir="${env.TOPDIR}\3rd-party\database-drivers\oracle\${oracle.version}\resources\lib" >
+                <include name="**"/>
+            </fileset>
+            <fileset dir="${env.TOPDIR}\3rd-party\database-drivers\mssql\${mssql.version}\resources\lib" >
+                <include name="**"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="copy-jquery-easyui">
+        <echo>Copying jquery-easyui-${jquery-easyui.version} to ${web.dir}/includes/easyui/</echo>
+        <mkdir dir="${web.dir}/includes/easyui"/>
+        <copy todir="${web.dir}/includes/easyui/">
+            <fileset dir="${env.TOPDIR}/3rd-party/jquery-easyui/${jquery-easyui.version}/resources">
+                <include name="**"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="copy-adminlte">
+        <echo>Copying adminlte-${adminlte.version}</echo>
+        <mkdir dir="${web.dir}/includes/assets/adminlte/"/>
+        <copy todir="${web.dir}/includes/assets/adminlte/">
+            <fileset dir="${env.TOPDIR}/3rd-party/adminlte/${adminlte.version}/resources">
+                <include name="**"/>
+            </fileset>
+        </copy>
+    </target>
+
+</project>

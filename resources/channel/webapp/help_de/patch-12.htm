@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:41:02" />
+    <title>Außerkraftsetzen des Patch Service-Aktualisierungszeitplans für Zielcomputer.</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Außerkraftsetzen des Patch Service-Aktualisierungszeitplans für Zielcomputer.";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp1000110"> </a><p class="pBody">Unter diesem Thema wird beschrieben, wie Sie mit Policy Manager den Patch Service-Aktualisierungszeitplan außer Kraft setzen können. Standardmäßig befolgt Patch Service den mit Patch Manager festgelegten Aktualisierungszeitplan. Weitere Informationen zum Festlegen des Standard-Aktualisierungszeitplans für Patch Service finden Sie in der Online-Hilfe zu Patch Manager.</p>
+<a name="wp1000120"> </a><p class="pBody">Während der Aktualisierung sucht Patch Service auf dem Ziel nach der Liste mit den erforderlichen und bereits installierten Patches. Außerdem werden den Abhängigkeiten jedes Patches entsprechend eine Reihe weiterer Patches installiert. Sie können angeben, dass Aktualisierungen anhand eines wiederkehrenden Zeitplans durchgeführt werden. Wenn Sie mit Policy Manager keinen Zeitplan festlegen, wird der mit Patch Manager festgelegte Zeitplan verwendet. Wird Patch Service einem Ziel nicht direkt als Teil der Policy zugewiesen, geht Policy Manager davon aus, dass Patch Service von dem gleichen Transmitter wie Patch Manager stammt.</p>
+<a name="wp1000126"> </a><p class="pBody">Wenn Sie für das Ziel eine Blackout-Periode festgelegt haben, können Sie Patch Service davon ausnehmen. Die Ausnahme ist dann nützlich, wenn Sie Notfallsituationen erwarten, in denen Patches auch während einer Blackout-Periode installiert oder aktualisiert werden sollen. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'patch-13.htm');" onMouseOver="WWHShowPopup('sm', 'patch-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Ausnehmen von Patch Service von der Blackout-Periode.</a>.</p>
+<hr class="NoteRuleTop"/><a name="wp1000128"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Einstellungen auf Zielebene, wie zum Beispiel der Aktualisierungszeitplan für Patch Service, können jeweils nur für ein Ziel festgelegt werden. Sie können keine Einstellungen auf Zielebene einrichten, wenn Sie sich im Mehrfachauswahlmodus befinden und gleichzeitig Policys für mehrere Ziele bearbeiten. Sie können jedoch für alle Ziele Einstellungen auf Zielebene einrichten, indem Sie das Ziel <b class="cBold">Alle Clients</b> auswählen.</p><hr class="NoteRuleBottom"/><a name="wp1000134"> </a><p class="pBody">Bei dieser Vorgehensweise wird davon ausgegangen, dass Sie sich auf der Seite „Policy bearbeiten“ befinden. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-04.htm');" onMouseOver="WWHShowPopup('sm', 'policies-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Allgemeine Anweisungen zum Erstellen und Bearbeiten von Policys</a>.</p>
+<a name="wp1000136"> </a><p style="text-decoration: none" class="pStepIntro">
+So setzen Sie den Standard-Akualisierungszeitplan für Patch Service außer Kraft
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp1000138"> </a><div class="pSmartList1"><li>Klicken Sie auf der Seite „Policy bearbeiten“ auf die Registerkarte <b class="cBold">Patches &gt; Patch Service-Zeitplan</b>.</li></div>
+<a name="wp1000140"> </a><p class="pIndented1">
+Die Seite „Patch Service-Zeitplan“ wird angezeigt.
+</p>
+<a name="wp1000146"> </a><div class="pSmartList1"><li>Wählen Sie <b class="cBold">Policy Manager zum Festlegen des Patch Service-Aktualisierungszeitplans verwenden</b>.</li></div>
+<a name="wp1000148"> </a><div class="pSmartList1"><li>Geben Sie im Bereich <b class="cBold">Wiederholung</b> an, wie häufig Patch Service aktualisiert werden soll:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp1000150"> </a><div class="pSmartList2"><li><b class="cBold">Täglich</b> – Patch Service kann jeden Tag, an Wochentagen (Montag bis Freitag) oder alle 1 bis 365 Tage aktualisiert werden, je nachdem, welchen Wert Sie festlegen.</li></div>
+<a name="wp1000152"> </a><div class="pSmartList2"><li><b class="cBold">Wöchentlich</b> – Patch Service kann alle 1 bis 52 Wochen aktualisiert werden, je nachdem, welchen Wert Sie festlegen. Dabei wird die Aktualisierung in der festgelegten Woche nur an dem ausgewählten Tag durchgeführt. Sie müssen mindestens einen Wochentag auswählen.</li></div>
+<a name="wp1000154"> </a><div class="pSmartList2"><li><b class="cBold">Monatlich</b> – Patch Service kann alle 1 bis 12 Monate an dem festgelegten Tag aktualisiert werden. Wenn Sie den 30. oder 31. wählen und der Monat der Aktualisierung keinen solchen Tag hat (wie Februar), wird die Aktualisierung am ersten Tag des Folgemonats durchgeführt.</li></div>
+</ul></div>
+<a name="wp1000156"> </a><div class="pSmartList1"><li>Geben Sie im Abschnitt <b class="cBold">Aktualisierungszeit</b> die Tageszeit an, zu der Patch Service aktualisiert werden soll:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp1000158"> </a><div class="pSmartList2"><li><b class="cBold">Aktual. um</b>: Legen Sie die Uhrzeit fest, zu der die Aktualisierung erfolgen soll.</li></div>
+<a name="wp1000160"> </a><div class="pSmartList2"><li><b class="cBold">Aktual. alle</b>: Legen Sie fest, wie häufig am Tag eine Aktualisierung erfolgen soll. Sie können festlegen, dass Aktualisierungen in einem bestimmten Intervall von Minuten oder Stunden am Tag der Aktualisierung stattfinden sollen. Sie können die Aktualisierung aber auch für einen bestimmten Zeitraum innerhalb des Tages festlegen. Aktualisierungen können beispielsweise jede Stunde zwischen 9:00 und 17:00 Uhr erfolgen oder alle 30 Minuten zwischen 17:00 und 9:00 Uhr.</li></div>
+</ul></div>
+</ol></div>
+<a name="wp1000166"> </a><p class="pBody">Nachdem Sie die Policy bearbeitet haben, sehen Sie sich die Vorschau an, und speichern Sie die Policy. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Erstellen der Vorschau und Speichern von Policy-Änderungen</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

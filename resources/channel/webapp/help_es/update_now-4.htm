@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:54" />
+    <title>Realizar una actualización inmediata de política</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Realizar una actualización inmediata de política";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp61777"> </a><p class="pBody">Usted podría desear realizar una actualización inmediata de política si dispone de las aplicaciones, parches, contenido o actualizaciones que desee distribuir inmediatamente a las máquinas de destino.</p>
+<a name="wp55117"> </a><p class="pBody">Sólo puede llevar a cabo actualizaciones de política en la máquina de destino. Si selecciona un destino agregado (como, por ejemplo, el destino todos los clientes finales, un dominio, un contenedor o un grupo) que contenga destinos que no sean máquinas, sólo se actualizarán aquellos destinos que sean máquinas. Sólo puede realizar actualizaciones inmediatas de política si se encuentra en un modo de selección único.</p>
+<hr class="NoteRuleTop"/><a name="wp61758"> </a><p class="pNote"><span style="color: #003366">Nota: </span> La restricción a los destinos máquina se aplica únicamente a las actualizaciones inmediatas de política. Cuando se ejecuta Police Service, comprueba las dos políticas basadas en el usuario y en la máquina.</p><hr class="NoteRuleBottom"/><a name="wp54803"> </a><p style="text-decoration: none" class="pStepIntro">
+Para realizar una actualización inmediata de política
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp54812"> </a><div class="pSmartList1"><li>Seleccione un destino desde la página Vista de destino o la página Detalles de destino.</li></div>
+<a name="wp54839"> </a><div class="pSmartList1"><li>Haga clic en <b class="cBold">Actualizar</b> y elija una de las siguientes opciones:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp54782"> </a><div class="pSmartList2"><li><b class="cBold">Actualizar política asignada directamente</b>: elija esta opción si desea solamente actualizar la política directamente asignada a este destino, y no las políticas que los destinos hereden porque sean miembros de un grupo, contenedor, dominio o el destino todos los clientes finales.</li></div>
+<a name="wp54783"> </a><div class="pSmartList2"><li><b class="cBold">Actualizar todas las políticas</b>: elija esta opción si desea actualizar todas las políticas que se apliquen a este destino, incluidas las asignadas directamente a este destino y otras que el destino haya heredado por ser miembro de un grupo, contenedor, dominio o del destino todos los clientes finales.</li></div>
+<a name="wp54892"> </a><p class="pIndented1">
+Aparece la página Actualizar vista previa, que le permite confirmar si está actualizando la política o políticas para el destino correcto.
+</p>
+</ul></div>
+<a name="wp54908"> </a><div class="pSmartList1"><li>Confirme su elección haciendo clic en <b class="cBold">Actualizar política asignada directamente</b> o <b class="cBold">Actualizar todas las políticas</b>.</li></div>
+<a name="wp54918"> </a><p class="pIndented1">
+Policy Manager empieza a actualizar la política o políticas para el destino que usted especificó. Para obtener más información sobre cómo tiene lugar la actualización de una política, consulte <a href="javascript:WWHClickedPopup('Policy', 'update_now-7.htm');" onMouseOver="WWHShowPopup('Policy', 'update_now-7.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">¿Cómo funciona la actualización inmediata de una política?</a>.
+</p>
+<a name="wp54941"> </a><p class="pIndented1">
+Aparece la página Estado de actualización de política, que le permite hacer un seguimiento del estado de las máquinas de destino. La página se actualiza automáticamente cada diez segundos. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'update_now-5.htm');" onMouseOver="WWHShowPopup('Policy', 'update_now-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Supervisar y visualizar del estado de una actualización de política</a>.
+</p>
+<a name="wp54980"> </a><div class="pSmartList1"><li>Cuando hayan finalizado actualizaciones de política para todas las máquinas del destino que usted especificó, Policy Manager muestra la lista de máquinas e indica si se han actualizado con éxito o no.</li></div>
+<a name="wp54984"> </a><p class="pIndented1">
+Para las máquinas en las que no se completó con éxito, puede hacer clic en el estado <b class="cBold">Fallo</b> para ver los logs de cada una de las máquinas. También puede hacer clic en Reintentar erróneos para reintentar las actualizaciones de política en las máquinas de destino en que no éstas no se completaron con éxito.
+</p>
+<a name="wp55026"> </a><div class="pSmartList1"><li>Haga clic en <b class="cBold">Finalizado</b> para volver a la página Vista de destino o la página Detalles de destino.</li></div>
+<a name="wp55030"> </a><p class="pIndented1">
+Observe que aparece un icono de verificación <img src="images/update-policy-done.gif" id="wp55028" border="0" hspace="0" vspace="0"/> junto al botón de <b class="cBold">Actualizar</b> para indicar que se ha completado la actualización de una política para ese destino. Si hace clic en el botón <b class="cBold">Actualizar</b>, aparecerá la opción adicional <b class="cBold">Ver estado de la última actualización</b> en la parte inferior de la lista desplegable. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'update_now-5.htm');" onMouseOver="WWHShowPopup('Policy', 'update_now-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Supervisar y visualizar del estado de una actualización de política</a>.
+</p>
+</ol></div>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

@@ -1,0 +1,1392 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<WebWorksHelpIX version="4.0">
+ <g t="A" o="002">
+  <i t="activation et désactivation des mises à jour de la policy">
+   <j l="107" />
+  </i>
+  <i t="activation pour packages dans une policy">
+   <j l="43#wp284028" />
+  </i>
+  <i t="Active Directory">
+   <i t="définition du bind DN de configuration">
+    <j l="9#wp619119" />
+   </i>
+   <i t="format UPN du bind DN">
+    <j l="9#wp619125" />
+   </i>
+  </i>
+  <i t="ADAM">
+   <i t="définition du base DN de configuration">
+    <j l="9#wp619107" />
+   </i>
+   <i t="définition du bind DN de configuration">
+    <j l="9#wp619129" />
+   </i>
+  </i>
+  <i t="aide">
+   <i t="bouton Index">
+    <j l="5#wp274258" />
+   </i>
+   <i t="bouton Rechercher">
+    <j l="5#wp274262" />
+   </i>
+   <i t="bouton Sommaire">
+    <j l="5#wp274254" />
+   </i>
+   <i t="présentation de l'utilisation de l'aide">
+    <j l="5" />
+   </i>
+  </i>
+  <i t="Aide, lien">
+   <j l="5#wp274248" />
+  </i>
+  <i t="annoncer, état">
+   <j l="41#wp282524" />
+   <j l="41#wp283761" />
+  </i>
+  <i t="annuaire Sun ONE">
+   <i t="définition du base DN de configuration">
+    <j l="9#wp619107" />
+   </i>
+   <i t="définition du bind DN de configuration">
+    <j l="9#wp619133" />
+   </i>
+  </i>
+  <i t="aperçu des policies">
+   <j l="35" />
+  </i>
+  <i t="Application Packager">
+   <i t="utilisation en vue de configurer le comportement de redémarrage">
+    <j l="67#wp835224" />
+   </i>
+   <i t="utilisé pour créer des packages">
+    <j l="25#wp282474" />
+   </i>
+  </i>
+  <i t="approvisionnement du système d’exploitation">
+   <j l="9#wp619165" />
+  </i>
+  <i t="approvisionnement:policy">
+   <j l="9#wp619165" />
+  </i>
+  <i t="attribution directe:cible">
+   <j l="18" />
+  </i>
+  <i t="attribution indirecte:cibles">
+   <j l="18#wp281834" />
+  </i>
+  <i t="autres services d'annuaire">
+   <j l="9#wp619091" />
+  </i>
+ </g>
+ <g t="B" o="002">
+  <i t="base de données">
+   <i t="utilisation pour les collections">
+    <j l="16#wp281776" />
+   </i>
+  </i>
+  <i t="base de données:requête de collection">
+   <j l="16#wp281776" />
+  </i>
+  <i t="base DN">
+   <i t="configuration d'ADAM">
+    <j l="9#wp619107" />
+   </i>
+   <i t="configuration de l'annuaire SUN ONE">
+    <j l="9#wp619107" />
+   </i>
+   <i t="définition de configuration">
+    <j l="9#wp619101" />
+   </i>
+  </i>
+  <i t="bind DN">
+   <i t="configuration d'Active Directory">
+    <j l="9#wp619119" />
+   </i>
+   <i t="configuration d'ADAM">
+    <j l="9#wp619129" />
+   </i>
+   <i t="configuration de l'annuaire SUN ONE">
+    <j l="9#wp619133" />
+   </i>
+   <i t="définition de configuration">
+    <j l="9#wp619115" />
+   </i>
+   <i t="définition du mot de passe de configuration">
+    <j l="9#wp619141" />
+   </i>
+   <i t="utilisation du format UPN de configuration">
+    <j l="9#wp619125" />
+   </i>
+  </i>
+ </g>
+ <g t="C" o="002">
+  <i t="caractères spéciaux dans les chaînes de recherche">
+   <j l="22#wp282217" />
+  </i>
+  <i t="channel primaire, état">
+   <j l="41#wp282650" />
+  </i>
+  <i t="cibles">
+   <i t="affichage des détails">
+    <j l="23" />
+   </i>
+   <i t="afficher la policy compliance">
+    <j l="87" />
+   </i>
+   <i t="collection">
+    <j l="14#wp281640" />
+   </i>
+   <i t="définition">
+    <j l="13#wp281573" />
+   </i>
+   <i t="directement attribuée">
+    <j l="18" />
+   </i>
+   <i t="exclusion">
+    <j l="17" />
+   </i>
+   <i t="exploration">
+    <j l="20" />
+   </i>
+   <i t="icônes pour différents types">
+    <j l="14#wp281613" />
+   </i>
+   <i t="indirectement attribuée">
+    <j l="18#wp281834" />
+   </i>
+   <i t="recherche">
+    <j l="22" />
+   </i>
+   <i t="recherche à l'aide de caractères spéciaux">
+    <j l="22#wp282217" />
+   </i>
+   <i t="résolution des différences dans les policies">
+    <j l="49" />
+   </i>
+   <i t="Toutes les machines cibles">
+    <j l="14#wp281649" />
+    <j l="15#wp281711" />
+   </i>
+   <i t="tri">
+    <j l="30#wp282708" />
+   </i>
+   <i t="types de cibles">
+    <j l="14#wp281613" />
+   </i>
+  </i>
+  <i t="collections">
+   <i t="basée sur une requête LDAP.">
+    <j l="16#wp281766" />
+   </i>
+   <i t="définition">
+    <j l="16" />
+   </i>
+   <i t="module Inventory">
+    <j l="16#wp281776" />
+   </i>
+   <i t="Report Center">
+    <j l="16#wp281776" />
+   </i>
+   <i t="requête de base de données">
+    <j l="16#wp281776" />
+   </i>
+   <i t="type de cible">
+    <j l="14#wp281640" />
+   </i>
+  </i>
+  <i t="compliance, policy">
+   <i t="affichage des packages">
+    <j l="89#wp905977" />
+   </i>
+   <i t="affichage pour cibles">
+    <j l="87" />
+   </i>
+   <i t="définition">
+    <j l="83" />
+   </i>
+   <i t="pré-requis">
+    <j l="84" />
+   </i>
+  </i>
+  <i t="configuration">
+   <i t="mises à jour">
+    <j l="107" />
+   </i>
+   <i t="plugin Abonnement">
+    <j l="8" />
+   </i>
+   <i t="policy compliance">
+    <j l="12" />
+   </i>
+   <i t="Policy Manager">
+    <j l="6" />
+   </i>
+  </i>
+  <i t="configuration des listes de contrôle d'accès (ACL)">
+   <j l="10" />
+  </i>
+  <i t="contrôle des mises à jour de la policy">
+   <j l="109" />
+  </i>
+  <i t="copie de policies">
+   <j l="54" />
+  </i>
+  <i t="création de policies">
+   <j l="34" />
+  </i>
+ </g>
+ <g t="D" o="002">
+  <i t="délai d'expiration:connexion du service d'annuaire">
+   <j l="9#wp619161" />
+  </i>
+  <i t="déploiement de patch">
+   <j l="96" />
+  </i>
+  <i t="Deployment Manager">
+   <j l="105" />
+   <i t="définition du nom d'utilisateur et du mot de passe">
+    <j l="106#wp262713" />
+   </i>
+   <i t="définition du port du tuner">
+    <j l="106#wp262709" />
+   </i>
+   <i t="pré-requis à l'utilisation avec Policy Manager">
+    <j l="106" />
+   </i>
+   <i t="quorum">
+    <j l="109#wp262960" />
+   </i>
+  </i>
+  <i t="désinstallation de groupes de patch">
+   <j l="97#wp939983" />
+  </i>
+  <i t="désinstaller, état">
+   <j l="41#wp282636" />
+  </i>
+  <i t="Détails de la cible, utilisation pour supprimer les packages des cibles">
+   <j l="55#wp284907" />
+  </i>
+  <i t="différences d'états et de planifications, résolution pour policies">
+   <j l="49" />
+  </i>
+  <i t="droits">
+   <i t="activation et désactivation des listes de contrôle d'accès (ACL)">
+    <j l="11#wp619229" />
+   </i>
+  </i>
+  <i t="droits des transmitters">
+   <i t="ajout">
+    <j l="76" />
+   </i>
+   <i t="définition">
+    <j l="75" />
+   </i>
+   <i t="modification">
+    <j l="76" />
+   </i>
+   <i t="suppression">
+    <j l="77" />
+   </i>
+  </i>
+ </g>
+ <g t="E" o="002">
+  <i t="enregistrement des policies">
+   <j l="35" />
+  </i>
+  <i t="état d'attribution pour les attributions de groupe de patch">
+   <j l="94#wp939771" />
+  </i>
+  <i t="états">
+   <i t="attribuer">
+    <j l="94#wp939771" />
+   </i>
+   <i t="channel primaire">
+    <j l="41#wp282650" />
+   </i>
+   <i t="définition">
+    <j l="41" />
+   </i>
+   <i t="exclure">
+    <j l="17#wp281798" />
+    <j l="41#wp282616" />
+    <j l="94#wp939775" />
+   </i>
+   <i t="groupes de patch">
+    <j l="94#wp939767" />
+   </i>
+   <i t="install">
+    <j l="41#wp282544" />
+   </i>
+   <i t="installer-démarrer">
+    <j l="41#wp282558" />
+   </i>
+   <i t="installer-démarrer-persister">
+    <j l="41#wp282594" />
+   </i>
+   <i t="installer-persister">
+    <j l="41#wp282580" />
+   </i>
+   <i t="liste des états primaires">
+    <j l="41#wp282483" />
+   </i>
+   <i t="liste des états secondaires">
+    <j l="41#wp282489" />
+   </i>
+   <i t="mettre en attente">
+    <j l="41#wp282499" />
+    <j l="41#wp283761" />
+   </i>
+   <i t="publier">
+    <j l="41#wp282524" />
+    <j l="41#wp283761" />
+   </i>
+   <i t="résolution de conflit">
+    <j l="48" />
+   </i>
+   <i t="uninstall">
+    <j l="41#wp282636" />
+   </i>
+  </i>
+  <i t="états d'attribution d'un groupe de patch">
+   <j l="94#wp939767" />
+  </i>
+  <i t="états primaires">
+   <i t="indication pour les policies">
+    <j l="42" />
+   </i>
+   <i t="indication pour un package">
+    <j l="42" />
+   </i>
+   <i t="liste">
+    <j l="41#wp282483" />
+   </i>
+  </i>
+  <i t="états secondaires">
+   <i t="indication pour les policies">
+    <j l="42" />
+   </i>
+   <i t="indication pour un package">
+    <j l="42" />
+   </i>
+   <i t="liste">
+    <j l="41#wp282489" />
+   </i>
+  </i>
+  <i t="exclure, état">
+   <i t="attributions de groupe de patch">
+    <j l="94#wp939775" />
+   </i>
+   <i t="packages">
+    <j l="17#wp281798" />
+    <j l="41#wp282616" />
+   </i>
+  </i>
+  <i t="exclusion:cible">
+   <j l="17" />
+  </i>
+  <i t="exécution de mises à jour de la policy">
+   <j l="108" />
+  </i>
+  <i t="expiration pour packages dans une policy">
+   <j l="43#wp284028" />
+  </i>
+  <i t="expiration:connexion du service d'annuaire">
+   <j l="9#wp619161" />
+  </i>
+  <i t="exploration des cibles">
+   <j l="20" />
+  </i>
+  <i t="exploration des packages">
+   <j l="27" />
+  </i>
+ </g>
+ <g t="F" o="002">
+  <i t="format du nom principal d'utilisateur (UPN)">
+   <j l="9#wp619125" />
+  </i>
+  <i t="format UPN (nom principal d'utilisateur)">
+   <j l="9#wp619125" />
+  </i>
+ </g>
+ <g t="G" o="002">
+  <i t="gestion">
+   <i t="machines cibles">
+    <j l="56#wp284976" />
+   </i>
+  </i>
+  <i t="gestion de tâches">
+   <i t="Policy Manager">
+    <j l="33" />
+   </i>
+  </i>
+  <i t="groupes de patch">
+   <i t="ajout et suppression d'une policy">
+    <j l="96#wp939855" />
+   </i>
+   <i t="attribution aux cibles">
+    <j l="96" />
+   </i>
+   <i t="configurer paramètres de redémarrage">
+    <j l="100" />
+   </i>
+   <i t="définition">
+    <j l="93" />
+   </i>
+   <i t="déployer sur cibles">
+    <j l="96" />
+   </i>
+   <i t="désinstallation">
+    <j l="97#wp939983" />
+   </i>
+   <i t="états d’attribution">
+    <j l="94#wp939767" />
+   </i>
+   <i t="exempter de la période d'inactivité">
+    <j l="103#wp940237" />
+   </i>
+   <i t="icône">
+    <j l="93#wp939739" />
+   </i>
+   <i t="policy compliance">
+    <j l="104" />
+   </i>
+   <i t="propriétés de tuner pour les paramètres de redémarrage">
+    <j l="101" />
+   </i>
+   <i t="simulation de l'installation">
+    <j l="98" />
+   </i>
+  </i>
+ </g>
+ <g t="I" o="002">
+  <i t="icône:policies">
+   <j l="18#wp281839" />
+   <j l="55#wp284968" />
+  </i>
+  <i t="icône:policy directement attribuée">
+   <j l="18#wp281839" />
+   <j l="55#wp284968" />
+  </i>
+  <i t="Index, bouton de la fenêtre d'aide">
+   <j l="5#wp274258" />
+  </i>
+  <i t="installation, états. Voir états.">
+   <j l="41" />
+  </i>
+  <i t="installer-démarrer-persister, état">
+   <j l="41#wp282594" />
+  </i>
+  <i t="installer-démarrer, état">
+   <j l="41#wp282558" />
+  </i>
+  <i t="installer-persister, état">
+   <j l="41#wp282580" />
+  </i>
+  <i t="installer, état">
+   <j l="41#wp282544" />
+  </i>
+  <i t="intégration à Deployment Manager">
+   <j l="105" />
+  </i>
+  <i t="interface de ligne de commande, comparaison avec l'interface utilisateur graphique">
+   <j l="3" />
+  </i>
+  <i t="interface gérée par navigateur pour Policy Manager">
+   <j l="3" />
+  </i>
+  <i t="interfaces, navigateur et ligne de commande">
+   <j l="3" />
+  </i>
+ </g>
+ <g t="L" o="002">
+  <i t="LDAP:collection de requêtes">
+   <j l="16#wp281766" />
+  </i>
+  <i t="listes de contrôle d'accès (ACL)">
+   <i t="activation et désactivation de la policy">
+    <j l="11#wp619229" />
+   </i>
+   <i t="configuration">
+    <j l="10" />
+   </i>
+   <i t="pré-requis">
+    <j l="11" />
+   </i>
+  </i>
+ </g>
+ <g t="M" o="002">
+  <i t="machines cibles">
+   <i t="concepts liés la gestion">
+    <j l="56#wp284976" />
+   </i>
+   <i t="définition">
+    <j l="13#wp281573" />
+   </i>
+   <i t="pré-requis à la policy compliance">
+    <j l="86" />
+   </i>
+   <i t="type toutes les machines cibles">
+    <j l="15#wp281711" />
+   </i>
+   <i t="types de cibles">
+    <j l="14#wp281613" />
+   </i>
+  </i>
+  <i t="mappage de transmitters sur des services d'annuaire">
+   <j l="9#wp619091" />
+  </i>
+  <i t="marimba.reboot.interact">
+   <j l="101#wp940127" />
+  </i>
+  <i t="marimba.reboot.interact.allowSnooze">
+   <j l="101#wp940131" />
+  </i>
+  <i t="marimba.reboot.interact.snooze.maxTime">
+   <j l="101#wp940135" />
+  </i>
+  <i t="marimba.reboot.interact.timer">
+   <j l="101#wp940139" />
+  </i>
+  <i t="marimba.reboot.never">
+   <j l="101#wp940143" />
+  </i>
+  <i t="marimba.subscription.adminusers">
+   <j l="67#wp834060" />
+  </i>
+  <i t="marimba.subscription.autostart">
+   <j l="67#wp834096" />
+   <j l="67#wp834122" />
+  </i>
+  <i t="marimba.subscription.installmode">
+   <j l="67#wp833978" />
+  </i>
+  <i t="marimba.subscription.machinename">
+   <j l="67#wp834140" />
+  </i>
+  <i t="marimba.subscription.nodelete">
+   <j l="67#wp833754" />
+  </i>
+  <i t="marimba.subscription.reapplyconfigonfail">
+   <j l="67#wp834026" />
+  </i>
+  <i t="marimba.subscription.reboot">
+   <j l="67#wp833784" />
+  </i>
+  <i t="marimba.subscription.reboot.allowcancel">
+   <j l="67#wp833816" />
+  </i>
+  <i t="marimba.subscription.reboot.time">
+   <j l="67#wp833850" />
+  </i>
+  <i t="marimba.subscription.retrycount">
+   <j l="67#wp833924" />
+  </i>
+  <i t="marimba.subscription.retryintervalsec">
+   <j l="67#wp834162" />
+  </i>
+  <i t="marimba.subscription.retrytime">
+   <j l="67#wp833888" />
+  </i>
+  <i t="marimba.subscription.timeout">
+   <j l="67#wp834188" />
+  </i>
+  <i t="marimba.subscription.useshortcuts">
+   <j l="67#wp833956" />
+  </i>
+  <i t="marimba.subscription.varytime">
+   <j l="67#wp834212" />
+  </i>
+  <i t="marimba.tuner.display.noerrors">
+   <j l="67#wp834234" />
+  </i>
+  <i t="marimba.tuner.display.noprogress">
+   <j l="67#wp834254" />
+  </i>
+  <i t="marimba.tuner.update.profile, propriété">
+   <j l="80#wp266265" />
+  </i>
+  <i t="mettre en attente, état">
+   <j l="41#wp282499" />
+   <i t="description">
+    <j l="41#wp283761" />
+   </i>
+  </i>
+  <i t="mise en attente">
+   <i t="mises à jour">
+    <j l="57#wp285000" />
+    <j l="57#wp285037" />
+   </i>
+  </i>
+  <i t="mises à jour">
+   <i t="activation et désactivation de la policy">
+    <j l="107" />
+   </i>
+   <i t="arrêt et nouvelle tentative de la policy">
+    <j l="110" />
+   </i>
+   <i t="arrêt et nouvelle tentative pour les policies">
+    <j l="110" />
+   </i>
+   <i t="contrôle et affichage du statut de la policy">
+    <j l="109" />
+   </i>
+   <i t="exécution de la policy">
+    <j l="108" />
+   </i>
+   <i t="fonctionnement de la policy">
+    <j l="111" />
+   </i>
+   <i t="mise en attente">
+    <j l="57#wp285000" />
+    <j l="57#wp285037" />
+   </i>
+   <i t="nouvelle tentative de la policy">
+    <j l="110" />
+   </i>
+   <i t="planification">
+    <j l="57#wp285000" />
+    <j l="57#wp285019" />
+   </i>
+   <i t="pré-requis à l'utilisation">
+    <j l="106" />
+   </i>
+   <i t="utilisation avec les périodes d'inactivité de la policy">
+    <j l="112" />
+   </i>
+  </i>
+  <i t="mises à jour immédiates de la policy, exécution">
+   <j l="108" />
+  </i>
+  <i t="modes">
+   <i t="sélection multiple">
+    <j l="24#wp282425" />
+    <j l="24#wp282433" />
+    <j l="29#wp282649" />
+    <j l="29#wp282657" />
+   </i>
+   <i t="sélection unitaire">
+    <j l="24#wp282377" />
+    <j l="29#wp282609" />
+   </i>
+  </i>
+  <i t="modification de policies">
+   <j l="34" />
+  </i>
+  <i t="Module Inventory">
+   <i t="utilisation pour les collections">
+    <j l="16#wp281776" />
+   </i>
+  </i>
+ </g>
+ <g t="N" o="002">
+  <i t="nouvelles policies, création">
+   <j l="34" />
+  </i>
+ </g>
+ <g t="Œ" o="002">
+  <i t="ordre d'installation">
+   <j l="51" />
+  </i>
+ </g>
+ <g t="P" o="002">
+  <i t="packages">
+   <i t="affichage des détails">
+    <j l="30" />
+   </i>
+   <i t="afficher la policy compliance">
+    <j l="89#wp905977" />
+   </i>
+   <i t="ajouter aux policies">
+    <j l="38" />
+   </i>
+   <i t="conformité">
+    <j l="83" />
+   </i>
+   <i t="créés à l'aide de l'Application Packager">
+    <j l="25#wp282474" />
+   </i>
+   <i t="définition">
+    <j l="25#wp282474" />
+   </i>
+   <i t="définition de la priorité d'installation">
+    <j l="51#wp284733" />
+   </i>
+   <i t="définition de planifications communes">
+    <j l="47" />
+   </i>
+   <i t="états">
+    <j l="41" />
+   </i>
+   <i t="exempter de la période d'inactivité">
+    <j l="62" />
+   </i>
+   <i t="exploration">
+    <j l="27" />
+   </i>
+   <i t="icône">
+    <j l="25#wp282481" />
+   </i>
+   <i t="indication des états primaires et secondaires">
+    <j l="42" />
+   </i>
+   <i t="planifier la réparation">
+    <j l="46" />
+   </i>
+   <i t="priorité d'installation">
+    <j l="51" />
+    <j l="57#wp285060" />
+   </i>
+   <i t="priorité des états">
+    <j l="41#wp283802" />
+   </i>
+   <i t="recherche">
+    <j l="28" />
+   </i>
+   <i t="remarques sur la priorité d'installation">
+    <j l="51#wp284710" />
+   </i>
+   <i t="suppression des cibles">
+    <j l="39" />
+   </i>
+   <i t="suppression des policies">
+    <j l="39" />
+   </i>
+   <i t="tri">
+    <j l="23#wp282297" />
+   </i>
+  </i>
+  <i t="paramètres de channel, définition">
+   <j l="67#wp835200" />
+  </i>
+  <i t="paramètres de redémarrage">
+   <i t="installation de patch">
+    <j l="100" />
+   </i>
+   <i t="propriétés de tuner pour l'installation de patch">
+    <j l="101" />
+   </i>
+   <i t="propriétés régissant">
+    <j l="67#wp835220" />
+   </i>
+  </i>
+  <i t="paramètres de redémarrage:installation de patch">
+   <j l="100" />
+  </i>
+  <i t="paramètres, channel">
+   <j l="67#wp835200" />
+  </i>
+  <i t="Patch Management">
+   <i t="Intégration à Policy Manager">
+    <j l="91" />
+   </i>
+   <i t="pré-requis à l'utilisation avec Policy Manager">
+    <j l="92" />
+   </i>
+  </i>
+  <i t="Patch Service">
+   <i t="définition">
+    <j l="95" />
+   </i>
+   <i t="exempter de la période d'inactivité">
+    <j l="103#wp940229" />
+   </i>
+   <i t="remplacement de la planification des mises à jour">
+    <j l="102" />
+   </i>
+  </i>
+  <i t="PatchManagement/PatchGroups, dossier sur le transmitter">
+   <j l="96#wp939861" />
+  </i>
+  <i t="période d'inactivité">
+   <i t="définition">
+    <j l="60" />
+   </i>
+   <i t="définition d’une cible">
+    <j l="61" />
+   </i>
+   <i t="exempter des groupes de patch">
+    <j l="103#wp940237" />
+   </i>
+   <i t="exempter des packages">
+    <j l="62" />
+   </i>
+   <i t="exempter Patch Service">
+    <j l="103#wp940229" />
+   </i>
+   <i t="exempter Policy Service">
+    <j l="61#wp709923" />
+   </i>
+   <i t="paramétrage global">
+    <j l="61#wp709911" />
+   </i>
+  </i>
+  <i t="périodes d'inactivité">
+   <i t="utilisation avec les mises à jour de la policy">
+    <j l="112" />
+   </i>
+  </i>
+  <i t="planification">
+   <i t="mises à jour">
+    <j l="57#wp285000" />
+    <j l="57#wp285019" />
+   </i>
+  </i>
+  <i t="planification de réparation">
+   <i t="définition">
+    <j l="43#wp284104" />
+    <j l="43#wp284104" />
+    <j l="46" />
+   </i>
+  </i>
+  <i t="planification des mises à jour">
+   <i t="définition">
+    <j l="43#wp284060" />
+    <j l="45" />
+   </i>
+   <i t="Patch Service">
+    <j l="102" />
+   </i>
+   <i t="Policy Service">
+    <j l="65" />
+   </i>
+  </i>
+  <i t="planification primaire">
+   <i t="définition">
+    <j l="43#wp284006" />
+    <j l="44" />
+   </i>
+  </i>
+  <i t="planifications">
+   <i t="activation pour packages dans une policy">
+    <j l="43#wp284028" />
+   </i>
+   <i t="définition">
+    <j l="43#wp284006" />
+    <j l="43#wp284006" />
+    <j l="44" />
+    <j l="44" />
+   </i>
+   <i t="définition de planifications communes à plusieurs packages">
+    <j l="47" />
+   </i>
+   <i t="définition pour les packages">
+    <j l="40" />
+   </i>
+   <i t="expiration pour packages dans une policy">
+    <j l="43#wp284028" />
+   </i>
+   <i t="mise à jour">
+    <j l="43#wp284060" />
+   </i>
+   <i t="mises à jour de Patch Service">
+    <j l="102" />
+   </i>
+   <i t="mises à jour de Policy Service">
+    <j l="65" />
+   </i>
+   <i t="période d'inactivité">
+    <j l="60" />
+   </i>
+   <i t="planification primaire">
+    <j l="43#wp284006" />
+    <j l="44" />
+   </i>
+   <i t="planification secondaire">
+    <j l="43#wp284006" />
+    <j l="44" />
+   </i>
+   <i t="présentation des planifications d'attribution de policy">
+    <j l="43" />
+   </i>
+   <i t="récurrence pour des activités">
+    <j l="43#wp284132" />
+   </i>
+   <i t="repair">
+    <j l="43#wp284104" />
+   </i>
+   <i t="résolution de conflit">
+    <j l="48" />
+   </i>
+  </i>
+  <i t="planifications communes, définition pour packages">
+   <j l="47" />
+  </i>
+  <i t="plugin Abonnement">
+   <i t="aperçu des modifications">
+    <j l="8#wp619026" />
+   </i>
+   <i t="configuration">
+    <j l="8" />
+   </i>
+   <i t="définition">
+    <j l="7#wp618864" />
+   </i>
+  </i>
+  <i t="plugin, Abonnement">
+   <i t="aperçu des modifications">
+    <j l="8#wp619026" />
+   </i>
+   <i t="configuration">
+    <j l="8" />
+   </i>
+   <i t="définition">
+    <j l="7#wp618864" />
+   </i>
+  </i>
+  <i t="policies">
+   <i t="affichage des informations de conformité">
+    <j l="87" />
+    <j l="89#wp905977" />
+   </i>
+   <i t="ajout de packages">
+    <j l="38" />
+   </i>
+   <i t="ajout et suppression de groupes de patch">
+    <j l="96#wp939855" />
+   </i>
+   <i t="aperçu des modifications">
+    <j l="35" />
+   </i>
+   <i t="approvisionnement">
+    <j l="9#wp619165" />
+   </i>
+   <i t="attribution de groupes de patch à des machines cibles">
+    <j l="96" />
+   </i>
+   <i t="copie">
+    <j l="54" />
+   </i>
+   <i t="création">
+    <j l="34" />
+   </i>
+   <i t="définition">
+    <j l="32" />
+   </i>
+   <i t="icône des policies directement attribuées">
+    <j l="18#wp281839" />
+   </i>
+   <i t="indication des états primaires et secondaires">
+    <j l="42" />
+   </i>
+   <i t="modification">
+    <j l="34" />
+   </i>
+   <i t="résolution de conflit">
+    <j l="53" />
+    <j l="53" />
+   </i>
+   <i t="résolution des différences d'états et de planifications">
+    <j l="49" />
+   </i>
+   <i t="suppression">
+    <j l="55" />
+   </i>
+   <i t="suppression de packages">
+    <j l="39" />
+   </i>
+   <i t="utilisées comme modèles pour l'approvisionnement">
+    <j l="9#wp619165" />
+   </i>
+  </i>
+  <i t="policies d'abonnement. Voir policies.">
+   <j l="32" />
+  </i>
+  <i t="policy compliance">
+   <i t="affichage des packages">
+    <j l="89#wp905977" />
+   </i>
+   <i t="affichage pour cibles">
+    <j l="87" />
+   </i>
+   <i t="configuration">
+    <j l="12" />
+   </i>
+   <i t="définition">
+    <j l="82" />
+    <j l="83" />
+    <j l="104#wp940293" />
+   </i>
+   <i t="groupes de patch">
+    <j l="104" />
+   </i>
+   <i t="pré-requis">
+    <j l="84" />
+   </i>
+   <i t="pré-requis pour le serveur console">
+    <j l="85" />
+   </i>
+   <i t="pré-requis pour les machines cibles">
+    <j l="86" />
+   </i>
+  </i>
+  <i t="Policy Manager">
+   <i t="configuration">
+    <j l="6" />
+   </i>
+  </i>
+  <i t="Policy Service">
+   <i t="définition">
+    <j l="64" />
+   </i>
+   <i t="exempter de la période d'inactivité">
+    <j l="61#wp709923" />
+   </i>
+   <i t="planification de mises à jour">
+    <j l="65" />
+   </i>
+  </i>
+  <i t="pré-requis pour les listes de contrôle d'accès (ACL)">
+   <j l="11" />
+  </i>
+  <i t="priorité d'installation">
+   <i t="définition">
+    <j l="51" />
+   </i>
+   <i t="définition pour les packages">
+    <j l="51#wp284733" />
+   </i>
+   <i t="packages">
+    <j l="57#wp285060" />
+   </i>
+   <i t="remarques">
+    <j l="51#wp284710" />
+   </i>
+   <i t="résolution de conflit">
+    <j l="52" />
+   </i>
+  </i>
+  <i t="priorité des états">
+   <j l="41#wp283802" />
+  </i>
+  <i t="priorité, état d'abonnement">
+   <j l="41#wp283802" />
+  </i>
+  <i t="profils">
+   <i t="téléchargement">
+    <j l="80#wp266247" />
+   </i>
+   <i t="types">
+    <j l="79" />
+   </i>
+  </i>
+  <i t="propriété, valeurs">
+   <i t="résolution de conflit">
+    <j l="72" />
+   </i>
+  </i>
+  <i t="propriétés">
+   <i t="conflits des propriétés de tuner">
+    <j l="73" />
+   </i>
+   <i t="format des propriétés de tuner et de package">
+    <j l="70" />
+   </i>
+   <i t="liste des propriétés de tuner utilisées habituellement">
+    <j l="67#wp835153" />
+   </i>
+   <i t="packages">
+    <j l="67#wp835200" />
+   </i>
+   <i t="paramétrage des propriétés de package">
+    <j l="69" />
+   </i>
+   <i t="paramétrage des propriétés de tuner">
+    <j l="68" />
+   </i>
+   <i t="pour les paramètres de redémarrage">
+    <j l="67#wp835220" />
+   </i>
+   <i t="pour les tuners">
+    <j l="67#wp835121" />
+   </i>
+   <i t="suppression des propriétés de tuner et de package">
+    <j l="70#wp835500" />
+    <j l="71" />
+   </i>
+   <i t="utilisation d'espaces dans">
+    <j l="70#wp835506" />
+   </i>
+  </i>
+  <i t="propriétés de channel. Voir propriétés de package.">
+   <j l="67#wp835196" />
+  </i>
+  <i t="propriétés de package">
+   <i t="définition">
+    <j l="67#wp835196" />
+    <j l="69" />
+   </i>
+   <i t="format">
+    <j l="70" />
+   </i>
+   <i t="reboot.allow">
+    <j l="67#wp834446" />
+   </i>
+   <i t="reboot.allowcancel">
+    <j l="67#wp834466" />
+   </i>
+   <i t="reboot.force">
+    <j l="67#wp834484" />
+   </i>
+   <i t="reboot.showdialog">
+    <j l="67#wp834504" />
+   </i>
+   <i t="suppression">
+    <j l="70#wp835500" />
+    <j l="71" />
+   </i>
+   <i t="utilisation d'espaces dans">
+    <j l="70#wp835506" />
+   </i>
+  </i>
+  <i t="propriétés du tuner">
+   <i t="conflits">
+    <j l="73" />
+   </i>
+   <i t="définition">
+    <j l="67#wp835121" />
+   </i>
+   <i t="format">
+    <j l="70" />
+   </i>
+   <i t="liste des propriétés de tuner utilisées habituellement">
+    <j l="67#wp835153" />
+   </i>
+   <i t="marimba.subscription.adminusers">
+    <j l="67#wp834060" />
+   </i>
+   <i t="marimba.subscription.autostart">
+    <j l="67#wp834096" />
+    <j l="67#wp834122" />
+   </i>
+   <i t="marimba.subscription.installmode">
+    <j l="67#wp833978" />
+   </i>
+   <i t="marimba.subscription.machinename">
+    <j l="67#wp834140" />
+   </i>
+   <i t="marimba.subscription.nodelete">
+    <j l="67#wp833754" />
+   </i>
+   <i t="marimba.subscription.reapplyconfigonfail">
+    <j l="67#wp834026" />
+   </i>
+   <i t="marimba.subscription.reboot">
+    <j l="67#wp833784" />
+   </i>
+   <i t="marimba.subscription.reboot.allowcancel">
+    <j l="67#wp833816" />
+   </i>
+   <i t="marimba.subscription.reboot.time">
+    <j l="67#wp833850" />
+   </i>
+   <i t="marimba.subscription.retrycount">
+    <j l="67#wp833924" />
+   </i>
+   <i t="marimba.subscription.retryintervalsec">
+    <j l="67#wp834162" />
+   </i>
+   <i t="marimba.subscription.retrytime">
+    <j l="67#wp833888" />
+   </i>
+   <i t="marimba.subscription.timeout">
+    <j l="67#wp834188" />
+   </i>
+   <i t="marimba.subscription.useshortcuts">
+    <j l="67#wp833956" />
+   </i>
+   <i t="marimba.subscription.varytime">
+    <j l="67#wp834212" />
+   </i>
+   <i t="marimba.tuner.display.noerrors">
+    <j l="67#wp834234" />
+   </i>
+   <i t="marimba.tuner.display.noprogress">
+    <j l="67#wp834254" />
+   </i>
+   <i t="paramétrage à partir de l'interface graphique">
+    <j l="68" />
+   </i>
+   <i t="paramètres de redémarrage:installation de patch">
+    <j l="101" />
+   </i>
+   <i t="résolution de conflit">
+    <j l="72#wp835638" />
+   </i>
+   <i t="suppression">
+    <j l="70#wp835500" />
+    <j l="71" />
+   </i>
+   <i t="utilisation d'espaces dans">
+    <j l="70#wp835506" />
+   </i>
+  </i>
+ </g>
+ <g t="Q" o="002">
+  <i t="quorum">
+   <i t="Deployment Manager">
+    <j l="109#wp262960" />
+   </i>
+  </i>
+ </g>
+ <g t="R" o="002">
+  <i t="reboot.allow, propriété">
+   <j l="67#wp834446" />
+   <j l="67#wp834534" />
+  </i>
+  <i t="reboot.allowcancel, propriété">
+   <j l="67#wp834466" />
+  </i>
+  <i t="reboot.force, propriété">
+   <j l="67#wp834484" />
+   <j l="67#wp834538" />
+  </i>
+  <i t="reboot.showdialog, propriété">
+   <j l="67#wp834504" />
+  </i>
+  <i t="recherche">
+   <i t="cibles">
+    <j l="22" />
+   </i>
+   <i t="packages">
+    <j l="28" />
+   </i>
+  </i>
+  <i t="Rechercher, bouton de la fenêtre d'aide">
+   <j l="5#wp274262" />
+  </i>
+  <i t="récurrence pour des activités planifiées">
+   <j l="43#wp284132" />
+  </i>
+  <i t="redémarrage du système, propriétés régissant">
+   <j l="67#wp835220" />
+  </i>
+  <i t="Report Center">
+   <i t="pré-requis à l'utilisation avec Policy Manager">
+    <j l="106#wp262681" />
+   </i>
+   <i t="utilisation pour les collections">
+    <j l="16#wp281776" />
+   </i>
+  </i>
+  <i t="résolution de conflit">
+   <i t="états et planifications des packages">
+    <j l="48" />
+   </i>
+   <i t="plusieurs packages avec la même priorité d'installation">
+    <j l="52" />
+   </i>
+   <i t="plusieurs utilisateurs modifiant des propriétés">
+    <j l="73" />
+   </i>
+   <i t="plusieurs utilisateurs modifiant la même policy">
+    <j l="53" />
+   </i>
+   <i t="propriété, valeurs">
+    <j l="72" />
+   </i>
+  </i>
+ </g>
+ <g t="S" o="002">
+  <i t="sélection multiple, mode">
+   <j l="24#wp282425" />
+   <j l="24#wp282433" />
+   <j l="29#wp282649" />
+   <j l="29#wp282657" />
+  </i>
+  <i t="sélection unitaire, mode">
+   <j l="24#wp282377" />
+   <j l="29#wp282609" />
+  </i>
+  <i t="serveur console, pré-requis pour la policy compliance">
+   <j l="85" />
+  </i>
+  <i t="services d'annuaire">
+   <i t="définition du base DN de configuration">
+    <j l="9#wp619101" />
+   </i>
+   <i t="définition du bind DN de configuration">
+    <j l="9#wp619115" />
+   </i>
+   <i t="délai d'expiration de la dernière connexion réussie à un hôte">
+    <j l="9#wp619161" />
+   </i>
+   <i t="format UPN du bind DN">
+    <j l="9#wp619125" />
+   </i>
+   <i t="taille du pool de connexion">
+    <j l="9#wp619149" />
+   </i>
+   <i t="utiliser SSL lors de la connexion avec le transmitter">
+    <j l="9#wp619097" />
+   </i>
+  </i>
+  <i t="simulation">
+   <i t="affichage des informations détaillées sur l'installation de groupes de patch">
+    <j l="99" />
+   </i>
+   <i t="installation de groupes de patch">
+    <j l="98" />
+   </i>
+  </i>
+  <i t="Sommaire, bouton de la fenêtre d'aide">
+   <j l="5#wp274254" />
+  </i>
+  <i t="SSL, utiliser entre le transmitter et le service d'annuaire">
+   <j l="9#wp619097" />
+  </i>
+  <i t="suppression">
+   <i t="ajout">
+    <j l="76" />
+   </i>
+   <i t="définition">
+    <j l="75" />
+   </i>
+   <i t="modification">
+    <j l="76" />
+   </i>
+   <i t="suppression">
+    <j l="77" />
+   </i>
+  </i>
+  <i t="suppression:packages des cibles">
+   <j l="39" />
+  </i>
+  <i t="suppression:policies">
+   <j l="55" />
+  </i>
+ </g>
+ <g t="T" o="002">
+  <i t="taille du pool de connexion, service d'annuaire">
+   <j l="9#wp619149" />
+  </i>
+  <i t="Toutes les machines cibles">
+   <i t="description">
+    <j l="14#wp281649" />
+   </i>
+  </i>
+  <i t="transmitters">
+   <i t="utiliser SSL lors de la connexion avec le service d'annuaire">
+    <j l="9#wp619097" />
+   </i>
+  </i>
+  <i t="transmitters sur services d'annuaire, mappages">
+   <j l="9#wp619091" />
+  </i>
+  <i t="tri de la liste des cibles">
+   <j l="30#wp282708" />
+  </i>
+  <i t="tri de la liste des packages">
+   <j l="23#wp282297" />
+  </i>
+  <i t="type toutes les machines cibles">
+   <j l="15#wp281711" />
+  </i>
+ </g>
+ <g t="V" o="002">
+  <i t="Vue Cible, utilisation pour supprimer les packages des cibles">
+   <j l="55#wp284907" />
+  </i>
+ </g>
+</WebWorksHelpIX>

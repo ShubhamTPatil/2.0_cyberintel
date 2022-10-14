@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Apr-13-06 v6.2 ANSI)" />
+    <meta name="LASTUPDATED" content="11/16/09 16:16:57" />
+    <title>Setting the blackout period for a target</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Setting the blackout period for a target";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp53327"> </a><p class="pBody">Follow these steps to specify a blackout period that is used by default to prevent policy state changes on one or more targets. The blackout period prevents downloads, installations, updates, and repairs from occurring during the specified period of time of the day. Usually, you&#39;ll want to set a blackout period to avoid possible interruptions to workday activities at the endpoints or to minimize network traffic during critical periods. Activities that are scheduled during a blackout period are performed immediately after the blackout period is over. The blackout period is relative to the endpoint&#39;s time zone.</p>
+<hr class="NoteRuleTop"/><a name="wp53328"> </a><p class="pNote"><span style="color: #003366">Note: &#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;</span> During the specified blackout period, no activities take place for all packages on the endpoint tuner. This is true even for packages that are not managed using Policy Management. Take this information into account when you set the blackout period because there might be emergency situations when you need to update a package on endpoints during a blackout period. You either need to wait until the blackout period is over, or manually perform updates at each endpoint.</p><hr class="NoteRuleBottom"/><a name="wp53329"> </a><p class="pBody"><b class="cBold">Global blackout period.</b> To set a global blackout period, select the All Endpoints target before you specify the blackout period. If two blackout periods are set for an endpoint (as a result of two policies resolving to the same endpoint), the endpoint&#39;s blackout period is a union of the two blackout periods. For example, user Alan belongs to the <b class="cBold">Engineering</b> user group and a blackout period is set for both. The blackout period for Alan is 7 AM to 11 AM, while the blackout period for Engineering is 9 AM to 5 PM. The resulting blackout period for Alan is 7 AM to 5 PM.</p>
+<a name="wp53574"> </a><p class="pBody"><b class="cBold">Exempting Policy Service from the blackout.</b> When you set a blackout period, you can exempt Policy Service so that it can still update and run during the blackout period. This exemption is useful if you anticipate emergency situations when you want to update or install packages during the blackout period.</p>
+<a name="wp53596"> </a><p class="pBody"><b class="cBold">Exempting packages from the blackout.</b> On the Packages tab of the Edit Policy page, you can indicate which packages you want to exempt from the blackout period. This exemption is useful if you anticipate emergency situations when you want to update or install packages during the blackout period. See <a href="javascript:WWHClickedPopup('sm', 'blackout-4.htm');" onMouseOver="WWHShowPopup('sm', 'blackout-4.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Exempting packages from the blackout period</a>. </p>
+<a name="wp53345"> </a><p class="pBody">When multiple users (using the same Policy Manager from two different machines) edit the Blackout Period page for the same target, the most recent edits to be saved are applied.</p>
+<hr class="NoteRuleTop"/><a name="wp53346"> </a><p class="pNote"><span style="color: #003366">Note: &#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;</span> You can set target-level settings, such as the blackout period, for one target at a time only. You cannot set target-level settings if you are in multiple-selection mode and are editing policies for multiple targets at one time. However, you can set target-level settings for all targets by selecting the<b class="cBold"> All Endpoints</b> target.</p><hr class="NoteRuleBottom"/><a name="wp53389"> </a><p class="pBody">This procedure assumes you are on the Packages tab of the Edit Policy page. See <a href="javascript:WWHClickedPopup('sm', 'policies-03.htm');" onMouseOver="WWHShowPopup('sm', 'policies-03.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">General directions for creating and editing policies</a>.</p>
+<a name="wp53347"> </a><p style="text-decoration: none" class="pStepIntro">
+To set the blackout period
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp53410"> </a><div class="pSmartList1"><li>On the Edit Policy page, click the Blackout Period tab.</li></div>
+<a name="wp53351"> </a><p class="pIndented1">
+The Blackout Period page appears.
+</p>
+<a name="wp53352"> </a><div class="pSmartList1"><li>Choose one of the following options in the Blackout period area:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp53353"> </a><div class="pSmartList2"><li>If you want to set a blackout period, choose Set the following blackout period, and, in the Disable activities section, specify the starting and ending times for the blackout period.</li></div>
+<a name="wp53354"> </a><p class="pIndented1">
+Note: You can set a blackout period that spans one day (such as from 9 AM to 5 PM), but not one that spans midnight (such as from 6 PM to 5 AM). You can also select the days of the week for the blackout period. 
+</p>
+<a name="wp53417"> </a><div class="pSmartList2"><li>If you do not want to set a blackout period, choose None. Allow activities to take place any time.</li></div>
+</ul></div>
+<a name="wp53418"> </a><div class="pSmartList1"><li>If you specified a blackout period for the target, choose one of the following options in the Policy Service behavior section:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp53453"> </a><div class="pSmartList2"><li>Enable Policy Service to update during the blackout period and allow operations for packages that are exempt from the blackout period.</li></div>
+<a name="wp53454"> </a><div class="pSmartList2"><li>Disable Policy Service from updating during the blackout period. No operations will be performed for packages, even those that are exempt from the blackout period. </li></div>
+</ul></div>
+<a name="wp53481"> </a><div class="pSmartList1"><li>When you are finished creating or editing the policy, click Preview.</li></div>
+<a name="wp53482"> </a><p class="pIndented1">
+The Preview page allows you to review changes to the policy before you save them and apply them to the target. See <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Previewing and saving policy changes</a>.
+</p>
+<a name="wp53486"> </a><div class="pSmartList1"><li>After reviewing your changes to the policy, click Save to confirm your changes and save them.</li></div>
+</ol></div>
+<a name="wp53556"> </a><h4 class="pHeading3">
+Details about the blackout period
+</h4>
+<a name="wp53570"> </a><p class="pBody">When you specify a blackout period, Policy Service appends the time period you specify to the tuner property <b class="cBold">marimba.schedule.filter</b> in the endpoint tuners&#39; <b class="cBold">prefs.txt</b> file. For example, if an endpoint tuner&#39;s original update schedule for channel is anytime on any day of the week, and then you use Policy Management to set a blackout period from 9 AM to 5 PM, the tuner property is set to the following value:</p>
+<a name="wp53560"> </a><p class="pIndented1">
+<b class="cBold">marimba.schedule.filter=ANYTIME on mon+tue+wed+thu+fri+sat+sun BLACKOUT 9:00AM-5:00PM</b>
+</p>
+<a name="wp53561"> </a><p class="pBody">If you later select the No blackout period option, the original channel update schedule set at the endpoint tuner is used. In the example given, only <b class="cBold">BLACKOUT 9:00AM-5:00PM</b> is removed from the value for the <b class="cBold">marimba.schedule.filter</b>. The tuner property that affects the blackout period (<b class="cBold">marimba.schedule.filter</b>) is not deleted from the endpoint. You can delete that tuner property explicitly using the Tuner and Package Properties page. See <a href="javascript:WWHClickedPopup('sm', 'props-1.htm');" onMouseOver="WWHShowPopup('sm', 'props-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Setting tuner and package properties for a target</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. All rights reserved.<br/>
+
+ For additional BMC Configuration Management documentation, go to the Customer
+Support website at <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+For questions or comments about BMC CM documentation, send
+an email to <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+For product related issues or questions, send an email to Customer Support at <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

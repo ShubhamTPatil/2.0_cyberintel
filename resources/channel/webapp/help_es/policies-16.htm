@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:45" />
+    <title>Configurar la planificación de reparación de los paquetes</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Configurar la planificación de reparación de los paquetes";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp50780"> </a><p class="pBody">En ocasiones, las aplicaciones y el contenido que empaqueta y distribuye a los usuarios podrían quedar inutilizables o no ejecutarse correctamente. Puede utilizar las funcionalidades de reparación para verificar y reparar problemas automáticamente, como archivos que faltan o archivos dañados.</p>
+<a name="wp50781"> </a><p class="pBody">Puede establecer una planificación de reparación para los paquetes. En el momento que se haya indicado en la planificación de la reparación, volverán a instalarse los archivos que hayan cambiado desde el momento en que se instaló el paquete. Antes de reparar el paquete, el tuner del destino se comunica con el transmitter del que se obtienen las actualizaciones de los paquetes.</p>
+<a name="wp50782"> </a><p class="pBody">La planificación de reparación sólo surtirá efecto en el cliente final si el paquete ya ha sido suscrito o instalado. Asimismo, las operaciones de reparación sólo funcionarán en los paquetes que hayan sido creados en BMC CM Application Packager. Es posible que los paquetes tengan asociada una planificación de reparación, de manera que tendrá la opción de utilizar dicha planificación o anularla en Policy Manager. A continuación se muestran algunas situaciones en las que es posible que desee utilizar Policy Manager para establecer una planificación de reparación:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp50787"> </a><div class="pSmartList2"><li>En ocasiones, puede suceder que diferentes usuarios realicen operaciones de empaquetamiento y distribución del software. Si es responsable de la distribución de software en Policy Manager, es posible que desee anular las planificaciones configuradas por los usuarios que realicen operaciones de empaquetamiento de software. </li></div>
+<a name="wp50791"> </a><div class="pSmartList2"><li>Asimismo, es posible que desee establecer una planificación predeterminada durante la operación de empaquetamiento para posteriormente anularla cuando distribuya el software a grupos específicos. </li></div>
+<a name="wp50792"> </a><div class="pSmartList2"><li>Una vez que haya establecido la planificación durante la operación de empaquetamiento, no podrá cambiarla fácilmente. Resulta más sencillo realizar cambios en las planificaciones en Policy Manager. </li></div>
+</ul></div>
+</ul></div>
+<a name="wp51595"> </a><p class="pBody">Este procedimiento da por hecho que se encuentra en la ficha Paquetes de la página Editar política. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-04.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Instrucciones generales para la creación y edición de políticas</a>.</p>
+<a name="wp50796"> </a><p style="text-decoration: none" class="pStepIntro">
+Para establecer la planificación de reparación para un paquete
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp51605"> </a><div class="pSmartList1"><li>En la ficha Paquetes de la página Editar política, localice la fila del paquete para el que desea establecer las planificaciones.</li></div>
+<a name="wp51606"> </a><div class="pSmartList1"><li>En la fila correspondiente al paquete, haga clic en la flecha de la primera columna situada en el lado izquierdo de la página para visualizar la información de planificación asignada al paquete.</li></div>
+<a name="wp51607"> </a><div class="pSmartList1"><li>En la sección <b class="cBold">Planificación de reparación </b>, haga clic en <b class="cBold">Editar</b>.</li></div>
+<a name="wp51608"> </a><p class="pIndented1">
+Aparecerá la página Edición de planificación de reparación.
+</p>
+<a name="wp51609"> </a><div class="pSmartList1"><li>Utilice la lista desplegable para especificar la planificación que desea asignar al paquete:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp51610"> </a><div class="pSmartList2"><li><b class="cBold">Siga la planificación especificada cuando se creó y publicó el paquete. </b>Seleccione esta opción si especificó una planificación para el paquete en el momento de su creación y publicación y desea aplicar dicha planificación.</li></div>
+<a name="wp51614"> </a><div class="pSmartList2"><li><b class="cBold">Utilice Policy Manager para establecer la planificación de reparación.</b> Seleccione esta opción si desea utilizar Policy Manager para gestionar la planificación de reparación.</li></div>
+</ul></div>
+<a name="wp51621"> </a><div class="pSmartList1"><li>Si ha seleccionado utilizar Policy Manager para gestionar la planificación de reparación, especifique la siguiente información:</li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp51622"> </a><div class="pSmartList2"><li>En el área <b class="cBold">Repetición</b>, especifique con qué frecuencia desea que se repare el paquete:</li></div>
+<div class="pSmartList3"><ul class="pSmartList3">
+<a name="wp51623"> </a><div class="pSmartList3"><li><b class="cBold">Nunca</b>: el paquete no se verificará ni reparará nunca automáticamente. Deberá reparar el paquete manualmente cuando sea necesario.</li></div>
+<a name="wp51624"> </a><div class="pSmartList3"><li><b class="cBold">Diariamente</b>: el paquete podrá verificarse y repararse a diario, sólo los fines de semana (de lunes a viernes) o una vez cada 1-365 días, dependiendo del valor que especifique.</li></div>
+<a name="wp51625"> </a><div class="pSmartList3"><li><b class="cBold">Semanalmente</b>: el paquete podrá verificarse y repararse una vez cada 1-52 semanas, dependiendo del valor que especifique. Durante la semana para la que se haya planificado la reparación, ésta se llevará a cabo sólo en los días seleccionados. Debe seleccionar por lo menos un día de la semana.</li></div>
+<a name="wp51626"> </a><div class="pSmartList3"><li><b class="cBold">Mensualmente</b>: el paquete podrá verificarse y repararse una vez cada 1-12 meses en el día especificado. Si selecciona el día 30 ó 31 y el mes durante el cual deberá llevarse a cabo la reparación no incluye ese día (por ejemplo, febrero), ésta se llevará a cabo el primer día del mes siguiente.</li></div>
+</ul></div>
+<a name="wp51627"> </a><div class="pSmartList2"><li>En el área <b class="cBold">Hora de reparación</b>, especifique la hora del día durante la cual deberá llevarse a cabo la reparación del paquete:</li></div>
+<div class="pSmartList3"><ul class="pSmartList3">
+<a name="wp51628"> </a><div class="pSmartList3"><li><b class="cBold">Reparar en</b>: seleccione esta opción para especificar la hora del día durante la cual deberá llevarse a cabo la reparación del paquete.</li></div>
+<a name="wp51629"> </a><div class="pSmartList3"><li><b class="cBold">Reparar cada</b>: seleccione esta opción para especificar diversas horas del día durante las cuales deberá llevarse a cabo la reparación. Podrá establecer que las reparaciones se lleven a cabo cada determinado número de minutos o de horas durante el día, o restringir las reparaciones a un intervalo de horas durante el día. Por ejemplo, puede especificar que las reparaciones se lleven a cabo cada hora entre las 9:00 h y las 17:00 h o cada 30 minutos entre las 17:00 h y las 9:00 h.</li></div>
+</ul></div>
+<a name="wp51630"> </a><div class="pSmartList2"><li>En las áreas <b class="cBold">Activación</b> y <b class="cBold">Caducidad</b>, especifique las fechas y horas que definan el comienzo y el fin de la planificación de reparación.</li></div>
+<a name="wp51634"> </a><p class="pIndented1">
+Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-13.htm#wp50595');" onMouseOver="WWHShowPopup('Policy', 'policies-13.htm#wp50595', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">¿Qué son la activación y la caducidad?</a>.
+</p>
+</ol></div>
+<a name="wp51635"> </a><div class="pSmartList1"><li>Haga clic en <b class="cBold">Aceptar</b> para guardar la planificación y volver a la página Editar política.</li></div>
+<a name="wp51636"> </a><p class="pIndented1">
+Tenga en cuenta que la planificación aparecerá ahora en la sección Planificación de reparación.
+</p>
+</ol></div>
+<a name="wp53835"> </a><p class="pBody">Cuando haya terminado de editar la política, visualice los cambios efectuados en Vista previa y guárdela. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-05.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Visualizar previamente y almacenar cambios en las políticas</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

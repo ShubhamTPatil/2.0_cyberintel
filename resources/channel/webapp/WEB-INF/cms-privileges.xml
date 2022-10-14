@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE application-privileges "-//Marimba, Inc.//DTD Privileges 1.0//EN" "http://www.marimba.com/xml/cms/dtds/privileges.dtd">
+<application-privileges>
+    <privilege name="access-general">
+        <privilege name="subuser"/>
+        <privilege name="managePlugin"/>
+        <privilege name="manageEmailConfig"/>
+        <privilege name="manageNamespace"/>
+        <privilege name="manageSCAP"/>
+        <privilege name="manageUSGCB"/>
+        <privilege name="manageCustom"/>
+        <privilege name="manageProfile"/>
+        <privilege name="policyAssignment"/>
+        <privilege name="securitySettings"/>
+        <privilege name="pluginPublish"/>
+    </privilege>
+    <privilege name="access-dashboard">
+        <privilege name="manageDashboard"/>
+    </privilege>
+    <privilege name="access-assignments">
+        <privilege name="manageAssignments"/>
+        <privilege name="policyAssignment"/>
+    </privilege>
+    <privilege name="access-settings">
+        <privilege name="manageSettings"/>
+    </privilege>
+	<privilege name="access-updates">
+        <privilege name="manageUpdates"/>
+    </privilege>
+    <default-mappings>
+        <role name="Operator">
+            <privilege-ref name="subuser"/>
+            <privilege-ref name="manageDashboard"/>
+        </role>
+
+        <role name="TenantOperator">
+            <privilege-ref name="subuser"/>
+            <privilege-ref name="manageDashboard"/>
+        </role>
+
+        <role name="CloudOperator">
+            <privilege-ref name="subuser"/>
+            <privilege-ref name="manageDashboard"/>
+        </role>
+
+        <role name="Admin">
+            <privilege-ref name="subuser"/>
+            <privilege-ref name="manageNamespace"/>
+            <privilege-ref name="manageSCAP"/>
+            <privilege-ref name="manageUSGCB"/>
+            <privilege-ref name="manageCustom"/>
+            <privilege-ref name="manageProfile"/>
+            <privilege-ref name="manageDashboard"/>
+            <privilege-ref name="manageAssignments"/>
+            <privilege-ref name="manageSettings"/>
+            <privilege-ref name="policyAssignment"/>
+            <privilege name="securitySettings"/>
+            <privilege-ref name="manageUpdates"/>
+        </role>
+
+        <role name="TenantAdmin">
+            <privilege-ref name="subuser"/>
+            <privilege-ref name="manageNamespace"/>
+            <privilege-ref name="manageSCAP"/>
+            <privilege-ref name="manageUSGCB"/>
+            <privilege-ref name="manageCustom"/>
+            <privilege-ref name="manageProfile"/>
+            <privilege-ref name="manageDashboard"/>
+            <privilege-ref name="manageAssignments"/>
+            <privilege-ref name="manageSettings"/>
+            <privilege-ref name="policyAssignment"/>
+            <privilege name="securitySettings"/>
+            <privilege-ref name="manageUpdates"/>
+        </role>
+
+        <role name="CloudAdmin">
+            <privilege-ref name="subuser"/>
+            <privilege-ref name="manageNamespace"/>
+            <privilege-ref name="manageSCAP"/>
+            <privilege-ref name="manageUSGCB"/>
+            <privilege-ref name="manageCustom"/>
+            <privilege-ref name="manageProfile"/>
+            <privilege-ref name="manageDashboard"/>
+            <privilege-ref name="manageAssignments"/>
+            <privilege-ref name="manageSettings"/>
+            <privilege-ref name="policyAssignment"/>
+            <privilege name="securitySettings"/>
+            <privilege-ref name="manageUpdates"/>
+        </role>
+
+        <role name="PrimaryAdmin">
+            <privilege-ref name="subuser"/>
+            <privilege-ref name="pluginPublish"/>
+            <privilege-ref name="managePlugin"/>
+            <privilege-ref name="manageNamespace"/>
+            <privilege-ref name="manageSCAP"/>
+            <privilege-ref name="manageUSGCB"/>
+            <privilege-ref name="manageCustom"/>
+            <privilege-ref name="manageProfile"/>
+            <privilege-ref name="manageDashboard"/>
+            <privilege-ref name="manageAssignments"/>
+            <privilege-ref name="manageSettings"/>
+            <privilege-ref name="policyAssignment"/>
+            <privilege-ref name="manageEmailConfig"/>
+            <privilege name="securitySettings"/>
+            <privilege-ref name="manageUpdates"/>
+        </role>
+
+        <role name="TenantPrimaryAdmin">
+            <privilege-ref name="subuser"/>
+            <privilege-ref name="pluginPublish"/>
+            <privilege-ref name="managePlugin"/>
+            <privilege-ref name="manageNamespace"/>
+            <privilege-ref name="manageSCAP"/>
+            <privilege-ref name="manageUSGCB"/>
+            <privilege-ref name="manageCustom"/>
+            <privilege-ref name="manageProfile"/>
+            <privilege-ref name="manageDashboard"/>
+            <privilege-ref name="manageAssignments"/>
+            <privilege-ref name="manageSettings"/>
+            <privilege-ref name="policyAssignment"/>
+            <privilege-ref name="manageEmailConfig"/>
+            <privilege name="securitySettings"/>
+            <privilege-ref name="manageUpdates"/>
+        </role>
+
+        <role name="CloudPrimaryAdmin">
+            <privilege-ref name="subuser"/>
+            <privilege-ref name="pluginPublish"/>
+            <privilege-ref name="managePlugin"/>
+            <privilege-ref name="manageNamespace"/>
+            <privilege-ref name="manageSCAP"/>
+            <privilege-ref name="manageUSGCB"/>
+            <privilege-ref name="manageCustom"/>
+            <privilege-ref name="manageProfile"/>
+            <privilege-ref name="manageDashboard"/>
+            <privilege-ref name="manageAssignments"/>
+            <privilege-ref name="manageSettings"/>
+            <privilege-ref name="policyAssignment"/>
+            <privilege-ref name="manageEmailConfig"/>
+            <privilege name="securitySettings"/>
+            <privilege-ref name="manageUpdates"/>
+        </role>
+    </default-mappings>
+
+</application-privileges>

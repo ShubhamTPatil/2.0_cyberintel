@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:41:09" />
+    <title>Voraussetzungen für die Integration mit Deployment Manager</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Voraussetzungen für die Integration mit Deployment Manager";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp386070"> </a><p class="pBody">Informationen zur Installation der in diesem Abschnitt erwähnten Komponenten finden Sie im <em class="cEmphasis">BMC CM Installations- und Deployment-Handbuch (BMC Configuration Management Installation and Deployment Guide)</em>. Informationen zur Konfiguration von Deployment Manager und Deployment Service finden Sie im <em class="cEmphasis">Administratorhandbuch für Server Management (Server Management Administrator&#39;s Guide)</em>, Informationen zur Konfiguration von Report Center und Scanner Service im <em class="cEmphasis">Administratorhandbuch für Report Center (Report Center Administrator&#39;s Guide)</em>. Diese Dokumente sind auch auf der BMC Customer Support-Website erhältlich.</p>
+<a name="wp386076"> </a><p class="pBody"><b class="cBold">Serverseitig.</b> Folgende Komponenten müssen auf dem gleichen Computer wie Policy Manager installiert und konfiguriert sein:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp386080"> </a><div class="pSmartList2"><li>Report Center</li></div>
+<a name="wp386082"> </a><div class="pSmartList2"><li>Deployment Manager</li></div>
+<hr class="NoteRuleTop"/><a name="wp386088"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> BMC empfiehlt, Deployment Manager auf einem anderen Computer als Policy Manager auszuführen.</p><hr class="NoteRuleBottom"/></ul></div>
+</ul></div>
+<a name="wp386098"> </a><p class="pBody">Bei einer Neuinstallation von Deployment Manager müssen Sie sich anmelden und der Lizenzvereinbarung zustimmen, bevor Sie diesen mit Policy Manager verwenden können. Außerdem müssen Sie die Deployment Manager-Einstellungen für die Konsole konfigurieren (Systemeinstellungen &gt; Allgemein &gt; Deployment Manager-Integrationseinstellungen), so dass Policy Manager korrekt mit Deployment Manager kommunizieren kann. Folgende Informationen werden benötigt:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp386104"> </a><div class="pSmartList2"><li>Hostname des Computers, auf dem Deployment Manager ausgeführt wird. Dieser Computer kann der gleiche sein, auf dem Policy Manager ausgeführt wird, oder es kann ein anderer Computer sein, auf dem Deployment Manager ausgeführt wird.</li></div>
+<a name="wp386108"> </a><div class="pSmartList2"><li>Portnummer, die vom Tuner verwendet wird, auf dem der Deployment Manager-Channel ausgeführt wird. Der Standardwert ist 7717.</li></div>
+<a name="wp386112"> </a><div class="pSmartList2"><li>Benutzername und Passwort für den Zugriff auf Deployment Manager. Deployment Manager muss für den Zugriff dieses Benutzers konfiguriert sein.</li></div>
+<a name="wp386114"> </a><div class="pSmartList2"><li>Benutzername und Passwort für die Remote-Administration der Client-Tuner, zu denen Deployment Manager eine Verbindung herstellt. Der Benutzername und das Passwort wurden den Client-Tunern entweder beim Erstellen der Tuner-Installationsprogramme oder beim Herstellen einer Verbindung mit den Tunern über Tuner Administrator zugewiesen. Alle Client-Tuner müssen den gleichen Benutzernamen und das gleiche Passwort für die Remote-Administration verwenden.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp386116"> </a><p class="pBody">Auf der Seite „Deployment Manager-Integrationseinstellungen“ können Sie weitere, optionale Einstellungen konfigurieren. Darüber hinaus können Sie sich bei Deployment Manager anmelden, um Standardeinstellungen zu ändern, wie z. B. den Statusport (der Port, der für das Senden von Statusmeldungen von den Zielservern zurück an Deployment Manager verwendet wird). Weitere Informationen zu den Einstellungen von Deployment Manager finden Sie in der Online-Hilfe zu Deployment Manager.</p>
+<a name="wp386122"> </a><p class="pBody">Bevor Sie Aktualisierungen durchführen können, müssen Sie auch die Funktion für sofortige Policy-Aktualisierung aktivieren, die standardmäßig deaktiviert ist. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'update_now-3.htm');" onMouseOver="WWHShowPopup('sm', 'update_now-3.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Aktivieren und Deaktivieren von sofortigen Policy-Aktualisierungen</a>.</p>
+<a name="wp386128"> </a><p class="pBody"><b class="cBold">Clientseitig.</b> Folgende Komponenten müssen auf den gleichen Clients wie Policy Service installiert und konfiguriert sein:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp386130"> </a><div class="pSmartList2"><li>Deployment Service</li></div>
+<a name="wp386132"> </a><div class="pSmartList2"><li>Scanner Service</li></div>
+<hr class="NoteRuleTop"/><a name="wp386134"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Wenn Sie die Funktion zur sofortigen Policy-Aktualisierung für Collections verwenden möchten, muss Scanner Service nach dem Erstellen der Collections mindestens einmal auf den Clients ausgeführt werden. Durch das erneute Ausführen von Scanner Service auf diesen Clients wird sichergestellt, dass die für die sofortige Policy-Aktualisierung erforderlichen Informationen in der Datenbank verfügbar sind.</p><hr class="NoteRuleBottom"/><a name="wp386178"> </a><p class="pIndented1">
+Weitere Information zur Konfiguration von BMC CM-Produkten und Firewalls finden Sie im <em class="cEmphasis">BMC CM Installations- und Deployment-Handbuch (BMC Configuration Management Installation and Deployment Guide)</em> und im <em class="cEmphasis">BMC CM Infrastruktur-Handbuch (BMC CM Infrastructure Guide)</em>, die auf der BMC Customer Support-Website erhältlich sind.
+</p>
+</ul></div>
+</ul></div>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

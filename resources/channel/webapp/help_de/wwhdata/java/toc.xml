@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<WebWorksHelpTOC version="4.0">
+ <i t="Online-Hilfe für Policy Management" l="0" />
+ <i t="Einleitung" l="1">
+  <i t="Was ist Policy Manager?" l="2" />
+  <i t="Policy Manager Befehlszeile und Browser-Schnittstellen im Vergleich" l="3" />
+  <i t="Zugriff auf die BMC Configuration Management-Dokumentation" l="4" />
+  <i t="Verwenden der Hilfe" l="5" />
+ </i>
+ <i t="Konfigurieren von Policy Manager" l="6">
+  <i t="Das Policy Management-Plugin" l="7" />
+  <i t="Konfigurieren und Veröffentlichen des Policy Service-Plugin" l="8" />
+  <i t="Plugin-Konfigurationsseite: Verzeichnisdienstfelder" l="9" />
+  <i t="Einrichten von Zugriffskontrolllisten" l="10">
+   <i t="Verwenden der Zugriffskontrolle" l="11" />
+  </i>
+  <i t="Konfigurieren der Policy Compliance-Einstellungen" l="12" />
+ </i>
+ <i t="Anzeigen von Zielen und Packages" l="13">
+  <i t="Zieltypen" l="14">
+   <i t="Was ist das Ziel &quot;Alle Clients&quot;?" l="15" />
+   <i t="Was ist eine Collection?" l="16" />
+   <i t="Was ist ein ausgeschlossenes Ziel?" l="17" />
+   <i t="Was ist ein direkt zugewiesenes Ziel?" l="18" />
+  </i>
+  <i t="Anzeigen von Zielen" l="19">
+   <i t="Anzeigen von Zielen" l="20" />
+   <i t="Anzeigen der Mitglieder eines Ziels" l="21" />
+   <i t="Suchen nach Zielen" l="22" />
+   <i t="Anzeigen von Zielinformationen" l="23" />
+   <i t="Anzeigen der einem Ziel zugewiesenen Packages" l="24" />
+  </i>
+  <i t="Was ist ein Package?" l="25" />
+  <i t="Anzeigen von Packages" l="26">
+   <i t="Anzeigen von Packages" l="27" />
+   <i t="Suchen nach Packages" l="28" />
+   <i t="Anzeigen von Zielen, denen ein Package zugewiesen wurde" l="29" />
+   <i t="Anzeigen von Package-Informationen" l="30" />
+  </i>
+ </i>
+ <i t="Erstellen und Bearbeiten von Policys" l="31">
+  <i t="Was ist eine Policy?" l="32" />
+  <i t="Task-Management" l="33" />
+  <i t="Allgemeine Anweisungen zum Erstellen und Bearbeiten von Policys" l="34">
+   <i t="Erstellen der Vorschau und Speichern von Policy-Änderungen" l="35" />
+   <i t="Hinweise zum Speichern von Policys" l="36" />
+  </i>
+  <i t="Hinzufügen und Entfernen von Packages aus einer Policy" l="37">
+   <i t="Hinzufügen von Packages zu einer Policy" l="38" />
+   <i t="Entfernen von Packages aus einer Policy" l="39" />
+  </i>
+  <i t="Festlegen von Status und Zeitplänen für Packages in einer Policy" l="40">
+   <i t="Übersicht über Installationsstatus" l="41" />
+   <i t="Angeben von Primär- und Sekundärstatus" l="42" />
+   <i t="Überblick über Package-Zeitpläne" l="43" />
+   <i t="Festlegen des Primär- und Sekundärzeitplans für Packages" l="44" />
+   <i t="Festlegen des Aktualisierungszeitplans für Packages" l="45" />
+   <i t="Festlegen des Reparaturzeitplans für Packages" l="46" />
+   <i t="Festlegen allgemeiner Zeitpläne für mehrere Packages" l="47" />
+   <i t="Konfliktlösung: Status und Zeitpläne in Policys" l="48" />
+   <i t="Auflösen von Unterschieden in Package-Status oder Package-Zeitplänen" l="49" />
+  </i>
+  <i t="Festlegen der Installationspriorität für Packages in einer Policy" l="50">
+   <i t="Was ist die Installationspriorität?" l="51" />
+   <i t="Konfliktlösung: Packages mit der gleichen Installationspriorität" l="52" />
+   <i t="Konfliktlösung: mehrere Benutzer bearbeiten die gleiche Policy" l="53" />
+  </i>
+  <i t="Kopieren von Policys" l="54" />
+  <i t="Löschen von Policys" l="55" />
+  <i t="Verwalten von Software, Daten und Aktualisierungen" l="56">
+   <i t="Verwalten der Client-Umgebung – Konzepte" l="56#wp84486" />
+   <i t="Anwendungsfälle" l="57" />
+  </i>
+  <i t="Bearbeiten von Policys über die Seite &quot;Package-Ansicht&quot;" l="58" />
+  <i t="Festlegen einer Blackout-Periode für ein Ziel" l="59">
+   <i t="Was ist eine Blackout-Periode?" l="60" />
+   <i t="Festlegen der Blackout-Periode für ein Ziel" l="61" />
+   <i t="Ausnehmen von Packages von der Blackout-Periode" l="62" />
+  </i>
+  <i t="Angeben des Policy Service-Zeitplans für ein Ziel" l="63">
+   <i t="Was ist der Policy Service?" l="64" />
+   <i t="Festlegen des Zeitplans für Policy Service-Aktualisierungen" l="65" />
+  </i>
+  <i t="Einstellen der Tuner- und Package-Eigenschaften für ein Ziel" l="66">
+   <i t="Überblick über Tuner- und Package-Policys" l="67" />
+   <i t="Festlegen von Tuner-Eigenschaften" l="68" />
+   <i t="Festlegen von Package-Eigenschaften" l="69" />
+   <i t="Tuner- und Package-Eigenschaften, Format" l="70" />
+   <i t="Löschen von Tuner- und Package-Eigenschaften" l="71" />
+   <i t="Konfliktlösung: Eigenschaftswerte" l="72" />
+   <i t="Konfliktlösung: Mehrere Benutzer bearbeiten Eigenschaften" l="73" />
+  </i>
+  <i t="Festlegen von Transmitter-Berechtigungen für ein Ziel" l="74">
+   <i t="Was sind Transmitter-Berechtigungen?" l="75" />
+   <i t="Hinzufügen und Bearbeiten von Transmitter-Berechtigungen" l="76" />
+   <i t="Löschen von Transmitter-Berechtigungen" l="77" />
+  </i>
+  <i t="Festlegen des Profils für ein Ziel" l="78">
+   <i t="Was ist ein Profil?" l="79" />
+   <i t="Ändern des Profils für ein Ziel" l="80" />
+  </i>
+ </i>
+ <i t="Anzeigen der Policy Compliance" l="81">
+  <i t="Was ist Policy Compliance?" l="82" />
+  <i t="Definition von Compliance" l="83" />
+  <i t="Voraussetzungen für Policy Compliance" l="84">
+   <i t="Einrichten des Konsolenservers für Policy Compliance" l="85" />
+   <i t="Einrichten von Clients für Policy Compliance" l="86" />
+  </i>
+  <i t="Anzeigen der Policy Compliance für Ziele und Packages" l="87">
+   <i t="Übersicht" l="87#wp296153" />
+   <i t="Gesamt-Compliance-Abfragen und Gesamt-Compliance-Berichte" l="88" />
+  </i>
+  <i t="Compliance-Abfragen" l="89" />
+  <i t="Compliance-Berichte" l="90" />
+ </i>
+ <i t=" Integration mit Patch Management" l="91">
+  <i t="Voraussetzungen für die Integration mit Patch Management" l="92" />
+  <i t="Was ist eine Patch-Gruppe?" l="93" />
+  <i t="Was ist ein Patch-Gruppe-Zuweisungsstatus?" l="94" />
+  <i t="Was ist Patch Service?" l="95" />
+  <i t="Zuweisen von Patch-Gruppen zu Zielen" l="96">
+   <i t="Entfernen von Patch-Gruppen aus einer Policy" l="97" />
+  </i>
+  <i t="Simulation der Patch-Installation" l="98" />
+  <i t=" Anzeigen weiterer Informationen zur Installation von Patch-Gruppen" l="99" />
+  <i t="Konfigurieren der Neustarteinstellungen für Patch-Installationen" l="100">
+   <i t="Erweitert: Tuner-Eigenschaften für die Neustarteinstellungen" l="101" />
+  </i>
+  <i t="Außerkraftsetzen des Patch Service-Aktualisierungszeitplans für Zielcomputer." l="102" />
+  <i t="Ausnehmen von Patch Service von der Blackout-Periode." l="103" />
+  <i t="Policy Compliance für Patch-Gruppen" l="104" />
+ </i>
+ <i t="Sofortige Policy-Aktualisierungen: Integration mit Deployment Manager" l="105">
+  <i t="Voraussetzungen für die Integration mit Deployment Manager" l="106" />
+  <i t="Aktivieren und Deaktivieren von sofortigen Policy-Aktualisierungen" l="107" />
+  <i t="Durchführen einer sofortigen Policy-Aktualisierung" l="108" />
+  <i t="Überwachen und Anzeigen des Status einer Policy-Aktualisierung" l="109">
+   <i t="Anhalten und Wiederholen von Policy-Aktualisierungen" l="110" />
+  </i>
+  <i t="Wie funktioniert die sofortige Policy-Aktualisierung?" l="111" />
+  <i t="Blackout-Perioden und sofortige Policy-Aktualisierungen" l="112" />
+ </i>
+</WebWorksHelpTOC>

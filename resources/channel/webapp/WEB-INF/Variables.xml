@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Variables>
+    <group>
+        <Variable type="OS">
+            <name>ORGANIZATIONAL_UNIT</name>
+            <desc>Organizational unit for the machine</desc>
+            <default-value></default-value>
+        </Variable>
+
+        <Variable type="OS">
+            <name>INTERNAL_OS_REPEATER_ACCESS.PROXYHOSTANDPORT</name>
+            <desc></desc>
+            <default-value></default-value>
+        </Variable>
+
+        <Variable type="OS">
+            <name>INTERNAL_OS_REPEATER_ACCESS.PROXYUSER</name>
+            <desc></desc>
+            <default-value></default-value>
+        </Variable>
+
+        <Variable type="OS">
+            <name>INTERNAL_OS_REPEATER_ACCESS.PROXYPASSWORD</name>
+            <desc></desc>
+            <default-value></default-value>
+        </Variable>
+
+    </group>
+    <self-provisioning>
+        <Variable type="OS">
+            <name>FQDN</name>
+            <desc>Used for automatic domain join at OS installation.</desc>
+        </Variable>
+        <Variable type="OS">
+            <name>SELPROVISIONING_COMPUTERTEMPLATE</name>
+            <desc>Self Provisioning Computer name template</desc>
+            <default-value></default-value>
+            <allowed-value></allowed-value>
+        </Variable>
+        <Variable type="OS">
+            <name>SELFPROVISIONING_DOMAIN</name>
+            <desc>Self Provisioning Computer Domain</desc>
+            <default-value></default-value>
+        </Variable>
+        <Variable type="OS">
+            <name>SELFPROVISIONING_WORKGROUP</name>
+            <desc>Self Provisioning Computer Workgroup</desc>
+            <default-value></default-value>
+        </Variable>
+    </self-provisioning>
+    <machine>
+       <Variable type="OS">
+            <name>INTERNAL_OS_MIGRATION_SETTINGS.LOCATION</name>
+            <desc></desc>
+        </Variable>
+
+        <Variable type="OS">
+            <name>INTERNAL_OS_MIGRATION_SETTINGS.ACCOUNT_USER</name>
+            <desc></desc>
+        </Variable>
+
+        <Variable type="OS">
+            <name>INTERNAL_OS_MIGRATION_SETTINGS.ACCOUNT_PWD</name>
+            <desc></desc>
+        </Variable>
+
+        <Variable type="OS">
+            <name>INTERNAL_OS_MIGRATION_SETTINGS.ACCOUNT_DOMAIN</name>
+            <desc></desc>
+        </Variable>
+
+        <Variable type="OS">
+            <name>INTERNAL_OS_MIGRATION_SETTINGS.PBU</name>
+            <desc></desc>
+        </Variable>
+
+        <Variable type="OS">
+            <name>INTERNAL_OS_MIGRATION_SETTINGS.OLD_COMPUTER_NAME</name>
+            <desc></desc>
+        </Variable>
+
+        <Variable type="OS">
+            <name>INTERNAL_OS_REPEATER_ACCESS.PROXYHOSTANDPORT</name>
+            <desc></desc>
+        </Variable>
+
+        <Variable type="OS">
+            <name>INTERNAL_OS_REPEATER_ACCESS.PROXYUSER</name>
+            <desc></desc>
+        </Variable>
+
+        <Variable type="OS">
+            <name>INTERNAL_OS_REPEATER_ACCESS.PROXYPASSWORD</name>
+            <desc></desc>
+        </Variable>
+
+        <Variable type="OS">
+            <name>ORGANIZATIONAL_UNIT</name>
+            <desc></desc>
+        </Variable>
+
+        <Variable type="OS">
+            <name>FQDN</name>
+            <desc></desc>
+        </Variable>
+
+    </machine>
+</Variables>
+
+

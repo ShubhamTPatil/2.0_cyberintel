@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Sep-20-2005 v1)" />
+    <meta name="LASTUPDATED" content="02/20/06 14:40:37" />
+    <title>Viewing policy compliance for targets and packages</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Viewing policy compliance for targets and packages";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp44052"> </a><p class="pBody">You can view the policy compliance information for targets and packages using any of the following tabs:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp61210"> </a><div class="pSmartList2"><li>The Target View tab</li></div>
+<a name="wp44389"> </a><div class="pSmartList2"><li>The Target Compliance tab</li></div>
+<a name="wp71593"> </a><div class="pSmartList2"><li>The Package Compliance tab</li></div>
+</ul></div>
+</ul></div>
+<a name="wp72152"> </a><p class="pBody">If your target contains members (such as groups, containers, and organizational units), you can view two types of compliance information on the Target Compliance tab:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp72153"> </a><div class="pSmartList2"><li>The Policy Compliance tab shows compliance information for policies directly and indirectly assigned to the target. Queries you run here consider the latest LDAP-synced policies. For more information about LDAP synchronization, see <a href="javascript:WWHClickedPopup('Policy_Manager_Help', 'pol_comp-5.htm');" onMouseOver="WWHShowPopup('Policy_Manager_Help', 'pol_comp-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Setting up the console server for policy compliance</a>.</li></div>
+<a name="wp72154"> </a><div class="pSmartList2"><li>The Overall Compliance tab shows compliance information for all the machines in the target, regardless of the policies from which a given machine receives its packages.</li></div>
+<a name="wp72364"> </a><p class="pIndented1">
+Overall compliance queries are useful for tracking deployments. They run faster than the more robust compliance reports, in part because they do not consider recently-published LDAP-synced policies. When you want to focus on inventory scan performance and find out how many machines are checking in, use overall compliance queries. Use the compliance report when you require synchronization with the latest policy information. For more information about the compliance report, see <a href="javascript:WWHClickedPopup('Policy_Manager_Help', 'pol_comp-8.htm');" onMouseOver="WWHShowPopup('Policy_Manager_Help', 'pol_comp-8.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Compliance reports</a>.
+</p>
+</ul></div>
+</ul></div>
+<a name="wp44053"> </a><h4 class="pHeading3">
+Locating targets and running queries
+</h4>
+<a name="wp72059"> </a><p style="text-decoration: none" class="pStepIntro">
+To locate a target and run a compliance query
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp72358"> </a><div class="pSmartList1"><li>Locate a target on the Target View tab.</li></div>
+<a name="wp72337"> </a><p class="pIndented1">
+Alternatively, you can begin on the Target Compliance tab.
+</p>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp72055"> </a><div class="pSmartList2"><li>In the left pane, browse and select the target for which you want to view compliance information.</li></div>
+<a name="wp72469"> </a><p class="pBodyRelative"><img src="images/01-TargetViewtab.gif" id="wp72475" border="0" hspace="0" vspace="0"/></p>
+
+</ul></div>
+<a name="wp72056"> </a><div class="pSmartList1"><li>Click Compliance to display compliance information.</li></div>
+<a name="wp72038"> </a><p class="pIndented1">
+The target name appears on the Target Compliance tab at the top of the right pane. If your target contains members, you can view policy compliance or overall compliance. The Policy Compliance tab is active by default.
+</p>
+<a name="wp72487"> </a><p class="pBodyRelative"><img src="images/02-TargetCompliance.gif" id="wp72496" border="0" hspace="0" vspace="0"/></p>
+
+</ol></div>
+<a name="wp72039"> </a><h4 class="pHeading3">
+Viewing policy compliance for targets
+</h4>
+<a name="wp72034"> </a><p class="pBody">You can view compliance information for targets that include members, or targets that are individual machines. The procedures that follow apply to any target.</p>
+<a name="wp65730"> </a><p style="text-decoration: none" class="pStepIntro">
+To view policy compliance for a target
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp44057"> </a><div class="pSmartList1"><li>To view compliance information for all assigned packages in your selected target:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp65830"> </a><div class="pSmartList2"><li>Locate a target on the Target Compliance tab:</li></div>
+<a name="wp61232"> </a><div class="pSmartList2"><li>In the left pane, browse and select the target for which you want to view compliance information. The target name appears at the top of the right pane, and the Policy Compliance tab is active.</li></div>
+<a name="wp71647"> </a><div class="pSmartList2"><li>Select all packages by selecting the check box in the header row, and click Calculate.</li></div>
+<a name="wp72545"> </a><p class="pBodyRelative"><img src="images/03-TargetCompliance.gif" id="wp72553" border="0" hspace="0" vspace="0"/></p>
+
+</ul></div>
+<a name="wp65865"> </a><div class="pSmartList1"><li>To view compliance information for specific packages you have assigned to the selected target:</li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp65872"> </a><div class="pSmartList2"><li>On the Policy Compliance tab, select the check box for each individual package you want to include in your query.</li></div>
+<a name="wp65876"> </a><div class="pSmartList2"><li>Click Calculate.</li></div>
+</ol></div>
+<a name="wp65922"> </a><div class="pSmartList1"><li>To view information about endpoints that are compliant, non-compliant, or not checked-in:</li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp65923"> </a><div class="pSmartList2"><li>Click the pound sign (#) in the Compliance column header to see the exact number of endpoints for each status.</li></div>
+<a name="wp65924"> </a><div class="pSmartList2"><li>Click the percent sign (%) in the Compliance column header to see the number of endpoints as a percentage of the total number of endpoints in the target.</li></div>
+<a name="wp65910"> </a><p class="pIndented1">
+The numbers or percentages appear in colors that indicate the status:
+</p>
+<a name="wp65911"> </a><div class="pSmartList2"><li>Green for compliant.</li></div>
+<a name="wp65912"> </a><div class="pSmartList2"><li>Red for non-compliant.</li></div>
+<a name="wp65913"> </a><div class="pSmartList2"><li>Blue for not checked-in.</li></div>
+<a name="wp72655"> </a><p class="pBodyRelative"><img src="images/04-TargetCompliance.gif" id="wp72668" border="0" hspace="0" vspace="0"/></p>
+
+<a name="wp65914"> </a><p class="pIndented1">
+Click the displayed numbers or percentages themselves to view a list of machines related to packages with a given status.
+</p>
+<a name="wp72699"> </a><p class="pBodyRelative"><img src="images/07-machinedetails.gif" id="wp72707" border="0" hspace="0" vspace="0"/></p>
+
+</ol></div>
+<a name="wp65885"> </a><div class="pSmartList1"><li>To view compliance information for all machines in the selected target:</li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp65956"> </a><div class="pSmartList2"><li>Click the Overall Compliance tab. The green, red, and blue compliance status tabs represent the machines in the selected target that are compliant, non-compliant, and not checked-in, respectively.</li></div>
+<a name="wp65961"> </a><div class="pSmartList2"><li>Click the green, red, or blue compliance status tabs to view the list of machines related to each status.</li></div>
+<a name="wp72751"> </a><p class="pBodyRelative"><img src="images/05-OverallComplianc.gif" id="wp72749" border="0" hspace="0" vspace="0"/></p>
+
+<a name="wp65972"> </a><div class="pSmartList2"><li>The Green tab displays all the machines in this target that are compliant with all policies that you have assigned to them, both directly and indirectly.</li></div>
+<a name="wp65992"> </a><div class="pSmartList2"><li>The Red tab displays all the machines in this target that are not compliant with all policies you have assigned to them, both directly and indirectly. The list displays one cause of non-compliance for each machine.</li></div>
+<a name="wp66002"> </a><p class="pIndented1">
+Note: The list displays only one cause of non-compliance for performance reasons. Click the machine name to view more information about a non-compliant machine.
+</p>
+<a name="wp66013"> </a><div class="pSmartList2"><li>The Blue tab displays all the machines in this target that have not checked in since you made any policy changes that affect the machines. For each machine, the list displays the date when the machine last reported status.</li></div>
+<a name="wp72758"> </a><p class="pIndented1">
+Click the link for any machine name to review details about the machine or (with appropriate privileges) to initiate tuner administration.
+</p>
+<a name="wp72199"> </a><p class="pIndented1">
+Reviewing query details
+</p>
+<a name="wp72820"> </a><p class="pIndented1">
+To review the setup and results of the query in Report Center, click the Show Report Center Query button.
+</p>
+<a name="wp72768"> </a><p class="pBodyRelative"><img src="images/06-RCQuery.gif" id="wp72776" border="0" hspace="0" vspace="0"/></p>
+
+<a name="wp72203"> </a><p class="pIndented1">
+Generating a report
+</p>
+<a name="wp72792"> </a><p class="pIndented1">
+To generate an overall compliance report for the target, click the Generate Compliance Report button. Confirm the message window, and the Compliance Reports tab appears. For more information, see <a href="javascript:WWHClickedPopup('Policy_Manager_Help', 'pol_comp-8.htm');" onMouseOver="WWHShowPopup('Policy_Manager_Help', 'pol_comp-8.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Compliance reports</a>.
+</p>
+</ol></div>
+</ol></div>
+<a name="wp66109"> </a><h4 class="pHeading3">
+Viewing policy compliance for packages
+</h4>
+<a name="wp66110"> </a><p class="pBody">You can view policy compliance information for a package to find out:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp66191"> </a><div class="pSmartList2"><li>What targets should have this package?</li></div>
+<a name="wp66197"> </a><div class="pSmartList2"><li>Do those targets have this package?</li></div>
+</ul></div>
+</ul></div>
+<a name="wp72019"> </a><p class="pBody">Viewing package compliance is similar to viewing target compliance, except you use the Package Compliance tab to query targets related to a package, instead of the Target Compliance tab to query packages related to a target.</p>
+<a name="wp72827"> </a><p class="pBody">The Search region enables you to find and filter the list of packages you want to include in your query by searching on the package name or date of publication. The search function supports the asterisk (*) and percent sign (%) as wildcards. See <a href="javascript:WWHClickedPopup('Policy_Manager_Help', 'pol_comp-7.htm#wp65730');" onMouseOver="WWHShowPopup('Policy_Manager_Help', 'pol_comp-7.htm#wp65730', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">To view policy compliance for a target</a>.</p>
+<a name="wp72848"> </a><p class="pBodyRelative"><img src="images/09-PackageComplianc.gif" id="wp72856" border="0" hspace="0" vspace="0"/></p>
+
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. All rights reserved.<br/>
+
+ For additional BMC Configuration Management documentation, go to the Customer
+Support website at <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://supportweb.remedy.com/bmc_cm" TARGET="_blank">http://supportweb.remedy.com/bmc_cm</a></span>;
+enter your user name and password, click the Login button, and then click the
+Documentation button. For questions or comments about BMC CM documentation, send
+an email to <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+For product related issues or questions, send an email to Customer Support at <a href="mailto:MPL_Customer-Support@bmc.com"><font face="Arial" size="1">MPL_Customer-Support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

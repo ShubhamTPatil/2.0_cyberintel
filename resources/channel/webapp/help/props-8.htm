@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Apr-13-06 v6.2 ANSI)" />
+    <meta name="LASTUPDATED" content="11/16/09 16:16:59" />
+    <title>Conflict resolution: When multiple users edit properties</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Conflict resolution: When multiple users edit properties";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp42539"> </a><p class="pBody">If more than one user edits the tuner and package properties page at the same time, and two users edit the same property, the last user to save changes to the page overwrites other changes to that property.</p>
+<a name="wp51693"> </a><p style="text-decoration: none" class="pStepIntro">
+To discern outcomes when multiple users edit policies
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp42541"> </a><div class="pSmartList1"><li>User 1 goes to the Tuner and Package Properties page and edits properties for target Machine A.</li></div>
+<a name="wp42542"> </a><div class="pSmartList1"><li>Before User 1 saves changes to the properties, User 2 edits and saves the properties for the same target.</li></div>
+<a name="wp42543"> </a><div class="pSmartList1"><li>User 1 saves changes after User 2 has left the page.</li></div>
+</ol></div>
+<a name="wp42544"> </a><p class="pBody">The policy that is originally loaded by both users is Policy A. Two copies of Policy A are created: Policy A1, the copy that User 1 is editing, and Policy A2, the copy that User 2 saved. The following table describes the results for the different cases:</p>
+<a name="wp45058"> </a><p class="pBodyRelative"></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp49924table42545">
+  <caption><a name="wp49924"> </a><p class="pBody">Table&#160;4-4:&#160;&#160;When multiple users edit properties</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp42547"> </a><div class="pCellHeading">
+User 1:
+</div>
+</th>
+    <th><a name="wp42549"> </a><div class="pCellHeading">
+User 2:
+</div>
+</th>
+    <th><a name="wp42551"> </a><div class="pCellHeading">
+Final result
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp42553"> </a><div class="pCellBody">
+Adds a <em class="cEmphasis">new</em> property that is not present in Policy A.
+</div>
+</td>
+    <td><a name="wp42555"> </a><div class="pCellBody">
+Edits Policy A, but does not add, edit, or delete the same property.
+</div>
+</td>
+    <td><a name="wp42557"> </a><div class="pCellBody">
+Policy Manager adds the new property to Policy A.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp42559"> </a><div class="pCellBody">
+Adds a <em class="cEmphasis">new</em> property that is not present in Policy A.
+</div>
+</td>
+    <td><a name="wp42561"> </a><div class="pCellBody">
+Sets a different value for the same property.
+</div>
+</td>
+    <td><a name="wp42563"> </a><div class="pCellBody">
+Policy Manager adds the new property to Policy A with the value specified by User 1.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp42565"> </a><div class="pCellBody">
+Removes a property from Policy A.
+</div>
+</td>
+    <td><a name="wp42567"> </a><div class="pCellBody">
+Edits Policy A, but does not edit or delete the same property.
+</div>
+</td>
+    <td><a name="wp42569"> </a><div class="pCellBody">
+Policy Manager removes the property from Policy A.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp42571"> </a><div class="pCellBody">
+Removes a property from Policy A.
+</div>
+</td>
+    <td><a name="wp42573"> </a><div class="pCellBody">
+Edits the same property (sets it to some value) in Policy A.
+</div>
+</td>
+    <td><a name="wp42575"> </a><div class="pCellBody">
+Policy Manager removes the property from Policy A.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp42577"> </a><div class="pCellBody">
+Edits Policy A, but does not add, edit, or delete the same property as User 2.
+</div>
+</td>
+    <td><a name="wp42579"> </a><div class="pCellBody">
+Edits or removes a property in Policy A.
+</div>
+</td>
+    <td><a name="wp42581"> </a><div class="pCellBody">
+Policy Manager changes or removes the property User 2 worked on.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp42583"> </a><div class="pCellBody">
+Modifies the value for a property in Policy A.
+</div>
+</td>
+    <td><a name="wp42585"> </a><div class="pCellBody">
+Modifies the same property in Policy A.
+</div>
+</td>
+    <td><a name="wp42587"> </a><div class="pCellBody">
+Policy Manager saves the property with the value User 1 specified.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp42589"> </a><div class="pCellBody">
+Deletes packages from Policy A.
+</div>
+</td>
+    <td><a name="wp42591"> </a><div class="pCellBody">
+Modifies package properties for packages deleted by User 1.
+</div>
+</td>
+    <td><a name="wp42593"> </a><div class="pCellBody">
+Policy Manager deletes the packages and does not save the properties User 2 modified.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp42595"> </a><div class="pCellBody">
+Adds new packages to Policy A.
+</div>
+</td>
+    <td><a name="wp42597"> </a><div class="pCellBody">
+Edits Policy A and modifies properties unrelated to the new packages added by User 1.
+</div>
+</td>
+    <td><a name="wp42599"> </a><div class="pCellBody">
+Policy Manager saves the packages User 1 added.
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBodyRelative">
+</p>
+
+<a name="wp37106"> </a><p class="pBody">For information about conflict resolution when multiple users edit the same policy, see .<a href="javascript:WWHClickedPopup('sm', 'policies-24.htm');" onMouseOver="WWHShowPopup('sm', 'policies-24.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">&quot;Conflict resolution: when multiple users edit the same policy&quot;</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. All rights reserved.<br/>
+
+ For additional BMC Configuration Management documentation, go to the Customer
+Support website at <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+For questions or comments about BMC CM documentation, send
+an email to <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+For product related issues or questions, send an email to Customer Support at <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

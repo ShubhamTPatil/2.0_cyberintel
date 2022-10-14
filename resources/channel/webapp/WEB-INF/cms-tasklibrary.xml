@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task-library PUBLIC "-//Marimba, Inc.//DTD Task Library 1.0//EN" "http://www.marimba.com/xml/cms/dtds/task-library.dtd">
+<task-library name="PolicyCompliance">
+    <displayName>Policy Compliance Task Library</displayName>
+    <description>Calculate Compliance and Scrubber would be executed in the task defined in this library</description>
+
+    <task name="verifytask" class="com.marimba.apps.subscriptionmanager.arsystem.VerificationTask">
+        <displayName>VerificationTask</displayName>
+        <description>
+            A task that verifies and reports to Remedy TMS the compliance level of a given target and/or packages.
+        </description>
+    </task>
+
+    <task name="ldaptask" class="com.marimba.apps.subscriptionmanager.ldapquery.LDAPQueryTask">
+        <displayName>LDAPQueryTask</displayName>
+        <description>A task that periodically executes query task.</description>
+    </task>
+
+    <task name="wow" class="com.marimba.apps.subscriptionmanager.wow.WoWTask">
+        <displayName>WoWTask</displayName>
+        <description>A task wakes up machines under a group target.</description>
+        <input>
+            <text name="targetdn" required="true">
+                <displayName> Target </displayName>
+                <description> Policy Target </description>
+            </text>
+        </input>
+        <category>heavyweight</category>
+    </task>
+
+
+</task-library>

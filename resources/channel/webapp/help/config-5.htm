@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Apr-13-06 v6.2 ANSI)" />
+    <meta name="LASTUPDATED" content="11/16/09 16:16:24" />
+    <title>Plug-in configuration page: directory service fields</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Plug-in configuration page: directory service fields";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp42729"> </a><p class="pBody">Typically, the directory service fields on the Plug-in Configuration page are already filled out with information from the directory service specified for CMS. Depending on the directory service you are using, the list of fields you must fill out might be different. The Plug-in Configuration page includes the following directory service fields:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp42730"> </a><div class="pSmartList2"><li><b class="cBold">Host name and port</b>-The host name and port of the directory service, in the form <b class="cBold">&lt;</b><em class="cEmphasis">hostname</em><b class="cBold">&gt;:&lt;</b><em class="cEmphasis">port</em><b class="cBold">&gt;</b>. The directory service you specify here is used to store policies. The entries default to those for the directory service specified for CMS, which is used for login authentication. (Usually, you are not required to fill out this field for Active Directory.)</li></div>
+<a name="wp42731"> </a><p class="pIndented1">
+If your organization provides replicated directory services for storing policies, use a directory service-to-repeater mapping. You can take advantage of replicated directory services by configuring Policy Management so that each repeater contacts a nearby directory service, eliminating the need to contact the one assigned to the master transmitter. Moreover, you can assign a list of directory services to each repeater. If one directory service in the list fails, the repeater attempts to contact the next one, eliminating single point-of-failure problems. For information about mapping transmitters to directory services, see the <em class="cEmphasis">BMC BladeLogic Client Automation Policy Management Policy Management</em>. 
+</p>
+<a name="wp50991"> </a><div class="pSmartList2"><li><b class="cBold">Use an SSL connection between the transmitter and directory service</b>-Check this box to enable Secure Sockets Layer (SSL) for secure communication between the transmitter and the directory service. See the section about security and SSL in the <em class="cEmphasis">BMC BladeLogic Client Automation</em> <em class="cEmphasis">CMS and Tuner Guide</em>, available on the BMC Customer Support website. </li></div>
+<a name="wp50995"> </a><div class="pSmartList2"><li><b class="cBold">Base DN-</b>The base distinguished name for the directory service connection. The base DN defines the scope of the directory view as seen by the plug-in. In most cases, this is equivalent to the Sun Java System Directory Server (Sun One) Directory suffix. (Usually, you are not required to fill out this field for Active Directory).</li></div>
+<a name="wp42750"> </a><p class="pIndented1">
+For example, on ADAM or Sun ONE Directory, you can use <b class="cBold">dc=</b><em class="cEmphasis">company</em><b class="cBold">,dc=</b><em class="cEmphasis">com</em>.
+</p>
+<a name="wp42752"> </a><div class="pSmartList2"><li><b class="cBold">Bind DN-</b>The distinguished name of the user account that the Policy Service plug-in uses when it establishes a connection to the directory service. This user account should have read permissions in the scope of the directory defined by the Base DN entry. This scope typically maps to the entire directory tree.</li></div>
+<a name="wp42758"> </a><p class="pIndented1">
+For Active Directory, use one of the following formats:
+</p>
+<a name="wp42759"> </a><div class="pSmartList2"><li>The full distinguished name (DN), such as <b class="cBold">cn=Administrator,cn=Users,dc=</b><em class="cEmphasis">company</em><b class="cBold">,dc=</b><em class="cEmphasis">com</em></li></div>
+<a name="wp42761"> </a><div class="pSmartList2"><li>The user principal name (UPN), such as <b class="cBold">Administrator@company.com</b></li></div>
+<a name="wp60738"> </a><p class="pIndented1">
+For ADAM, use the full distinguished name (DN), such as <b class="cBold">cn=Administrator,cn=Users,dc=</b><em class="cEmphasis">company</em><b class="cBold">,dc=</b><em class="cEmphasis">com</em>
+</p>
+<a name="wp60740"> </a><p class="pIndented1">
+For Sun Java System Directory Server (Sun One) Directory, use one of the following formats:
+</p>
+<a name="wp60741"> </a><div class="pSmartList2"><li>The full distinguished name (DN), such as <b class="cBold">uid=Administrator,ou=People,dc=</b><em class="cEmphasis">company</em><b class="cBold">,dc=</b><em class="cEmphasis">com</em></li></div>
+<a name="wp42765"> </a><div class="pSmartList2"><li>The common name (CN) for the directory administrator, such as <b class="cBold">cn=Directory Manager</b></li></div>
+<a name="wp42767"> </a><div class="pSmartList2"><li><b class="cBold">Bind DN password-</b>The required password for directory service access. The plug-in uses this password for directory service connection.</li></div>
+<a name="wp42772"> </a><div class="pSmartList2"><li><b class="cBold">Directory service connection pool size-</b>The Policy Service plug-in uses a pooling mechanism to establish and maintain connections to the directory service. This parameter sets the maximum number of connections established in the pool and can typically be left at the default value of 25.</li></div>
+<a name="wp48119"> </a><div class="pSmartList2"><li><b class="cBold">The expiration time (in minutes) for the last successful host connection-</b>If you specify a list of host names for directory services failover, Policy Manager goes down the list until it successfully connects to a host. Policy Manager uses that successful host connection until the expiration time that you specify. Then, it attempts to make a new connection to the first host name in the list.</li></div>
+<a name="wp49336"> </a><div class="pSmartList2"><li><b class="cBold">Allow the use of policies as models for newly provisioned machines</b>-If you are integrating tuner installation with OS provisioning, selecting this check box allows you to identify groups in the directory service whose policy you want to use as a model for installing applications and content to the newly provisioned machines. See the chapter about integrating tuner installation with OS provisioning in the <em class="cEmphasis">BMC BladeLogic Client Automation Server Deployment Manager Guide</em>, available on the BMC Customer Support website.</li></div>
+</ul></div>
+</ul></div>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. All rights reserved.<br/>
+
+ For additional BMC Configuration Management documentation, go to the Customer
+Support website at <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+For questions or comments about BMC CM documentation, send
+an email to <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+For product related issues or questions, send an email to Customer Support at <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

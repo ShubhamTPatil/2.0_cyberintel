@@ -1,0 +1,63 @@
+<!--
+  Project: Subscription Plugin
+  Author:  Theen-Theen Tan
+  Version: $Revision$, $Date$
+-->
+<project name="security-plugin" default="install">
+
+  <!-- Project properties -->
+  <property name="base"                 location="../../../../.."/>
+  <property name="project"              value="security-plugin"/>
+  <basename property="project.version"  file="../.."/>
+  <property name="project.dep"          value="tools-i18n,tools-gui,desktop,checksum,tools-ldap,subscription-common,web-common,common,tools-xml,tools-config,tools-dns,tools-common,tools-net,schedule,ldap-intf,transmitter-interfaces,webservices,osm-ws-client,http,security,castanet-tools,tools-db"/>
+  <property name="project.dep.3rdparty" value="saaj, mssql, oracle"/>
+  <property name="channel.name"         value="SecurityPlugin"/>
+  <property name="channel.title"        value="Security Plugin"/>
+  <property name="include.shared-jsp"   value="true"/>
+
+  <property name="common.packages"      value="com/marimba/tools/util/**"/>
+
+  <property name="tools-i18n.packages"      value="com/marimba/tools/util/**"/>
+  
+  <property name="tools-gui.packages"      value="com/marimba/tools/util/**"/>
+  
+  <property name="desktop.packages"      value="com/marimba/tools/util/**"/>
+  
+  <property name="checksum.packages"      value="com/marimba/tools/util/**"/>
+  
+  <property name="tools-common.packages"      value="com/marimba/tools/util/**"/>
+  
+  <property name="web-common.packages"  value="com/marimba/webapps/intf/KnownException.class,
+                                               com/marimba/webapps/intf/InternalException.class,
+	                                       com/marimba/webapps/intf/CriticalException.class,
+	                                       com/marimba/webapps/intf/SystemException.class,
+	                                       com/marimba/webapps/intf/IKeyAndArgsException.class"/>
+   <property name="transmitter-interfaces.noexpand" value="true" />
+   <property name="tools-net.packages"      value="com/marimba/castanet/util/**,com/marimba/tools/net/**"/>
+   <property name="security.packages"      value="com/marimba/castanet/ssl/**"/>
+   <property name="http.packages"      value="com/marimba/castanet/http/**"/>
+
+
+  <property name="jsp.encoding" value="UTF-8"/> 			       
+  <import file="${base}/shared/build/${project.version}/shared.xml"/>
+
+  <!-- Install target -->
+  <target name="install" depends="init,copy-plugin-zip"/>
+
+  <!-- Compile plugin java files wihtout clean -->
+  <target name="javac" depends="shared.javac,copy-main-classes"/>
+
+  <target name="zip" depends="copy-plugin-zip0"/>
+
+  <target name="copy-plugin-zip0">
+      <mkdir dir="${build-common}/dist"/>
+      <echo>Creating subconfig.zip in ${build-common}/dist </echo>
+      <zip destfile="${build-common}/dist/subconfig.zip">
+        <fileset file="${channel.dir}/classes/**"/>
+        <fileset file="resources/channel/**"/>
+      </zip>
+  </target>
+
+  <target name="copy-plugin-zip" depends="compile,copy-classes,copy-plugin-zip0"/>
+
+</project>

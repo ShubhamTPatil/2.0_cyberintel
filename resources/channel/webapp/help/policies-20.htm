@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Apr-13-06 v6.2 ANSI)" />
+    <meta name="LASTUPDATED" content="11/16/09 16:16:45" />
+    <title>Resolving differences in package states or schedules</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Resolving differences in package states or schedules";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp51760"> </a><p class="pBody">In cases where the states or schedules specified for packages are different for the targets in a policy, you must specify whether you want to maintain the difference or use one setting for all targets.</p>
+<a name="wp50445"> </a><p class="pBody">If there are any differences that need to be resolved, you see the following message on the Edit Policy page:</p>
+<a name="wp50449"> </a><p class="pIndented1">
+Packages and schedules marked with <img src="images/warningsmall.gif" id="wp50447" border="0" hspace="0" vspace="0"/> have different states and schedules across the selected targets. You can maintain these differences or select a state or schedule to apply across all selected targets.
+</p>
+<a name="wp50450"> </a><p style="text-decoration: none" class="pStepIntro">
+To resolve differences for a package states and schedules
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp50451"> </a><div class="pSmartList1"><li>From the Edit Policy page, locate the packages that have different states or schedules for the selected targets.</li></div>
+<a name="wp50452"> </a><div class="pSmartList1"><li>In the Packages tab, under the Primary State or Secondary State column, select one of these options:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp50453"> </a><div class="pSmartList2"><li><b class="cBold">Maintain difference for targets</b>-Select this option if you want to maintain different package states for the targets, such as if you want the state to be <em class="cEmphasis">stage</em> for one target and <em class="cEmphasis">install</em> for another.</li></div>
+<a name="wp50455"> </a><div class="pSmartList2"><li><b class="cBold">&lt;State&gt;</b>-Select this option if you want to specify one package state that applies to all the targets.</li></div>
+</ul></div>
+<a name="wp50456"> </a><div class="pSmartList1"><li>Under the Schedule section, for schedules that are different for the selected targets, select one of these options:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp50457"> </a><div class="pSmartList2"><li><b class="cBold">Maintain &lt;</b><em style="font-style: italic" class="cEmphasis">primary, secondary, update, repair</em><b style="font-style: normal" class="cBold">&gt; schedule difference for targets</b>-Select this option if you want to maintain different package schedules for the targets, such as if you want a package to be available for installation at different dates for each target.</li></div>
+<a name="wp50458"> </a><div class="pSmartList2"><li><b class="cBold">Apply the edited &lt;</b><em style="font-style: italic" class="cEmphasis">primary, secondary, update, repair</em><b style="font-style: normal" class="cBold">&gt; schedule to all selected targets</b>-Select this option if you want to specify one schedule for the package that applies to all targets. You must specify the schedule that you want to apply. See <a href="javascript:WWHClickedPopup('sm', 'policies-14.htm');" onMouseOver="WWHShowPopup('sm', 'policies-14.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Overview of schedules</a>.</li></div>
+</ul></div>
+</ol></div>
+<a name="wp53849"> </a><p class="pBody">When you are finished editing the policy, preview and save the policy. See <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Previewing and saving policy changes</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. All rights reserved.<br/>
+
+ For additional BMC Configuration Management documentation, go to the Customer
+Support website at <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+For questions or comments about BMC CM documentation, send
+an email to <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+For product related issues or questions, send an email to Customer Support at <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

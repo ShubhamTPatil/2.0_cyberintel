@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:42" />
+    <title>Configurar y publicar el complemento Policy Service </title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Configurar y publicar el complemento Policy Service ";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp42352"> </a><p class="pBody">Normalmente, debe configurar y publicar el complemento cada vez que instala o actualiza Policy Manager. Sin embargo, también debe <em class="cEmphasis">volver a publicar</em> el complemento cuando se den las siguientes situaciones:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp39080"> </a><div class="pSmartList2"><li>Si cambia la configuración de la página Configuración de complemento.</li></div>
+<a name="wp39097"> </a><div class="pSmartList2"><li>Si cambia la configuración con el comando <b class="cBold">-setpluginparam</b>.</li></div>
+<a name="wp39102"> </a><div class="pSmartList2"><li>Si modifica los atributos del objeto Policy Management con el comando <b class="cBold">-configSet</b>. </li></div>
+<hr class="NoteRuleTop"/><a name="wp39098"> </a><p class="pNote"><span style="color: #003366">Nota: </span> No es necesario publicar el Complemento Policy Service cada vez que edite las políticas.</p><hr class="NoteRuleBottom"/></ul></div>
+</ul></div>
+<a name="wp37917"> </a><p class="pBody">Cuando es posible, Policy Manager obtiene la siguiente información de la configuración del sistema (Aplicaciones &gt; Consola &gt; Configuración del sistema &gt; Fuente de datos &gt; Servicio de directorios) y los introduce automáticamente en la página Configuración de complemento:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp37695"> </a><div class="pSmartList2"><li>Nombre de host y número de puerto del servicio de directorios</li></div>
+<a name="wp37696"> </a><div class="pSmartList2"><li>DN base</li></div>
+<a name="wp37697"> </a><div class="pSmartList2"><li>Bind DN</li></div>
+<a name="wp49361"> </a><div class="pSmartList2"><li>Si debe utilizarse SSL o no</li></div>
+</ul></div>
+</ul></div>
+<a name="wp38917"> </a><p class="pBody">Si esta información ya se encuentra en la página, debe confirmar que ésta es la configuración que desea utilizar.</p>
+<hr class="NoteRuleTop"/><a name="wp38945"> </a><p class="pNote"><span style="color: #003366">Nota: </span> Si ya había publicado con anterioridad el Complemento Policy Service en un transmitter con SSL activado, reinicie Policy Manager antes de publicar el complemento en un transmitter que no utilice SSL.</p><hr class="NoteRuleBottom"/><a name="wp37530"> </a><p style="text-decoration: none" class="pStepIntro">
+Para configurar y publicar el Complemento Policy Service
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp46792"> </a><div class="pSmartList1"><li>Haga clic en la ficha <b class="cBold">Configuración</b>.</li></div>
+<a name="wp46793"> </a><div class="pSmartList1"><li>En la página Configuración, haga clic en el vínculo <b class="cBold">Complemento</b>.</li></div>
+<a name="wp37659"> </a><p class="pIndented1">
+Aparece la página Configuración de complemento. La parte superior derecha de esta página muestra la fecha y la hora en que se publicó el complemento por última vez.
+</p>
+<a name="wp41475"> </a><div class="pSmartList1"><li>En la sección <b class="cBold">Transmitter principal</b>, debe indicar la información para publicar el complemento:</li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp41479"> </a><div class="pSmartList2"><li>Especificar la URL del channel de Policy Service donde desea publicar el complemento.</li></div>
+<a name="wp37554"> </a><p class="pIndented1">
+<b class="cBold">Nota:</b> la URL debe terminar con <b class="cBold">SubscriptionService</b>.
+</p>
+<a name="wp41495"> </a><div class="pSmartList2"><li>En caso de que sea necesario disponer de permiso de publicación, proporcione el nombre y la contraseña de usuario de publicación necesaria para publicar cambios de configuración en el transmitter que aloja el complemento.</li></div>
+<a name="wp37557"> </a><p class="pIndented1">
+<b class="cBold">Nota:</b> el nombre de usuario y la contraseña de publicación sólo son necesarios si el usuario (o el administrador principal de la empresa) ha configurado que los transmitters requieran el uso de un nombre de usuario y contraseña para poder publicar channels y paquetes en ellos.
+</p>
+</ol></div>
+<a name="wp41489"> </a><div class="pSmartList1"><li>Indique la información necesaria en la sección <b class="cBold">Servicio de directorios</b>.</li></div>
+<a name="wp41698"> </a><p class="pIndented1">
+Normalmente, los campos de esta sección ya aparecen rellenados con información del servicio de directorios especificado para CMS. Los únicos campos que podría necesitar cambiar son los correspondientes a Bind DN y a Bind DN password, si, por ejemplo, desea utilizar un Bind DN que tenga permisos distintos a los especificados para CMS.
+</p>
+<a name="wp42816"> </a><p class="pIndented1">
+Para obtener información acerca de los campos de esta página, consulte <a href="javascript:WWHClickedPopup('Policy', 'config-4.htm');" onMouseOver="WWHShowPopup('Policy', 'config-4.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Página Configuración de complemento: campos del servicio de directorios</a>.
+</p>
+<a name="wp37824"> </a><div class="pSmartList1"><li>En función del tipo de servicio de directorios que utilice, es posible que pueda verificar la conexión entre Policy Manager y el servicio de directorios si hace clic en el botón <b class="cBold">Ir</b> que se encuentra junto a <b class="cBold">Probar servidores</b>.</li></div>
+<a name="wp37855"> </a><p class="pIndented1">
+Policy Manager establece una conexión con el servicio de directorios especificado y verifica que el servidor y el puerto acepten conexiones utilizando el nombre de usuario y la contraseña. Policy Manager verifica a continuación la existencia del objeto de configuración Subscription. El objeto de configuración Subscription se encuentra en el contenedor ConfigObjects, que es un contenedor secundario del contenedor BMC CM. Este objeto se crea cuando se ejecutan los scripts LDIF de instalación o actualización. 
+</p>
+<a name="wp37826"> </a><p class="pIndented1">
+<b class="cBold">Nota</b>: no es necesario acceder al servicio de directorios desde el ordenador en el que está instalado Policy Manager. Por lo tanto, aunque falle la prueba, es posible que el Complemento Policy Service pueda establecer correctamente la conexión.
+</p>
+<a name="wp50970"> </a><div class="pSmartList1"><li>Si desea utilizar Policy Manager con máquinas aprovisionadas recientemente, seleccione la casilla de verificación <b class="cBold">Permitir usar las políticas como modelos para máquinas aprovisionadas recientemente</b>. Para obtener más información, consulte el capítulo dedicado a la integración de la instalación del tuner con el aprovisionamiento de sistema operativo en la <em class="cEmphasis">BMC CM Deployment Guide</em>, que puede obtenerse en el sitio web de soporte al cliente de BMC.</li></div>
+<a name="wp50973"> </a><div class="pSmartList1"><li>Haga clic en <b class="cBold">Vista previa</b>.</li></div>
+<a name="wp37865"> </a><p class="pIndented1">
+Aparecerá la página Vista previa de los cambios del complemento. En esta página se resaltan los cambios que haya realizado en la página Configuración de complemento para que pueda revisarlos antes de publicar el complemento. De forma predeterminada, todos los valores se muestran con los cambios resaltados. Para ver sólo los cambios, haga clic en el vínculo <b class="cBold">Mostrar sólo cambios</b>.
+</p>
+<a name="wp37539"> </a><div class="pSmartList1"><li>Tras revisar los cambios y  en su caso, modificarlos, haga clic en <b class="cBold">Publicar</b>.</li></div>
+<a name="wp37894"> </a><p class="pIndented1">
+Al hacer clic en el botón Publicar de esta página, se publica el Complemento Policy Service del channel de Policy Service en el transmitter y se vuelve a la página inicial de configuración.
+</p>
+</ol></div>
+<a name="wp38433"> </a><p class="pBody"><b class="cBold">Sugerencia:</b> para comprobar si el Complemento Policy Service se ha publicado, utilice Transmitter Administrator para ver los channels del transmitter y expanda el channel de Policy Service para ver los segmentos correspondientes, tal como se muestra en la  <a href="javascript:WWHClickedPopup('Policy', 'config-3.htm#wp53138');" onMouseOver="WWHShowPopup('Policy', 'config-3.htm#wp53138', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Figure&#160;2-1</a>. Si se ve el segmento <b class="cBold">.configurator</b>, significa que el complemento se ha publicado en el transmitter.</p>
+<a name="wp38371"> </a><p class="pBodyRelative"><img src="images/tx-admin-plugin.gif" id="wp38387" border="0" hspace="0" vspace="0"/></p>
+
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

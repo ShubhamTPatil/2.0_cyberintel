@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<WebWorksHelpTOC version="4.0">
+ <i t="Aide en ligne de Policy Management" l="0">
+  <i t="Définition de Policy Manager" l="2" />
+  <i t="Interfaces de navigateur et lignes de commande de Policy Manager" l="3" />
+  <i t="Accès à la documentation relative à BMC Configuration Management" l="4" />
+  <i t="Utilisation de l&#39;aide" l="5" />
+ </i>
+ <i t="Configuration de Policy Manager" l="6">
+  <i t="Plugin Policy Management" l="7" />
+  <i t="Configuration et publication du plugin Policy Service" l="8" />
+  <i t="Page de configuration du plugin : champs du service d&#39;annuaire" l="9" />
+  <i t="Configuration des listes de contrôle d&#39;accès" l="10">
+   <i t="Utilisation de la fonction de contrôle d&#39;accès" l="11" />
+  </i>
+  <i t="Configuration des paramètres de la fonction policy compliance" l="12" />
+ </i>
+ <i t="Affichage des cibles et des packages" l="13">
+  <i t="Types de cibles" l="14">
+   <i t="Définition de la cible Toutes les machines cibles" l="15" />
+   <i t="Définition d&#39;une collection" l="16" />
+   <i t="Définition d&#39;une cible exclue" l="17" />
+   <i t="Définition d&#39;une cible en attribution directe" l="18" />
+  </i>
+  <i t="Affichage des cibles" l="19">
+   <i t="Exploration des cibles" l="20" />
+   <i t="Affichage des membres d&#39;une cible" l="21" />
+   <i t="Recherche de cibles" l="22" />
+   <i t="Affichage des détails de la cible" l="23" />
+   <i t="Affichage des packages attribués à une cible" l="24" />
+  </i>
+  <i t="Définition d&#39;un package" l="25" />
+  <i t="Affichage des packages" l="26">
+   <i t="Exploration des packages" l="27" />
+   <i t="Recherche de packages" l="28" />
+   <i t="Affichage des cibles auxquelles un package a été attribué" l="29" />
+   <i t="Affichage des détails du package" l="30" />
+  </i>
+ </i>
+ <i t="Création et modification des policies" l="31">
+  <i t="Définition d&#39;une policy" l="32" />
+  <i t="Gestion de tâches" l="33" />
+  <i t="Instructions générales pour la création et la modification de policies" l="34">
+   <i t="Aperçu et enregistrement des modifications de policy" l="35" />
+   <i t="Remarques sur l&#39;enregistrement des policies" l="36" />
+  </i>
+  <i t="Ajout et suppression des packages d&#39;une policy" l="37">
+   <i t="Ajout de packages à une policy" l="38" />
+   <i t="Suppression de packages d&#39;une policy" l="39" />
+  </i>
+  <i t="Indication des états et des planifications pour les packages d&#39;une policy" l="40">
+   <i t="Présentation des états d&#39;installation" l="41" />
+   <i t="Indication des états primaires et secondaires" l="42" />
+   <i t="Présentation des planifications de package" l="43" />
+   <i t="Définition de la planification primaire et secondaire pour les packages" l="44" />
+   <i t="Définition de la planification de mise à jour pour les packages" l="45" />
+   <i t="Définition de la planification de réparation pour les packages" l="46" />
+   <i t="Définition des planifications communes à plusieurs packages" l="47" />
+   <i t="Résolution de conflit : états et planifications dans les policies" l="48" />
+   <i t="Résolution des différences d&#39;états ou de planifications des packages" l="49" />
+  </i>
+  <i t="Définition de la priorité d&#39;installation pour les packages dans une policy" l="50">
+   <i t="Définition de la priorité d&#39;installation" l="51" />
+   <i t="Résolution de conflit : packages avec la même priorité d&#39;installation" l="52" />
+   <i t="Résolution de conflit : plusieurs utilisateurs modifiant la même policy" l="53" />
+  </i>
+  <i t="Copie de policies" l="54" />
+  <i t="Suppression de policies" l="55" />
+  <i t="Gestion du logiciel, des données et des mises à jour" l="56">
+   <i t="Concepts liés à la gestion de l&#39;environnement des machines cibles" l="56#wp284976" />
+   <i t="Cas d&#39;emploi" l="57" />
+  </i>
+  <i t="Modification des policies à partir de la Vue Package" l="58" />
+  <i t="Définition de la période d’inactivité d’une cible" l="59">
+   <i t="Période d&#39;inactivité - Définition" l="60" />
+   <i t="Définition de la période d’inactivité d’une cible" l="61" />
+   <i t="Exemption des packages de la période d&#39;inactivité" l="62" />
+  </i>
+  <i t="Définition de la planification de Policy Service pour une cible" l="63">
+   <i t="Définition de Policy Service" l="64" />
+   <i t="Paramétrage de la planification des mises à jour de Policy Service" l="65" />
+  </i>
+  <i t="Paramétrage des propriétés de tuner et de package d&#39;une cible" l="66">
+   <i t="Présentation des policies de tuner et de package" l="67" />
+   <i t="Paramétrage des propriétés de tuner" l="68" />
+   <i t="Paramétrage des propriétés de package" l="69" />
+   <i t="Format des propriétés de tuner et de package" l="70" />
+   <i t="Suppression de propriétés de tuner et de package" l="71" />
+   <i t="Résolution de conflit : propriétés, valeurs" l="72" />
+   <i t="Résolution de conflit : modification de propriétés par plusieurs utilisateurs" l="73" />
+  </i>
+  <i t="Définition des droits du transmitter pour une cible" l="74">
+   <i t="Définition des droits du transmitter" l="75" />
+   <i t="Ajout ou modification des droits du transmitter" l="76" />
+   <i t="Suppression de droits du transmitter" l="77" />
+  </i>
+  <i t="Définition du profil pour une cible" l="78">
+   <i t="Définition d&#39;un profil" l="79" />
+   <i t="Modification du profil pour une cible" l="80" />
+  </i>
+ </i>
+ <i t="Affichage de la policy compliance" l="81">
+  <i t="Définition de la policy compliance" l="82" />
+  <i t="Définition de la conformité" l="83" />
+  <i t="Pré-requis à la policy compliance" l="84">
+   <i t="Configuration du serveur console pour la policy compliance" l="85" />
+   <i t="Configuration des machines cibles pour la policy compliance" l="86" />
+  </i>
+  <i t="Affichage de la policy compliance pour les cibles et packages" l="87">
+   <i t="Présentation" l="87#wp905795" />
+   <i t="Requêtes de conformité générale et rapports de conformité" l="88" />
+  </i>
+  <i t="Requêtes de conformité" l="89" />
+  <i t="Rapports de conformité" l="90" />
+ </i>
+ <i t="Intégration à Patch Management" l="91">
+  <i t="Pré-requis à l&#39;intégration à Patch Management" l="92" />
+  <i t="Définition d&#39;un groupe de patchs" l="93" />
+  <i t="Définition d&#39;un état d&#39;attribution de groupe de patch" l="94" />
+  <i t="Définition de Patch Service" l="95" />
+  <i t="Attribution de groupes de patch aux cibles" l="96">
+   <i t="Suppression de groupes de patch d&#39;une policy" l="97" />
+  </i>
+  <i t="Simulation de l&#39;installation de patchs" l="98" />
+  <i t="Affichage des informations détaillées sur l&#39;installation de groupes de patch" l="99" />
+  <i t="Configuration des paramètres de redémarrage pour les installations de patchs" l="100">
+   <i t="Avancé : propriétés de tuner pour les paramètres de redémarrage" l="101" />
+  </i>
+  <i t="Remplacement de la planification des mises à jour de Patch Service pour les machines cibles" l="102" />
+  <i t="Exemption de Patch Service de la période d&#39;inactivité" l="103" />
+  <i t="Policy compliance pour les groupes de patch" l="104" />
+ </i>
+ <i t="Mises à jour immédiates de la policy : Intégration à Deployment Manager" l="105">
+  <i t="Pré-requis de l&#39;intégration à Deployment Management" l="106" />
+  <i t="Activation et désactivation des mises à jour immédiates de la policy" l="107" />
+  <i t="Exécution d&#39;une mise à jour immédiate de la policy" l="108" />
+  <i t="Contrôle et affichage du statut d&#39;une mise à jour de la policy" l="109">
+   <i t="Arrêt et nouvelle tentative de mise à jour de la policy" l="110" />
+  </i>
+  <i t="Comment fonctionne la mise à jour immédiate de la policy ?" l="111" />
+  <i t="Périodes d&#39;inactivité et mises à jour immédiates de la policy" l="112" />
+ </i>
+</WebWorksHelpTOC>

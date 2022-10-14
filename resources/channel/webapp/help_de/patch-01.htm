@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:41:02" />
+    <title> Integration mit Patch Management</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = " Integration mit Patch Management";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp999565"> </a><p class="pBody">In diesem Kapitel wird beschrieben, wie Sie Policy Manager mit der Patch Management-Lösung von BMC CM verwenden können, um Patches auf den Zielcomputern bereitzustellen.</p>
+<a name="wp999571"> </a><p class="pBody">Folgende Themen werden behandelt<a href="javascript:WWHClickedPopup('sm', 'patch-01.htm#wp999645');" onMouseOver="WWHShowPopup('sm', 'patch-01.htm#wp999645', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">:</a></p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp999577"> </a><div class="pSmartList1"><li><a href="javascript:WWHClickedPopup('sm', 'patch-02.htm');" onMouseOver="WWHShowPopup('sm', 'patch-02.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Voraussetzungen für die Integration mit Patch Management </a></li></div>
+<a name="wp999583"> </a><div class="pSmartList1"><li><a href="javascript:WWHClickedPopup('sm', 'patch-03.htm');" onMouseOver="WWHShowPopup('sm', 'patch-03.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was ist eine Patch-Gruppe? </a></li></div>
+<a name="wp999589"> </a><div class="pSmartList1"><li><a href="javascript:WWHClickedPopup('sm', 'patch-04.htm');" onMouseOver="WWHShowPopup('sm', 'patch-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was ist ein Patch-Gruppe-Zuweisungsstatus? </a></li></div>
+<a name="wp999595"> </a><div class="pSmartList1"><li><a href="javascript:WWHClickedPopup('sm', 'patch-05.htm');" onMouseOver="WWHShowPopup('sm', 'patch-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Was ist Patch Service? </a></li></div>
+<a name="wp999601"> </a><div class="pSmartList1"><li><a href="javascript:WWHClickedPopup('sm', 'patch-06.htm');" onMouseOver="WWHShowPopup('sm', 'patch-06.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Zuweisen von Patch-Gruppen zu Zielen </a></li></div>
+<a name="wp999607"> </a><div class="pSmartList1"><li><a href="javascript:WWHClickedPopup('sm', 'patch-08.htm');" onMouseOver="WWHShowPopup('sm', 'patch-08.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Simulation der Patch-Installation </a></li></div>
+<a name="wp999613"> </a><div class="pSmartList1"><li><a href="javascript:WWHClickedPopup('sm', 'patch-09.htm');" onMouseOver="WWHShowPopup('sm', 'patch-09.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Anzeigen weiterer Informationen zur Installation von Patch-Gruppen </a></li></div>
+<a name="wp999619"> </a><div class="pSmartList1"><li><a href="javascript:WWHClickedPopup('sm', 'patch-10.htm');" onMouseOver="WWHShowPopup('sm', 'patch-10.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Konfigurieren der Neustarteinstellungen für Patch-Installationen </a></li></div>
+<a name="wp999625"> </a><div class="pSmartList1"><li><a href="javascript:WWHClickedPopup('sm', 'patch-12.htm');" onMouseOver="WWHShowPopup('sm', 'patch-12.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Außerkraftsetzen des Patch Service-Aktualisierungszeitplans für Zielcomputer. </a></li></div>
+<a name="wp999631"> </a><div class="pSmartList1"><li><a href="javascript:WWHClickedPopup('sm', 'patch-13.htm');" onMouseOver="WWHShowPopup('sm', 'patch-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Ausnehmen von Patch Service von der Blackout-Periode. </a></li></div>
+<a name="wp999637"> </a><div class="pSmartList1"><li><a href="javascript:WWHClickedPopup('sm', 'patch-14.htm');" onMouseOver="WWHShowPopup('sm', 'patch-14.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Policy Compliance für Patch-Gruppen </a></li></div>
+</ul></div>
+<a name="wp999645"> </a><p class="pBody">Mit Hilfe der Patch Management-Lösung von BMC CM kann festgestellt werden, welche Patches von den Computern in Ihrem Unternehmen benötigt werden. Weiterhin können damit Patches gruppiert, konfiguriert und auf einem Transmitter veröffentlicht werden. Verwenden Sie anschließend Policy Manager, um Patch-Gruppen für die Computer bereitzustellen, die sie benötigen. Weitere Informationen über die Patch Management-Lösung von BMC CM finden Sie im <em class="cEmphasis">Administratorhandbuch für Patch Management</em>, das auf der BMC CM-Website des Customer Supports  erhältlich ist.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

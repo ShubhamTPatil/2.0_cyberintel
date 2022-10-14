@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:19" />
+    <title>Konfigurieren der Policy Compliance-Einstellungen</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Konfigurieren der Policy Compliance-Einstellungen";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp70157"> </a><p class="pBody">Bei Verwendung der Policy Compliance-Funktion von Policy Manager möchten Sie eventuell die Policy Compliance-Einstellungen den Anforderungen Ihres Unternehmens anpassen. Wenn beispielsweise die Informationen zum Compliance-Prozentsatz oder zur Anzahl der Computer länger in Ihren Abfragen erhalten bleiben sollen, können Sie die maximale Cache-Zeit so ändern, dass die Ergebnisse während eines längeren Zeitraums angezeigt bleiben. Weitere Informationen zu Policy Compliance finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'pol_comp-01.htm');" onMouseOver="WWHShowPopup('sm', 'pol_comp-01.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Anzeigen der Policy Compliance</a>.</p>
+<a name="wp70159"> </a><p style="text-decoration: none" class="pStepIntro">
+So ändern Sie die Einstellungen der Policy Compliance:
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp70161"> </a><div class="pSmartList1"><li>Klicken Sie auf die Registerkarte <b class="cBold">Konfiguration</b>.</li></div>
+<a name="wp70163"> </a><div class="pSmartList1"><li>Klicken Sie auf der Konfigurationsseite auf den Link <b class="cBold">Compliance-Optionen</b>.</li></div>
+<a name="wp70165"> </a><p class="pIndented1">
+Die Seite „Compliance-Optionen“ wird angezeigt.
+</p>
+<a name="wp70167"> </a><div class="pSmartList1"><li>Konfigurieren Sie folgende Einstellungen:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp70169"> </a><div class="pSmartList2"><li><b class="cBold">Sammlung von Compliance-Daten aktivieren?</b></li></div>
+<a name="wp70171"> </a><p class="pIndented1">
+Wählen Sie &quot;Aktivieren&quot; aus, um die Erstellung von Compliance-Berichten zu aktivieren.
+</p>
+<a name="wp70173"> </a><div class="pSmartList2"><li><b class="cBold">Maximale Cachezeit für Listenergebnisse (in Sekunden)</b></li></div>
+<a name="wp70179"> </a><p class="pIndented1">
+Legt fest, wie lange Policy Manager Compliance-Informationen für die Liste der Elemente (wie zum Beispiel Packages oder Ziele) in einer Gruppe zwischenspeichert. Nach der angegebenen Zeit müssen Sie die Abfrage erneut ausführen.
+</p>
+<a name="wp70181"> </a><div class="pSmartList2"><li><b class="cBold">Maximale Cachezeit für andere Ergebnisse (in Sekunden)</b></li></div>
+<a name="wp70187"> </a><p class="pIndented1">
+Legt fest, wie lange Policy Manager konforme, nicht konforme und nicht eingecheckte Computer für eine Gruppe zwischenspeichert. Nach der angegebenen Zeit müssen Sie die Abfrage erneut ausführen.
+</p>
+<a name="wp70189"> </a><div class="pSmartList2"><li><b class="cBold">Zeitlimit für eingecheckten Status (in Stunden)</b></li></div>
+<a name="wp70203"> </a><p class="pIndented1">
+Legt fest, wie lange Policy Manager einen Computer als konform oder nicht konform betrachtet, bevor dieser als <b class="cBold">nicht eingecheckt</b> markiert wird. Üblicherweise handelt es sich hierbei um einen negativen Wert. Beispiel: Sie geben -48 an, und der Computer hat sich zu dem Zeitpunkt, an dem Sie eine Abfrage ausführen, zwei Tage nicht eingecheckt. Policy Manager markiert den Computer dann als nicht eingecheckt. Policy Manager muss die Compliance-Informationen neu berechnen, bevor die Compliance oder Nicht-Compliance bestimmt werden kann.
+</p>
+</ul></div>
+<a name="wp70205"> </a><div class="pSmartList1"><li>Klicken Sie auf <b class="cBold">Übernehmen</b>, um die Änderungen zu speichern und auf die Konfigurationsseite zurückzukehren.</li></div>
+</ol></div>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

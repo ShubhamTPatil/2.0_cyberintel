@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:41:02" />
+    <title>Ausnehmen von Patch Service von der Blackout-Periode.</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Ausnehmen von Patch Service von der Blackout-Periode.";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp1000178"> </a><p class="pBody">Wenn Sie eine Blackout-Periode festgelegt haben, innerhalb derer Downloads und Installationen verhindert werden sollen, sollten Sie Patch Service mit Hilfe von Policy Manager davon ausnehmen.</p>
+<a name="wp1000182"> </a><p class="pBody"><b class="cBold">Ausnehmen von Patch Service von der Blackout-Periode.</b> Beim Festlegen einer Blackout-Periode können Sie den Patch Service davon ausnehmen, so dass dieser während einer Blackout-Periode weiterhin ausgeführt wird und aktualisieren kann. Die Ausnahme ist dann nützlich, wenn Sie Notfallsituationen erwarten, in denen während einer Blackout-Periode Patches installiert werden sollen.</p>
+<a name="wp1000190"> </a><p class="pBody"><b class="cBold">Ausnehmen von Patch-Gruppen von der Blackout-Periode.</b> Auf der Seite „Policy bearbeiten“ auf der Registerkarte „Patch-Gruppen“ können Sie angeben, welche Patch-Gruppen von der Blackout-Periode ausgenommen werden sollen. Diese Ausnahme ist nützlich, wenn Sie Notfallsituationen erwarten, in denen Patches so schnell wie möglich bereitgestellt werden sollen, auch wenn sich einige Clients zu diesem Zeitpunkt in einer Blackout-Periode befinden. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'patch-06.htm');" onMouseOver="WWHShowPopup('sm', 'patch-06.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Zuweisen von Patch-Gruppen zu Zielen</a>.</p>
+<hr class="NoteRuleTop"/><a name="wp1000192"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Das Ausnehmen von Patch-Gruppen von der Blackout-Periode wird nur bei der ersten Bereitstellung von Patch-Gruppen auf den Zielcomputern angewendet. Patch Service verwaltet Installationen und andere Aktionen, die nach der Bereitstellung von Patch-Gruppen stattfinden.</p><hr class="NoteRuleBottom"/><a name="wp1000198"> </a><p class="pBody">Bei diesem Vorgang wird davon ausgegangen, dass Sie sich auf der Seite „Policy bearbeiten“ auf der Registerkarte „Packages“ befinden. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-04.htm');" onMouseOver="WWHShowPopup('sm', 'policies-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Allgemeine Anweisungen zum Erstellen und Bearbeiten von Policys</a>.</p>
+<a name="wp1000200"> </a><p style="text-decoration: none" class="pStepIntro">
+So nehmen Sie Patch Service von der Blackout-Periode aus
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp1000202"> </a><div class="pSmartList1"><li>Klicken Sie auf der Seite „Policy bearbeiten“ auf die Registerkarte <b class="cBold">Blackout-Periode</b>.</li></div>
+<a name="wp1000204"> </a><p class="pIndented1">
+Die Seite „Blackout-Periode“ wird angezeigt.
+</p>
+<a name="wp1000210"> </a><p class="pIndented1">
+<b class="cBold">Hinweis:</b> Die Optionen in <a href="javascript:WWHClickedPopup('sm', 'patch-13.htm#wp1000214');" onMouseOver="WWHShowPopup('sm', 'patch-13.htm#wp1000214', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Schritt&#160;2</a> werden nur dann angezeigt, wenn eine Blackout-Periode festgelegt wurde.
+</p>
+<a name="wp1000214"> </a><div class="pSmartList1"><li>Wählen Sie eine der folgenden Optionen aus, um das Patch Serice-Verhalten festzulegen:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp1000216"> </a><div class="pSmartList2"><li><b class="cBold">Aktualisierung von Patch Service während der Blackout-Periode und Vorgänge für von der Blackout-Periode ausgenommene Patch-Gruppen zulassen.</b></li></div>
+<a name="wp1000218"> </a><div class="pSmartList2"><li><b class="cBold">Aktualisierung von Patch Service während der Blackout-Periode nicht zulassen. Keine Vorgänge für Patch-Groups durchführen, auch nicht für die von der Blackout-Periode ausgenommenen. </b></li></div>
+</ul></div>
+<a name="wp1000220"> </a><div class="pSmartList1"><li>Klicken Sie nach dem Erstellen oder Bearbeiten der Policy auf <b class="cBold">Vorschau</b>.</li></div>
+<a name="wp1000226"> </a><p class="pIndented1">
+Auf der Seite „Vorschau“ können Sie die Änderungen an der Policy noch einmal überprüfen, bevor Sie sie speichern und auf das Ziel anwenden. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Erstellen der Vorschau und Speichern von Policy-Änderungen</a>.
+</p>
+<a name="wp1000228"> </a><div class="pSmartList1"><li>Nachdem Sie sich die Änderungen der Policy noch einmal angesehen haben, klicken Sie auf <b class="cBold">Speichern</b>, um die Änderungen zu bestätigen und zu speichern.</li></div>
+</ol></div>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

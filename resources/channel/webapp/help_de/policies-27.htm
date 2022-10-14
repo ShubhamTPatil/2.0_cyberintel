@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:29" />
+    <title>Anwendungsfälle</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Anwendungsfälle";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp84510"> </a><h4 style="margin-top: 14pt" class="pHeading3">
+Überblick zur Planung und Bereitstellung von Aktualisierungen
+</h4>
+<a name="wp84520"> </a><p class="pBody">Policy Manager ersetzt einen Channel automatisch, wenn das letzte Segment des Dateinamens der URL-Adresse eines vorhandenen Channel mit demselben Segment eines neuen Channel in der Policy übereinstimmt. Policy Manager führt als ersten Vorgang bei der Ausführung des Dienstes die Aktualisierung durch. Zusätzlich zu der Abgleichung der URL-Adressen entfernt die Funktion &quot;updateFrom&quot; den ersetzten Channel. Um Bandbreite einzusparen, ersetzt die Funktion nur Dateien und Daten, die sich bei der neuen Version geändert haben. &quot;UpdateFrom&quot; folgt der Installationsreihenfolge und dem Zeitplan, der in der Policy angegeben ist.</p>
+<a name="wp84523"> </a><p class="pBody"></p>
+<div align="left"><img src="images/bestPractice110dpibc.jpg" id="wp61462" border="0" hspace="0" vspace="0"/></div><p class="pBody">
+Die einzige Ausnahme tritt dann auf, wenn Sie für die Tuner-Eigenschaft <b class="cBold">marimba.subscription.nodelete=True</b> festgelegt haben. In diesem Fall kann die Policy den ersetzten Channel nicht entfernen, da die Konfigurationsoption dies untersagt. Das beste Vorgehen in diesem Fall ist es, den ersetzten Channel mit dem Status &quot;Deinstallieren&quot; in die Policy aufzunehmen.</p>
+<a name="wp84529"> </a><h4 style="margin-top: 14pt" class="pHeading3">
+Planen von zukünftigen Aktualisierungsereignissen
+</h4>
+<a name="wp84531"> </a><p style="text-decoration: none" class="pStepIntro">
+So planen Sie eine Installation zu einem zukünftigen Zeitpunkt, bei der eine Package-Version <em class="cEmphasis">(URL-1</em>) durch eine aktualisierte Version des gleichen Package <em class="cEmphasis">(URL-2</em>) ersetzt wird:
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp84533"> </a><div class="pSmartList1"><li>Erstellen Sie eine Policy, mit der <em class="cEmphasis">URL-1</em> für eine Gruppe von Zielen installiert wird.</li></div>
+<a name="wp84535"> </a><p class="pIndented1">
+Die Policy installiert <em class="cEmphasis">URL-1</em> auf den angegebenen Zielen.
+</p>
+<a name="wp84537"> </a><div class="pSmartList1"><li>Legen Sie in der Policy ein zukünftiges Verfallsdatum <em class="cEmphasis">d</em> für <em class="cEmphasis">URL-1</em> fest. Fügen Sie die aktualisierte Version des Package hinzu (<em class="cEmphasis">URL-2</em>), und geben Sie <em class="cEmphasis">d</em> als zukünftiges Installationsdatum an.</li></div>
+<a name="wp84539"> </a><p class="pIndented1">
+An dem zukünftigen Datum <em class="cEmphasis">d</em> führt Policy Service eine Aktualisierung von <em class="cEmphasis">URL-1</em> auf <em class="cEmphasis">URL-2</em> auf allen Ziel-Clients durch.
+</p>
+</ol></div>
+<a name="wp84541"> </a><p class="pBody">In diesem Fall ist es am besten, das gleiche Datum für den Verfall von <em class="cEmphasis">URL-1</em> und die Installation von <em class="cEmphasis">URL-2</em> zu verwenden. Der Verfall von <em class="cEmphasis">URL-1</em> entspricht einem <em class="cEmphasis">impliziten Löschen</em>, das (zusammen mit <em class="cEmphasis">URL-2</em>) ein &quot;updateFrom&quot; am Datum <em class="cEmphasis">d</em> auslöst. Mit der Funktion &quot;updateFrom&quot; wird der Prozess optimiert, indem nur die Dateien ersetzt werden, die sich geändert haben.</p>
+<hr class="NoteRuleTop"/><a name="wp84543"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Das Timing ist der Schlüssel für die Aktualisierung von Applikationen über URL-Adressen. Wenn der Verfall der <em class="cEmphasis">URL-1</em> nicht genau mit der Installation von <em class="cEmphasis">URL-2</em> zusammenfällt, kann es zu Datenkonflikten kommen. Wenn <em class="cEmphasis">URL-1</em> nach der Installation von <em class="cEmphasis">URL-2</em> verfällt, würde dies beim obigen Beispiel bedeuten, dass beide Channel in der sich überlappenden Zeit im Status <em class="cEmphasis">Installiert</em> vorhanden sind. Wenn <em class="cEmphasis">URL-1</em> vor der Installation von <em class="cEmphasis">URL-2</em> verfällt und Sie den Status für <em class="cEmphasis">URL-1</em> ausdrücklich auf &quot;Deinstallieren&quot; festgelegt haben, verfügt das Ziel in der Zwischenzeit über kein Package.</p><hr class="NoteRuleBottom"/><a name="wp84547"> </a><h4 style="margin-top: 14pt" class="pHeading3">
+Bereitstellung zukünftiger Aktualisierungsereignisse
+</h4>
+<a name="wp84549"> </a><p style="text-decoration: none" class="pStepIntro">
+So stellen Sie eine zukünftige Aktualisierung bereit, bei der eine Package-Version <em class="cEmphasis">(URL-1</em>) durch eine aktualisierte Version des gleichen Package <em class="cEmphasis">(URL--2</em>) ersetzt wird:
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp84551"> </a><div class="pSmartList1"><li>Erstellen Sie eine Policy, mit der <em class="cEmphasis">URL-1</em> für eine Gruppe von Zielen installiert wird.</li></div>
+<a name="wp84553"> </a><p class="pIndented1">
+Die Policy installiert <em class="cEmphasis">URL-1</em> auf den angegebenen Zielen.
+</p>
+<a name="wp84555"> </a><div class="pSmartList1"><li>Legen Sie in der Policy ein zukünftiges Verfallsdatum <em class="cEmphasis">d</em> fest, und fügen Sie <em class="cEmphasis">URL-2</em> mit dem Installationsstatus <em class="cEmphasis">Bereitstellen</em> hinzu. Geben Sie als Installationsdatum <em class="cEmphasis">d</em> an.</li></div>
+<a name="wp84557"> </a><p class="pIndented1">
+Zum Zeitpunkt <em class="cEmphasis">d</em> führt die Policy ein &quot;updateFrom&quot; (<em class="cEmphasis">URL-1</em> auf <em class="cEmphasis">URL-2)</em> aus.
+</p>
+</ol></div>
+<a name="wp84559"> </a><p class="pBody">Das Bereitstellen von zukünftigen Aktualisierungen ist mit dem Planen vergleichbar. Es wird das gleiche Datum <em class="cEmphasis">d</em> für den Verfall der ersten URL-Adresse und die Installation der zweiten angegeben.</p>
+<a name="wp84561"> </a><p class="pBody">Mit der Policy kann für ein Package ein Primär- und ein Sekundärstatus festgelegt werden. Auf diese Weise können für jeden Status unabhängige Planungsoptionen festgelegt werden. Im folgenden Beispiel stellen Sie Channel 2 (aktualisierte Applikationsversion) bereit, um den Channel&#160;1 (aktuelle Applikationsversion) am 1. März zu ersetzen. Die ältere Version verfällt am 1. März, und mit der Funktion &quot;updateFrom&quot; wird die Installation der neuen Version optimiert. Beachten Sie die Status, die Sie dem Channel 2 vor und nach der Aktualisierung zuweisen.</p>
+<a name="wp84566"> </a><p class="pBodyRelative"><img src="images/Policy_help-05-27-7.gif" height="90" width="464" id="wp61087" border="0" hspace="0" vspace="0"/></p>
+
+<a name="wp84570"> </a><h4 style="margin-top: 14pt" class="pHeading3">
+Verwalten von Packages und Status mit der Installationspriorität
+</h4>
+<a name="wp84572"> </a><p style="text-decoration: none" class="pStepIntro">
+So geben Sie vorausgesetzte Channel für die Installation vor der Aktualisierung eines vorhandenen Channel an:
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp84574"> </a><div class="pSmartList1"><li>Erstellen Sie eine Policy, die beispielsweise die Channel 2 bis 5 (in dieser Reihenfolge) für eine Gruppe von Zielen installiert.</li></div>
+<a name="wp84576"> </a><p class="pIndented1">
+Die Policy installiert Channel 2 bis 5 auf den angegebenen Zielen.
+</p>
+<a name="wp84578"> </a><div class="pSmartList1"><li>Ändern Sie die Policy, damit der vorausgesetzte Channel vor der Aktualisierung eines vorhandenen Channel in der Policy installiert wird.</li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp84580"> </a><div class="pSmartList2"><li>Fügen Sie Channel 1 mit dem Status <em class="cEmphasis">Installieren</em> an erster Stelle ein.</li></div>
+<a name="wp84582"> </a><div class="pSmartList2"><li>Entfernen Sie Channel 3 (<em class="cEmphasis">URL-1</em>), und ersetzen Sie ihn mit dem aktualisierten Channel 3 (<em class="cEmphasis">URL-2</em>), der sich immer noch an dritter Stelle befindet. Befolgen Sie die Richtlinien, wie sie in vorherigen Fällen zum Planen und Bereitstellen von Aktualisierungen aufgeführt wurden.</li></div>
+<a name="wp84584"> </a><p class="pIndented1">
+Die Policy verarbeitet die Channel in der folgenden Reihenfolge:
+</p>
+<a name="wp84586"> </a><div class="pSmartList2"><li>Installation von Channel 1</li></div>
+<a name="wp84588"> </a><div class="pSmartList2"><li>Installation von Channel 2</li></div>
+<a name="wp84590"> </a><div class="pSmartList2"><li>Aktualisierung von Channel 3 (<em class="cEmphasis">URL-1</em> auf <em class="cEmphasis">URL-2</em>)</li></div>
+<a name="wp84592"> </a><div class="pSmartList2"><li>Installation von Channel 4</li></div>
+<a name="wp84594"> </a><div class="pSmartList2"><li>Installation von Channel 5</li></div>
+</ol></div>
+</ol></div>
+<a name="wp84596"> </a><p class="pBody">Die Policy unterstützt die vorherigen Planungs- und Bereitstellungsszenarien bei der Verwendung von Installationsprioritätsfunktionen, um die Package-Installations-Sequenz anzugeben.</p>
+<a name="wp84598"> </a><h4 style="margin-top: 14pt" class="pHeading3">
+Flexible Konfigurationsoptionen
+</h4>
+<a name="wp84600"> </a><p class="pBody">Mit den umfangreichen Konfigurationenoptionen in Policy Manager können Sie eine Vielzahl unterschiedlicher Deployment-Szenarien implementieren. Beispiel: Angenommen, Sie möchten eine Applikation als einmaliges Angebot in einem begrenzten Zeitraum verteilen (z. B. im Januar). Wenn das Ziel sich in diesem Monat nicht eincheckt, möchten Sie nicht, dass dieses Ziel über diese Applikation verfügt. Wenn Sie möchten, dass die Benutzer, die im Januar eine Aktualisierung durchführen, am 1. Februar über die Software verfügen, müssen Sie als Installationsstatus <em class="cEmphasis">Installieren-Beibehalten</em> angeben.</p>
+<a name="wp84602"> </a><p style="text-decoration: none" class="pStepIntro">
+So verteilen Sie eine Applikation als einmaliges Angebot im Januar:
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp84604"> </a><div class="pSmartList1"><li>Fügen Sie die URL-Adresse der Applikation einer Policy hinzu.</li></div>
+<a name="wp84606"> </a><div class="pSmartList1"><li>Legen Sie das Verfallsdatum der Policy auf den 31. Januar fest.</li></div>
+<a name="wp84608"> </a><div class="pSmartList1"><li>Legen Sie den Installationsstatus auf <em class="cEmphasis">Installieren-Beibehalten</em> fest.</li></div>
+</ol></div>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

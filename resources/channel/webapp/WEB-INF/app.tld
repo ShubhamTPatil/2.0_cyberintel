@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE taglib
+
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+
+  "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+
+<taglib>
+
+  <tlibversion>1.0</tlibversion>
+
+  <jspversion>1.1</jspversion>
+
+  <shortname>Subscription Manager Tag Library</shortname>
+
+  <uri>http://www.marimba.com/taglibs/subscription</uri>
+
+  <info>
+
+    This tag library contains functionality specific to the Subscription Manager.
+
+  </info>
+
+
+  <tag>
+
+    <name>getBreadCrumbLink</name>
+
+    <tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.GetBreadCrumbLinkTag</tagclass>
+
+    <info>
+
+      Takes a segment of the breadcrumb and constructs the full dn of that segment.
+
+      crumb- the level of the breadcrumb trail that you want to go to.
+
+    </info>
+
+    <attribute>
+
+      <name>crumb</name>
+
+      <required>false</required>
+
+      <rtexprvalue>true</rtexprvalue>
+
+    </attribute>
+
+  </tag>
+
+  <tag>
+
+    <name>getPkgsFromTargets</name>
+
+    <tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.GetPkgsFromTargetsTag</tagclass>
+
+    <info>
+
+	Takes a session variable and gets the packages that the targets in the session
+	have in common.
+
+    </info>
+
+    <attribute>
+
+      <name>stateBean</name>
+
+      <required>true</required>
+
+      <rtexprvalue>true</rtexprvalue>
+
+    </attribute>
+  </tag>
+
+
+
+  <tag>
+
+    <name>getTargetsFromPkgs</name>
+
+    <tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.GetTargetsFromPkgsTag</tagclass>
+
+    <info>
+
+	Takes a session variable and gets the targets that have the packages in the session variable
+
+    </info>
+
+    <attribute>
+
+      <name>pkgs</name>
+
+      <required>true</required>
+
+      <rtexprvalue>true</rtexprvalue>
+
+    </attribute>
+
+    <attribute>
+
+      <name>stateBean</name>
+
+      <required>true</required>
+
+      <rtexprvalue>true</rtexprvalue>
+
+    </attribute>
+
+  </tag>
+
+  <tag>
+
+    <name>getDistTargets</name>
+
+    <tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.GetDistTargetsTag</tagclass>
+
+    <info>
+
+       Loads the selected and excluded list from the Distribution bean into the
+       temporary lists: ADD_REMOVE_SELECTED_PAGE_TARGETS and
+       ADD_REMOVE_EXCLUDED_PAGE_TARGETS session variables used on select_exclude.jsp
+
+    </info>
+
+    <attribute>
+
+      <name>init</name>
+
+      <required>false</required>
+
+      <rtexprvalue>true</rtexprvalue>
+
+    </attribute>
+
+  </tag>
+
+  <tag>
+
+    <name>setBreadCrumbTrail</name>
+
+    <tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.SetBreadCrumbTrailTag</tagclass>
+
+    <info>
+
+      Takes a dn and returns a string array of its components (bread crumb).
+
+      dn = current directory being viewed.
+
+    </info>
+
+    <attribute>
+
+      <name>dn</name>
+
+      <required>false</required>
+
+      <rtexprvalue>true</rtexprvalue>
+
+    </attribute>
+     <attribute>
+
+      <name>objectClass</name>
+
+      <required>false</required>
+
+      <rtexprvalue>true</rtexprvalue>
+
+    </attribute>
+
+
+  </tag>
+
+  <tag>
+
+    <name>getDeployedPackages</name>
+
+    <tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.GetDeployedPackagesTag</tagclass>
+
+    <info>
+
+      Executes an LDAP search for all packages that appears in the subscriptions
+      accessible by the current user and place in the results in a session
+      variable page_deppkgs_rs.
+
+      search - the LDAP search string to be matched against the CN
+      contenttype - Restricts the deployed content returned by this tag to be of this specified type.
+      Values are defined as ISubscriptionConstants.CONTENT_TYPE_*.  By default, all content types are returned.
+
+
+    </info>
+
+    <attribute>
+
+      <name>contentType</name>
+
+      <required>false</required>
+
+      <rtexprvalue>true</rtexprvalue>
+
+    </attribute>
+
+    <attribute>
+
+      <name>search</name>
+
+      <required>false</required>
+
+      <rtexprvalue>true</rtexprvalue>
+
+    </attribute>
+
+    <attribute>
+
+      <name>stateBean</name>
+
+      <required>true</required>
+
+      <rtexprvalue>true</rtexprvalue>
+
+    </attribute>
+
+  </tag>
+
+  <tag>
+    <name>setToSession</name>
+    <tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.SetToSessionTag</tagclass>
+    <info>
+      Takes a variable name and checks if that variable is defined as a parameter.
+      If so, then set this value to the session.  If not, then make sure session var
+      is set.  If it isn't, then set the default value to the session.
+    </info>
+    <attribute>
+      <name>name</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>defaultValue</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>dateOptions</name>
+    <tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.DateOptionsTag</tagclass>
+    <bodycontent>empty</bodycontent>
+    <info>
+      This tag renders the &lt;option&gt; elements depending upon the given date, and
+      type.  This tags is only valid if nested within a
+      org.apache.struts.taglib.html.SelectTag. The body of this tag should contain
+      a date string recognized by java.util.Date format.
+      date - a date string that can be parsed by java.text.SimpleDateFormat object
+      type - { months|days|years }
+    </info>
+    <attribute>
+      <name>date</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>type</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>scheduleDisplay</name>
+    <tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.ScheduleDisplayTag</tagclass>
+    <bodycontent>empty</bodycontent>
+    <info>
+      This tag renders the entire or specified components of a Marimba channel
+      of Tuner schedule string(see com.marimba.castanet.schedule.Schedule
+      for valid format) within a &lt;font class="{activeFont|inactiveFont}"&gt;schedule&lt;/font&gt;
+
+      The input schedule string can be specified as the 'schedule' attribute
+      , or obtained as a property specified by from a bean specified 'name'.
+      If schedule is specified, then name/property will be ignored. If property
+      is not specified, the value of the bean will be used.
+
+      If schedule string is invalid, an exception will be thrown.
+      java.util.SimpleDateFormat is used to format the dates and time
+      for active period's start and end, and the blackout period components.
+
+      type - {"init*"|"sec*"|"update*"|"verrepair*"}.  The input string should begin
+      with "init", "sec", "update", or "verrepair" to identify the type of schedule
+      being displayed.  If this is an initial or update schedule, when there is no
+      schedule "Activate on next subscription update" displayed.  Otherwise, "N/A" is
+      displayed.
+      activeFont - CSS font class for displaying the schedule
+      inactiveFont - CSS font class for the N/A and inconsistent states
+      schedule - the input schedule string.
+      name - the name of a bean (from any scope) containing a property that
+	   stores the input schedule string.
+      property - only meaningful if name is filled.
+      component - { recurring|activestart|activeend|activeblackout }.
+		If not specified, the entire schedule string is printed.
+      format - {short| long} use long or short message format when displaying
+	       the schedule.  Messages are looked up in "ApplicationResources.properties".
+	       ".short" should be appended to a message key that has short and long
+	       versions.  By default, the long message is selected.
+    </info>
+    <attribute>
+      <name>type</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>activeFont</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>inactiveFont</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>schedule</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>component</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>format</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>doubleSpace</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+
+    <name>getPrevPageParam</name>
+
+    <tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.GetPrevPagingParamTag</tagclass>
+
+    <info>
+
+      Returns the appropriate parameter for the previous page of results.
+
+    </info>
+
+  </tag>
+
+  <tag>
+
+    <name>getNextPageParam</name>
+
+    <tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.GetNextPagingParamTag</tagclass>
+
+    <info>
+
+      Returns the appropriate parameter for the next page of results.
+
+    </info>
+
+  </tag>
+
+  <tag>
+
+    <name>getDropDownOptions</name>
+
+    <tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.GetDropDownPagingTag</tagclass>
+
+    <info>
+
+      Returns the html for the drop-down box used for paging through a result set.
+      The instance variable designates whether this is the first or second instance
+      of this drop-down box on the page.  The ldap navigation page, for example, has one
+      previous/next banner at the top of the page, and another at the bottom.  They must
+      be labeled at separate form elements and the submitSelected javascript found on
+      /includes/ldap_nav.jsp must be included.
+
+    </info>
+
+    <attribute>
+
+      <name>instance</name>
+
+      <required>false</required>
+
+      <rtexprvalue>true</rtexprvalue>
+
+    </attribute>
+
+  </tag>
+
+	<tag>
+
+		<name>aclhead</name>
+
+		<tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.AclTableHeader</tagclass>
+
+		<info>
+
+			Returns the href used to expand the values in the browse pane.
+
+		</info>
+	</tag>
+
+	<tag>
+
+		<name>acldetail</name>
+
+		<tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.AclTableDetail</tagclass>
+
+		<info>
+
+			Returns the href used to expand the values in the browse pane.
+
+		</info>
+	</tag>
+	<tag>
+
+		<name>getMouseOverString</name>
+
+		<tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.MouseOverRendererTag</tagclass>
+
+		<info>
+
+			Returns the href used to expand the values in the browse pane.
+
+		</info>
+
+		<attribute>
+
+			<name>entry</name>
+
+			<required>true</required>
+
+			<rtexprvalue>true</rtexprvalue>
+
+		</attribute>
+
+	</tag>
+
+	<tag>
+
+		<name>getTargetHRef</name>
+
+		<tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.ExpandURLRendererTag</tagclass>
+
+		<info>
+
+			Returns the href used to expand the values in the browse pane.
+
+		</info>
+
+		<attribute>
+
+			<name>entry</name>
+
+			<required>true</required>
+
+			<rtexprvalue>true</rtexprvalue>
+
+		</attribute>
+
+	</tag>
+
+	<tag>
+
+		<name>getTargetAssignHRef</name>
+
+		<tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.AssignURLRendererTag</tagclass>
+
+		<info>
+
+			Returns the href used to expand the values in the browse pane.
+
+		</info>
+
+		<attribute>
+
+			<name>entry</name>
+
+			<required>true</required>
+
+			<rtexprvalue>true</rtexprvalue>
+
+		</attribute>
+
+	</tag>
+  <tag>
+
+    <name>setActiveTab</name>
+
+    <tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.SetActiveTabTag</tagclass>
+
+    <info>
+
+      Returns the appropriate parameter for the previous page of results.
+
+    </info>
+
+  </tag>
+
+  <tag>
+
+    <name>setPagingResults</name>
+
+    <tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.SetPagingResultsTag</tagclass>
+
+    <info>
+      Determines which page of results are to be displayed, and saves them to
+      the request for display on the jsp page.
+
+      If this is the first time the total results are created, then this tag
+      initializes a new GenericPagingBean that stores the result set we're paging through.
+      The GenericPagingBean also stores the current start index and the total num
+      results.  This GenericPagingBean is then stored in the provided formName under
+      the provided beanName.
+
+      Otherwise, we're paging through existing results and this tag pulls the next,
+      previous, or specified page of results from the total results that are stored in
+      the GenericPagingBean specified in the beanName attribute that is stored in the
+      formName attribute.
+    </info>
+
+    <attribute>
+
+      <name>formName</name>
+
+      <required>true</required>
+
+      <rtexprvalue>true</rtexprvalue>
+
+    </attribute>
+
+    <attribute>
+
+      <name>beanName</name>
+
+      <required>true</required>
+
+      <rtexprvalue>true</rtexprvalue>
+
+    </attribute>
+
+    <attribute>
+
+      <name>resultsName</name>
+
+      <required>false</required>
+
+      <rtexprvalue>true</rtexprvalue>
+
+    </attribute>
+
+    <attribute>
+
+      <name>property</name>
+
+      <required>false</required>
+
+      <rtexprvalue>true</rtexprvalue>
+
+    </attribute>
+
+    <attribute>
+
+      <name>displayResultsName</name>
+
+      <required>false</required>
+
+      <rtexprvalue>true</rtexprvalue>
+
+    </attribute>
+
+    <attribute>
+
+      <name>listProcessor</name>
+
+      <required>false</required>
+
+      <rtexprvalue>true</rtexprvalue>
+
+    </attribute>
+
+  </tag>
+
+  <tag>
+    <name>introLongExists</name>
+    <tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.HelpTextTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+      This tag checks to see if the introLong help text exists in the message resource
+      files. If so, it returns true, else it returns false.
+    </info>
+    <attribute>
+      <name>cookie</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>header</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+	<name>name</name>
+	<required>false</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+	<name>parameter</name>
+	<required>false</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+	<name>property</name>
+	<required>false</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+	<name>scope</name>
+	<required>false</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+	<name>value</name>
+	<required>false</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+    <tag>
+      <name>setPersistedRecords</name>
+      <tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.SetPersistedRecords</tagclass>
+      <info>
+          Sets the state of the checkboxes in the form using the persisted values from
+          PersistifyChecksAction.SelectedTargets.
+      </info>
+
+      <attribute>
+        <name>selectedTargetsVarName</name>
+        <required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+      </attribute>
+
+        <attribute>
+          <name>formName</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+          <name>pagingBeanName</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>setApplicationChannels</name>
+        <tagclass>com.marimba.apps.subscriptionmanager.webapp.taglib.SetApplicationChannels</tagclass>
+        <info>
+            Sets the already assigned packages to the target that is invoked directly the policy distribution from
+            the Remedy AR System.
+        </info>
+
+        <attribute>
+            <name>sessionBean</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+</taglib>
+

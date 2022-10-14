@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:56" />
+    <title>Einrichten des Konsolenservers für Policy Compliance</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Einrichten des Konsolenservers für Policy Compliance";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp295904"> </a><p class="pBody"><b class="cBold">Policy Manager und Report Center installieren.</b> Für Policy Compliance sind die Policy Manager- und Report Center-Channel auf dem Konsolenserver erforderlich. Wenn Sie die Anweisungen zur Installation und Einrichtung des Konsolenservers befolgt haben (siehe <em class="cEmphasis">BMC CM Installations- und Deployment-Handbuch (BMC Configuration Management Installation and Deployment Guide)</em> auf der BMC CM Customer Support-Website), sollten die folgenden Channel installiert sein und ausgeführt werden:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp295906"> </a><div class="pSmartList2"><li>Common Management Services</li></div>
+<a name="wp295912"> </a><div class="pSmartList2"><li>Policy Manager</li></div>
+<a name="wp295914"> </a><div class="pSmartList2"><li>Report Center</li></div>
+<hr class="WarnRuleTop"/><a name="wp295920"> </a><p class="pImportant"><span style="color: #CC0033">Wichtig:&#160;</span> Policy Compliance-Informationen beruhen auf dem Scan der Tuner-/Transmitter-Komponenten. Beachten Sie, dass die Festlegung unterschiedlicher Scan-Zeitpläne für die Komponenten auf der Konfigurationsseite des Inventory-Plugin von Report Center und die Nichtsausführung des Scans der Tuner-/Transmitter-Komponenten dazu führen kann, dass Policy Manager keine korrekten Policy Compliance-Informationen anzeigt.</p><hr class="WarnRuleBottom"/>
+</ul></div>
+</ul></div>
+<a name="wp295922"> </a><p class="pBody">Stellen Sie sicher, dass Sie die Systemanforderungen erfüllen, wie sie im <em class="cEmphasis">Handbuch über die Systemvoraussetzungen für das BMC Configuration Management (BMC Configuration Management System Requirements Guide)</em> beschrieben werden, das auf der BMC Customer Support-Website verfügbar ist.</p>
+<a name="wp295940"> </a><p class="pBody">Achten Sie darauf, dass Policy Manager wie im <em class="cEmphasis">Administratorhandbuch für Policy Management</em> beschrieben installiert und konfiguriert wurde. Achten Sie weiterhin darauf, dass Report Center (samt Datenbankkonfiguration und Import der Abfragedatenbank) so installiert und konfiguriert wurde, wie im <em class="cEmphasis">BMC CM Installations- und Deployment-Handbuch (BMC Configuration Management Installation and Deployment Guide)</em> und im <em class="cEmphasis">Administratorhandbuch für Report Center (Report Center Administrator’s Guide)</em> beschrieben. Alle erwähnten Handbücher sind auf der BMC-Website &quot;Customer Support&quot; verfügbar.</p>
+<a name="wp295946"> </a><p class="pBody"><b class="cBold">Policy Compliance aktivieren.</b> Standardmäßig ist die Collection von Policy Compliance-Daten ab Version 6.0.2.1. deaktiviert. Wenn die Policy Compliance-Berichte angezeigt werden sollen, achten Sie darauf, dass die Collection von Policy Compliance-Daten aktiviert ist und die Optionen für Policy Compliance so festgelegt sind, dass Sie den Anforderungen Ihres Unternehmens entsprechen. Letzteres wird unter <a href="javascript:WWHClickedPopup('sm', 'config-7.htm');" onMouseOver="WWHShowPopup('sm', 'config-7.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Konfigurieren der Policy Compliance-Einstellungen</a> beschrieben.</p>
+<a name="wp295948"> </a><p class="pBody"><b class="cBold">Verzeichnisdienst und Datenbank synchronisieren.</b> Um die Compliance zu berechnen, müssen Sie zunächst den Verzeichnisdienst mit der Datenbank synchronisieren. Dies erfolgt über die Systemeinstellungen der Konsole (Konsole &gt; Systemeinstellungen &gt; Datenquelle &gt; LDAP-mit-Datenbank-Synchronisierungsdienst). Weitere Informationen dazu finden Sie in der Online-Hilfe zu den Systemeinstellungen der Konsole.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

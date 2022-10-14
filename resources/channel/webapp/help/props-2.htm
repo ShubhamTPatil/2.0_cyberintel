@@ -1,0 +1,712 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Apr-13-06 v6.2 ANSI)" />
+    <meta name="LASTUPDATED" content="11/16/09 16:16:59" />
+    <title>Overview of tuner and package policies</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Overview of tuner and package policies";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp42314"> </a><p class="pBody">When you create or edit a policy using Policy Manager, you have the option of specifying tuner and package properties for a target. Tuner and package properties allow you to control the behavior of the target or packages on the target endpoints, such as to control the number and frequency of retry attempts for a failed download or to control the reboot behavior of a particular package. </p>
+<a name="wp62282"> </a><p class="pBody">When you set properties using Policy Manager for a channel or package that has not been installed yet, the properties are applied when the channel is installed. </p>
+<a name="wp42331"> </a><p class="pBody">This section includes the following topics:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp42332"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp42301');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp42301', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">What are tuner properties?</a></li></div>
+<a name="wp42359"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp34251');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp34251', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">What tuner properties do you commonly set with Policy Manager?</a></li></div>
+<a name="wp42374"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp51603');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp51603', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">What are package properties?</a></li></div>
+<a name="wp42367"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp39266');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp39266', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Properties that control reboots for packages (Windows only)</a></li></div>
+</ul></div>
+</ul></div>
+<a name="wp42301"> </a><h4 class="pHeading3">
+What are tuner properties?
+</h4>
+<a name="wp34020"> </a><p class="pBody">Tuner properties configure many characteristics and settings of a tuner, including the URL of its primary channel and the URL for tuner updates, as well as licenses and proxy details. You can use Policy Manager to add, edit, and delete tuner properties (in the <b class="cBold">prefs.txt</b> file) for the target tuner. </p>
+<a name="wp37355"> </a><p class="pBody">For a lists of the tuner properties that you usually set through Policy Manager, see <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp34251');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp34251', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">What tuner properties do you commonly set with Policy Manager?</a>. For a list of tuner properties, see the chapter about tuner properties in the <em class="cEmphasis">BMC BladeLogic Client Automation Reference Guide</em>, available on the BMC Customer Support website.</p>
+<a name="wp37339"> </a><p class="pBody">For instructions about setting tuner properties, see <a href="javascript:WWHClickedPopup('sm', 'props-3.htm');" onMouseOver="WWHShowPopup('sm', 'props-3.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Setting tuner properties</a>.</p>
+<a name="wp34251"> </a><h4 class="pHeading3">
+What tuner properties do you commonly set with Policy Manager?
+</h4>
+<a name="wp34258"> </a><p class="pBody">If you have Policy Service installed, the tuner has additional properties that become available. You can set the following tuner properties to change the tuner&#39;s interaction with Policy Service through one of the following methods:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp42877"> </a><div class="pSmartList2"><li>When a tuner installer is created during setup and deployment</li></div>
+<a name="wp42888"> </a><div class="pSmartList2"><li>Through a profile update</li></div>
+<a name="wp42889"> </a><div class="pSmartList2"><li>Through Tuner Administrator</li></div>
+<a name="wp42887"> </a><div class="pSmartList2"><li>Through Policy Manager</li></div>
+</ul></div>
+</ul></div>
+<a name="wp39116"> </a><p class="pBody">The first nine properties that appear in <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp38471');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp38471', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Table&#160;4-1</a> are the ones that appear in the list on the Policy Manager&#39;s Tuner and Package Properties page. They are listed in the order that they appear on the page. The rest of the properties in the table need to be entered by their complete property names; they are listed in alphabetical order.</p>
+<a name="wp37523"> </a><p class="pBodyRelative"></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp38471table38466">
+  <caption><a name="wp38471"> </a><p class="pBody">Table&#160;4-1:&#160;&#160;<span style="font-style: normal; font-weight: normal; text-decoration: none; vertical-align: baseline">Commonly used tuner properties&#160;</span></p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp38477"> </a><div class="pCellHeading">
+Property name
+</div>
+</th>
+    <th><a name="wp38479"> </a><div class="pCellHeading">
+Possible values
+</div>
+</th>
+    <th><a name="wp38481"> </a><div class="pCellHeading">
+Description
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp38483"> </a><div class="pCellBody">
+<b class="cBold">No Delete</b>
+</div>
+<a name="wp38484"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp38485"> </a><div class="pCellBody">
+marimba.subscription.nodelete
+</div>
+<a name="wp38486"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+    <td><a name="wp38488"> </a><div class="pCellBody">
+ true or false
+</div>
+<a name="wp38489"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp38490"> </a><div class="pCellBody">
+Default: false
+</div>
+</td>
+    <td><a name="wp38492"> </a><div class="pCellBody">
+By default, packages are deleted when a user or machine is removed from a group in the underlying directory service. If you set this property to true, packages are not deleted, even if you delete packages from targets using the Target Details page. They remain on the targets and are no longer managed using Policy Manager. You must use the uninstall state to delete the packages from targets.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp38533"> </a><div class="pCellBody">
+<b class="cBold">Retry Time</b>
+</div>
+<a name="wp38534"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp38535"> </a><div class="pCellBody">
+marimba.subscription.retrytime
+</div>
+</td>
+    <td><a name="wp38537"> </a><div class="pCellBody">
+integer
+</div>
+<a name="wp38538"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp38539"> </a><div class="pCellBody">
+Default: 60
+</div>
+<a name="wp38540"> </a><div class="pCellBody">
+(60 seconds or 1 minute)
+</div>
+</td>
+    <td><a name="wp39251"> </a><div class="pCellBody">
+This property sets the delay, in seconds, before Policy Service tries to subscribe failed packages.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp38544"> </a><div class="pCellBody">
+<b class="cBold">Retry Count</b>
+</div>
+<a name="wp38545"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp38546"> </a><div class="pCellBody">
+marimba.subscription.retrycount
+</div>
+</td>
+    <td><a name="wp38548"> </a><div class="pCellBody">
+integer
+</div>
+<a name="wp38549"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp38550"> </a><div class="pCellBody">
+Default: 5
+</div>
+</td>
+    <td><a name="wp39239"> </a><div class="pCellBody">
+This property sets the number of retries before Policy Service gives up trying to subscribe failed packages.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp38554"> </a><div class="pCellBody">
+<b class="cBold">Use Shortcuts</b>
+</div>
+<a name="wp38555"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp38556"> </a><div class="pCellBody">
+marimba.subscription.useshortcuts
+</div>
+</td>
+    <td><a name="wp38558"> </a><div class="pCellBody">
+true or false
+</div>
+<a name="wp38559"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp38560"> </a><div class="pCellBody">
+Default: false
+</div>
+</td>
+    <td><a name="wp38562"> </a><div class="pCellBody">
+When this property is set to true, advertised packages are represented as desktop shortcuts (Windows platforms only).
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp38564"> </a><div class="pCellBody">
+<b class="cBold">Install Mode</b>
+</div>
+<a name="wp38565"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp38566"> </a><div class="pCellBody">
+marimba.subscription.installmode
+</div>
+</td>
+    <td><a name="wp38568"> </a><div class="pCellBody">
+silent or aspackaged
+</div>
+<a name="wp38569"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp38570"> </a><div class="pCellBody">
+Default: silent
+</div>
+</td>
+    <td><a name="wp42764"> </a><div class="pCellBody">
+This property defines the mode used by Policy Service while installing or uninstalling channels. You can set it to the following values:
+</div>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp42770"> </a><div class="pSmartList1"><li><b class="cBold">silent</b>-Policy Service installs all packages on the target tuner in silent mode. This is the default value.</li></div>
+<a name="wp42774"> </a><div class="pSmartList1"><li><b class="cBold">aspackaged</b>-Policy Service uses the installation mode specified in the package.</li></div>
+</ul></div>
+<a name="wp42776"> </a><div class="pCellBody">
+If you want a completely silent installation, you might want to set these tuner properties to prevent progress bars or error dialog boxes from appearing on endpoints: <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp39213');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp39213', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">marimba.tuner.display.noprogress</a> and <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp39204');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp39204', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">marimba.tuner.display.noerrors</a>.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp42701"> </a><div class="pCellBody">
+<b class="cBold">Re-apply Config on Failure</b>
+</div>
+<a name="wp45062"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp42704"> </a><div class="pCellBody">
+marimba.subscription.reapplyconfigonfail
+</div>
+</td>
+    <td><a name="wp42706"> </a><div class="pCellBody">
+true or false
+</div>
+<a name="wp42707"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp42708"> </a><div class="pCellBody">
+Default: true
+</div>
+</td>
+    <td><a name="wp42790"> </a><div class="pCellBody">
+This property determines whether or not to reapply a cached policy if Policy Service cannot communicate with the plug-in to get an updated policy.
+</div>
+<a name="wp42840"> </a><div class="pCellBody">
+When set to true, Policy Service reapplies the cached policy (the last policy downloaded) if it cannot communicate with the plug-in to get an updated policy. When set to false, Policy Service does not attempt to reapply the cached policy.
+</div>
+<a name="wp42722"> </a><div class="pCellBody">
+Added in version 6.0.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp38801"> </a><div class="pCellBody">
+marimba.subscription.adminusers
+</div>
+</td>
+    <td><a name="wp38803"> </a><div class="pCellBody">
+&lt;<em class="cEmphasis">user1</em>&gt;,<br />&lt;<em class="cEmphasis">user2</em>&gt;,...
+</div>
+<a name="wp38804"> </a><div class="pCellBody">
+which specifies a comma-delimited list of administrators. The list of administrators can contain the name of any user who can log in at the endpoint machines.
+</div>
+<a name="wp38843"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp38805"> </a><div class="pCellBody">
+Default: none
+</div>
+</td>
+    <td><a name="wp38807"> </a><div class="pCellBody">
+If the endpoint user&#39;s machine has Policy Service 5.0.1 or higher, you can set this tuner property to specify the administrators who you want to be able to log in to a user&#39;s machines temporarily when using user-based targeting (possibly for troubleshooting). The property prevents the user&#39;s channels from getting deleted when you log in as an administrator.
+</div>
+<a name="wp38859"> </a><div class="pCellBody">
+When the administrator logs in, the following happens:
+</div>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp38860"> </a><div class="pSmartList1"><li>Channels subscribed for another user are not removed.</li></div>
+<a name="wp38861"> </a><div class="pSmartList1"><li>If there are channels that have been assigned to an administrator, these channels are delivered to the endpoint.</li></div>
+<a name="wp38862"> </a><div class="pSmartList1"><li>The properties that have been set for the administrator are set. Possibly, the properties set for the users are overwritten by those set for the administrator. However, when the users log back in and Policy Service updates, the users get their properties back.</li></div>
+</ul></div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp39075"> </a><div class="pCellBody">
+subscription.autostart.channel
+</div>
+</td>
+    <td><a name="wp45977"> </a><div class="pCellBody">
+&lt;<em class="cEmphasis">channel_<br />name</em>&gt;, &quot;&lt;<em class="cEmphasis">argument1</em>&gt;, &lt;<em class="cEmphasis">argument2</em>&gt;, &lt;<em class="cEmphasis">argument3</em>&gt;&quot;,true or false
+</div>
+<a name="wp39257"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp39258"> </a><div class="pCellBody">
+Default: no value
+</div>
+</td>
+    <td><a name="wp39083"> </a><div class="pCellBody">
+Allows you to start the specified channel after Policy Service runs. 
+</div>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp46008"> </a><div class="pSmartList1"><li>&lt;<em class="cEmphasis">channel_name</em>&gt; specifies the name of the channel that you want to start. It is required.</li></div>
+<a name="wp46011"> </a><div class="pSmartList1"><li>&quot;&lt;<em class="cEmphasis">argument1</em>&gt;,&lt;<em class="cEmphasis">argument2</em>&gt;,&lt;<em class="cEmphasis">argument3</em>&gt;&quot; <br />are any arguments you want to pass to the channel. They are optional.</li></div>
+<a name="wp46024"> </a><div class="pSmartList1"><li>true or false specifies whether or not to update the channel before starting it. This last argument is optional.</li></div>
+</ul></div>
+<a name="wp45980"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp46062"> </a><div class="pCellBody">
+Example:
+</div>
+<a name="wp46049"> </a><div class="pCellBody">
+<b class="cBold">subscription.autostart.channel=ChannelManager,&quot;arg1,arg2,arg3&quot;,true</b>
+</div>
+<a name="wp46058"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp46063"> </a><div class="pCellBody">
+<b class="cBold">Note:</b> Be careful when using this property with BMC BladeLogic Client Automation channels. Some channels might be configured to start Policy Service and cause recursion.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp45944"> </a><div class="pCellBody">
+marimba.subscription.machinename
+</div>
+</td>
+    <td><a name="wp45946"> </a><div class="pCellBody">
+a string representing the name of the machine
+</div>
+<a name="wp45947"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp45948"> </a><div class="pCellBody">
+Default: no value
+</div>
+</td>
+    <td><a name="wp45950"> </a><div class="pCellBody">
+Allows you to override the machine name returned by Policy Service. The name you enter here must match the name used in the machine&#39;s flat file. By default, this property has no value and the machine name is simply the DNS host name, without the domain information.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp45090"> </a><div class="pCellBody">
+marimba.subscription.retryintervalsec
+</div>
+</td>
+    <td><a name="wp39152"> </a><div class="pCellBody">
+integer
+</div>
+<a name="wp39153"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp39154"> </a><div class="pCellBody">
+Default: 30
+</div>
+<a name="wp39155"> </a><div class="pCellBody">
+(30 seconds)
+</div>
+</td>
+    <td><a name="wp45105"> </a><div class="pCellBody">
+This property sets the interval to wait, in seconds, before retrying the connection to LDAP. You set this property on the tuner hosting the transmitter where you have published the Policy Service plug-in.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp45079"> </a><div class="pCellBody">
+marimba.subscription.timeout
+</div>
+</td>
+    <td><a name="wp45081"> </a><div class="pCellBody">
+integer
+</div>
+<a name="wp45082"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp45083"> </a><div class="pCellBody">
+Default: 3600
+</div>
+<a name="wp45084"> </a><div class="pCellBody">
+(3600 seconds or 1 hour)
+</div>
+</td>
+    <td><a name="wp45086"> </a><div class="pCellBody">
+This property sets the maximum period of time, in seconds, that Policy Service waits for an operation to complete (such as a package sending a notification that it has achieved a specified state) before proceeding.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp39159"> </a><div class="pCellBody">
+marimba.subscription.varytime
+</div>
+</td>
+    <td><a name="wp39161"> </a><div class="pCellBody">
+integer
+</div>
+<a name="wp39162"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp39163"> </a><div class="pCellBody">
+Default: 10
+</div>
+<a name="wp39164"> </a><div class="pCellBody">
+(10 minutes)
+</div>
+</td>
+    <td><a name="wp39166"> </a><div class="pCellBody">
+This property sets the maximum period of time, in minutes, that scheduled events (such as downloading or updating a package) can be postponed. This improves transmitter performance by spreading out endpoint requests during periods of heavy load. For example, if this property is set to 10 minutes and an event is scheduled to occur at 10:00 AM, the event can occur any time between 10:00 and 10:10 AM.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp39204"> </a><div class="pCellBody">
+marimba.tuner.display.noerrors
+</div>
+</td>
+    <td><a name="wp39206"> </a><div class="pCellBody">
+true or false
+</div>
+<a name="wp39207"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp39208"> </a><div class="pCellBody">
+Default: false
+</div>
+</td>
+    <td><a name="wp39210"> </a><div class="pCellBody">
+This property indicates whether or not the tuner shows error and warning dialogs. To hide error and warning dialogs, set this property to true. The error and warning messages are printed out to a system console. Note that this property does not apply if you are running the tuner without a display.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp39213"> </a><div class="pCellBody">
+marimba.tuner.display.noprogress
+</div>
+</td>
+    <td><a name="wp39215"> </a><div class="pCellBody">
+true or false
+</div>
+<a name="wp39216"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp39217"> </a><div class="pCellBody">
+Default: false
+</div>
+</td>
+    <td><a name="wp39219"> </a><div class="pCellBody">
+This property indicates whether or not the tuner shows a progress bar when channels are being subscribed to or are being updated. To hide progress bars, set this property to true. Note that this property does not apply if you are running the tuner without a display.
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBodyRelative">
+</p>
+
+<a name="wp40829"> </a><p class="pBody">For details about all available tuner properties, see the tuner properties chapter in the <em class="cEmphasis">BMC BladeLogic Client Automation</em> <em class="cEmphasis">Reference Guide</em>, available on the BMC Customer Support website.</p>
+<a name="wp51603"> </a><h4 class="pHeading3">
+What are package properties?
+</h4>
+<a name="wp40830"> </a><p class="pBody"><em class="cEmphasis">Package properties</em> provide information about the package and how it should run. These are also called <em class="cEmphasis">channel properties</em>. This information is typically used by the target tuner. Packages, which are usually applications that have been packaged into channels (using Application Packager), have additional properties that are referred to as channel parameters. <em class="cEmphasis">Channel parameters</em> provide information and settings used when installing and running packages.</p>
+<a name="wp40832"> </a><p class="pBody">Package properties and parameters are stored in the <b class="cBold">properties.txt</b> file and the <b class="cBold">parameters.txt</b> file, respectively. These files are usually created (in the channel directory) when the channel or package is created. You can edit the files manually or use Channel Copier or Publisher.</p>
+<a name="wp40833"> </a><p class="pBody">For a list of package properties and channel parameters, see the chapters about channel properties and parameters in the <em class="cEmphasis">BMC BladeLogic Client Automation</em> <em class="cEmphasis">Reference Guide</em>, available on the BMC Customer Support website<b class="cBold">.</b></p>
+<a name="wp40836"> </a><p class="pBody">Package properties and parameters usually appear in the following form:</p>
+<a name="wp40837"> </a><p class="pBody">&lt;<em class="cEmphasis">property_name</em>&gt;=&lt;<em class="cEmphasis">property_value</em>&gt; </p>
+<a name="wp40840"> </a><p class="pBody">For instructions about setting package properties, see <a href="javascript:WWHClickedPopup('sm', 'props-4.htm');" onMouseOver="WWHShowPopup('sm', 'props-4.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Setting package properties</a>.</p>
+<a name="wp62679"> </a><h4 class="pHeading3">
+What is property priority?
+</h4>
+<a name="wp62911"> </a><p class="pBody">If you have included an endpoint as a member of more than one group, you can set different values for a single tuner or package property in each group&#39;s policy. When the transmitter sends different values for a single tuner or package property during a policy update, the Policy Service enforces the property value that has the highest priority value as set from the Tuner/Package Properties tab on the Edit Policy page and described in <a href="javascript:WWHClickedPopup('sm', 'props-3.htm#wp37286');" onMouseOver="WWHShowPopup('sm', 'props-3.htm#wp37286', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">To set tuner properties for a target</a> and <a href="javascript:WWHClickedPopup('sm', 'props-4.htm#wp37897');" onMouseOver="WWHShowPopup('sm', 'props-4.htm#wp37897', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">To set package properties for a target</a>.</p>
+<a name="wp39266"> </a><h4 class="pHeading3">
+Properties that control reboots for packages (Windows only)
+</h4>
+<a name="wp39268"> </a><p class="pBody">During the installation of packages created using Application Packager, some files cannot be written because they have been locked by the operating system. Most incidents of locked files occur because a file is open or a DLL is currently loaded. In such cases, the new file is saved to disk under a temporary name and marked to be renamed to the correct name and location upon system reboot.</p>
+<a name="wp39271"> </a><p class="pBody">Policy Service might install several packages during a single policy update. If several packages are being installed in one session, Policy Service postpones the system reboot until all packages have been updated and installed. The reboot can occur even if the installation fails, depending upon how far the installation progressed. </p>
+<a name="wp39580"> </a><p class="pBody">Policy Service can take into account the reboot properties of individual Application Packaged packages. These package properties are described in <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp39804');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp39804', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Table&#160;4-2</a>. Two of these properties, <b class="cBold">reboot.allow</b> and <b class="cBold">reboot.force</b>, determine the reboot behavior, as shown in <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp40245');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp40245', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Table&#160;4-3</a>. Two other package properties, <b class="cBold">reboot.showdialog</b> and <b class="cBold">reboot.allowcancel</b>, allow control over the dialog box displayed when a reboot is required.</p>
+<a name="wp64408"> </a><p class="pBody">For Tuner versions 8.0 and later:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp64480"> </a><div class="pSmartList2"><li>Policy Manager uses the marimba.reboot.never property set at the endpoint rather than the marimba.subscription.reboot option that was used prior to version 8.0.</li></div>
+<a name="wp64498"> </a><div class="pSmartList2"><li>Policy Manager ignores the Allow Reboot and Reboot Time tuner properties. These options have also been removed from the Policy Manager user interface.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp64518"> </a><p class="pBody">When the Reboot Schedule is set at the endpoint using Policy Manager or Infrastructure Administrator, the following reboot behavior exists when a package is distributed using the Policy Service:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp64519"> </a><div class="pSmartList2"><li>If the package does not require immediate reboot, the tuner follows the Reboot Schedule. </li></div>
+<a name="wp64467"> </a><div class="pSmartList2"><li>If the package requires an immediate reboot, the tuner reboots immediately and ignores the Reboot Schedule.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp64512"> </a><p class="pBody"></p>
+<a name="wp39876"> </a><p class="pBodyRelative"></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp39804table39799">
+  <caption><a name="wp39804"> </a><p class="pBody">Table&#160;4-2:&#160;&#160;Reboot package properties&#160;</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp39810"> </a><div class="pCellHeading">
+Property name
+</div>
+</th>
+    <th><a name="wp39812"> </a><div class="pCellHeading">
+Possible values
+</div>
+</th>
+    <th><a name="wp39814"> </a><div class="pCellHeading">
+Description
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp39884"> </a><div class="pCellBody">
+reboot.allow
+</div>
+</td>
+    <td><a name="wp39820"> </a><div class="pCellBody">
+true or false
+</div>
+<a name="wp39821"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp39822"> </a><div class="pCellBody">
+Default: true
+</div>
+</td>
+    <td><a name="wp39902"> </a><div class="pCellBody">
+This parameter indicates that the channel can reboot the machine if required. By default, it is set to true. Set the parameter to false if this behavior is undesirable.
+</div>
+<a name="wp39907"> </a><div class="pCellBody">
+<b class="cBold">Note:</b> Channels do <em class="cEmphasis">not</em> cause machines to reboot automatically in silent mode, unless the reboot.force parameter is set to true
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp39950"> </a><div class="pCellBody">
+reboot.allowcancel
+</div>
+</td>
+    <td><a name="wp39834"> </a><div class="pCellBody">
+true or false
+</div>
+<a name="wp40026"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp39835"> </a><div class="pCellBody">
+Default: true
+</div>
+</td>
+    <td><a name="wp39937"> </a><div class="pCellBody">
+If this parameter is set to true and a reboot is required on the endpoint, a reboot option allowing the user to cancel the reboot appears in the reboot dialog box. Even when the tuner is running in silent mode, the Restart Required window appears with the Cancel option.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp40000"> </a><div class="pCellBody">
+reboot.force
+</div>
+</td>
+    <td><a name="wp39842"> </a><div class="pCellBody">
+true or false
+</div>
+<a name="wp39843"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp40020"> </a><div class="pCellBody">
+Default: false
+</div>
+</td>
+    <td><a name="wp43094"> </a><div class="pCellBody">
+When set to true, this parameter forces the machine to reboot after the end of installation. By default, it is set to false. The Reboot dialog appears with the Snooze option but without the Cancel option. 
+</div>
+<a name="wp64102"> </a><div class="pCellBody">
+Note: The appearance of the Reboot dialog depends on the tuner&#39;s Common Reboot Service settings. If the reboot schedule is configured, the reboot will be postponed to the scheduled time.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp40134"> </a><div class="pCellBody">
+reboot.showdialog
+</div>
+</td>
+    <td><a name="wp40108"> </a><div class="pCellBody">
+Valid values: true or false
+</div>
+<a name="wp40121"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp40109"> </a><div class="pCellBody">
+Default: true
+</div>
+<a name="wp39855"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+    <td><a name="wp40095"> </a><div class="pCellBody">
+This parameter indicates that, in interactive mode (not silent or semisilent mode), the channel should display the reboot dialog box, if necessary. The appearance of the Reboot dialog depends on the tuner&#39;s Common Reboot Service settings. If reboot interaction is disabled in the Common Reboot Service, then no dialog is displayed.
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBodyRelative">
+</p>
+
+<a name="wp40284"> </a><p class="pBodyRelative"></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp40245table40242">
+  <caption><a name="wp40245"> </a><p class="pBody">Table&#160;4-3:&#160;&#160;Effect of reboot.allow and reboot.force on system reboot</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp40251"> </a><div class="pCellHeading">
+reboot.allow
+</div>
+</th>
+    <th><a name="wp40254"> </a><div class="pCellHeading">
+reboot.force
+</div>
+</th>
+    <th><a name="wp40256"> </a><div class="pCellHeading">
+System reboot?
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp40258"> </a><div class="pCellBody">
+true
+</div>
+</td>
+    <td><a name="wp40260"> </a><div class="pCellBody">
+true
+</div>
+</td>
+    <td><a name="wp40262"> </a><div class="pCellBody">
+Yes. Policy Service reboots the system whether or not a reboot is required.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp40264"> </a><div class="pCellBody">
+true
+</div>
+</td>
+    <td><a name="wp40266"> </a><div class="pCellBody">
+false
+</div>
+</td>
+    <td><a name="wp40268"> </a><div class="pCellBody">
+Yes, if necessary. Policy Service checks if a reboot is required and reboots the system if necessary.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp40270"> </a><div class="pCellBody">
+false
+</div>
+</td>
+    <td><a name="wp40272"> </a><div class="pCellBody">
+true
+</div>
+</td>
+    <td><a name="wp40274"> </a><div class="pCellBody">
+No
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp40276"> </a><div class="pCellBody">
+false
+</div>
+</td>
+    <td><a name="wp40278"> </a><div class="pCellBody">
+false
+</div>
+</td>
+    <td><a name="wp40280"> </a><div class="pCellBody">
+No
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBodyRelative">
+</p>
+
+<a name="wp40322"> </a><p class="pBody">If both <b class="cBold">reboot.allow</b> and <b class="cBold">reboot.force</b> are set to true for any of the packages installed by Policy Service, Policy Service reboots the system whether or not a reboot is required. If all packages installed by Policy Service have <b class="cBold">reboot.force</b> set to false but at least one package has <b class="cBold">reboot.allow</b> set to true, Policy Service checks if a reboot is required and reboots the system, if necessary.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. All rights reserved.<br/>
+
+ For additional BMC Configuration Management documentation, go to the Customer
+Support website at <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+For questions or comments about BMC CM documentation, send
+an email to <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+For product related issues or questions, send an email to Customer Support at <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

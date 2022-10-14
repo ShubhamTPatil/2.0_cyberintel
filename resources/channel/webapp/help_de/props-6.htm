@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:48" />
+    <title>Löschen von Tuner- und Package-Eigenschaften</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Löschen von Tuner- und Package-Eigenschaften";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp668363"> </a><p class="pBody">Wenn Sie nicht möchten, dass Tuner- oder Package-Eigenschaften weiter auf den Client-Tunern festgelegt werden, können Sie diese mit Policy Manager löschen. Sie löschen Eigenschaften, indem Sie den Wert der Eigenschaft einschließlich der spitzen Klammern (<b class="cBold">&lt;&gt;</b>) auf <b class="cBold">&lt;default&gt;</b> setzen.</p>
+<a name="wp668377"> </a><p class="pBody">Wenn Sie eine Tuner-Eigenschaft mit Policy Manager löschen, wird diese aus der Datei <b class="cBold">prefs.txt</b> im Workspace-Verzeichnis des Tuner gelöscht und hat normalerweise keine Auswirkungen mehr. Hätten Sie dagegen die Eigenschaft bereits beim Packen des Tuner festgelegt, könnte sie über Policy Manager nicht gelöscht werden. Der Grund dafür ist, dass durch Festlegen der Eigenschaft beim Packen die Eigenschaft in der Datei <b class="cBold">properties.txt</b> im Workspace-Verzeichnis des Tuner (unter Windows gewöhnlich <b class="cBold">C:\Programme\Marimba\Tuner\.marimba\Marimba\properties.txt</b>) festgelegt wird und Policy Manager die Eigenschaft nicht aus der Datei <b class="cBold">properties.txt</b> entfernt. Üblicherweise setzt die Datei <b class="cBold">prefs.txt</b> die in der Datei <b class="cBold">properties.txt</b> angegebenen Standard-Tuner-Eigenschaften außer Kraft. In diesem Fall ist die Tuner-Eigenschaft jedoch nur in der Datei <b class="cBold">properties.txt</b> enthalten. Daher wird die Eigenschaft auch angewendet.</p>
+<hr class="NoteRuleTop"/><a name="wp668379"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Sie können Einstellungen auf Zielebene, wie die Tuner- oder Package-Eigenschaften, nur für jeweils ein Ziel festlegen. Sie können keine Einstellungen auf Zielebene einrichten, wenn Sie sich im Mehrfachauswahlmodus befinden und gleichzeitig Policys für mehrere Ziele bearbeiten. Sie können jedoch für alle Ziele Einstellungen auf Zielebene einrichten, indem Sie das Ziel <b class="cBold">Alle Clients</b> auswählen.</p><hr class="NoteRuleBottom"/><a name="wp668385"> </a><p class="pBody">Bei diesem Vorgang wird davon ausgegangen, dass Sie sich auf der Seite &quot;Policy bearbeiten&quot; auf der Registerkarte &quot;Packages&quot; befinden. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-04.htm');" onMouseOver="WWHShowPopup('sm', 'policies-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Allgemeine Anweisungen zum Erstellen und Bearbeiten von Policys</a>.</p>
+<a name="wp668387"> </a><p style="text-decoration: none" class="pStepIntro">
+So löschen Sie Eigenschaften von Zielen:
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp668389"> </a><div class="pSmartList1"><li>Klicken Sie auf der Seite &quot;Policy bearbeiten&quot; auf die Registerkarte <b class="cBold">Erweitert &gt; Tuner/Package-Eigenschaften</b>.</li></div>
+<a name="wp668391"> </a><p class="pIndented1">
+Die Seite &quot;Tuner- und Package-Eigenschaften&quot; wird angezeigt.
+</p>
+<a name="wp668393"> </a><div class="pSmartList1"><li>Suchen Sie das Textfeld <b class="cBold">Eigenschaften</b>, und geben Sie hier Name und Wert der Eigenschaft ein, wobei der Wert samt spitzen Klammern (<b class="cBold">&lt;&gt;</b>) auf <b class="cBold">&lt;default&gt;</b> gesetzt wird.</li></div>
+<a name="wp668395"> </a><p class="pIndented1">
+Beispiel: <b class="cBold">marimba.subscription.retrycount=&lt;default&gt;</b>
+</p>
+<a name="wp668401"> </a><p class="pIndented1">
+Verwenden Sie das unter <a href="javascript:WWHClickedPopup('sm', 'props-5.htm');" onMouseOver="WWHShowPopup('sm', 'props-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Tuner- und Package-Eigenschaften, Format</a> beschriebene Format.
+</p>
+<a name="wp668403"> </a><div class="pSmartList1"><li>Führen Sie zum Festlegen der Package-Eigenschaften in der Tabelle &quot;Package-Eigenschaften&quot; die folgenden Schritte aus:</li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp668405"> </a><div class="pSmartList2"><li>Wählen Sie aus der Liste <b class="cBold">Package</b> das Package oder die Gruppe von Packages aus, für die Sie Eigenschaften festlegen möchten. Wählen Sie eine der folgenden Optionen aus:</li></div>
+<div class="pSmartList3"><ul class="pSmartList3">
+<a name="wp668407"> </a><div class="pSmartList3"><li>URL-Adresse eines bestimmten Package: Wählen Sie diese Option aus, wenn Sie lediglich die Eigenschaft eines bestimmten Packages festlegen möchten.</li></div>
+<a name="wp668413"> </a><div class="pSmartList3"><li><b class="cBold">Alle Packages</b>: Wählen Sie diese Option aus, wenn Sie die Eigenschaft für alle Packages auf dem Tuner (für die Ziele), außer für den Policy Service-Channel, festlegen möchten.</li></div>
+<a name="wp668419"> </a><div class="pSmartList3"><li><b class="cBold">Alle Packages mit Subscription</b>: Wählen Sie diese Option aus, wenn Sie die Eigenschaft für alle Packages festlegen möchten, die Teil der Policy sind, außer wenn diese den Status <b class="cBold">Deinstallieren</b>, <b class="cBold">Ausschließen</b>, <b class="cBold">Primär</b> oder <b class="cBold">Ankündigen</b> besitzen. Auch der Policy Service-Channel ist nicht betroffen.</li></div>
+<a name="wp668429"> </a><div class="pSmartList3"><li><b class="cBold">Policy Service Channel</b>: Wählen Sie diese Option aus, wenn Sie die Eigenschaft lediglich für den Policy Service-Channel festlegen möchten.</li></div>
+</ul></div>
+<a name="wp668431"> </a><div class="pSmartList2"><li>Geben Sie Name und Wert der Eigenschaft ein. Setzen Sie den Eigenschaftswert dabei auf <b class="cBold">&lt;default&gt;</b>.</li></div>
+<a name="wp668433"> </a><div class="pSmartList2"><li>Klicken Sie auf <b class="cBold">Übernehmen</b>.</li></div>
+<a name="wp668435"> </a><p class="pIndented1">
+Die Eigenschaft wird dem Textfeld &quot;Eigenschaften&quot; hinzugefügt.
+</p>
+<a name="wp668441"> </a><p class="pIndented1">
+<b class="cBold">Hinweis:</b> Sie können die URL-Adresse des Package sowie den Namen und den Wert der Package-Eigenschaft auch direkt in das Textfeld <b class="cBold">Eigenschaften</b> eingeben. Verwenden Sie das unter <a href="javascript:WWHClickedPopup('sm', 'props-5.htm');" onMouseOver="WWHShowPopup('sm', 'props-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Tuner- und Package-Eigenschaften, Format</a> beschriebene Format.
+</p>
+</ol></div>
+<a name="wp668443"> </a><div class="pSmartList1"><li>Überprüfen Sie die im Textfeld <b class="cBold">Eigenschaften</b> aufgelisteten Tuner- und Package-Eigenschaften.</li></div>
+<hr class="NoteRuleTop"/><a name="wp668449"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Durch Löschen einer Eigenschaft aus dem Textfeld <b class="cBold">Eigenschaften</b> wird diese nicht von den Zielclients entfernt. Daher bleibt die Eigenschaft auf dem Ziel-Tuner bestehen (nicht von Policy Manager verwaltet). Zum Entfernen einer Tuner- oder Package-Eigenschaft von den Zielclients setzen Sie den Wert auf <b class="cBold">&lt;default&gt;</b>.</p><hr class="NoteRuleBottom"/></ol></div>
+<a name="wp668455"> </a><p class="pBody">Nachdem Sie die Policy bearbeitet haben, sehen Sie sich die Vorschau an, und speichern Sie die Policy. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Erstellen der Vorschau und Speichern von Policy-Änderungen</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

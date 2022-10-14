@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Apr-13-06 v6.2 ANSI)" />
+    <meta name="LASTUPDATED" content="11/16/09 16:17:12" />
+    <title>Monitoring and viewing the status of a policy update</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Monitoring and viewing the status of a policy update";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp55049"> </a><p class="pBody">After you start a policy update for a target, the Status of Policy Update page appears and allows you to monitor the status of machines in the target.</p>
+<a name="wp55050"> </a><p class="pBody">If you return to the Target View or Target Details page after starting a policy update, the currently updating icon <img src="images/update-policy.gif" id="wp55056" border="0" hspace="0" vspace="0"/> appears next to the Update button to indicate that a policy update is currently running for this target. If you go to the Target View or Target Details page while a policy update is running for another target, a grayed out version of the icon <img src="images/update-policy-bw.gif" id="wp55053" border="0" hspace="0" vspace="0"/> appears next to the Update button to indicate that you cannot start another policy update (even for a different target) while there is one currently running. If you click the Update button, the additional option View status of other target appears at the bottom of the drop-down list.</p>
+<a name="wp55598"> </a><p class="pBody">After a policy update runs, the status for the last run is available from the Target View or Target Details page. If you click the Update button, the additional option View status of last update appears at the bottom of the drop-down list. See <a href="javascript:WWHClickedPopup('sm', 'update_now-5.htm');" onMouseOver="WWHShowPopup('sm', 'update_now-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Monitoring and viewing the status of a policy update</a>. Policy Manager does not maintain a history of previous policy updates.</p>
+<a name="wp55141"> </a><p class="pBody">On the Status of Policy Update page, you can view information about the policy update, including the following items:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp55142"> </a><div class="pSmartList2"><li><b class="cBold">Target.</b> The name of the target on which you have chosen to perform the policy update.</li></div>
+<a name="wp55146"> </a><div class="pSmartList2"><li><b class="cBold">Started on.</b> The date and time when Policy Manager started connecting to the endpoints that belong to the target and performing the policy update that you specified.</li></div>
+<a name="wp55149"> </a><div class="pSmartList2"><li><b class="cBold">Connection size.</b> The total number of endpoints to which Policy Manager tries to connect and perform the policy update that you specified.</li></div>
+<a name="wp55151"> </a><div class="pSmartList2"><li><b class="cBold">Progress.</b> The progress of the policy update. This is the percentage of endpoints that Policy Manager has connected to and started the policy update that you specified.</li></div>
+<hr class="NoteRuleTop"/><a name="wp55158"> </a><p class="pNote"><span style="color: #003366">Note: </span> The progress for the policy update reflects whether or not Policy Manager was able to connect to the endpoints and start the policy update. It does not reflect whether or not the specified update was completed successfully on the endpoints.</p><hr class="NoteRuleBottom"/></ul></div>
+</ul></div>
+<a name="wp55167"> </a><p class="pBody">You can also view the current status of the individual endpoints (tuners) on which you are performing the policy updates. The status for an endpoint can be one of the following:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp56862"> </a><div class="pSmartList2"><li><b class="cBold">Pending.</b> Indicates that Policy Manager is still trying or will soon try to connect to and start the policy update on the endpoint.</li></div>
+<a name="wp57402"> </a><div class="pSmartList2"><li><b class="cBold">Stopped.</b> Indicates that you or another administrator used Policy Manager to stop the policy update. You might also see this state if the policy update on endpoints is stopped because the minimum quorum is not met. (Quorum is a Deployment Manager setting.) The default quorum value is 0, which means that the deployment continues for all the endpoints in the group regardless of how many endpoints have already failed or succeeded.</li></div>
+<a name="wp56866"> </a><div class="pSmartList2"><li><b class="cBold">Successful.</b> Indicates that Policy Manager connected to and started the action on the endpoint.</li></div>
+<a name="wp55753"> </a><div class="pSmartList2"><li><b class="cBold">Failed.</b> Indicates that Policy Manager could connect to the tuner, but failed to complete the policy update on the endpoint.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp56523"> </a><p class="pBody">You can click the Successful or Failed status to view the logs for a specific machine.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. All rights reserved.<br/>
+
+ For additional BMC Configuration Management documentation, go to the Customer
+Support website at <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+For questions or comments about BMC CM documentation, send
+an email to <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+For product related issues or questions, send an email to Customer Support at <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

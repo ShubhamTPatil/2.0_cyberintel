@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Apr-13-06 v6.2 ANSI)" />
+    <meta name="LASTUPDATED" content="11/16/09 16:17:04" />
+    <title>Changing the profile for a target</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Changing the profile for a target";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp35713"> </a><p class="pBody">If you want to assign a different profile to a target (or assign a profile to a target that does not have one), you can make that change in the target&#39;s policy. For more information about creating and editing profiles, see the Help for setup and deployment.</p>
+<a name="wp36190"> </a><p class="pBody">Remember the following points when changing the profile on targets:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp36191"> </a><div class="pSmartList2"><li>You assign a new profile to targets by using the Profiles tab in Policy Manager or setting the <b class="cBold">marimba.tuner.update.profile</b> tuner property through Tuner Administrator. This document provides instructions on using Policy Manager to assign a new profile. When you use Policy Manager to assign a profile, you can leverage collections. A collection is a list of users or machines that match certain criteria that you specify in an LDAP or database query. After the query runs, you can use Policy Manager to assign a profile to the resulting list (the collection).</li></div>
+<a name="wp36192"> </a><div class="pSmartList2"><li>The Infrastructure Service channel runs on a schedule. The next time the Infrastructure Service starts on machines, it downloads and applies any available changes to profile settings and to the tuner binaries. Some changes are applied to machines after the tuner on those machines is restarted. For information on updating the tuner&#39;s binaries, see the <em class="cEmphasis">BMC BladeLogic Client Automation Installation Guide</em>, available on the BMC Customer Support website.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp36214"> </a><p class="pBody">Before you assign the policy, make sure you perform the following tasks:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp36222"> </a><div class="pSmartList2"><li>If the profile does not yet exist, create the new profile that you want to assign to a target.</li></div>
+<a name="wp36215"> </a><div class="pSmartList2"><li>If you want to assign the profile to a collection, define the collection that includes the set of machines to which you want to assign the new profile:</li></div>
+<a name="wp36216"> </a><div class="pSmartList2"><li>Create a query and specify the criteria for the set of machines that you want. See <a href="javascript:WWHClickedPopup('sm', 'targ_pkg-04.htm');" onMouseOver="WWHShowPopup('sm', 'targ_pkg-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">What is a collection?</a>.</li></div>
+<a name="wp36218"> </a><div class="pSmartList2"><li>Run the query, either by setting a schedule for it or by running it manually.</li></div>
+<a name="wp36219"> </a><p class="pIndented1">
+After the query runs, the resulting list of machines (the collection) appears as a target in Policy Manager.
+</p>
+<hr class="NoteRuleTop"/><a name="wp35709"> </a><p class="pNote"><span style="color: #003366">Note: </span> You can set target-level settings, such as the profile, for one target at a time only. You cannot set target-level settings if you are in multiple-selection mode and are editing policies for multiple targets at one time. However, you can set target-level settings for all targets by selecting the All Endpoints target.</p><hr class="NoteRuleBottom"/></ul></div>
+</ul></div>
+<a name="wp35639"> </a><p class="pBody">This procedure assumes you are on the Packages tab of the Edit Policy page. See <a href="javascript:WWHClickedPopup('sm', 'policies-03.htm');" onMouseOver="WWHShowPopup('sm', 'policies-03.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">General directions for creating and editing policies</a>.</p>
+<a name="wp35283"> </a><p style="text-decoration: none" class="pStepIntro">
+To change the profile for a target
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp35650"> </a><div class="pSmartList1"><li>On the Edit Policy page for the target, click the Advanced &gt; Profile tab.</li></div>
+<a name="wp35808"> </a><p class="pIndented1">
+If the target already has a profile assigned to it, the name of the profile and the URL for Infrastructure Service channel (the source for the profile) appears on this tab. If the target does not have a profile assigned to it, no profile name appears.
+</p>
+<a name="wp35295"> </a><div class="pSmartList1"><li>On the Profile tab, click Edit.</li></div>
+<a name="wp35430"> </a><p class="pIndented1">
+The Choose Profile page appears. If the target does not have a profile assigned to it, Policy Manager displays the profiles in the first Infrastructure Service channel that it finds on the transmitter from which the Policy Manager channel is subscribed. For example, if the Policy Manager channel is subscribed from <b class="cBold">http://trans.company.com:5282/Marimba/Current/SubscriptionManager</b>, it displays the profiles in the first Infrastructure Service channel it finds located on the same transmitter, such as <b class="cBold">http://trans.company.com:5282/Marimba/Current/InfrastructureService</b>.
+</p>
+<a name="wp36246"> </a><div class="pSmartList1"><li>If you want to see profiles from a different location, enter the transmitter&#39;s URL (such as <b class="cBold">http://trans.company.com:5282</b>) and, if access permission is set for the transmitter, enter the user name and password for subscribing to channels. Click Go.</li></div>
+<a name="wp36280"> </a><p class="pIndented1">
+A list of profiles appears on the left side of the page. These profiles are available with the Infrastructure Service on the transmitter you specified. Each profile is saved as a segment of the Infrastructure Service channel. Therefore, which profiles you see in the profiles list depend on the Infrastructure Service that you are viewing.
+</p>
+<a name="wp36281"> </a><div class="pSmartList1"><li>Click a profile so that it appears under Selected Profile on the right side of the page, and then click OK.</li></div>
+<a name="wp36282"> </a><p class="pIndented1">
+You return to the Profile tab, which displays the profile you have selected.
+</p>
+<a name="wp35779"> </a><div class="pSmartList1"><li>When you are finished editing the policy, preview and save the policy. See <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Previewing and saving policy changes</a>.</li></div>
+</ol></div>
+<a name="wp36119"> </a><p class="pBody">Performing this procedure sets the following tuner property for the target machines:</p>
+<a name="wp36121"> </a><p class="pIndented1">
+<b class="cBold">marimba.tuner.update.profile</b>
+</p>
+<a name="wp36122"> </a><p class="pBody">The value for this property is the name of the new profile segment that you want to assign to the target machines. The name of a profile segment has the following format: <b class="cBold">.profile_</b><em class="cEmphasis">&lt;name&gt;</em></p>
+<a name="wp36123"> </a><p class="pIndented1">
+Example: <b class="cBold">marimba.tuner.update.profile=.profile_ny_mirrors</b>
+</p>
+<a name="wp36124"> </a><p class="pBody">The next time Policy Service runs on a machine, this tuner property is set in the tuner&#39;s <b class="cBold">prefs.txt</b> file. The next time Infrastructure Service runs on the machine, and after the tuner is restarted, the new profile is applied to that machine.</p>
+<a name="wp35192"> </a><p class="pBody"></p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. All rights reserved.<br/>
+
+ For additional BMC Configuration Management documentation, go to the Customer
+Support website at <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+For questions or comments about BMC CM documentation, send
+an email to <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+For product related issues or questions, send an email to Customer Support at <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

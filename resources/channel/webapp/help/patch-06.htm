@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Apr-13-06 v6.2 ANSI)" />
+    <meta name="LASTUPDATED" content="11/16/09 16:17:09" />
+    <title>Assigning patch groups to targets</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Assigning patch groups to targets";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp51584"> </a><p class="pBody">In Policy Manager, assigning patch groups to target machines is similar to assigning packages to target machines. You select one or more target machines, edit the policies, and add the patch groups that you want to assign.</p>
+<hr class="NoteRuleTop"/><a name="wp51608"> </a><p class="pNote"><span style="color: #003366">Note: &#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;</span> Although the interface allows you to assign patch groups to all types of targets, you should assign patch groups only to machines, machine groups, and collections. You should also be careful when assigning patch groups to containers-make sure the containers contain machines and machine groups only. In most cases, it does not make sense to assign patch groups to targets other than machines. For example, if you assign patch groups to users, patch groups might get applied to each machine that the users log on to, even machines where the patch groups do not apply. </p><hr class="NoteRuleBottom"/><a name="wp53379"> </a><p class="pBody">You create a policy by choosing a target and then by specifying the patch groups that the target should have. For each patch group, you can specify the following information:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp51609"> </a><div class="pSmartList2"><li>Assignment state</li></div>
+<a name="wp51612"> </a><div class="pSmartList2"><li>Blackout exemption</li></div>
+</ul></div>
+</ul></div>
+<a name="wp51613"> </a><p class="pBody">Additionally, you can specify the following patch information in a policy:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp51617"> </a><div class="pSmartList2"><li>The reboot schedule for the target following a patch installation</li></div>
+<a name="wp51752"> </a><div class="pSmartList2"><li>The blackout period for the target and exempting Patch Service from the blackout period</li></div>
+<a name="wp51622"> </a><div class="pSmartList2"><li>The update schedule for Patch Service on the target</li></div>
+<hr class="NoteRuleTop"/><a name="wp51626"> </a><p class="pNote"><span style="color: #003366">Note: &#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;&#733;</span> If you are in multiple selection mode and are editing the policies for multiple targets at one time, you can only edit the package and patch group information, such as states and blackout exemptions. The package and patch group information that you save apply to all targets that you specified. The tabs for editing other information, such as the blackout schedule and the Policy Service update schedule, only appear when you are editing the policy for a single target.</p><hr class="NoteRuleBottom"/></ul></div>
+</ul></div>
+<a name="wp51630"> </a><p class="pBody">The following procedure describes how you create or edit a policy starting from the Target View page. You can also create or edit a policy from the following pages:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp51631"> </a><div class="pSmartList2"><li>Target Details</li></div>
+<a name="wp51632"> </a><div class="pSmartList2"><li>Package View</li></div>
+<a name="wp51633"> </a><div class="pSmartList2"><li>Package Details</li></div>
+</ul></div>
+</ul></div>
+<a name="wp51634"> </a><p class="pBody">If you use those other pages to create or edit a policy, the first step in the following procedure is different, but the rest of the steps should be the same.</p>
+<a name="wp51635"> </a><p style="text-decoration: none" class="pStepIntro">
+To assign patch groups to target machines
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp51639"> </a><div class="pSmartList1"><li>On Policy Manager&#39;s Target View page, locate and select the target for which you want to create or edit a policy and then click Edit.</li></div>
+<a name="wp51640"> </a><p class="pIndented1">
+The Edit Policy page appears, and, in the Packages tab, shows you any packages assigned to the target. Because this procedure focuses on patches and patch groups, it does not include information about packages. For more information about assigning packages to targets, see <a href="javascript:WWHClickedPopup('sm', 'policies-03.htm');" onMouseOver="WWHShowPopup('sm', 'policies-03.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">General directions for creating and editing policies</a>. 
+</p>
+<a name="wp51641"> </a><div class="pSmartList1"><li>Click the <b class="cBold">Patches</b> tab.</li></div>
+<a name="wp51780"> </a><p class="pIndented1">
+The Patch Groups tab appears and shows any patch groups assigned to the target. It shows both patch groups that are directly assigned to the target and patch groups that are indirectly assigned as a result of the target being a member of another group or container.
+</p>
+<a name="wp51776"> </a><div class="pSmartList1"><li>To add or remove patch groups from the policy:</li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp51642"> </a><div class="pSmartList2"><li>Click <b class="cBold">Edit Patch Group List</b>.</li></div>
+<a name="wp54196"> </a><p class="pIndented1">
+The left side of the page displays the patch groups that have been published to the transmitter. The patch groups are stored in the <b class="cBold">PatchManagement/PatchGroups</b> folder on the transmitter.
+</p>
+<a name="wp51643"> </a><div class="pSmartList2"><li>To add a patch group to the policy, select a patch group on the left side of the page so that it appears on the right side of the page. </li></div>
+<a name="wp73252"> </a><p class="pIndented1">
+When you select a folder containing one or more patch groups from the Transmitter, Policy Manager displays a pop-up dialog asking you if you want to add all of the patch groups under that folder to the Patch Group List.
+</p>
+<a name="wp53281"> </a><div class="pSmartList2"><li>If you want to see which patches are members of a patch group, click the name of the patch group (which usually appears as a blue link) under the Patch Group List.</li></div>
+<a name="wp53285"> </a><p class="pIndented1">
+<b class="cBold">Note</b>: You can only see the patches that are members of a patch group if the patch group has been published to the master transmitter specified when configuring Patch Manager. Also, you cannot see the members of the patch group if you assign the patch group to a target using a URL different from the one you used when you published the patch group. For example, you used the host name when publishing the patch group, but you used the IP address when assigning the patch group to a target.
+</p>
+<a name="wp51647"> </a><div class="pSmartList2"><li>To remove a patch group from the policy, select it on the right side of the page and then click Remove. See <a href="javascript:WWHClickedPopup('sm', 'patch-07.htm');" onMouseOver="WWHShowPopup('sm', 'patch-07.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Removing patch groups from a policy</a>.</li></div>
+<a name="wp51651"> </a><div class="pSmartList2"><li>When you are finished adding and removing patch groups, click OK.</li></div>
+</ol></div>
+<a name="wp51652"> </a><div class="pSmartList1"><li>On the Patch Groups tab, specify assignment states for the patch groups that you added to the policy. See <a href="javascript:WWHClickedPopup('sm', 'patch-04.htm');" onMouseOver="WWHShowPopup('sm', 'patch-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">What is a patch group assignment state?</a>.</li></div>
+<a name="wp51818"> </a><div class="pSmartList1"><li>If you want to exempt patch groups from the blackout period, on the Patch Groups tab, select the check boxes for the corresponding patch groups. You must also exempt Policy Service and Patch Service from the blackout period. For more information about blackout periods, see <a href="javascript:WWHClickedPopup('sm', 'blackout-1.htm');" onMouseOver="WWHShowPopup('sm', 'blackout-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Setting a blackout period for a target</a> and <a href="javascript:WWHClickedPopup('sm', 'patch-11.htm');" onMouseOver="WWHShowPopup('sm', 'patch-11.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Exempting Patch Service from the blackout period</a>.</li></div>
+<a name="wp75822"> </a><div class="pSmartList1"><li>If you want to wake powered-down machines for patch updates, click the WOW deployment options as described in <a href="javascript:WWHClickedPopup('sm', 'policies-13.htm');" onMouseOver="WWHShowPopup('sm', 'policies-13.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Creating WoW deployments</a>.</li></div>
+<a name="wp51833"> </a><div class="pSmartList1"><li>If you want to simulate the installation of the patch groups assigned to the target machine, click Run Simulation. See <a href="javascript:WWHClickedPopup('sm', 'patch-08.htm');" onMouseOver="WWHShowPopup('sm', 'patch-08.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Simulating the installation of patches</a>.</li></div>
+<a name="wp53755"> </a><p class="pIndented1">
+<b class="cBold">Note</b>: To simulate patch installation, the target that you select for patch groups should be a single machine.
+</p>
+<a name="wp51852"> </a><div class="pSmartList1"><li>Click the Patch Service Schedule tab to set a schedule for updating Patch Service on a target.</li></div>
+<a name="wp54805"> </a><p class="pIndented1">
+During an update, Patch Service scans the target for the list of required and already installed patches. It also installs a set of patches, taking into account the dependencies of each patch. You can specify that updates take place on a recurring schedule. See <a href="javascript:WWHClickedPopup('sm', 'patch-10.htm');" onMouseOver="WWHShowPopup('sm', 'patch-10.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Overriding the Patch Service update schedule for target machines</a> and <a href="javascript:WWHClickedPopup('sm', 'patch-11.htm');" onMouseOver="WWHShowPopup('sm', 'patch-11.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Exempting Patch Service from the blackout period</a>.
+</p>
+<a name="wp51664"> </a><div class="pSmartList1"><li>If you are creating or editing the policy for a single target, you can also complete the following tasks:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp51668"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'blackout-1.htm');" onMouseOver="WWHShowPopup('sm', 'blackout-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Setting a blackout period for a target</a></li></div>
+<a name="wp51671"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'sub_serv-1.htm');" onMouseOver="WWHShowPopup('sm', 'sub_serv-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Specifying the Policy Service schedule for a target</a></li></div>
+<a name="wp51676"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'props-1.htm');" onMouseOver="WWHShowPopup('sm', 'props-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Setting tuner and package properties for a target</a></li></div>
+<a name="wp51680"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'tx_login-1.htm');" onMouseOver="WWHShowPopup('sm', 'tx_login-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Specifying transmitter permissions for a target</a></li></div>
+<a name="wp51684"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'tx_login-5.htm');" onMouseOver="WWHShowPopup('sm', 'tx_login-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Specifying the profile for a target</a></li></div>
+</ul></div>
+<a name="wp51685"> </a><div class="pSmartList1"><li>When you are finished creating or editing the policy, click Preview.</li></div>
+<a name="wp51686"> </a><p class="pIndented1">
+The Preview page allows you review changes to the policy before you save them and apply them to the target. See <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Previewing and saving policy changes</a>.
+</p>
+<a name="wp51690"> </a><div class="pSmartList1"><li>After reviewing your changes to the policy, click Save to confirm your changes and save them.</li></div>
+</ol></div>
+<a name="wp51694"> </a><p class="pBody">The next time that Policy Service updates and runs on the endpoint, it downloads and applies the policy that you created or edited.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. All rights reserved.<br/>
+
+ For additional BMC Configuration Management documentation, go to the Customer
+Support website at <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+For questions or comments about BMC CM documentation, send
+an email to <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+For product related issues or questions, send an email to Customer Support at <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

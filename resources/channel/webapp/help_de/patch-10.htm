@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:41:02" />
+    <title>Konfigurieren der Neustarteinstellungen für Patch-Installationen</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Konfigurieren der Neustarteinstellungen für Patch-Installationen";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp1000022"> </a><p class="pBody">Die Installation einiger Patches macht möglicherweise einen Neustart der Zielcomputer erforderlich. Verwenden Sie in Policy Manager die Optionen auf der Registerkarte „Neustarteinstellungen“, um festzulegen, in welchem Umfang Sie den Benutzern Steuerungsmöglichkeiten gewähren möchten, wenn die Computer nach dem Erhalt eines Patches neu gestartet werden müssen. Mit diesen Optionen werden die Eigenschaften festgelegt, die das Neustartverhalten steuern. Weitere Informationen zu den Eigenschaften finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'patch-11.htm');" onMouseOver="WWHShowPopup('sm', 'patch-11.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Erweitert: Tuner-Eigenschaften für die Neustarteinstellungen</a>.</p>
+<a name="wp1000028"> </a><p class="pBody">Bei dieser Vorgehensweise wird davon ausgegangen, dass Sie sich auf der Seite „Policy bearbeiten“ befinden. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-04.htm');" onMouseOver="WWHShowPopup('sm', 'policies-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Allgemeine Anweisungen zum Erstellen und Bearbeiten von Policys</a>.</p>
+<a name="wp1000034"> </a><p style="text-decoration: none" class="pStepIntro">
+So verwenden Sie Policy Manager, um die Neustarteinstellungen für Patch-Installationen zu verwalten
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp1000036"> </a><div class="pSmartList1"><li>Klicken Sie auf die Registerkarte <b class="cBold">Patches &gt;Neustarteinstellungen</b>.</li></div>
+<a name="wp1000038"> </a><p class="pIndented1">
+Die Registerkarte „Neustarteinstellungen“ wird angezeigt.
+</p>
+<a name="wp1000044"> </a><div class="pSmartList1"><li>Wählen Sie <b class="cBold">Policy Manager für die Verwaltung der Patch-Neustarteinstellungen verwenden</b>.</li></div>
+<a name="wp1000046"> </a><div class="pSmartList1"><li>Wählen Sie eine oder mehrere der folgenden Optionen aus:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp1000048"> </a><div class="pSmartList2"><li><b class="cBold">Automatischen Neustart nach Patch-Installation zulassen</b> – Wählen Sie diese Option aus, wenn Sie möchten, dass der Zielcomputer automatisch nach der Installation von Patches, die einen Neustart erfordern, neu gestartet wird.</li></div>
+<a name="wp1000050"> </a><p class="pIndented1">
+Wenn den Benutzern Warnmeldungen bezüglich des Neustarts angezeigt werden sollen, konfigurieren Sie die folgenden Optionen:
+</p>
+<a name="wp1000052"> </a><div class="pSmartList2"><li><b class="cBold">Vor dem Neustart Warnmeldungen für Benutzer anzeigen</b> – Wählen Sie diese Option aus, wenn der Zielcomputer Meldungen anzeigen soll, die den Benutzer über den Neustart informieren.</li></div>
+<a name="wp1000054"> </a><div class="pSmartList2"><li><b class="cBold">Aufschieben des Neustarts durch Endbenutzer nicht zulassen...</b> - Wählen Sie diese Option aus, wenn die Benutzer über den Neustart informiert werden, jedoch keine Möglichkeit haben sollen, den Neustart aufzuschieben. Der in der folgenden Option beschriebene Neustart-Countdown beginnt sofort nach der Installation der Patches.</li></div>
+<a name="wp1000056"> </a><div class="pSmartList2"><li><b class="cBold">Aufschieben des Neustarts durch Endbenutzer zulassen für insgesamt _ Minuten</b> - Wählen Sie diese Option, wenn Sie das Aufschieben des Neustarts durch Benutzer zulassen möchten. Geben Sie die Anzahl an Minuten an, für die Benutzer einen Neustart aufschieben dürfen. Nach Ablauf dieser Zeit können Benutzer einen Neustart nicht mehr aufschieben, und der Countdown für den Neustart wird gestartet.</li></div>
+<a name="wp1000058"> </a><div class="pSmartList2"><li><b class="cBold">Countdown für Neustart</b> – Legen Sie die Wartezeit bis zum Neustart des Computers fest. Der Countdown für den Neustart gibt den Benutzern Zeit, ihre Arbeiten vor dem Neustart zu speichern.</li></div>
+</ul></div>
+</ol></div>
+<a name="wp1000064"> </a><p class="pBody">Nachdem Sie die Policy bearbeitet haben, sehen Sie sich die Vorschau an, und speichern Sie die Policy. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Erstellen der Vorschau und Speichern von Policy-Änderungen</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

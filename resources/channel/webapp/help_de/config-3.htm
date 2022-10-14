@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:19" />
+    <title>Konfigurieren und Veröffentlichen des Policy Service-Plugin</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Konfigurieren und Veröffentlichen des Policy Service-Plugin";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp69788"> </a><p class="pBody">Üblicherweise müssen Sie das Plugin jedes Mal konfigurieren und veröffentlichen, wenn Sie Policy Manager installieren oder aktualisieren. Allerdings müssen Sie das Plugin auch während der folgenden Situationen <em class="cEmphasis">neu veröffentlichen</em>:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp69790"> </a><div class="pSmartList2"><li>Wenn Sie die Einstellungen auf der Seite &quot;Plugin-Konfiguration&quot; ändern.</li></div>
+<a name="wp69792"> </a><div class="pSmartList2"><li>Wenn Sie die Einstellungen mit dem Befehl <b class="cBold">-setpluginparam</b> ändern.</li></div>
+<a name="wp69798"> </a><div class="pSmartList2"><li>Wenn Sie die Attribute des Policy Management-Objekts mit dem Befehl <b class="cBold">-configSet</b> ändern. </li></div>
+<hr class="NoteRuleTop"/><a name="wp69804"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Sie müssen das Policy Service-Plugin nicht jedes Mal veröffentlichen, wenn Sie Policys verändern.</p><hr class="NoteRuleBottom"/></ul></div>
+</ul></div>
+<a name="wp69810"> </a><p class="pBody">Wenn möglich, entnimmt Policy Manager den Systemeinstellungen (Applikationen &gt; Konsole &gt; Systemeinstellungen &gt; Datenquelle &gt; Verzeichnisdienste) die folgenden Verzeichnisdienstinformationen und gibt diese automatisch auf der Seite &quot;Plugin-Konfiguration&quot; ein.</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp69812"> </a><div class="pSmartList2"><li>Hostname und Portnummer des Verzeichnisdienstes</li></div>
+<a name="wp69814"> </a><div class="pSmartList2"><li>Base DN</li></div>
+<a name="wp69816"> </a><div class="pSmartList2"><li>Bind DN</li></div>
+<a name="wp69818"> </a><div class="pSmartList2"><li>SSL verwenden oder nicht</li></div>
+</ul></div>
+</ul></div>
+<a name="wp69820"> </a><p class="pBody">Sind diese Informationen bereits auf der Seite eingetragen, dann müssen Sie bestätigen, dass es sich um die Einstellungen handelt, die Sie verwenden möchten.</p>
+<hr class="NoteRuleTop"/><a name="wp69830"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Wenn Sie bereits vorher schon einmal das Policy Service-Plugin auf einem Transmitter veröffentlicht haben, und SSL war aktiviert, starten Sie Policy Manager neu, bevor Sie das Plugin auf einem Transmitter ohne SSL veröffentlichen.</p><hr class="NoteRuleBottom"/><a name="wp69836"> </a><p style="text-decoration: none" class="pStepIntro">
+So konfigurieren und veröffentlichen Sie das Policy Service-Plugin:
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp69838"> </a><div class="pSmartList1"><li>Klicken Sie auf die Registerkarte <b class="cBold">Konfiguration</b>.</li></div>
+<a name="wp69840"> </a><div class="pSmartList1"><li>Klicken Sie auf der Konfigurationsseite auf den Link <b class="cBold">Plugin</b>.</li></div>
+<a name="wp69842"> </a><p class="pIndented1">
+Die Seite &quot;Plugin-Konfiguration&quot; wird angezeigt. Links oben auf der Seite sehen Sie Datum und Uhrzeit, zu denen das Plugin das letzte Mal veröffentlicht wurde.
+</p>
+<a name="wp69844"> </a><div class="pSmartList1"><li>Geben Sie im Bereich <b class="cBold">Master Transmitter</b> Informationen zur Veröffentlichung des Plugins an:</li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp69850"> </a><div class="pSmartList2"><li> Geben Sie die URL-Adresse für den Policy Service-Channel an, in dem Sie das Plugin veröffentlichen möchten.</li></div>
+<a name="wp69852"> </a><p class="pIndented1">
+<b class="cBold">Hinweis:</b> Die URL-Adresse muss auf <b class="cBold">SubscriptionService</b> enden.
+</p>
+<a name="wp69854"> </a><div class="pSmartList2"><li>Ist eine Veröffentlichungsberechtigung erforderlich, geben Sie Veröffentlichungsbenutzername und Passwort an, die für die Veröffentlichung der Konfigurationsänderungen auf dem Transmitter benötigt werden, der das Plugin hostet.</li></div>
+<a name="wp69856"> </a><p class="pIndented1">
+<b class="cBold">Hinweis:</b> Der Veröffentlichungsbenutzername und das entsprechende Passwort sind nur dann erforderlich, wenn Sie (oder der Primäradministrator Ihres Unternehmens) die Transmitter so konfiguriert haben, dass für die Veröffentlichung von Channels und Packages Benutzernamen und Passwörter abgefragt werden.
+</p>
+</ol></div>
+<a name="wp69858"> </a><div class="pSmartList1"><li>Geben Sie im Bereich <b class="cBold">Verzeichnisdienste</b> die benötigten Informationen ein.</li></div>
+<a name="wp69860"> </a><p class="pIndented1">
+Normalerweise sind die Felder in diesem Bereich bereits mit Informationen aus dem für CMS angegebenen Verzeichnisdienst ausgefüllt. Die einzigen Felder, die Sie eventuell ändern müssen, sind die Felder für den Bind DN und das Bind DN-Passwort, wenn Sie zum Beispiel einen Bind DN verwenden möchten, dessen Berechtigungen sich von denen des für CMS angegebenen DN unterscheiden.
+</p>
+<a name="wp69866"> </a><p class="pIndented1">
+Informationen zu den Feldern auf dieser Seite finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'config-4.htm');" onMouseOver="WWHShowPopup('sm', 'config-4.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Plugin-Konfigurationsseite: Verzeichnisdienstfelder</a>.
+</p>
+<a name="wp69872"> </a><div class="pSmartList1"><li>Abhängig vom verwendeten Verzeichnisdienst können Sie eventuell die Verbindung zwischen Policy Manager und dem Verzeichnisdienst durch Klicken auf die Schaltfläche <b class="cBold">Start</b> neben <b class="cBold">Testserver</b> verifizieren.</li></div>
+<a name="wp69882"> </a><p class="pIndented1">
+Policy Manager stellt eine Verbindung zu dem von Ihnen angegebenen Verzeichnisdienst her und überprüft, ob der Server und der Port Verbindungen mit dem festgelegten Benutzernamen und Passwort akzeptieren. Policy Manager überprüft dann, ob das Subscription-Konfigurationsobjekt vorhanden ist. Das Subscription-Konfigurationsobjekt befindet sich im Container für Konfigurationsobjekte (ist dem BMC CM-Container untergeordnet). Dieses Objekt wird erstellt, wenn Sie das Installationsskript ausführen oder LDIF-Skripts aktualisieren. 
+</p>
+<a name="wp69892"> </a><p class="pIndented1">
+<b class="cBold">Hinweis</b>: Der Computer, auf dem Policy Manager installiert ist, muss nicht auf den Verzeichnisdienst zugreifen können. Daher kann das Policy Service-Plugin möglicherweise trotz Fehlschlagen dieses Tests erfolgreich eine Verbindung herstellen.
+</p>
+<a name="wp69898"> </a><div class="pSmartList1"><li>Wenn Sie Policy Manager mit neu bereitgestellten Computern verwenden möchten, wählen Sie das Kontrollkästchen <b class="cBold">Verwendung von Policys als Modell für neu bereitgestellte Computer zulassen</b>. Weitere Informationen finden Sie im Kapitel über die Integration der Tuner-Installationen in die Bereitstellung von Betriebssystemen im <em class="cEmphasis">BMC CM-Deployment-Handbuch</em>, das auf der BMC Customer Support-Website verfügbar ist.</li></div>
+<a name="wp69900"> </a><div class="pSmartList1"><li>Klicken Sie auf <b class="cBold">Vorschau</b>.</li></div>
+<a name="wp69904"> </a><p class="pIndented1">
+Die Seite &quot;Vorschau der Plugin-Änderungen&quot; wird angezeigt. Diese Seite hebt die von Ihnen auf der Seite &quot;Plugin-Konfiguration&quot; gemachten Änderungen hervor, so dass Sie diese noch einmal vor der Veröffentlichung überprüfen können. Standardmäßig werden alle Einstellungen mit hervorgehobenen Änderungen angezeigt. Um nur die Änderungen anzuzeigen, klicken Sie auf den Link <b class="cBold">Nur Änderungen anzeigen</b>
+</p>
+<a name="wp69906"> </a><div class="pSmartList1"><li>Nachdem Sie Ihre Änderungen überprüft und gegebenenfalls modifiziert haben, klicken Sie auf <b class="cBold">Veröffentlichen</b>.</li></div>
+<a name="wp69916"> </a><p class="pIndented1">
+Wenn Sie auf dieser Seite auf &quot;Veröffentlichen&quot; klicken, dann veröffentlichen Sie das Policy Service-Plugin für den Policy Service-Channel auf dem Transmitter und kehren zur Konfigurationsstartseite zurück.
+</p>
+</ol></div>
+<a name="wp69930"> </a><p class="pBody"><b class="cBold">Tipp:</b> Wenn Sie überprüfen möchten, ob das Policy Service-Plugin veröffentlicht wurde, lassen Sie sich über Transmitter Administrator die Channel auf Ihrem Transmitter anzeigen, und erweitern Sie den Policy Service-Channel wie in <a href="javascript:WWHClickedPopup('sm', 'config-3.htm#wp69938');" onMouseOver="WWHShowPopup('sm', 'config-3.htm#wp69938', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Abbildung&#160;2-1</a> dargestellt, um dessen Inhalt anzuzeigen. Wenn Sie das Segment <b class="cBold">.configurator</b> sehen, wurde das Plugin auf dem Transmitter veröffentlicht.</p>
+<a name="wp69941"> </a><p class="pBodyRelative"><img src="images/tx-admin-plugin.gif" height="386" width="589" id="wp38387" border="0" hspace="0" vspace="0"/></p>
+
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

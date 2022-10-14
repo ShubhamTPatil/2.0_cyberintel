@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE form-validation PUBLIC "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.0//EN"
+        "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
+
+<form-validation>
+
+    <formset>
+        <form name="testForm">
+            <field property="date" depends="required,date">
+                <arg0 key="testForm.date.displayname"/>
+                <var>
+                    <var-name>datePatternStrict</var-name>
+                    <var-value>MM/dd/yyyy</var-value>
+                </var>
+            </field>
+            <field property="email" depends="required,email">
+                <arg0 key="testForm.email.displayname"/>
+            </field>
+        </form>
+        <form name="blackoutForm">
+            <field property="blackoutSequence" depends="blackoutSeq">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>99999</var-value>
+                </var>
+            </field>
+        </form>
+        <form name="powerSettingForm">
+            <field property="idleTime" depends="mrbarange">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>360</var-value>
+                </var>
+            </field>
+        </form>
+
+        <form name="VproProfileForm">
+            <field property="prvtfile" depends="vpro"/>
+        </form>
+
+        <form name="vProPCAlarmSettingsForm">
+            <field property="alarmStartTime" depends="vPro_Alarmclk"/>
+        </form>
+
+        <form name="OSMDetailsForm">
+            <field property="backupChannelURL" depends="backupTemplate" />
+        </form>
+
+        <form name="PersonalBackupForm">
+            <field property="activeSchedule" depends="personalBackup"/>
+        </form>
+
+        <form name="peerApprovalForm">
+            <field property="mailToAddress" depends="peerapprovalsettings"/>
+        </form>
+
+        <form name="userCentricDeploymentForm">
+            <field property="file" depends="usercentricdeployoptions"/>
+        </form>
+
+        <form name="pmSettingsForm">
+            <field property="masterTxURL" depends="configSettings"/>
+        </form>
+        <form name="pmSettingsForm">
+            <field property="startLocationPath" depends="configSettings"/>
+        </form>
+
+        <form name="setPluginForm">
+            <field property="publishurl" depends="urlAndPath"/>
+            <field property="ldaphost" depends="listhostoptport"/>
+            <field property="basedn" depends="notnullBaseDn"/>
+            <field property="binddn" depends="notnullBindDn"/>
+            <field property="poolsize" depends="connectpoolsize"/>
+        </form>
+
+        <form name="scheduleEditForm">
+            <field property="ACTIVATION_PERIOD_START_DATETIME" depends="activationStart"/>
+            <field property="ACTIVE_PERIOD_SEMANTICS" depends="validateActivationDates"/>
+        </form>
+
+        <form name="patchAssignmentForm">
+            <field property="rebootInterval" depends="mrbainteger"/>
+        </form>
+
+        <form name="patchScheduleForm">
+            <field property="DAY_INTERVAL" depends="dayinterval">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>365</var-value>
+                </var>
+            </field>
+            <field property="WEEK_INTERVAL" depends="weekinterval">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>52</var-value>
+                </var>
+            </field>
+            <field property="MONTH_INTERVAL" depends="monthinterval">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+            </field>
+            <field property="DAYS_OF_WEEK" depends="daysofweek">
+            </field>
+            <field property="AT_TIME_MIN" depends="attime">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>0</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>59</var-value>
+                </var>
+            </field>
+            <field property="AT_TIME_HOUR" depends="attime">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+            </field>
+
+            <field property="BETWEEN_TIME_MIN_START" depends="attime">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>0</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>59</var-value>
+                </var>
+            </field>
+            <field property="BETWEEN_TIME_HOUR_START" depends="attime">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+            </field>
+
+            <field property="BETWEEN_TIME_MIN_END" depends="attime">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>0</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>59</var-value>
+                </var>
+            </field>
+            <field property="BETWEEN_TIME_HOUR_END" depends="attime">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+            </field>
+
+            <field property="EVERY_TIME_INTERVAL" depends="everytime">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>1000</var-value>
+                </var>
+            </field>
+            <field property="ACTIVE_PERIOD_START_HOUR" depends="activetime">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+            </field>
+            <field property="ACTIVE_PERIOD_START_MIN" depends="activetime">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>0</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>59</var-value>
+                </var>
+            </field>
+            <field property="ACTIVE_PERIOD_END_HOUR" depends="activetime">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+            </field>
+            <field property="ACTIVE_PERIOD_END_MIN" depends="activetime">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>0</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>59</var-value>
+                </var>
+            </field>
+
+            <field property="ACTIVATION_PERIOD_START" depends="activationStart"/>
+            <field property="ACTIVE_PERIOD_SEMANTICS" depends="activeexpireafterstart"/>
+        </form>
+
+        <form name="tunerChPropsForm">
+            <field property="tunerpropvalue" depends="tunerprops"/>
+            <field property="channel_prop_value" depends="channelprops"/>
+        </form>
+
+        <form name="installScriptForm">
+            <field property="filePath" depends="mrbarequired"/>
+            <field property="baseDN" depends="mrbarequired"/>
+            <field property="useGCBaseDN" depends="usegc"/>
+            <field property="useGCFilePath" depends="usegc"/>
+        </form>
+    </formset>
+</form-validation>

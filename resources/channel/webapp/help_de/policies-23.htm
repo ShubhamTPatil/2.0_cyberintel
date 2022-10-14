@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:29" />
+    <title>Konfliktlösung: mehrere Benutzer bearbeiten die gleiche Policy</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Konfliktlösung: mehrere Benutzer bearbeiten die gleiche Policy";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp84323"> </a><p class="pBody">In diesem Abschnitt werden die Ergebnisse dargestellt, die sich ergeben, wenn mehrere Benutzer eine Policy zur gleichen Zeit bearbeiten.</p>
+<a name="wp84325"> </a><p style="text-decoration: none" class="pStepIntro">
+Die folgende Tabelle geht dabei von folgendem Ablauf aus:
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp84327"> </a><div class="pSmartList1"><li>Benutzer 1 befindet sich auf der Seite &quot;Policy bearbeiten&quot; und beginnt, Änderungen vorzunehmen.</li></div>
+<a name="wp84329"> </a><div class="pSmartList1"><li>Benutzer 2 befindet sich auf der Seite &quot;Policy bearbeiten&quot; und beginnt ebenfalls, Änderungen vorzunehmen.</li></div>
+<a name="wp84331"> </a><div class="pSmartList1"><li>Benutzer 2 beendet das Bearbeiten und speichert die Seite &quot;Policy bearbeiten&quot;.</li></div>
+<a name="wp84334"> </a><div class="pSmartList1"><li>Benutzer 1 beendet das Bearbeiten und speichert die Seite &quot;Policy bearbeiten&quot;.<div align="left">
+<table border="1" cellpadding="3" id="wp82172table53472">
+  <caption><a name="wp82172"> </a><p class="pBody">Tabelle&#160;4-6:&#160;&#160;Mehrere Benutzer bearbeiten die gleiche Policy</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp82180"> </a><div class="pCellHeading">
+Benutzer 1:
+</div>
+</th>
+    <th><a name="wp82182"> </a><div class="pCellHeading">
+Benutzer 2:
+</div>
+</th>
+    <th><a name="wp82184"> </a><div class="pCellHeading">
+Endergebnis
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp82192"> </a><div class="pCellBody">
+Bearbeitet Packages A und B
+</div>
+</td>
+    <td><a name="wp82194"> </a><div class="pCellBody">
+Fügt Package C hinzu
+</div>
+</td>
+    <td><a name="wp82196"> </a><div class="pCellBody">
+Policy enthält Packages A, B und C.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp82204"> </a><div class="pCellBody">
+Bearbeitet Package A
+</div>
+</td>
+    <td><a name="wp82206"> </a><div class="pCellBody">
+Fügt Package A hinzu oder bearbeitet dieses
+</div>
+</td>
+    <td><a name="wp82208"> </a><div class="pCellBody">
+Benutzer 1 setzt sich durch. Die Änderungen von Benutzer 1 überschreiben die Änderungen von Benutzer 2.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp82216"> </a><div class="pCellBody">
+Fügt Package A hinzu oder bearbeitet dieses
+</div>
+</td>
+    <td><a name="wp82218"> </a><div class="pCellBody">
+Bearbeitet Package B
+</div>
+</td>
+    <td><a name="wp82220"> </a><div class="pCellBody">
+Benutzer 1 setzt sich durch. Obwohl Benutzer 1 das Package B nicht bearbeitet hat, überschreiben die vorherigen Status und Zeitpläne von Package B die Änderungen von Benutzer 2.
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li></div>
+</ol></div>
+<a name="wp84344"> </a><p class="pBody">Weitere Informationen zur Lösung von Konflikten, wenn mehrere Benutzer Tuner- und Package-Eigenschaften bearbeiten, finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'props-8.htm');" onMouseOver="WWHShowPopup('sm', 'props-8.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Konfliktlösung: Mehrere Benutzer bearbeiten Eigenschaften</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

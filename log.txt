@@ -1,0 +1,79 @@
+Requirements and Caveats as of 10/1
+-----------------------------------
+
+Variables to set
+----------------
+ALT_TRANSMITTER=localhost:5282 (now includes the port)
+TOPDIR=c:\workspaces\p4\depot\ws
+ANT_HOME c:\\workspaces\\p4\\depot\\ws\\buildenv\\main\\apache-ant-1.6.1
+JAVA_HOME c:\\mbin\\jdk131
+append PATH with c:/mbin/jdk131/jre/bin:c/workspaces/p4/depot/ws/buildenv/main/apache-ant-1.6.1/bin
+
+Workspaces to download
+---------------------
+
+Util we create a new 603 branch out of main, we must bring down all the main branch of everything in ws\shared\ ws\3rd-party\ ws\products\<your product>.  This is because if we build from main, all the dependencies will be built.
+
+When 603 is there, you will only need to bring over ws\shared\buil, and ws\products\<your product>.  All the dependencies will be brought over rather than being built where a version has a "release number".
+
+Build switch to use
+-------------------
+"ant install-noprecompile"
+
+Branchspec to bringover from ow\6021 to ws\main
+-----------------
+sub6021_ow_to_main
+	
+
+Issues found when doing the port
+--------------------------------
+	
+1) Intiial Java code compilation errors
+Cause: Didn't read documentation
+TOPDIR
+ANT_HOME
+JAVA_HOME
+Cause: need to download from Perforce \\depot\library and \\depot\3rd-party
+
+2) Can't build product if product version is not main
+Cause: not quite set up
+Solution: I had to change ${project.version} to main otherwise shared.xml won't be found.
+Problem: Does it mean we will have different version of shared/build/<version>/shared.xml for each release? Shouldn't we only have ONE master file?
+
+3) Had to include tools/target, SS, and Inventory classes.
+Cause: code is using those classes, which are not shared modules.
+Solution: copied these code into SPM channel
+Problem: Now the channel is published with these packages even though we do not need it.
+
+4)Removed JSP compile since any JSP compilation failure causes the build to fail.
+Cause: our JSP files has compilation errors
+Solution: Turning failonerror=false doesn't work.  Has to remove compile-jsp switch totally.
+
+5) Old version of tools/ldap is found
+Cause: tools/ldap package is being read from tuner.zip instead of shared tools-ldap module
+Solution: Change shared-web.xml order for classpath.
+
+6) Need marimba\util packages from marimba.zip
+Cause: marimba.zip is a third party
+Solution1: make marimba\util a shared module
+Solution2: include marimba\util classes in the channel
+
+7) web-common.packages can't seem to just expand the specified files?
+Cause:  web-common includes webapps\intf, and subscription-common also includes it.
+when we select which classes to publish from shared modules using {module}.packages, it is unclear which common library webapps\intf files are from
+Solution1: subscription-common shouldn't include src\java\com\marimba\webapps\intf files
+Solution2: can reorder the  <property name="project.dep"          value="tools-ldap,subscription-common,web-common,common,web-common"/> so that the more generic is behind
+I temporarily did Solution2.
+
+8) 3rd-party libaries are copied into the root level channel\any.  in a webapp, we don't necessarily want that. we want libraries to be copied into web-inf\lib
+Cause: copy-modules in shared.xml is doing that.
+Solution: I overrode copy-modules in shared-web.xml to copy all third party jars into ${web.dir}/web-inf/lib
+
+9) web-common.jar is not copied into web-inf\lib
+Cause: of this is because I removed compile-jsp due to (4) 
+
+10)  subscription-common needs to contain CommonErrors.properties in its top classes directory
+*.properties will need to be now in <channel installdir>/classes/
+
+11) web-common should not have dependency on subscription-common.  LDAPManager is the culprit using LDAPVars.
+tools/gui/StringResources shouldn't be used anymore

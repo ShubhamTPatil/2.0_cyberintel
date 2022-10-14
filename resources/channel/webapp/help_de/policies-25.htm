@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:29" />
+    <title>Löschen von Policys</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Löschen von Policys";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp84391"> </a><p class="pBody">Zum Löschen einer Policy müssen Sie eine der folgenden Seiten verwenden:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp84393"> </a><div class="pSmartList2"><li>Seite &quot;Zielansicht&quot;</li></div>
+<a name="wp84395"> </a><div class="pSmartList2"><li>Seite &quot;Zielinformationen&quot;</li></div>
+</ul></div>
+</ul></div>
+<a name="wp84401"> </a><p class="pBody">Wenn Sie die Policy auf diese Art löschen, werden die Packages (und die anderen Informationen) in der Policy von den Zielen gelöscht, sobald Policy Service die nächste Aktualisierung durchführt. Die Packages werden allerdings in folgenden Fällen nicht vom Ziel gelöscht:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp84403"> </a><div class="pSmartList2"><li>Der Status der Packages ist auf <b class="cBold">Installieren-Beibehalten</b> oder auf <b class="cBold">Installieren-Starten-Beibehalten</b> gesetzt.</li></div>
+<a name="wp84405"> </a><div class="pSmartList2"><li>Die Tuner-Eigenschaft <b class="cBold">Nicht Löschen</b> (<b class="cBold">marimba.subscription.nodelete</b>) ist auf <b class="cBold">true</b> gesetzt.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp84411"> </a><p class="pBody">In den oben genannten Fällen bleiben die Packages auf den Zielen bestehen, die Packages werden allerdings nicht mehr mit Policy Manager verwaltet. Um die Packages wirklich von den Zielen zu löschen, müssen Sie den Primärstatus der Packages ausdrücklich auf <b class="cBold">Deinstallieren</b> setzen.</p>
+<hr class="NoteRuleTop"/><a name="wp84413"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Wenn Sie sich im Mehrfachauswahlmodus befinden und Policys von mehreren Zielen löschen, löschen Sie die Policys (einschließlich aller Packages und auf das Package bezogene Informationen, wie etwa Status und Zeitpläne) für alle Ziele. Dies gilt auch, obwohl nur die Packages angezeigt werden, die allen Zielen gemeinsam sind.</p><hr class="NoteRuleBottom"/><a name="wp84417"> </a><p style="text-decoration: none" class="pStepIntro">
+So löschen Sie eine Policy über die Seiten &quot;Zielansicht&quot; oder &quot;Zielinformationen&quot;:
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp84419"> </a><div class="pSmartList1"><li>Wählen Sie auf der Seite &quot;Zielansicht&quot; oder der Seite &quot;Zielinformationen&quot; ein oder mehrere Ziele aus.</li></div>
+<a name="wp84421"> </a><p class="pIndented1">
+<b class="cBold">Hinweis:</b> Sie können eine Policy nur dann von einem Ziel löschen, wenn die Policy dem Ziel <em class="cEmphasis">direkt zugewiesen</em> ist. In der Spalte &quot;Direkt zugewiesen zu&quot; wird das Ziel angezeigt, dem ein Package direkt zugewiesen ist.
+</p>
+<a name="wp84423"> </a><div class="pSmartList1"><li>Klicken Sie auf <b class="cBold">Löschen</b>.</li></div>
+<a name="wp84425"> </a><p class="pIndented1">
+Die Seite &quot;Vorschau löschen&quot; wird angezeigt. Auf dieser Seite können Sie die Policy überprüfen, die von den Zielen gelöscht werden soll. Hier können Sie auch angeben, ob die gesamte Policy oder lediglich Packages gelöscht werden sollen.
+</p>
+<a name="wp84431"> </a><p class="pIndented1">
+Wenn Sie alle den Zielen direkt zugewiesenen Packages löschen, haben Sie auch die Möglichkeit, alle zusätzlichen Eigenschaften und Einstellungen der Ziele zu löschen. Dies gilt auch für Tuner- und Package-Eigenschaften, Blackout-Periode, Transmitter-Berechtigungen und Policy Service-Aktualisierungszeitplan.
+</p>
+<a name="wp84433"> </a><div class="pSmartList1"><li>Wählen Sie einen der folgenden Schritte aus:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp84439"> </a><div class="pSmartList2"><li>Klicken Sie auf <b class="cBold">Gesamte Policy löschen</b>, wenn alle Packages sowie alle zusätzlichen Eigenschaften und Einstellungen in der Policy gelöscht werden sollen. Dies gilt auch für Tuner- und Package-Eigenschaften, Blackout-Periode, Transmitter-Berechtigungen und Policy Service-Aktualisierungszeitplan.</li></div>
+<a name="wp84445"> </a><div class="pSmartList2"><li>Klicken Sie auf <b class="cBold">Nur Packages löschen</b>, wenn alle Packages in der Policy gelöscht werden sollen, Sie aber Tuner- und Package-Eigenschaften, Blackout-Periode, Transmitter-Berechtigungen und den Policy Service-Aktualisierungszeitplan beibehalten möchten.</li></div>
+<a name="wp84447"> </a><div class="pSmartList2"><li>Klicken Sie auf <b class="cBold">Abbrechen</b>, wenn Sie die Policy nicht löschen möchten.</li></div>
+<hr class="NoteRuleTop"/><a name="wp84469"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Wenn Sie den Policy Service-Aktualisierungszeitplan löschen, weil Sie die Policy für ein Ziel gelöscht haben, wird Policy Service auch weiterhin gemäß dem festgelegten Zeitplan aktualisiert. Der Standardaktualisierungszeitplan von Policy Service wird nicht wiederhergestellt. Policy Service verwendet den vorher festgelegten Aktualisierungszeitplan weiter, bis Sie einen neuen Policy Service-Aktualisierungszeitplan festlegen.</p><hr class="NoteRuleBottom"/><a name="wp84478"> </a><p class="pIndented1">
+Sie werden zur Seite &quot;Zielansicht&quot; oder &quot;Zielinformationen&quot; zurückgeleitet. Die von Ihnen gelöschte Policy wird nicht mehr angezeigt. Die Packages (und, wenn angegeben, die anderen Informationen in der Policy) werden von den Zielen gelöscht, wenn Policy Service die nächste Aktualisierung durchführt. Wenn Sie nur Packages löschen, wird für das Ziel immer noch das Symbol für direkt zugewiesene Policys <img src="images/policyw.gif" id="wp54212" border="0" hspace="0" vspace="0"/> angezeigt. Wenn Sie die gesamte Policy löschen, wird das Policy-Symbol für das Ziel nicht mehr angezeigt.
+</p>
+</ul></div>
+</ol></div>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

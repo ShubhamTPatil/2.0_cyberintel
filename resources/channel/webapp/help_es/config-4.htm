@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:42" />
+    <title>Página Configuración de complemento: campos del servicio de directorios</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Página Configuración de complemento: campos del servicio de directorios";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp42729"> </a><p class="pBody">Normalmente, los campos del servicio de directorios de la página Configuración de complemento ya están rellenados con información del servicio de directorios especificado para CMS. En función del servicio de directorios que utilice, es posible que varíe la lista de campos que se deben rellenar. La página Configuración de complemento incluye los siguientes campos del servicio de directorios:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp42730"> </a><div class="pSmartList2"><li><b class="cBold">Nombre de host y puerto</b>: el nombre de host y el puerto del servicio de directorios con el formato <b class="cBold">&lt;</b><em class="cEmphasis">nombrehost</em><b class="cBold">&gt;:&lt;</b><em class="cEmphasis">puerto</em><b class="cBold">&gt;</b>. El servicio de directorios que especifique aquí se utilizará para almacenar políticas. Las entradas predeterminadas son las del servicio de directorios especificado para CMS, el cual se utiliza para la autenticación de inicio de sesión. (Normalmente no es necesario rellenar este campo para Active Directory.)</li></div>
+<a name="wp42731"> </a><p class="pIndented1">
+Si su organización dispone de servicios de directorios replicados para almacenar políticas, utilice una asignación de servicio de directorios a repetidor. Puede aprovechar los servicios de directorios replicados si configura Policy Management de modo que cada repetidor establezca contacto con un servicio de directorios cercano y se elimine la necesidad de establecer contacto con el asignado al transmitter principal. Además, se puede asignar una lista de servicios de directorios a cada repetidor. Si un servicio de directorios de la lista falla, el repetidor intenta establecer contacto con el siguiente, con lo que se evitan los problemas relacionados con puntos erróneos únicos. Para obtener información sobre cómo asignar transmitters a servicios de directorios, consulte la <em class="cEmphasis">Guía del administrador de Policy Management</em>. 
+</p>
+<a name="wp50991"> </a><div class="pSmartList2"><li><b class="cBold">Usar una conexión SSL entre el transmitter y el servicio de directorios</b>: marque esta casilla para activar Secure Sockets Layer (SSL) y conseguir una comunicación segura entre el transmitter y el servicio de directorios. Para obtener más información, consulte la sección sobre seguridad y SSL de <em class="cEmphasis">Guía del administrador de infraestructuras de BMC CM</em> que encontrará en el sitio web de soporte al cliente de BMC. </li></div>
+<a name="wp50995"> </a><div class="pSmartList2"><li><b class="cBold">DN base</b>: nombre distinguido de la base para la conexión del servicio de directorios. DN base define el alcance de la vista de directorios desde el punto de vista del complemento. En la mayoría de los casos, esto equivale al sufijo Sun ONE Directory. Normalmente no es necesario rellenar este campo para Active Directory.</li></div>
+<a name="wp42750"> </a><p class="pIndented1">
+Por ejemplo , en ADAM o Sun ONE Directory, puede utilizar <b class="cBold">dc=</b><em class="cEmphasis">compañía</em><b class="cBold">,dc=</b><em class="cEmphasis">com</em>.
+</p>
+<a name="wp42752"> </a><div class="pSmartList2"><li><b class="cBold">DN bind</b>: nombre distinguido de la cuenta de usuario que el Complemento Policy Service utiliza cuando establece una conexión con el servicio de directorios. Esta cuenta de usuario debe contar con permisos de lectura en el ámbito del directorio definido por la entrada <b class="cBold">DN base</b>. Este ámbito normalmente se asigna a un árbol de directorios entero.</li></div>
+<a name="wp42758"> </a><p class="pIndented1">
+Para <b class="cBold">Active Directory</b>, utilice uno de los siguientes formatos:
+</p>
+<a name="wp42759"> </a><div class="pSmartList2"><li>El nombre distinguido completo (DN), como por ejemplo <b class="cBold">cn=Administrador,cn=Usuarios,dc=</b>compañía<b class="cBold">,dc=</b>com</li></div>
+<a name="wp42761"> </a><div class="pSmartList2"><li>El nombre principal de usuario (UPN), como <b class="cBold">Administrador@empresa.com</b></li></div>
+<a name="wp44249"> </a><p class="pIndented1">
+Para <b class="cBold">ADAM</b>, utilice el nombre distinguido completo (DN), como por ejemplo <b class="cBold">cn=Administrador,cn=Usuarios,dc=</b><em class="cEmphasis">compañía</em><b class="cBold">,dc=</b><em class="cEmphasis">com</em>
+</p>
+<a name="wp42763"> </a><p class="pIndented1">
+Para <b class="cBold">Sun ONE Directory</b>, utilice uno de los siguientes formatos:
+</p>
+<a name="wp42764"> </a><div class="pSmartList2"><li>El nombre distinguido completo (DN), como por ejemplo <b class="cBold">uid=Administrador,ou=General,dc=</b><em class="cEmphasis">compañía</em><b class="cBold">,dc=</b><em class="cEmphasis">com</em></li></div>
+<a name="wp42765"> </a><div class="pSmartList2"><li>El nombre común (CN) del administrador de directorios , como por ejemplo <b class="cBold">cn=Administrador de directorios</b></li></div>
+<a name="wp42767"> </a><div class="pSmartList2"><li><b class="cBold">Bind DN password</b>: la contraseña necesaria para acceder al servicio de directorios. El complemento utiliza esta contraseña para la conexión del servicio de directorios.</li></div>
+<a name="wp42772"> </a><div class="pSmartList2"><li><b class="cBold">Tamaño del grupo de conexiones del servicio de directorios:</b> el Complemento Policy Service utiliza el mecanismo de agrupación para establecer y mantener conexiones al servicio de directorios. Este parámetro define el número máximo de conexiones establecidas en la agrupación (normalmente se puede utilizar el valor predeterminado, 25).</li></div>
+<a name="wp48119"> </a><div class="pSmartList2"><li><b class="cBold">El tiempo de caducidad (en minutos) de la última conexión de host correcta</b>: si especifica una lista de nombres de host para conmutación en caso de error de servicios de directorio, Policy Manager recorre la lista hasta que consigue conectarse correctamente a un host. Policy Manager utiliza la conexión al host establecida hasta que transcurra el tiempo de caducidad que haya especificado. A continuación, intenta realizar una nueva conexión con el primer nombre de host de la lista.</li></div>
+<a name="wp49336"> </a><div class="pSmartList2"><li><b class="cBold">Permitir usar las políticas como modelos para máquinas aprovisionadas recientemente</b>: si va a integrar la instalación del tuner con el aprovisionamiento de SO, al seleccionar esta casilla de verificación se identifican los grupos del servicio de directorios cuya política desea utilizar como modelo para instalar aplicaciones y contenido en las máquinas aprovisionadas recientemente. Para obtener más información, consulte el capítulo dedicado a la integración de la instalación del tuner con el aprovisionamiento de sistema operativo en la <em class="cEmphasis">BMC CM Deployment Guide</em>, que puede obtenerse en el sitio web de soporte al cliente de BMC.</li></div>
+</ul></div>
+</ul></div>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

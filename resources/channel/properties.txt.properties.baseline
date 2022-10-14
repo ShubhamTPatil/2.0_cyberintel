@@ -1,0 +1,4 @@
+#Baseline property file
+#Fri Aug 04 09:58:45 PDT 2006
+webapp.displayName=Policy Manager
+description=Provides central management of policies for the entire enterprise.

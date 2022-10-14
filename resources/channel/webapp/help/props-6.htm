@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Apr-13-06 v6.2 ANSI)" />
+    <meta name="LASTUPDATED" content="11/16/09 16:16:59" />
+    <title>Deleting tuner and package properties</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Deleting tuner and package properties";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp37628"> </a><p class="pBody">If you no longer want tuner or package properties to be set on the endpoint tuners, you can delete it using Policy Manager. You do this by setting the property&#39;s value to <b class="cBold">&lt;null&gt;</b>, including the angle brackets (<b class="cBold">&lt;&gt;</b>), or leaving the value blank, as in <b class="cBold">&lt;no value&gt;</b>.</p>
+<a name="wp37633"> </a><p class="pBody">When you delete a tuner property using Policy Manager, it is deleted from the <b class="cBold">prefs.txt</b> file in the tuner&#39;s workspace directory and usually it no longer takes effect. However, if you previously had set the property when packaging the tuner, it cannot be deleted through Policy Manager. This is because setting the property during packaging sets the property in the <b class="cBold">properties.txt</b> file located in the tuner&#39;s workspace directory (typically, this is <b class="cBold">C:\Program Files\Marimba\Tuner\.marimba\Marimba\properties.tx</b>t on Windows), and Policy Manager does not remove the property from the <b class="cBold">properties.txt</b> file. Usually, the tuner properties in the <b class="cBold">prefs.txt</b> file override the default tuner properties in the <b class="cBold">properties.txt</b> file. In this case, however, the tuner property only exists in the <b class="cBold">properties.txt</b> file, so it takes effect.</p>
+<hr class="NoteRuleTop"/><a name="wp42449"> </a><p class="pNote"><span style="color: #003366">Note: </span> You can set target-level settings, such as the tuner and package properties, for one target at a time only. You cannot set target-level settings if you are in multiple-selection mode and are editing policies for multiple targets at one time. However, you can set target-level settings for all targets by selecting the All Endpoints target.</p><hr class="NoteRuleBottom"/><a name="wp69702"> </a><p class="pBody">This procedure assumes you are on the Packages tab of the Edit Policy page. See <a href="javascript:WWHClickedPopup('sm', 'policies-03.htm');" onMouseOver="WWHShowPopup('sm', 'policies-03.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">General directions for creating and editing policies</a>.</p>
+<a name="wp69706"> </a><p style="text-decoration: none" class="pStepIntro">
+To delete properties from targets
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp42464"> </a><div class="pSmartList1"><li>On the Edit Policy page, click the Advanced &gt; Tuner/Package Properties tab.</li></div>
+<a name="wp42465"> </a><p class="pIndented1">
+The Tuner and Package Properties page appears.
+</p>
+<a name="wp54195"> </a><div class="pSmartList1"><li>For tuner properties, find the Properties text box and enter the property name and value with the value set to <b class="cBold">&lt;null&gt;</b>, including the angle brackets (<b class="cBold">&lt;&gt;</b>), or leaving the value blank.</li></div>
+<a name="wp54170"> </a><p class="pIndented1">
+For example: <b class="cBold">marimba.subscription.retrycount=&lt;null&gt;</b>
+</p>
+<a name="wp37758"> </a><p class="pIndented1">
+Or: <b class="cBold">marimba.subscription.retrycount=&lt;no value&gt;</b>
+</p>
+<a name="wp37756"> </a><p class="pIndented1">
+Follow the format described in <a href="javascript:WWHClickedPopup('sm', 'props-5.htm');" onMouseOver="WWHShowPopup('sm', 'props-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Tuner and package properties format</a>.
+</p>
+<a name="wp34720"> </a><div class="pSmartList1"><li>For package properties, perform the following steps in the Package Properties table:</li></div>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<a name="wp34721"> </a><div class="pSmartList2"><li>From the Package list, select the package or group of packages for which you want to set properties. You can select one of the following:</li></div>
+<div class="pSmartList3"><ul class="pSmartList3">
+<a name="wp35725"> </a><div class="pSmartList3"><li><b class="cBold">The URL for a specific package</b>-Select this option if you want to set the property for one specific package only.</li></div>
+<a name="wp36418"> </a><div class="pSmartList3"><li><b class="cBold">All packages</b>-Select this option if you want to set the property for all packages on the tuner (for the targets), except for the Policy Service channel.</li></div>
+<a name="wp35728"> </a><div class="pSmartList3"><li><b class="cBold">All subscribed packages</b>-Select this option if you want to set the property for all packages that are part of the policy, except those that have these states <b class="cBold">uninstall</b>, <b class="cBold">exclude</b>, <b class="cBold">primary</b>, or <b class="cBold">advertise</b>. Also, the Policy Service channel is not included.</li></div>
+<a name="wp35715"> </a><div class="pSmartList3"><li><b class="cBold">Policy Service channel</b>-Select this option if you want to set the property for the Policy Service channel only.</li></div>
+</ul></div>
+<a name="wp34739"> </a><div class="pSmartList2"><li>Enter the property name and value, with the value set to <b class="cBold">&lt;null&gt;</b> or by leaving the value blank, as in <b class="cBold">&lt;no value&gt;</b>.</li></div>
+<a name="wp34740"> </a><div class="pSmartList2"><li>Click Apply.</li></div>
+<a name="wp34766"> </a><p class="pIndented1">
+The property is added to the Properties text box.
+</p>
+<a name="wp43858"> </a><p class="pIndented1">
+<b class="cBold">Note:</b> You can also enter the package URL, package property name, and value directly in the Properties text box. Follow the format described in <a href="javascript:WWHClickedPopup('sm', 'props-5.htm');" onMouseOver="WWHShowPopup('sm', 'props-5.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Tuner and package properties format</a>.
+</p>
+</ol></div>
+<a name="wp34770"> </a><div class="pSmartList1"><li>Review the tuner and package properties listed in the Properties text box.</li></div>
+<hr class="NoteRuleTop"/><a name="wp35502"> </a><p class="pNote"><span style="color: #003366">Note: </span> Deleting a property from the Properties text box does not remove it from the target endpoints. This causes the property to remain as is on the target tuner (not managed by Policy Manager). You remove a tuner or package property from the target endpoints by setting its value to <b class="cBold">&lt;null&gt;</b>.</p><hr class="NoteRuleBottom"/></ol></div>
+<a name="wp43169"> </a><p class="pBody">When you are finished editing the policy, preview and save the policy. See <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Previewing and saving policy changes</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. All rights reserved.<br/>
+
+ For additional BMC Configuration Management documentation, go to the Customer
+Support website at <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+For questions or comments about BMC CM documentation, send
+an email to <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+For product related issues or questions, send an email to Customer Support at <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

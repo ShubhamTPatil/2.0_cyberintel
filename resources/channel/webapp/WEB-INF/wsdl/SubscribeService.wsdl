@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.bmc.com/schemas/scm/policy" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:cs="http://schemas.bmc.com/scm/consoleserver" xmlns:impl="http://www.bmc.com/schemas/scm/cms/security" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:sm="http://www.bmc.com/schemas/scm/policy">
+        <wsdl:types>
+		<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.bmc.com/schemas/scm/cms/security" xmlns:ns="http://www.bmc.com/schemas/scm/cms/security">
+			<!-- Security Ticket for authenticating the user in the CMS for accessing web Services -->
+			<xs:element name="SecurityTicket" type="xs:string"/>
+		</xs:schema>
+
+	        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://www.bmc.com/schemas/scm/policy">
+	        	<xs:element name="subscribe">
+	        		<xs:complexType>
+	        			<xs:sequence>
+						<xs:element name="subscribe-data">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="targetname" type="xs:string"/>
+									<xs:element name="channelurl" type="xs:string"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="status">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="code" type="xs:string"/>
+						<xs:element name="desc" type="xs:string"/>
+						<xs:element name="message" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+    </wsdl:types>
+
+    <wsdl:message name="Authenticate">
+        <wsdl:part element="impl:SecurityTicket" name="parameters"/>
+    </wsdl:message>
+
+    <wsdl:message name="SubscribeRequest">
+        <wsdl:part element="sm:subscribe" name="SubscribeData"/>
+    </wsdl:message>
+
+    <wsdl:message name="SubscribeResponse">
+        <wsdl:part element="sm:status" name="SubscribeReturn"/>
+    </wsdl:message>
+
+    <wsdl:portType name="SubscribeService">
+      <wsdl:operation name="subscribe">
+         <wsdl:input message="sm:SubscribeRequest" wsaw:Action="urn:SubscribeRequest"/>
+         <wsdl:output message="sm:SubscribeResponse" wsaw:Action="urn:SubscribeResponse"/>
+      </wsdl:operation>
+   </wsdl:portType>
+
+   <wsdl:binding name="SubscribeServiceSoapBinding" type="sm:SubscribeService">
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="subscribe">
+		 <wsdlsoap:operation soapAction="sm:SubscribeService" style="document"/>
+		 <wsdl:input>
+		    <wsdlsoap:header message="sm:Authenticate" part="parameters" use="literal"/>
+		    <wsdlsoap:body use="literal"/>
+		 </wsdl:input>
+		<wsdl:output>
+		    <wsdlsoap:body use="literal"/>
+		</wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+
+   <wsdl:service name="SubscribeService">
+      <wsdl:port binding="sm:SubscribeServiceSoapBinding" name="SubscribeService">
+         <wsdlsoap:address location="http://cms host:port/shell/services/SubscribeService"/>
+      </wsdl:port>
+   </wsdl:service>
+</wsdl:definitions>

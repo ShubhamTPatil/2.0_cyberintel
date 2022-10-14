@@ -1,0 +1,536 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:29" />
+    <title>Konfliktlösung: Status und Zeitpläne in Policys</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Konfliktlösung: Status und Zeitpläne in Policys";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp84034"> </a><p class="pBody">Einem Client kann das gleiche Package mit sich widersprechenden Status und Zeitplänen zugewiesen werden. Dies könnte beispielsweise der Fall sein, wenn ein Client zu zwei unterschiedlichen Gruppen gehört und das gleiche Package mit unterschiedlichen Status und Zeitplänen erhält. Dieser Konflikt wird gelöst, indem Policy Service den sich widersprechenden Status eine Zahl anhängt, wie in <a href="javascript:WWHClickedPopup('sm', 'policies-18.htm#wp81531');" onMouseOver="WWHShowPopup('sm', 'policies-18.htm#wp81531', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Tabelle&#160;4-4</a> und <a href="javascript:WWHClickedPopup('sm', 'policies-18.htm#wp81629');" onMouseOver="WWHShowPopup('sm', 'policies-18.htm#wp81629', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Tabelle&#160;4-5</a> dargestellt. Diese Zahlen stellen die Priorität für den Endstatus und Zeitplanstatus des Package dar. Wenn ein Sekundärstatus für das Package vorhanden ist, wird der Endstatus des Package als Sekundärstatus festgelegt. Andernfalls ist der Endstatus der Primärstatus. Weitere Informationen zu den Auswirkungen von Status und Zeitplänen auf Aktualisierungen finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-26.htm');" onMouseOver="WWHShowPopup('sm', 'policies-26.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Verwalten von Software, Daten und Aktualisierungen</a>. Weitere Informationen zu Primär- und Sekundärstatus finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-11.htm');" onMouseOver="WWHShowPopup('sm', 'policies-11.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Übersicht über Installationsstatus</a>.</p>
+<a name="wp84044"> </a><p class="pBody">Der Zeitplanstatus für ein Package wird als eine von 12 gültigen Zeitplankonfigurationen festgelegt, die sich aus der Anwesenheit oder Abwesenheit von Primär-, Sekundär-, Aktualisierungs- und Reparaturzeitplan ergibt, wie in <a href="javascript:WWHClickedPopup('sm', 'policies-18.htm#wp81629');" onMouseOver="WWHShowPopup('sm', 'policies-18.htm#wp81629', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Tabelle&#160;4-5</a> dargestellt. Der Endstatus hat stets Vorrang vor dem Zeitplan. Dies bedeutet, dass der Zeitplanstatus nur von Bedeutung ist, wenn zwei Konflikte nicht denselben Endstatus haben. Deshalb werden die Konfliktprioritätszahlen des Endstatus, wie in <a href="javascript:WWHClickedPopup('sm', 'policies-18.htm#wp81531');" onMouseOver="WWHShowPopup('sm', 'policies-18.htm#wp81531', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Tabelle&#160;4-4</a> dargestellt, um jeweils 100 erhöht.</p>
+<a name="wp84051"> </a><p class="pBody">Policy Service vergleicht die Konfliktprioritätssummen (durch Addieren der Konfliktprioritätszahlen von Endstatus und Zeitplanstatus) aller Instanzen des gleichen Package. Die Instanz mit der niedrigsten Summe setzt sich durch. Wenn mehrere Instanzen die gleiche Summe haben, entscheidet der Zufall.</p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp81531table50846">
+  <caption><a name="wp81531"> </a><p class="pBody">Tabelle&#160;4-4:&#160;&#160;Konfliktpriorität des Endstatus &#160;</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp81537"> </a><div class="pCellHeading">
+Status
+</div>
+</th>
+    <th><a name="wp81539"> </a><div class="pCellHeading">
+Konfliktpriorität
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81545"> </a><div class="pCellBody">
+Ausschließen
+</div>
+</td>
+    <td><a name="wp81547"> </a><div class="pCellBody">
+100
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81553"> </a><div class="pCellBody">
+Deinstallieren
+</div>
+</td>
+    <td><a name="wp81555"> </a><div class="pCellBody">
+200
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81561"> </a><div class="pCellBody">
+Primär
+</div>
+</td>
+    <td><a name="wp81563"> </a><div class="pCellBody">
+300
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81569"> </a><div class="pCellBody">
+Installieren-Starten-Beibehalten
+</div>
+</td>
+    <td><a name="wp81571"> </a><div class="pCellBody">
+400
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81577"> </a><div class="pCellBody">
+Installieren-Starten
+</div>
+</td>
+    <td><a name="wp81579"> </a><div class="pCellBody">
+500
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81585"> </a><div class="pCellBody">
+Installieren-Beibehalten
+</div>
+</td>
+    <td><a name="wp81587"> </a><div class="pCellBody">
+600
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81593"> </a><div class="pCellBody">
+Installieren
+</div>
+</td>
+    <td><a name="wp81595"> </a><div class="pCellBody">
+700
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81601"> </a><div class="pCellBody">
+Bereitstellen
+</div>
+</td>
+    <td><a name="wp81603"> </a><div class="pCellBody">
+800
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81609"> </a><div class="pCellBody">
+Ankündigen
+</div>
+</td>
+    <td><a name="wp81611"> </a><div class="pCellBody">
+900
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBody">
+</p>
+<a name="wp84054"> </a><p class="pBodyRelative"></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp81629table50896">
+  <caption><a name="wp81629"> </a><p class="pBody">Tabelle&#160;4-5:&#160;&#160;Konfliktpriorität des Zeitplanstatus &#160;</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp81641"> </a><div class="pCellHeading">
+Primär
+</div>
+</th>
+    <th><a name="wp81643"> </a><div class="pCellHeading">
+Sekundär
+</div>
+</th>
+    <th><a name="wp81645"> </a><div class="pCellHeading">
+Aktualisieren
+</div>
+</th>
+    <th><a name="wp81647"> </a><div class="pCellHeading">
+Reparieren
+</div>
+</th>
+    <th><a name="wp81649"> </a><div class="pCellHeading">
+Konfliktpriorität
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81661"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81663"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81665"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81667"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81669"> </a><div class="pCellBody">
+1
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81681"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81683"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81685"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81687"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81689"> </a><div class="pCellBody">
+2
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81701"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81703"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81705"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81707"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81709"> </a><div class="pCellBody">
+4
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81721"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81723"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81725"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81727"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81729"> </a><div class="pCellBody">
+3
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81741"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81743"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81745"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81747"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81749"> </a><div class="pCellBody">
+5
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81761"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81763"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81765"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81767"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81769"> </a><div class="pCellBody">
+6
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81781"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81783"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81785"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81787"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81789"> </a><div class="pCellBody">
+7
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81801"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81803"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81805"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81807"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81809"> </a><div class="pCellBody">
+8
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81821"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81823"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81825"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81827"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td colspan="1" rowspan="4"><a name="wp81829"> </a><div class="pCellBody">
+Diese Zeitplankonfigurationen sind nicht gültig, weil ein Sekundärstatus nicht ohne Primärstatus festlegt werden kann.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81841"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81843"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81845"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81847"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81861"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81863"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81865"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81867"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81881"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81883"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81885"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81887"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81901"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81903"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81905"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81907"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81909"> </a><div class="pCellBody">
+9
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81921"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81923"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81925"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81927"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81929"> </a><div class="pCellBody">
+10
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81941"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81943"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81945"> </a><div class="pCellBody">
+Ja
+</div>
+</td>
+    <td><a name="wp81947"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81949"> </a><div class="pCellBody">
+11
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp81961"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81963"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81965"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81967"> </a><div class="pCellBody">
+Nein
+</div>
+</td>
+    <td><a name="wp81969"> </a><div class="pCellBody">
+12
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBodyRelative">
+</p>
+
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

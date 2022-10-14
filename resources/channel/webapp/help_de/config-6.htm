@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:19" />
+    <title>Verwenden der Zugriffskontrolle</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Verwenden der Zugriffskontrolle";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp70073"> </a><p class="pBody">Entscheiden Sie am besten, ob die ACL-Funktion während der Installation und während des Setups verwendet oder nicht verwendet werden soll. Um zu sehen, ob die ACL-Funkion aktiviert ist oder nicht, gehen Sie mit dem Mauszeiger auf das Statussymbol rechts oben im Konsolenfenster.</p>
+<hr class="NoteRuleTop"/><a name="wp70083"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Es wird empfohlen, den Administratoren ACLs und Berechtigungen zuzuweisen, bevor die ACL-Funktion aktiviert wird. Andernfalls können Administratoren, die sich bei Policy Manager anmelden, keine Policys verwalten. Am besten ist es, den Administratoren ACLs und Berechtigungen zuzuweisen, diese &quot;bereitzustellen&quot; und dann die ACL-Funktion in Policy Manager zu aktivieren, wenn Berechtigungen angewendet werden sollen.</p><hr class="NoteRuleBottom"/><a name="wp70089"> </a><p class="pBody">Bevor Sie mit Policy Manager die Zugriffskontrollfunktion aktivieren, richten Sie mit der Konsole Folgendes ein:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp70091"> </a><div class="pSmartList2"><li>Benutzerauthentifizierung</li></div>
+<a name="wp70093"> </a><div class="pSmartList2"><li>LDAP-Synchronisierung</li></div>
+<a name="wp70095"> </a><div class="pSmartList2"><li>Zugriffskontrolllisten</li></div>
+<a name="wp70097"> </a><div class="pSmartList2"><li>Berechtigungen für Zugriffskontrolllisten zuweisen</li></div>
+<a name="wp70099"> </a><div class="pSmartList2"><li>Berechtigungen für Applikationen zuweisen</li></div>
+</ul></div>
+</ul></div>
+<a name="wp70101"> </a><p class="pBody">Weitere Informationen dazu finden Sie in der Konsolenhilfe für die Systemeinstellungen. </p>
+<a name="wp70107"> </a><h4 style="margin-top: 14pt" class="pHeading3">
+Aktivieren und Deaktivieren der ACL-Funktion
+</h4>
+<a name="wp70113"> </a><p class="pBody">Nach der Einrichtung von Zugriffskontrolllisten können Primäradministratoren mit Policy Manager die ACL-Funktion aktivieren.  ACLs sind standardmäßig deaktiviert.</p>
+<a name="wp70115"> </a><p class="pBody">Die ACL-Funktion kann über die Registerkarte &quot;Konfiguration&quot; oder die Befehlszeilenschnittstelle aktiviert oder deaktiviert werden.</p>
+<a name="wp70117"> </a><p style="text-decoration: none" class="pStepIntro">
+So aktivieren Sie die ACL-Funktion mit Hilfe der Konfigurationsoptionen:
+</p>
+
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp70119"> </a><div class="pSmartList2"><li>Klicken Sie auf die Registerkarte &quot;Konfiguration&quot;.</li></div>
+<a name="wp70121"> </a><div class="pSmartList2"><li>Klicken Sie auf &quot;ACL-Optionen&quot;.</li></div>
+<a name="wp70123"> </a><p class="pIndented1">
+Die Seite &quot;Zugriffskontrolle aktivieren&quot; wird angezeigt.
+</p>
+<a name="wp70125"> </a><div class="pSmartList2"><li>Wählen Sie das Kontrollkästchen &quot;Zugriffskontrolle aktivieren/deaktivieren&quot; aus.</li></div>
+<a name="wp70127"> </a><div class="pSmartList2"><li>Klicken Sie auf OK.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp70129"> </a><p style="text-decoration: none" class="pStepIntro">
+So aktivieren Sie die ACL-Funktion mit Hilfe der Befehlszeile:
+</p>
+
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp70131"> </a><div class="pSmartList2"><li>Geben Sie in der Befehlszeile den folgenden Befehl ein:</li></div>
+<a name="wp70133"> </a><p class="pIndented1">
+<b class="cBold">runchannel </b><em class="cEmphasis">&lt;Policy_Manager_URL&gt;</em><b class="cBold"> -user </b><em class="cEmphasis">&lt;Benutzername&gt;</em><b class="cBold"> -password </b><em class="cEmphasis">&lt;Passwort&gt;</em><b class="cBold"> -configSet marimba.subscription.acl true</b>
+</p>
+<a name="wp70135"> </a><p class="pIndented1">
+Sie können die ACL-Funktion mit demselben Befehl deaktivieren, indem Sie <b class="cBold">true</b> durch <b class="cBold">false</b> ersetzen. Außerdem können Sie mit der Option <b class="cBold">-preview</b> die Änderungen, die Sie vornehmen möchten, in der Vorschau anzeigen.
+</p>
+<a name="wp70141"> </a><p class="pIndented1">
+Achten Sie darauf, dass Sie Policy Manager neu starten, nachdem die ACL-Funktion aktiviert wurde.
+</p>
+</ul></div>
+</ul></div>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

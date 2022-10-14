@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:44" />
+    <title>Festlegen der Blackout-Periode für ein Ziel</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Festlegen der Blackout-Periode für ein Ziel";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp361652"> </a><p class="pBody">Legen Sie anhand der folgenden Schritte eine Blackout-Periode fest, die standardmäßig verwendet wird, um Änderungen am Policy-Status an einem oder mehreren Zielen zu verhindern. Die Blackout-Periode verhindert alle Downloads, Installationen, Aktualisierungen und Reparaturen innerhalb des angegebenen Tageszeitraums. Normalerweise verhindern Sie mit der Blackout-Periode mögliche Störungen der Werktagsaktivitäten an den Clients oder minimieren den Netzwerkverkehr zu kritischen Tageszeiten. Aktivitäten, deren Ausführung während der Blackout-Periode geplant ist, erfolgen sofort nach Beendigung dieser. Die Blackout-Periode ist relativ zur Zeitzone des Clients.</p>
+<hr class="NoteRuleTop"/><a name="wp361658"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Während der angegebenen Blackout-Periode werden sämtliche Aktivitäten für alle Packages auf dem Client-Tuner unterbunden. Dies gilt auch für Packages, die nicht über Policy Management verwaltet werden. Berücksichtigen Sie dies beim Einrichten der Blackout-Periode, da es möglicherweise zu Notfallsituationen kommen kann, in denen Sie ein Package während einer Blackout-Periode auf Clients aktualisieren müssen. In diesem Fall müssen Sie entweder warten, bis die Blackout-Periode vorbei ist, oder Aktualisierungen an jedem Client manuell vornehmen.</p><hr class="NoteRuleBottom"/><a name="wp361662"> </a><p class="pBody"><b class="cBold">Globale Blackout-Periode.</b> Um eine globale Blackout-Periode einzurichten, wählen Sie das Ziel &quot;Alle Clients&quot;, bevor Sie die Blackout-Periode angeben. Sind zwei Blackout-Perioden für einen Client eingerichtet (wenn zwei Policys auf denselben Client angewendet werden), dann setzt sich die Blackout-Periode des Clients aus diesen beiden Blackout-Perioden zusammen. Benutzer Alan beispielsweise gehört zur Benutzergruppe <b class="cBold">Engineering</b>, und sowohl für Alan als auch für die Benutzergruppe ist eine Blackout-Periode eingerichtet. Die Blackout-Periode für Alan gilt von 7:00 Uhr bis 11:00 Uhr, die Blackout-Periode für &quot;Engineering&quot; von 9:00 Uhr bis 17:00 Uhr. Daraus ergibt sich für Alan eine Blackout-Periode von 7:00 Uhr bis 17:00 Uhr.</p>
+<a name="wp361674"> </a><p class="pBody"><b class="cBold">Policy Service vom Blackout ausnehmen.</b> Beim Einrichten einer Blackout-Periode können Sie den Policy Service ausnehmen, so dass dieser während einer Blackout-Periode weiterhin aktiv ist und Aktualisierungen durchführen kann. Die Ausnahme ist dann nützlich, wenn Sie bei der Aktualisierung oder Installation von Packages während einer Blackout-Periode Notfallsituationen erwarten.</p>
+<a name="wp361680"> </a><p class="pBody"><b class="cBold">Packages vom Blackout ausnehmen.</b> Auf der Registerkarte &quot;Packages&quot; der Seite &quot;Policy bearbeiten&quot; können Sie angeben, welche Packages von der Blackout-Periode ausgenommen werden sollen. Die Ausnahme ist dann nützlich, wenn Sie bei der Aktualisierung oder Installation von Packages während einer Blackout-Periode Notfallsituationen erwarten. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'blackout-4.htm');" onMouseOver="WWHShowPopup('sm', 'blackout-4.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Ausnehmen von Packages von der Blackout-Periode</a>. </p>
+<a name="wp361686"> </a><p class="pBody">Wenn mehrere Benutzer (bei Verwendung des gleichen Policy Manager von zwei unterschiedlichen Computern aus) die Seite &quot;Blackout-Periode&quot; für das gleiche Ziel bearbeiten, dann werden die letzten zu speichernden Änderungen übernommen.</p>
+<hr class="NoteRuleTop"/><a name="wp361688"> </a><p class="pNote"><span style="color: #003366">Hinweis: </span> Einstellungen auf Zielebene, wie zum Beispiel die Blackout-Periode, können jeweils nur für ein Ziel festgelegt werden. Sie können keine Einstellungen auf Zielebene einrichten, wenn Sie sich im Mehrfachauswahlmodus befinden und gleichzeitig Policys für mehrere Ziele bearbeiten. Sie können jedoch für alle Ziele Einstellungen auf Zielebene einrichten, indem Sie das Ziel <b class="cBold">Alle Clients</b> auswählen.</p><hr class="NoteRuleBottom"/><a name="wp361694"> </a><p class="pBody">Bei diesem Vorgang wird davon ausgegangen, dass Sie sich auf der Seite &quot;Policy bearbeiten&quot; auf der Registerkarte &quot;Packages&quot; befinden. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-04.htm');" onMouseOver="WWHShowPopup('sm', 'policies-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Allgemeine Anweisungen zum Erstellen und Bearbeiten von Policys</a>.</p>
+<a name="wp361696"> </a><p style="text-decoration: none" class="pStepIntro">
+So legen Sie die Blackout-Periode fest:
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp361698"> </a><div class="pSmartList1"><li>Klicken Sie auf der Seite &quot;Policy bearbeiten&quot; auf die Registerkarte <b class="cBold">Blackout-Periode</b>.</li></div>
+<a name="wp361700"> </a><p class="pIndented1">
+Die Seite &quot;Blackout-Periode&quot; wird angezeigt.
+</p>
+<a name="wp361702"> </a><div class="pSmartList1"><li>Wählen Sie im Bereich <b class="cBold">Blackout-Periode</b> eine der folgenden Optionen:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp361704"> </a><div class="pSmartList2"><li>Wenn Sie eine Blackout-Periode festlegen möchten, wählen Sie <b class="cBold">Folgende Blackout-Periode festlegen</b>, und geben Sie im Bereich <b class="cBold">Aktivitäten deaktivieren</b> die Start- und Endzeiten für die Blackout-Periode an.</li></div>
+<a name="wp361706"> </a><p class="pIndented1">
+<b class="cBold">Hinweis:</b> Blackout-Perioden müssen auf einen Zeitraum innerhalb eines Tages festgelegt werden (zum Beispiel von 9:00 Uhr bis 17:00 Uhr) und dürfen <em class="cEmphasis">nicht</em> über Mitternacht hinausgehen (zum Beispiel 18:00 Uhr bis 5:00 Uhr).
+</p>
+<a name="wp361708"> </a><div class="pSmartList2"><li>Wenn Sie keine Blackout-Periode festlegen möchten, dann wählen Sie <b class="cBold">Keine. Aktivitäten zu jedem Zeitpunkt zulassen</b>.</li></div>
+</ul></div>
+<a name="wp361714"> </a><div class="pSmartList1"><li>Wenn Sie für das Ziel eine Blackout-Periode festgelegt haben, dann wählen Sie im Bereich <b class="cBold">Policy Service-Verhalten</b> eine der folgenden Optionen:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp361720"> </a><div class="pSmartList2"><li><b class="cBold">Aktualisierung von Policy Service während der Blackout-Periode und Vorgänge für von der Blackout-Periode ausgenommene Packages zulassen.</b></li></div>
+<a name="wp361726"> </a><div class="pSmartList2"><li><b class="cBold">Aktualisierung von Policy Service während der Blackout-Periode nicht zulassen. Keine Package-Vorgänge durchführen, auch nicht für die von der Blackout-Periode ausgenommenen Packages. </b></li></div>
+</ul></div>
+<a name="wp361728"> </a><div class="pSmartList1"><li>Klicken Sie nach dem Erstellen oder Bearbeiten der Policy auf <b class="cBold">Vorschau</b>.</li></div>
+<a name="wp361734"> </a><p class="pIndented1">
+Auf der Seite &quot;Vorschau&quot; können Sie die Änderungen an der Policy noch einmal überprüfen, bevor Sie diese speichern und auf das Ziel anwenden. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-05.htm');" onMouseOver="WWHShowPopup('sm', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Erstellen der Vorschau und Speichern von Policy-Änderungen</a>.
+</p>
+<a name="wp361736"> </a><div class="pSmartList1"><li>Nachdem Sie sich die Änderungen der Policy noch einmal angesehen haben, klicken Sie auf <b class="cBold">Speichern</b>, um die Änderungen zu bestätigen und zu speichern.</li></div>
+</ol></div>
+<a name="wp361738"> </a><h4 style="margin-top: 14pt" class="pHeading3">
+Informationen über die Blackout-Periode
+</h4>
+<a name="wp361748"> </a><p class="pBody">Wenn Sie eine Blackout-Periode angeben, dann hängt Policy Service den von Ihnen angegebenen Zeitraum an die Tunereigenschaft <b class="cBold">Marimba.Zeitplan.Filter</b> in der Datei <b class="cBold">prefs.txt</b> des Client-Tuners an. Besagt zum Beispiel der ursprüngliche Aktualisierungszeitplan, dass der Client-Tuner jederzeit und an einem beliebigen Wochentag aktualisiert werden kann, und Sie legen mit Hilfe von Policy Management eine Blackout-Periode von 9:00 Uhr bis 17:00 Uhr fest, dann lautet der Wert der Tuner-Eigenschaft wie folgt:</p>
+<a name="wp361750"> </a><p class="pIndented1">
+<b class="cBold">marimba.schedule.filter=ANYTIME on mon+tue+wed+thu+fri+sat+sun BLACKOUT 9:00AM-5:00PM</b>
+</p>
+<a name="wp361756"> </a><p class="pBody">Wenn Sie später die Option &quot;Keine Blackout-Periode&quot; wählen, dann wird der ursprünglich auf dem Client-Tuner festgelegte Channel-Aktualisierungszeitplan verwendet. In dem genannten Beispiel wird nur <b class="cBold">BLACKOUT 9:00AM-5:00PM</b> aus dem Wert von <b class="cBold">marimba.schedule.filter</b> entfernt. Die Tuner-Eigenschaft, die die Blackout-Periode betrifft (<b class="cBold">marimba.schedule.filter</b>), wird auf dem Client nicht gelöscht. Sie können diese Tuner-Eigenschaft explizit über die Seite &quot;Tuner- und Package-Eigenschaften&quot; löschen. Weitere Informationen dazu finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'props-1.htm');" onMouseOver="WWHShowPopup('sm', 'props-1.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Einstellen der Tuner- und Package-Eigenschaften für ein Ziel</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

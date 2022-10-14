@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:42" />
+    <title>¿Qué es Policy Manager?</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "¿Qué es Policy Manager?";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp31276"> </a><p class="pBody">Policy Manager permite al usuario administrador asignar paquetes a destinos. Estos destinos representan uno o más clientes finales como, por ejemplo, usuarios, máquinas o grupos. Para cada destino, se asigna al paquete un estado, por ejemplo, &quot;descargar&quot;, &quot;instalar&quot; o &quot;desinstalar&quot;. El estado que especifique se aplica al paquete en cada destino según una planificación establecida. Policy Manager se basa en navegadores y almacena información sobre paquetes y destinos en un servicio de directorios, utilizando el protocolo LDAP.</p>
+<a name="wp28557"> </a><p class="pBody">Este documento está destinado para directores de redes, administradores del sistema, personal del servicio de asistencia y directores de sistemas que despliegan y configuran Policy Manager o lo utilizan para administrar una red de equipos informáticos. Para este documento, se supone que el usuario está familiarizado con los productos de BMC Configuration Management (CM) como, por ejemplo, tuners y transmitters.</p>
+<a name="wp31306"> </a><p class="pBody">Este producto se compone de los componentes siguientes:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp31351"> </a><div class="pSmartList2"><li>Channel de Policy Manager que proporciona la interfaz basada en navegador que se utiliza para crear políticas de distribución de paquetes a los destinos, asignar estados a los paquetes y planificar la descarga e instalación de paquetes. Este componente también se puede usar para especificar la configuración. Policy Manager también proporciona una interfaz de línea de comandos para la configuración de algunos parámetros que se usan para distribuir paquetes a destinos.</li></div>
+<a name="wp28961"> </a><div class="pSmartList2"><li>Channel de Common Management Services, que permite configurar los parámetros para todo el sistema que se aplican a Policy Manager y otras aplicaciones web BMC CM de las que pueda disponer.</li></div>
+<a name="wp28566"> </a><div class="pSmartList2"><li>Channel de Policy Service, que es un componente cliente y se encarga de la aplicación de las políticas asignadas al tuner de destino en el que se ejecuta.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp28891"> </a><p class="pBody">Además, necesita disponer de los servicios de directorios siguientes:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp32634"> </a><div class="pSmartList2"><li>Microsoft Active Directory (AD)</li></div>
+<a name="wp32637"> </a><div class="pSmartList2"><li>Microsoft Active Directory Application Mode (ADAM)</li></div>
+<a name="wp28568"> </a><div class="pSmartList2"><li>Sun ONE Directory</li></div>
+</ul></div>
+</ul></div>
+<a name="wp28909"> </a><p class="pBody">Para obtener información sobre las versiones de los servicios de directorios componentes, consulte las notas de la versión de Policy Management, disponible en el sitio web de soporte al cliente de BMC.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/10/06 17:40:48" />
+    <title>Konfliktlösung: Mehrere Benutzer bearbeiten Eigenschaften</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Konfliktlösung: Mehrere Benutzer bearbeiten Eigenschaften";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp668496"> </a><p class="pBody">Wenn mehrere Benutzer die Seite mit den Tuner- und Package-Eigenschaften zeitgleich bearbeiten und zwei Benutzer die gleiche Eigenschaft bearbeiten, führt dies dazu, dass der Benutzer, der die Änderungen auf der Seite zuletzt speichert, die anderen Änderungen an der Eigenschaft überschreibt.</p>
+<a name="wp668498"> </a><p style="text-decoration: none" class="pStepIntro">
+Ergebnisse bei gleichzeitiger Bearbeitung von Policys durch mehrere Benutzer
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp668500"> </a><div class="pSmartList1"><li>Benutzer 1 geht auf die Seite &quot;Tuner- und Package-Eigenschaften&quot; und bearbeitet die Eigenschaften für das Ziel &quot;Computer A&quot;.</li></div>
+<a name="wp668502"> </a><div class="pSmartList1"><li>Bevor Benutzer 1 die Änderungen der Eigenschaften abspeichert, bearbeitet Benutzer 2 die Eigenschaften für das gleiche Ziel und speichert diese ab.</li></div>
+<a name="wp668504"> </a><div class="pSmartList1"><li>Benutzer 1 speichert die Änderungen, nachdem Benutzer 2 die Seite verlassen hat.</li></div>
+</ol></div>
+<a name="wp668506"> </a><p class="pBody">Die Policy, die ursprünglich von beiden Benutzern geladen wurde, ist Policy A. Von Policy A werden zwei Kopien erstellt: Policy A1, die Kopie, die Benutzer 1 bearbeitet, und Policy A2, die Kopie, die von Benutzer 2 gespeichert wurde. In der folgenden Tabelle werden die Ergebnisse für die unterschiedlichen Fallkonstellationen beschrieben:</p>
+<a name="wp668509"> </a><p class="pBodyRelative"></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp667099table42545">
+  <caption><a name="wp667099"> </a><p class="pBody">Tabelle&#160;4-10:&#160;&#160;Mehrere Benutzer bearbeiten Eigenschaften</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp667107"> </a><div class="pCellHeading">
+Benutzer 1:
+</div>
+</th>
+    <th><a name="wp667109"> </a><div class="pCellHeading">
+Benutzer 2:
+</div>
+</th>
+    <th><a name="wp667111"> </a><div class="pCellHeading">
+Endergebnis
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp667119"> </a><div class="pCellBody">
+Fügt eine <em class="cEmphasis">neue</em> Eigenschaft hinzu, die nicht in Policy A vorhanden ist.
+</div>
+</td>
+    <td><a name="wp667121"> </a><div class="pCellBody">
+Bearbeitet Policy A, fügt aber nicht die gleiche Eigenschaft hinzu, bearbeitet und löscht sie nicht.
+</div>
+</td>
+    <td><a name="wp667127"> </a><div class="pCellBody">
+Policy Manager fügt die neue Eigenschaft der Policy A hinzu.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp667135"> </a><div class="pCellBody">
+Fügt eine <em class="cEmphasis">neue</em> Eigenschaft hinzu, die nicht in Policy A vorhanden ist.
+</div>
+</td>
+    <td><a name="wp667137"> </a><div class="pCellBody">
+Legt einen anderen Wert für die gleiche Eigenschaft fest.
+</div>
+</td>
+    <td><a name="wp667143"> </a><div class="pCellBody">
+Policy Manager fügt die neue Eigenschaft der Policy A mit dem durch Benutzer 1 definierten Wert hinzu.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp667151"> </a><div class="pCellBody">
+Entfernt eine Eigenschaft aus Policy A.
+</div>
+</td>
+    <td><a name="wp667153"> </a><div class="pCellBody">
+Bearbeitet Policy A, bearbeitet oder löscht aber nicht die gleiche Eigenschaft.
+</div>
+</td>
+    <td><a name="wp667159"> </a><div class="pCellBody">
+Policy Manager entfernt die Eigenschaft aus Policy A.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp667167"> </a><div class="pCellBody">
+Entfernt eine Eigenschaft aus Policy A.
+</div>
+</td>
+    <td><a name="wp667169"> </a><div class="pCellBody">
+Bearbeitet die gleiche Eigenschaft in Policy A (legt dafür einen Wert fest).
+</div>
+</td>
+    <td><a name="wp667175"> </a><div class="pCellBody">
+Policy Manager entfernt die Eigenschaft aus Policy A.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp667183"> </a><div class="pCellBody">
+Bearbeitet Policy A, fügt aber nicht die gleiche Eigenschaft wie Benutzer 2 hinzu, bearbeitet oder löscht sie nicht.
+</div>
+</td>
+    <td><a name="wp667185"> </a><div class="pCellBody">
+Bearbeitet oder entfernt eine Eigenschaft aus Policy A.
+</div>
+</td>
+    <td><a name="wp667191"> </a><div class="pCellBody">
+Policy Manager ändert oder entfernt die Eigenschaft, an der Benutzer 2 gearbeitet hat.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp667199"> </a><div class="pCellBody">
+Verändert den Wert einer Eigenschaft in Policy A.
+</div>
+</td>
+    <td><a name="wp667201"> </a><div class="pCellBody">
+Verändert die gleiche Eigenschaft in Policy A.
+</div>
+</td>
+    <td><a name="wp667207"> </a><div class="pCellBody">
+Policy Manager speichert die Eigenschaft mit dem von Benutzer 1 angegebenen Wert.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp667215"> </a><div class="pCellBody">
+Löscht Packages aus Policy A.
+</div>
+</td>
+    <td><a name="wp667217"> </a><div class="pCellBody">
+Verändert die Package-Eigenschaften für Packages, die von Benutzer 1 gelöscht wurden.
+</div>
+</td>
+    <td><a name="wp667223"> </a><div class="pCellBody">
+Policy Manager löscht die Packages und speichert die von Benutzer 2 geänderten Eigenschaften nicht.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp667231"> </a><div class="pCellBody">
+Fügt neue Packages zu Policy A hinzu.
+</div>
+</td>
+    <td><a name="wp667233"> </a><div class="pCellBody">
+Bearbeitet Policy A und verändert Eigenschaften, die nicht mit den von Benutzer 1 hinzugefügten neuen Packages in Beziehung stehen.
+</div>
+</td>
+    <td><a name="wp667239"> </a><div class="pCellBody">
+Policy Manager speichert die vom Benutzer 1 hinzugefügten Packages.
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBodyRelative">
+</p>
+
+<a name="wp668519"> </a><p class="pBody">Weitere Informationen zur Lösung von Konflikten, die entstehen, wenn mehrere Benutzer die gleiche Policy bearbeiten, finden Sie unter <a href="javascript:WWHClickedPopup('sm', 'policies-23.htm');" onMouseOver="WWHShowPopup('sm', 'policies-23.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Konfliktlösung: mehrere Benutzer bearbeiten die gleiche Policy</a>.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC. Alle Rechte vorbehalten.<br/>
+
+Weitere Dokumente zu BMC Configuration Management finden Sie auf der
+Customer Support-Website unter <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+      Senden Sie bei Fragen oder Kommentaren zur BMC CM-Dokumentation
+eine E-Mail an <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Senden Sie bei produktbezogenen
+Problemen oder Fragen eine E-Mail an den Customer Support, <a href="mailto:customer_support@bmc.com">customer_support@bmc.com</a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:54" />
+    <title>¿Cómo funciona la actualización inmediata de una política?</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "¿Cómo funciona la actualización inmediata de una política?";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp56320"> </a><p class="pBody">Cuando un administrador realiza una actualización inmediata de política, Policy Manager se comunica con Deployment Manager a través de RPC para crear un despliegue y realizar la actualización de política. En Deployment Manager, todos los elementos que se requieren para el despliegue (grupos de servidores, claves de acceso a servidores, grupos de tareas, etc.) se crean en la carpeta llamada <b class="cBold">Despliegues de Policy Management</b>. Si ha iniciado sesión en Deployment Manager como administrador de Deployment Manager, encontrará esta carpeta a nivel de raíz. No intente moverla o cambiarle el nombre. Las carpetas dentro de ésta se crean también automáticamente, como los hacen el resto de los objetos dentro de estas carpetas. Para obtener más información sobre Deployment Manager y despliegues, consulte la <em class="cEmphasis">Guía del administrador de Server Management</em>, disponible en el sitio web de soporte al cliente de BMC.</p>
+<a name="wp56296"> </a><p class="pBody">Para obtener la lista de clientes finales máquina (conocida como el grupo de servidores en Deployment Manager), Policy Manager utiliza el servicio de directorios y la base de datos utilizada para el Inventario y así obtener información sobre los clientes finales máquina incluidos en el destino. Scanner Service debe haberse ejecutado en el cliente final al menos una vez antes de realizar una actualización inmediata de política en él.  Policy Manager obtiene información de grupo y del tuner del cliente final (como puede ser el número de puerto) de la base de datos utilizada para el Inventario. Si un cliente final que pertenece al destino está presente en el servicio de directorios pero no en la base de datos del Inventario, no se incluye en la lista de destinos.</p>
+<a name="wp56329"> </a><p class="pBody">Para obtener las credenciales de tuner de los clientes finales máquina (conocidas en Deployment Manager como clave de acceso a servidores ), Policy Manager utiliza el nombre y la contraseña de usuario de tuner especificadas en la página Configuración de Deployment Manager en Configuración del sistema de la consola de BMC CM.</p>
+<a name="wp56199"> </a><p class="pBody">Cuando Deployment Manager crea y ejecuta el despliegue, envía los siguientes comandos a Deployment Service, de forma que Deployment Service puede ejecutarlos en los clientes finales:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp56230"> </a><div class="pSmartList2"><li><b class="cBold">Actualizar y ejecutar Policy Service. </b>Policy Service actualiza la política en el cliente final e inicia cualquier actualización e instalación de aplicaciones o parches. Si una actualización de política inmediata falla, Policy Service no vuelve a intentarlo de forma automática. Será usted quien tendrá que reintentarlo manualmente utilizando Policy Manager. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'update_now-6.htm');" onMouseOver="WWHShowPopup('Policy', 'update_now-6.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Detener y reiniciar las actualizaciones de políticas</a>.</li></div>
+<a name="wp56246"> </a><div class="pSmartList2"><li><b class="cBold">Ejecutar Patch Service.</b> Si se instala y configura BMC Patch Management, Patch Service aplica los parches apropiados (que han sido asignados a través de su política) al cliente final.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp56351"> </a><p class="pBody">Deployment Manager hace un seguimiento del estado de ejecución del comando en el cliente final de destino llevando el control de las entradas log producidas por dichos comandos. Deployment Service envía entradas log a cada cliente final de destino a una URL especificada por Deployment Manager. De forma predeterminada, el puerto de estado (el puerto utilizado para contestar mensajes de estado desde los servidores de destino a Deployment Manager) es el mismo número de puerto que se utiliza para acceder a Deployment Manager. Es decir, de forma predeterminada, el puerto de estado y el puerto de Deployment Manager son el número 8000. Sin embargo, usted puede cambiar el puerto de estado desde Deployment Manager. Para obtener más información, consulte la ayuda en línea de Deployment Management. Puede ver las entradas log desde cada cliente final de destino usando Policy Manager.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

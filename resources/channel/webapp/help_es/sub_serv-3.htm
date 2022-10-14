@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:49" />
+    <title>Configurar la planificación para llevar a cabo las actualizaciones de Policy Service </title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Configurar la planificación para llevar a cabo las actualizaciones de Policy Service ";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp36511"> </a><p class="pBody">Este tema expone cómo se configuran las planificaciones de las actualizaciones para Policy Service. Si no se establece ninguna planificación, se actualizarán por defecto cada 90 días.</p>
+<a name="wp36516"> </a><p class="pBody">Si se ha establecido un periodo de exclusión para el destino, usted puede eximir a Policy Service de este periodo de exclusión. Esta exención resulta útil para anticiparse a situaciones de emergencia en un momento en que usted esté realizando actualizaciones o instalando paquetes durante el periodo de exclusión. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'blackout-3.htm');" onMouseOver="WWHShowPopup('Policy', 'blackout-3.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Establecer el periodo de exclusión para un destino</a>.</p>
+<a name="wp35146"> </a><p class="pBody">Cuando diversos usuarios estén editando la página Planificaciones de Policy Service para el mismo destino, serán las últimas ediciones guardadas las que se aplicarán.</p>
+<hr class="NoteRuleTop"/><a name="wp36253"> </a><p class="pNote"><span style="color: #003366">Nota: </span> Usted puede determinar las configuraciones de nivel de destino como, por ejemplo, la planificación de la actualización para Policy Service, sólo para un destino cada vez. Si tiene habilitado el modo de selección múltiple y está editando las políticas de múltiples destinos a la vez, no podrá establecer una configuración de nivel de destino. Sin embargo, podrá establecer una configuración de nivel de destino para todos los destinos seleccionando el destino<b class="cBold"> Todos los clientes finales</b>.</p><hr class="NoteRuleBottom"/><a name="wp36254"> </a><p class="pBody">Este procedimiento da por hecho que se encuentra en la ficha Paquetes de la página Editar política. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-04.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-04.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Instrucciones generales para la creación y edición de políticas</a>.</p>
+<a name="wp34373"> </a><p style="text-decoration: none" class="pStepIntro">
+Para establecer la planificación de las actualizaciones para Policy Service
+</p>
+
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<a name="wp36282"> </a><div class="pSmartList1"><li>En la página Editar política, haga clic en la ficha <b class="cBold">Planificación de Policy Service</b>.</li></div>
+<a name="wp34383"> </a><div class="pSmartList1"><li>Elija <b class="cBold">UtilizarPolicy Manager para establecer la Policy Service planificación de las actualizaciones</b>.</li></div>
+<a name="wp37185"> </a><p class="pIndented1">
+Si no elige esta opción, no podrá establecer ninguna planificación. Policy Service continúa con la planificación de las actualizaciones predeterminada (cada 90 minutos).
+</p>
+<a name="wp37177"> </a><div class="pSmartList1"><li>En la sección <b class="cBold">Repeticiones</b>, especifique cuántas veces desea realizar las actualizaciones Policy Service:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp34385"> </a><div class="pSmartList2"><li><b class="cBold">Diariamente</b>: Policy Service puede actualizarse cada día, sólo los días laborales (de lunes a viernes), o cada 1-365 días, dependiendo del número que establezca.</li></div>
+<a name="wp34386"> </a><div class="pSmartList2"><li><b class="cBold">Semanalmente</b>: Policy Service puede actualizarse cada 1-52 semanas, dependiendo del número que establezca. Durante la semana para la que se haya planificado la actualización, ésta se llevará a cabo sólo en los días seleccionados. Debe seleccionar por lo menos un día de la semana.</li></div>
+<a name="wp34387"> </a><div class="pSmartList2"><li><b class="cBold">Mensualmente</b>: Policy Service puede actualizarse cada 1-12 meses el día que establezca. Si selecciona el día 30 ó 31 y el mes durante el cual deberá llevarse a cabo la actualización no incluye ese día (por ejemplo, febrero), ésta se llevará a cabo el primer día del mes siguiente.</li></div>
+</ul></div>
+<a name="wp34388"> </a><div class="pSmartList1"><li>En la sección <b class="cBold">Hora de actualización</b>, especifique la hora en que desea actualizar Policy Service:</li></div>
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp34389"> </a><div class="pSmartList2"><li><b class="cBold">Actualizar a las</b>: especifique la hora del día durante la cual deberá llevarse a cabo la actualización.</li></div>
+<a name="wp34390"> </a><div class="pSmartList2"><li><b class="cBold">Actualizar cada</b>: especifique varias horas del día durante las cuales deberá llevarse a cabo la actualización. Podrá establecer que las actualizaciones se lleven a cabo cada determinado número de minutos o de horas durante el día, o restringir las actualizaciones a un intervalo de horas durante el día. Por ejemplo, puede especificar que las actualizaciones se lleven a cabo cada hora entre las 9:00 h y las 17:00 h o cada 30 minutos entre las 17:00 h y las 9:00 h.</li></div>
+</ul></div>
+</ol></div>
+<a name="wp36527"> </a><p class="pBody">Cuando haya terminado de editar la política, visualice los cambios efectuados en Vista previa y guárdela. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-05.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-05.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Visualizar previamente y almacenar cambios en las políticas</a>.</p>
+<hr class="NoteRuleTop"/><a name="wp35568"> </a><p class="pNote"><span style="color: #003366">Nota: </span> Aunque elimine la planificación de las actualizaciones de Policy Service como resultado de haber eliminado la política de un destino, Policy Service, aún así, se actualizará de acuerdo con la planificación establecida previamente. La planificación de actualización predeterminada de Policy Service no se restaurará.  Policy Service continuará utilizando la planificación establecida previamente hasta que se establezca una nueva Policy Service.</p><hr class="NoteRuleBottom"/><a name="wp32754"> </a><p class="pBody"></p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

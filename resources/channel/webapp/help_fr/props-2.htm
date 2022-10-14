@@ -1,0 +1,783 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Feb-25-2006 v6.m)" />
+    <meta name="LASTUPDATED" content="11/09/06 17:57:35" />
+    <title>Présentation des policies de tuner et de package</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Présentation des policies de tuner et de package";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp835089"> </a><p class="pBody">Lorsque vous créez ou modifiez une policy à l&#39;aide du Policy Manager, vous avez la possibilité d&#39;indiquer les propriétés de tuner et de package d&#39;une cible. Les propriétés de tuner et de package vous permettent de contrôler le comportement de la cible ou des packages sur les machines cibles, comme par exemple le nombre de nouvelles tentatives en cas d&#39;échec de téléchargement ainsi que leur fréquence ou bien le comportement de redémarrage d&#39;un package particulier.</p>
+<a name="wp835091"> </a><p class="pBody">Cette section comprend les rubriques suivantes :</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp835097"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp835121');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp835121', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Définition d&#39;une propriété de tuner</a></li></div>
+<a name="wp835103"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp835153');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp835153', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Quelles propriétés de tuner paramétrez-vous habituellement avec Policy Manager&#160;?</a></li></div>
+<a name="wp835109"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp835196');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp835196', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Définition d&#39;une propriété de package</a></li></div>
+<a name="wp835115"> </a><div class="pSmartList2"><li><a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp835220');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp835220', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Propriétés qui régissent le redémarrage des packages (Windows uniquement)</a></li></div>
+</ul></div>
+</ul></div>
+<a name="wp835121"> </a><h4 style="margin-top: 14pt" class="pHeading3">
+Définition d&#39;une propriété de tuner
+</h4>
+<a name="wp835127"> </a><p class="pBody">Les propriétés de tuner configurent les nombreuses caractéristiques et paramètres d&#39;un tuner, y compris l&#39;adresse URL de ses channels primaires et l&#39;adresse URL des mises à jour du tuner, ainsi que les détails relatifs aux licences et au proxy. Vous pouvez utiliser Policy Manager pour ajouter, modifier et supprimer les propriétés de tuner du tuner cible (dans le fichier <b class="cBold">prefs.txt</b>).</p>
+<a name="wp835137"> </a><p class="pBody">Pour les listes des propriétés de tuner que vous pouvez généralement définir à l&#39;aide du Policy Manager, reportez-vous à la rubrique <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp835153');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp835153', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Quelles propriétés de tuner paramétrez-vous habituellement avec Policy Manager&#160;?</a>. Pour obtenir la liste des propriétés de tuner, reportez-vous au chapitre sur les propriétés de tuner dans le <em class="cEmphasis">Guide de référence de BMC Configuration Management</em>, disponible sur le site Web de l&#39;assistance à la clientèle BMC.</p>
+<a name="wp835143"> </a><p class="pBody">Pour obtenir des instructions concernant le paramétrage des propriétés de tuner, reportez-vous à la section <a href="javascript:WWHClickedPopup('sm', 'props-3.htm');" onMouseOver="WWHShowPopup('sm', 'props-3.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Paramétrage des propriétés de tuner</a>.</p>
+<a name="wp835153"> </a><h4 style="margin-top: 14pt" class="pHeading3">
+Quelles propriétés de tuner paramétrez-vous habituellement avec Policy Manager&#160;?
+</h4>
+<a name="wp835163"> </a><p class="pBody">Si Policy Service est installé, certaines propriétés supplémentaires de tuner sont disponibles. À l&#39;aide de l&#39;une des méthodes suivantes, vous pouvez paramétrer les propriétés de tuner suivantes pour modifier l&#39;interaction du tuner avec Policy Service :</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp835165"> </a><div class="pSmartList2"><li>Si un programme d&#39;installation de tuner est créé durant la configuration et le déploiement</li></div>
+<a name="wp835167"> </a><div class="pSmartList2"><li>À l&#39;aide d&#39;une mise à jour du profil</li></div>
+<a name="wp835169"> </a><div class="pSmartList2"><li>À l&#39;aide du Tuner Administrator</li></div>
+<a name="wp835175"> </a><div class="pSmartList2"><li>À l&#39;aide du Policy Manager.</li></div>
+</ul></div>
+</ul></div>
+<a name="wp835185"> </a><p class="pBody">Les neuf premières propriétés apparaissant dans le <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp833728');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp833728', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Tableau&#160;4-7</a> sont celles qui s&#39;affichent dans la liste de la page Propriétés de tuner et de package de Policy Manager. Elles sont indiquées dans le même ordre que celui de leur affichage sur la page. Les propriétés du tableau restantes doivent être entrées avec leur nom de propriété complet. Elles apparaissent par ordre alphabétique.</p>
+<a name="wp835188"> </a><p class="pBodyRelative"></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp833728table38466">
+  <caption><a name="wp833728"> </a><p class="pBody">Tableau&#160;4-7:&#160;&#160;<span style="font-style: normal; font-weight: normal; text-decoration: none; vertical-align: baseline">Propriétés de tuner fréquemment utilisées&#160;</span></p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp833736"> </a><div class="pCellHeading">
+Nom de propriété
+</div>
+</th>
+    <th><a name="wp833738"> </a><div class="pCellHeading">
+Valeurs possibles
+</div>
+</th>
+    <th><a name="wp833740"> </a><div class="pCellHeading">
+Description
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp833748"> </a><div class="pCellBody">
+<b class="cBold">Pas de suppression</b>
+</div>
+<a name="wp833750"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp833754"> </a><div class="pCellBody">
+marimba.subscription.nodelete
+</div>
+<a name="wp833756"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+    <td><a name="wp833758"> </a><div class="pCellBody">
+ true ou false
+</div>
+<a name="wp833760"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp833762"> </a><div class="pCellBody">
+Valeur par défaut : false
+</div>
+</td>
+    <td><a name="wp833768"> </a><div class="pCellBody">
+Par défaut, les packages sont supprimés lorsqu&#39;un utilisateur ou une machine est supprimé(e) d&#39;un groupe du service d&#39;annuaire sous-jacent. Si vous affectez à cette propriété la valeur true, les packages ne sont pas supprimés, même si vous supprimez les packages des cibles à l&#39;aide de la page Détails de la cible. Ils restent sur les cibles et ne sont plus gérés à l&#39;aide de Policy Manager. Vous devez utiliser l&#39;état de désinstallation pour supprimer les packages des cibles.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp833776"> </a><div class="pCellBody">
+<b class="cBold">Redémarrage</b>
+</div>
+<a name="wp833778"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp833784"> </a><div class="pCellBody">
+marimba.subscription.reboot
+</div>
+</td>
+    <td><a name="wp833786"> </a><div class="pCellBody">
+true ou false
+</div>
+<a name="wp833788"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp833790"> </a><div class="pCellBody">
+Valeur par défaut : false
+</div>
+</td>
+    <td><a name="wp833796"> </a><div class="pCellBody">
+Lorsqu&#39;elle porte la valeur true, Policy Service détermine si un redémarrage est requis après l&#39;application de la policy et le redémarrage de la machine, au besoin.
+</div>
+<a name="wp833802"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp833810"> </a><div class="pCellBody">
+<b class="cBold">Autoriser l&#39;annulation</b>
+</div>
+<a name="wp833812"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp833816"> </a><div class="pCellBody">
+marimba.subscription.reboot.allowcancel
+</div>
+</td>
+    <td><a name="wp833818"> </a><div class="pCellBody">
+true ou false
+</div>
+<a name="wp833820"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp833822"> </a><div class="pCellBody">
+Valeur par défaut : true
+</div>
+</td>
+    <td><a name="wp833828"> </a><div class="pCellBody">
+La boîte de dialogue de redémarrage de Policy Service contient par défaut un bouton Annuler et un bouton Redémarrer maintenant. Si cette propriété porte la valeur false, le bouton Annuler n&#39;est pas affiché.
+</div>
+<a name="wp833834"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp833842"> </a><div class="pCellBody">
+<b class="cBold">Heure du redémarrage</b>
+</div>
+<a name="wp833844"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp833850"> </a><div class="pCellBody">
+marimba.subscription.reboot.time
+</div>
+</td>
+    <td><a name="wp833852"> </a><div class="pCellBody">
+nombre entier
+</div>
+<a name="wp833854"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp833856"> </a><div class="pCellBody">
+Valeur par défaut : 300
+</div>
+<a name="wp833858"> </a><div class="pCellBody">
+(300 secondes soit 5 minutes)
+</div>
+</td>
+    <td><a name="wp833864"> </a><div class="pCellBody">
+Cette propriété définit la durée d&#39;attente, exprimée en secondes, avant le redémarrage du système par Policy Service après l&#39;application d&#39;une policy.
+</div>
+<a name="wp833866"> </a><div class="pCellBody">
+Le redémarrage commence une fois l&#39;installation du dernier package de la policy terminée.
+</div>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp833868"> </a><div class="pSmartList1"><li>Si vous spécifiez un nombre entier négatif (comme par exemple -1), il n&#39;y a pas de compte à rebours pour le redémarrage du système. Un message demande aux utilisateurs des machines cibles s&#39;ils souhaitent poursuivre le redémarrage. (Les utilisateurs peuvent répondre en utilisant les boutons OK et Annuler.)</li></div>
+<a name="wp833870"> </a><div class="pSmartList1"><li>Si vous spécifiez 0 (zéro), les utilisateurs des machines cibles voient la boîte de dialogue clignoter (elle apparaît puis disparaît rapidement), et le redémarrage commence immédiatement.</li></div>
+<a name="wp833872"> </a><div class="pSmartList1"><li>Si vous spécifiez une valeur incorrecte ou que vous n&#39;indiquez aucune valeur, la valeur par défaut (300 secondes) est utilisée.</li></div>
+</ul></div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp833880"> </a><div class="pCellBody">
+<b class="cBold">Heure de la nouvelle tentative</b>
+</div>
+<a name="wp833882"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp833888"> </a><div class="pCellBody">
+marimba.subscription.retrytime
+</div>
+</td>
+    <td><a name="wp833890"> </a><div class="pCellBody">
+nombre entier
+</div>
+<a name="wp833892"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp833894"> </a><div class="pCellBody">
+Valeur par défaut : 60
+</div>
+<a name="wp833896"> </a><div class="pCellBody">
+(60 secondes ou 1 minute)
+</div>
+</td>
+    <td><a name="wp833908"> </a><div class="pCellBody">
+Cette propriété définit la durée d&#39;attente, exprimée en secondes, avant que Policy Service ne fasse une tentative d&#39;abonnement des packages en échec.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp833916"> </a><div class="pCellBody">
+<b class="cBold">Décompte des nouvelles tentatives</b>
+</div>
+<a name="wp833918"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp833924"> </a><div class="pCellBody">
+marimba.subscription.retrycount
+</div>
+</td>
+    <td><a name="wp833926"> </a><div class="pCellBody">
+nombre entier
+</div>
+<a name="wp833928"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp833930"> </a><div class="pCellBody">
+Valeur par défaut : 5
+</div>
+</td>
+    <td><a name="wp833942"> </a><div class="pCellBody">
+Cette propriété définit le nombre de tentatives d&#39;abonnement des packages en échec avant que Policy Service ne cesse ses essais.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp833950"> </a><div class="pCellBody">
+<b class="cBold">Raccourcis</b>
+</div>
+<a name="wp833952"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp833956"> </a><div class="pCellBody">
+marimba.subscription.useshortcuts
+</div>
+</td>
+    <td><a name="wp833958"> </a><div class="pCellBody">
+true ou false
+</div>
+<a name="wp833960"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp833962"> </a><div class="pCellBody">
+Valeur par défaut : false
+</div>
+</td>
+    <td><a name="wp833964"> </a><div class="pCellBody">
+Lorsque cette propriété porte la valeur true, les packages annoncés sont représentés sous la forme de raccourcis de bureau (plates-formes Windows uniquement).
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp833972"> </a><div class="pCellBody">
+<b class="cBold">Mode Installer</b>
+</div>
+<a name="wp833974"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp833978"> </a><div class="pCellBody">
+marimba.subscription.installmode
+</div>
+</td>
+    <td><a name="wp833980"> </a><div class="pCellBody">
+silent ou aspackaged
+</div>
+<a name="wp833982"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp833984"> </a><div class="pCellBody">
+Valeur par défaut : silent
+</div>
+</td>
+    <td><a name="wp833990"> </a><div class="pCellBody">
+Cette propriété définit le mode utilisé par Policy Service pour l&#39;installation ou la suppression de channels. Vous pouvez le paramétrer sur les valeurs suivantes :
+</div>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp833996"> </a><div class="pSmartList1"><li><b class="cBold">silent</b> — Policy Service installe tous les packages sur le tuner cible en mode silencieux. Il s&#39;agit de la valeur par défaut.</li></div>
+<a name="wp834002"> </a><div class="pSmartList1"><li><b class="cBold">aspackaged</b> — Policy Service utilise le mode d&#39;installation spécifié dans le package.</li></div>
+</ul></div>
+<a name="wp834012"> </a><div class="pCellBody">
+Si vous souhaitez obtenir une installation complètement silencieuse, vous pouvez définir les propriétés de tuner suivantes pour empêcher l&#39;affichage sur les machines cibles des barres de progression ou des messages d&#39;erreur : <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp834254');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp834254', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">marimba.tuner.display.noprogress</a> et <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp834234');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp834234', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">marimba.tuner.display.noerrors</a>.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp834020"> </a><div class="pCellBody">
+<b class="cBold">Appliquer de nouveau la configuration en cas d&#39;échec</b>
+</div>
+<a name="wp834022"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp834026"> </a><div class="pCellBody">
+marimba.subscription.reapplyconfigonfail
+</div>
+</td>
+    <td><a name="wp834028"> </a><div class="pCellBody">
+true ou false
+</div>
+<a name="wp834030"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp834032"> </a><div class="pCellBody">
+Valeur par défaut : true
+</div>
+</td>
+    <td><a name="wp834038"> </a><div class="pCellBody">
+Cette propriété détermine s&#39;il est nécessaire d&#39;appliquer de nouveau la policy mise en cache si Policy Service ne peut pas communiquer avec le plugin pour obtenir une policy mise à jour.
+</div>
+<a name="wp834048"> </a><div class="pCellBody">
+Lorsqu&#39;elle porte la valeur true, Policy Service applique de nouveau la règle mise en cache (dernier téléchargement) si elle ne peut pas communiquer avec le plugin pour obtenir une règle mise à jour. Lorsqu&#39;elle porte la valeur false, Policy Service ne tente pas d&#39;appliquer de nouveau la règle mise en cache.
+</div>
+<a name="wp834050"> </a><div class="pCellBody">
+Ajoutée dans la version 6.0.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp834060"> </a><div class="pCellBody">
+marimba.subscription.adminusers
+</div>
+</td>
+    <td><a name="wp834062"> </a><div class="pCellBody">
+&lt;<em class="cEmphasis">utilisateur1</em>&gt;,<br />&lt;<em class="cEmphasis">utilisateur2</em>&gt;,...
+</div>
+<a name="wp834064"> </a><div class="pCellBody">
+désigne une liste d&#39;administrateurs séparés par des virgules. Cette liste d&#39;administrateurs peut contenir le nom de tout utilisateur autorisé à se connecter aux machines cibles.
+</div>
+<a name="wp834066"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp834068"> </a><div class="pCellBody">
+Valeur par défaut : aucune
+</div>
+</td>
+    <td><a name="wp834074"> </a><div class="pCellBody">
+Si la machine cible de l&#39;utilisateur est équipée du Policy Service 5.0.1 ou une version supérieure, vous pouvez paramétrer cette propriété du tuner afin de spécifier les administrateurs autorisés à se connecter temporairement aux machines d&#39;un utilisateur lorsqu&#39;ils utilisent un ciblage par utilisateur (pour des raisons de dépannage notamment). Cette propriété empêche la suppression des channels de l&#39;utilisateur lorsque vous vous connectez en tant qu&#39;administrateur.
+</div>
+<a name="wp834076"> </a><div class="pCellBody">
+Lorsque l&#39;administrateur se connecte :
+</div>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp834078"> </a><div class="pSmartList1"><li>Les channels d&#39;un autre utilisateur ne sont pas supprimés.</li></div>
+<a name="wp834080"> </a><div class="pSmartList1"><li>Si certains channels ont été attribués à un administrateur, ils sont alors fournis à la machine cible.</li></div>
+<a name="wp834086"> </a><div class="pSmartList1"><li>Les propriétés définies pour l&#39;administrateur sont configurées. Les propriétés définies pour les utilisateurs sont parfois remplacées par celles définies pour l&#39;administrateur. Toutefois, lorsque les utilisateurs se reconnectent et que Policy Service est mis à jour, ils récupèrent leurs propriétés.</li></div>
+</ul></div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp834096"> </a><div class="pCellBody">
+marimba.subscription.autostart
+</div>
+</td>
+    <td><a name="wp834098"> </a><div class="pCellBody">
+&lt;<em class="cEmphasis">nom_<br />channel</em>&gt;, “&lt;<em class="cEmphasis">argument1</em>&gt;, &lt;<em class="cEmphasis">argument2</em>&gt;, &lt;<em class="cEmphasis">argument3</em>&gt;“,true ou false
+</div>
+<a name="wp834100"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp834102"> </a><div class="pCellBody">
+Valeur par défaut : aucune valeur
+</div>
+</td>
+    <td><a name="wp834108"> </a><div class="pCellBody">
+Vous permet de démarrer le channel spécifié une fois Policy Service exécuté. 
+</div>
+<div class="pSmartList1"><ul class="pSmartList1">
+<a name="wp834110"> </a><div class="pSmartList1"><li>&lt;<em class="cEmphasis">nom_channel</em>&gt; définit le nom du channel que vous voulez démarrer. Il est obligatoire.</li></div>
+<a name="wp834112"> </a><div class="pSmartList1"><li>« &lt;<em class="cEmphasis">argument1</em>&gt;,&lt;<em class="cEmphasis">argument2</em>&gt;,&lt;<em class="cEmphasis">argument3</em>&gt;&#160;» <br />sont les arguments que vous voulez transmettre au channel. Ils sont facultatifs.</li></div>
+<a name="wp834114"> </a><div class="pSmartList1"><li>true ou false indique s’il faut mettre à jour le channel avant de le démarrer. Ce dernier argument est facultatif.</li></div>
+</ul></div>
+<a name="wp834116"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp834118"> </a><div class="pCellBody">
+Exemple :
+</div>
+<a name="wp834122"> </a><div class="pCellBody">
+<b class="cBold">marimba.subscription.autostart=ChannelManager,”arg1,arg2,arg3”,true</b>
+</div>
+<a name="wp834124"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp834130"> </a><div class="pCellBody">
+<b class="cBold">Remarque&#160;:</b> soyez vigilant lors de l&#39;utilisation de cette propriété avec les channels BMC CM. Certains channels peuvent être configurés pour démarrer Policy Service et provoquer une récurrence.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp834140"> </a><div class="pCellBody">
+marimba.subscription.machinename
+</div>
+</td>
+    <td><a name="wp834142"> </a><div class="pCellBody">
+chaîne représentant le nom de la machine
+</div>
+<a name="wp834144"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp834146"> </a><div class="pCellBody">
+Valeur par défaut : aucune valeur
+</div>
+</td>
+    <td><a name="wp834152"> </a><div class="pCellBody">
+Vous permet de remplacer le nom de machine renvoyé par Policy Service. Le nom entré ici doit correspondre au nom utilisé dans le fichier plat de la machine. Par défaut, cette propriété ne porte aucune valeur et le nom de machine est simplement le hostname DNS, sans informations de domaine.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp834162"> </a><div class="pCellBody">
+marimba.subscription.retryintervalsec
+</div>
+</td>
+    <td><a name="wp834164"> </a><div class="pCellBody">
+nombre entier
+</div>
+<a name="wp834166"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp834168"> </a><div class="pCellBody">
+Valeur par défaut : 30
+</div>
+<a name="wp834170"> </a><div class="pCellBody">
+(30 secondes)
+</div>
+</td>
+    <td><a name="wp834176"> </a><div class="pCellBody">
+Cette propriété définit l&#39;intervalle d&#39;attente, en secondes, avant une nouvelle tentative de connexion au LDAP. Cette propriété de tuner est à définir sur le tuner qui héberge le transmitter sur lequel vous avez publié le plugin Policy Service.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp834188"> </a><div class="pCellBody">
+marimba.subscription.timeout
+</div>
+</td>
+    <td><a name="wp834190"> </a><div class="pCellBody">
+nombre entier
+</div>
+<a name="wp834192"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp834194"> </a><div class="pCellBody">
+Valeur par défaut : 3 600
+</div>
+<a name="wp834196"> </a><div class="pCellBody">
+(3 600 secondes ou 1 heure)
+</div>
+</td>
+    <td><a name="wp834202"> </a><div class="pCellBody">
+Cette propriété définit la période maximale (exprimée en secondes) pendant laquelle Policy Service doit attendre la fin d&#39;une opération (comme par exemple l&#39;envoi d&#39;une notification de date par un package) avant de continuer.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp834212"> </a><div class="pCellBody">
+marimba.subscription.varytime
+</div>
+</td>
+    <td><a name="wp834214"> </a><div class="pCellBody">
+nombre entier
+</div>
+<a name="wp834216"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp834218"> </a><div class="pCellBody">
+Valeur par défaut : 10
+</div>
+<a name="wp834220"> </a><div class="pCellBody">
+(10 minutes)
+</div>
+</td>
+    <td><a name="wp834222"> </a><div class="pCellBody">
+Cette propriété permet de définir la durée maximale en minutes pendant laquelle des événements planifiés (comme par exemple le téléchargement ou la mise à jour d&#39;un package) peuvent être reportés. Cela permet d&#39;améliorer les performances des transmitters via le dispersement des requêtes des machines cibles pendant les périodes de trafic dense. Par exemple, si cette propriété porte la valeur 10 minutes et qu&#39;un événement est planifié à 10h00 du matin, l&#39;événement peut avoir lieu à tout moment entre 10h00 et 10h10.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp834234"> </a><div class="pCellBody">
+marimba.tuner.display.noerrors
+</div>
+</td>
+    <td><a name="wp834236"> </a><div class="pCellBody">
+true ou false
+</div>
+<a name="wp834238"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp834240"> </a><div class="pCellBody">
+Valeur par défaut : false
+</div>
+</td>
+    <td><a name="wp834242"> </a><div class="pCellBody">
+Cette propriété indique si le tuner doit afficher des messages d&#39;erreur et d&#39;avertissement. Pour masquer l&#39;affichage des messages d&#39;erreur et d&#39;avertissement, affectez à cette propriété la valeur true. Les messages d&#39;erreur et d&#39;avertissement sont alors imprimés sur une console système. Notez que cette propriété ne s&#39;applique pas si vous utilisez le tuner sans affichage.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp834254"> </a><div class="pCellBody">
+marimba.tuner.display.noprogress
+</div>
+</td>
+    <td><a name="wp834256"> </a><div class="pCellBody">
+true ou false
+</div>
+<a name="wp834258"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp834260"> </a><div class="pCellBody">
+Valeur par défaut : false
+</div>
+</td>
+    <td><a name="wp834262"> </a><div class="pCellBody">
+Cette propriété indique si le tuner affiche une barre de progression lors d&#39;un abonnement ou d&#39;une mise à jour des channels. Pour masquer les barres de progression, affectez à cette propriété la valeur true. Notez que cette propriété ne s&#39;applique pas si vous utilisez le tuner sans affichage.
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBodyRelative">
+</p>
+
+<a name="wp835190"> </a><p class="pBody">Pour obtenir des informations détaillées sur les propriétés de tuner disponibles, reportez-vous au chapitre sur les propriétés de tuner dans le <em class="cEmphasis">Guide de référence de BMC CM</em>, disponible sur le site Web de l&#39;assistance à la clientèle BMC.</p>
+<a name="wp835196"> </a><h4 style="margin-top: 14pt" class="pHeading3">
+Définition d&#39;une propriété de package
+</h4>
+<a name="wp835200"> </a><p class="pBody">Les <em class="cEmphasis">propriétés de package</em> fournissent des informations sur le package et la façon dont il doit s&#39;exécuter. Elles sont aussi appelées <em class="cEmphasis">propriétés de channels</em>. Ces informations sont généralement employées par le tuner cible. Les packages, habituellement des applications mises en package dans des channels (à l&#39;aide de Application Packager), ont des propriétés supplémentaires qui sont appelées les paramètres de channel. Les <em class="cEmphasis">Paramètres de channel</em> fournissent les informations et les paramètres utilisés lors de l&#39;installation et de l&#39;exécution des packages.</p>
+<a name="wp835202"> </a><p class="pBody">Les propriétés et les paramètres de package sont stockés respectivement dans les fichiers <b class="cBold">properties.txt</b> et <b class="cBold">parameters.txt</b>. Ces fichiers sont généralement créés (dans le répertoire du channel) en même temps que le channel ou le package. Vous pouvez modifier ces fichiers manuellement ou utiliser Channel Copier ou Publisher.</p>
+<a name="wp835204"> </a><p class="pBody">Pour obtenir la liste des propriétés de package et des paramètres de channel, reportez-vous aux chapitres sur les propriétés et paramètres de channel dans le <em class="cEmphasis">Guide de référence de BMC Configuration Management</em>, disponible sur le site Web de l&#39;assistance à la clientèle BMC<b class="cBold">.</b></p>
+<a name="wp835206"> </a><p class="pBody">Les propriétés et paramètres de package s&#39;affichent généralement dans le format suivant :</p>
+<a name="wp835208"> </a><p class="pBody">&lt;<em class="cEmphasis">nom_propriété</em>&gt;=&lt;<em class="cEmphasis">valeur_propriété</em>&gt; </p>
+<a name="wp835214"> </a><p class="pBody">Pour obtenir des instructions concernant le paramétrage des propriétés de package, reportez-vous à la section <a href="javascript:WWHClickedPopup('sm', 'props-4.htm');" onMouseOver="WWHShowPopup('sm', 'props-4.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Paramétrage des propriétés de package</a>.</p>
+<a name="wp835220"> </a><h4 style="margin-top: 14pt" class="pHeading3">
+Propriétés qui régissent le redémarrage des packages (Windows uniquement)
+</h4>
+<a name="wp835224"> </a><p class="pBody">Lors de l&#39;installation des packages créés à l&#39;aide de l&#39;Application Packager, certains fichiers ne peuvent pas être inscrits du fait qu&#39;ils ont été verrouillés par le système d&#39;exploitation. La plupart des incidents de fichiers verrouillés sont dus à un fichier ouvert ou à un DLL actuellement chargé. Dans de tels cas, le nouveau fichier est enregistré sur le disque sous un nom temporaire et désigné comme devant être renommé avec le nom et l&#39;emplacement correspondants lors du redémarrage du système.</p>
+<a name="wp835234"> </a><p class="pBody">Policy Service peut installer plusieurs packages lors d&#39;une seule mise à jour de policy. Si plusieurs packages ont été installés en une session, Policy Service reporte le redémarrage du système jusqu&#39;à la mise à jour et l&#39;installation complètes de tous les packages. En fonction de l&#39;état d&#39;avancement de l&#39;installation, le redémarrage peut s&#39;effectuer même en cas d&#39;échec de l&#39;installation. </p>
+<a name="wp835256"> </a><p class="pBody">Du côté du Policy Service, le comportement de redémarrage est contrôlé par les propriétés de tuner <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp833784');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp833784', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">marimba.subscription.reboot</a> et <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp833850');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp833850', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">marimba.subscription.reboot.time</a>. Le Policy Service ne vérifie le redémarrage que si la propriété <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp833784');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp833784', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">marimba.subscription.reboot</a> est définie sur <b class="cBold">true</b>, quels que soient les paramètres de chaque package.</p>
+<a name="wp835270"> </a><p class="pBody">Policy Service peut prendre en compte les propriétés de redémarrage de chaque package créé par Application Packager. Ces propriétés de packages sont décrites dans le <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp834424');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp834424', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Tableau&#160;4-8</a>. Deux de ces propriétés, <b class="cBold">reboot.allow</b> et <b class="cBold">reboot.force</b> définissent le comportement de redémarrage, comme présenté dans le <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp834524');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp834524', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Tableau&#160;4-9</a>. Les deux autres propriétés de package, <b class="cBold">reboot.showdialog</b> et <b class="cBold">reboot.allowcancel</b>, permettent de contrôler la boîte de dialogue qui est affichée lorsqu&#39;un redémarrage est requis.</p>
+<a name="wp835273"> </a><p class="pBodyRelative"></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp834424table39799">
+  <caption><a name="wp834424"> </a><p class="pBody">Tableau&#160;4-8:&#160;&#160;Propriétés de redémarrage de package&#160;</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp834432"> </a><div class="pCellHeading">
+Nom de propriété
+</div>
+</th>
+    <th><a name="wp834434"> </a><div class="pCellHeading">
+Valeurs possibles
+</div>
+</th>
+    <th><a name="wp834436"> </a><div class="pCellHeading">
+Description
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp834446"> </a><div class="pCellBody">
+reboot.allow
+</div>
+</td>
+    <td><a name="wp834448"> </a><div class="pCellBody">
+true ou false
+</div>
+<a name="wp834450"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp834452"> </a><div class="pCellBody">
+Valeur par défaut : true
+</div>
+</td>
+    <td><a name="wp834454"> </a><div class="pCellBody">
+Ce paramètre indique que le channel peut redémarrer la machine si nécessaire. Par défaut, il est défini sur true. Définissez ce paramètre sur false si ce comportement n’est pas requis.
+</div>
+<a name="wp834456"> </a><div class="pCellBody">
+<b class="cBold">Remarque&#160;:</b> les channels ne forcent <em class="cEmphasis">pas</em> les machines à redémarrer automatiquement en mode silencieux, sauf si le paramètre reboot.force est défini sur true.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp834466"> </a><div class="pCellBody">
+reboot.allowcancel
+</div>
+</td>
+    <td><a name="wp834468"> </a><div class="pCellBody">
+true ou false
+</div>
+<a name="wp834470"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp834472"> </a><div class="pCellBody">
+Valeur par défaut : true
+</div>
+</td>
+    <td><a name="wp834474"> </a><div class="pCellBody">
+Si vous définissez ce paramètre sur true et qu’un redémarrage est requis au niveau de la machine cible, une option permettant à l’utilisateur d’annuler le redémarrage apparaît dans la boîte de dialogue de redémarrage (en mode IU complet ou semi-silencieux). Si le programme d’installation est en mode IU silencieux, alors aucun redémarrage n&#39;est effectué, même si un redémarrage est nécessaire.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp834484"> </a><div class="pCellBody">
+reboot.force
+</div>
+</td>
+    <td><a name="wp834486"> </a><div class="pCellBody">
+true ou false
+</div>
+<a name="wp834488"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp834490"> </a><div class="pCellBody">
+Valeur par défaut : false
+</div>
+</td>
+    <td><a name="wp834494"> </a><div class="pCellBody">
+Si vous le définissez sur true, ce paramètre force la machine à redémarrer à la fin de l&#39;installation. Par défaut, il est défini sur false. Ce paramètre doit être utilisé avec précaution, car il risque d’entraîner des interactions indésirables avec l’utilisateur. 
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp834504"> </a><div class="pCellBody">
+reboot.showdialog
+</div>
+</td>
+    <td><a name="wp834506"> </a><div class="pCellBody">
+Valeurs valides : true ou false
+</div>
+<a name="wp834508"> </a><div class="pCellBody">
+&#160;
+</div>
+<a name="wp834510"> </a><div class="pCellBody">
+Valeur par défaut : true
+</div>
+<a name="wp834512"> </a><div class="pCellBody">
+&#160;
+</div>
+</td>
+    <td><a name="wp834514"> </a><div class="pCellBody">
+Ce paramètre indique qu’en mode interactif (mode autre que silencieux ou semi-silencieux), le channel doit afficher la boîte de dialogue de redémarrage, au besoin. Par défaut, il est défini sur true. Définissez ce paramètre sur false pour modifier ce comportement.
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBodyRelative">
+</p>
+
+<a name="wp835279"> </a><p class="pBody">Dans la mesure où la propriété de tuner <b class="cBold">marimba.subscription.reboot</b> est définie sur <b class="cBold">true</b>, le <a href="javascript:WWHClickedPopup('sm', 'props-2.htm#wp834524');" onMouseOver="WWHShowPopup('sm', 'props-2.htm#wp834524', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Tableau&#160;4-9</a> présente un résumé de la façon dont le comportement de redémarrage est défini par les propriétés de package <b class="cBold">reboot.allow</b> et <b class="cBold">reboot.force</b>.</p>
+<a name="wp835282"> </a><p class="pBodyRelative"></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp834524table40242">
+  <caption><a name="wp834524"> </a><p class="pBody">Tableau&#160;4-9:&#160;&#160;Effet de reboot.allow et de reboot.force sur le redémarrage du système</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp834534"> </a><div class="pCellHeading">
+reboot.allow
+</div>
+</th>
+    <th><a name="wp834538"> </a><div class="pCellHeading">
+reboot.force
+</div>
+</th>
+    <th><a name="wp834540"> </a><div class="pCellHeading">
+Redémarrage du système&#160;?
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp834548"> </a><div class="pCellBody">
+true
+</div>
+</td>
+    <td><a name="wp834550"> </a><div class="pCellBody">
+true
+</div>
+</td>
+    <td><a name="wp834556"> </a><div class="pCellBody">
+Oui. Le Policy Service redémarre le système, que le redémarrage soit requis ou non.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp834564"> </a><div class="pCellBody">
+true
+</div>
+</td>
+    <td><a name="wp834566"> </a><div class="pCellBody">
+false
+</div>
+</td>
+    <td><a name="wp834572"> </a><div class="pCellBody">
+Oui, au besoin. Le Policy Service vérifie si un redémarrage est nécessaire et redémarre le système au besoin.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp834580"> </a><div class="pCellBody">
+false
+</div>
+</td>
+    <td><a name="wp834582"> </a><div class="pCellBody">
+true
+</div>
+</td>
+    <td><a name="wp834584"> </a><div class="pCellBody">
+Non
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp834592"> </a><div class="pCellBody">
+false
+</div>
+</td>
+    <td><a name="wp834594"> </a><div class="pCellBody">
+false
+</div>
+</td>
+    <td><a name="wp834596"> </a><div class="pCellBody">
+Non
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBodyRelative">
+</p>
+
+<a name="wp835296"> </a><p class="pBody">Si les propriétés <b class="cBold">reboot.allow</b> et <b class="cBold">reboot.force</b> sont toutes les deux définies sur true pour tous les packages installés par Policy Service, ce dernier redémarre le système que cela soit requis ou non. Si l&#39;ensemble des packages installés par Policy Service ont leur propriété <b class="cBold">reboot.force</b> définie sur false mais qu&#39;au moins un package a sa propriété <b class="cBold">reboot.allow</b> définie sur true, Policy Service vérifie si un redémarrage est nécessaire et redémarre le système au besoin.</p>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Tous droits réservés.<br/>
+
+Pour obtenir d'autres documents relatifs à BMC Configuration Management,
+visitez le site Web de l'assistance à la clientèle <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">http://www.bmc.com/support_home</a></span>.
+Si vous avez des questions ou des commentaires sur
+la documentation BMC CM, envoyez un message électronique à l'adresse <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Si vous avez des questions ou des problèmes quelconques à signaler concernant les produits, envoyez un message électronique au service d'assistance à la clientèle à l'adresse <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

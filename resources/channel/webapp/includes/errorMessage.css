@@ -1,0 +1,58 @@
+.errorMessage {
+    margin: 0;
+    font-size: 12px;
+}
+
+.errorMessage p {
+    padding: 2px;
+    font-size: 11px;
+    margin: 0;
+    background-color: #ffffff;
+}
+
+.errorMessage h6 {
+    font-size: 11px;
+    font-weight: bold;
+    text-align: left;
+    padding: 4px 0 4px 5px;
+    margin: 0;
+    color: #ffffff;
+}
+
+.errorMessage div {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.errorMessage td {
+    font-size: 11px;
+}
+
+.errorMessage ul {
+    font-size: 11px;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.errorMessage li {
+    font-size: 11px;
+    text-align: left;
+    padding-left: 5px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+#critical.errorMessage {
+    border: 1px solid #9e0000;
+}
+
+#critical.errorMessage h6 {
+    background-color: #9e0000;
+}
+
+#messages .errorMessage {
+    margin: 0 50px;
+}

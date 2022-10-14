@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tabs PUBLIC "-//Marimba, Inc.//DTD Tabs 1.0//EN" "http://www.marimba.com/xml/cms/dtds/tabs.dtd">
+
+<tabs>
+    <tabset name="main">
+        <tab key="pctgtview" href="/compTgtView.do" roles="access-dashboard"/>
+        <tab key="tgtview" href="/initTargetView.do" roles="access-assignments"/>
+
+        <tab key="reports" href="/reports.do" roles="access-dashboard"/>
+        <tab key="updates" href="/updates.do" roles="access-updates"/>
+        <tab key="cfgview" href="/config.do" roles="access-settings"/>
+    </tabset>
+
+    <tabset name="compTgtView">
+    	<tab key="confgAssmentGroupCompliance" href="/spm/overView.do?view=overview" roles="access-general">
+	        <subtab key="compOverview" href="/spm/overView.do?view=overview" roles="access-general"/>
+	        <subtab key="compSecurityProfile" href="/spm/securityTgtView.do?view=target" roles="access-general"/>
+	        <subtab key="comMachine" href="/spm/securityCompOverall.do?view=overall" roles="access-general"/>
+        </tab>
+        <tab key="vulnerAssmentGroupCompliance" href="/spm/vulnerOverallCompliance.do?view=overview" roles="access-general">
+	        <subtab key="compOverview" href="/spm/vulnerOverallCompliance.do?view=overview" roles="access-general"/>
+	        <subtab key="compSecurityProfile" href="/spm/securityVulnerTgtView.do?view=target" roles="access-general"/>
+	        <subtab key="comMachine" href="/spm/securityVulnerMachineCompliance.do?view=overall" roles="access-general"/>
+        </tab>
+    </tabset>
+    <tabset name="compTargetView">
+	    <tab key="confgAssmentMachineCompliance" href="/spm/machineOverview.do?view=targetOverview" roles="access-general">
+	        <subtab key="compTargetOverview" href="/spm/machineOverview.do?view=targetOverview" roles="access-general"/>
+	        <subtab key="compTarget" href="/spm/securityTgtView.do?view=target" roles="access-general"/>
+	    </tab>
+	    <tab key="vulnerAssmentMachineCompliance" href="/spm/vulnerMachineOverView.do?view=targetOverview" roles="access-general">
+	    	<subtab key="compTargetOverview" href="/spm/vulnerMachineOverView.do?view=targetOverview" roles="access-general"/>
+	        <subtab key="compTarget" href="/spm/securityVulnerTgtView.do?view=target" roles="access-general"/>
+	    </tab>
+    </tabset>
+    <tabset name="compOverallDashboard">
+	    <tab key="confgAssmentOverallDashboard" href="/spm/overView.do?action1=overall_dashboard" roles="access-general"/>
+	    <tab key="vulnerAssmentOverallDashboard" href="/spm/vulnerOverallCompliance.do?action1=overall_dashboard" roles="access-general"/>
+    </tabset>
+    <tabset name="compRptView">
+        <tab key="compRptCache" href="javascript:compRptCache()" roles="access-general"/>
+        <tab key="compRptQueue" href="javascript:compRptQueue()" roles="access-general"/>
+    </tabset>
+    <tabset name="dist" width="850">
+        <tab key="windows" href="javascript:saveState('/usgcbSecurityLoad.do');" roles="access-general"/>
+        <tab key="nonwindows" href="javascript:saveState('/scapSecurityLoad.do');" roles="access-general"/>
+        <tab key="custom" href="javascript:saveState('/customSecurityLoad.do');" roles="access-general"/>
+    </tabset>
+    <tabset name="distmulti" width="850">
+        <tab key="pkg" href="javascript:saveState('/distInit.do');" roles="access-general"/>
+        <tab key="patches" href="javascript:saveState('/patchMain.do');" roles="access-general"/>
+    </tabset>
+    <tabset name="distPreview" width="850">
+        <tab key="windows" href="/spm/usgcbSecurityLoad.do?action=preview" roles="access-general"/>
+        <tab key="nonwindows" href="/spm/scapSecurityLoad.do?action=preview" roles="access-general"/>
+        <tab key="custom" href="/spm/customSecurityLoad.do?action=preview" roles="access-general"/>
+    </tabset>
+    <tabset name="copyPreview" width="850">
+        <tab key="windows" href="/spm/usgcbSecurityLoad.do?action=preview" roles="access-general"/>
+        <tab key="nonwindows" href="/spm/scapSecurityLoad.do?action=preview" roles="access-general"/>
+        <tab key="custom" href="/spm/customSecurityLoad.do?action=preview" roles="access-general"/>
+    </tabset>
+
+    <tabset name="distPreviewMulti" width="850">
+        <tab key="pkg" href="/spm/distInit.do?action=preview" roles="access-general"/>
+        <tab key="patches" href="/spm/patchMain.do?action=preview" roles="access-general"/>
+    </tabset>
+
+    <tabset name="compViewAR">
+        <tab key="compTgtViewAR" href="/compTgtView.do" roles="access-general"/>
+        <tab key="compPkgViewAR" href="/ccmCompPkgView.do" roles="access-general"/>
+    </tabset>
+
+    <tabset name="compPkgViewAR">
+        <tab key="compPkgViewAR" href="/ccmCompPkgView.do" roles="access-general"/>
+    </tabset>
+
+    <tabset name="compTgtViewAR">
+        <tab key="compTgtViewAR" href="/compTgtView.do" roles="access-general"/>
+    </tabset>
+
+    <tabset name="addPkgTarget">
+        <tab key="pkg" href="javascript:saveState('/addTargetsPackage.do');" roles="access-general" />
+        <tab key="patches" href="javascript:saveState('/addTargetsPatch.do');" roles="access-general" />
+    </tabset>
+
+</tabs>

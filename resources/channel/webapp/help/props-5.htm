@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC WWP v 4.0 (Apr-13-06 v6.2 ANSI)" />
+    <meta name="LASTUPDATED" content="11/16/09 16:16:59" />
+    <title>Tuner and package properties format</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Tuner and package properties format";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp38234"> </a><p class="pBody">After you add tuner or package properties, they appear in the Properties text box in the following format:</p>
+<a name="wp38235"> </a><p class="pIndented1">
+<em class="cEmphasis">&lt;property</em><b style="font-style: normal" class="cBold">&gt;[,</b><em style="font-style: oblique" class="cEmphasis">scope</em><b style="font-style: normal" class="cBold">]=</b><em style="font-style: oblique" class="cEmphasis">&lt;value</em><b class="cBold">&gt;</b>
+</p>
+<a name="wp41963"> </a><p class="pBody">This format is also used when entering tuner or package property key-value pairs directly in the text box or from the command line.</p>
+<a name="wp43818"> </a><p class="pBody">Your entries for <b class="cBold">&lt;</b><em class="cEmphasis">property</em><b class="cBold">&gt;</b> and <b class="cBold">&lt;</b><em class="cEmphasis">scope</em><b class="cBold">&gt;</b> can take one of the following forms:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp41964"> </a><div class="pSmartList2"><li>Tuner properties:</li></div>
+<a name="wp41965"> </a><p class="pIndented1">
+<em class="cEmphasis">&lt;property&gt;</em><b class="cBold">=</b><em class="cEmphasis">&lt;value&gt;</em>
+</p>
+<a name="wp38239"> </a><p class="pIndented1">
+Example:
+</p>
+<a name="wp38240"> </a><p class="pIndented1">
+<b class="cBold">marimba.subscription.retrycount=100</b>
+</p>
+<a name="wp38241"> </a><div class="pSmartList2"><li>All subscribed packages:</li></div>
+<a name="wp38242"> </a><p class="pIndented1">
+<b class="cBold">&lt;</b><em class="cEmphasis">property</em><b class="cBold">&gt;,subscribers=&lt;</b><em class="cEmphasis">value</em><b class="cBold">&gt;</b>-Sets a property in all packages that are part of the policy, except channels that have these states <b class="cBold">uninstall</b>, <b class="cBold">exclude</b>, <b class="cBold">primary</b>, or <b class="cBold">advertise</b>. 
+</p>
+<a name="wp38243"> </a><div class="pSmartList2"><li>All packages:</li></div>
+<a name="wp38244"> </a><p class="pIndented1">
+<b class="cBold">&lt;</b><em class="cEmphasis">property</em><b class="cBold">&gt;,*=&lt;</b><em class="cEmphasis">value</em><b class="cBold">&gt;</b>-Sets a property in all packages on the tuner <em class="cEmphasis">except</em> the Policy Service channel.
+</p>
+<a name="wp38245"> </a><div class="pSmartList2"><li>One specific package:</li></div>
+<a name="wp38246"> </a><p class="pIndented1">
+<b class="cBold">&lt;</b><em class="cEmphasis">property</em><b class="cBold">&gt;,&lt;</b><em class="cEmphasis">url</em><b class="cBold">&gt;=&lt;</b><em class="cEmphasis">value</em><b class="cBold">&gt;</b>-Sets a property in the package specified by <b class="cBold">&lt;</b><em class="cEmphasis">url</em><b class="cBold">&gt;</b>.
+</p>
+<a name="wp38247"> </a><div class="pSmartList2"><li>Policy Service channel:</li></div>
+<a name="wp38248"> </a><p class="pIndented1">
+<b class="cBold">&lt;</b><em class="cEmphasis">property</em><b class="cBold">&gt;,service=&lt;</b><em class="cEmphasis">value</em><b class="cBold">&gt;</b> 
+</p>
+<a name="wp45408"> </a><p class="pIndented1">
+<b class="cBold">Notes:</b>
+</p>
+<a name="wp45401"> </a><div class="pSmartList2"><li>Deleting a property from the Properties text box does not remove it from the target endpoints. This causes the property to remain &quot;as is&quot; on the target tuner (not managed by Policy Manager). You can remove a tuner or package property from the target endpoints by setting its value to <b class="cBold">&lt;null&gt; </b>as in the following example:</li></div>
+<a name="wp50029"> </a><p class="pIndented1">
+<b class="cBold">&lt;</b><em class="cEmphasis">property</em><b class="cBold">&gt;=null</b>
+</p>
+<a name="wp45419"> </a><div class="pSmartList2"><li>Spaces are not allowed before or after the equals sign (=) or after the property value. For example, the following example is in the proper format:</li></div>
+<a name="wp45439"> </a><p class="pIndented1">
+<em class="cEmphasis">&lt;property_name&gt;</em><b class="cBold">=</b><em class="cEmphasis">&lt;property_value&gt;</em>
+</p>
+<a name="wp45454"> </a><p class="pIndented1">
+But the following example is not:
+</p>
+<a name="wp45457"> </a><p class="pIndented1">
+<em class="cEmphasis">&lt;property_name&gt; </em><b class="cBold">= &lt;</b><em class="cEmphasis">property_value</em><b class="cBold">&gt;</b>
+</p>
+<a name="wp45506"> </a><p class="pIndented1">
+Depending on the property, spaces within the property value can be acceptable when the property value itself contains spaces. For example:
+</p>
+<a name="wp45512"> </a><p class="pIndented1">
+<b class="cBold">marimba.schedule.filter=ANYTIME on sun+mon+tue</b>
+</p>
+</ul></div>
+</ul></div>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. All rights reserved.<br/>
+
+ For additional BMC Configuration Management documentation, go to the Customer
+Support website at <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+For questions or comments about BMC CM documentation, send
+an email to <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+For product related issues or questions, send an email to Customer Support at <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

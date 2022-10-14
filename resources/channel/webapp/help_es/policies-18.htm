@@ -1,0 +1,534 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:45" />
+    <title>Resolución de conflictos: estados y planificaciones de políticas</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Resolución de conflictos: estados y planificaciones de políticas";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp61535"> </a><p class="pBody">En ocasiones, puede suceder que se asigne a un cliente final un mismo paquete que presenta conflictos de estados y planificaciones. Supongamos, por ejemplo, que un usuario final pertenece a dos grupos diferentes y obtiene el mismo paquete con distintos estados y planificaciones. Para resolver el conflicto, Policy Service adjunta un número a los estados conflictivos, tal y como se muestra en la <a href="javascript:WWHClickedPopup('Policy', 'policies-18.htm#wp50852');" onMouseOver="WWHShowPopup('Policy', 'policies-18.htm#wp50852', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">TableESES&#160;4-4</a> y en la <a href="javascript:WWHClickedPopup('Policy', 'policies-18.htm#wp50899');" onMouseOver="WWHShowPopup('Policy', 'policies-18.htm#wp50899', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">TableESES&#160;4-5</a>. Estos números representan la prioridad del estado final y del estado de planificación del paquete. El estado final del paquete se define como el estado secundario, en caso de que se haya asignado en el empaquetador; de lo contrario, el estado final será el estado principal. Para obtener más información sobre cómo pueden afectar los estados y las planificaciones a las actualizaciones, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-26.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-26.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Administración del software, datos y actualizaciones</a>. Para obtener más información sobre los estados principal y secundario, consulte <a href="javascript:WWHClickedPopup('Policy', 'policies-11.htm');" onMouseOver="WWHShowPopup('Policy', 'policies-11.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Descripción general de estados de instalación</a>.</p>
+<a name="wp61548"> </a><p class="pBody">El estado de planificación de un paquete se define como una de las 12 configuraciones de planificación válidas representadas por la presencia o ausencia de las planificaciones principal, secundaria, de actualización y reparación, tal y como se muestra en la <a href="javascript:WWHClickedPopup('Policy', 'policies-18.htm#wp50899');" onMouseOver="WWHShowPopup('Policy', 'policies-18.htm#wp50899', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">TableESES&#160;4-5</a>. El estado final tiene prioridad sobre la planificación en todos los casos, lo que quiere decir que el estado de planificación sólo es relevante en el caso de que el estado final no sea el mismo en alguno de los dos conflictos. Para anticipar tales situaciones, los valores de conflicto de prioridad del estado final se incrementan en 100, tal y como se muestra en la <a href="javascript:WWHClickedPopup('Policy', 'policies-18.htm#wp50852');" onMouseOver="WWHShowPopup('Policy', 'policies-18.htm#wp50852', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">TableESES&#160;4-4</a>.</p>
+<a name="wp50845"> </a><p class="pBody">Policy Service compara los valores de suma de los conflictos de prioridad (sumando los valores de conflictos de prioridad del estado final y del estado de planificación) de todas las instancias del mismo paquete. El ganador del conflicto será la instancia con el valor de suma más bajo. En caso de que varias instancias tengan el mismo valor de suma, el ganador del conflicto será elegido aleatoriamente.</p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp50852table50846">
+  <caption><a name="wp50852"> </a><p class="pBody">Tabla&#160;4-4:&#160;&#160;Conflicto de prioridad de estado final&#160;</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp50856"> </a><div class="pCellHeading">
+Estado
+</div>
+</th>
+    <th><a name="wp50858"> </a><div class="pCellHeading">
+Conflicto de prioridad
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50860"> </a><div class="pCellBody">
+Excluir 
+</div>
+</td>
+    <td><a name="wp50862"> </a><div class="pCellBody">
+100
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50864"> </a><div class="pCellBody">
+Desinstalar 
+</div>
+</td>
+    <td><a name="wp50866"> </a><div class="pCellBody">
+200
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp53903"> </a><div class="pCellBody">
+Principal   
+</div>
+</td>
+    <td><a name="wp50870"> </a><div class="pCellBody">
+300
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp53905"> </a><div class="pCellBody">
+Instalar-iniciar-persistir 
+</div>
+</td>
+    <td><a name="wp50874"> </a><div class="pCellBody">
+400
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp53907"> </a><div class="pCellBody">
+Instalar-iniciar
+</div>
+</td>
+    <td><a name="wp50878"> </a><div class="pCellBody">
+500
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp53909"> </a><div class="pCellBody">
+Instalar-persistir 
+</div>
+</td>
+    <td><a name="wp50882"> </a><div class="pCellBody">
+600
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp53911"> </a><div class="pCellBody">
+Instalar 
+</div>
+</td>
+    <td><a name="wp50886"> </a><div class="pCellBody">
+700
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp53913"> </a><div class="pCellBody">
+Descargar
+</div>
+</td>
+    <td><a name="wp50890"> </a><div class="pCellBody">
+800
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp53915"> </a><div class="pCellBody">
+Anunciar 
+</div>
+</td>
+    <td><a name="wp50894"> </a><div class="pCellBody">
+900
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBody">
+</p>
+<a name="wp51078"> </a><p class="pBodyRelative"></p>
+<div align="left">
+<table border="1" cellpadding="3" id="wp50899table50896">
+  <caption><a name="wp50899"> </a><p class="pBody">Tabla&#160;4-5:&#160;&#160;Planificar estado de conflictos de prioridad&#160;</p>
+</caption>
+  <tr align="left" valign="top">    <th><a name="wp50909"> </a><div class="pCellHeading">
+Principal
+</div>
+</th>
+    <th><a name="wp50911"> </a><div class="pCellHeading">
+Secundario
+</div>
+</th>
+    <th><a name="wp50913"> </a><div class="pCellHeading">
+Actualización
+</div>
+</th>
+    <th><a name="wp50915"> </a><div class="pCellHeading">
+Reparar
+</div>
+</th>
+    <th><a name="wp50917"> </a><div class="pCellHeading">
+Conflicto de prioridad
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50919"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp50921"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp50923"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp50925"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp50927"> </a><div class="pCellBody">
+1
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50929"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp50931"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp50933"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp50935"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp50937"> </a><div class="pCellBody">
+2
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50939"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp50941"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp50943"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp50945"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp50947"> </a><div class="pCellBody">
+4
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50949"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp50951"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp50953"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp50955"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp50957"> </a><div class="pCellBody">
+3
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50959"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp50961"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp50963"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp50965"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp50967"> </a><div class="pCellBody">
+5
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50969"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp50971"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp50973"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp50975"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp50977"> </a><div class="pCellBody">
+6
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50979"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp50981"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp50983"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp50985"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp50987"> </a><div class="pCellBody">
+7
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50989"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp50991"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp50993"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp50995"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp50997"> </a><div class="pCellBody">
+8
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp50999"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp51001"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp51003"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp51005"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td colspan="1" rowspan="4"><a name="wp51007"> </a><div class="pCellBody">
+Estas configuraciones de planificación no son válidas debido a que no es posible asignar un estado secundario si no se ha asignado un estado principal.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp51009"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp51011"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp51013"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp51015"> </a><div class="pCellBody">
+No
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp51019"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp51021"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp51023"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp51025"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp51029"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp51031"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp51033"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp51035"> </a><div class="pCellBody">
+No
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp51039"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp51041"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp51043"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp51045"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp51047"> </a><div class="pCellBody">
+9
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp51049"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp51051"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp51053"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp51055"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp51057"> </a><div class="pCellBody">
+10
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp51059"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp51061"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp51063"> </a><div class="pCellBody">
+Sí
+</div>
+</td>
+    <td><a name="wp51065"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp51067"> </a><div class="pCellBody">
+11
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td><a name="wp51069"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp51071"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp51073"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp51075"> </a><div class="pCellBody">
+No
+</div>
+</td>
+    <td><a name="wp51077"> </a><div class="pCellBody">
+12
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="pBodyRelative">
+</p>
+
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="TEMPLATEBASE" content="BMC-Spanish" />
+    <meta name="LASTUPDATED" content="11/20/06 11:29:52" />
+    <title>Simular la instalación de parches</title>
+    <link rel="StyleSheet" href="Remedy.css" type="text/css" />
+    <link rel="StyleSheet" href="catalog.css" type="text/css" />
+<script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/context.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/towwhdir.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" src="wwhdata/common/wwhpagef.js"></script>
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Set reference to top level help frame
+    //
+    var  WWHFrame = WWHGetWWHFrame("");
+   // -->
+  </script>
+
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+  </head>
+
+  <body onLoad="WWHUpdate();" onUnload="WWHUnload();" onKeyDown="WWHHandleKeyDown((document.all||document.getElementById||document.layers)?event:null);" onKeyPress="WWHHandleKeyPress((document.all||document.getElementById||document.layers)?event:null);" onKeyUp="WWHHandleKeyUp((document.all||document.getElementById||document.layers)?event:null);">
+
+    
+    
+
+    <blockquote>
+<script type="text/javascript" language="JavaScript1.2">
+   WWHFrame.WWHHelp.mRemedyTitle = "Simular la instalación de parches";
+   WWHFrame.WWHHelp.fRemedyShowTitle();
+</script><a name="wp53586"> </a><p class="pBody">La simulación de la instalación de parches sólo se puede visualizar si los siguientes channels de servicio se han ejecutado una vez como mínimo en el cliente final de destino:</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp54515"> </a><div class="pSmartList2"><li>Patch Service</li></div>
+<a name="wp54523"> </a><div class="pSmartList2"><li>Scanner Service</li></div>
+</ul></div>
+</ul></div>
+<a name="wp54516"> </a><p class="pBody">En el momento de ejecutarse, estos channels de servicio recogen la información sobre la simulación de la instalación de parches.</p>
+<a name="wp54243"> </a><p class="pBody">Cuando se simula la instalación de parches, dicha simulación se lleva a cabo para todos los grupos de parches que se hayan asignado al destino seleccionado y no únicamente para los grupos de parches especificados en la política. Si los grupos de parches se han asignado a todos los clientes finales, a un contenedor o a un grupo al que pertenece el destino seleccionado, éstos se incluirán en la simulación.</p>
+<hr class="NoteRuleTop"/><a name="wp53470"> </a><p class="pNote"><span style="color: #003366">Nota: </span> Para simular la instalación de parches, el destino que seleccione para los grupos de parches deberá ser una sola máquina.</p><hr class="NoteRuleBottom"/><a name="wp52040"> </a><p style="text-decoration: none" class="pStepIntro">
+Para simular la instalación de grupos de parches
+</p>
+
+<a name="wp52419"> </a><p class="pIndented1">
+En la ficha Grupos de parches, haga clic en <b class="cBold">Ejecutar simulación</b>.
+</p>
+<a name="wp53467"> </a><p class="pIndented1">
+Aparecerá la página Simular la instalación de un parche en la que se muestra el orden en que se instalarán los parches en la máquina de destino. Asimismo, en esta página se muestra la siguiente información:
+</p>
+<div class="pSmartList1"><ul class="pSmartList1">
+<div class="pSmartList2"><ul class="pSmartList2">
+<a name="wp53482"> </a><div class="pSmartList2"><li>Una descripción breve del parche</li></div>
+<a name="wp53489"> </a><div class="pSmartList2"><li>El ID que Patch Manager ha asignado al parche. Este ID es diferente al asignado por el proveedor que suministró el parche.</li></div>
+<a name="wp53490"> </a><div class="pSmartList2"><li>Las acciones asignadas al parche que se especificaron en Patch Manager</li></div>
+<a name="wp53497"> </a><div class="pSmartList2"><li>Las notas que el proveedor suministró con el parche</li></div>
+<a name="wp53094"> </a><p class="pIndented1">
+Para ver información adicional sobre estos parches, haga clic en <b class="cBold">Ver logs de simulación de parches</b>. Para obtener más información, consulte <a href="javascript:WWHClickedPopup('Policy', 'patch-09.htm');" onMouseOver="WWHShowPopup('Policy', 'patch-09.htm', (document.all||document.getElementById||document.layers)?event:null);" onMouseOut="WWHHidePopup();">Visualizar de información adicional sobre la instalación de grupos de parches</a>.
+</p>
+</ul></div>
+</ul></div>
+
+
+
+  <script type="text/javascript" language="JavaScript1.2">
+   <!--
+    // Clear related topics
+    //
+    WWHClearRelatedTopics();
+
+   // -->
+  </script>
+    </blockquote>
+
+    
+<hr class="REM"/>
+
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><p class="copyright">
+
+Copyright 1996 - 2013
+ BMC Software, Inc. Todos los derechos reservados.<br/>
+
+Para obtener información adicional acerca de la documentación de BMC Configuration Management, consulte el sitio web de soporte técnico en <span style="font-size=12px; font-family: Arial, Verdana, Helvetica, sans-serif"><a href="http://www.bmc.com/support_home" TARGET="_blank">www.bmc.com/support_home</a></span>.
+Para cualquier pregunta o comentario acerca de la documentación de BMC CM, envíe
+un mensaje de correo electrónico a <a href="mailto:mpl_documentation@bmc.com">mpl_documentation@bmc.com</a>.
+Para cuestiones o preguntas relacionadas con el producto, envíe un mensaje a la dirección de correo electrónico de soporte técnico <a href="mailto:customer_support@bmc.com"><font face="Arial" size="1">customer_support@bmc.com</font></a>.
+
+    </p></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript" language="JavaScript1.2">
+   <!--
+    document.write(WWHRelatedTopicsDivTag() + WWHPopupDivTag() + WWHALinksDivTag());
+   // -->
+  </script>
+
+  </body>
+</html>
