@@ -3,7 +3,7 @@
 capabilities=all
 type=Application
 update.inactive=never
-title=vDesk
+title=DefenSight
 description=Provides central management of security policies for the entire enterprise.
 description_fr=Permet de g\u00e9rer les policies pour toute l'entreprise de mani\u00e8re centralis\u00e9e.
 description_de=Bietet eine zentrale Verwaltung der Policys f\u00fcr das gesamte Unternehmen.
@@ -17,14 +17,14 @@ classpath=webapp.zip\:javax-mail.jar\:commons-email.jar\:yahp.jar
 main=com.marimba.webapps.main.WebAppMain
 
 #Web Application properties
-webapp.name=vDesk
-webapp.displayName=vDesk
-webapp.displayName_de=vDesk
-webapp.displayName_fr=vDesk
-webapp.displayName_ja=vDesk
-webapp.displayName_ko=vDesk
-webapp.displayName_zh=vDesk
-webapp.group=vDesk
+webapp.name=DefenSight
+webapp.displayName=DefenSight
+webapp.displayName_de=DefenSight
+webapp.displayName_fr=DefenSight
+webapp.displayName_ja=DefenSight
+webapp.displayName_ko=DefenSight
+webapp.displayName_zh=DefenSight
+webapp.group=DefenSight
 webapp.icon=/images/subscription-icon.gif
 webapp.connection.timeout.processing=120000
 webapp.contextPath=spm
@@ -34,7 +34,7 @@ webapp.cli.authentication=true
 webapp.cli.filtered.args=clientcertpw,publishpw,setpluginparam,txadminaccess
 webapp.default.encoding=UTF-8
 
-license.product=vDesk
+license.product=DefenSight
 license.demoable=true
 
 # Used by runchannel to identify whether to log the CLI argumenets in the "Channel started" message
@@ -42,5 +42,5 @@ logs.arguments=false
 
 # Comma-separated list of CLI arguments that should be allowed without authentication.
 webapp.cli.allow.unauthorized=getdirectoryinfo
-webapp.displayName_es=vDesk
+webapp.displayName_es=DefenSight
 description_es=Proporciona una administraci\u00f3n centralizada de las pol\u00edticas para toda la empresa.
