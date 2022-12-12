@@ -65,6 +65,31 @@ public class DashboardHandler implements ComplianceConstants {
         return count;
     }
 
+    //total number of machine by VScan
+    public int getVScanMachinesCount(String scanType) {
+        int count = 0;
+        try {
+
+            count = new DashboardInfoDetails.GetScanEndPointMachineCount(main, scanType).getScanCount();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return count;
+    }
+
+    //total number of machine by Patch Scan
+    public int getPatchScanMachinesCount(String scanType) {
+        int count = 0;
+        try {
+
+            count = new DashboardInfoDetails.GetScanEndPointMachineCount(main, scanType).getScanCount();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return count;
+    }
+
     //Controller for total number of scurity scanners in use
     public int getSecuirtyInUseCount(String targetId) {
         int count = 0;

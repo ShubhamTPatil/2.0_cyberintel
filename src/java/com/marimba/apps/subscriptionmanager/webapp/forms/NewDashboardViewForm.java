@@ -47,7 +47,9 @@ public class NewDashboardViewForm
     private String machineWindowsCount = "0";
     private String machineLinuxCount = "0";
     private String machineMacCount = "0";
-    
+    private String vscanCount = "0";
+    private String patchScanCount = "0";
+
     public String getId() {
         return id;
     }
@@ -161,6 +163,22 @@ public class NewDashboardViewForm
 
     public void setMachineMacCount(String machineMacCount) {
         this.machineMacCount = machineMacCount;
+    }
+
+    public String getVscanCount() {
+        return vscanCount;
+    }
+
+    public void setVscanCount(String vscanCount) {
+        this.vscanCount = vscanCount;
+    }
+
+    public String getPatchScanCount() {
+        return patchScanCount;
+    }
+
+    public void setPatchScanCount(String patchScanCount) {
+        this.patchScanCount = patchScanCount;
     }
 
 }

@@ -435,102 +435,60 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
     static class GetSecurityInUseData extends QueryExecutor {
 
-
-
         String targetID = null;
-
         int count = 0;
 
-
-
-
-
         GetSecurityInUseData (SubscriptionMain main, String targetId) {
-
             super(main);
-
             this.targetID = targetId;
 
             if("all".equalsIgnoreCase(targetID)) {
-
                 targetID = "%";
-
             }
-
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
 
-
-
             String queryStr = "select count(*) as 'Security Scanner in use' from security_xccdf_content sxct " +
-
                     "where exists (select 1 from inv_security_xccdf_compliance  sxc where sxct.id = sxc.content_id " +
-
                     "and UPPER(sxc.assigned_target_name) like UPPER('"+ targetID +"'))";
-
             debug("GetSecurityInUseData() Query Str :" + queryStr);
 
             PreparedStatement st = pool.getConnection().prepareStatement(queryStr);
-
-
-
             ResultSet rs = st.executeQuery();
 
             try {
-
                 if(rs.next()) {
-
                     count = rs.getInt(1);
-
                 }
-
             } finally {
-
                 rs.close();
-
             }
-
         }
 
 
-
         public int getSecurityCount() {
-
             return count;
-
         }
 
     }
 
     //For Chart
-
-    public static class GetOverallComplianceDetails extends DatabaseAccess {
-
-        SubscriptionMain main = null;
-
-        int count = 0;
+     public static class GetOverallComplianceDetails extends DatabaseAccess {
+         SubscriptionMain main = null;
+         int count = 0;
 
         Map<String, String> map = new HashMap<String, String>();
 
-
-
         public GetOverallComplianceDetails (SubscriptionMain main, String targetId, String compliantLevel) {
-
             GetOverallComplianceData result = new GetOverallComplianceData(main, targetId, compliantLevel);
 
             try {
-
                 runQuery(result);
-
                 map = result.getCompliantMap();
-
             } catch (Exception dae) {
-
                 dae.printStackTrace();
-
             }
-
         }
 
         public Map<String, String> getCompliantMap() {
@@ -555,79 +513,47 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
 
         GetOverallComplianceData (SubscriptionMain main, String targetId, String compliantLevel) {
-
             super(main);
-
             this.targetID = targetId;
-
             this.compliantLevel = compliantLevel;
 
             if("all".equalsIgnoreCase(targetID)) {
-
                 targetID = "all_all";
-
             }
-
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
 
-
-
-            String queryStr = "select a.Compliant, b.[Non-Compliant] from" +
-
-                    "(select count(*) as 'Compliant' from  inv_security_xccdf_compliance  sxc" +
-
+           String queryStr = "select a.Compliant, b.[Non-Compliant] from" +
+                  "(select count(*) as 'Compliant' from  inv_security_xccdf_compliance  sxc" +
                     "where overall_compliant_level = 'Compliant'" +
-
                     "and UPPER(sxc.assigned_target_name) = UPPER('"+ targetID +"')  a ," +
-
                     "(select count(*) as 'Non-Compliant' from  inv_security_xccdf_compliance  sxc" +
-
                     "where overall_compliant_level = 'No Compliant'" +
-
                     "and UPPER(sxc.assigned_target_name) = UPPER('"+ targetID +"') b";
 
-
-
             debug("GetOverallComplianceData() Query Str :" + queryStr);
-
             PreparedStatement st = pool.getConnection().prepareStatement(queryStr);
-
-
-
             ResultSet rs = st.executeQuery();
 
             try {
-
                 if(rs.next()) {
-
                     compliantCount = rs.getInt(1);
-
                     nonCompliantCount = rs.getInt(2);
-
                 }
 
                 result.put(COMPLAINT, String.valueOf(compliantCount));
-
                 result.put(NON_COMPLAINT, String.valueOf(nonCompliantCount));
 
             } finally {
-
                 rs.close();
-
             }
 
         }
 
-
-
         public Map<String, String> getCompliantMap() {
-
             return result;
-
         }
-
     }
 
 
@@ -635,35 +561,23 @@ public class DashboardInfoDetails implements ComplianceConstants {
     public static class GetSCAPTypeComplianceDetails extends DatabaseAccess {
 
         SubscriptionMain main = null;
-
         List<SCAPBean> scapBeanList= new ArrayList<SCAPBean>();
-
-
 
         public GetSCAPTypeComplianceDetails (SubscriptionMain main, String targetId) {
 
             GetSCAPTypeComplianceData result = new GetSCAPTypeComplianceData(main, targetId);
-
             try {
-
                 runQuery(result);
-
                 scapBeanList.addAll(result.getScapBeanList());
-
             } catch (Exception dae) {
-
                 dae.printStackTrace();
-
             }
-
         }
 
 
 
         public List<SCAPBean> getScapBeanList() {
-
             return scapBeanList;
-
         }
 
     }
@@ -671,84 +585,46 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
 
     static class GetSCAPTypeComplianceData extends QueryExecutor {
-
-
-
         String targetID = null;
-
         int count = 0;
-
         String compliantLevel = null;
-
         List<SCAPBean> scapBeanList= new ArrayList<SCAPBean>();
 
-
-
-        GetSCAPTypeComplianceData (SubscriptionMain main, String targetId) {
-
+        GetSCAPTypeComplianceData(SubscriptionMain main, String targetId) {
             super(main);
-
             this.targetID = targetId;
-
-            if("all".equalsIgnoreCase(targetID)) {
-
+            if ("all".equalsIgnoreCase(targetID)) {
                 targetID = "%";
-
             }
-
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
-
-
-
             String queryStr = "select content_name, profile_name, content_target_os, COUNT('NON-COMPLIANT') 'non-compliant', COUNT ('COMPLIANT') 'compliant' " +
-
-                    "from inv_security_xccdf_compliance sxc " +
-
-                    "where upper(sxc.assigned_target_name) like upper('"+targetID+"') " +
-
-                    "group by content_name, profile_name, content_target_os";
-
-
+                            "from inv_security_xccdf_compliance sxc " +
+                            "where upper(sxc.assigned_target_name) like upper('" + targetID + "') " +
+                            "group by content_name, profile_name, content_target_os";
 
             debug("GetSCAPTypeComplianceData() Query Str :" + queryStr);
-
             PreparedStatement st = pool.getConnection().prepareStatement(queryStr);
 
-
-
             ResultSet rs = st.executeQuery();
-
             try {
 
                 while (rs.next()) {
-
                     SCAPBean scapBean = new SCAPBean();
-
                     scapBean.setComplianceLevel(rs.getInt("non-compliant") == 0 ? COMPLAINT : NON_COMPLAINT);
-
                     scapBean.setType(rs.getString("content_target_os"));
-
                     scapBeanList.add(scapBean);
-
-                }
-
-            } finally {
-
-                rs.close();
-
-            }
-
-        }
-
+                 }
+             } finally {
+                 rs.close();
+             }
+         }
 
 
         public List<SCAPBean> getScapBeanList() {
-
-            return scapBeanList;
-
-        }
+             return scapBeanList;
+         }
 
     }
 
@@ -1699,57 +1575,109 @@ public class DashboardInfoDetails implements ComplianceConstants {
     }
 
 
+    public static class GetScanEndPointMachineCount extends DatabaseAccess {
+       int count = 0;
+
+
+        public GetScanEndPointMachineCount(SubscriptionMain main, String scanType) {
+
+          GetEndpointMachineScanInfo result = new GetEndpointMachineScanInfo(main, scanType);
+
+            try {
+                runQuery(result);
+                count = result.getScanCount();
+            } catch (Exception dae) {
+                dae.printStackTrace();
+            }
+        }
+
+        public int getScanCount() {
+            return count;
+        }
+
+    }
+
+     // To get VScan or Patch Scan machines count
+    static class GetEndpointMachineScanInfo extends QueryExecutor {
+        int count = 0;
+        String scanType;
+
+         GetEndpointMachineScanInfo(SubscriptionMain main, String scanType) {
+            super(main);
+            this.scanType = scanType;
+        }
+
+        protected void execute(IStatementPool pool) throws SQLException {
+
+            String vscanSQL = "select COUNT(*) as vscan_count from inv_machine im " +
+            " where exists (select 1 from inv_security_xccdf_compliance  sxc where sxc.machine_id = im.id)";
+           // "and UPPER(sxc.assigned_target_name) = UPPER('"+ targetID +"'))";
+
+            String patchScanSQL = "select COUNT(*) as patchscan_count from inv_machine im \n" +
+                    " where exists (select 1 from all_patch ap where ap.machine_id = im.id) ";
+                  //  " and exists (select 1 from ldapsync_targets_marimba ltm " +
+                  //  " where ltm.marimba_table_primary_id = im.machine_id)";
+
+            PreparedStatement st = null;
+            if ("vscan".equalsIgnoreCase(scanType)) {
+                st = pool.getConnection().prepareStatement(vscanSQL);
+            } else if ("patchscan".equalsIgnoreCase(scanType)) {
+                st = pool.getConnection().prepareStatement(patchScanSQL);
+            }
+
+            ResultSet rs = st.executeQuery();
+            try {
+                if (rs.next()) {
+                    if ("vscan".equalsIgnoreCase(scanType)) {
+                        count = rs.getInt("vscan_count");
+                    } else if ("patchscan".equalsIgnoreCase(scanType)) {
+                        count = rs.getInt("patchscan_count");
+                    }
+                }
+            } finally {
+                rs.close();
+            }
+
+        }
+
+        public int getScanCount() {
+            return count;
+        }
+
+    }
 
 
 
     static class GetAllEndpointMachineCountData extends QueryExecutor {
-
         int count = 0;
-
         String osType;
 
         GetAllEndpointMachineCountData(SubscriptionMain main, String osType) {
-
             super(main);
-
             this.osType = osType;
-
         }
-
 
 
         protected void execute(IStatementPool pool) throws SQLException {
 
             PreparedStatement st = pool.getConnection().prepareStatement("select  COUNT(*) as 'Scanned Machines Count' " +
-
                     " from inv_os ios where product like '%"+osType+"%' and exists (select 1 from ldapsync_targets_marimba ltm " +
-
                     " where ltm.marimba_table_primary_id = ios.machine_id)");
 
 
-
             ResultSet rs = st.executeQuery();
-
             try {
-
                 if (rs.next()) {
-
                     count = rs.getInt(1);
-
                 }
-
             } finally {
-
                 rs.close();
-
             }
 
         }
 
         public int getCount() {
-
             return count;
-
         }
 
     }

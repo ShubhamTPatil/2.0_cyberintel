@@ -686,7 +686,7 @@
                           <div class="row d-flex justify-content-center">
                             <div align="center">
                               <i class="fa fa-crosshairs"></i><br />
-                              <span class="text-muted small">200</span><br />
+                              <span class="text-muted small"><bean:write name="newDashboardForm" property="vscanCount"/></span><br />
                               <span class="text-muted small">By Vulnerability</span>
                             </div>
                           </div>
@@ -695,7 +695,7 @@
                           <div class="row d-flex justify-content-center">
                             <div align="center">
                               <i class="fa-regular fa-circle-check"></i><br />
-                              <span class="text-muted small">100</span><br />
+                              <span class="text-muted small"><bean:write name="newDashboardForm" property="patchScanCount"/></span><br />
                               <span class="text-muted small">By Patch</span>
                             </div>
                           </div>
