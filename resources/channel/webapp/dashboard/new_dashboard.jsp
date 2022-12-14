@@ -298,7 +298,7 @@
         labels: ["Critical", "High", "Medium", "Low"],
         datasets: [
           {
-            data: [10, 50, 25, 70],
+            data: <bean:write name="newDashboardForm" property="pieChartData"/>,
             backgroundColor: [
               "#FF5F60", "#D4733A", "#F3CC63", "#71DCEB"
             ]
@@ -765,33 +765,34 @@
             <div class="card-body pb-0">
               <h5 class="card-title">Vulnerability statistics <span>| Severity</span></h5>
               <div class="row" style="margin-bottom: 10px;">
+               <bean:define id="statusBean" name="newDashboardForm" property="vulnerableStatusBean"/>
                 <div align="center">
-                  <h4>500</h4>
+                  <h4><bean:write name="newDashboardForm" property="totalVulnerable"/></h4>
                   <h6>Total Vulnerabilities </h6>
                 </div>
               </div>
               <div class="row" style="margin-bottom: 10px;">
                 <div class="col">
                   <div align="center">
-                    <span class="small">100</span><br />
+                    <span class="small"><bean:write name="statusBean" property="critical"/></span><br />
                     <span class="small" style="color:#FF5F60"><b>Critical</b></span>
                   </div>
                 </div>
                 <div class="col">
                   <div align="center">
-                    <span class="small">100</span><br />
+                    <span class="small"><bean:write name="statusBean" property="high"/></span><br />
                     <span class="small" style="color:#D4733A"><b>High</b></span>
                   </div>
                 </div>
                 <div class="col">
                   <div align="center">
-                    <span class="small">100</span><br />
+                    <span class="small"><bean:write name="statusBean" property="medium"/></span><br />
                     <span class="small" style="color:#F3CC63"><b>Medium</b></span>
                   </div>
                 </div>
                 <div class="col">
                   <div align="center">
-                    <span class="small">200</span><br />
+                    <span class="small"><bean:write name="statusBean" property="low"/></span><br />
                     <span class="small" style="color:#71DCEB"><b>Low</b></span>
                   </div>
                 </div>

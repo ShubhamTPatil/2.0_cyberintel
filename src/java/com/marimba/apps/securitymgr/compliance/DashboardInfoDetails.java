@@ -1457,83 +1457,50 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
 
     static class GetAllEndpointScannerWiseCompliantData extends QueryExecutor {
-
-
-
         String targetID = null;
-
         Map<String, SCAPBean> scannerMap = new HashMap<String, SCAPBean>();
 
-
-
         GetAllEndpointScannerWiseCompliantData (SubscriptionMain main, String targetId) {
-
             super(main);
-
             this.targetID = targetId;
-
             if("all".equalsIgnoreCase(targetID)) {
-
                 targetID = "%";
-
             }
-
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
 
-
-
-            String queryStr = "select content_title, overall_compliant_level, count(overall_compliant_level) as count  from inv_security_xccdf_compliance sxc " +
-
+           String queryStr = "select content_title, overall_compliant_level, count(overall_compliant_level) as count  from inv_security_xccdf_compliance sxc " +
                     "group by content_title, overall_compliant_level";
-
-
-
             debug("GetAllEndpointScannerWiseCompliantData() Query Str :" + queryStr);
 
             PreparedStatement st = pool.getConnection().prepareStatement(queryStr);
-
-
-
             ResultSet rs = st.executeQuery();
 
             try {
 
-                while (rs.next()) {
+                 while (rs.next()) {
 
                     String contentTitle = rs.getString(1);
-
                     SCAPBean scapBean = (scannerMap.get(contentTitle) == null) ? new SCAPBean() : scannerMap.get(contentTitle);
-
                     scapBean.setTitle(contentTitle);
 
                     if (COMPLAINT.equals(rs.getString(2))) {
-
-                        scapBean.setCompliantCount(rs.getInt(3));
-
+                       scapBean.setCompliantCount(rs.getInt(3));
                     } else {
-
                         scapBean.setNonCompliantCount(rs.getInt(3));
-
                     }
 
                     scannerMap.put(contentTitle, scapBean);
-
                 }
 
             } finally {
-
                 rs.close();
-
             }
-
         }
 
         public Map<String, SCAPBean> getScannerMap() {
-
             return scannerMap;
-
         }
 
     }
@@ -1543,41 +1510,83 @@ public class DashboardInfoDetails implements ComplianceConstants {
     public static class GetAllEndpointMachineCount extends DatabaseAccess {
 
         SubscriptionMain main = null;
-
         int count = 0;
 
-
-
         public GetAllEndpointMachineCount(SubscriptionMain main, String osType) {
-
             GetAllEndpointMachineCountData result = new GetAllEndpointMachineCountData(main, osType);
-
             try {
-
                 runQuery(result);
-
                 count = result.getCount();
-
             } catch (Exception dae) {
-
                 dae.printStackTrace();
-
             }
-
         }
 
         public int getMachinesCount() {
-
             return count;
+        }
+    }
 
+    public static class GetVulnerableStatisticsInfo extends DatabaseAccess {
+        Map<String, String> vulStatsInfo = new LinkedHashMap<String, String>();
+
+        public GetVulnerableStatisticsInfo(SubscriptionMain main) {
+
+            GetVulnerableStatsInfoData result = new GetVulnerableStatsInfoData(main);
+
+            try {
+                runQuery(result);
+                vulStatsInfo = result.getVulnerableStatsInfo();
+            } catch (Exception dae) {
+                dae.printStackTrace();
+            }
         }
 
+        public Map<String, String> getVulnerableStatsInfo() {
+            return vulStatsInfo;
+        }
     }
 
 
+    static class GetVulnerableStatsInfoData extends QueryExecutor {
+        Map<String, String> vulStatsInfo = new LinkedHashMap<String, String>();
+
+        GetVulnerableStatsInfoData(SubscriptionMain main) {
+            super(main);
+        }
+
+        protected void execute(IStatementPool pool) throws SQLException {
+            String sqlStr = "select  t1.severity as \"SeverityName\" , count(t1.severity) as \"Count\" \n" +
+                    "from inv_sec_oval_defn_cve_details t1,\n" +
+                    "           security_cve_patch_info t2 \n" +
+                    "\t\t\t where t1.reference_name not like 'cpe%'\n" +
+                    "\t\t\t and t1.repository_id = t2.repository_id\n" +
+                    "\t\t\t and exists (select 1 from all_patch ap where \n" +
+                    "\t\t\t   (ap.repository_id = t1.repository_id) \n" +
+                    "\t\t\t   and (ap.current_status = 'Missing' or ap.current_status = 'Available-SP'))\n" +
+                    "group by  t1.severity";
+
+            PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
+            ResultSet rs = st.executeQuery();
+            try {
+                while(rs.next()) {
+                 String severity = rs.getString("SeverityName");
+                 String severityCnt = String.valueOf(rs.getInt("Count"));
+                 vulStatsInfo.put(severity, severityCnt);
+                }
+            } finally {
+                rs.close();
+            }
+        }
+
+        public Map<String, String> getVulnerableStatsInfo() {
+            return vulStatsInfo;
+        }
+
+    }
+    
     public static class GetScanEndPointMachineCount extends DatabaseAccess {
        int count = 0;
-
 
         public GetScanEndPointMachineCount(SubscriptionMain main, String scanType) {
 
@@ -1594,7 +1603,6 @@ public class DashboardInfoDetails implements ComplianceConstants {
         public int getScanCount() {
             return count;
         }
-
     }
 
      // To get VScan or Patch Scan machines count

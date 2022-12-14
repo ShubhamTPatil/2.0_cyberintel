@@ -18,6 +18,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 
 
+import com.marimba.apps.subscriptionmanager.beans.VulnerableStatusBean;
 import java.io.*;
 import java.net.*;
 
@@ -49,6 +50,9 @@ public class NewDashboardViewForm
     private String machineMacCount = "0";
     private String vscanCount = "0";
     private String patchScanCount = "0";
+    private String pieChartData;
+    private VulnerableStatusBean vulnerableStatusBean;
+    private String totalVulnerable;
 
     public String getId() {
         return id;
@@ -179,6 +183,31 @@ public class NewDashboardViewForm
 
     public void setPatchScanCount(String patchScanCount) {
         this.patchScanCount = patchScanCount;
+    }
+
+
+    public String getPieChartData() {
+        return pieChartData;
+    }
+
+    public void setPieChartData(String pieChartData) {
+        this.pieChartData = pieChartData;
+    }
+
+    public VulnerableStatusBean getVulnerableStatusBean() {
+        return vulnerableStatusBean;
+    }
+
+    public void setVulnerableStatusBean(VulnerableStatusBean vulnerableStatusBean) {
+        this.vulnerableStatusBean = vulnerableStatusBean;
+    }
+
+    public String getTotalVulnerable() {
+        return totalVulnerable;
+    }
+
+    public void setTotalVulnerable(String totalVulnerable) {
+        this.totalVulnerable = totalVulnerable;
     }
 
 }

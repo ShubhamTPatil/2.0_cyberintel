@@ -5,7 +5,9 @@
 package com.marimba.apps.securitymgr.compliance;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
 import com.marimba.apps.subscriptionmanager.compliance.intf.ComplianceConstants;
@@ -88,6 +90,19 @@ public class DashboardHandler implements ComplianceConstants {
             ex.printStackTrace();
         }
         return count;
+    }
+
+    // Get VulnerableStatsInfo
+    public Map<String, String> getVulnerableStatsInfo() {
+        Map<String, String> vulStatsInfo =  new LinkedHashMap<String, String>();
+        try {
+
+            vulStatsInfo = new DashboardInfoDetails.GetVulnerableStatisticsInfo(main).getVulnerableStatsInfo();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return vulStatsInfo;
     }
 
     //Controller for total number of scurity scanners in use
