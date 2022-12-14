@@ -17,594 +17,355 @@
 <link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/bootstrap-icons.min.css"/>
 <link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/all.min.css"/>
 <link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/datatables.min.css"/>
+<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/style.css"/>
 
 <script type="text/javascript" src="/spm/js/newdashboard/jquery.min.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/chart.umd.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/datatables.min.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/all.min.js"></script>
-
-
-<style type="text/css">
-  body {
-    font-family: "Open Sans", sans-serif;
-    background: #f6f9ff;
-    color: #444444;
-  }
-
-  @media (max-width: 1199px) {
-    .toggle-sidebar .sidebar {
-      left: 0;
-    }
-  }
-
-  @media (min-width: 1200px) {
-
-    .toggle-sidebar #main,
-    .toggle-sidebar #footer {
-      margin-left: 0;
-    }
-
-    .toggle-sidebar .sidebar {
-      left: -300px;
-    }
-  }
-
-
-
-  .header {
-    transition: all 0.5s;
-    z-index: 997;
-    height: 60px;
-    box-shadow: 0px 2px 20px rgb(1 41 112 / 10%);
-    background-color: #fff;
-    padding-left: 20px;
-  }
-
-  .header .toggle-sidebar-btn {
-    font-size: 32px;
-    padding-left: 10px;
-    cursor: pointer;
-    color: #012970;
-  }
-
-  .header-nav .nav-profile i {
-    max-height: 36px;
-  }
-
-  .header-nav>ul {
-    margin: 0;
-    padding: 0;
-  }
-
-  .header-nav ul {
-    list-style: none;
-  }
-
-  .header-nav .nav-profile {
-    color: #012970;
-  }
-
-  .header-nav .nav-profile span {
-    font-size: 14px;
-    font-weight: 600;
-  }
-
-  .dropdown-menu {
-    border-radius: 4px;
-    padding: 10px 0;
-    -webkit-animation-name: dropdown-animate;
-    animation-name: dropdown-animate;
-    -webkit-animation-duration: 0.2s;
-    animation-duration: 0.2s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-    border: 0;
-    box-shadow: 0 5px 30px 0 rgb(82 63 105 / 20%);
-  }
-
-  .header-nav .profile .dropdown-item {
-    font-size: 14px;
-    padding: 10px 15px;
-    transition: 0.3s;
-  }
-
-  .header-nav .profile .dropdown-item i {
-    margin-right: 10px;
-    font-size: 18px;
-    line-height: 0;
-  }
-
-  .dropdown-menu .dropdown-item i {
-    margin-right: 10px;
-    font-size: 18px;
-    line-height: 0;
-  }
-
-  .header-nav .profile {
-    min-width: 240px;
-    padding-bottom: 0;
-  }
-
-  .logo img {
-    max-height: 26px;
-    margin-right: 6px;
-  }
-
-
-
-  .sidebar {
-    position: fixed;
-    top: 60px;
-    left: 0;
-    bottom: 0;
-    width: 300px;
-    z-index: 996;
-    transition: all 0.3s;
-    padding: 20px;
-    overflow-y: auto;
-    box-shadow: 0px 0px 20px rgb(1 41 112 / 10%);
-    background-color: #fff;
-  }
-
-  .sidebar-nav {
-    padding: 0;
-    margin: 0;
-    list-style: none
-  }
-
-  .sidebar-nav li {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-  }
-
-  .sidebar-nav .nav-item {
-    margin-bottom: 5px;
-  }
-
-  .sidebar-nav .nav-link {
-    display: flex;
-    align-items: center;
-    font-size: 15px;
-    font-weight: 600;
-    color: rgb(126, 126, 126);
-    transition: 0.3;
-    background: #fff;
-    padding: 10px 15px;
-    border-radius: 4px;
-  }
-
-  .sidebar-nav .nav-link:hover {
-    color: #4154f1;
-    background: #f6f9ff;
-  }
-
-  .sidebar-nav .nav-selected {
-    color: #4154f1;
-    background: #f6f9ff;
-  }
-
-
-
-
-  #main {
-    margin-top: 60px;
-    padding: 20px 30px;
-    transition: all 0.3s;
-    margin-left: 85px;
-  }
-
-  .filter {
-    position: absolute;
-    right: 0px;
-    top: 15px;
-  }
-
-  .filter .icon {
-    color: #aab7cf;
-    padding-right: 20px;
-    padding-bottom: 5px;
-    transition: 0.3s;
-    font-size: 16px;
-  }
-
-  #vulStatsDonutChart {
-    padding: 10px;
-  }
-
-  .card {
-    margin-bottom: 30px;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0px 0 30px rgb(1 41 112 / 10%);
-  }
-
-  .card-title {
-    padding: 20px 0 15px 0;
-    font-size: 18px;
-    font-weight: 500;
-    color: #012970;
-    font-family: "Poppins", sans-serif;
-  }
-
-  .card-title span {
-    color: #899bbd;
-    font-size: 14px;
-    font-weight: 400;
-  }
-
-  hr.divider {
-    margin: 0 0 10px 0;
-    border-width: 2px;
-  }
-
-  .card-body {
-    flex: 1 1 auto;
-    padding: 0rem 1rem 1rem 1rem;
-  }
-
-  .pagetitle {
-    margin-bottom: 10px;
-  }
-
-  .pagetitle h1 {
-    font-size: 24px;
-    margin-bottom: 0;
-    font-weight: 600;
-    color: #012970;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Nunito", sans-serif;
-  }
-
-  .table {
-    font-size: small;
-  }
-
-  .table>thead>tr>th {
-    text-align: center;
-  }
-
-  .table>tbody>tr>td {
-    text-align: center;
-  }
-
-  .table>thead {
-    background-color: #f6f6fe;
-  }
-
-  #criticalPatchesTable_filter>label>input {
-    margin: 0;
-    width: 100%;
-  }
-</style>
-
+<script type="text/javascript" src="/spm/js/newdashboard/common.js"></script>
 
 <script type="text/javascript">
 
-  $(function () {
+
+$(function () {
+
+    $('.nav-selected').removeClass('nav-selected');
+    $('#dashboard').addClass('nav-selected');
+
+
     var ctx1 = $("#vulStatsDonutChart");
     // label: "Severity",
     var chart1 = new Chart(ctx1, {
-      type: "doughnut",
-      data: {
-        labels: ["Critical", "High", "Medium", "Low"],
-        datasets: [
-          {
-            data: <bean:write name="newDashboardForm" property="pieChartData"/>,
-            backgroundColor: [
-              "#FF5F60", "#D4733A", "#F3CC63", "#71DCEB"
+        type: "doughnut",
+        data: {
+            labels: ["Critical", "High", "Medium", "Low"],
+            datasets: [
+                {
+                    data: <bean:write name="newDashboardForm" property="pieChartData"/>,
+                    backgroundColor: [
+                        "#FF5F60", "#D4733A", "#F3CC63", "#71DCEB"
+                    ]
+                }
             ]
-          }
-        ]
-      },
-      options: {
-        responsive: false,
-        plugins: {
-          title: {
-            display: false,
-            position: "top",
-            text: "Doughnut Chart",
-            fontSize: 18,
-            fontColor: "#111"
-          },
-          legend: {
-            display: true,
-            position: "bottom",
-            labels: {
-              fontColor: "#333",
-              fontSize: 16
+        },
+        options: {
+            responsive: false,
+            plugins: {
+                title: {
+                    display: false,
+                    position: "top",
+                    text: "Doughnut Chart",
+                    fontSize: 18,
+                    fontColor: "#111"
+                },
+                legend: {
+                    display: true,
+                    position: "bottom",
+                    labels: {
+                        fontColor: "#333",
+                        fontSize: 16
+                    }
+                }
             }
-          }
         }
-      }
     });
 
 
     var ctxVulAging = $("#vulAgingScatter");
     var chartVulAgingScatter = new Chart(ctxVulAging, {
-      type: 'scatter',
-      data: {
-        datasets: [{
-          label: 'Critical',
-          data: [{
-            y: 100,
-            x: 4
-          }],
-          backgroundColor: '#FF5F60',
-          pointRadius: 5,
-          pointHoverRadius: 7
+        type: 'scatter',
+        data: {
+            datasets: [{
+                label: 'Critical',
+                data: [{
+                    y: 100,
+                    x: 4
+                }],
+                backgroundColor: '#FF5F60',
+                pointRadius: 5,
+                pointHoverRadius: 7
+            },
+            {
+                label: 'High',
+                data: [{
+                    y: 800,
+                    x: 10
+                }],
+                backgroundColor: '#D4733A',
+                pointRadius: 5,
+                pointHoverRadius: 7
+            },
+            {
+                label: 'Medium',
+                data: [{
+                    y: 400,
+                    x: 2
+                }],
+                backgroundColor: '#F3CC63',
+                pointRadius: 5,
+                pointHoverRadius: 7
+            },
+            {
+                label: 'Low',
+                data: [{
+                    x: 3,
+                    y: 300
+                }],
+                backgroundColor: '#71DCEB',
+                pointRadius: 5,
+                pointHoverRadius: 7
+            }],
         },
-        {
-          label: 'High',
-          data: [{
-            y: 800,
-            x: 10
-          }],
-          backgroundColor: '#D4733A',
-          pointRadius: 5,
-          pointHoverRadius: 7
-        },
-        {
-          label: 'Medium',
-          data: [{
-            y: 400,
-            x: 2
-          }],
-          backgroundColor: '#F3CC63',
-          pointRadius: 5,
-          pointHoverRadius: 7
-        },
-        {
-          label: 'Low',
-          data: [{
-            x: 3,
-            y: 300
-          }],
-          backgroundColor: '#71DCEB',
-          pointRadius: 5,
-          pointHoverRadius: 7
-        }],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: true,
-            position: 'bottom'
-          },
-          tooltip: {
-            callbacks: {
-              label: function (context) {
-                let label = context.dataset.label || '';
-                return [label + ": " + context.parsed.y, 'Age: ' + context.parsed.x + ' days'];
-              }
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            let label = context.dataset.label || '';
+                            return [label + ": " + context.parsed.y, 'Age: ' + context.parsed.x + ' days'];
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: "Age(Days)"
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: "Vulnerabilities"
+                    }
+                }
             }
-          }
-        },
-        scales: {
-          x: {
-            beginAtZero: true,
-            title: {
-              display: true,
-              text: "Age(Days)"
-            }
-          },
-          y: {
-            beginAtZero: true,
-            title: {
-              display: true,
-              text: "Vulnerabilities"
-            }
-          }
-        }
 
-      }
+        }
     });
 
 
     $('#topVulTable').DataTable({
-      "destroy": true, // In order to reinitialize the datatable
-      "pagination": true, // For Pagination
-      "sorting": false, // For sorting
-      "ordering": false,
-      "aaData": [
+        "destroy": true, // In order to reinitialize the datatable
+        "pagination": true, // For Pagination
+        "sorting": false, // For sorting
+        "ordering": false,
+        "aaData": [
+            {
+                "CVE-ID": "123456",
+                "Severity": "Critical",
+                "Impacted Machines": 1,
+                "Patches": "2 Patches"
+            },
+            {
+                "CVE-ID": "123456",
+                "Severity": "Low",
+                "Impacted Machines": 11,
+                "Patches": "2 Patches"
+            },
+            {
+                "CVE-ID": "123456",
+                "Severity": "High",
+                "Impacted Machines": 3,
+                "Patches": "2 Patches"
+            },
+            {
+                "CVE-ID": "123456",
+                "Severity": "Medium",
+                "Impacted Machines": 2,
+                "Patches": "2 Patches"
+            },
+            {
+                "CVE-ID": "123456",
+                "Severity": "Low",
+                "Impacted Machines": 5,
+                "Patches": "2 Patches"
+            },
+            {
+                "CVE-ID": "123456",
+                "Severity": "High",
+                "Impacted Machines": 3,
+                "Patches": "2 Patches"
+            },
+            {
+                "CVE-ID": "123456",
+                "Severity": "Critical",
+                "Impacted Machines": 1,
+                "Patches": "2 Patches"
+            },
+            {
+                "CVE-ID": "123456",
+                "Severity": "Critical",
+                "Impacted Machines": 2,
+                "Patches": "2 Patches"
+            },
+            {
+                "CVE-ID": "123456",
+                "Severity": "Low",
+                "Impacted Machines": 8,
+                "Patches": "2 Patches"
+            },
+            {
+                "CVE-ID": "123456",
+                "Severity": "High",
+                "Impacted Machines": 9,
+                "Patches": "2 Patches"
+            },
+            {
+                "CVE-ID": "123456",
+                "Severity": "High",
+                "Impacted Machines": 7,
+                "Patches": "2 Patches"
+            },
+            {
+                "CVE-ID": "123456",
+                "Severity": "High",
+                "Impacted Machines": 3,
+                "Patches": "2 Patches"
+            },
+            {
+                "CVE-ID": "123456",
+                "Severity": "Medium",
+                "Impacted Machines": 4,
+                "Patches": "2 Patches"
+            }
+        ],
+        "columns": [{},
         {
-          "CVE-ID": "123456",
-          "Severity": "Critical",
-          "Affected Target": 1234,
-          "Patches": "123456"
-        },
-        {
-          "CVE-ID": "123456",
-          "Severity": "Critical",
-          "Affected Target": 1234,
-          "Patches": "123456"
+            "data": "CVE-ID"
+        }, {
+            "data": "Severity"
+        }, {
+            "data": "Impacted Machines"
+        }, {
+            "data": "Patches"
+        }],
+        'columnDefs': [{
+            'targets': 0,
+            'searchable': false,
+            'orderable': false,
+            'className': 'dt-body-center',
+            'render': function (data, type, full, meta) {
+                return '<input type="checkbox" class="form-check-input" name="topVulCheckbox" value="' + $('<div/>').text(data).html() + '">';
+            }
+        }],
+        'rowCallback': function (row, data, index) {
+            switch (data['Severity']) {
+                case 'Critical':
+                    $(row).find('td:eq(2)').addClass('criticalColor');
+                    break;
+
+                case 'High':
+                    $(row).find('td:eq(2)').addClass('highColor');
+                    break;
+
+                case 'Medium':
+                    $(row).find('td:eq(2)').addClass('mediumColor');
+                    break;
+
+                case 'Low':
+                    $(row).find('td:eq(2)').addClass('lowColor');
+                    break;
+
+                default:
+                    break;
+            }
         }
-      ],
-      "columns": [{},
-      {
-        "data": "CVE-ID"
-      }, {
-        "data": "Severity"
-      }, {
-        "data": "Affected Target"
-      }, {
-        "data": "Patches"
-      }],
-      'columnDefs': [{
-        'targets': 0,
-        'searchable': false,
-        'orderable': false,
-        'className': 'dt-body-center',
-        'render': function (data, type, full, meta) {
-          return '<input type="checkbox" class="form-check-input" name="topVulCheckbox" value="' + $('<div/>').text(data).html() + '">';
-        }
-      }]
     });
 
 
     $('#criticalPatchesTable').DataTable({
-      "destroy": true, // In order to reinitialize the datatable
-      "pagination": true, // For Pagination
-      "bPaginate": true,
-      "sorting": false, // For sorting
-      "ordering": false,
-      "searching": true,
+        "destroy": true, // In order to reinitialize the datatable
+        "pagination": true, // For Pagination
+        "bPaginate": true,
+        "sorting": false, // For sorting
+        "ordering": false,
+        "searching": false,
 
-      "language": {
-        "search": "_INPUT_",
-        "searchPlaceholder": "Search..."
-      },
-      "aaData": [
-        {
-          "Machine": "Critical",
-          "Patches": "Patches 2"
+        "language": {
+            "search": "_INPUT_",
+            "searchPlaceholder": "Search..."
         },
+        "aaData": [
+            {
+                "Machine": "Critical",
+                "Patches": "Patches 2"
+            },
+            {
+                "Machine": "Critical",
+                "Patches": "Patches 2"
+            }
+        ],
+        "columns": [{},
         {
-          "Machine": "Critical",
-          "Patches": "Patches 2"
-        }
-      ],
-      "columns": [{},
-      {
-        "data": "Machine"
-      }, {
-        "data": "Patches"
-      }],
-      'columnDefs': [{
-        'targets': 0,
-        'searchable': true,
-        'orderable': false,
-        'className': 'dt-body-center',
-        'render': function (data, type, full, meta) {
-          return '<input type="checkbox" class="form-check-input" name="criPatchCheckbox" value="' + $('<div/>').text(data).html() + '">';
-        }
-      }]
+            "data": "Machine"
+        }, {
+            "data": "Patches"
+        }],
+        'columnDefs': [{
+            'targets': 0,
+            'searchable': true,
+            'orderable': false,
+            'className': 'dt-body-center',
+            'render': function (data, type, full, meta) {
+                return '<input type="checkbox" class="form-check-input" name="criPatchCheckbox" value="' + $('<div/>').text(data).html() + '">';
+            }
+        }]
     });
 
-    $("input[name='topVulCheckbox']").change(function () {
+    
 
-      let length = $('input[name="topVulCheckbox"]').length;
-
-      if ($('input[name="topVulCheckbox"]:checked').length != length) {
-        $('#topVulSelectAll').prop('checked', false);
-      } else {
-        $('#topVulSelectAll').prop('checked', true);
-      }
-    });
+});
 
 
-    $("input[name='criPatchCheckbox']").change(function () {
 
-      let length = $('input[name="criPatchCheckbox"]').length;
-
-      if ($('input[name="criPatchCheckbox"]:checked').length != length) {
-        $('#criticalPatchesSelectAll').prop('checked', false);
-      } else {
-        $('#criticalPatchesSelectAll').prop('checked', true);
-      }
-    });
-
-    $("#vulMitigate").click(function() {
-      $("#vulMitigateModal").modal('show');
-    });
-
-  });
-
-  function sidebarToggle() {
-    $('body').toggleClass('toggle-sidebar');
-  };
-
-  function selectAllTopVul() {
-    if ($('#topVulSelectAll').is(':checked'))
-      $("input[name='topVulCheckbox']").prop('checked', true);
-    else
-      $("input[name='topVulCheckbox']").prop('checked', false);
-  };
-
-  function selectAllCriticalPatches() {
-    if ($('#criticalPatchesSelectAll').is(':checked'))
-      $("input[name='criPatchCheckbox']").prop('checked', true);
-    else
-      $("input[name='criPatchCheckbox']").prop('checked', false);
-  };
 
 
 </script>
+
 
 <body>
 
 <html:form name ="newDashboardForm" action="/newDashboard.do" type="com.marimba.apps.subscriptionmanager.webapp.forms.NewDashboardViewForm">
 <html:hidden property="action"/>
 
-  <header id="header" class="header fixed-top d-flex align-items-center">
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="#" class="logo d-flex align-items-center">
-        <img
-          src="/spm/images/harman_defensight_logo.png"
-          style="max-height: 40px;" alt="">
-      </a> 
-      <i onclick="sidebarToggle()" class="fa-solid fa-bars toggle-sidebar-btn"></i>
-    </div>
-    <nav class="header-nav ms-auto">
-      <ul class="d-flex align-items-center"> 
-        <li class="nav-item dropdown pe-3">
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <i class="fa-regular fa-user rounded-circle"></i>
-            <!-- <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">  -->
-            <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span> </a>
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li> <a class="dropdown-item d-flex align-items-center"> <i class="fa-regular fa-user"></i> <span>My
-                  Profile</span> </a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li> <a class="dropdown-item d-flex align-items-center"> <i class="fa-solid fa-gear"></i> <span>Account
-                  Settings</span> </a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li> <a class="dropdown-item d-flex align-items-center"> <i class="fa-regular fa-circle-question"></i> <span>Need
-                  Help?</span> </a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li> <a class="dropdown-item d-flex align-items-center"> <i class="fa-solid fa-arrow-right-from-bracket"></i> <span>Sign
-                  Out</span> </a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-  </header>
+  <jsp:include page="header.jsp" />
+  <jsp:include page="sidebar.jsp" />
 
-  <aside id="sidebar" class="sidebar" style="height:100%; width: 85px;">
-    <ul class="sidebar-nav" id="sidebar-nav">
-      <li class="nav-item"> <a class="nav-link nav-selected" href="#" title="Dashboard"> <i class="fa-solid fa-gauge"></i> </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#" title="Automation">
-          <i class="fa-solid fa-recycle"></i> </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="fa-brands fa-searchengin"></i>
-        </a>
-      </li>
-    </ul>
-  </aside>
-  <main id="main" class="main">
+  
+ <main id="main" class="main">
     <div class="pagetitle">
-      <h1>Dashboard</h1>
+
+      <div class="d-flex bd-highlight justify-content-center">
+        <div class="p-2 flex-grow-1 bd-highlight">
+          <span class="pagename">Dashboard</span>
+          <span data-bs-toggle="tooltip" data-bs-placement="right" title="DefenSight Dashboard"><i
+              class="fa-solid fa-circle-info text-primary"></i></span>
+        </div>
+        <div class="p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right"
+          title="Refresh"><i class="fa-solid fa-arrows-rotate"></i></div>
+        <div class="p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right"
+          title="Download">
+          <i class="fa-solid fa-download"></i>
+        </div>
+        <div class="p-2 bd-highlight text-primary align-self-center"> <a href="http://defensight.marimbacastanet.com:8888/shell/dashboard.do"> <i class="fa-solid fa-chevron-left"
+              style="margin-right: 5px;"></i>Back to CMS </a>
+        </div>
+      </div>
+
     </div>
+
     <section class="section dashboard">
       <div class="row">
         <div class="col-lg-8">
@@ -715,22 +476,24 @@
                     <li class="dropdown-header text-start">
                       <h6>Filter</h6>
                     </li>
-                    <li><a class="dropdown-item">Severity</a></li>
-                    <li><a class="dropdown-item">Age</a></li>
+                    <li><a class="dropdown-item">Patch applied</a></li>
+                    <li><a class="dropdown-item">Patch applied but not scanned</a></li>
+                    <li><a class="dropdown-item">Patch not applied</a></li>
                   </ul>
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">Top Vulnerabilities <span>| By Severity</span>
+                  <h5 class="card-title">Top Vulnerabilities <span>| Patch applied</span>
                     <!-- Button trigger modal -->
-                    <button type="button" id="vulMitigate" class="btn btn-primary" style="margin-left: 10px;"
-                      data-toggle="modal" data-target="#exampleModalCenter">Mitigate Selected</button>
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                      data-bs-target="#topVulModal" style="margin-left: 10px;">
+                      Mitigate Selected
+                    </button>
                   </h5>
 
                   <table id="topVulTable" class="table table-borderless" style="width: 100%;">
                     <thead>
                       <tr>
-                        <th><input type="checkbox" class="form-check-input" id="topVulSelectAll"
-                            onclick="selectAllTopVul()"></th>
+                        <th><input type="checkbox" class="selectAll form-check-input" id="topVulSelectAll"></th>
                         <th scope="col">CVE-ID</th>
                         <th scope="col">Severity</th>
                         <th scope="col">Impacted Machines</th>
@@ -738,34 +501,102 @@
                       </tr>
                     </thead>
                     <tbody>
-                  </tbody>
+
+
+                    </tbody>
                   </table>
                 </div>
               </div>
             </div>
+
+
+            <div class="col-12">
+
+              <div class="card overflow-auto">
+                <div class="card-body">
+                  <h5 class="card-title">Machine Compliance</h5>
+
+                  <div class="row compliance">
+                    <div class="col-md-4">
+                      <p>Reporting</p>
+
+
+
+                      <span> Not checked-in <span data-bs-toggle="modal" data-bs-target="#reportingModal"
+                          style="color: #FF5F60; text-decoration: underline; cursor: pointer;">
+                          1234
+                        </span></span>
+                      <div class="progress" style="margin-bottom:10px;">
+                        <div id="reportingNotCheckedIn" class="progress-bar" role="progressbar"
+                          style="width: 60%; background-color: #FF5F60" aria-valuemax="100"></div>
+                      </div>
+                      <span> Not available <span style="color: #F3CC63;">1234</span> </span>
+                      <div class="progress" style="margin-bottom:10px;">
+                        <div id="reportingNotAvailable" class="progress-bar" role="progressbar"
+                          style="width: 30%; background-color: #F3CC63" aria-valuemax="100"></div>
+                      </div>
+                      <span> Checked-in <span style="color: #18db76;">1438</span></span>
+                      <div class="progress" style="margin-bottom:10px;">
+                        <div id="reportingCheckedIn" class="progress-bar" role="progressbar"
+                          style="width: 10%; background-color: #18db76" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+
+
+
+                    <div class="col-md-4">
+                      <p>Security</p>
+                      <span> Non Compliant <span style="color: #FF5F60;">20</span> </span>
+                      <div class="progress" style="margin-bottom:10px;">
+                        <div id="securityNonCompliant" class="progress-bar" role="progressbar"
+                          style="width: 40%; background-color: #FF5F60" aria-valuemax="100"></div>
+                      </div>
+                      <span> Compliant - <span style="color: #18db76;">30 </span></span>
+                      <div class="progress" style="margin-bottom:10px;">
+                        <div id="securityCompliant" class="progress-bar" role="progressbar"
+                          style="width: 60%; background-color: #18db76" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+                      <p>Patches</p>
+                      <span> Non Compliant - <span style="color: #FF5F60;">30</span> </span>
+                      <div class="progress" style="margin-bottom:10px;">
+                        <div id="patchNonCompliant" class="progress-bar" role="progressbar"
+                          style="width: 20%; background-color: #FF5F60" aria-valuemax="100"></div>
+                      </div>
+                      <span> Compliant - <span style="color: #18db76;">50 </span></span>
+                      <div class="progress" style="margin-bottom:10px;">
+                        <div id="patchCompliant" class="progress-bar" role="progressbar"
+                          style="width: 80%; background-color: #18db76" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+
+
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
 
           </div>
 
 
 
         </div>
+
+
         <div class="col-lg-4">
 
           <div class="card">
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa-solid fa-sliders"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-                <li><a class="dropdown-item">Severity</a></li>
-                <li><a class="dropdown-item">Age</a></li>
-              </ul>
-            </div>
+
             <div class="card-body pb-0">
-              <h5 class="card-title">Vulnerability statistics <span>| Severity</span></h5>
+              <h5 class="card-title">Vulnerability Statistics <span>| Severity</span></h5>
               <div class="row" style="margin-bottom: 10px;">
-               <bean:define id="statusBean" name="newDashboardForm" property="vulnerableStatusBean"/>
+              <bean:define id="statusBean" name="newDashboardForm" property="vulnerableStatusBean"/>
                 <div align="center">
                   <h4><bean:write name="newDashboardForm" property="totalVulnerable"/></h4>
                   <h6>Total Vulnerabilities </h6>
@@ -775,25 +606,25 @@
                 <div class="col">
                   <div align="center">
                     <span class="small"><bean:write name="statusBean" property="critical"/></span><br />
-                    <span class="small" style="color:#FF5F60"><b>Critical</b></span>
+                    <span class="small criticalColor"><b>Critical</b></span>
                   </div>
                 </div>
                 <div class="col">
                   <div align="center">
                     <span class="small"><bean:write name="statusBean" property="high"/></span><br />
-                    <span class="small" style="color:#D4733A"><b>High</b></span>
+                    <span class="small highColor"><b>High</b></span>
                   </div>
                 </div>
                 <div class="col">
                   <div align="center">
                     <span class="small"><bean:write name="statusBean" property="medium"/></span><br />
-                    <span class="small" style="color:#F3CC63"><b>Medium</b></span>
+                    <span class="small mediumColor"><b>Medium</b></span>
                   </div>
                 </div>
                 <div class="col">
                   <div align="center">
                     <span class="small"><bean:write name="statusBean" property="low"/></span><br />
-                    <span class="small" style="color:#71DCEB"><b>Low</b></span>
+                    <span class="small lowColor"><b>Low</b></span>
                   </div>
                 </div>
               </div>
@@ -837,13 +668,17 @@
               </ul>
             </div>
             <div class="card-body">
-              <h5 class="card-title">Critical Patches <span>| Severity - High</span></h5>
-
+              <h5 class="card-title">Priority Patches <span>| Severity - High</span></h5>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                data-bs-target="#priPatchesModal" style="position:absolute; right:15px;">
+                Mitigate Selected
+              </button>
               <table id="criticalPatchesTable" class="table" style="width: 100%;">
                 <thead>
                   <tr>
                     <th scope="col"><input type="checkbox" id="criticalPatchesSelectAll"
-                        onclick="selectAllCriticalPatches()" class="form-check-input"></th>
+                        class="selectAll form-check-input"></th>
                     <th scope="col">Machine</th>
                     <th scope="col">Patches</th>
                   </tr>
@@ -855,35 +690,111 @@
             </div>
           </div>
 
-
         </div>
       </div>
     </section>
 
-    </div>
+    
 
-
-    <!-- Modal -->
-    <div id="vulMitigateModal" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
+    <!-- Top Vulnerability Modal -->
+    <div class="modal fade" id="topVulModal" tabindex="-1" aria-labelledby="topVulModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <h5 class="modal-title" id="topVulModalLabel">Apply patches or Scan machines</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            ...
+            <table id="topVulModalTable" class="table table-borderless" style="width: 100%;">
+              <thead>
+                <tr>
+                  <th><input type="checkbox" class="selectAll form-check-input" id="topVulModalTableSelectAll">
+                  </th>
+                  <th scope="col">Impacted Machine</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Patch Details</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-outline-primary btn-sm" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-outline-primary btn-sm">Scan</button>
+            <button type="button" class="btn btn-primary btn-sm">Apply Patches</button>
           </div>
         </div>
       </div>
     </div>
+
+
+    <!-- Priority Patches Modal -->
+    <div class="modal fade" id="priPatchesModal" tabindex="-1" aria-labelledby="priPatchesModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="priPatchesModalLabel">Apply patches or Scan machines</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <table id="priPatchesModalTable" class="table table-borderless" style="width: 100%;">
+              <thead>
+                <tr>
+                  <th><input type="checkbox" class="selectAll form-check-input" id="priPatchesModalTableSelectAll">
+                  </th>
+                  <th scope="col">Impacted Machine</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Patch Details</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary btn-sm" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-outline-primary btn-sm">Scan</button>
+            <button type="button" class="btn btn-primary btn-sm">Apply Patches</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Reporting Modal -->
+    <div class="modal fade" id="reportingModal" tabindex="-1" aria-labelledby="reportingModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="reportingModalLabel">Machined not checked in last 24 hours</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <table id="reportingModalTable" class="table table-borderless" style="width: 100%;">
+              <thead>
+                <tr>
+                  <th><input type="checkbox" class="selectAll form-check-input" id="reportingModalTableSelectAll">
+                  </th>
+                  <th scope="col">Machine Name</th>
+                  <th scope="col">Vulnerabilities</th>
+                  <th scope="col">Last Scanned Vulnerability</th>
+                  <th scope="col">Last Patch Applied</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 
 </html:form>
 </body>
