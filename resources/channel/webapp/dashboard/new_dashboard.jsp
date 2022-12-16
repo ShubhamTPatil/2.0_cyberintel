@@ -155,92 +155,16 @@ $(function () {
         }
     });
 
+    var topVulData = '<bean:write name="newDashboardForm" property="topVulnerableData"/>';
+    topVulData = topVulData.replace(/&quot;/g,'"');
+    topVulData=JSON.parse(topVulData);
 
     $('#topVulTable').DataTable({
         "destroy": true, // In order to reinitialize the datatable
         "pagination": true, // For Pagination
         "sorting": false, // For sorting
         "ordering": false,
-        "aaData": [
-            {
-                "CVE-ID": "123456",
-                "Severity": "Critical",
-                "Impacted Machines": 1,
-                "Patches": "2 Patches"
-            },
-            {
-                "CVE-ID": "123456",
-                "Severity": "Low",
-                "Impacted Machines": 11,
-                "Patches": "2 Patches"
-            },
-            {
-                "CVE-ID": "123456",
-                "Severity": "High",
-                "Impacted Machines": 3,
-                "Patches": "2 Patches"
-            },
-            {
-                "CVE-ID": "123456",
-                "Severity": "Medium",
-                "Impacted Machines": 2,
-                "Patches": "2 Patches"
-            },
-            {
-                "CVE-ID": "123456",
-                "Severity": "Low",
-                "Impacted Machines": 5,
-                "Patches": "2 Patches"
-            },
-            {
-                "CVE-ID": "123456",
-                "Severity": "High",
-                "Impacted Machines": 3,
-                "Patches": "2 Patches"
-            },
-            {
-                "CVE-ID": "123456",
-                "Severity": "Critical",
-                "Impacted Machines": 1,
-                "Patches": "2 Patches"
-            },
-            {
-                "CVE-ID": "123456",
-                "Severity": "Critical",
-                "Impacted Machines": 2,
-                "Patches": "2 Patches"
-            },
-            {
-                "CVE-ID": "123456",
-                "Severity": "Low",
-                "Impacted Machines": 8,
-                "Patches": "2 Patches"
-            },
-            {
-                "CVE-ID": "123456",
-                "Severity": "High",
-                "Impacted Machines": 9,
-                "Patches": "2 Patches"
-            },
-            {
-                "CVE-ID": "123456",
-                "Severity": "High",
-                "Impacted Machines": 7,
-                "Patches": "2 Patches"
-            },
-            {
-                "CVE-ID": "123456",
-                "Severity": "High",
-                "Impacted Machines": 3,
-                "Patches": "2 Patches"
-            },
-            {
-                "CVE-ID": "123456",
-                "Severity": "Medium",
-                "Impacted Machines": 4,
-                "Patches": "2 Patches"
-            }
-        ],
+        "aaData": topVulData,
         "columns": [{},
         {
             "data": "CVE-ID"
@@ -359,8 +283,8 @@ $(function () {
           title="Download">
           <i class="fa-solid fa-download"></i>
         </div>
-        <div class="p-2 bd-highlight text-primary align-self-center"> <a href="http://defensight.marimbacastanet.com:8888/shell/dashboard.do"> <i class="fa-solid fa-chevron-left"
-              style="margin-right: 5px;"></i>Back to CMS </a>
+        <div class="p-2 bd-highlight text-primary align-self-center">
+          <a href="/shell/dashboard.do"><i class="fa-solid fa-chevron-left" style="margin-right: 5px;"></i>CMS Home</a>
         </div>
       </div>
 

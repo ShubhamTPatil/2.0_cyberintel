@@ -50,8 +50,8 @@
           title="Download">
           <i class="fa-solid fa-download"></i>
         </div>
-        <div class="p-2 bd-highlight text-primary align-self-center"> <a href="#"> <i class="fa-solid fa-chevron-left"
-              style="margin-right: 5px;"></i>Back to CMS </a>
+        <div class="p-2 bd-highlight text-primary align-self-center">
+         <a href="/shell/dashboard.do"><i class="fa-solid fa-chevron-left" style="margin-right: 5px;"></i>CMS Home</a>
         </div>
       </div>
 

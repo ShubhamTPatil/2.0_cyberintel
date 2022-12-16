@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
+import com.marimba.apps.subscriptionmanager.beans.TopVulnerableStatusBean;
 import com.marimba.apps.subscriptionmanager.compliance.intf.ComplianceConstants;
 
 /**
@@ -103,6 +104,20 @@ public class DashboardHandler implements ComplianceConstants {
             ex.printStackTrace();
         }
         return vulStatsInfo;
+    }
+
+
+    // Get Top Vulnerabilities Info 
+    public List<TopVulnerableStatusBean> getTopVulnerabilitiesInfo() {
+        List<TopVulnerableStatusBean> topVulInfo =  new ArrayList<TopVulnerableStatusBean>();
+        try {
+
+            topVulInfo = new DashboardInfoDetails.GetTopVulnerabilitiesInfo(main).getTopVulnerabilitiesInfo();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return topVulInfo;
     }
 
     //Controller for total number of scurity scanners in use

@@ -12,6 +12,7 @@ package com.marimba.apps.subscriptionmanager.webapp.forms;
   *
  **/
 
+import com.marimba.apps.subscriptionmanager.beans.TopVulnerableStatusBean;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
@@ -53,6 +54,9 @@ public class NewDashboardViewForm
     private String pieChartData;
     private VulnerableStatusBean vulnerableStatusBean;
     private String totalVulnerable;
+    private List<TopVulnerableStatusBean> topVulnerableList = new ArrayList<TopVulnerableStatusBean>();
+    private String topVulnerableData = "[]";
+
 
     public String getId() {
         return id;
@@ -208,6 +212,22 @@ public class NewDashboardViewForm
 
     public void setTotalVulnerable(String totalVulnerable) {
         this.totalVulnerable = totalVulnerable;
+    }
+
+    public List<TopVulnerableStatusBean> getTopVulnerableList() {
+        return topVulnerableList;
+    }
+
+    public void setTopVulnerableList(List<TopVulnerableStatusBean> topVulnerableList) {
+        this.topVulnerableList = topVulnerableList;
+    }
+
+    public String getTopVulnerableData() {
+        return topVulnerableData;
+    }
+
+    public void setTopVulnerableData(String topVulnerableData) {
+        this.topVulnerableData = topVulnerableData;
     }
 
 }

@@ -8,6 +8,7 @@ import com.marimba.apps.securitymgr.db.DatabaseAccess;
 import com.marimba.apps.securitymgr.db.QueryExecutor;
 import com.marimba.apps.securitymgr.view.SCAPBean;
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
+import com.marimba.apps.subscriptionmanager.beans.TopVulnerableStatusBean;
 import com.marimba.apps.subscriptionmanager.compliance.intf.ComplianceConstants;
 import com.marimba.apps.subscriptionmanager.compliance.view.MachineBean;
 import com.marimba.apps.subscriptionmanager.compliance.view.MachineListBean;
@@ -1584,7 +1585,76 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
     }
-    
+
+    public static class GetTopVulnerabilitiesInfo extends DatabaseAccess {
+        List<TopVulnerableStatusBean> topVulInfo = new ArrayList<TopVulnerableStatusBean>();
+
+        public GetTopVulnerabilitiesInfo(SubscriptionMain main) {
+
+            GetTopVulnerabilitiesData result = new GetTopVulnerabilitiesData(main);
+
+            try {
+                runQuery(result);
+                topVulInfo = result.getTopVulnerabilitiesInfo();
+            } catch (Exception dae) {
+                dae.printStackTrace();
+            }
+        }
+
+        public List<TopVulnerableStatusBean> getTopVulnerabilitiesInfo() {
+            return topVulInfo;
+        }
+    }
+
+
+    static class GetTopVulnerabilitiesData extends QueryExecutor {
+        List<TopVulnerableStatusBean> topVulInfo = new ArrayList<TopVulnerableStatusBean>();
+
+        GetTopVulnerabilitiesData(SubscriptionMain main) {
+            super(main);
+        }
+
+        protected void execute(IStatementPool pool) throws SQLException {
+            String sqlStr = "select distinct t1.cve_name as \"CVE_ID\", t2.severity as \"Severity\" ,count(im.id) as \"Affected_Machines\", ap.repository_id as \"Patch_ID\"\n" +
+                    "from security_cve_patch_info t1, all_patch ap, security_cve_info t2, inv_machine im\n" +
+                    "where \n" +
+                    "ap.repository_id=t1.repository_id\n" +
+                    "and t1.cve_name = t2.cve_name\n" +
+                    "and im.id = ap.machine_id\n" +
+                    "and exists (select 1 from all_patch ap where \n" +
+                    "\t\t\t   (ap.repository_id = t1.repository_id) \n" +
+                    "\t\t\t   and (ap.current_status = 'Missing' or ap.current_status = 'Available-SP'))\n" +
+                    "group by t1.cve_name, t2. severity, im.id, ap.repository_id\n" +
+                    "";
+
+            PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
+            ResultSet rs = st.executeQuery();
+            try {
+                while(rs.next()) {
+                    TopVulnerableStatusBean topVulBean = new TopVulnerableStatusBean(); 
+                    String cveID = rs.getString("CVE_ID");
+                    String severity = rs.getString("Severity");
+                    String affectedMachines = String.valueOf(rs.getInt("Affected_Machines"));
+                    String patchID = rs.getString("Patch_ID");
+
+                    topVulBean.setCveId(cveID);
+                    topVulBean.setSeverity(severity);
+                    topVulBean.setAffectedMachines(affectedMachines);
+                    topVulBean.setPatchId(patchID);
+
+                    topVulInfo.add(topVulBean);
+                }
+            } finally {
+                rs.close();
+            }
+        }
+
+        public List<TopVulnerableStatusBean> getTopVulnerabilitiesInfo() {
+            return topVulInfo;
+        }
+
+    }
+
     public static class GetScanEndPointMachineCount extends DatabaseAccess {
        int count = 0;
 
