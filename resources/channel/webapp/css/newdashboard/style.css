@@ -343,11 +343,6 @@ h6 {
   background-color: #f6f6fe;
 }
 
-#criticalPatchesTable_filter>label>input {
-  margin: 0;
-  width: 100%;
-}
-
 .criticalColor {
   color: #FF5F60
 }

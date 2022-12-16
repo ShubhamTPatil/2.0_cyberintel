@@ -67,6 +67,14 @@ $(function () {
                         fontColor: "#333",
                         fontSize: 16
                     }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            let label = context.dataset.label || '';
+                            return label + " " + context.parsed + '%';
+                        }
+                    }
                 }
             }
         }
@@ -82,6 +90,9 @@ $(function () {
                 data: [{
                     y: 100,
                     x: 4
+                },{
+                    y: 20,
+                    x: 12
                 }],
                 backgroundColor: '#FF5F60',
                 pointRadius: 5,
@@ -92,6 +103,10 @@ $(function () {
                 data: [{
                     y: 800,
                     x: 10
+                },
+                {
+                    y: 200,
+                    x: 5
                 }],
                 backgroundColor: '#D4733A',
                 pointRadius: 5,
@@ -102,6 +117,9 @@ $(function () {
                 data: [{
                     y: 400,
                     x: 2
+                },{
+                    y: 100,
+                    x: 7
                 }],
                 backgroundColor: '#F3CC63',
                 pointRadius: 5,
@@ -112,6 +130,9 @@ $(function () {
                 data: [{
                     x: 3,
                     y: 300
+                },{
+                    x: 4,
+                    y: 150                
                 }],
                 backgroundColor: '#71DCEB',
                 pointRadius: 5,
@@ -177,7 +198,7 @@ $(function () {
         }],
         'columnDefs': [{
             'targets': 0,
-            'searchable': false,
+            'searchable': true,
             'orderable': false,
             'className': 'dt-body-center',
             'render': function (data, type, full, meta) {
@@ -209,45 +230,71 @@ $(function () {
     });
 
 
-    $('#criticalPatchesTable').DataTable({
-        "destroy": true, // In order to reinitialize the datatable
-        "pagination": true, // For Pagination
-        "bPaginate": true,
-        "sorting": false, // For sorting
-        "ordering": false,
-        "searching": false,
+   $('#criticalPatchesTable').DataTable({
+       "destroy": true, // In order to reinitialize the datatable
+       "pagination": true, // For Pagination
+       "bPaginate": true,
+       "sorting": false, // For sorting
+       "ordering": false,
+       "searching": true,
+       "aaData": [
+           { "Patch Name": "K84562", "Severity": "High", "Affected Machines": 2 },
+           { "Patch Name": "K74365", "Severity": "High", "Affected Machines": 3 },
+           { "Patch Name": "K98578", "Severity": "High", "Affected Machines": 1 },
+           { "Patch Name": "543791", "Severity": "High", "Affected Machines": 7 },
+           { "Patch Name": "K98352", "Severity": "High", "Affected Machines": 7 },
+           { "Patch Name": "K97475", "Severity": "High", "Affected Machines": 2 },
+           { "Patch Name": "K65190", "Severity": "High", "Affected Machines": 8 },
+           { "Patch Name": "K06395", "Severity": "High", "Affected Machines": 3 },
+           { "Patch Name": "K18536", "Severity": "High", "Affected Machines": 1 },
+           { "Patch Name": "K73934", "Severity": "High", "Affected Machines": 7 },
+           { "Patch Name": "K75297", "Severity": "High", "Affected Machines": 5 },
+           { "Patch Name": "K07652", "Severity": "High", "Affected Machines": 3 },
+           { "Patch Name": "K82049", "Severity": "High", "Affected Machines": 6 },
+           { "Patch Name": "K53319", "Severity": "High", "Affected Machines": 4 },
+           { "Patch Name": "K11437", "Severity": "High", "Affected Machines": 5 },
+           { "Patch Name": "K77510", "Severity": "High", "Affected Machines": 1 }
+       ],
+       "columns": [{},
+       {
+           "data": "Patch Name"
+       }, {
+           "data": "Severity"
+       }, {
+           "data": "Affected Machines"
+       }],
+       'columnDefs': [{
+           'targets': 0,
+           'searchable': true,
+           'orderable': false,
+           'className': 'dt-body-center',
+           'render': function (data, type, full, meta) {
+               return '<input type="checkbox" class="form-check-input" name="criPatchCheckbox" value="' + $('<div/>').text(data).html() + '">';
+           }
+       }],
+       'rowCallback': function (row, data, index) {
+           switch (data['Severity']) {
+               case 'Critical':
+                   $(row).find('td:eq(2)').addClass('criticalColor');
+                   break;
 
-        "language": {
-            "search": "_INPUT_",
-            "searchPlaceholder": "Search..."
-        },
-        "aaData": [
-            {
-                "Machine": "Critical",
-                "Patches": "Patches 2"
-            },
-            {
-                "Machine": "Critical",
-                "Patches": "Patches 2"
-            }
-        ],
-        "columns": [{},
-        {
-            "data": "Machine"
-        }, {
-            "data": "Patches"
-        }],
-        'columnDefs': [{
-            'targets': 0,
-            'searchable': true,
-            'orderable': false,
-            'className': 'dt-body-center',
-            'render': function (data, type, full, meta) {
-                return '<input type="checkbox" class="form-check-input" name="criPatchCheckbox" value="' + $('<div/>').text(data).html() + '">';
-            }
-        }]
-    });
+               case 'High':
+                   $(row).find('td:eq(2)').addClass('highColor');
+                   break;
 
+               case 'Medium':
+                   $(row).find('td:eq(2)').addClass('mediumColor');
+                   break;
+
+               case 'Low':
+                   $(row).find('td:eq(2)').addClass('lowColor');
+                   break;
+
+               default:
+                   break;
+           }
+       }
+     });
     
 
 });
@@ -283,8 +330,8 @@ $(function () {
           title="Download">
           <i class="fa-solid fa-download"></i>
         </div>
-        <div class="p-2 bd-highlight text-primary align-self-center">
-          <a href="/shell/dashboard.do"><i class="fa-solid fa-chevron-left" style="margin-right: 5px;"></i>CMS Home</a>
+        <div class="p-2 bd-highlight text-primary align-self-center"> <a href="http://defensight.marimbacastanet.com:8888/shell/dashboard.do"> <i class="fa-solid fa-chevron-left"
+              style="margin-right: 5px;"></i>Back to CMS </a>
         </div>
       </div>
 
@@ -409,7 +456,7 @@ $(function () {
                   <h5 class="card-title">Top Vulnerabilities <span>| Patch applied</span>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                      data-bs-target="#topVulModal" style="margin-left: 10px;">
+                      data-bs-target="#topVulModal" style="margin-left: 20px;">
                       Mitigate Selected
                     </button>
                   </h5>
@@ -424,88 +471,53 @@ $(function () {
                         <th scope="col">Patches Available</th>
                       </tr>
                     </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            
+            
+            <div class="col-12">
+              <div class="card overflow-auto">
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa-solid fa-sliders"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+                    <li><a class="dropdown-item">Critical</a></li>
+                    <li><a class="dropdown-item">High</a></li>
+                    <li><a class="dropdown-item">Medium</a></li>
+                    <li><a class="dropdown-item">Low</a></li>
+                  </ul>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Priority Patches <span>| Severity - High</span>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#priPatchesModal" style="margin-left: 20px;">
+                    Mitigate Selected
+                  </button>
+                  </h5>
+                  <table id="criticalPatchesTable" class="table" style="width: 100%;">
+                    <thead>
+                      <tr>
+                        <th scope="col"><input type="checkbox" id="criticalPatchesSelectAll"
+                            class="selectAll form-check-input"></th>
+                        <th scope="col">Patch Name</th>
+                        <th scope="col">Severity</th>
+                        <th scope="col">Affected Machines</th>
+                      </tr>
+                    </thead>
                     <tbody>
-
 
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
-
-
-            <div class="col-12">
-
-              <div class="card overflow-auto">
-                <div class="card-body">
-                  <h5 class="card-title">Machine Compliance</h5>
-
-                  <div class="row compliance">
-                    <div class="col-md-4">
-                      <p>Reporting</p>
-
-
-
-                      <span> Not checked-in <span data-bs-toggle="modal" data-bs-target="#reportingModal"
-                          style="color: #FF5F60; text-decoration: underline; cursor: pointer;">
-                          1234
-                        </span></span>
-                      <div class="progress" style="margin-bottom:10px;">
-                        <div id="reportingNotCheckedIn" class="progress-bar" role="progressbar"
-                          style="width: 60%; background-color: #FF5F60" aria-valuemax="100"></div>
-                      </div>
-                      <span> Not available <span style="color: #F3CC63;">1234</span> </span>
-                      <div class="progress" style="margin-bottom:10px;">
-                        <div id="reportingNotAvailable" class="progress-bar" role="progressbar"
-                          style="width: 30%; background-color: #F3CC63" aria-valuemax="100"></div>
-                      </div>
-                      <span> Checked-in <span style="color: #18db76;">1438</span></span>
-                      <div class="progress" style="margin-bottom:10px;">
-                        <div id="reportingCheckedIn" class="progress-bar" role="progressbar"
-                          style="width: 10%; background-color: #18db76" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-
-
-
-                    <div class="col-md-4">
-                      <p>Security</p>
-                      <span> Non Compliant <span style="color: #FF5F60;">20</span> </span>
-                      <div class="progress" style="margin-bottom:10px;">
-                        <div id="securityNonCompliant" class="progress-bar" role="progressbar"
-                          style="width: 40%; background-color: #FF5F60" aria-valuemax="100"></div>
-                      </div>
-                      <span> Compliant - <span style="color: #18db76;">30 </span></span>
-                      <div class="progress" style="margin-bottom:10px;">
-                        <div id="securityCompliant" class="progress-bar" role="progressbar"
-                          style="width: 60%; background-color: #18db76" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-
-
-                    <div class="col-md-4">
-                      <p>Patches</p>
-                      <span> Non Compliant - <span style="color: #FF5F60;">30</span> </span>
-                      <div class="progress" style="margin-bottom:10px;">
-                        <div id="patchNonCompliant" class="progress-bar" role="progressbar"
-                          style="width: 20%; background-color: #FF5F60" aria-valuemax="100"></div>
-                      </div>
-                      <span> Compliant - <span style="color: #18db76;">50 </span></span>
-                      <div class="progress" style="margin-bottom:10px;">
-                        <div id="patchCompliant" class="progress-bar" role="progressbar"
-                          style="width: 80%; background-color: #18db76" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-
-
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-
+            
           </div>
 
 
@@ -561,8 +573,9 @@ $(function () {
 
             </div>
           </div>
-
-
+          
+          
+          
           <div class="card">
             <div class="card-body pb-0">
               <h5 class="card-title">Vulnerability Aging</h5>
@@ -576,43 +589,82 @@ $(function () {
               </div>
             </div>
           </div>
-
-
+          
+          
+          
           <div class="card overflow-auto">
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa-solid fa-sliders"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-                <li><a class="dropdown-item">Critical</a></li>
-                <li><a class="dropdown-item">High</a></li>
-                <li><a class="dropdown-item">Medium</a></li>
-                <li><a class="dropdown-item">Low</a></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Priority Patches <span>| Severity - High</span></h5>
-              <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                data-bs-target="#priPatchesModal" style="position:absolute; right:15px;">
-                Mitigate Selected
-              </button>
-              <table id="criticalPatchesTable" class="table" style="width: 100%;">
-                <thead>
-                  <tr>
-                    <th scope="col"><input type="checkbox" id="criticalPatchesSelectAll"
-                        class="selectAll form-check-input"></th>
-                    <th scope="col">Machine</th>
-                    <th scope="col">Patches</th>
-                  </tr>
-                </thead>
-                <tbody>
+              <div class="card-body">
+                <h5 class="card-title">Machine Compliance</h5>
 
-                </tbody>
-              </table>
+                <div class="row compliance">
+                  <div class="col-md-4">
+                    <p>Reporting</p>
+
+
+
+                    <span> Not checked-in </span><br/>
+                    <span data-bs-toggle="modal" data-bs-target="#reportingModal"
+                        style="color: #FF5F60; text-decoration: underline; cursor: pointer;">
+                        30
+                      </span>
+                    <div class="progress" style="margin-bottom:10px;">
+                      <div id="reportingNotCheckedIn" class="progress-bar" role="progressbar"
+                        style="width: 15%; background-color: #FF5F60" aria-valuemax="100"></div>
+                    </div>
+                    <span> Not available </span><br/>
+                    <span style="color: #F3CC63;">70</span> 
+                    <div class="progress" style="margin-bottom:10px;">
+                      <div id="reportingNotAvailable" class="progress-bar" role="progressbar"
+                        style="width: 35%; background-color: #F3CC63" aria-valuemax="100"></div>
+                    </div>
+                    <span> Checked-in </span><br/>
+                    <span style="color: #18db76;">100</span>
+                    <div class="progress" style="margin-bottom:10px;">
+                      <div id="reportingCheckedIn" class="progress-bar" role="progressbar"
+                        style="width: 50%; background-color: #18db76" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="col-md-4">
+                    <p>Security</p>
+                    <span> Non Compliant </span><br/> 
+                    <span style="color: #FF5F60;">20</span> 
+                    <div class="progress" style="margin-bottom:10px;">
+                      <div id="securityNonCompliant" class="progress-bar" role="progressbar"
+                        style="width: 10%; background-color: #FF5F60" aria-valuemax="100"></div>
+                    </div>
+                    <span> Compliant</span> <br/>
+                    <span style="color: #18db76;">180 </span>
+                    <div class="progress" style="margin-bottom:10px;">
+                      <div id="securityCompliant" class="progress-bar" role="progressbar"
+                        style="width: 90%; background-color: #18db76" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-4">
+                    <p>Patches</p>
+                    <span> Non Compliant </span><br/>
+                    <span style="color: #FF5F60;">40</span> 
+                    <div class="progress" style="margin-bottom:10px;">
+                      <div id="patchNonCompliant" class="progress-bar" role="progressbar"
+                        style="width: 20%; background-color: #FF5F60" aria-valuemax="100"></div>
+                    </div>
+                    <span> Compliant </span><br/>
+                    <span style="color: #18db76;">160 </span>
+                    <div class="progress" style="margin-bottom:10px;">
+                      <div id="patchCompliant" class="progress-bar" role="progressbar"
+                        style="width: 80%; background-color: #18db76" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+
+
+                </div>
+
+              </div>
             </div>
-          </div>
 
         </div>
       </div>
