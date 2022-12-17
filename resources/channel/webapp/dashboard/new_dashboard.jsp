@@ -599,44 +599,39 @@ $(function () {
                 <div class="row compliance">
                   <div class="col-md-4">
                     <p>Reporting</p>
-
-
-
                     <span> Not checked-in </span><br/>
                     <span data-bs-toggle="modal" data-bs-target="#reportingModal"
                         style="color: #FF5F60; text-decoration: underline; cursor: pointer;">
-                        30
+                        <bean:write name="newDashboardForm" property="reportingNotCheckedIn"/>
                       </span>
                     <div class="progress" style="margin-bottom:10px;">
                       <div id="reportingNotCheckedIn" class="progress-bar" role="progressbar"
                         style="width: 15%; background-color: #FF5F60" aria-valuemax="100"></div>
                     </div>
                     <span> Not available </span><br/>
-                    <span style="color: #F3CC63;">70</span> 
+                    <span style="color: #F3CC63;"><bean:write name="newDashboardForm" property="reportingNotAvailable"/></span>
                     <div class="progress" style="margin-bottom:10px;">
                       <div id="reportingNotAvailable" class="progress-bar" role="progressbar"
                         style="width: 35%; background-color: #F3CC63" aria-valuemax="100"></div>
                     </div>
                     <span> Checked-in </span><br/>
-                    <span style="color: #18db76;">100</span>
+                    <span style="color: #18db76;"><bean:write name="newDashboardForm" property="reportingCheckedIn"/></span>
                     <div class="progress" style="margin-bottom:10px;">
                       <div id="reportingCheckedIn" class="progress-bar" role="progressbar"
                         style="width: 50%; background-color: #18db76" aria-valuemax="100"></div>
                     </div>
                   </div>
 
-
-
                   <div class="col-md-4">
                     <p>Security</p>
                     <span> Non Compliant </span><br/> 
-                    <span style="color: #FF5F60;">20</span> 
+                    <span style="color: #FF5F60;"><bean:write name="newDashboardForm" property="securityNonCompliant"/></span>
                     <div class="progress" style="margin-bottom:10px;">
                       <div id="securityNonCompliant" class="progress-bar" role="progressbar"
                         style="width: 10%; background-color: #FF5F60" aria-valuemax="100"></div>
                     </div>
                     <span> Compliant</span> <br/>
-                    <span style="color: #18db76;">180 </span>
+                    <span style="color: #18db76;"><bean:write name="newDashboardForm" property="securityCompliant"/></span>
                     <div class="progress" style="margin-bottom:10px;">
                       <div id="securityCompliant" class="progress-bar" role="progressbar"
                         style="width: 90%; background-color: #18db76" aria-valuemax="100"></div>
@@ -647,13 +642,13 @@ $(function () {
                   <div class="col-md-4">
                     <p>Patches</p>
                     <span> Non Compliant </span><br/>
-                    <span style="color: #FF5F60;">40</span> 
+                    <span style="color: #FF5F60;"><bean:write name="newDashboardForm" property="patchNonCompliant"/></span>
                     <div class="progress" style="margin-bottom:10px;">
                       <div id="patchNonCompliant" class="progress-bar" role="progressbar"
                         style="width: 20%; background-color: #FF5F60" aria-valuemax="100"></div>
                     </div>
                     <span> Compliant </span><br/>
-                    <span style="color: #18db76;">160 </span>
+                    <span style="color: #18db76;"><bean:write name="newDashboardForm" property="patchCompliant"/></span>
                     <div class="progress" style="margin-bottom:10px;">
                       <div id="patchCompliant" class="progress-bar" role="progressbar"
                         style="width: 80%; background-color: #18db76" aria-valuemax="100"></div>

@@ -35,7 +35,6 @@ public class DashboardHandler implements ComplianceConstants {
         int count = 0;
         try {
             count = new DashboardInfoDetails.GetAllEndpointMachineCount(main, targetId).getMachinesCount();
-
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -118,6 +117,17 @@ public class DashboardHandler implements ComplianceConstants {
             ex.printStackTrace();
         }
         return topVulInfo;
+    }
+
+    // Get Compliance Reporting, Security and Patch data
+    public Map<String, String> getComplianceType(String complianceType) {
+        Map<String, String> result = new LinkedHashMap<String, String>();
+        try {
+            result = new DashboardInfoDetails.GetComplianceReportingData(main, complianceType).getResult();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return result;
     }
 
     //Controller for total number of scurity scanners in use

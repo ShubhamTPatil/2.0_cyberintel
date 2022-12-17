@@ -217,67 +217,41 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
 
     static class GetMachineCountData extends QueryExecutor {
-
-
-
         String targetID = null;
-
         int count = 0;
 
         GetMachineCountData (SubscriptionMain main, String targetId) {
-
             super(main);
-
             this.targetID = targetId;
-
             if("all".equalsIgnoreCase(targetID)) {
-
                 this.targetID = "all_all";
-
             }
-
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
 
-
-
             String queryStr = "select COUNT(*) from inv_machine im" +
-
                     "where exists (select 1 from inv_security_xccdf_compliance  sxc where sxc.machine_id = im.id" +
-
                     "and UPPER(sxc.assigned_target_name) = UPPER('"+ targetID +"')";
-
-
 
             debug("GetMachineCountData() Query Str :" + queryStr);
 
             PreparedStatement st = pool.getConnection().prepareStatement(queryStr);
-
-
-
             ResultSet rs = st.executeQuery();
 
             try {
-
                 if(rs.next()) {
-
                     count = rs.getInt(1);
-
                 }
 
             } finally {
-
                 rs.close();
-
             }
 
         }
 
         public int getMachinesCount() {
-
             return count;
-
         }
 
     }
@@ -285,37 +259,24 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
 
     public static class GetLast24HourMachineDetails extends DatabaseAccess {
-
         SubscriptionMain main = null;
-
         int count = 0;
 
-
-
         public GetLast24HourMachineDetails (SubscriptionMain main, String targetId) {
-
             GetLast24HourMachineData result = new GetLast24HourMachineData(main, targetId);
 
             try {
-
                 runQuery(result);
-
                 count= result.getMachineCount();
-
             } catch (Exception dae) {
-
                 dae.printStackTrace();
-
             }
 
         }
 
 
-
         public int getMachinesCount() {
-
             return count;
-
         }
 
     }
@@ -323,83 +284,49 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
 
     static class GetLast24HourMachineData extends QueryExecutor {
-
-
-
         String targetID = null;
-
         int count = 0;
 
 
-
-
-
         GetLast24HourMachineData (SubscriptionMain main, String targetId) {
-
             super(main);
-
             this.targetID = targetId;
 
             if("all".equalsIgnoreCase(targetID)) {
-
                 this.targetID = "all_all";
-
             }
-
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
-
-
-
             String queryStr = "select COUNT(*) from ( " +
-
                     "select machine_id, max(finished_at) as finished_at  from inv_security_xccdf_compliance sxc where " +
-
-                    "        upper(sxc.assigned_target_name) like  UPPER('"+ targetID +"') " +
-
+                    " upper(sxc.assigned_target_name) like  UPPER('"+ targetID +"') " +
                     " group by machine_id ) a " +
-
                     " where a.finished_at >= DATEADD(day, -1, GETDATE())";
 
             debug("GetLast24HourMachineData() Query Str :" + queryStr);
 
             PreparedStatement st = pool.getConnection().prepareStatement(queryStr);
-
-
-
             ResultSet rs = st.executeQuery();
 
             try {
-
                 if(rs.next()) {
-
                     count = rs.getInt(1);
-
                 }
-
             } finally {
-
                 rs.close();
-
             }
 
         }
 
 
-
         public int getMachineCount() {
-
             return count;
-
         }
-
     }
 
     public static class GetSecurityInUseDetails extends DatabaseAccess {
-
         SubscriptionMain main = null;
-
         int count = 0;
 
 
@@ -1260,47 +1187,30 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
 
     //All Endpoints
-
     public static class GetAllEndpointMachines extends DatabaseAccess {
-
         SubscriptionMain main = null;
-
         HashMap<String, String> complianceMap = new HashMap<String, String>();
-
         List<MachineBean> list = new ArrayList<MachineBean>();
 
 
-
         public GetAllEndpointMachines(SubscriptionMain main, String targetId) {
-
             GetAllEndpointMachinesData result = new GetAllEndpointMachinesData(main, targetId);
-
             try {
-
                 runQuery(result);
-
                 list= result.getMachineBeanList();
-
             } catch (Exception dae) {
-
                 dae.printStackTrace();
-
             }
-
         }
 
 
 
         public List<MachineBean> getMachineBeanList() {
-
             return list;
-
         }
 
         public int getMachinesCount() {
-
             return list.size();
-
         }
 
     }
@@ -1309,150 +1219,90 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
     static class GetAllEndpointMachinesData extends QueryExecutor {
 
-
-
         Map<String, MachineBean> macBeanList = new HashMap<String, MachineBean>();
 
-
-
         GetAllEndpointMachinesData (SubscriptionMain main, String targetId) {
-
             super(main);
-
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
-
             String sql = "select a.machine_id, b.product product, dbo.MachineOverallCompStatus(a.machine_id) status from (\n" +
-
                     "select distinct machine_id from inv_security_xccdf_compliance\n" +
-
                     ") a, inv_os b where a.machine_id = b.machine_id \n";
 
             debug("GetAllEndpointMachines() Query str: " + sql);
-
             PreparedStatement st = pool.getConnection().prepareStatement(sql);
 
-
-
             ResultSet rs = st.executeQuery();
-
             Map<String, Set<String>> compDetails = new HashMap<String, Set<String>>();
 
             try {
-
                 while (rs.next()) {
-
                     String machineId = rs.getString(1);
-
                     String status = rs.getString("status");
-
                     MachineBean machineBean = new MachineBean(machineId);
-
                     machineBean.setMachineID(machineId);
-
                     machineBean.setOsProduct(rs.getString("product"));
-
                     machineBean.setComplianceLevel(status);
-
                     macBeanList.put(machineId, machineBean);
-
                     Set<String> targetStatus = compDetails.get(machineId);
 
                     if (null == targetStatus) targetStatus = new HashSet<String>();
-
                     targetStatus.add(status);
-
                     compDetails.put(machineId, targetStatus);
-
                 }
-
             } finally {
-
                 rs.close();
-
             }
 
             for (String machineId : compDetails.keySet()) {
-
                 Set<String> set = compDetails.get(machineId);
-
                 String finalStatus = "NON-COMPLIANT";
-
                 if (set.size() == 2) {
-
                     finalStatus = set.contains("NON-COMPLIANT") ? "NON-COMPLIANT" : "COMPLIANT";
-
                 }
 
                 if (set.size() == 1) {
-
                     if (set.contains("COMPLIANT")) finalStatus = "COMPLIANT";
-
                     if (set.contains("NON-COMPLIANT")) finalStatus = "NON-COMPLIANT";
-
                     if (set.contains("NOT APPLICABLE")) finalStatus = "NOT APPLICABLE";
-
                 }
 
                 MachineBean aBean = macBeanList.get(machineId);
 
                 if (null != aBean) aBean.setComplianceLevel(finalStatus);
-
             }
 
         }
 
-
-
         public List<MachineBean> getMachineBeanList() {
-
             return new ArrayList<MachineBean>(macBeanList.values());
-
         }
 
     }
 
 
-
     //For All Endpoint scanner-wise compliant
-
     public static class GetAllEndpointScannerWiseCompliant extends DatabaseAccess {
-
         SubscriptionMain main = null;
-
         int count = 0;
-
         Map<String, SCAPBean> scannerMap = new HashMap<String, SCAPBean>();
 
-
-
         public GetAllEndpointScannerWiseCompliant (SubscriptionMain main, String targetId) {
-
             GetAllEndpointScannerWiseCompliantData result = new GetAllEndpointScannerWiseCompliantData(main, targetId);
-
             try {
-
                 runQuery(result);
-
                 scannerMap = result.getScannerMap();
-
             } catch (Exception dae) {
-
                 dae.printStackTrace();
-
             }
-
         }
 
 
 
         public Map<String, SCAPBean> getScannerMap() {
-
             return scannerMap;
-
         }
-
     }
 
 
@@ -1507,9 +1357,43 @@ public class DashboardInfoDetails implements ComplianceConstants {
     }
 
 
+    public static class GetComplianceReportingData extends DatabaseAccess {
+        Map<String, String> complianceResult = new LinkedHashMap<String, String>();
+        String complianceType = "";
+        
+        public GetComplianceReportingData(SubscriptionMain main, String complianceType) {
+            this.complianceType = complianceType;
+            GetComplianceReportingInfo result = new GetComplianceReportingInfo(main, complianceType);
+            try {
+                runQuery(result);
+                if ("reporting".equalsIgnoreCase(complianceType)) {
+                    int checkedIn = result.getCheckedIn();
+                    int notCheckedIn = result.getNotCheckedIn();
+                    complianceResult.put("checkedIn", String.valueOf(checkedIn));
+                    complianceResult.put("notCheckedIn", String.valueOf(notCheckedIn));
+                } else if ("security".equalsIgnoreCase(complianceType)) {
+                    int compliant = result.getCompliant();
+                    int nonCompliant = result.getNonCompliant();
+                    complianceResult.put("compliant", String.valueOf(compliant));
+                    complianceResult.put("nonCompliant", String.valueOf(nonCompliant));
+                } else {
+                    int compliant = result.getCompliant();
+                    int nonCompliant = result.getNonCompliant();
+                    complianceResult.put("compliant", String.valueOf(compliant));
+                    complianceResult.put("nonCompliant", String.valueOf(nonCompliant));
+                }
+            } catch (Exception dae) {
+                dae.printStackTrace();
+            }
+        }
+
+        public Map<String, String> getResult() {
+            return complianceResult;
+        }
+    }
+
 
     public static class GetAllEndpointMachineCount extends DatabaseAccess {
-
         SubscriptionMain main = null;
         int count = 0;
 
@@ -1761,6 +1645,90 @@ public class DashboardInfoDetails implements ComplianceConstants {
     }
 
 
+    static class GetComplianceReportingInfo extends QueryExecutor {
+        int checkedIn = 0;
+        int notCheckedIn = 0;
+        int notAvailable = 0;
+
+        int compliant = 0;
+        int nonCompliant = 0;
+        String complianceType;
+
+        GetComplianceReportingInfo(SubscriptionMain main, String complianceType) {
+            super(main);
+            this.complianceType = complianceType;
+        }
+
+
+        protected void execute(IStatementPool pool) throws SQLException {
+            PreparedStatement st = null;
+
+            if ("reporting".equalsIgnoreCase(complianceType)) {
+                st = pool.getConnection().prepareStatement("select count(*) as 'Count', ComplianceStaus as 'Type' from derived_inv_compliance dic \n" +
+                        "where dic.scantime > (select getutcdate() - 1) \n" +
+                        "group by ComplianceStaus having count (*) > 0");
+            } else if ("security".equalsIgnoreCase(complianceType)) {
+                st = pool.getConnection().prepareStatement("select count(distinct machinename) as 'Count' , overall_compliant_level as 'Type' \n" +
+                        "from inv_security_oval_comp_overall group by overall_compliant_level having count(*) > 0");
+            } else {
+                st = pool.getConnection().prepareStatement("select * from derived_patch_compliance");
+            }
+
+            ResultSet rs = st.executeQuery();
+            try {
+                if ("reporting".equalsIgnoreCase(complianceType)) {
+                    while (rs.next()) {
+                        int count =  rs.getInt("Count");
+                        String type = rs.getString("Type");
+                        if ("CheckedIn".equalsIgnoreCase(type)) {
+                            checkedIn = count;
+                        } else if ("NotCheckedIn".equalsIgnoreCase(type)) {
+                            notCheckedIn = count;
+                        }
+                    }
+                } else if ("security".equalsIgnoreCase(complianceType)) {
+                    while (rs.next()) {
+                        int count =  rs.getInt("Count");
+                        String type = rs.getString("Type");
+                        if ("COMPLIANT".equalsIgnoreCase(type)) {
+                            compliant = count;
+                        } else if ("NON-COMPLIANT".equalsIgnoreCase(type)) {
+                            nonCompliant = count;
+                        }
+                    }
+                } else {
+                    if (rs.next()) {
+                        nonCompliant = rs.getInt("vulnerable");
+                        compliant = rs.getInt("non_vulnerable");
+                    }
+                }
+            } finally {
+                rs.close();
+            }
+
+        }
+
+        public int getCheckedIn() {
+            return checkedIn;
+        }
+
+        public int getNotCheckedIn() {
+            return notCheckedIn;
+        }
+
+        public int getNotAvailable() {
+            return notAvailable;
+        }
+
+        public int getCompliant() {
+            return compliant;
+        }
+
+        public int getNonCompliant() {
+            return nonCompliant;
+        }
+
+    }
 
     private static void debug(String msg) {
 

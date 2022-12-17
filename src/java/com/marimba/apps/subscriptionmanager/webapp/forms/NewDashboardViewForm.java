@@ -57,6 +57,14 @@ public class NewDashboardViewForm
     private List<TopVulnerableStatusBean> topVulnerableList = new ArrayList<TopVulnerableStatusBean>();
     private String topVulnerableData = "[]";
 
+    private String reportingCheckedIn = "0";
+    private String reportingNotCheckedIn = "0";
+    private String reportingNotAvailable = "0";
+    private String securityCompliant = "0";
+    private String securityNonCompliant = "0";
+    private String patchCompliant = "0";
+    private String patchNonCompliant = "0";
+
 
     public String getId() {
         return id;
@@ -228,6 +236,62 @@ public class NewDashboardViewForm
 
     public void setTopVulnerableData(String topVulnerableData) {
         this.topVulnerableData = topVulnerableData;
+    }
+
+    public String getReportingCheckedIn() {
+        return reportingCheckedIn;
+    }
+
+    public void setReportingCheckedIn(String reportingCheckedIn) {
+        this.reportingCheckedIn = reportingCheckedIn;
+    }
+
+    public String getReportingNotCheckedIn() {
+        return reportingNotCheckedIn;
+    }
+
+    public void setReportingNotCheckedIn(String reportingNotCheckedIn) {
+        this.reportingNotCheckedIn = reportingNotCheckedIn;
+    }
+
+    public String getReportingNotAvailable() {
+        return reportingNotAvailable;
+    }
+
+    public void setReportingNotAvailable(String reportingNotAvailable) {
+        this.reportingNotAvailable = reportingNotAvailable;
+    }
+
+    public String getSecurityCompliant() {
+        return securityCompliant;
+    }
+
+    public void setSecurityCompliant(String securityCompliant) {
+        this.securityCompliant = securityCompliant;
+    }
+
+    public String getSecurityNonCompliant() {
+        return securityNonCompliant;
+    }
+
+    public void setSecurityNonCompliant(String securityNonCompliant) {
+        this.securityNonCompliant = securityNonCompliant;
+    }
+
+    public String getPatchCompliant() {
+        return patchCompliant;
+    }
+
+    public void setPatchCompliant(String patchCompliant) {
+        this.patchCompliant = patchCompliant;
+    }
+
+    public String getPatchNonCompliant() {
+        return patchNonCompliant;
+    }
+
+    public void setPatchNonCompliant(String patchNonCompliant) {
+        this.patchNonCompliant = patchNonCompliant;
     }
 
 }
