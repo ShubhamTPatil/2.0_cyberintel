@@ -17,7 +17,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="runScan" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/dashboard/run_scan.jsp"
+        <a class="nav-link" id="runScan" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/newRunScan.do"
           title="Run Scan">
           <i class="fa-brands fa-searchengin"></i>
         </a>
