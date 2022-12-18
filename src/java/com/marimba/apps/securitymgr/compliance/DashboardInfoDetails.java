@@ -1433,6 +1433,26 @@ public class DashboardInfoDetails implements ComplianceConstants {
     }
 
 
+    public static class GetAgeingVulnerableBySeverityInfo extends DatabaseAccess {
+        Map<String, String> vulSeverityInfo = new LinkedHashMap<String, String>();
+
+        public GetAgeingVulnerableBySeverityInfo(SubscriptionMain main) {
+
+            GetAgeingVulnerableBySeverityData result = new GetAgeingVulnerableBySeverityData(main);
+
+            try {
+                runQuery(result);
+                vulSeverityInfo = result.getVulnerableStatsInfo();
+            } catch (Exception dae) {
+                dae.printStackTrace();
+            }
+        }
+
+        public Map<String, String> getVulnerableSeverityInfo() {
+            return vulSeverityInfo;
+        }
+    }
+
     static class GetVulnerableStatsInfoData extends QueryExecutor {
         Map<String, String> vulStatsInfo = new LinkedHashMap<String, String>();
 
@@ -1466,6 +1486,45 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
         public Map<String, String> getVulnerableStatsInfo() {
             return vulStatsInfo;
+        }
+
+    }
+
+    static class GetAgeingVulnerableBySeverityData extends QueryExecutor {
+        Map<String, String> vulAgeingInfo = new LinkedHashMap<String, String>();
+
+        GetAgeingVulnerableBySeverityData(SubscriptionMain main) {
+            super(main);
+        }
+
+        protected void execute(IStatementPool pool) throws SQLException {
+            String sqlStr = "select  severity, count(severity) as 'vulnerable_count' , min(published_date) Identified_date,min(datediff(day,published_date,getdate())) ageing_days\n" +
+                    "from inv_security_oval_compliance a, inv_sec_oval_defn_cve_details b where \n" +
+                    "a.content_id = b.content_id and\n" +
+                    "b.definition_severity in (select distinct(severity) from inv_sec_oval_defn_cve_details where severity !=' ') \n" +
+                    "and b.severity != ' '\n" +
+                    "and overall_compliant_level like 'NON%'\n" +
+                    "group by severity \n" +
+                    "order by severity";
+
+            PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
+            ResultSet rs = st.executeQuery();
+            try {
+                int idx = 0;
+                while(rs.next()) {
+                    String severity = rs.getString("severity");
+                    String severityCnt = String.valueOf(rs.getInt("vulnerable_count"));
+                    String ageingDays = String.valueOf(rs.getInt("ageing_days"));
+                    vulAgeingInfo.put(severity + ":" + String.valueOf(idx), severityCnt + "," + ageingDays);
+                    idx++;
+                }
+            } finally {
+                rs.close();
+            }
+        }
+
+        public Map<String, String> getVulnerableStatsInfo() {
+            return vulAgeingInfo;
         }
 
     }

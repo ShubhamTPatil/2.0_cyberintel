@@ -34,7 +34,6 @@ $(function () {
     $('.nav-selected').removeClass('nav-selected');
     $('#dashboard').addClass('nav-selected');
 
-
     var ctx1 = $("#vulStatsDonutChart");
     // label: "Severity",
     var chart1 = new Chart(ctx1, {
@@ -80,64 +79,15 @@ $(function () {
         }
     });
 
+    var vulSeverityData = '<bean:write name="newDashboardForm" property="vulnerableSeverityData"/>';
+    vulSeverityData = vulSeverityData.replace(/&quot;/g,'"');
+    vulSeverityData=JSON.parse(vulSeverityData);
 
     var ctxVulAging = $("#vulAgingScatter");
     var chartVulAgingScatter = new Chart(ctxVulAging, {
         type: 'scatter',
         data: {
-            datasets: [{
-                label: 'Critical',
-                data: [{
-                    y: 100,
-                    x: 4
-                },{
-                    y: 20,
-                    x: 12
-                }],
-                backgroundColor: '#FF5F60',
-                pointRadius: 5,
-                pointHoverRadius: 7
-            },
-            {
-                label: 'High',
-                data: [{
-                    y: 800,
-                    x: 10
-                },
-                {
-                    y: 200,
-                    x: 5
-                }],
-                backgroundColor: '#D4733A',
-                pointRadius: 5,
-                pointHoverRadius: 7
-            },
-            {
-                label: 'Medium',
-                data: [{
-                    y: 400,
-                    x: 2
-                },{
-                    y: 100,
-                    x: 7
-                }],
-                backgroundColor: '#F3CC63',
-                pointRadius: 5,
-                pointHoverRadius: 7
-            },
-            {
-                label: 'Low',
-                data: [{
-                    x: 3,
-                    y: 300
-                },{
-                    x: 4,
-                    y: 150                
-                }],
-                backgroundColor: '#71DCEB',
-                pointRadius: 5,
-                pointHoverRadius: 7
-            }],
+            datasets: vulSeverityData,
         },
         options: {
             responsive: true,
@@ -301,8 +251,6 @@ $(function () {
 
 
 
-
-
 </script>
 
 
@@ -330,7 +278,7 @@ $(function () {
           title="Download">
           <i class="fa-solid fa-download"></i>
         </div>
-        <div class="p-2 bd-highlight text-primary align-self-center"> <a href="http://defensight.marimbacastanet.com:8888/shell/dashboard.do"> <i class="fa-solid fa-chevron-left"
+        <div class="p-2 bd-highlight text-primary align-self-center"> <a href="/shell/dashboard.do"> <i class="fa-solid fa-chevron-left"
               style="margin-right: 5px;"></i>Back to CMS </a>
         </div>
       </div>

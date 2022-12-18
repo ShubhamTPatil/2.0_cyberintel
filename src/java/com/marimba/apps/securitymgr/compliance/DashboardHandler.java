@@ -106,6 +106,19 @@ public class DashboardHandler implements ComplianceConstants {
     }
 
 
+    // Get Aging Report Vulnerabilities based on Severity
+    public Map<String, String> getAgingVulnerableBySeverityWise() {
+        Map<String, String> vulSeverityInfo =  new LinkedHashMap<String, String>();
+        try {
+
+            vulSeverityInfo = new DashboardInfoDetails.GetAgeingVulnerableBySeverityInfo(main).getVulnerableSeverityInfo();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return vulSeverityInfo;
+    }
+
     // Get Top Vulnerabilities Info 
     public List<TopVulnerableStatusBean> getTopVulnerabilitiesInfo() {
         List<TopVulnerableStatusBean> topVulInfo =  new ArrayList<TopVulnerableStatusBean>();

@@ -64,7 +64,8 @@ public class NewDashboardViewForm
     private String securityNonCompliant = "0";
     private String patchCompliant = "0";
     private String patchNonCompliant = "0";
-
+    private String vulnerableSeverityData = "[]";
+    
 
     public String getId() {
         return id;
@@ -293,6 +294,15 @@ public class NewDashboardViewForm
     public void setPatchNonCompliant(String patchNonCompliant) {
         this.patchNonCompliant = patchNonCompliant;
     }
+
+    public String getVulnerableSeverityData() {
+        return vulnerableSeverityData;
+    }
+
+    public void setVulnerableSeverityData(String vulnerableSeverityData) {
+        this.vulnerableSeverityData = vulnerableSeverityData;
+    }
+
 
 }
 
