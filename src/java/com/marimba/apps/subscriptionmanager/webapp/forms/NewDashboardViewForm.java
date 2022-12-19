@@ -12,6 +12,7 @@ package com.marimba.apps.subscriptionmanager.webapp.forms;
   *
  **/
 
+import com.marimba.apps.subscriptionmanager.beans.PriorityPatchesBean;
 import com.marimba.apps.subscriptionmanager.beans.TopVulnerableStatusBean;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
@@ -55,7 +56,9 @@ public class NewDashboardViewForm
     private VulnerableStatusBean vulnerableStatusBean;
     private String totalVulnerable;
     private List<TopVulnerableStatusBean> topVulnerableList = new ArrayList<TopVulnerableStatusBean>();
+    private List<PriorityPatchesBean> priorityPatchesList = new ArrayList<PriorityPatchesBean>();
     private String topVulnerableData = "[]";
+    private String priorityPatchesData = "[]";
 
     private String reportingCheckedIn = "0";
     private String reportingNotCheckedIn = "0";
@@ -231,12 +234,28 @@ public class NewDashboardViewForm
         this.topVulnerableList = topVulnerableList;
     }
 
+    public List<PriorityPatchesBean> PriorityPatchesList() {
+        return priorityPatchesList;
+    }
+
+    public void setPriorityPatchesList(List<PriorityPatchesBean> priorityPatchesList) {
+        this.priorityPatchesList = priorityPatchesList;
+    }
+
     public String getTopVulnerableData() {
         return topVulnerableData;
     }
 
     public void setTopVulnerableData(String topVulnerableData) {
         this.topVulnerableData = topVulnerableData;
+    }
+
+    public String getPriorityPatchesData() {
+        return priorityPatchesData;
+    }
+
+    public void setPriorityPatchesData(String priorityPatchesData) {
+        this.priorityPatchesData = priorityPatchesData;
     }
 
     public String getReportingCheckedIn() {

@@ -11,6 +11,7 @@ import java.util.Map;
 
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
 import com.marimba.apps.subscriptionmanager.beans.TopVulnerableStatusBean;
+import com.marimba.apps.subscriptionmanager.beans.PriorityPatchesBean;
 import com.marimba.apps.subscriptionmanager.compliance.intf.ComplianceConstants;
 
 /**
@@ -130,6 +131,20 @@ public class DashboardHandler implements ComplianceConstants {
             ex.printStackTrace();
         }
         return topVulInfo;
+    }
+
+
+    // Get Priority Patches Info
+    public List<PriorityPatchesBean> getPriorityPatchesInfo() {
+        List<PriorityPatchesBean> prtyPatchesInfo =  new ArrayList<PriorityPatchesBean>();
+        try {
+
+            prtyPatchesInfo = new DashboardInfoDetails.GetPriorityPatchesInfo(main).getPriorityPatchesInfo();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return prtyPatchesInfo;
     }
 
     // Get Compliance Reporting, Security and Patch data

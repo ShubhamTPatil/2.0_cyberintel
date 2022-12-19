@@ -180,6 +180,10 @@ $(function () {
     });
 
 
+    var prtyPatchesData = '<bean:write name="newDashboardForm" property="priorityPatchesData"/>';
+    prtyPatchesData = prtyPatchesData.replace(/&quot;/g,'"');
+    prtyPatchesData=JSON.parse(prtyPatchesData);
+
    $('#criticalPatchesTable').DataTable({
        "destroy": true, // In order to reinitialize the datatable
        "pagination": true, // For Pagination
@@ -187,24 +191,7 @@ $(function () {
        "sorting": false, // For sorting
        "ordering": false,
        "searching": true,
-       "aaData": [
-           { "Patch Name": "K84562", "Severity": "High", "Affected Machines": 2 },
-           { "Patch Name": "K74365", "Severity": "High", "Affected Machines": 3 },
-           { "Patch Name": "K98578", "Severity": "High", "Affected Machines": 1 },
-           { "Patch Name": "543791", "Severity": "High", "Affected Machines": 7 },
-           { "Patch Name": "K98352", "Severity": "High", "Affected Machines": 7 },
-           { "Patch Name": "K97475", "Severity": "High", "Affected Machines": 2 },
-           { "Patch Name": "K65190", "Severity": "High", "Affected Machines": 8 },
-           { "Patch Name": "K06395", "Severity": "High", "Affected Machines": 3 },
-           { "Patch Name": "K18536", "Severity": "High", "Affected Machines": 1 },
-           { "Patch Name": "K73934", "Severity": "High", "Affected Machines": 7 },
-           { "Patch Name": "K75297", "Severity": "High", "Affected Machines": 5 },
-           { "Patch Name": "K07652", "Severity": "High", "Affected Machines": 3 },
-           { "Patch Name": "K82049", "Severity": "High", "Affected Machines": 6 },
-           { "Patch Name": "K53319", "Severity": "High", "Affected Machines": 4 },
-           { "Patch Name": "K11437", "Severity": "High", "Affected Machines": 5 },
-           { "Patch Name": "K77510", "Severity": "High", "Affected Machines": 1 }
-       ],
+       "aaData": prtyPatchesData,
        "columns": [{},
        {
            "data": "Patch Name"
@@ -279,7 +266,7 @@ $(function () {
           <i class="fa-solid fa-download"></i>
         </div>
         <div class="p-2 bd-highlight text-primary align-self-center"> <a href="/shell/dashboard.do"> <i class="fa-solid fa-chevron-left"
-              style="margin-right: 5px;"></i>Back to CMS </a>
+              style="margin-right: 5px;"></i>CMS Home</a>
         </div>
       </div>
 
