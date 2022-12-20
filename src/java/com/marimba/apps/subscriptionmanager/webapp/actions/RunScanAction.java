@@ -21,14 +21,13 @@ import com.marimba.apps.securitymgr.compliance.DashboardHandler;
 import com.marimba.apps.subscriptionmanager.webapp.util.RunScanHandler;
 import com.marimba.apps.subscriptionmanager.webapp.actions.AbstractAction;
 
-
 // Copyright 1997-2004, Marimba, Inc. All Rights Reserved.
 // Confidential and Proprietary Information of Marimba, Inc.
 
 /**
  * 
- * @author Inmkaklij
- * This action class is responsible to showcase run scan results.
+ * @author Inmkaklij This action class is responsible to show case run scan
+ *         results.
  * 
  */
 public class RunScanAction extends AbstractAction {
@@ -36,16 +35,15 @@ public class RunScanAction extends AbstractAction {
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
 
-		System.out.println("runscan action execute method has been called 1");
+		System.out.println("runscan action execute method has been called ");
 		init(request);
 		RunScanForm formbean = (RunScanForm) form;
-		//HttpSession session = request.getSession();
 		try {
-			
-			RunScanHandler dashboardHandler = new RunScanHandler(main);			
-			System.out.println("runscan action execute method has been called 2 dashboardHandler : "+dashboardHandler);
+
+			RunScanHandler dashboardHandler = new RunScanHandler(main);
+			System.out.println("start - run scan action is called  : " + dashboardHandler);
 			formbean.setRunScanJson(dashboardHandler.getRunScanData());
-			System.out.println("runscan action execute method has been called 3 end : "+ dashboardHandler.getRunScanData());
+			System.out.println("END - run scan action is called ");
 
 		} catch (Exception e) {
 			e.printStackTrace();

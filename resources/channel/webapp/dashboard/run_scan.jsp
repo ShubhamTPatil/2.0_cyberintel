@@ -9,8 +9,12 @@
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
 <%@ taglib uri="/WEB-INF/webapps.tld" prefix="webapps"%>
-<%@ page import = "java.util.*,com.marimba.apps.subscriptionmanager.webapp.forms.RunScanForm" %>
-<jsp:useBean id="session_dist" class="com.marimba.apps.subscriptionmanager.webapp.forms.RunScanForm"  type="com.marimba.apps.subscriptionmanager.webapp.forms.RunScanForm" scope="session"/>
+<%@ page
+	import="java.util.*,com.marimba.apps.subscriptionmanager.webapp.forms.RunScanForm"%>
+<jsp:useBean id="session_dist"
+	class="com.marimba.apps.subscriptionmanager.webapp.forms.RunScanForm"
+	type="com.marimba.apps.subscriptionmanager.webapp.forms.RunScanForm"
+	scope="session" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,60 +53,88 @@ function toggle(source) {
     }
 }
 </script>
-<%  
-String JSONResp= "";
-JSONResp=session_dist.getRunScanJson();  
-out.print("JSON is "+JSONResp);  
+<%
+	String JSONResp = "";
+	JSONResp = session_dist.getRunScanJson();
+	out.print("JSON is " + JSONResp);
 %>
 <script type="text/javascript">
 function updateTable(){
 	var tbodyRow,tbodycol1,tbodycol2,chkBox;
-	var JSONResp="<%=JSONResp%>";
-			var data2=JSON.parse(JSONResp);
-			var obj = (data2.data);	
-			console.log(data2);
-	    	document.getElementById("CVEDate").innerText="CVE last updated("+data2.data.cVELastUpdated+")";
-	    	document.getElementById("VulDate").innerText="Vulnerabilities Definitions last upadted("+data2.data.vulDefLastUpdated+")";
-	    	document.getElementById("SecDate").innerText="Security Definitions last updated("+data2.data.secDefLastUpdated+")";
-	    	console.log(data2.data.MachineList);
-	    	//Populate Host Table
-	    	var DataTableBody=document.getElementById("myTableBody");
-	    	for(var i=0;i<data2.data.machineList.length;i++){
-	    	
-	    	console.log(data2.data.machineList.machineName);
-	    	tbodyRow="tbodyRow"+i;
+	var JSONResp="<%=session_dist.getRunScanJson()%>";
+		var data2 = JSON.parse(JSONResp);
+		console.log("Received Input .. "+data2);
+		var obj = (data2.data);
+		document.getElementById("CVEDate").innerText = "CVE last updated("
+				+ data2.data.cVELastUpdated + ")";
+		document.getElementById("VulDate").innerText = "Vulnerabilities Definitions last upadted("
+				+ data2.data.vulDefLastUpdated + ")";
+		document.getElementById("SecDate").innerText = "Security Definitions last updated("
+				+ data2.data.secDefLastUpdated + ")";
+		console.log(data2.data.MachineList);
+		//Populate Host Table
+		var DataTableBody = document.getElementById("myTableBody");
+		for (var i = 0; i < data2.data.machineList.length; i++) {
+
+			console.log(data2.data.machineList.machineName);
+			tbodyRow = "tbodyRow" + i;
 			tbodyRow = document.createElement('tr');
-			tbodyRow.id="tbodyRow"+i;
+			tbodyRow.id = "tbodyRow" + i;
 			DataTableBody.appendChild(tbodyRow);
-			
-			tbodycol1="tbodycol1"+i;
+
+			tbodycol1 = "tbodycol1" + i;
 			tbodycol1 = document.createElement('td');
-			tbodycol1.id="tbodycol1"+i;
-			chkBox='<input type="checkbox" name= "chkB" value='+data2.data.machineList[i].machineName+'>&nbsp;'+data2.data.machineList[i].machineName;
-			tbodycol1.innerHTML=chkBox;
+			tbodycol1.id = "tbodycol1" + i;
+			chkBox = '<input type="checkbox" name= "chkB" value='+data2.data.machineList[i].machineName+'>&nbsp;'
+					+ data2.data.machineList[i].machineName;
+			tbodycol1.innerHTML = chkBox;
 			tbodyRow.appendChild(tbodycol1);
-			
-			tbodycol2="tbodycol2"+i;
+
+			tbodycol2 = "tbodycol2" + i;
 			tbodycol2 = document.createElement('td');
-			tbodycol2.id="tbodycol2"+i;
-			tbodycol2.innerHTML=data2.data.machineList[i].machineLastScan;
+			tbodycol2.id = "tbodycol2" + i;
+			tbodycol2.innerHTML = data2.data.machineList[i].machineLastScan;
 			tbodyRow.appendChild(tbodycol2);
-			
-			
-	    	}
-		 }
-}
- </script>
+
+		}
+	}
+	function runCliScan() {
+		// Form submission
+		var checkboxesChecked = [];
+		checkboxesChecked = getCheckedBoxes("hostcheckboxes");
+
+		document.getElementById("form_id").action = "/runscancli.do";
+		document.getElementById("form_id").type = "com.marimba.apps.subscriptionmanager.webapp.forms.RunScanForm";
+		document.getElementById("form_id").submit();
+	}
+
+	// Pass the checkbox name to the function
+	function getCheckedBoxes(chkboxName) {
+		var checkboxes = document.getElementsByName(chkboxName);
+		var checkboxesChecked = [];
+		// loop over them all
+		for (var i = 0; i < checkboxes.length; i++) {
+			// And stick the checked ones onto an array...
+			if (checkboxes[i].checked) {
+				checkboxesChecked.push(checkboxes[i]);
+			}
+		}
+		// Return the array if it is non-empty, or null
+		return checkboxesChecked.length > 0 ? checkboxesChecked : null;
+	}
+</script>
 <!-- Start - Populate Host Table -->
-<script>updateTable();</script>
+<script>
+	updateTable();
+</script>
 </head>
 <body>
 
 
-	<html:form name="newRunScanForm" action="/newRunScan.do">
+	<html:form name="newRunScanForm" id="form_id" action="/newRunScan.do"
+		type="com.marimba.apps.subscriptionmanager.webapp.forms.RunScanForm">
 
 		<html:hidden property="action" value="runScan" />
-
 
 		<jsp:include page="header.jsp" />
 		<jsp:include page="sidebar.jsp" />
@@ -127,9 +159,9 @@ function updateTable(){
 					<i class="fa-solid fa-download"></i>
 				</div>
 				<div class="p-2 bd-highlight text-primary align-self-center">
-					<a href="/shell/dashboard.do"><i class="fa-solid fa-chevron-left" style="margin-right: 5px;"></i>
-					CMS Home
-					</a>
+					<a href="/shell/dashboard.do"><i
+						class="fa-solid fa-chevron-left" style="margin-right: 5px;"></i>
+						CMS Home </a>
 				</div>
 			</div>
 
@@ -161,37 +193,37 @@ function updateTable(){
 				</div>
 				<div class="col-md-2">
 					<button type="button" class="btn btn-primary btn-md"
-						style="width: 125px !important;">SCAN</button>
+						style="width: 125px !important;" onclick="runCliScan()">
+						SCAN</button>
 				</div>
-			</div>
 
-			<div class="row">
-				<div class="col-sm-12">
-					<h5>
-						<input type="checkbox" onclick='toggle(this)'>&nbsp;
-						Select / Deselect All the machine(s) to scan
-					</h5>
+				<div class="row">
+					<div class="col-sm-12">
+						<h5>
+							<input type="checkbox" onclick='toggle(this)'>&nbsp;
+							Select / Deselect All the machine(s) to scan
+						</h5>
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">&nbsp;</div>
-			</div>
-			<div class="row"
-				style="box-shadow: 1px 1px 1px #3333333d !important;">
-				<div class="col-md-12">
-					<table id="myTable" class="table-responsive">
-						<thead>
-							<tr>
-								<th>Machine Name</th>
-								<th>Last Scan Time(UTC)</th>
-							</tr>
-						</thead>
-						<tbody id="myTableBody">
+				<div class="row">
+					<div class="col-md-12">&nbsp;</div>
+				</div>
+				<div class="row"
+					style="box-shadow: 1px 1px 1px #3333333d !important;">
+					<div class="col-md-12">
+						<table id="myTable" class="table-responsive">
+							<thead>
+								<tr>
+									<th>Machine Name</th>
+									<th>Last Scan Time(UTC)</th>
+								</tr>
+							</thead>
+							<tbody id="myTableBody">
 
-						</tbody>
-					</table>
+							</tbody>
+						</table>
+					</div>
 				</div>
-			</div>
 		</section>
 		</main>
 	</html:form>

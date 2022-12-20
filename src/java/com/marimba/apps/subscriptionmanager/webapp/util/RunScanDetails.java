@@ -7,8 +7,8 @@ package com.marimba.apps.subscriptionmanager.webapp.util;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.google.gson.*;
 import com.marimba.apps.securitymgr.db.DatabaseAccess;
@@ -17,7 +17,8 @@ import com.marimba.apps.subscriptionmanager.SubscriptionMain;
 import com.marimba.intf.db.IStatementPool;
 
 /**
- * Implementing run scan details feature responsible to fetch run scan metadata from database.
+ * Implementing run scan details feature responsible to fetch run scan metadata
+ * from database.
  *
  * @author inmkaklij
  * @version: $Date$, $Revision$
@@ -31,11 +32,14 @@ public class RunScanDetails {
 		String runScanJsonResponse = null;
 
 		public GetRunScanDetails(SubscriptionMain main) {
+
+			System.out.println("START - GetRunScanDetails() Constructor");
 			GetRunScanData result = new GetRunScanData(main);
 
-			try {				
+			try {
+				System.out.println("RUN Quey gets called ");
 				runQuery(result);
-				runScanJsonResponse = result.getRunScanData();				
+				runScanJsonResponse = result.getRunScanData();
 			} catch (Exception dae) {
 				dae.printStackTrace();
 			}
@@ -56,51 +60,59 @@ public class RunScanDetails {
 
 		protected void execute(IStatementPool pool) throws SQLException {
 
-			
-			String masterQuery = "select inv_machine.name,inv_machine.id,address,rpcport,scantime from inv_machine,inv_network,inv_tuner\r\n"
-					+ "where inv_machine.id = inv_tuner.machine_id\r\n"
-					+ "and inv_tuner.machine_id = inv_network.machine_id";
-			ResultSet childQuery1Rs = null;
-			ResultSet rs = null;
-			ResultSet childQuery2Rs = null;
-			try {
-				PreparedStatement masterQueryRs = pool.getConnection().prepareStatement(masterQuery);
+			System.out.println("execute method gets called ");
+			ResultSet masterRS = null;
+			ResultSet subQuery1Rs = null;
+			ResultSet subQuery2Rs = null;
 
-			
-				ScanResultResponse scanResultResponseObject = new ScanResultResponse();
+			try {
 
 				// Data Object
 				Data dataObject = new Data();
-				rs = masterQueryRs.executeQuery();
-				System.out.println("Rs size : " + rs.getFetchSize());
+				ScanResultResponse scanResultResponseObject = new ScanResultResponse();
+
+				String masterQuery = "select distinct inv_machine.name,address,rpcport,scantime \r\n"
+						+ "from inv_machine,inv_network,inv_tuner,ldapsync_targets_machines\r\n"
+						+ "where inv_machine.id = inv_tuner.machine_id\r\n"
+						+ "and inv_tuner.machine_id = inv_network.machine_id\r\n"
+						+ "and inv_network.machine_id = ldapsync_targets_machines.machine_id";
+
+				PreparedStatement masterQueryPrStatement = pool.getConnection().prepareStatement(masterQuery);
+				masterRS = masterQueryPrStatement.executeQuery();
+				System.out.println("masterQueryRs size : " + masterRS.getFetchSize());
+
 				// Machine List object
-				List<Machine> MachineListObject = new ArrayList<Machine>();
-				while (rs.next()) {
+				@SuppressWarnings("unchecked")
+				Set<Machine> machineSetObject = (Set<Machine>) new HashSet();
+				while (masterRS.next()) {
 					Machine machineObject = new Machine();
-					machineObject.setMachineId(rs.getString("id"));
-					machineObject.setMachineName(rs.getString("name"));
-					machineObject.setMachineLastScan(rs.getString("scantime"));
 
-					MachineListObject.add(machineObject);
+					// machineObject.setMachineId(rs.getString("id"));
+					machineObject.setMachineName(
+							masterRS.getString("name").concat(":").concat(String.valueOf(masterRS.getInt("rpcport"))));
+					machineObject.setMachineLastScan(masterRS.getString("scantime"));
+					machineSetObject.add(machineObject);
 				}
 
-				String childQuery1 = "Select top 1 modified,cvss_time from product_cve_info";
-				childQuery1Rs = masterQueryRs.executeQuery(childQuery1);
-				
-				
-				while (childQuery1Rs.next()) {
-					dataObject.setcVELastUpdated(childQuery1Rs.getString("modified"));
-					dataObject.setVulDefLastUpdated(childQuery1Rs.getString("cvss_time"));
+				String subQuery1 = "Select top 1 modified,cvss_time from product_cve_info";
+				PreparedStatement subQuery1PrepareStatement = pool.getConnection().prepareStatement(subQuery1);
+				subQuery1Rs = subQuery1PrepareStatement.executeQuery();
+				System.out.println("subQuery1 size : " + subQuery1Rs.getFetchSize());
+
+				while (subQuery1Rs.next()) {
+					dataObject.setcVELastUpdated(subQuery1Rs.getString("modified"));
+					dataObject.setVulDefLastUpdated(subQuery1Rs.getString("cvss_time"));
 				}
 
-				String childQuery2 = "Select top 1 modified_date from security_cve_info";
-				childQuery2Rs = masterQueryRs.executeQuery(childQuery2);
-				
-				
-				while (childQuery2Rs.next()) {
-					dataObject.setSecDefLastUpdated(childQuery2Rs.getString("modified_date"));
+				String subQuery2 = "Select top 1 modified_date from security_cve_info";
+				PreparedStatement subQuery2PrepareStatement = pool.getConnection().prepareStatement(subQuery2);
+				subQuery2Rs = subQuery2PrepareStatement.executeQuery();
+				System.out.println("subQuery2Rs size : " + subQuery2Rs.getFetchSize());
+
+				while (subQuery2Rs.next()) {
+					dataObject.setSecDefLastUpdated(subQuery2Rs.getString("modified_date"));
 				}
-				dataObject.setMachineList(MachineListObject);
+				dataObject.setMachineList(machineSetObject);
 
 				Metadata metadataObject = new Metadata();
 				metadataObject.setId("http://azuretx.marimbacastanet.com:8888/marimba/runScanHome");
@@ -112,9 +124,11 @@ public class RunScanDetails {
 				Gson gson = new Gson();
 				runScanJsonResponse = gson.toJson(scanResultResponseObject);
 			} finally {
-				rs.close();
-				childQuery1Rs.close();
-				childQuery2Rs.close();
+				if (null != masterRS && null != subQuery1Rs && null != subQuery2Rs) {
+					masterRS.close();
+					subQuery1Rs.close();
+					subQuery2Rs.close();
+				}
 			}
 		}
 

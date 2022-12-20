@@ -1,6 +1,6 @@
 package com.marimba.apps.subscriptionmanager.webapp.util;
 
-import java.util.List;
+import java.util.Set;
 
 public class Data {
 
@@ -12,7 +12,7 @@ public class Data {
 
 	private String secDefLastUpdated;
 
-	private List<Machine> machineList = null;
+	private Set<Machine> machineList = null;
 
 	public Metadata getMetadata() {
 		return metadata;
@@ -46,11 +46,11 @@ public class Data {
 		this.secDefLastUpdated = secDefLastUpdated;
 	}
 
-	public List<Machine> getMachineList() {
+	public Set<Machine> getMachineList() {
 		return machineList;
 	}
 
-	public void setMachineList(List<Machine> machineList) {
+	public void setMachineList(Set<Machine> machineList) {
 		this.machineList = machineList;
 	}
 

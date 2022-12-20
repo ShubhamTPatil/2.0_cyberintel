@@ -2,19 +2,9 @@ package com.marimba.apps.subscriptionmanager.webapp.util;
 
 public class Machine {
 
-	private String machineId;
-
 	private String machineName;
 
 	private String machineLastScan;
-
-	public String getMachineId() {
-		return machineId;
-	}
-
-	public void setMachineId(String machineId) {
-		this.machineId = machineId;
-	}
 
 	public String getMachineName() {
 		return machineName;
@@ -34,7 +24,19 @@ public class Machine {
 
 	@Override
 	public String toString() {
-		return "Machine [machineId=" + machineId + ", machineName=" + machineName + ", machineLastScan="
-				+ machineLastScan + "]";
+		return "Machine [machineName=" + machineName + ", machineLastScan=" + machineLastScan + "]";
+	}
+
+	@Override
+	public boolean equals(Object other) {
+		if (!(other instanceof Machine)) {
+			return false;
+		}
+		return machineName.equals(((Machine) other).machineName);
+	}
+
+	@Override
+	public int hashCode() {
+		return machineName.hashCode();
 	}
 }
