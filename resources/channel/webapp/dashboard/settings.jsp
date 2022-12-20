@@ -43,6 +43,7 @@ $(function () {
     }
 </style>
 
+</head>
 <body>
 
 
@@ -59,10 +60,10 @@ $(function () {
           <span data-bs-toggle="tooltip" data-bs-placement="right" title="Settings"><i
               class="fa-solid fa-circle-info text-primary"></i></span>
         </div>
+        <div class="refresh p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right"
+          title="Refresh" style="cursor: pointer;"><i class="fa-solid fa-arrows-rotate"></i></div>
         <div class="p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right"
-          title="Refresh"><i class="fa-solid fa-arrows-rotate"></i></div>
-        <div class="p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right"
-          title="Download">
+          title="Download" style="cursor: pointer;">
           <i class="fa-solid fa-download"></i>
         </div>
         <div class="p-2 bd-highlight text-primary align-self-center">

@@ -5,13 +5,16 @@
       <li class="nav-item"> <a class="nav-link" id="dashboard" href="/spm/init.jsp" data-bs-toggle="tooltip"
           data-bs-placement="right" title="Dashboard"> <i class="fa-solid fa-gauge"></i> </a>
       </li>
+      <li class="nav-item"> <a class="nav-link" id="networkMonitor" href="/spm/dashboard/impact_analytics.jsp" data-bs-toggle="tooltip"
+        data-bs-placement="right" title="Impact Analytics"> <i class="fa-solid fa-network-wired"></i> </a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" id="definitionsUpdate" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/dashboard/definitions_update.jsp"
           title="Definitions Update">
           <i class="fa-solid fa-recycle"></i> </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="assignment" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/dashboard/assignment.jsp"
+        <a class="nav-link" id="assignment" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/initTargetView.do"
           title="Assignment">
           <i class="fa-solid fa-clipboard-user"></i>
         </a>

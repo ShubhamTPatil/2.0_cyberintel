@@ -33,6 +33,16 @@ $(function () {
 
     $('.nav-selected').removeClass('nav-selected');
     $('#dashboard').addClass('nav-selected');
+    
+    var sum = 0;
+    for(var x of <bean:write name="newDashboardForm" property="pieChartData"/>){ 
+	    sum += x;
+    }
+    var pieChartData = [];
+    
+    for(var x of <bean:write name="newDashboardForm" property="pieChartData"/>){ 
+	    pieChartData.push( Math.round((x/sum) *100) );
+    }
 
     var ctx1 = $("#vulStatsDonutChart");
     // label: "Severity",
@@ -42,7 +52,7 @@ $(function () {
             labels: ["Critical", "High", "Medium", "Low"],
             datasets: [
                 {
-                    data: <bean:write name="newDashboardForm" property="pieChartData"/>,
+                    data: pieChartData,
                     backgroundColor: [
                         "#FF5F60", "#D4733A", "#F3CC63", "#71DCEB"
                     ]
@@ -60,7 +70,7 @@ $(function () {
                     fontColor: "#111"
                 },
                 legend: {
-                    display: true,
+                    display: false,
                     position: "bottom",
                     labels: {
                         fontColor: "#333",
@@ -152,8 +162,21 @@ $(function () {
             'orderable': false,
             'className': 'dt-body-center',
             'render': function (data, type, full, meta) {
-                return '<input type="checkbox" class="form-check-input" name="topVulCheckbox" value="' + $('<div/>').text(data).html() + '">';
+                return '<input type="checkbox" class="form-check-input" name="topVulCheckbox" value="' + full['CVE-ID'] + '">';
             }
+        },
+        {
+            'targets': 4,
+            'className': 'dt-body-left',
+            'render': function (data, type, full, meta) {
+                return '<span style="font-family: ui-serif;">'+data+'</span>';
+            }
+        }, {
+            'targets': 1,
+            'className': 'dt-body-left',
+        }, {
+            'targets': 2,
+            'className': 'dt-body-left',
         }],
         'rowCallback': function (row, data, index) {
             switch (data['Severity']) {
@@ -177,6 +200,89 @@ $(function () {
                     break;
             }
         }
+    });
+    
+    
+    $('#topVulMitigateButton').click(function () {
+        let cveArray = [];
+        $('input[name=topVulCheckbox]:checked').each(function () {
+            cveArray.push($(this).val());
+        })
+        console.log(cveArray);
+    });
+    
+    $('#criPatchesMitigateButton').click(function () {
+        let array = [];
+        $('input[name=criPatchCheckbox]:checked').each(function () {
+            array.push($(this).val());
+        })
+        console.log(array);
+    });
+
+    $('#topVulModalTable').DataTable({
+        "destroy": true, // In order to reinitialize the datatable
+        "pagination": true, // For Pagination
+        "sorting": false, // For sorting
+        "ordering": false,
+        "searching": false,
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search..."
+        },
+        "aaData": [
+            { "Impacted Machine": "K84562", "Status": "Pass", "Patch Details": "Patch 123456789" },
+            { "Impacted Machine": "K84562", "Status": "Failed", "Patch Details": "Patch 123456789" },
+        ],
+        "columns": [{},
+        {
+            "data": "Impacted Machine"
+        }, {
+            "data": "Status"
+        }, {
+            "data": "Patch Details"
+        }],
+        'columnDefs': [{
+            'targets': 0,
+            'searchable': true,
+            'orderable': false,
+            'className': 'dt-body-center',
+            'render': function (data, type, full, meta) {
+                var disabled = full["Status"] === "Pass" ? "disabled" : "";
+                return '<input type="checkbox" class="form-check-input" name="topVulMitCheck" value="' + full['Impacted Machine'] + '" ' + disabled + '>';
+            }
+        }],
+        'rowCallback': function (row, data, index) {
+            switch (data['Status']) {
+                case 'Pass':
+                    $(row).find('td:eq(2)').addClass('text-success');
+                    break;
+
+                case 'Failed':
+                    $(row).find('td:eq(2)').addClass('text-danger');
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    });
+
+
+    $('#topVulMitScan').click(function () {
+        let array = [];
+        $('input[name=topVulMitCheck]:checked').each(function () {
+            array.push($(this).val());
+        })
+        console.log(array);
+    });
+    
+
+    $('#topVulMitApplyPatches').click(function () {
+        let array = [];
+        $('input[name=topVulMitCheck]:checked').each(function () {
+            array.push($(this).val());
+        })
+        console.log(array);
     });
 
 
@@ -206,8 +312,18 @@ $(function () {
            'orderable': false,
            'className': 'dt-body-center',
            'render': function (data, type, full, meta) {
-               return '<input type="checkbox" class="form-check-input" name="criPatchCheckbox" value="' + $('<div/>').text(data).html() + '">';
+               return '<input type="checkbox" class="form-check-input" name="criPatchCheckbox" value="' + full['Patch Name'] + '">';
            }
+       },
+       {
+           'targets': 1,
+           'className': 'dt-body-left',
+           'render': function (data, type, full, meta) {
+               return '<span style="font-family: ui-serif;">'+data+'</span>';
+           }
+       }, {
+           'targets': 2,
+           'className': 'dt-body-left',
        }],
        'rowCallback': function (row, data, index) {
            switch (data['Severity']) {
@@ -232,11 +348,55 @@ $(function () {
            }
        }
      });
+   
+   
+   $('#reportingModalTable').DataTable({
+       "destroy": true, // In order to reinitialize the datatable
+       "pagination": true, // For Pagination
+       "sorting": false, // For sorting
+       "ordering": false,
+       "searching": false,
+       "bFilter": false, 
+       "language": {
+           "search": "_INPUT_",
+           "searchPlaceholder": "Search..."
+       },
+       "aaData": [
+           { "Machine Name": "K84562", "Scan Date": "Fri Oct 14 07:08:09 UTC 2022" },
+           { "Machine Name": "K84563", "Scan Date": "Fri Oct 14 07:08:09 UTC 2022" }
+       ],
+       "columns": [
+       {
+           "data": "Machine Name"
+       }, {
+           "data": "Scan Date"
+       }]
+   });
     
 
+   var reportingNotCheckedIn = <bean:write name="newDashboardForm" property="reportingNotCheckedIn"/>;
+   var reportingNotAvailable = <bean:write name="newDashboardForm" property="reportingNotAvailable"/>;
+   var reportingCheckedIn = <bean:write name="newDashboardForm" property="reportingCheckedIn"/>;
+   var reportingSum = reportingNotCheckedIn + reportingNotAvailable + reportingCheckedIn;
+   $('#reportingNotCheckedIn').css("width",(reportingNotCheckedIn/reportingSum)*100+"%");
+   $('#reportingNotAvailable').css("width",(reportingNotAvailable/reportingSum)*100+"%");
+   $('#reportingCheckedIn').css("width",(reportingCheckedIn/reportingSum)*100+"%");
+   
+   
+   var securityNonCompliant = <bean:write name="newDashboardForm" property="securityNonCompliant"/>;
+   var securityCompliant = <bean:write name="newDashboardForm" property="securityCompliant"/>;
+   var securitySum = securityNonCompliant + securityCompliant;
+   $('#securityNonCompliant').css("width",(securityNonCompliant/securitySum)*100+"%");
+   $('#securityCompliant').css("width",(securityCompliant/securitySum)*100+"%");
+   
+   
+   var patchNonCompliant = <bean:write name="newDashboardForm" property="patchNonCompliant"/>;
+   var patchCompliant = <bean:write name="newDashboardForm" property="patchCompliant"/>;
+   var patchSum = patchNonCompliant + patchCompliant;
+   $('#patchNonCompliant').css("width",(patchNonCompliant/patchSum)*100+"%");
+   $('#patchCompliant').css("width",(patchCompliant/patchSum)*100+"%");
+   
 });
-
-
 
 </script>
 
@@ -259,10 +419,10 @@ $(function () {
           <span data-bs-toggle="tooltip" data-bs-placement="right" title="DefenSight Dashboard"><i
               class="fa-solid fa-circle-info text-primary"></i></span>
         </div>
+        <div class="refresh p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right"
+          title="Refresh" style="cursor: pointer;"><i class="fa-solid fa-arrows-rotate"></i></div>
         <div class="p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right"
-          title="Refresh"><i class="fa-solid fa-arrows-rotate"></i></div>
-        <div class="p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right"
-          title="Download">
+          title="Download" style="cursor: pointer;">
           <i class="fa-solid fa-download"></i>
         </div>
         <div class="p-2 bd-highlight text-primary align-self-center"> <a href="/shell/dashboard.do"> <i class="fa-solid fa-chevron-left"
@@ -388,9 +548,9 @@ $(function () {
                   </ul>
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">Top Vulnerabilities <span>| Patch applied</span>
+                  <h5 class="card-title">Top Vulnerabilities
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                    <button type="button" id="topVulMitigateButton" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                       data-bs-target="#topVulModal" style="margin-left: 20px;">
                       Mitigate Selected
                     </button>
@@ -400,10 +560,10 @@ $(function () {
                     <thead>
                       <tr>
                         <th><input type="checkbox" class="selectAll form-check-input" id="topVulSelectAll"></th>
-                        <th scope="col">CVE-ID</th>
-                        <th scope="col">Severity</th>
+                        <th scope="col" style="text-align: left;">CVE-ID</th>
+                        <th scope="col" style="text-align: left;">Severity</th>
                         <th scope="col">Impacted Machines</th>
-                        <th scope="col">Patches Available</th>
+                        <th scope="col" style="text-align: left;">Patches Available</th>
                       </tr>
                     </thead>
                     <tbody></tbody>
@@ -415,7 +575,7 @@ $(function () {
             
             <div class="col-12">
               <div class="card overflow-auto">
-                <div class="filter">
+                <!-- <div class="filter">
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa-solid fa-sliders"></i></a>
                   <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     <li class="dropdown-header text-start">
@@ -426,12 +586,12 @@ $(function () {
                     <li><a class="dropdown-item">Medium</a></li>
                     <li><a class="dropdown-item">Low</a></li>
                   </ul>
-                </div>
+                </div> -->
                 <div class="card-body">
-                  <h5 class="card-title">Priority Patches <span>| Severity - High</span>
+                  <h5 class="card-title">Critical Patches
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                    data-bs-target="#priPatchesModal" style="margin-left: 20px;">
+                    <button type="button" id="criPatchesMitigateButton" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#topVulModal" style="margin-left: 20px;">
                     Mitigate Selected
                   </button>
                   </h5>
@@ -440,8 +600,8 @@ $(function () {
                       <tr>
                         <th scope="col"><input type="checkbox" id="criticalPatchesSelectAll"
                             class="selectAll form-check-input"></th>
-                        <th scope="col">Patch Name</th>
-                        <th scope="col">Severity</th>
+                        <th scope="col" style="text-align: left;">Patch Name</th>
+                        <th scope="col" style="text-align: left;">Severity</th>
                         <th scope="col">Affected Machines</th>
                       </tr>
                     </thead>
@@ -501,7 +661,7 @@ $(function () {
               </div>
               <div>
                 <div style="position: relative; width: 100%; margin: auto;">
-                  <canvas id="vulStatsDonutChart" style="margin:auto;">
+                  <canvas id="vulStatsDonutChart" style="margin:auto; min-height: 130px;">
                   </canvas>
                 </div>
               </div>
@@ -541,35 +701,34 @@ $(function () {
                       </span>
                     <div class="progress" style="margin-bottom:10px;">
                       <div id="reportingNotCheckedIn" class="progress-bar" role="progressbar"
-                        style="width: 15%; background-color: #FF5F60" aria-valuemax="100"></div>
+                        style="width:0; background-color: #FF5F60" aria-valuemax="100"></div>
                     </div>
                     <span> Not available </span><br/>
                     <span style="color: #F3CC63;"><bean:write name="newDashboardForm" property="reportingNotAvailable"/></span>
                     <div class="progress" style="margin-bottom:10px;">
                       <div id="reportingNotAvailable" class="progress-bar" role="progressbar"
-                        style="width: 35%; background-color: #F3CC63" aria-valuemax="100"></div>
+                        style="width:0; background-color: #F3CC63" aria-valuemax="100"></div>
                     </div>
                     <span> Checked-in </span><br/>
                     <span style="color: #18db76;"><bean:write name="newDashboardForm" property="reportingCheckedIn"/></span>
                     <div class="progress" style="margin-bottom:10px;">
                       <div id="reportingCheckedIn" class="progress-bar" role="progressbar"
-                        style="width: 50%; background-color: #18db76" aria-valuemax="100"></div>
+                        style="width:0; background-color: #18db76" aria-valuemax="100"></div>
                     </div>
                   </div>
-
                   <div class="col-md-4">
                     <p>Security</p>
                     <span> Non Compliant </span><br/> 
                     <span style="color: #FF5F60;"><bean:write name="newDashboardForm" property="securityNonCompliant"/></span>
                     <div class="progress" style="margin-bottom:10px;">
                       <div id="securityNonCompliant" class="progress-bar" role="progressbar"
-                        style="width: 10%; background-color: #FF5F60" aria-valuemax="100"></div>
+                        style="width: 0%; background-color: #FF5F60" aria-valuemax="100"></div>
                     </div>
                     <span> Compliant</span> <br/>
                     <span style="color: #18db76;"><bean:write name="newDashboardForm" property="securityCompliant"/></span>
                     <div class="progress" style="margin-bottom:10px;">
                       <div id="securityCompliant" class="progress-bar" role="progressbar"
-                        style="width: 90%; background-color: #18db76" aria-valuemax="100"></div>
+                        style="width: 0%; background-color: #18db76" aria-valuemax="100"></div>
                     </div>
                   </div>
 
@@ -580,13 +739,13 @@ $(function () {
                     <span style="color: #FF5F60;"><bean:write name="newDashboardForm" property="patchNonCompliant"/></span>
                     <div class="progress" style="margin-bottom:10px;">
                       <div id="patchNonCompliant" class="progress-bar" role="progressbar"
-                        style="width: 20%; background-color: #FF5F60" aria-valuemax="100"></div>
+                        style="width: 0%; background-color: #FF5F60" aria-valuemax="100"></div>
                     </div>
                     <span> Compliant </span><br/>
                     <span style="color: #18db76;"><bean:write name="newDashboardForm" property="patchCompliant"/></span>
                     <div class="progress" style="margin-bottom:10px;">
                       <div id="patchCompliant" class="progress-bar" role="progressbar"
-                        style="width: 80%; background-color: #18db76" aria-valuemax="100"></div>
+                        style="width: 0%; background-color: #18db76" aria-valuemax="100"></div>
                     </div>
                   </div>
 
@@ -627,48 +786,12 @@ $(function () {
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-primary btn-sm" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-outline-primary btn-sm">Scan</button>
-            <button type="button" class="btn btn-primary btn-sm">Apply Patches</button>
+            <button type="button" id="topVulMitScan" class="btn btn-outline-primary btn-sm">Scan</button>
+            <button type="button" id="topVulMitApplyPatches" class="btn btn-primary btn-sm">Apply Patches</button>
           </div>
         </div>
       </div>
     </div>
-
-
-    <!-- Priority Patches Modal -->
-    <div class="modal fade" id="priPatchesModal" tabindex="-1" aria-labelledby="priPatchesModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="priPatchesModalLabel">Apply patches or Scan machines</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <table id="priPatchesModalTable" class="table table-borderless" style="width: 100%;">
-              <thead>
-                <tr>
-                  <th><input type="checkbox" class="selectAll form-check-input" id="priPatchesModalTableSelectAll">
-                  </th>
-                  <th scope="col">Impacted Machine</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Patch Details</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-primary btn-sm" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-outline-primary btn-sm">Scan</button>
-            <button type="button" class="btn btn-primary btn-sm">Apply Patches</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
 
     <!-- Reporting Modal -->
     <div class="modal fade" id="reportingModal" tabindex="-1" aria-labelledby="reportingModalLabel" aria-hidden="true">
@@ -682,12 +805,8 @@ $(function () {
             <table id="reportingModalTable" class="table table-borderless" style="width: 100%;">
               <thead>
                 <tr>
-                  <th><input type="checkbox" class="selectAll form-check-input" id="reportingModalTableSelectAll">
-                  </th>
                   <th scope="col">Machine Name</th>
-                  <th scope="col">Vulnerabilities</th>
-                  <th scope="col">Last Scanned Vulnerability</th>
-                  <th scope="col">Last Patch Applied</th>
+                  <th scope="col">Last Vulnerability Scan Date</th>
                 </tr>
               </thead>
               <tbody>

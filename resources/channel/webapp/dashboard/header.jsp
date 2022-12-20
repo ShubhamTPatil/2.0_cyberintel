@@ -5,8 +5,8 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="http://defensight.marimbacastanet.com:8888/shell/dashboard.do" class="logo d-flex align-items-center">
         <img
-          src="/spm/images/harman_defensight_logo.png"
-          style="max-height: 40px;" alt="Harman DefenSight">
+          src="/spm/images/harman_defensight_logo_h.png"
+          style="min-height: 60px;" alt="Harman DefenSight">
       </a>
       <i onclick="sidebarToggle()" class="fa-solid fa-bars toggle-sidebar-btn"></i>
     </div>

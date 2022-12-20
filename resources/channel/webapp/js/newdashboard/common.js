@@ -20,8 +20,13 @@ $(function () {
 
     $(".selectAll").click(function (e) {
         let tableId = $(e.target).closest('table').attr('id');
-        $('#' + tableId).find('input[type="checkbox"]').prop('checked', $(e.target).is(':checked'));
+        $('#' + tableId).find('input[type="checkbox"]').not("[disabled]").prop('checked', $(e.target).is(':checked'));
     });
+    
+    $(".refresh").click(function (e) {
+        location.reload();
+    });
+    
 });
 
 function sidebarToggle() {

@@ -31,14 +31,13 @@
 $(function () {
 
 	$('.nav-selected').removeClass('nav-selected');
-	$('#scanResult').addClass('nav-selected');
+    $('#networkMonitor').addClass('nav-selected');
 
 });
 
 </script>
+
 </head>
-
-
 <body>
 
 
@@ -51,8 +50,8 @@ $(function () {
 
       <div class="d-flex bd-highlight justify-content-center">
         <div class="p-2 flex-grow-1 bd-highlight">
-          <span class="pagename">Scan Result</span>
-          <span data-bs-toggle="tooltip" data-bs-placement="right" title="Scan Result"><i
+          <span class="pagename">Impact Analytics</span>
+          <span data-bs-toggle="tooltip" data-bs-placement="right" title="DefenSight Impact Analytics"><i
               class="fa-solid fa-circle-info text-primary"></i></span>
         </div>
         <div class="refresh p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right"
@@ -62,7 +61,7 @@ $(function () {
           <i class="fa-solid fa-download"></i>
         </div>
         <div class="p-2 bd-highlight text-primary align-self-center">
-        <a href="/shell/dashboard.do"><i class="fa-solid fa-chevron-left" style="margin-right: 5px;"></i>CMS Home</a>
+         <a href="/shell/dashboard.do"><i class="fa-solid fa-chevron-left" style="margin-right: 5px;"></i>CMS Home</a>
         </div>
       </div>
 
