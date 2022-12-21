@@ -55,11 +55,11 @@
 		var data2 = JSON.parse(resp);
 		var obj = (data2.data);
 		console.log("Incoming JSON .. " + data2.data);
-		document.getElementById("CVEDate").innerText = "CVE last updated("
+		document.getElementById("CVEDate").innerText = "CVE last updated ("
 				+ data2.data.cVELastUpdated + ")";
-		document.getElementById("VulDate").innerText = "Vulnerabilities Definitions last upadted("
+		document.getElementById("VulDate").innerText = "Vulnerabilities Definitions last updated ("
 				+ data2.data.vulDefLastUpdated + ")";
-		document.getElementById("SecDate").innerText = "Security Definitions last updated("
+		document.getElementById("SecDate").innerText = "Security Definitions last updated ("
 				+ data2.data.secDefLastUpdated + ")";
 		console.log(data2.data.MachineList);
 		//Populate Host Table
@@ -74,11 +74,11 @@
 
 			tbodycol1 = "tbodycol1" + i;
 			tbodycol1 = document.createElement('td');
-			
+
 			tbodycol1.style.width = "50%";
 			tbodycol1.align = "left";
 			tbodycol1.style.textAlign = "left";
-			
+
 			tbodycol1.id = "tbodycol1" + i;
 			chkBox = '<input type="checkbox" name= "chkB" value='+data2.data.machineList[i].machineName+'>&nbsp;'
 					+ data2.data.machineList[i].machineName;
@@ -87,11 +87,11 @@
 
 			tbodycol2 = "tbodycol2" + i;
 			tbodycol2 = document.createElement('td');
-			
+
 			tbodycol2.style.width = "50%";
 			tbodycol2.align = "left";
 			tbodycol2.style.textAlign = "left";
-			
+
 			tbodycol2.id = "tbodycol2" + i;
 			tbodycol2.innerHTML = data2.data.machineList[i].machineLastScan;
 			tbodyRow.appendChild(tbodycol2);
@@ -101,9 +101,9 @@
 	function runCliScan() {
 		// Form submission
 		getCheckedBoxes("chkB");
-		document.getElementById("form_id").action = "/runscancli.do";
-		document.getElementById("form_id").type = "com.marimba.apps.subscriptionmanager.webapp.forms.RunScanForm";
-		document.getElementById("form_id").submit();
+/* 		document.getElementById("form_id").action = "/runscancli.do";
+		document.getElementById("form_id").type = "com.marimba.apps.subscriptionmanager.webapp.forms.RunScanForm"; */
+		$("#form_id").submit();
 	}
 
 	var checkboxesChecked;
@@ -123,25 +123,50 @@
 		// Return the array if it is non-empty, or null
 		//return checkboxesChecked.length > 0 ? checkboxesChecked : null;
 		checkboxesChecked = checkboxesChecked;
-		console.log(checkboxesChecked);
-		console.log(checkboxesChecked.toString());
+		console.log("chk1 : " + checkboxesChecked);
+		console.log("chk2 : " + checkboxesChecked.toString());
 		document.getElementById("hostIds").value = checkboxesChecked.toString();
 	}
 </script>
-<!-- Start - Populate Host Table -->
+<style>
+.nav-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: black;
+    font-family: "Poppins", sans-serif;
+}
+</style>
+<script type="text/javascript">
+
+    $(function () {
+
+      $('.nav-selected').removeClass('nav-selected');
+      $('#definitionsUpdate').addClass('nav-selected');
+
+
+    });
+
+  </script>
+  
+  <style>
+    .table>thead>tr>th {
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .table>tbody>tr>td {
+        text-align: left;
+        vertical-align: middle;
+    }
+</style>
 </head>
 <body>
-
-	<html:form name="newRunScanForm" id="form_id" action="/newRunScan.do"
-		type="com.marimba.apps.subscriptionmanager.webapp.forms.RunScanForm">
-
-		<html:hidden property="action" value="runScan" />
 
 		<jsp:include page="header.jsp" />
 		<jsp:include page="sidebar.jsp" />
 
-
-		<main id="main" class="main" style="background-color: white;">
+		<form name="newRunScanForm" id="form_id" action="/runscancli.do" method="post">
+		<main id="main" class="main">
 		<div class="pagetitle">
 
 			<div class="d-flex bd-highlight justify-content-center">
@@ -171,46 +196,34 @@
 		</div>
 
 		<section class="section dashboard">
+		<div class="card">
+		<div class="card-body">
 			<div class="row">
-				<div class="col-md-12">&nbsp;</div>
+				<div class="col-3">
+					<span class="nav-title" id="CVEDate"></span>
+				</div>
+				<div class="col">
+					<span class="nav-title" id="VulDate"></span>
+				</div>
+				<div class="col">
+					<span class="nav-title" id="SecDate"></span>
+				</div>
 			</div>
+			</div></div>
+			<br/>
+			<div class="card">
+			<div class="card-body">
 			<div class="row">
-				<div class="col-sm-3">
-					<p id="CVEDate"></p>
-				</div>
-				<div class="col-sm-4">
-					<p id="VulDate"></p>
-				</div>
-				<div class="col-sm-4">
-					<p id="SecDate"></p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">&nbsp;</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-8"></div>
-				<div class="col-sm-2">
-					<button type="button" class="btn btn-light btn-md"
-						style="width: 125px !important;">CANCEL</button>
-				</div>
-				<div class="col-sm-2">
-					<button type="button" class="btn btn-primary btn-md"
-						style="width: 125px !important;" onclick="runCliScan()">SCAN</button>
-				</div>
-
-				<div class="row">
-					<div class="col-sm-12">
-						<p>
-							<input type="checkbox" onclick='toggle(this)'>&nbsp;
-							Select the machine to scan
-						</p>
+				<div class="col-12">
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<button type="submit" class="btn btn-sm btn-primary" onclick="runCliScan()">SCAN</button>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-12">&nbsp;</div>
-				</div>
-				<table id="myTable" class="table table-striped" style="width: 100%;">
+				
+			</div>
+				
+				<br/>
+				<table id="myTable" class="table table-borderless" style="width: 100%;box-shadow: 1px 3px 3px #3333333d!important;">
 					<thead>
 						<tr>
 							<th scope="col" style="text-align: left;">Machine Name</th>
@@ -222,10 +235,12 @@
 
 					</tbody>
 				</table>
+			</div>
+			</div>
 		</section>
 		</main>
 		<input id="hostIds" type="hidden" name="endDevicesArr" value="" />
-	</html:form>
+	</form>
 	<script type="text/javascript">
 		updateTable();
 	</script>

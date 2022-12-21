@@ -171,9 +171,15 @@ $(function () {
         {
             'targets': 4,
             'className': 'dt-body-left',
-            /* 'render': function (data, type, full, meta) {
-                return '<span style="font-family: ui-serif;">'+data+'</span>';
-            } */
+            'render': function (data, type, full, meta) {
+                const splitArray = data.split(".");
+                let displayValue = "";
+                if(splitArray.length == 1)
+                    displayValue = splitArray[0]
+                else
+                    displayValue = splitArray[0]+'.'+splitArray[1];
+                return '<span data-bs-toggle="tooltip" data-bs-placement="right" title='+data+' cursor:context-menu;">'+displayValue+'</span>';
+            }
         }, {
             'targets': 1,
             'className': 'dt-body-left',
@@ -271,6 +277,10 @@ $(function () {
        "sorting": false, // For sorting
        "ordering": false,
        "searching": true,
+       language: {
+           search: "_INPUT_",
+           searchPlaceholder: "Search..."
+       },
        "aaData": prtyPatchesData,
        "columns": [{},
        {
@@ -292,9 +302,15 @@ $(function () {
        {
            'targets': 1,
            'className': 'dt-body-left',
-           /* 'render': function (data, type, full, meta) {
-               return '<span style="font-family: ui-serif;">'+data+'</span>';
-           } */
+           'render': function (data, type, full, meta) {
+               const splitArray = data.split(".");
+               let displayValue = "";
+               if(splitArray.length == 1)
+                   displayValue = splitArray[0]
+               else
+                   displayValue = splitArray[0]+'.'+splitArray[1];
+               return '<span data-bs-toggle="tooltip" data-bs-placement="right" title='+data+' cursor:context-menu;">'+displayValue+'</span>';
+           }
        }, {
            'targets': 2,
            'className': 'dt-body-left',
@@ -556,6 +572,103 @@ function createMitigateTable(aaData) {
                 </div>
               </div>
             </div>
+            
+            <div class="col-6">
+            
+	            <div class="card">
+		            <div class="card-body pb-0">
+		              <h5 class="card-title">Vulnerability Aging</h5>
+		              <div>
+		                <div>
+		                  <div style="display: block; padding: 0 10px 16px 10px;">
+		                    <canvas id="vulAgingScatter" style="min-height: 250px;">
+		                    </canvas>
+		                  </div>
+		                </div>
+		              </div>
+		            </div>
+		          </div>
+            	
+            	
+            </div>
+            
+            <div class="col-6">
+            
+            <div class="card overflow-auto">
+              <div class="card-body" style="padding-bottom: 1.4rem;">
+                <h5 class="card-title">Machine Compliance</h5>
+
+                <div class="row compliance">
+                  <div class="col-md-4">
+                    <p>Reporting</p>
+                    <span> Not checked-in </span><br/>
+                    <span data-bs-toggle="modal" data-bs-target="#reportingModal"
+                        style="color: #FF5F60; text-decoration: underline; cursor: pointer;">
+                        <bean:write name="newDashboardForm" property="reportingNotCheckedIn"/>
+                      </span>
+                    <div class="progress" style="margin-bottom:10px;">
+                      <div id="reportingNotCheckedIn" class="progress-bar" role="progressbar"
+                        style="width:0; background-color: #FF5F60" aria-valuemax="100"></div>
+                    </div>
+                    
+                    <span> Not available </span><br/>
+                    <span style="color: #F3CC63;"><bean:write name="newDashboardForm" property="reportingNotAvailable"/></span>
+                    <div class="progress" style="margin-bottom:10px;">
+                      <div id="reportingNotAvailable" class="progress-bar" role="progressbar"
+                        style="width:0; background-color: #F3CC63" aria-valuemax="100"></div>
+                    </div>
+                    
+                    <span> Checked-in </span><br/>
+                    <span style="color: #18db76;"><bean:write name="newDashboardForm" property="reportingCheckedIn"/></span>
+                    <div class="progress" style="margin-bottom:10px;">
+                      <div id="reportingCheckedIn" class="progress-bar" role="progressbar"
+                        style="width:0; background-color: #18db76" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <p>Security</p>
+                    <span> Non Compliant </span><br/> 
+                    <span style="color: #FF5F60;"><bean:write name="newDashboardForm" property="securityNonCompliant"/></span>
+                    <div class="progress" style="margin-bottom:10px;">
+                      <div id="securityNonCompliant" class="progress-bar" role="progressbar"
+                        style="width: 0%; background-color: #FF5F60" aria-valuemax="100"></div>
+                    </div>
+                    
+                    <span> Compliant</span> <br/>
+                    <span style="color: #18db76;"><bean:write name="newDashboardForm" property="securityCompliant"/></span>
+                    <div class="progress" style="margin-bottom:10px;">
+                      <div id="securityCompliant" class="progress-bar" role="progressbar"
+                        style="width: 0%; background-color: #18db76" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-4">
+                    <p>Patches</p>
+                    <span> Non Compliant </span><br/>
+                    <span style="color: #FF5F60;"><bean:write name="newDashboardForm" property="patchNonCompliant"/></span>
+                    <div class="progress" style="margin-bottom:10px;">
+                      <div id="patchNonCompliant" class="progress-bar" role="progressbar"
+                        style="width: 0%; background-color: #FF5F60" aria-valuemax="100"></div>
+                    </div>
+                    
+                    <span> Compliant </span><br/>
+                    <span style="color: #18db76;"><bean:write name="newDashboardForm" property="patchCompliant"/></span>
+                    <div class="progress" style="margin-bottom:10px;">
+                      <div id="patchCompliant" class="progress-bar" role="progressbar"
+                        style="width: 0%; background-color: #18db76" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+
+
+                </div>
+
+              </div>
+            </div>
+            
+            
+            
+            </div>
 
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
@@ -594,47 +707,7 @@ function createMitigateTable(aaData) {
                 </div>
               </div>
             </div>
-            
-            
-            <div class="col-12">
-              <div class="card overflow-auto">
-                <!-- <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa-solid fa-sliders"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-                    <li><a class="dropdown-item">Critical</a></li>
-                    <li><a class="dropdown-item">High</a></li>
-                    <li><a class="dropdown-item">Medium</a></li>
-                    <li><a class="dropdown-item">Low</a></li>
-                  </ul>
-                </div> -->
-                <div class="card-body">
-                  <h5 class="card-title">Critical Patches
-                    <!-- Button trigger modal -->
-                    <button type="button" id="criPatchesMitigateButton" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                    data-bs-target="#topVulModal" style="margin-left: 20px;">
-                    Mitigate Selected
-                  </button>
-                  </h5>
-                  <table id="criticalPatchesTable" class="table" style="width: 100%;">
-                    <thead>
-                      <tr>
-                        <th scope="col"><input type="checkbox" id="criticalPatchesSelectAll"
-                            class="selectAll form-check-input"></th>
-                        <th scope="col" style="text-align: left;">Patch Name</th>
-                        <th scope="col" style="text-align: left;">Severity</th>
-                        <th scope="col">Affected Machines</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
+        
             
           </div>
 
@@ -694,90 +767,49 @@ function createMitigateTable(aaData) {
           
           
           
-          <div class="card">
-            <div class="card-body pb-0">
-              <h5 class="card-title">Vulnerability Aging</h5>
-              <div>
-                <div>
-                  <div style="display: block; padding: 0 10px 20px 10px;">
-                    <canvas id="vulAgingScatter" style="min-height: 250px;">
-                    </canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          
           
           <div class="card overflow-auto">
-              <div class="card-body">
-                <h5 class="card-title">Machine Compliance</h5>
+                <!-- <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa-solid fa-sliders"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+                    <li><a class="dropdown-item">Critical</a></li>
+                    <li><a class="dropdown-item">High</a></li>
+                    <li><a class="dropdown-item">Medium</a></li>
+                    <li><a class="dropdown-item">Low</a></li>
+                  </ul>
+                </div> -->
+                <div class="card-body">
+                  <h5 class="card-title">Critical Patches
+                    <!-- Button trigger modal -->
+                    <button type="button" id="criPatchesMitigateButton" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#topVulModal" style="margin-left: 20px;">
+                    Mitigate Selected
+                  </button>
+                  </h5>
+                  <table id="criticalPatchesTable" class="table" style="width: 100%;">
+                    <thead>
+                      <tr>
+                        <th scope="col"><input type="checkbox" id="criticalPatchesSelectAll"
+                            class="selectAll form-check-input"></th>
+                        <th scope="col" style="text-align: left;">Patch Name</th>
+                        <th scope="col" style="text-align: left;">Severity</th>
+                        <th scope="col">Affected Machines</th>
+                      </tr>
+                    </thead>
+                    <tbody>
 
-                <div class="row compliance">
-                  <div class="col-md-4">
-                    <p>Reporting</p>
-                    <span> Not checked-in </span><br/>
-                    <span data-bs-toggle="modal" data-bs-target="#reportingModal"
-                        style="color: #FF5F60; text-decoration: underline; cursor: pointer;">
-                        <bean:write name="newDashboardForm" property="reportingNotCheckedIn"/>
-                      </span>
-                    <div class="progress" style="margin-bottom:10px;">
-                      <div id="reportingNotCheckedIn" class="progress-bar" role="progressbar"
-                        style="width:0; background-color: #FF5F60" aria-valuemax="100"></div>
-                    </div>
-                    <span> Not available </span><br/>
-                    <span style="color: #F3CC63;"><bean:write name="newDashboardForm" property="reportingNotAvailable"/></span>
-                    <div class="progress" style="margin-bottom:10px;">
-                      <div id="reportingNotAvailable" class="progress-bar" role="progressbar"
-                        style="width:0; background-color: #F3CC63" aria-valuemax="100"></div>
-                    </div>
-                    <span> Checked-in </span><br/>
-                    <span style="color: #18db76;"><bean:write name="newDashboardForm" property="reportingCheckedIn"/></span>
-                    <div class="progress" style="margin-bottom:10px;">
-                      <div id="reportingCheckedIn" class="progress-bar" role="progressbar"
-                        style="width:0; background-color: #18db76" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Security</p>
-                    <span> Non Compliant </span><br/> 
-                    <span style="color: #FF5F60;"><bean:write name="newDashboardForm" property="securityNonCompliant"/></span>
-                    <div class="progress" style="margin-bottom:10px;">
-                      <div id="securityNonCompliant" class="progress-bar" role="progressbar"
-                        style="width: 0%; background-color: #FF5F60" aria-valuemax="100"></div>
-                    </div>
-                    <span> Compliant</span> <br/>
-                    <span style="color: #18db76;"><bean:write name="newDashboardForm" property="securityCompliant"/></span>
-                    <div class="progress" style="margin-bottom:10px;">
-                      <div id="securityCompliant" class="progress-bar" role="progressbar"
-                        style="width: 0%; background-color: #18db76" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-
-
-                  <div class="col-md-4">
-                    <p>Patches</p>
-                    <span> Non Compliant </span><br/>
-                    <span style="color: #FF5F60;"><bean:write name="newDashboardForm" property="patchNonCompliant"/></span>
-                    <div class="progress" style="margin-bottom:10px;">
-                      <div id="patchNonCompliant" class="progress-bar" role="progressbar"
-                        style="width: 0%; background-color: #FF5F60" aria-valuemax="100"></div>
-                    </div>
-                    <span> Compliant </span><br/>
-                    <span style="color: #18db76;"><bean:write name="newDashboardForm" property="patchCompliant"/></span>
-                    <div class="progress" style="margin-bottom:10px;">
-                      <div id="patchCompliant" class="progress-bar" role="progressbar"
-                        style="width: 0%; background-color: #18db76" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-
-
+                    </tbody>
+                  </table>
                 </div>
-
               </div>
-            </div>
-
+          
+          
+          
+          
+          
         </div>
       </div>
     </section>
