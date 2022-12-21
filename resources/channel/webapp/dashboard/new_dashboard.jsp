@@ -12,19 +12,21 @@
 <html lang="en">
 <head>
 
-
 <link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/bootstrap-icons.min.css"/>
 <link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/all.min.css"/>
 <link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/datatables.min.css"/>
 <link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/style.css"/>
 
-<script type="text/javascript" src="/spm/js/newdashboard/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<!-- <script type="text/javascript" src="/spm/js/newdashboard/jquery.min.js"></script> -->
 <script type="text/javascript" src="/spm/js/newdashboard/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/chart.umd.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/datatables.min.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/all.min.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/common.js"></script>
+
 
 <script type="text/javascript">
 
@@ -139,6 +141,7 @@ $(function () {
     var topVulData = '<bean:write name="newDashboardForm" property="topVulnerableData"/>';
     topVulData = topVulData.replace(/&quot;/g,'"');
     topVulData=JSON.parse(topVulData);
+    let topVulIndex = 0;
 
     $('#topVulTable').DataTable({
         "destroy": true, // In order to reinitialize the datatable
@@ -162,15 +165,15 @@ $(function () {
             'orderable': false,
             'className': 'dt-body-center',
             'render': function (data, type, full, meta) {
-                return '<input type="checkbox" class="form-check-input" name="topVulCheckbox" value="' + full['CVE-ID'] + '">';
+                return '<input type="checkbox" class="form-check-input" name="topVulCheckbox" value="' + topVulIndex++ + '">';
             }
         },
         {
             'targets': 4,
             'className': 'dt-body-left',
-            'render': function (data, type, full, meta) {
+            /* 'render': function (data, type, full, meta) {
                 return '<span style="font-family: ui-serif;">'+data+'</span>';
-            }
+            } */
         }, {
             'targets': 1,
             'className': 'dt-body-left',
@@ -209,6 +212,15 @@ $(function () {
             cveArray.push($(this).val());
         })
         console.log(cveArray);
+        
+        $.ajax({url: "https://gorest.co.in/public/v2/users", success: function(result){
+            let topVulMitigateData = [{ "Impacted Machine": "K84562", "Status": "Pass", "Patch Details": "Patch 123456789" },
+                { "Impacted Machine": "K84562", "Status": "Failed", "Patch Details": "Patch 123456789" }];
+            
+            createMitigateTable(topVulMitigateData);
+            
+        }});
+        
     });
     
     $('#criPatchesMitigateButton').click(function () {
@@ -217,56 +229,17 @@ $(function () {
             array.push($(this).val());
         })
         console.log(array);
+        
+        $.ajax({url: "https://gorest.co.in/public/v2/users", success: function(result){
+            let topVulMitigateData = [{ "Impacted Machine": "K84562", "Status": "Pass", "Patch Details": "Patch 123456789" },
+                { "Impacted Machine": "K84562", "Status": "Failed", "Patch Details": "Patch 123456789" }];
+            
+            createMitigateTable(topVulMitigateData);
+            
+        }});
     });
 
-    $('#topVulModalTable').DataTable({
-        "destroy": true, // In order to reinitialize the datatable
-        "pagination": true, // For Pagination
-        "sorting": false, // For sorting
-        "ordering": false,
-        "searching": false,
-        language: {
-            search: "_INPUT_",
-            searchPlaceholder: "Search..."
-        },
-        "aaData": [
-            { "Impacted Machine": "K84562", "Status": "Pass", "Patch Details": "Patch 123456789" },
-            { "Impacted Machine": "K84562", "Status": "Failed", "Patch Details": "Patch 123456789" },
-        ],
-        "columns": [{},
-        {
-            "data": "Impacted Machine"
-        }, {
-            "data": "Status"
-        }, {
-            "data": "Patch Details"
-        }],
-        'columnDefs': [{
-            'targets': 0,
-            'searchable': true,
-            'orderable': false,
-            'className': 'dt-body-center',
-            'render': function (data, type, full, meta) {
-                var disabled = full["Status"] === "Pass" ? "disabled" : "";
-                return '<input type="checkbox" class="form-check-input" name="topVulMitCheck" value="' + full['Impacted Machine'] + '" ' + disabled + '>';
-            }
-        }],
-        'rowCallback': function (row, data, index) {
-            switch (data['Status']) {
-                case 'Pass':
-                    $(row).find('td:eq(2)').addClass('text-success');
-                    break;
-
-                case 'Failed':
-                    $(row).find('td:eq(2)').addClass('text-danger');
-                    break;
-
-                default:
-                    break;
-            }
-        }
-    });
-
+    
 
     $('#topVulMitScan').click(function () {
         let array = [];
@@ -289,6 +262,7 @@ $(function () {
     var prtyPatchesData = '<bean:write name="newDashboardForm" property="priorityPatchesData"/>';
     prtyPatchesData = prtyPatchesData.replace(/&quot;/g,'"');
     prtyPatchesData=JSON.parse(prtyPatchesData);
+    let patchesIndex = 0;
 
    $('#criticalPatchesTable').DataTable({
        "destroy": true, // In order to reinitialize the datatable
@@ -312,15 +286,15 @@ $(function () {
            'orderable': false,
            'className': 'dt-body-center',
            'render': function (data, type, full, meta) {
-               return '<input type="checkbox" class="form-check-input" name="criPatchCheckbox" value="' + full['Patch Name'] + '">';
+               return '<input type="checkbox" class="form-check-input" name="criPatchCheckbox" value="' + patchesIndex++ + '">';
            }
        },
        {
            'targets': 1,
            'className': 'dt-body-left',
-           'render': function (data, type, full, meta) {
+           /* 'render': function (data, type, full, meta) {
                return '<span style="font-family: ui-serif;">'+data+'</span>';
-           }
+           } */
        }, {
            'targets': 2,
            'className': 'dt-body-left',
@@ -397,6 +371,55 @@ $(function () {
    $('#patchCompliant').css("width",(patchCompliant/patchSum)*100+"%");
    
 });
+
+function createMitigateTable(aaData) {
+	let topVulModalIndex = 0;
+    $('#topVulModalTable').DataTable({
+        "destroy": true, // In order to reinitialize the datatable
+        "pagination": true, // For Pagination
+        "sorting": false, // For sorting
+        "ordering": false,
+        "searching": false,
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search..."
+        },
+        "aaData": aaData,
+        "columns": [{},
+        {
+            "data": "Impacted Machine"
+        }, {
+            "data": "Status"
+        }, {
+            "data": "Patch Details"
+        }],
+        'columnDefs': [{
+            'targets': 0,
+            'searchable': true,
+            'orderable': false,
+            'className': 'dt-body-center',
+            'render': function (data, type, full, meta) {
+                var disabled = full["Status"] === "Pass" ? "disabled" : "";
+                return '<input type="checkbox" class="form-check-input" name="topVulMitCheck" value="' + topVulModalIndex++ + '" ' + disabled + '>';
+            }
+        }],
+        'rowCallback': function (row, data, index) {
+            switch (data['Status']) {
+                case 'Pass':
+                    $(row).find('td:eq(2)').addClass('text-success');
+                    break;
+
+                case 'Failed':
+                    $(row).find('td:eq(2)').addClass('text-danger');
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    });
+
+}
 
 </script>
 
