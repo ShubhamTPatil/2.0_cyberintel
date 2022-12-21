@@ -1357,11 +1357,30 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
     }
 
+    public static class GetComplianceReportNotCheckedInData extends DatabaseAccess {
+        Map<String, String> complianceResult = new LinkedHashMap<String, String>();
+
+        public GetComplianceReportNotCheckedInData(SubscriptionMain main) {
+
+            GetComplianceReportNotCheckedInInfo result = new GetComplianceReportNotCheckedInInfo(main);
+            try {
+                runQuery(result);
+            } catch (Exception dae) {
+                dae.printStackTrace();
+            }
+        }
+
+        public Map<String, String> getResult() {
+            return complianceResult;
+        }
+    }
+
+
 
     public static class GetComplianceReportingData extends DatabaseAccess {
         Map<String, String> complianceResult = new LinkedHashMap<String, String>();
         String complianceType = "";
-        
+
         public GetComplianceReportingData(SubscriptionMain main, String complianceType) {
             this.complianceType = complianceType;
             GetComplianceReportingInfo result = new GetComplianceReportingInfo(main, complianceType);
@@ -1581,15 +1600,14 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
         protected void execute(IStatementPool pool) throws SQLException {
             String sqlStr = "select distinct ap.repository_id as \"PatchName\", t2.severity as \"Severity\" ,count(im.id) as \"AffectedMachines\"\n" +
-                    "from security_cve_patch_info t1, all_patch ap, security_cve_info t2, inv_machine im\n" +
-                    "where \n" +
-                    "ap.repository_id=t1.repository_id\n" +
-                    "and t1.cve_name = t2.cve_name\n" +
-                    "and im.id = ap.machine_id\n" +
-                    "and exists (select 1 from all_patch ap where \n" +
-                    "\t\t\t   (ap.repository_id = t1.repository_id) \n" +
-                    "\t\t\t   and (ap.current_status = 'Missing' or ap.current_status = 'Available-SP'))\n" +
-                    "group by ap.repository_id, t2. severity, im.id ";
+                    "                    from inv_sec_oval_defn_cve_details t1, all_patch ap, security_cve_info t2, inv_machine im\n" +
+                    "                    where ap.repository_id=t1.repository_id\n" +
+                    "                    and (t1.reference_name = t2.cve_name and t1.severity != 'null' and t1.severity = 'Critical')\n" +
+                    "                    and im.id = ap.machine_id\n" +
+                    "                    and exists (select 1 from all_patch ap where\n" +
+                    "                    (ap.repository_id = t1.repository_id) \n" +
+                    "                       and (ap.current_status = 'Missing' or ap.current_status = 'Available-SP'))\n" +
+                    "                    group by ap.repository_id, t2. severity, im.id";
 
             PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
             ResultSet rs = st.executeQuery();
@@ -1770,6 +1788,30 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
     }
 
+    static class GetComplianceReportNotCheckedInInfo extends QueryExecutor {
+
+        GetComplianceReportNotCheckedInInfo(SubscriptionMain main) {
+            super(main);
+        }
+
+        protected void execute(IStatementPool pool) throws SQLException {
+         PreparedStatement st = pool.getConnection().prepareStatement("select HostName, Scantime from derived_inv_compliance dic " +
+                 "where dic.ComplianceStaus = 'NotCheckedIn' " +
+                 "and dic.scantime > (select getutcdate() - 1)");
+
+            ResultSet rs = st.executeQuery();
+            try {
+                    while (rs.next()) {
+                       String hostName = rs.getString("HostName");
+                       String scanTime = rs.getString("Scantime");
+                    }
+            } finally {
+                rs.close();
+            }
+
+        }
+
+    }
 
     static class GetComplianceReportingInfo extends QueryExecutor {
         int checkedIn = 0;
