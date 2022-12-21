@@ -19,7 +19,7 @@ public class RunScanForm extends ActionForm {
 	private String runScanJson;
 	private String action = null;
 	private String responseMsg;
-	private String[] endDevicesArr;
+	private String endDevicesArr;
 
 	public String getRunScanJson() {
 		return runScanJson;
@@ -45,11 +45,11 @@ public class RunScanForm extends ActionForm {
 		this.responseMsg = responseMsg;
 	}
 
-	public String[] getEndDevicesArr() {
+	public String getEndDevicesArr() {
 		return endDevicesArr;
 	}
 
-	public void setEndDevicesArr(String[] endDevicesArr) {
+	public void setEndDevicesArr(String endDevicesArr) {
 		this.endDevicesArr = endDevicesArr;
 	}
 }
