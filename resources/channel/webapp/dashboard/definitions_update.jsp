@@ -35,6 +35,597 @@
 
       $('.nav-selected').removeClass('nav-selected');
       $('#definitionsUpdate').addClass('nav-selected');
+      
+      
+      let defUpdateData = [
+          {
+            "SecurityProfileName": "SCAP-compliant definitions for Desktop Security policies manipulation",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+
+          {
+            "SecurityProfileName": "Guide to the Secure Configuration of CentOS 6",
+            "AssessmentType": "Configuration",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+
+          {
+            "SecurityProfileName": "Guide to the Secure Configuration of CentOS 7",
+            "AssessmentType": "Configuration",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+
+          {
+            "SecurityProfileName": "Guide to the Secure Configuration of Google Chromium",
+            "AssessmentType": "Configuration",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+
+          {
+            "SecurityProfileName": "Guide to the Secure Configuration of Google Chromium",
+            "AssessmentType": "Configuration",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+
+          {
+            "SecurityProfileName": "Guide to the Secure Configuration of Debian 8",
+            "AssessmentType": "Configuration",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+
+          {
+            "SecurityProfileName": "Guide to the Secure Configuration of Firefox",
+            "AssessmentType": "Configuration",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+
+          {
+            "SecurityProfileName": "Guide to the Secure Configuration of Java Runtime Environment",
+            "AssessmentType": "Configuration",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+
+          {
+            "SecurityProfileName": "Guide to the Secure Configuration of Red Hat OpenStack Platform 7",
+            "AssessmentType": "Configuration",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+
+          {
+            "SecurityProfileName": "Guide to the Secure Configuration of Red Hat Enterprise Linux 6",
+            "AssessmentType": "Configuration",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+
+          {
+            "SecurityProfileName": "Guide to the Secure Configuration of Red Hat Enterprise Linux 7",
+            "AssessmentType": "Configuration",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+
+          {
+            "SecurityProfileName": "Guide to the Secure Configuration of Scientific Linux 6",
+            "AssessmentType": "Configuration",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+
+          {
+            "SecurityProfileName": "Guide to the Secure Configuration of Scientific Linux 7",
+            "AssessmentType": "Configuration",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+
+          {
+            "SecurityProfileName": "File content for OVAL file suspicious-cyberesi-oval.xml",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Adobe Acrobat Reader DC Classic Track Security Technical Implementation Guide",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Adobe Acrobat Reader DC Continuous Track Security Technical Implementation Guide",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft DotNet Framework 4.0 STIG",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Google Chrome Current Windows STIG",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Internet Explorer 11 Security Technical Implementation Guide",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Office System 2013 STIG",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Office System 2016 Security Technical Implementation Guide",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Outlook 2013 STIG",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Publisher 2016 Security Technical Implementation Guide",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Windows Server 2008 R2 Domain Controller Security Technical Implementation Guide",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Windows Server 2008 R2 Member Server Security Technical Implementation Guide",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Windows Defender Antivirus Security Technical Implementation Guide",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Windows Server 2016 Security Technical Implementation Guide Windows Server 2016 Standalone Server Windows Server 2016 Domain Controller Windows Server 2016 Member Server",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Windows 10 Security Technical Implementation Guide",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Windows 2008 Domain Controller Security Technical Implementation Guide",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Windows 2008 Member Server Security Technical Implementation Guide",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Windows Firewall with Advanced Security Security Technical Implementation Guide",
+            "AssessmentType": "Configuration",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Red Hat Enterprise Linux 3 OVAL definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Red Hat Enterprise Linux 4 OVAL definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Red Hat Enterprise Linux 5 OVAL definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Red Hat Enterprise Linux 6 OVAL definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Red Hat Enterprise Linux 7 OVAL definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "CentOS Linux 4 OVAL Patch definitions",
+            "AssessmentType": "Patch",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "CentOS Linux 3 OVAL Patch definitions",
+            "AssessmentType": "Patch",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "CentOS Linux 5 OVAL Patch definitions",
+            "AssessmentType": "Patch",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "CentOS Linux 6 OVAL Patch definitions",
+            "AssessmentType": "Patch",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "CentOS Linux 7 OVAL Patch definitions",
+            "AssessmentType": "Patch",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "CentOS Linux 3 OVAL Vulnerability definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "CentOS Linux 4 OVAL Vulnerability definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "CentOS Linux 5 OVAL Vulnerability definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "CentOS Linux 6 OVAL Vulnerability definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "CentOS Linux 7 OVAL Vulnerability definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Non-Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows 10 OVAL Patch Definitions",
+            "AssessmentType": "Patch",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows 7 OVAL Patch Definitions",
+            "AssessmentType": "Patch",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows 8 OVAL Patch Definitions",
+            "AssessmentType": "Patch",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows 8.1 OVAL Patch Definitions",
+            "AssessmentType": "Patch",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows Server 2003 OVAL Patch Definitions",
+            "AssessmentType": "Patch",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows Server 2008 R2 OVAL Patch Definitions",
+            "AssessmentType": "Patch",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows Server 2008 OVAL Patch Definitions",
+            "AssessmentType": "Patch",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows Server 2012 OVAL Patch Definitions",
+            "AssessmentType": "Patch",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows Server 2012 R2 OVAL Patch Definitions",
+            "AssessmentType": "Patch",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows Server 2019 OVAL Patch Definitions",
+            "AssessmentType": "Patch",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows Storage Server 2012 OVAL Patch Definitions",
+            "AssessmentType": "Patch",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows Server 2016 OVAL Patch Definitions",
+            "AssessmentType": "Patch",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows Vista OVAL Patch Definitions",
+            "AssessmentType": "Patch",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows XP OVAL Patch Definitions",
+            "AssessmentType": "Patch",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows 10 OVAL Vulnerability Definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows 7 OVAL Vulnerability Definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows 8.1 OVAL Vulnerability Definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows 8 OVAL Vulnerability Definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows Server 2003 R2 OVAL Vulnerability Definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows Server 2003 OVAL Vulnerability Definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows Server 2008 R2 OVAL Vulnerability Definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows Server 2008 OVAL Vulnerability Definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows Server 2012 R2 OVAL Vulnerability Definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows Server 2012 OVAL Vulnerability Definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows Server 2016 OVAL Vulnerability Definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows Server 2019 OVAL Vulnerability Definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows Storage Server 2012 OVAL Vulnerability Definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows Vista OVAL Vulnerability Definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          },
+          {
+            "SecurityProfileName": "Microsoft Windows XP OVAL Vulnerability Definitions",
+            "AssessmentType": "Vulnerability",
+            "Platform": "Windows",
+            "LastUpdated": "2022-12-18 10:40:20.0",
+            "Status": "Sync Required"
+          }
+        ];
+
+        let defUpdateIndex = 0;
+
+        $('#defUpdateTable').DataTable({
+          "destroy": true, // In order to reinitialize the datatable
+          "pagination": true, // For Pagination
+          "bPaginate": true,
+          "sorting": false, // For sorting
+          "ordering": false,
+          "searching": true,
+          "aaData": defUpdateData,
+          "columns": [{},
+          {
+            "data": "SecurityProfileName"
+          }, {
+            "data": "AssessmentType"
+          }, {
+            "data": "Platform"
+          }, {
+            "data": "LastUpdated"
+          }, {
+            "data": "Status"
+          }],
+          'columnDefs': [{
+            'targets': 0,
+            'searchable': true,
+            'orderable': false,
+            'className': 'dt-body-left',
+            'render': function (data, type, full, meta) {
+              return '<input type="checkbox" class="form-check-input" name="vulAssessmentCheckbox" value="' + defUpdateIndex++ + '">';
+            }
+          }]
+        });
+
+
 
 
     });
@@ -72,394 +663,173 @@
 
     </div>
 
-    <section class="section dashboard">
 
+<section class="section dashboard">
+
+      <div class="card">
         <nav>
-          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <div class="nav nav-tabs nav-title" id="nav-tab" role="tablist">
             <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
-              type="button" role="tab" aria-controls="nav-home" aria-selected="true">CVE INFORMATOIN</button>
+              type="button" role="tab" aria-controls="nav-home" aria-selected="true">CVE INFORMATION</button>
             <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
               type="button" role="tab" aria-controls="nav-profile" aria-selected="false">UPDATES</button>
           </div>
         </nav>
+        <div class="card-body">
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <br />
+
+              <div class="p-3 mb-2 text-dark" style="font-size: medium; background-color:#d9edf7;">
+                <i class="fa-solid fa-circle-info text-primary"></i> CVE Definitions and Vulnerability Definitions are
+                need to be updated every month.
+              </div>
+
+              <br />
+
+              <div class="row" style="box-shadow: 1px 3px 3px #3333333d!important; padding-bottom: 20px;">
+
+                <div class="col">
+                  <span style="font-weight: bold;">CVE Definitions last updated on (04/12/2022)</span><br />
+                  <span>(Please ensure all information is upto date for accurate results)</span>
+                </div>
+
+                <div class="col">
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="button" class="btn btn-sm btn-secondary"
+                      style="background-color: #d3d3d333;color: darkgray;">CANCEL</button>
+                    <button type="button" class="btn btn-sm btn-primary" style="background-color: #1976d2;">UPDATE
+                      NOW</button>
+                  </div>
+                </div>
+
+              </div>
 
 
-        <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-            <div class="row">
-              <div class="col-md-12">&nbsp;</div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">&nbsp;</div>
-            </div>
-            <div class="row" style="background-color:#d9edf7!important;">
-              <div class="col-md-12">
-                <h6><i class="fa-solid fa-circle-info text-primary" style="font-size:15px!important;"></i> CVE
-                  Definitions and Vulnarability Definitions are need to be updated every month</h6>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">&nbsp;</div>
-            </div>
-            <div class="row" style="box-shadow: 1px 1px 1px #3333333d!important;">
-              <div class="col-md-12">
-                <div class="row">
-                  <div class="col-md-6">
-                    <h5>CVE Definitions last updated on(04/12/2022)</h5>
-                  </div>
-                  <div class="col-md-offset-3 col-md-1"><button type="button"
-                      class="btn btn-light btn-md">CANCEL</button></div>
-                  <div class="col-md-2"><button type="button" class="btn btn-primary btn-md">UPDATE NOW</button></div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">(Please ensure all information is upto date for accurate results)</div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">&nbsp;</div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">&nbsp;</div>
-            </div>
-            <div class="row" style="box-shadow: 1px 1px 1px #3333333d!important;">
-              <div class="col-md-12">
-                <div class="row">
-                  <div class="col-md-6">
-                    <h5>Vulnarability Definitions last updated on(04/12/2022)</h5>
-                  </div>
-                  <div class="col-md-offset-3 col-md-1"><button type="button"
-                      class="btn btn-light btn-md">CANCEL</button></div>
-                  <div class="col-md-2"><button type="button" class="btn btn-primary btn-md">UPDATE NOW</button></div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">(Please ensure all information is upto date for accurate results)</div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">&nbsp;</div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">&nbsp;</div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">&nbsp;</div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3" style="margin-bottom: -20px!important;">
-                <div class="progress" style="height: 8px!important;">
-                  <div class="progress-bar active" name="CVEprogress" role="progressbar" aria-valuenow="80"
-                    aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6" style="margin-bottom: -20px!important;"></div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3"><span style="font-size: 10px!important;">Json file download is completed</span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">&nbsp;</div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3" style="margin-bottom: -20px!important;">
-                <div class="progress" style="height: 8px!important;">
-                  <div class="progress-bar active" name="CVEprogress" role="progressbar" aria-valuenow="80"
-                    aria-valuemin="0" aria-valuemax="100" style="width:80%">
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6" style="margin-bottom: -20px!important;"></div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3"><span style="font-size: 10px!important;">File insertion to database is in
-                  progress</span></div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 
-            <div class="row">
-              <div class="col-md-12">&nbsp;</div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">&nbsp;</div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <h5>From this page , you can manage the available security content updates. You can synchronize the
-                  security content, monitor the progress of sync operations, or can view the details of a security
-                  content.</h5>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">&nbsp;</div>
-            </div>
-            <div class="row" style="background-color:#d9edf7!important;">
-              <div class="col-md-12">
-                <h6><i class="fa-solid fa-circle-info text-primary" style="font-size:15px!important;"></i> New security
-                  definitions are available.</h6>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">&nbsp;</div>
-            </div>
-            <div class="row">
-              <div class="col-md-8"></div>
-              <div class="col-md-2"><button type="button" class="btn btn-outline-primary"
-                  style="width: 155px!important;">VIEW DETAILS</button></div>
-              <div class="col-md-2"><button type="button" class="btn btn-primary btn-md"
-                  style="width: 155px!important;">RE-SYNC</button></div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">Status</div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">&nbsp;</div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All <i
-                      class="bi bi-chevron-down"></i></button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+              <br />
+              <br />
+
+              <div class="row" style="box-shadow: 1px 3px 3px #3333333d!important; padding-bottom: 20px;">
+
+                <div class="col">
+                  <span style="font-weight: bold;">Vulnerability Definitions last updated on (04/12/2022)</span><br />
+                  <span>(Please ensure all information is upto date for accurate results)</span>
+                </div>
+
+                <div class="col">
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="button" class="btn btn-sm btn-secondary"
+                      style="background-color: #d3d3d333;color: darkgray;">CANCEL</button>
+                    <button type="button" class="btn btn-sm btn-primary" style="background-color: #1976d2;">UPDATE
+                      NOW</button>
                   </div>
                 </div>
               </div>
-              <div class="col-md-offset-3 col-md-2">
-                <form class="form-inline my-2 my-lg-0">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" value="&#128269; Search" search
-                    aria-label="Search" style="width: 283px!important;">
-                </form>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">&nbsp;</div>
-            </div>
-            <div class="row" style="box-shadow: 1px 1px 1px #3333333d!important;">
-              <div class="col-md-12">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col" style="text-align: left!important;">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="CVEflexCheckDefault">
-                          <label class="form-check-label" for="CVEflexCheckDefault">Security Profile Name</label>
-                        </div>
-                      </th>
-                      <th scope="col">Assessment Type</th>
-                      <th scope="col">Platform</th>
-                      <th scope="col">Last Updated</th>
-                      <th scope="col">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="CVEflexCheckDefault">
-                          <label class="form-check-label" for="CVEflexCheckDefault"> Microsoft Windows 10 OvalPatch
-                            Definitions</label>
-                        </div>
-                      </th>
-                      <td>Configuration</td>
-                      <td>Non-Windows</td>
-                      <td>Fri Oct 14 07:54:59 UTC 2022</td>
-                      <td>
-                        <p style="color:orange!important;">Sync Required</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="CVEflexCheckDefault">
-                          <label class="form-check-label" for="CVEflexCheckDefault"> Microsoft Windows 10 OvalPatch
-                            Definitions</label>
-                        </div>
-                      </th>
-                      <td>Configuration</td>
-                      <td>Windows</td>
-                      <td>Fri Oct 14 07:54:59 UTC 2022</td>
-                      <td>
-                        <p style="color:Green!important;">Synced</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="CVEflexCheckDefault">
-                          <label class="form-check-label" for="CVEflexCheckDefault"> Microsoft Windows 10 OvalPatch
-                            Definitions</label>
-                        </div>
-                      </th>
-                      <td>Configuration</td>
-                      <td>Non-Windows</td>
-                      <td>Fri Oct 14 07:54:59 UTC 2022</td>
-                      <td>
-                        <p style="color:Green!important;">Synced</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="CVEflexCheckDefault">
-                          <label class="form-check-label" for="CVEflexCheckDefault"> Microsoft Windows 10 OvalPatch
-                            Definitions</label>
-                        </div>
-                      </th>
-                      <td>Configuration</td>
-                      <td>Windows</td>
-                      <td>Fri Oct 14 07:54:59 UTC 2022</td>
-                      <td>
-                        <p style="color:Green!important;">Synced</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="CVEflexCheckDefault">
-                          <label class="form-check-label" for="CVEflexCheckDefault"> Microsoft Windows 10 OvalPatch
-                            Definitions</label>
-                        </div>
-                      </th>
-                      <td>Configuration</td>
-                      <td>Non-Windows</td>
-                      <td>Fri Oct 14 07:54:59 UTC 2022</td>
-                      <td>
-                        <p style="color:Green!important;">Synced</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="CVEflexCheckDefault">
-                          <label class="form-check-label" for="CVEflexCheckDefault"> Microsoft Windows 10 OvalPatch
-                            Definitions</label>
-                        </div>
-                      </th>
-                      <td>Configuration</td>
-                      <td>Windows</td>
-                      <td>Fri Oct 14 07:54:59 UTC 2022</td>
-                      <td>
-                        <p style="color:Green!important;">Synced</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="CVEflexCheckDefault">
-                          <label class="form-check-label" for="CVEflexCheckDefault"> Microsoft Windows 10 OvalPatch
-                            Definitions</label>
-                        </div>
-                      </th>
-                      <td>Configuration</td>
-                      <td>Non-Windows</td>
-                      <td>Fri Oct 14 07:54:59 UTC 2022</td>
-                      <td>
-                        <p style="color:Green!important;">Synced</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="CVEflexCheckDefault">
-                          <label class="form-check-label" for="CVEflexCheckDefault"> Microsoft Windows 10 OvalPatch
-                            Definitions</label>
-                        </div>
-                      </th>
-                      <td>Configuration</td>
-                      <td>Windows</td>
-                      <td>Fri Oct 14 07:54:59 UTC 2022</td>
-                      <td>
-                        <p style="color:Green!important;">Synced</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="CVEflexCheckDefault">
-                          <label class="form-check-label" for="CVEflexCheckDefault"> Microsoft Windows 10 OvalPatch
-                            Definitions</label>
-                        </div>
-                      </th>
-                      <td>Configuration</td>
-                      <td>Non-Windows</td>
-                      <td>Fri Oct 14 07:54:59 UTC 2022</td>
-                      <td>
-                        <p style="color:Green!important;">Synced</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="CVEflexCheckDefault">
-                          <label class="form-check-label" for="CVEflexCheckDefault"> Microsoft Windows 10 OvalPatch
-                            Definitions</label>
-                        </div>
-                      </th>
-                      <td>Configuration</td>
-                      <td>Windows</td>
-                      <td>Fri Oct 14 07:54:59 UTC 2022</td>
-                      <td>
-                        <p style="color:Green!important;">Synced</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="CVEflexCheckDefault">
-                          <label class="form-check-label" for="CVEflexCheckDefault"> Microsoft Windows 10 OvalPatch
-                            Definitions</label>
-                        </div>
-                      </th>
-                      <td>Configuration</td>
-                      <td>Non-Windows</td>
-                      <td>Fri Oct 14 07:54:59 UTC 2022</td>
-                      <td>
-                        <p style="color:Green!important;">Synced</p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
 
-                <div class="row">
-                  <div class="col-md-12">&nbsp;</div>
-                </div>
-                <div class="row">
-                  <div class="col-md-offset-7 col-md-2">
-                    <div class="dropdown">
-                      Rows per page: 11
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="bi bi-chevron-down"></i></button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">2</a>
-                        <a class="dropdown-item" href="#">3</a>
-                        <a class="dropdown-item" href="#">4</a>
-                      </div>
+              <br/>
+
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="progress" style="height: 8px!important;--bs-progress-bar-bg: #1976d2!important;">
+                    <div class="progress-bar active" name="CVEprogress" role="progressbar" aria-valuenow="80"
+                      aria-valuemin="0" aria-valuemax="100" style="width:100%">
                     </div>
                   </div>
-                  <div class="col-md-offset-1 col-md-2">
-                    1-5 of 13 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="bi bi-chevron-left"></i></button>
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="bi bi-chevron-right"></i></button>
+                </div>
+                <div class="col-sm-9"></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"><span style="font-size: 10px!important;">Json file download is
+                    completed</span>
+                </div>
+                <div class="col-sm-9"></div>
+              </div>
+              <br/>
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="progress" style="height: 8px!important;--bs-progress-bar-bg: #1976d2!important;">
+                    <div class="progress-bar active" name="CVEprogress" role="progressbar" aria-valuenow="80"
+                      aria-valuemin="0" aria-valuemax="100" style="width:80%">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-9"></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"><span style="font-size: 10px!important;">File insertion to
+                    database is in
+                    progress</span></div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+              <br />
+              <div>From this page, you can manage the available
+                security content updates. You can synchronize the
+                security content, monitor the progress of sync operations, or can view the
+                details of a security
+                content.</div>
+              <br />
+
+
+              <div class="p-3 mb-2 text-dark" style="font-size: medium; background-color:#d9edf7;">
+                <i class="fa-solid fa-circle-info text-primary"></i> New security
+                definitions are available.
+              </div>
+
+              <br />
+
+              <div class="row">
+                <div class="col-md-2">
+
+                  <h6>Status</h6>
+                  <select class="form-select" aria-label="Default select example" style="font-size: small;">
+                    <option selected>All</option>
+                    <option value="1">Sync Required</option>
+                    <option value="2">Synced</option>
+                  </select>
+
+                </div>
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="button" class="btn btn-sm btn-outline-primary">VIEW
+                      DETAILS</button>
+                    <button type="button" class="btn btn-sm btn-primary">RE-SYNC</button>
                   </div>
                 </div>
               </div>
-            </div>
 
+              <br>
+              <table id="defUpdateTable" class="table" style="width: 100%;">
+                <thead>
+                  <tr>
+                    <th><input type="checkbox" class="selectAll form-check-input" id="defUpdateSelectAll">
+                    </th>
+                    <th scope="col">Security Profile Name</th>
+                    <th scope="col">Assessment Type</th>
+                    <th scope="col">Platform</th>
+                    <th scope="col">Last Updated</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+
+                </tbody>
+              </table>
+
+            </div>
           </div>
+
         </div>
+      </div>
+
 
     </section>
+
+
   </main>
 
 </body>

@@ -510,3 +510,7 @@ h6 {
 .compliance .progress {
   --bs-progress-height: 0.6rem;
 }
+
+#criticalPatchesTable_filter>label>input {
+  width: 95%;
+}
