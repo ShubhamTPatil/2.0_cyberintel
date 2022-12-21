@@ -1599,7 +1599,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
-            String sqlStr = "select distinct ap.repository_id as \"PatchName\", t2.severity as \"Severity\" ,count(im.id) as \"AffectedMachines\"\n" +
+            String sqlStr = " select distinct ap.repository_id as \"PatchName\", t2.severity as \"Severity\" ,count(distinct im.id) as \"AffectedMachines\"\n" +
                     "                    from inv_sec_oval_defn_cve_details t1, all_patch ap, security_cve_info t2, inv_machine im\n" +
                     "                    where ap.repository_id=t1.repository_id\n" +
                     "                    and (t1.reference_name = t2.cve_name and t1.severity != 'null' and t1.severity = 'Critical')\n" +
@@ -1644,7 +1644,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
-            String sqlStr = "select distinct t1.reference_name as \"CVE_ID\", t2.severity as \"Severity\" ,count(im.id) as \"Affected_Machines\", ap.repository_id as \"Patch_ID\"\n" +
+            String sqlStr = "select distinct  t1.reference_name as \"CVE_ID\", t2.severity as \"Severity\" ,count(distinct im.id) as \"Affected_Machines\", ap.repository_id as \"Patch_ID\"\n" +
                     "from inv_sec_oval_defn_cve_details t1, all_patch ap, security_cve_info t2, inv_machine im\n" +
                     "where \n" +
                     "ap.repository_id=t1.repository_id\n" +
@@ -1653,7 +1653,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
                     "and exists (select 1 from all_patch ap where \n" +
                     "\t\t\t   (ap.repository_id = t1.repository_id) \n" +
                     "\t\t\t   and (ap.current_status = 'Missing' or ap.current_status = 'Available-SP'))\n" +
-                    "group by t1.reference_name, t2. severity, im.id, ap.repository_id";
+                    "group by t1.reference_name, t2. severity, ap.repository_id";
 
             PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
             ResultSet rs = st.executeQuery();
