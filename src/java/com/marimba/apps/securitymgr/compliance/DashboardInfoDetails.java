@@ -1520,7 +1520,18 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
-            String sqlStr = "select  severity, count(severity) as 'vulnerable_count' , min(published_date) Identified_date,min(datediff(day,published_date,getdate())) ageing_days\n" +
+            String sqlStr = "select  severity, min(cvss_score) as 'vulnerable_count' , max(published_date) Identified_date,datediff(day,max(published_date),getdate()) ageing_days\n" +
+                    "from inv_security_oval_compliance a, inv_sec_oval_defn_cve_details b where \n" +
+                    "a.content_id = b.content_id \n" +
+                    "and\n" +
+                    "b.severity in (select distinct(severity) from inv_sec_oval_defn_cve_details where severity != 'null') \n" +
+                    "and b.severity != ' '\n" +
+                    "and overall_compliant_level like '%'\n" +
+                    "and published_date >= getdate()-200\n" +
+                    "group by severity\n" +
+                    "order by severity";
+
+            String sqlStr2 = "select  severity, count(severity) as 'vulnerable_count' , min(published_date) Identified_date,min(datediff(day,published_date,getdate())) ageing_days\n" +
                     "from inv_security_oval_compliance a, inv_sec_oval_defn_cve_details b where \n" +
                     "a.content_id = b.content_id and\n" +
                     "b.definition_severity in (select distinct(severity) from inv_sec_oval_defn_cve_details where severity !=' ') \n" +
@@ -1600,7 +1611,17 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
-            String sqlStr = " select distinct ap.repository_id as \"PatchName\", t2.severity as \"Severity\" ,count(distinct im.id) as \"AffectedMachines\"\n" +
+            String sqlStr = "select distinct ap.repository_id as \"PatchName\", t2.severity as \"Severity\" ,count(im.id) as \"AffectedMachines\"\n" +
+                    "                    from inv_sec_oval_defn_cve_details t1, all_patch ap, security_cve_info t2, inv_machine im\n" +
+                    "                    where ap.repository_id=t1.repository_id\n" +
+                    "                    and (t1.reference_name = t2.cve_name and t1.severity != 'null' and t1.severity = 'Critical')\n" +
+                    "                    and im.id = ap.machine_id\n" +
+                    "                    and exists (select 1 from all_patch ap where\n" +
+                    "                    (ap.repository_id = t1.repository_id) \n" +
+                    "                       and (ap.current_status = 'Missing' or ap.current_status = 'Available-SP' or ap.current_status = 'Effectively-installed'))\n" +
+                    "                    group by ap.repository_id, t2. severity, im.id";
+
+            String sqlStr2 = " select distinct ap.repository_id as \"PatchName\", t2.severity as \"Severity\" ,count(distinct im.id) as \"AffectedMachines\"\n" +
                     "                    from inv_sec_oval_defn_cve_details t1, all_patch ap, security_cve_info t2, inv_machine im\n" +
                     "                    where ap.repository_id=t1.repository_id\n" +
                     "                    and (t1.reference_name = t2.cve_name and t1.severity != 'null' and t1.severity = 'Critical')\n" +
@@ -1645,7 +1666,18 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
-            String sqlStr = "select distinct  t1.reference_name as \"CVE_ID\", t2.severity as \"Severity\" ,count(distinct im.id) as \"Affected_Machines\", ap.repository_id as \"Patch_ID\"\n" +
+            String sqlStr = "select distinct t1.reference_name as \"CVE_ID\", t2.severity as \"Severity\" ,count(im.id) as \"Affected_Machines\", ap.repository_id as \"Patch_ID\"\n" +
+                    "from inv_sec_oval_defn_cve_details t1, all_patch ap, security_cve_info t2, inv_machine im\n" +
+                    "where \n" +
+                    "ap.repository_id=t1.repository_id\n" +
+                    "and (t1.reference_name = t2.cve_name and t1.severity != 'null')\n" +
+                    "and im.id = ap.machine_id\n" +
+                    "and exists (select 1 from all_patch ap where \n" +
+                    "                        (ap.repository_id = t1.repository_id) \n" +
+                    "                        and (ap.current_status = 'Missing' or ap.current_status = 'Available-SP' or ap.current_status = 'Effectively-installed'))\n" +
+                    "group by t1.reference_name, t2. severity, im.id, ap.repository_id";
+            
+            String sqlStr2 = "select distinct  t1.reference_name as \"CVE_ID\", t2.severity as \"Severity\" ,count(distinct im.id) as \"Affected_Machines\", ap.repository_id as \"Patch_ID\"\n" +
                     "from inv_sec_oval_defn_cve_details t1, all_patch ap, security_cve_info t2, inv_machine im\n" +
                     "where \n" +
                     "ap.repository_id=t1.repository_id\n" +
