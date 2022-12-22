@@ -219,9 +219,13 @@ $(function () {
         })
         console.log(cveArray);
         
-        $.ajax({url: "https://gorest.co.in/public/v2/users", success: function(result){
-            let topVulMitigateData = [{ "Impacted Machine": "K84562", "Status": "Pass", "Patch Details": "Patch 123456789" },
-                { "Impacted Machine": "K84562", "Status": "Failed", "Patch Details": "Patch 123456789" }];
+        $.ajax({url: "https://gorest.co.in/public/v2/users",
+           success: function(result){
+            let topVulMitigateData = [
+                    { "Impacted Machine": "defensight-qa1", "Status": "Missing", "Patch Details": "MS09-035.Q973551.vcredist973551_x64.exe" },
+                    { "Impacted Machine": "vm-master-trans", "Status": "Missing", "Patch Details": "MS09-035.Q973551.vcredist973551_x64.exe" },
+                    { "Impacted Machine": "reverseproxy", "Status": "Missing", "Patch Details": "MS09-035.Q973551.vcredist973551_x64.exe" }
+                    ];
             
             createMitigateTable(topVulMitigateData);
             
@@ -237,8 +241,9 @@ $(function () {
         console.log(array);
         
         $.ajax({url: "https://gorest.co.in/public/v2/users", success: function(result){
-            let topVulMitigateData = [{ "Impacted Machine": "K84562", "Status": "Pass", "Patch Details": "Patch 123456789" },
-                { "Impacted Machine": "K84562", "Status": "Failed", "Patch Details": "Patch 123456789" }];
+            let topVulMitigateData = [
+                    { "Impacted Machine": "reverseproxy", "Status": "Missing", "Patch Details": "MS09-035.Q973551.vcredist973551_x64.exe" }
+                ];
             
             createMitigateTable(topVulMitigateData);
             
@@ -352,14 +357,14 @@ $(function () {
            "searchPlaceholder": "Search..."
        },
        "aaData": [
-           { "Machine Name": "K84562", "Scan Date": "Fri Oct 14 07:08:09 UTC 2022" },
-           { "Machine Name": "K84563", "Scan Date": "Fri Oct 14 07:08:09 UTC 2022" }
+           { "Machine Name": "defensight-qa1",  "Vulnerable Last ScanTime": "2022-12-21 23:41:20.000" },
+           { "Machine Name": "vm-master-trans", "Vulnerable Last ScanTime": "2022-12-22 01:14:20.000" }
        ],
        "columns": [
        {
            "data": "Machine Name"
        }, {
-           "data": "Scan Date"
+           "data": "Vulnerable Last ScanTime"
        }]
    });
     

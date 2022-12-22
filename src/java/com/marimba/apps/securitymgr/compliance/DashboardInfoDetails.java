@@ -9,6 +9,7 @@ import com.marimba.apps.securitymgr.db.QueryExecutor;
 import com.marimba.apps.securitymgr.view.SCAPBean;
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
 import com.marimba.apps.subscriptionmanager.beans.PriorityPatchesBean;
+import com.marimba.apps.subscriptionmanager.beans.ReportingNotCheckedInBean;
 import com.marimba.apps.subscriptionmanager.beans.TopVulnerableStatusBean;
 import com.marimba.apps.subscriptionmanager.compliance.intf.ComplianceConstants;
 import com.marimba.apps.subscriptionmanager.compliance.view.MachineBean;
@@ -1358,20 +1359,20 @@ public class DashboardInfoDetails implements ComplianceConstants {
     }
 
     public static class GetComplianceReportNotCheckedInData extends DatabaseAccess {
-        Map<String, String> complianceResult = new LinkedHashMap<String, String>();
+        List<ReportingNotCheckedInBean> rptNotCheckedIn = new ArrayList<ReportingNotCheckedInBean>();
 
         public GetComplianceReportNotCheckedInData(SubscriptionMain main) {
-
             GetComplianceReportNotCheckedInInfo result = new GetComplianceReportNotCheckedInInfo(main);
             try {
                 runQuery(result);
+                rptNotCheckedIn = result.getReportNotCheckedInInfo();
             } catch (Exception dae) {
                 dae.printStackTrace();
             }
         }
 
-        public Map<String, String> getResult() {
-            return complianceResult;
+        public List<ReportingNotCheckedInBean> getReportNotCheckedInInfo() {
+            return rptNotCheckedIn;
         }
     }
 
@@ -1789,7 +1790,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
     }
 
     static class GetComplianceReportNotCheckedInInfo extends QueryExecutor {
-
+        List<ReportingNotCheckedInBean> rptNotCheckedIn = new ArrayList<ReportingNotCheckedInBean>();
         GetComplianceReportNotCheckedInInfo(SubscriptionMain main) {
             super(main);
         }
@@ -1798,12 +1799,15 @@ public class DashboardInfoDetails implements ComplianceConstants {
          PreparedStatement st = pool.getConnection().prepareStatement("select HostName, Scantime from derived_inv_compliance dic " +
                  "where dic.ComplianceStaus = 'NotCheckedIn' " +
                  "and dic.scantime > (select getutcdate() - 1)");
-
             ResultSet rs = st.executeQuery();
             try {
                     while (rs.next()) {
+                       ReportingNotCheckedInBean beanObj = new ReportingNotCheckedInBean(); 
                        String hostName = rs.getString("HostName");
                        String scanTime = rs.getString("Scantime");
+                       beanObj.setHostName(hostName);
+                       beanObj.setScanTime(scanTime);
+                       rptNotCheckedIn.add(beanObj); 
                     }
             } finally {
                 rs.close();
@@ -1811,6 +1815,9 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
         }
 
+        public List<ReportingNotCheckedInBean> getReportNotCheckedInInfo() {
+            return rptNotCheckedIn;
+        }
     }
 
     static class GetComplianceReportingInfo extends QueryExecutor {

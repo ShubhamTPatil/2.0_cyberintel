@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
+import com.marimba.apps.subscriptionmanager.beans.ReportingNotCheckedInBean;
 import com.marimba.apps.subscriptionmanager.beans.TopVulnerableStatusBean;
 import com.marimba.apps.subscriptionmanager.beans.PriorityPatchesBean;
 import com.marimba.apps.subscriptionmanager.compliance.intf.ComplianceConstants;
@@ -156,6 +157,17 @@ public class DashboardHandler implements ComplianceConstants {
             ex.printStackTrace();
         }
         return result;
+    }
+
+    // Get Compliance Reporting NotChecked info
+    public List<ReportingNotCheckedInBean> getComplianceReportNotCheckedIn() {
+        List<ReportingNotCheckedInBean> rptNotCheckedIn = new ArrayList<ReportingNotCheckedInBean>();
+        try {
+            rptNotCheckedIn = new DashboardInfoDetails.GetComplianceReportNotCheckedInData(main).getReportNotCheckedInInfo();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return rptNotCheckedIn;
     }
 
     //Controller for total number of scurity scanners in use

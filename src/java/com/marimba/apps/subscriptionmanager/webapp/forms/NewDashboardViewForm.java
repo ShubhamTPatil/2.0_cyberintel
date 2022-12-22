@@ -13,6 +13,7 @@ package com.marimba.apps.subscriptionmanager.webapp.forms;
  **/
 
 import com.marimba.apps.subscriptionmanager.beans.PriorityPatchesBean;
+import com.marimba.apps.subscriptionmanager.beans.ReportingNotCheckedInBean;
 import com.marimba.apps.subscriptionmanager.beans.TopVulnerableStatusBean;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
@@ -57,8 +58,10 @@ public class NewDashboardViewForm
     private String totalVulnerable;
     private List<TopVulnerableStatusBean> topVulnerableList = new ArrayList<TopVulnerableStatusBean>();
     private List<PriorityPatchesBean> priorityPatchesList = new ArrayList<PriorityPatchesBean>();
+    private List<ReportingNotCheckedInBean> rptNotCheckedInList = new ArrayList<ReportingNotCheckedInBean>();
     private String topVulnerableData = "[]";
     private String priorityPatchesData = "[]";
+    private String reportNotCheckedInData = "[]";
 
     private String reportingCheckedIn = "0";
     private String reportingNotCheckedIn = "0";
@@ -321,6 +324,25 @@ public class NewDashboardViewForm
     public void setVulnerableSeverityData(String vulnerableSeverityData) {
         this.vulnerableSeverityData = vulnerableSeverityData;
     }
+
+
+    public List<ReportingNotCheckedInBean> getRptNotCheckedInList() {
+        return rptNotCheckedInList;
+    }
+
+    public void setRptNotCheckedInList(List<ReportingNotCheckedInBean> rptNotCheckedInList) {
+        this.rptNotCheckedInList = rptNotCheckedInList;
+    }
+
+
+    public String getReportNotCheckedInData() {
+        return reportNotCheckedInData;
+    }
+
+    public void setReportNotCheckedInData(String reportNotCheckedInData) {
+        this.reportNotCheckedInData = reportNotCheckedInData;
+    }
+
 
 
 }
