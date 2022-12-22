@@ -514,3 +514,17 @@ h6 {
 #criticalPatchesTable_filter>label>input {
   width: 95%;
 }
+
+#topVulTable_filter>label>input {
+  width: 80%;
+}
+
+#topVulModalTable>thead>tr>th {
+    text-align: left;
+    vertical-align: middle;
+}
+
+#topVulModalTable>tbody>tr>td {
+    text-align: left;
+    vertical-align: middle;
+}

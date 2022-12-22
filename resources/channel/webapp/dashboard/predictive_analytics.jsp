@@ -50,7 +50,7 @@ $(function () {
 
       <div class="d-flex bd-highlight justify-content-center">
         <div class="p-2 flex-grow-1 bd-highlight">
-          <span class="pagename">Impact Analytics</span>
+          <span class="pagename">Predictive Analytics</span>
           <span data-bs-toggle="tooltip" data-bs-placement="right" title="DefenSight Impact Analytics"><i
               class="fa-solid fa-circle-info text-primary"></i></span>
         </div>

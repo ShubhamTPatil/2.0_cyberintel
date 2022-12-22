@@ -46,155 +46,142 @@ $(function () {
 	$('#scanResult').addClass('nav-selected');
 	
     let vulAssesmentData = [
-	        {
-	            "Machine Name": "vm-rhel-clarinet",
-	            "Operating System": "Linux CentOS Linux release 7.9.2009",
-	            "Security Definition": "Linux CentOS Linux release 7.9.2009",
-	            "Profile": "Default Profile",
-	            "Compliance": "312/513",
-	            "Last Scan": "2022-21-12 05:19:03:0",
-	            "Scan Status": "Compliant"
-	        },
-
-	        {
-	            "Machine Name": "defensight-linux1",
-	            "Operating System": "Linux Red Hat Enterprise Linux Server release 7.9",
-	            "Security Definition": "Red Hat Enterprise Linux 7 OVAL definitions",
-	            "Profile": "Default Profile",
-	            "Compliance": "412/513",
-	            "Last Scan": "2022-21-12 15:19:03:0",
-	            "Scan Status": "Not Compliant"
-	        },
-
-	        {
-	            "Machine Name": "defensight-linux1",
-	            "Operating System": "Linux CentOS Linux release 7.9",
-	            "Security Definition": "CentOS Linux 7 OVAL Patch definitions",
-	            "Profile": "Default Profile",
-	            "Compliance": "89/95",
-	            "Last Scan": "2022-09-21 12:01:03:0",
-	            "Scan Status": "Compliant"
-	        },
-
-	        {
-	            "Machine Name": "Win-10-VM",
-	            "Operating System": "	Microsoft Windows 10 Enterprise",
-	            "Security Definition": "Microsoft Windows 10 OVAL Patch Definitions",
-	            "Profile": "Default Profile",
-	            "Compliance": "300/513",
-	            "Last Scan": "2022-09-08 15:19:03:0",
-	            "Scan Status": "Compliant"
-	        },
-
-	        {
-	            "Machine Name": "Win-10-VM",
-	            "Operating System": "	Microsoft Windows 10 Enterprise",
-	            "Security Definition": "Microsoft Windows 10 OVAL Vulnerability Definitions",
-	            "Profile": "Default Profile",
-	            "Compliance": "200/513",
-	            "Last Scan": "2022-09-20 12:29:04:0",
-	            "Scan Status": "Not Compliant"
-	        },
-
-	        {
-	            "Machine Name": "defensight-qa1",
-	            "Operating System": "	Microsoft Windows 10 Pro",
-	            "Security Definition": "Microsoft Windows 10 OVAL Vulnerability Definitions",
-	            "Profile": "Default Profile",
-	            "Compliance": "500/513",
-	            "Last Scan": "2022-09-21 12:28:04:0",
-	            "Scan Status": "Compliant"
-	        },
-
-	        {
-	            "Machine Name": "defensight-qa2",
-	            "Operating System": "	Microsoft Windows 10 Enterprise",
-	            "Security Definition": "Microsoft Windows 10 OVAL Vulnerability Definitions",
-	            "Profile": "Default Profile",
-	            "Compliance": "510/513",
-	            "Last Scan": "2022-09-21 05:14:03:0",
-	            "Scan Status": "Compliant"
-	        },
-
-	        {
-	            "Machine Name": "defensight-qa2",
-	            "Operating System": "Microsoft Windows 10 Enterprise",
-	            "Security Definition": "Microsoft Windows 10 OVAL Patch Definitions",
-	            "Profile": "Default Profile",
-	            "Compliance": "400/513",
-	            "Last Scan": "2022-09-18 10:19:03:0",
-	            "Scan Status": "Not Compliant"
-	        },
-
-	        {
-	            "Machine Name": "vm-tuner2",
-	            "Operating System": "Microsoft Windows Server 2012 Datacenter",
-	            "Security Definition": "Microsoft Windows Server 2012 OVAL Vulnerability Definitions",
-	            "Profile": "Default Profile",
-	            "Compliance": "300/513",
-	            "Last Scan": "2022-09-08 15:19:03:0",
-	            "Scan Status": "Compliant"
-	        },
-
-	        {
-	            "Machine Name": "reverseproxy",
-	            "Operating System": "Microsoft Windows 2019 Enterprise",
-	            "Security Definition": "Microsoft Windows Server 2019 OVAL Vulnerability Definitions",
-	            "Profile": "Default Profile",
-	            "Compliance": "400/513",
-	            "Last Scan": "2022-09-20 04:19:12:0",
-	            "Scan Status": "Not Compliant"
-	        },
-
-	        {
-	            "Machine Name": "reverseproxy",
-	            "Operating System": "Microsoft Windows 2019 Enterprise",
-	            "Security Definition": "Microsoft Windows Server 2019 OVAL Patch Definitions",
-	            "Profile": "Default Profile",
-	            "Compliance": "10/23",
-	            "Last Scan": "2022-09-20 04:19:12:0",
-	            "Scan Status": "Not Compliant"
-	        },
-
-	        {
-	            "Machine Name": "vm-master-trans",
-	            "Operating System": "Microsoft Windows Server 2019 Standard",
-	            "Security Definition": "Microsoft Windows Server 2019 OVAL Vulnerability Definitions",
-	            "Profile": "Default Profile",
-	            "Compliance": "300/513",
-	            "Last Scan": "2022-19-12 15:19:03:0",
-	            "Scan Status": "Not Compliant"
-	        },
-
-	        {
-	            "Machine Name": "vm-master-trans",
-	            "Operating System": "Microsoft Windows Server 2019 Standard",
-	            "Security Definition": "Microsoft Windows Server 2019 OVAL Patch Definitions",
-	            "Profile": "Default Profile",
-	            "Compliance": "10/15",
-	            "Last Scan": "2022-19-12 15:19:03:0",
-	            "Scan Status": "Not Compliant"
-	        },
-
-	        {
-	            "Machine Name": "vm-tuner",
-	            "Operating System": "Microsoft Windows Server 2016 Datacenter",
-	            "Security Definition": "Microsoft Windows Server 2016 OVAL Vulnerability Definitions",
-	            "Profile": "Default Profile",
-	            "Compliance": "300/513",
-	            "Last Scan": "2022-09-08 15:19:03:0",
-	            "Scan Status": "Compliant"
-	        },
-	        {
-	            "Machine Name": "vm-tuner",
-	            "Operating System": "Microsoft Windows Server 2016 Datacenter",
-	            "Security Definition": "Microsoft Windows Server 2016 OVAL Patch Definitions",
-	            "Profile": "Default Profile",
-	            "Compliance": "8/13",
-	            "Last Scan": "2022-09-08 15:19:03:0",
-	            "Scan Status": "Compliant"
-	        }
-	    ];
+    	{
+    		"Machine Name": "vm-rhel-clarinet",
+    		"Operating System": "Linux CentOS Linux release 7.9",
+    		"Security Definition": "CentOS Linux 7 OVAL Patch definitions",
+    		"Profile": "Default Profile",
+    		"Compliance": "312/513",
+    		"Last Scan": "2022-21-12 05:19:03:0",
+    		"Scan Status": "Compliant"
+    	},
+    	{
+    		"Machine Name": "defensight-linux1",
+    		"Operating System": "Linux CentOS Linux release 7.9",
+    		"Security Definition": "CentOS Linux 7 OVAL Patch definitions",
+    		"Profile": "Default Profile",
+    		"Compliance": "412/513",
+    		"Last Scan": "2022-21-12 15:19:03:0",
+    		"Scan Status": "Not Compliant"
+    	},
+    	{
+    		"Machine Name": "defensight-linux2",
+    		"Operating System": "Linux CentOS Linux release 7.9",
+    		"Security Definition": "CentOS Linux 7 OVAL Patch definitions",
+    		"Profile": "Default Profile",
+    		"Compliance": "89/95",
+    		"Last Scan": "2022-09-21 12:01:03:0",
+    		"Scan Status": "Compliant"
+    	},
+    	{
+    		"Machine Name": "Win-10-VM",
+    		"Operating System": "Microsoft Windows 10 Enterprise",
+    		"Security Definition": "Microsoft Windows 10 OVAL Patch Definitions",
+    		"Profile": "Default Profile",
+    		"Compliance": "300/513",
+    		"Last Scan": "2022-09-08 15:19:03:0",
+    		"Scan Status": "Compliant"
+    	},
+    	{
+    		"Machine Name": "Win-10-VM",
+    		"Operating System": "Microsoft Windows 10 Enterprise",
+    		"Security Definition": "Microsoft Windows 10 OVAL Vulnerability Definitions",
+    		"Profile": "Default Profile",
+    		"Compliance": "200/513",
+    		"Last Scan": "2022-09-20 12:29:04:0",
+    		"Scan Status": "Not Compliant"
+    	},
+    	{
+    		"Machine Name": "defensight-qa1",
+    		"Operating System": "Microsoft Windows 10 Pro",
+    		"Security Definition": "Microsoft Windows 10 OVAL Vulnerability Definitions",
+    		"Profile": "Default Profile",
+    		"Compliance": "500/513",
+    		"Last Scan": "2022-09-21 12:28:04:0",
+    		"Scan Status": "Compliant"
+    	},
+    	{
+    		"Machine Name": "defensight-qa2",
+    		"Operating System": "Microsoft Windows 10 Enterprise",
+    		"Security Definition": "Microsoft Windows 10 OVAL Vulnerability Definitions",
+    		"Profile": "Default Profile",
+    		"Compliance": "510/513",
+    		"Last Scan": "2022-09-21 05:14:03:0",
+    		"Scan Status": "Compliant"
+    	},
+    	{
+    		"Machine Name": "defensight-qa2",
+    		"Operating System": "Microsoft Windows 10 Enterprise",
+    		"Security Definition": "Microsoft Windows 10 OVAL Patch Definitions",
+    		"Profile": "Default Profile",
+    		"Compliance": "400/513",
+    		"Last Scan": "2022-09-18 10:19:03:0",
+    		"Scan Status": "Not Compliant"
+    	},
+    	{
+    		"Machine Name": "vm-tuner2",
+    		"Operating System": "Microsoft Windows Server 2012 Datacenter",
+    		"Security Definition": "Microsoft Windows Server 2012 OVAL Vulnerability Definitions",
+    		"Profile": "Default Profile",
+    		"Compliance": "300/513",
+    		"Last Scan": "2022-09-08 15:19:03:0",
+    		"Scan Status": "Compliant"
+    	},
+    	{
+    		"Machine Name": "reverseproxy",
+    		"Operating System": "Microsoft Windows 2019 Enterprise",
+    		"Security Definition": "Microsoft Windows Server 2019 OVAL Vulnerability Definitions",
+    		"Profile": "Default Profile",
+    		"Compliance": "400/513",
+    		"Last Scan": "2022-09-20 04:19:12:0",
+    		"Scan Status": "Not Compliant"
+    	},
+    	{
+    		"Machine Name": "reverseproxy",
+    		"Operating System": "Microsoft Windows 2019 Enterprise",
+    		"Security Definition": "Microsoft Windows Server 2019 OVAL Patch Definitions",
+    		"Profile": "Default Profile",
+    		"Compliance": "10/23",
+    		"Last Scan": "2022-09-20 04:19:12:0",
+    		"Scan Status": "Not Compliant"
+    	},
+    	{
+    		"Machine Name": "vm-master-trans",
+    		"Operating System": "Microsoft Windows Server 2019 Standard",
+    		"Security Definition": "Microsoft Windows Server 2019 OVAL Vulnerability Definitions",
+    		"Profile": "Default Profile",
+    		"Compliance": "300/513",
+    		"Last Scan": "2022-19-12 15:19:03:0",
+    		"Scan Status": "Not Compliant"
+    	},
+    	{
+    		"Machine Name": "vm-master-trans",
+    		"Operating System": "Microsoft Windows Server 2019 Standard",
+    		"Security Definition": "Microsoft Windows Server 2019 OVAL Patch Definitions",
+    		"Profile": "Default Profile",
+    		"Compliance": "10/15",
+    		"Last Scan": "2022-19-12 15:19:03:0",
+    		"Scan Status": "Not Compliant"
+    	},
+    	{
+    		"Machine Name": "vm-tuner",
+    		"Operating System": "Microsoft Windows Server 2016 Datacenter",
+    		"Security Definition": "Microsoft Windows Server 2016 OVAL Vulnerability Definitions",
+    		"Profile": "Default Profile",
+    		"Compliance": "300/513",
+    		"Last Scan": "2022-09-08 15:19:03:0",
+    		"Scan Status": "Compliant"
+    	},
+    	{
+    		"Machine Name": "vm-tuner",
+    		"Operating System": "Microsoft Windows Server 2016 Datacenter",
+    		"Security Definition": "Microsoft Windows Server 2016 OVAL Patch Definitions",
+    		"Profile": "Default Profile",
+    		"Compliance": "8/13",
+    		"Last Scan": "2022-09-08 15:19:03:0",
+    		"Scan Status": "Compliant"
+    	}
+    ];
 
 	    let vulAssessmentIndex = 0;
 	    

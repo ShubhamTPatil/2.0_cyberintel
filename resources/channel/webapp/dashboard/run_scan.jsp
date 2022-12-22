@@ -35,113 +35,72 @@
 <script type="text/javascript" src="/spm/js/newdashboard/common.js"></script>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('.nav-selected').removeClass('nav-selected');
-		$('#runScan').addClass('nav-selected');
-		$("#myTable").dataTable();
-	});
-	function toggle(source) {
-		var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-		for (var i = 0; i < checkboxes.length; i++) {
-			if (checkboxes[i] != source)
-				checkboxes[i].checked = source.checked;
-		}
-	}
-
-	function updateTable() {
-		var tbodyRow, tbodycol1, tbodycol2, chkBox;
-		var resp = '<bean:write name="newRunScanForm" property="runScanJson"/>';
-		resp = (resp).replace(/&quot;/g, '"');
-		var data2 = JSON.parse(resp);
-		var obj = (data2.data);
-		console.log("Incoming JSON .. " + data2.data);
-		document.getElementById("CVEDate").innerText = "CVE last updated ("
-				+ data2.data.cVELastUpdated + ")";
-		document.getElementById("VulDate").innerText = "Vulnerabilities Definitions last updated ("
-				+ data2.data.vulDefLastUpdated + ")";
-		document.getElementById("SecDate").innerText = "Security Definitions last updated ("
-				+ data2.data.secDefLastUpdated + ")";
-		console.log(data2.data.MachineList);
-		//Populate Host Table
-		var DataTableBody = document.getElementById("myTableBody");
-		for (var i = 0; i < data2.data.machineList.length; i++) {
-
-			console.log(data2.data.machineList.machineName);
-			tbodyRow = "tbodyRow" + i;
-			tbodyRow = document.createElement('tr');
-			tbodyRow.id = "tbodyRow" + i;
-			DataTableBody.appendChild(tbodyRow);
-
-			tbodycol1 = "tbodycol1" + i;
-			tbodycol1 = document.createElement('td');
-
-			tbodycol1.style.width = "50%";
-			tbodycol1.align = "left";
-			tbodycol1.style.textAlign = "left";
-
-			tbodycol1.id = "tbodycol1" + i;
-			chkBox = '<input type="checkbox" name= "chkB" value='+data2.data.machineList[i].machineName+'>&nbsp;'
-					+ data2.data.machineList[i].machineName;
-			tbodycol1.innerHTML = chkBox;
-			tbodyRow.appendChild(tbodycol1);
-
-			tbodycol2 = "tbodycol2" + i;
-			tbodycol2 = document.createElement('td');
-
-			tbodycol2.style.width = "50%";
-			tbodycol2.align = "left";
-			tbodycol2.style.textAlign = "left";
-
-			tbodycol2.id = "tbodycol2" + i;
-			tbodycol2.innerHTML = data2.data.machineList[i].machineLastScan;
-			tbodyRow.appendChild(tbodycol2);
-
-		}
-	}
-	function runCliScan() {
-		// Form submission
-		getCheckedBoxes("chkB");
-/* 		document.getElementById("form_id").action = "/runscancli.do";
-		document.getElementById("form_id").type = "com.marimba.apps.subscriptionmanager.webapp.forms.RunScanForm"; */
-		$("#form_id").submit();
-	}
-
-	var checkboxesChecked;
-	// Pass the checkbox name to the function
-	function getCheckedBoxes(chkboxName) {
-		var checkboxes = document.getElementsByName(chkboxName);
-		var checkboxesChecked = [];
-		// loop over them all
-		for (var i = 0; i < checkboxes.length; i++) {
-			// And stick the checked ones onto an array...
-			if (checkboxes[i].checked) {
-				checkboxesChecked.push(checkboxes[i].value);
-			}
-			//checkboxesChecked.push(checkboxes[i].value);
-		}
-
-		// Return the array if it is non-empty, or null
-		//return checkboxesChecked.length > 0 ? checkboxesChecked : null;
-		checkboxesChecked = checkboxesChecked;
-		console.log("chk1 : " + checkboxesChecked);
-		console.log("chk2 : " + checkboxesChecked.toString());
-		document.getElementById("hostIds").value = checkboxesChecked.toString();
-	}
-</script>
-<style>
-.nav-title {
-    font-size: 13px;
-    font-weight: bold;
-    color: black;
-    font-family: "Poppins", sans-serif;
-}
-</style>
-<script type="text/javascript">
 
     $(function () {
 
       $('.nav-selected').removeClass('nav-selected');
-      $('#definitionsUpdate').addClass('nav-selected');
+      $('#runScan').addClass('nav-selected');
+      
+      var resp = '<bean:write name="newRunScanForm" property="runScanJson"/>';
+
+      resp = (resp).replace(/&quot;/g, '"');
+
+      console.log("resp = "+resp);
+	  console.log("json ="+JSON.parse(resp));
+      
+      var jsonData = JSON.parse(resp);
+      var data = jsonData['data'];
+	  
+      console.log(data);
+
+      $('#cveDate').text(data['cVELastUpdated']);
+      $('#vulDate').text(data['vulDefLastUpdated']);
+      $('#secDate').text(data['secDefLastUpdated']);
+
+      $('#runScanTable').DataTable({
+          "destroy": true, // In order to reinitialize the datatable
+          "pagination": true, // For Pagination
+          "bPaginate": true,
+          "sorting": false, // For sorting
+          "ordering": false,
+          "searching": true,
+          'fnDrawCallback': function (oSettings) {
+              $('.dataTables_filter').each(function () {
+                  $(this).append($('#runScanButton'));
+              });
+          },
+          language: {
+              search: "_INPUT_",
+              searchPlaceholder: "Search..."
+          },
+          "aaData": data['machineList'],
+          "columns": [{},
+          {
+              "data": "machineName"
+          }, {
+              "data": "machineLastScan"
+          }],
+          'columnDefs': [{
+              'targets': 0,
+              'searchable': true,
+              'orderable': false,
+              'className': 'dt-body-left',
+              'render': function (data, type, full, meta) {
+                  return '<input type="checkbox" class="form-check-input" name="runScanCheckbox" value="' + full['machineName'] + '">';
+              }
+          }]
+      });
+
+      $('#runScanButton').click(function () {
+          let array = [];
+          $('input[name=runScanCheckbox]:checked').each(function () {
+              array.push($(this).val());
+          })
+
+          console.log(array);
+      });
+
+
 
 
     });
@@ -192,57 +151,54 @@
 						CMS Home </a>
 				</div>
 			</div>
-
 		</div>
+		
+		
+		 <section class="section dashboard">
 
-		<section class="section dashboard">
-		<div class="card">
-		<div class="card-body">
-			<div class="row">
-				<div class="col-3">
-					<span class="nav-title" id="CVEDate"></span>
-				</div>
-				<div class="col">
-					<span class="nav-title" id="VulDate"></span>
-				</div>
-				<div class="col">
-					<span class="nav-title" id="SecDate"></span>
-				</div>
-			</div>
-			</div></div>
-			<br/>
-			<div class="card">
-			<div class="card-body">
-			<div class="row">
-				<div class="col-12">
-					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-					<button type="submit" class="btn btn-sm btn-primary" onclick="runCliScan()">SCAN</button>
-					</div>
-				</div>
-				
-			</div>
-				
-				<br/>
-				<table id="myTable" class="table table-borderless" style="width: 100%;box-shadow: 1px 3px 3px #3333333d!important;">
-					<thead>
-						<tr>
-							<th scope="col" style="text-align: left;">Machine Name</th>
-							<th scope="col" style="text-align: left;">Last Scan
-								Time(UTC)</th>
-						</tr>
-					</thead>
-					<tbody id="myTableBody">
+            <div class="card">
+                <div class="card-body">
+                    <br />
+					<div class="p-2 mb-2 text-dark" style="font-size: medium; background-color:#d9edf7;">
+                        <i class="fa-solid fa-circle-dot text-primary" style="font-size: small;"></i>&nbsp; CVE last
+                        updated (<span id="cveDate"></span>)
+                    </div>
 
-					</tbody>
-				</table>
-			</div>
-			</div>
-		</section>
+                    <div class="p-2 mb-2 text-dark" style="font-size: medium; background-color:#d9edf7;">
+                        <i class="fa-solid fa-circle-dot text-primary" style="font-size: small;"></i>&nbsp;
+                        Vulnerabilities Definitions last updated (<span id="vulDate"></span>)
+                    </div>
+
+                    <div class="p-2 mb-2 text-dark" style="font-size: medium; background-color:#d9edf7;">
+                        <i class="fa-solid fa-circle-dot text-primary" style="font-size: small;"></i>&nbsp; Security
+                        Definitions last updated (<span id="secDate"></span>)
+                    </div>
+                      
+                    
+                    <h5 class="card-title" style="font-weight: bold;"> Select the machine to Scan </h5>
+                    <button id="runScanButton" type="button" class="btn btn-sm btn-primary" style="margin-left:20px;">SCAN</button>
+                    <table id="runScanTable" class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"><input type="checkbox" id="runScanSelectAll"
+                                        class="selectAll form-check-input"></th>
+                                <th scope="col">Machine Name</th>
+                                <th scope="col">Last Scan Time (UTC)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+		
+		
 		</main>
-		<input id="hostIds" type="hidden" name="endDevicesArr" value="" />
+		
 	</form>
-	<script type="text/javascript">
-		updateTable();
-	</script>
+	
 </body>
 </html>

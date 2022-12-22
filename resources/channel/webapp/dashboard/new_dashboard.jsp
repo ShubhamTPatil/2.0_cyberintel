@@ -148,6 +148,15 @@ $(function () {
         "pagination": true, // For Pagination
         "sorting": false, // For sorting
         "ordering": false,
+        'fnDrawCallback': function (oSettings) {
+            $('.dataTables_filter').each(function () {
+                $(this).append($('#topVulMitigateButton'));
+            });
+        },
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search..."
+        },
         "aaData": topVulData,
         "columns": [{},
         {
@@ -692,7 +701,7 @@ function createMitigateTable(aaData) {
                   <h5 class="card-title">Top Vulnerabilities
                     <!-- Button trigger modal -->
                     <button type="button" id="topVulMitigateButton" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                      data-bs-target="#topVulModal" style="margin-left: 20px;">
+                      data-bs-target="#topVulModal" style="margin-left: 10px;">
                       Mitigate Selected
                     </button>
                   </h5>
@@ -823,7 +832,7 @@ function createMitigateTable(aaData) {
 
     <!-- Top Vulnerability Modal -->
     <div class="modal fade" id="topVulModal" tabindex="-1" aria-labelledby="topVulModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog" style="max-width:800px;">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="topVulModalLabel">Apply patches or Scan machines</h5>

@@ -631,6 +631,18 @@
     });
 
   </script>
+  
+    <style>
+    .table>thead>tr>th {
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .table>tbody>tr>td {
+        text-align: left;
+        vertical-align: middle;
+    }
+</style>
 </head>
 
 <body>
@@ -680,7 +692,7 @@
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
               <br />
 
-              <div class="p-3 mb-2 text-dark" style="font-size: medium; background-color:#d9edf7;">
+              <div class="p-2 mb-2 text-dark" style="font-size: medium; background-color:#d9edf7;">
                 <i class="fa-solid fa-circle-info text-primary"></i> CVE Definitions and Vulnerability Definitions are
                 need to be updated every month.
               </div>
@@ -727,6 +739,7 @@
                 </div>
               </div>
 
+              <br/>
               <br/>
 
               <div class="row">
