@@ -49,7 +49,7 @@ $(function () {
 	        {
 	            "Machine Name": "vm-rhel-clarinet",
 	            "Operating System": "Linux CentOS Linux release 7.9.2009",
-	            "Security Definition": "Windows",
+	            "Security Definition": "Linux CentOS Linux release 7.9.2009",
 	            "Profile": "Default Profile",
 	            "Compliance": "312/513",
 	            "Last Scan": "2022-21-12 05:19:03:0",
@@ -270,8 +270,6 @@ $(function () {
 	            }
 	        }]
 	    });
-
-
 });
 
 </script>
@@ -359,7 +357,7 @@ $(function () {
                                                 id="vulAssessmentSelectAll">
                                         </th>
                                         <th scope="col">Machine Name</th>
-                                        <th scope="col">Operating SYstem</th>
+                                        <th scope="col">Operating System</th>
                                         <th scope="col">Security Definition</th>
                                         <th scope="col">Profile</th>
                                         <th scope="col">Compliance</th>
@@ -415,7 +413,7 @@ $(function () {
                                                 id="configAssessmentSelectAll">
                                         </th>
                                         <th scope="col">Machine Name</th>
-                                        <th scope="col">Operating SYstem</th>
+                                        <th scope="col">Operating System</th>
                                         <th scope="col">Security Definition</th>
                                         <th scope="col">Profile</th>
                                         <th scope="col">Compliance</th>
