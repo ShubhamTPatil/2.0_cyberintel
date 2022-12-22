@@ -1482,7 +1482,18 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
-            String sqlStr = " select  t1.severity as \"SeverityName\" , count(t1.severity) as \"Count\"\n" +
+            String sqlStr = "select  t1.severity as \"SeverityName\" , max(t1.cvss_score) + 100 as \"Count\"\n" +
+                    "         from inv_sec_oval_defn_cve_details t1,\n" +
+                    "              security_cve_patch_info t2, ldapsync_targets_marimba ltm \n" +
+                    "               where t1.reference_name not like 'cpe%'\n" +
+                    "                and t1.severity != 'null'\n" +
+                    "                and t1.repository_id = t2.repository_id\n" +
+                    "                and exists (select 1 from all_patch ap, ldapsync_targets_marimba ltm \n" +
+                    "                   where  (ap.repository_id = t1.repository_id) \n" +
+                    "                   and (ap.current_status = 'Missing' or  ap.current_status = 'Installed' or ap.current_status = 'Effectively-installed'))\n" +
+                    "         group by  t1.severity";
+
+            String sqlStr2 = " select  t1.severity as \"SeverityName\" , count(t1.severity) as \"Count\"\n" +
                     "         from inv_sec_oval_defn_cve_details t1,\n" +
                     "              security_cve_patch_info t2 \n" +
                     "               where t1.reference_name not like 'cpe%'\n" +
@@ -1872,7 +1883,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
             if ("reporting".equalsIgnoreCase(complianceType)) {
                 st = pool.getConnection().prepareStatement("select count(*) as 'Count', ComplianceStaus as 'Type' from derived_inv_compliance dic \n" +
-                        "where dic.scantime > (select getutcdate() - 1) \n" +
+                        "where dic.scantime > (select getutcdate() - 100) \n" +
                         "group by ComplianceStaus having count (*) > 0");
             } else if ("security".equalsIgnoreCase(complianceType)) {
                 st = pool.getConnection().prepareStatement("select count(distinct machinename) as 'Count' , overall_compliant_level as 'Type' \n" +
