@@ -98,6 +98,10 @@
           })
 
           console.log(array);
+		  console.log(array.toString());
+		  document.getElementById("hostIds").value = array.toString();
+		  
+		  $("#form_id").submit();
       });
 
 
@@ -124,7 +128,7 @@
 		<jsp:include page="header.jsp" />
 		<jsp:include page="sidebar.jsp" />
 
-		<form name="newRunScanForm" id="form_id" action="/runscancli.do" method="post">
+		<form name="newRunScanForm" id="form_id" action="/spm/runscancli.do" method="post">
 		<main id="main" class="main">
 		<div class="pagetitle">
 
@@ -197,7 +201,7 @@
 		
 		
 		</main>
-		
+		<input id="hostIds" type="hidden" name="endDevicesArr" value="" />
 	</form>
 	
 </body>
