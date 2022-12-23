@@ -92,11 +92,11 @@
       });
 
       $('#runScanButton').click(function () {
-          let array = [];
+		  let array = [];
           $('input[name=runScanCheckbox]:checked').each(function () {
               array.push($(this).val());
           })
-
+		alert("Endpoint scan has been initiated");
           console.log(array);
 		  console.log(array.toString());
 		  document.getElementById("hostIds").value = array.toString();
@@ -110,7 +110,17 @@
     });
 
   </script>
-  
+  <script>
+	//showMsg();
+	const myTimeout = setTimeout(closeMsg, 5000);
+          
+	function showMsg(){
+		 document.getElementById("showMsg").click();
+	}
+	function closeMsg() {
+		 document.getElementById("closeMsg").click();
+	}
+  </script>
   <style>
     .table>thead>tr>th {
         text-align: left;
@@ -199,7 +209,22 @@
 
         </section>
 		
-		
+<button type="button" id="showMsg" class="btn btn-primary" data-toggle="modal" onclick="showMsg()" data-target="#exampleModal" style="display:none"></button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" id="closeMsg" class="close" data-dismiss="modal" onclick="closeMsg()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Endpoint scan has been initiated
+      </div>
+    </div>
+  </div>
+</div>
 		</main>
 		<input id="hostIds" type="hidden" name="endDevicesArr" value="" />
 	</form>
