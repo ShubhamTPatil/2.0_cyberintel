@@ -26,7 +26,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="scanResult" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/dashboard/scan_result.jsp"
+        <a class="nav-link" id="scanResult" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/ScanResults.do"
           title="Scan Result">
           <i class="fa-solid fa-file-lines"></i>
         </a>

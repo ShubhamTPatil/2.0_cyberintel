@@ -45,145 +45,15 @@ $(function () {
 	$('.nav-selected').removeClass('nav-selected');
 	$('#scanResult').addClass('nav-selected');
 	
-    let vulAssesmentData = [
-    	{
-    		"Machine Name": "vm-rhel-clarinet",
-    		"Operating System": "Linux CentOS Linux release 7.9",
-    		"Security Definition": "CentOS Linux 7 OVAL Patch definitions",
-    		"Profile": "Default Profile",
-    		"Compliance": "312/513",
-    		"Last Scan": "2022-21-12 05:19:03:0",
-    		"Scan Status": "Compliant"
-    	},
-    	{
-    		"Machine Name": "defensight-linux1",
-    		"Operating System": "Linux CentOS Linux release 7.9",
-    		"Security Definition": "CentOS Linux 7 OVAL Patch definitions",
-    		"Profile": "Default Profile",
-    		"Compliance": "412/513",
-    		"Last Scan": "2022-21-12 15:19:03:0",
-    		"Scan Status": "Not Compliant"
-    	},
-    	{
-    		"Machine Name": "defensight-linux2",
-    		"Operating System": "Linux CentOS Linux release 7.9",
-    		"Security Definition": "CentOS Linux 7 OVAL Patch definitions",
-    		"Profile": "Default Profile",
-    		"Compliance": "89/95",
-    		"Last Scan": "2022-09-21 12:01:03:0",
-    		"Scan Status": "Compliant"
-    	},
-    	{
-    		"Machine Name": "Win-10-VM",
-    		"Operating System": "Microsoft Windows 10 Enterprise",
-    		"Security Definition": "Microsoft Windows 10 OVAL Patch Definitions",
-    		"Profile": "Default Profile",
-    		"Compliance": "300/513",
-    		"Last Scan": "2022-09-08 15:19:03:0",
-    		"Scan Status": "Compliant"
-    	},
-    	{
-    		"Machine Name": "Win-10-VM",
-    		"Operating System": "Microsoft Windows 10 Enterprise",
-    		"Security Definition": "Microsoft Windows 10 OVAL Vulnerability Definitions",
-    		"Profile": "Default Profile",
-    		"Compliance": "200/513",
-    		"Last Scan": "2022-09-20 12:29:04:0",
-    		"Scan Status": "Not Compliant"
-    	},
-    	{
-    		"Machine Name": "defensight-qa1",
-    		"Operating System": "Microsoft Windows 10 Pro",
-    		"Security Definition": "Microsoft Windows 10 OVAL Vulnerability Definitions",
-    		"Profile": "Default Profile",
-    		"Compliance": "500/513",
-    		"Last Scan": "2022-09-21 12:28:04:0",
-    		"Scan Status": "Compliant"
-    	},
-    	{
-    		"Machine Name": "defensight-qa2",
-    		"Operating System": "Microsoft Windows 10 Enterprise",
-    		"Security Definition": "Microsoft Windows 10 OVAL Vulnerability Definitions",
-    		"Profile": "Default Profile",
-    		"Compliance": "510/513",
-    		"Last Scan": "2022-09-21 05:14:03:0",
-    		"Scan Status": "Compliant"
-    	},
-    	{
-    		"Machine Name": "defensight-qa2",
-    		"Operating System": "Microsoft Windows 10 Enterprise",
-    		"Security Definition": "Microsoft Windows 10 OVAL Patch Definitions",
-    		"Profile": "Default Profile",
-    		"Compliance": "400/513",
-    		"Last Scan": "2022-09-18 10:19:03:0",
-    		"Scan Status": "Not Compliant"
-    	},
-    	{
-    		"Machine Name": "vm-tuner2",
-    		"Operating System": "Microsoft Windows Server 2012 Datacenter",
-    		"Security Definition": "Microsoft Windows Server 2012 OVAL Vulnerability Definitions",
-    		"Profile": "Default Profile",
-    		"Compliance": "300/513",
-    		"Last Scan": "2022-09-08 15:19:03:0",
-    		"Scan Status": "Compliant"
-    	},
-    	{
-    		"Machine Name": "reverseproxy",
-    		"Operating System": "Microsoft Windows 2019 Enterprise",
-    		"Security Definition": "Microsoft Windows Server 2019 OVAL Vulnerability Definitions",
-    		"Profile": "Default Profile",
-    		"Compliance": "400/513",
-    		"Last Scan": "2022-09-20 04:19:12:0",
-    		"Scan Status": "Not Compliant"
-    	},
-    	{
-    		"Machine Name": "reverseproxy",
-    		"Operating System": "Microsoft Windows 2019 Enterprise",
-    		"Security Definition": "Microsoft Windows Server 2019 OVAL Patch Definitions",
-    		"Profile": "Default Profile",
-    		"Compliance": "10/23",
-    		"Last Scan": "2022-09-20 04:19:12:0",
-    		"Scan Status": "Not Compliant"
-    	},
-    	{
-    		"Machine Name": "vm-master-trans",
-    		"Operating System": "Microsoft Windows Server 2019 Standard",
-    		"Security Definition": "Microsoft Windows Server 2019 OVAL Vulnerability Definitions",
-    		"Profile": "Default Profile",
-    		"Compliance": "300/513",
-    		"Last Scan": "2022-19-12 15:19:03:0",
-    		"Scan Status": "Not Compliant"
-    	},
-    	{
-    		"Machine Name": "vm-master-trans",
-    		"Operating System": "Microsoft Windows Server 2019 Standard",
-    		"Security Definition": "Microsoft Windows Server 2019 OVAL Patch Definitions",
-    		"Profile": "Default Profile",
-    		"Compliance": "10/15",
-    		"Last Scan": "2022-19-12 15:19:03:0",
-    		"Scan Status": "Not Compliant"
-    	},
-    	{
-    		"Machine Name": "vm-tuner",
-    		"Operating System": "Microsoft Windows Server 2016 Datacenter",
-    		"Security Definition": "Microsoft Windows Server 2016 OVAL Vulnerability Definitions",
-    		"Profile": "Default Profile",
-    		"Compliance": "300/513",
-    		"Last Scan": "2022-09-08 15:19:03:0",
-    		"Scan Status": "Compliant"
-    	},
-    	{
-    		"Machine Name": "vm-tuner",
-    		"Operating System": "Microsoft Windows Server 2016 Datacenter",
-    		"Security Definition": "Microsoft Windows Server 2016 OVAL Patch Definitions",
-    		"Profile": "Default Profile",
-    		"Compliance": "8/13",
-    		"Last Scan": "2022-09-08 15:19:03:0",
-    		"Scan Status": "Compliant"
-    	}
-    ];
-
-	    let vulAssessmentIndex = 0;
+	var resp = '<bean:write name="newScanResultsForm" property="scanResultsJson"/>';
+	resp = (resp).replace(/&quot;/g, '"');
+    console.log("resp = "+resp);
+	console.log("json ="+JSON.parse(resp));
+    var jsonData = JSON.parse(resp);
+    var data = jsonData['data'];
+	console.log(data);
+	
+        let vulAssessmentIndex = 0;
 	    
 	    $('#vulAssessmentTable').DataTable({
 	        "destroy": true, // In order to reinitialize the datatable
@@ -192,22 +62,22 @@ $(function () {
 	        "sorting": false, // For sorting
 	        "ordering": false,
 	        "searching": true,
-	        "aaData": vulAssesmentData,
+	        "aaData": data['machineList'],
 	        "columns": [{},
 	        {
-	            "data": "Machine Name"
+	            "data": "machineName"
 	        }, {
-	            "data": "Operating System"
+	            "data": "os"
 	        }, {
-	            "data": "Security Definition"
+	            "data": "securityDefinition"
 	        }, {
-	            "data": "Profile"
+	            "data": "profile"
 	        }, {
-	            "data": "Compliance"
+	            "data": "machineDomain"
 	        }, {
-	            "data": "Last Scan"
+	            "data": "machineLastScan"
 	        }, {
-	            "data": "Scan Status"
+	            "data": "scanStaus"
 	        }],
 	        'columnDefs': [{
 	            'targets': 0,
@@ -230,22 +100,22 @@ $(function () {
 	        "sorting": false, // For sorting
 	        "ordering": false,
 	        "searching": true,
-	        "aaData": vulAssesmentData,
+	        "aaData": data['machineList2'],
 	        "columns": [{},
 	        {
-	            "data": "Machine Name"
+	            "data": "machineName"
 	        }, {
-	            "data": "Operating System"
+	            "data": "os"
 	        }, {
-	            "data": "Security Definition"
+	            "data": "securityDefinition"
 	        }, {
-	            "data": "Profile"
+	            "data": "profile"
 	        }, {
-	            "data": "Compliance"
+	            "data": "machineDomain"
 	        }, {
-	            "data": "Last Scan"
+	            "data": "machineLastScan"
 	        }, {
-	            "data": "Scan Status"
+	            "data": "scanStaus"
 	        }],
 	        'columnDefs': [{
 	            'targets': 0,
@@ -269,7 +139,7 @@ $(function () {
   <jsp:include page="header.jsp" />
   <jsp:include page="sidebar.jsp" />
 
-  
+  <form name="newScanResultsForm" id="form_id" action="/spm/upcoming.do" method="post">
  <main id="main" class="main">
     <div class="pagetitle">
 
@@ -422,6 +292,9 @@ $(function () {
 
         </section>
  </main>
+ <input id="hostIds" type="hidden" name="endDevicesArr" value="" />
+ <input id="actionId" type="hidden" name="actionId" value="" />
+</form>
 
 </body>
 </html>
