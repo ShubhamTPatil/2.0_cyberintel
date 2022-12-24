@@ -91,7 +91,12 @@ public class ScanResultsDetails {
 
 					// machineObject.setMachineId(rs.getString("id"));
 					machineObject.setMachineName(masterRS.getString("MachineName"));
-					machineObject.setMachineDomain(masterRS.getString("MachineDomain"));
+					if(masterRS.getString("MachineDomain")!=null && masterRS.getString("MachineDomain")!="") {
+						machineObject.setMachineDomain(masterRS.getString("MachineDomain"));		
+					} else {
+						machineObject.setMachineDomain("Not Available");	
+					}
+					
 					machineObject.setOs(masterRS.getString("OS"));
 					machineObject.setSecurityDefinition(masterRS.getString("SecurityDefinition"));
 					machineObject.setProfile(masterRS.getString("Profile"));
@@ -122,28 +127,38 @@ public class ScanResultsDetails {
 					MachineScanResults machineObject2 = new MachineScanResults();
 
 					// machineObject.setMachineId(rs.getString("id"));
-					machineObject2.setMachineName(masterRS2.getString("MachineName"));
-					machineObject2.setMachineDomain(masterRS2.getString("MachineDomain"));
+					machineObject2.setMachineName(masterRS2.getString("MachineName"));	
+					if(masterRS2.getString("MachineDomain")!=null && masterRS2.getString("MachineDomain")!="") {
+						machineObject2.setMachineDomain(masterRS2.getString("MachineDomain"));		
+					} else {
+						machineObject2.setMachineDomain("Not Available");	
+					}
+										
 					machineObject2.setOs(masterRS2.getString("OS"));
 					machineObject2.setSecurityDefinition(masterRS2.getString("SecurityDefinition"));
 					machineObject2.setProfile(masterRS2.getString("Profile"));
+					
 					machineObject2.setMachineLastScan(masterRS2.getString("LastScan"));
 					machineObject2.setScanStaus(masterRS2.getString("ScanStaus"));
 					machineSetObject2.add(machineObject2);
 				}
 				dataObject.setMachineList2(machineSetObject2);
 				//------  Configuration Assessment-----End-----//
-				
-				Metadata metadataObject = new Metadata();
-				metadataObject.setId("http://azuretx.marimbacastanet.com:8888/marimba/ScanResultsHome");
-				metadataObject.setType("runScanHomeService");
-				metadataObject.setUri("http://azuretx.marimbacastanet.com:8888/marimba/ScanResultsHome");
+				//commented by awadhesh
+//				Metadata metadataObject = new Metadata();
+//				metadataObject.setId("http://azuretx.marimbacastanet.com:8888/marimba/ScanResultsHome");
+//				metadataObject.setType("runScanHomeService");
+//				metadataObject.setUri("http://azuretx.marimbacastanet.com:8888/marimba/ScanResultsHome");
+//
+//				dataObject.setMetadata(metadataObject);
 
-				dataObject.setMetadata(metadataObject);
 				scanResultResponseObject.setData(dataObject);
 				Gson gson = new Gson();
 				ScanResultsJsonResponse = gson.toJson(scanResultResponseObject);
-			} finally {
+			} catch(Exception ex) {
+				ex.printStackTrace();
+			}
+			finally {
 				if (null != masterRS && null != masterRS2) {
 					masterRS.close();
 					masterRS2.close();

@@ -44,7 +44,8 @@ public class RunScanCLIAction extends AbstractAction {
 			RunScanForm formbean = (RunScanForm) form;
 
 			if (null != formbean) {
-				RunScanHandler runScanHandler = new RunScanHandler(main);
+				RunScanHandler runScanHandler = new RunScanHandler(main);				
+				formbean.setRunScanJson(runScanHandler.getRunScanData());
 				responseMsg = runScanHandler.processRunScanCLI(formbean);
 			}
 			formbean.setResponseMsg(responseMsg);
