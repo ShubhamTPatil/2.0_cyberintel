@@ -97,8 +97,8 @@ public class ScanResultsDetails {
 						machineObject.setMachineDomain("Not Available");	
 					}
 					
-					machineObject.setOs(masterRS.getString("OS"));
-					machineObject.setSecurityDefinition(masterRS.getString("SecurityDefinition"));
+					machineObject.setOs(masterRS.getString("SecurityDefinition"));
+					machineObject.setSecurityDefinition(masterRS.getString("OS"));
 					machineObject.setProfile(masterRS.getString("Profile"));
 					machineObject.setMachineLastScan(masterRS.getString("LastScan"));
 					machineObject.setScanStaus(masterRS.getString("ScanStaus"));
@@ -134,8 +134,8 @@ public class ScanResultsDetails {
 						machineObject2.setMachineDomain("Not Available");	
 					}
 										
-					machineObject2.setOs(masterRS2.getString("OS"));
-					machineObject2.setSecurityDefinition(masterRS2.getString("SecurityDefinition"));
+					machineObject2.setOs(masterRS2.getString("SecurityDefinition"));
+					machineObject2.setSecurityDefinition(masterRS2.getString("OS"));
 					machineObject2.setProfile(masterRS2.getString("Profile"));
 					
 					machineObject2.setMachineLastScan(masterRS2.getString("LastScan"));
