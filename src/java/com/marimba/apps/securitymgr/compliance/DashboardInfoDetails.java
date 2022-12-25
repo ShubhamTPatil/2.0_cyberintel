@@ -1841,7 +1841,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
         protected void execute(IStatementPool pool) throws SQLException {
          PreparedStatement st = pool.getConnection().prepareStatement("select HostName, Scantime from derived_inv_compliance dic " +
                  "where dic.ComplianceStaus = 'NotCheckedIn' " +
-                 "and dic.scantime > (select getutcdate() - 1)");
+                 "and dic.scantime > (select getutcdate() - 100)");   // todo needs revert back to 1
             ResultSet rs = st.executeQuery();
             try {
                     while (rs.next()) {

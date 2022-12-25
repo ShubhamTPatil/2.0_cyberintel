@@ -219,15 +219,54 @@ $(function () {
             }
         }
     });
-    
-    
+
+    var notCheckedInInfo;
+    var notCheckedInInfo2;
+    $('#reportingModelId').click(function () {
+        $.ajax({
+            url: './newDashboard.do',
+            type: 'POST',
+            dataType: 'text json',
+            data: {action: 'notcheckedin_info'},
+            beforeSend: function() {},
+            complete: function (xhr, status) {},
+            success: function (response) {
+              notCheckedInInfo = response;
+              notCheckedInInfo2 = JSON.stringify(notCheckedInInfo);
+              notCheckedInInfo2 = JSON.parse(notCheckedInInfo2);
+              populateNotCheckedInInfo(notCheckedInInfo2);
+        }});
+
+     });
+
     $('#topVulMitigateButton').click(function () {
         let cveArray = [];
         $('input[name=topVulCheckbox]:checked').each(function () {
             cveArray.push($(this).val());
         })
-        console.log(cveArray);
-        
+       // console.log(cveArray);
+
+        var queryStr = '?patchGroupName=TestGroup1';
+        $.ajax({
+            url: './newDashboard.do' + queryStr,
+            type: 'POST',
+            dataType: 'json',
+            data: {action: 'mitigate'},
+            beforeSend: function() {},
+            complete: function (xhr, status) {},
+            success: function (data) {
+              alert("mitigate flow success");
+
+            let topVulMitigateData = [
+                    { "Impacted Machine": "defensight-qa1", "Status": "Missing", "Patch Details": "MS09-035.Q973551.vcredist973551_x64.exe" },
+                    { "Impacted Machine": "vm-master-trans", "Status": "Missing", "Patch Details": "MS09-035.Q973551.vcredist973551_x64.exe" },
+                    { "Impacted Machine": "reverseproxy", "Status": "Missing", "Patch Details": "MS09-035.Q973551.vcredist973551_x64.exe" }
+                    ];
+
+            createMitigateTable(topVulMitigateData);
+        }});
+
+      <%--
         $.ajax({url: "https://gorest.co.in/public/v2/users",
            success: function(result){
             let topVulMitigateData = [
@@ -239,8 +278,9 @@ $(function () {
             createMitigateTable(topVulMitigateData);
             
         }});
-        
-    });
+        --%>
+
+    });  // onClick topVulMitigateButton()
     
     $('#criPatchesMitigateButton').click(function () {
         let array = [];
@@ -353,31 +393,6 @@ $(function () {
        }
      });
    
-   
-   $('#reportingModalTable').DataTable({
-       "destroy": true, // In order to reinitialize the datatable
-       "pagination": true, // For Pagination
-       "sorting": false, // For sorting
-       "ordering": false,
-       "searching": false,
-       "bFilter": false, 
-       "language": {
-           "search": "_INPUT_",
-           "searchPlaceholder": "Search..."
-       },
-       "aaData": [
-           { "Machine Name": "defensight-qa1",  "Vulnerable Last ScanTime": "2022-12-21 23:41:20.000" },
-           { "Machine Name": "vm-master-trans", "Vulnerable Last ScanTime": "2022-12-22 01:14:20.000" }
-       ],
-       "columns": [
-       {
-           "data": "Machine Name"
-       }, {
-           "data": "Vulnerable Last ScanTime"
-       }]
-   });
-    
-
    var reportingNotCheckedIn = <bean:write name="newDashboardForm" property="reportingNotCheckedIn"/>;
    var reportingNotAvailable = <bean:write name="newDashboardForm" property="reportingNotAvailable"/>;
    var reportingCheckedIn = <bean:write name="newDashboardForm" property="reportingCheckedIn"/>;
@@ -401,6 +416,29 @@ $(function () {
    $('#patchCompliant').css("width",(patchCompliant/patchSum)*100+"%");
    
 });
+
+function populateNotCheckedInInfo(notCheckedInData) {
+   $('#reportingModalTable').DataTable({
+       "destroy": true, // In order to reinitialize the datatable
+       "pagination": true, // For Pagination
+       "sorting": false, // For sorting
+       "ordering": false,
+       "searching": false,
+       "bFilter": false,
+       "language": {
+           "search": "_INPUT_",
+           "searchPlaceholder": "Search..."
+       },
+
+       "aaData": notCheckedInData,
+       "columns": [
+       {
+           "data": "Machine Name"
+       }, {
+           "data": "Vulnerable Last ScanTime"
+       }]
+   });
+}
 
 function createMitigateTable(aaData) {
 	let topVulModalIndex = 0;
@@ -616,7 +654,7 @@ function createMitigateTable(aaData) {
                   <div class="col-md-4">
                     <p>Reporting</p>
                     <span> Not checked-in </span><br/>
-                    <span data-bs-toggle="modal" data-bs-target="#reportingModal"
+                    <span id="reportingModelId" data-bs-toggle="modal" data-bs-target="#reportingModal"
                         style="color: #FF5F60; text-decoration: underline; cursor: pointer;">
                         <bean:write name="newDashboardForm" property="reportingNotCheckedIn"/>
                       </span>
