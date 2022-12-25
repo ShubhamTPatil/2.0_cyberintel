@@ -27,9 +27,9 @@
 <script type="text/javascript" src="/spm/js/newdashboard/all.min.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/common.js"></script>
 
-
 <script type="text/javascript">
 
+var topVulDataTable;
 
 $(function () {
 
@@ -142,8 +142,7 @@ $(function () {
     topVulData = topVulData.replace(/&quot;/g,'"');
     topVulData=JSON.parse(topVulData);
     let topVulIndex = 0;
-
-    $('#topVulTable').DataTable({
+    topVulDataTable = $('#topVulTable').DataTable({
         "destroy": true, // In order to reinitialize the datatable
         "pagination": true, // For Pagination
         "sorting": false, // For sorting
@@ -239,46 +238,50 @@ $(function () {
 
      });
 
+
+    var topVulMitigateInfo;
     $('#topVulMitigateButton').click(function () {
+      //  alert("Called topVulnerable mitigate flow...");
         let cveArray = [];
         $('input[name=topVulCheckbox]:checked').each(function () {
             cveArray.push($(this).val());
         })
-       // console.log(cveArray);
+        console.log(cveArray);
+        // alert(cveArray);
 
-        var queryStr = '?patchGroupName=TestGroup1';
+        var rows_selected = topVulDataTable.rows({ selected: true }).data();
+        // alert(rows_selected)
+
+        let patchids=[];
+        patchids.push('MS09-035.Q973551.vcredist973551_x64.exe._1512607363');
+        patchids.push('MS11-025.Q2538243.vcredist2467174_x64.exe._703337344');
+        patchids.push('MS19-04-AFP-4493478.Q4493478.windows10.0-kb4493478-x64-1809.msu.1751582394');
+        patchids.push('JAVA8-51.QJAVA8U51X64.jre-8u51-windows-x64.exe.743314572');
+
+        alert(patchids);
+        var queryStr = "?patchids=" + patchids;
         $.ajax({
             url: './newDashboard.do' + queryStr,
             type: 'POST',
-            dataType: 'json',
+            dataType: 'json text',
             data: {action: 'mitigate'},
             beforeSend: function() {},
             complete: function (xhr, status) {},
-            success: function (data) {
-              alert("mitigate flow success");
+            success: function (response) {
+            //  alert("mitigate flow entered.." + response);
+              topVulMitigateInfo = response;
+              topVulMitigateInfo = JSON.stringify(topVulMitigateInfo);
+              topVulMitigateInfo = JSON.parse(topVulMitigateInfo);
 
+            <%--
             let topVulMitigateData = [
                     { "Impacted Machine": "defensight-qa1", "Status": "Missing", "Patch Details": "MS09-035.Q973551.vcredist973551_x64.exe" },
                     { "Impacted Machine": "vm-master-trans", "Status": "Missing", "Patch Details": "MS09-035.Q973551.vcredist973551_x64.exe" },
                     { "Impacted Machine": "reverseproxy", "Status": "Missing", "Patch Details": "MS09-035.Q973551.vcredist973551_x64.exe" }
                     ];
-
-            createMitigateTable(topVulMitigateData);
+             --%>
+            createMitigateTable(topVulMitigateInfo);
         }});
-
-      <%--
-        $.ajax({url: "https://gorest.co.in/public/v2/users",
-           success: function(result){
-            let topVulMitigateData = [
-                    { "Impacted Machine": "defensight-qa1", "Status": "Missing", "Patch Details": "MS09-035.Q973551.vcredist973551_x64.exe" },
-                    { "Impacted Machine": "vm-master-trans", "Status": "Missing", "Patch Details": "MS09-035.Q973551.vcredist973551_x64.exe" },
-                    { "Impacted Machine": "reverseproxy", "Status": "Missing", "Patch Details": "MS09-035.Q973551.vcredist973551_x64.exe" }
-                    ];
-            
-            createMitigateTable(topVulMitigateData);
-            
-        }});
-        --%>
 
     });  // onClick topVulMitigateButton()
     
@@ -293,14 +296,14 @@ $(function () {
             let topVulMitigateData = [
                     { "Impacted Machine": "reverseproxy", "Status": "Missing", "Patch Details": "MS09-035.Q973551.vcredist973551_x64.exe" }
                 ];
-            
+
             createMitigateTable(topVulMitigateData);
-            
+
         }});
     });
 
     
-
+    <%--
     $('#topVulMitScan').click(function () {
         let array = [];
         $('input[name=topVulMitCheck]:checked').each(function () {
@@ -308,7 +311,7 @@ $(function () {
         })
         console.log(array);
     });
-    
+    --%>
 
     $('#topVulMitApplyPatches').click(function () {
         let array = [];
@@ -873,7 +876,7 @@ function createMitigateTable(aaData) {
       <div class="modal-dialog" style="max-width:800px;">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="topVulModalLabel">Apply patches or Scan machines</h5>
+            <h5 class="modal-title" id="topVulModalLabel">Apply patches</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -893,7 +896,9 @@ function createMitigateTable(aaData) {
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-primary btn-sm" data-bs-dismiss="modal">Cancel</button>
+            <%--
             <button type="button" id="topVulMitScan" class="btn btn-outline-primary btn-sm">Scan</button>
+            --%>
             <button type="button" id="topVulMitApplyPatches" class="btn btn-primary btn-sm">Apply Patches</button>
           </div>
         </div>

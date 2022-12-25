@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
+import com.marimba.apps.subscriptionmanager.beans.MitigatePatchesBean;
 import com.marimba.apps.subscriptionmanager.beans.ReportingNotCheckedInBean;
 import com.marimba.apps.subscriptionmanager.beans.TopVulnerableStatusBean;
 import com.marimba.apps.subscriptionmanager.beans.PriorityPatchesBean;
@@ -146,6 +147,19 @@ public class DashboardHandler implements ComplianceConstants {
             ex.printStackTrace();
         }
         return prtyPatchesInfo;
+    }
+
+    // Get Priority Patches Info
+    public List<MitigatePatchesBean> getMitigatePatchesInfo(String repIds) {
+        List<MitigatePatchesBean> mitigatePatchesInfo =  new ArrayList<MitigatePatchesBean>();
+        try {
+
+            mitigatePatchesInfo = new DashboardInfoDetails.GetMitigatePatchesInfo(main, repIds).getMitigatePatchesInfo();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return mitigatePatchesInfo;
     }
 
     // Get Compliance Reporting, Security and Patch data

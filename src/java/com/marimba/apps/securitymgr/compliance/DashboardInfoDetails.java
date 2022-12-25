@@ -8,6 +8,7 @@ import com.marimba.apps.securitymgr.db.DatabaseAccess;
 import com.marimba.apps.securitymgr.db.QueryExecutor;
 import com.marimba.apps.securitymgr.view.SCAPBean;
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
+import com.marimba.apps.subscriptionmanager.beans.MitigatePatchesBean;
 import com.marimba.apps.subscriptionmanager.beans.PriorityPatchesBean;
 import com.marimba.apps.subscriptionmanager.beans.ReportingNotCheckedInBean;
 import com.marimba.apps.subscriptionmanager.beans.TopVulnerableStatusBean;
@@ -1594,6 +1595,27 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
     }
 
+
+    public static class GetMitigatePatchesInfo extends DatabaseAccess {
+        List<MitigatePatchesBean> mitigatePatchesInfo = new ArrayList<MitigatePatchesBean>();
+
+        public GetMitigatePatchesInfo(SubscriptionMain main, String repIDs) {
+
+            GetMitigatePatchesData result = new GetMitigatePatchesData(main, repIDs);
+
+            try {
+                runQuery(result);
+                mitigatePatchesInfo = result.getMitigatePatchesInfo();
+            } catch (Exception dae) {
+                dae.printStackTrace();
+            }
+        }
+
+        public List<MitigatePatchesBean> getMitigatePatchesInfo() {
+            return mitigatePatchesInfo;
+        }
+    }
+
     public static class GetTopVulnerabilitiesInfo extends DatabaseAccess {
         List<TopVulnerableStatusBean> topVulInfo = new ArrayList<TopVulnerableStatusBean>();
 
@@ -1612,6 +1634,51 @@ public class DashboardInfoDetails implements ComplianceConstants {
         public List<TopVulnerableStatusBean> getTopVulnerabilitiesInfo() {
             return topVulInfo;
         }
+    }
+
+    static class GetMitigatePatchesData extends QueryExecutor {
+        List<MitigatePatchesBean> mitigatePatchesInfo = new ArrayList<MitigatePatchesBean>();
+        String repIDs;
+
+        GetMitigatePatchesData(SubscriptionMain main, String repIds) {
+            super(main);
+            repIDs = repIds;
+        }
+
+        protected void execute(IStatementPool pool) throws SQLException {
+            String sqlStr = "select  distinct im.name as machinename, ap.current_status, patchgrp.patchgroup from  GetPatchGroupInformation() patchgrp, all_patch ap, inv_machine im\n" +
+                    "where ap.repository_id = patchgrp.patch\n" +
+                    "and im.id = ap.machine_id\n" +
+                    "and ap.repository_id  IN( " + repIDs + ") \n" +
+                    "and exists (select 1 from ldapsync_targets_marimba ltm \n" +
+                    "               where ltm.marimba_table_primary_id = im.id) \n" +
+                    "order by im.name";
+
+            PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
+            ResultSet rs = st.executeQuery();
+            try {
+                while(rs.next()) {
+                    MitigatePatchesBean mitiPatchesBean = new MitigatePatchesBean();
+                    String machineName = rs.getString("machinename");
+                    String currentStatus = rs.getString("current_status");
+                    String patchGroup = rs.getString("patchgroup");
+
+                    System.out.println("DebugInfo-Result: "+ machineName + "\t" + currentStatus + "\t" + patchGroup);
+                    mitiPatchesBean.setMachineName(machineName);
+                    mitiPatchesBean.setStatus(currentStatus);
+                    mitiPatchesBean.setPatchGroupName(patchGroup);
+
+                    mitigatePatchesInfo.add(mitiPatchesBean);
+                }
+            } finally {
+                rs.close();
+            }
+        }
+
+        public List<MitigatePatchesBean> getMitigatePatchesInfo() {
+            return mitigatePatchesInfo;
+        }
+
     }
 
     static class GetPriorityPatchesData extends QueryExecutor {
