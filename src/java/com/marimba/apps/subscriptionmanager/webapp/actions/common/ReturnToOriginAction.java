@@ -59,7 +59,7 @@ public final class ReturnToOriginAction
         }
 
         if (null == returnPage) {
-            returnPage = "/main_view.jsp";
+            returnPage = "/dashboard/main_view.jsp";
         }
 
         if (DEBUG) {

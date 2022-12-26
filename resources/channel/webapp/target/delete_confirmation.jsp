@@ -77,58 +77,85 @@
 
 <body onResize="domMenu_activate('domMenu_keramik'); repositionMenu()">
 
-<% if(null != EmpirumContext) {%>
-<webapps:tabs tabset="ldapEmpirumView" tab="tgtview"/>
-<% } else { %>
-<webapps:tabs tabset="main" tab="tgtview"/>
-<% } %>
+<script type="text/javascript" src="/shell/common-rsrc/js/wz_tooltip.js"></script>
+<main id="main" class="main">
+        <div class="pagetitle">
 
-<div style="text-align: center">
-    <div class="commonPadding">
-
-        <div class=pageHeader style="padding-bottom:50px;">
-            <span class=title><webapps:pageText key="Title"/></span>
-        </div>
-
-        <div class="statusMessage" id="OK" style="width:800px; margin:0 auto;">
-            <%if(isApprovalPolicy) {%>
-                <%if(isServiceNowApproval) {%>
-                    <h6><strong><webapps:pageText key="approvalenabled.servicenow1"/><b><%=serviceNowLatestChangeRequestId%></b><webapps:pageText key="approvalenabled.servicenow2"/></strong><br><webapps:pageText key='<%= textPfx + "Desc" %>' /></h6>
-                <% } else if(isRemedyForceApproval) {%>
-                    <h6><strong><webapps:pageText key="approvalenabled.remedyforce1"/><b><%=remedyForceLatestChangeRequestId%></b><webapps:pageText key="approvalenabled.remedyforce2"/></strong><br><webapps:pageText key='<%= textPfx + "Desc" %>' /></h6>
-                <% } else {%>
-                    <h6><strong><webapps:pageText key="Confirm"/></strong><webapps:pageText key="approvalenabled"/><br><webapps:pageText key='<%= textPfx + "Desc" %>' /></h6>
-                <% }%>
-            <% } else { %>
-            <h6><strong><webapps:pageText key="Confirm"/></strong><br><webapps:pageText key='<%= textPfx + "Desc" %>' /></h6>
-            <%} %>
-
-            <table cellspacing="0" cellpadding="2" border="0">
-                <tbody>
-                    <%  if (LDAPConnUtils.getInstance(main.getTenantName()).isADWithAutoDiscovery(main.getLDAPConfig())) { %>
-                    <tr>
-                        <td valign="middle">&nbsp;</td>
-                        <td valign="middle"><webapps:pageText key="ADreplicate" />  </td>
-                    </tr>
-                    <% } %>
-
-                    <tr>
-                        <td valign="middle">&nbsp;</td>
-                        <td valign="middle">
-                            <br>
-                            <logic:notPresent name="<%=multibool%>">
-                                <html:link page="<%=singleViewPage%>"><webapps:pageText key='<%= textPfx + "View" %>'/></html:link> &nbsp;
-                            </logic:notPresent>
-                            <logic:present name="<%=multibool%>">
-                                <html:link page="<%=multiViewPage%>"><webapps:pageText key='<%= textPfx + "View" %>'/></html:link> &nbsp;
-                            </logic:present>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+          <div class="d-flex bd-highlight justify-content-center">
+            <div class="p-2 flex-grow-1 bd-highlight">
+              <span class="pagename">Assignment <span style="font-size: small">>Delete Confirmation</span> </span>
+              <span data-bs-toggle="tooltip" data-bs-placement="right" title="Title"><i
+                  class="fa-solid fa-circle-info text-primary"></i></span>
+            </div>
+            <div class="refresh p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Refresh" style="cursor: pointer;"><i class="fa-solid fa-arrows-rotate"></i></div>
+            <div class="p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Download" style="cursor: pointer;">
+              <i class="fa-solid fa-download"></i>
+            </div>
+            <div class="p-2 bd-highlight text-primary align-self-center">
+            <a href="/shell/dashboard.do"><i class="fa-solid fa-chevron-left" style="margin-right: 5px;"></i>CMS Home</a>
+            </div>
+          </div>
 
         </div>
+    	<section class="section dashboard">
 
-    </div>
-</div>
-<%@ include file="/includes/footer.jsp" %>
+		<div style="text-align: center">
+            <div class="commonPadding">
+
+                <div class=pageHeader style="padding-bottom:50px;">
+                    <span class=title><webapps:pageText key="Title"/></span>
+                </div>
+
+                <div class="statusMessage" id="OK" style="width:800px; margin:0 auto;">
+                    <%if(isApprovalPolicy) {%>
+                        <%if(isServiceNowApproval) {%>
+                            <h6><strong><webapps:pageText key="approvalenabled.servicenow1"/><b><%=serviceNowLatestChangeRequestId%></b><webapps:pageText key="approvalenabled.servicenow2"/></strong><br><webapps:pageText key='<%= textPfx + "Desc" %>' /></h6>
+                        <% } else if(isRemedyForceApproval) {%>
+                            <h6><strong><webapps:pageText key="approvalenabled.remedyforce1"/><b><%=remedyForceLatestChangeRequestId%></b><webapps:pageText key="approvalenabled.remedyforce2"/></strong><br><webapps:pageText key='<%= textPfx + "Desc" %>' /></h6>
+                        <% } else {%>
+                            <h6><strong><webapps:pageText key="Confirm"/></strong><webapps:pageText key="approvalenabled"/><br><webapps:pageText key='<%= textPfx + "Desc" %>' /></h6>
+                        <% }%>
+                    <% } else { %>
+                    <h6><strong><webapps:pageText key="Confirm"/></strong><br><webapps:pageText key='<%= textPfx + "Desc" %>' /></h6>
+                    <%} %>
+
+                    <table cellspacing="0" cellpadding="2" border="0">
+                        <tbody>
+                            <%  if (LDAPConnUtils.getInstance(main.getTenantName()).isADWithAutoDiscovery(main.getLDAPConfig())) { %>
+                            <tr>
+                                <td valign="middle">&nbsp;</td>
+                                <td valign="middle"><webapps:pageText key="ADreplicate" />  </td>
+                            </tr>
+                            <% } %>
+
+                            <tr>
+                                <td valign="middle">&nbsp;</td>
+                                <td valign="middle">
+                                    <br>
+                                    <logic:notPresent name="<%=multibool%>">
+                                        <html:link page="<%=singleViewPage%>"><webapps:pageText key='<%= textPfx + "View" %>'/></html:link> &nbsp;
+                                    </logic:notPresent>
+                                    <logic:present name="<%=multibool%>">
+                                        <html:link page="<%=multiViewPage%>"><webapps:pageText key='<%= textPfx + "View" %>'/></html:link> &nbsp;
+                                    </logic:present>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+		</section>
+		</main>
+
+
+

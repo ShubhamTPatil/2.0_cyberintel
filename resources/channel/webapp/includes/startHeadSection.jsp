@@ -22,7 +22,7 @@ the reason this needs to be done is because the help id tags have to go into the
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta http-equiv="Cache-control" content="no-cache">
-    <link rel="stylesheet" href="/shell/common-rsrc/css/main.css" type="text/css"/>
+    <!-- <link rel="stylesheet" href="/shell/common-rsrc/css/main.css" type="text/css"/> -->            	<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/bootstrap.min.css"/>	<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/bootstrap-icons.min.css"/>	<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/all.min.css"/>	<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/datatables.min.css"/>	<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/style.css"/>		<script src="https://code.jquery.com/jquery-3.6.1.min.js"	    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>	<!-- <script type="text/javascript" src="/spm/js/newdashboard/jquery.min.js"></script> -->	<script type="text/javascript" src="/spm/js/newdashboard/bootstrap.bundle.min.js"></script>	<script type="text/javascript" src="/spm/js/newdashboard/chart.umd.js"></script>	<script type="text/javascript" src="/spm/js/newdashboard/datatables.min.js"></script>	<script type="text/javascript" src="/spm/js/newdashboard/all.min.js"></script>	<script type="text/javascript" src="/spm/js/newdashboard/common.js"></script>	    
     <script language="javascript" src="/shell/common-rsrc/js/master.js"></script>
     <script language="javascript" src="/spm/includes/selectoption.js"></script>
     <script language="JavaScript" src="/shell/common-rsrc/js/table.js"></script>
@@ -32,7 +32,7 @@ the reason this needs to be done is because the help id tags have to go into the
     <!-- These two lines of code need to be here in order for overlib to work.  They have to be placed outside the form in the head section -->
 <div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
 <script language="JavaScript" src="/shell/common-rsrc/js/overlib.js"></script>
-<script language="JavaScript" src="/shell/common-rsrc/js/intersect.js"></script>
+<script language="JavaScript" src="/shell/common-rsrc/js/intersect.js"></script>
 
 <style type="text/css">
     #pageContent {
@@ -40,4 +40,4 @@ the reason this needs to be done is because the help id tags have to go into the
         padding-right: 10px;
     }
 </style>
-<%@ include file="/includes/common_js.jsp" %>
+<%@ include file="/includes/common_js.jsp" %><%@ include file="/dashboard/header.jsp" %><%@ include file="/dashboard/sidebar.jsp" %>

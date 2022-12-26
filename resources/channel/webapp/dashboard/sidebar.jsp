@@ -14,7 +14,7 @@
           <i class="fa-solid fa-recycle"></i> </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="assignment" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/initTargetView.do"
+        <a class="nav-link" id="assignment" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/initTargetView2.do"
           title="Assignment">
           <i class="fa-solid fa-clipboard-user"></i>
         </a>
