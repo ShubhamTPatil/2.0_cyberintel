@@ -37,7 +37,7 @@ public class RunScanCLIAction extends AbstractAction {
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
 
-		System.out.println("runscan action CLI execute method has been called 1");
+		System.out.println("runscan action CLI execute method has been called");
 		String responseMsg = null;
 		try {
 			init(request);

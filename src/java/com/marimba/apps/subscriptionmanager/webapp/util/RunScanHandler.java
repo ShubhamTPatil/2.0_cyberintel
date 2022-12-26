@@ -34,7 +34,7 @@ public class RunScanHandler {
 		try {
 			System.out.println("start - getRunScanData() ");
 			runScanJsonResponse = new RunScanDetails.GetRunScanDetails(main).getRunScanData();
-			System.out.println("END - getRunScanData() final response ==> " + runScanJsonResponse);
+			System.out.println("END - getRunScanData() ");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -49,9 +49,9 @@ public class RunScanHandler {
 
 		String responseMsg = "Runscan action CLI execute method has been called ";
 
-		System.out.println(" Form bean for CLI is received :" + formbean);
 		if (null != formbean && null != formbean.getEndDevicesArr() && !formbean.getEndDevicesArr().isEmpty()) {
 			String[] ipPortArr = formbean.getEndDevicesArr().split(",");
+
 			List<String> endDeviceList = Arrays.asList(ipPortArr);
 			if (endDeviceList.size() > 0) {
 				scanSelectedEndDevices(endDeviceList);
@@ -94,7 +94,9 @@ public class RunScanHandler {
 					System.out.println(" Command is ready to trigger scan:" + runScanCommand);
 
 					ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/" + driveName,
-							"cd \"" + "" + marimbaSetupPath + "\\Tuner\\\"" + "" + " && " + runScanCommand);
+							"cd " + marimbaSetupPath + "\\Tuner\\" + " && " + runScanCommand);
+
+					System.out.println("Working Directory : " + builder.command().get(2));
 
 					builder.redirectErrorStream(true);
 					Process p = builder.start();
@@ -107,7 +109,6 @@ public class RunScanHandler {
 						}
 						System.out.println(" Command execution result :: " + line);
 					}
-					System.out.println(" Scan is started for host :" + ipPort);
 				}
 			} else {
 				System.out.println(" Tunner admin command line channel is not subscribed");
