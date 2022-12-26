@@ -35,20 +35,15 @@
 <script type="text/javascript" src="/spm/js/newdashboard/all.min.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/common.js"></script>
 
+
 <script type="text/javascript">
-$(function(){
-	$('#cveUpdateNow').click(function () {
-		
-		alert("CVE UPDATE HAS BEEN CALLED");          
-	  $("#def_Update_formId").submit();
+
+	
+	$('#vdefUpdateNow').click(function() {
+	
+		console.log("CVE UPDATE HAS BEEN CALLED");
+		$("#def_Update_formId").submit();
 	});
-})
-</script>
-
-<script type="text/javascript">
-
-	
-	
 	
 
 	$(function() {
@@ -643,8 +638,6 @@ $(function(){
 								}
 							} ]
 						});
-		
-		
 
 	});
 </script>
@@ -668,7 +661,8 @@ $(function(){
 	<jsp:include page="header.jsp" />
 	<jsp:include page="sidebar.jsp" />
 
-	<form name="vdefTransferForm" id="def_Update_formId" action="/spm/vdefTransfer" method="post">
+	<form name="vdefTransferForm" id="def_Update_formId"
+		action="/spm/vdefTransfer" method="post">
 	<main id="main" class="main">
 	<div class="pagetitle">
 
@@ -765,8 +759,8 @@ $(function(){
 								<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 									<button type="button" class="btn btn-sm btn-secondary"
 										style="background-color: #d3d3d333; color: darkgray;">CANCEL</button>
-									<button type="button" class="btn btn-sm btn-primary"
-										style="background-color: #1976d2;">UPDATE NOW</button>
+									<button id="vdefUpdateNow" type="button"
+													class="btn btn-primary btn-md">UPDATE NOW</button>
 								</div>
 							</div>
 						</div>

@@ -45,13 +45,13 @@
 
       resp = (resp).replace(/&quot;/g, '"');
 
-      console.log("resp = "+resp);
-	  console.log("json ="+JSON.parse(resp));
+      //console.log("resp = "+resp);
+	  //console.log("json ="+JSON.parse(resp));
       
       var jsonData = JSON.parse(resp);
       var data = jsonData['data'];
 	  
-      console.log(data);
+      //console.log(data);
 
       $('#cveDate').text(data['cVELastUpdated']);
       $('#vulDate').text(data['vulDefLastUpdated']);
@@ -97,7 +97,7 @@
               array.push($(this).val());
           })
 		alert("Endpoint scan has been initiated");
-          console.log(array);
+          //console.log(array);
 		  console.log(array.toString());
 		  document.getElementById("hostIds").value = array.toString();
 		  
