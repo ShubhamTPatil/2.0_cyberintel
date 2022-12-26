@@ -36,12 +36,20 @@
 <script type="text/javascript" src="/spm/js/newdashboard/common.js"></script>
 
 <script type="text/javascript">
-	function CVEUpdateNox() {
-		// Form submission
-		document.getElementById("form_id").action = action;
-		document.getElementById("form_id").type = type;
-		document.getElementById("form_id").submit();
-	}
+$(function(){
+	$('#cveUpdateNow').click(function () {
+		
+		alert("CVE UPDATE HAS BEEN CALLED");          
+	  $("#def_Update_formId").submit();
+	});
+})
+</script>
+
+<script type="text/javascript">
+
+	
+	
+	
 
 	$(function() {
 
@@ -635,6 +643,8 @@
 								}
 							} ]
 						});
+		
+		
 
 	});
 </script>
@@ -658,7 +668,7 @@
 	<jsp:include page="header.jsp" />
 	<jsp:include page="sidebar.jsp" />
 
-
+	<form name="vdefTransferForm" id="def_Update_formId" action="/spm/vdefTransfer" method="post">
 	<main id="main" class="main">
 	<div class="pagetitle">
 
@@ -732,8 +742,7 @@
 									<button type="button" class="btn btn-sm btn-secondary"
 										style="background-color: #d3d3d333; color: darkgray;">CANCEL</button>
 									<div class="col-md-2">
-										<button type="button" class="btn btn-primary btn-md"
-											onclick='CVEUpdateNow();'>UPDATE NOW</button>
+										<button id="cveUpdateNow" type="button" class="btn btn-primary btn-md">UPDATE NOW</button>
 									</div>
 								</div>
 							</div>
@@ -873,6 +882,7 @@
 
 
 	</main>
+	</form>
 
 </body>
 
