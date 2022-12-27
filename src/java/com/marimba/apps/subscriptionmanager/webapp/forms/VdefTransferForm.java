@@ -14,7 +14,7 @@ import org.apache.struts.action.ActionForm;
  * @author Inmkaklij
  * @version 1.1, 09/25/2001
  */
-public class VdefTransferForm extends ActionForm {
+public class VdefTransferForm extends AbstractForm {
 
 	private String responseMsg;
 

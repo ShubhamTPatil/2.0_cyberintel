@@ -38,13 +38,22 @@
 
 <script type="text/javascript">
 
-	
+$(document).ready(function() {
 	$('#vdefUpdateNow').click(function() {
-	
-		console.log("CVE UPDATE HAS BEEN CALLED");
+
+		alert("VDEF FILE TRANSFER HAS BEEN TRIGGERED..");
 		$("#def_Update_formId").submit();
 	});
 	
+
+    	                        
+    	 var reportingCheckedIn = <bean:write name="vdefTransferForm" property="responseMsg"/>
+    	alert(responseMsg)
+    
+});
+</script>
+
+<script type="text/javascript">
 
 	$(function() {
 
@@ -662,7 +671,7 @@
 	<jsp:include page="sidebar.jsp" />
 
 	<form name="vdefTransferForm" id="def_Update_formId"
-		action="/spm/vdefTransfer" method="post">
+		action="/spm/vdefTransfer.do" type="com.marimba.apps.subscriptionmanager.webapp.forms.VdefTransferForm">
 	<main id="main" class="main">
 	<div class="pagetitle">
 
@@ -761,10 +770,10 @@
 										style="background-color: #d3d3d333; color: darkgray;">CANCEL</button>
 									<button id="vdefUpdateNow" type="button"
 													class="btn btn-primary btn-md">UPDATE NOW</button>
-								</div>
+								</div>								
 							</div>
 						</div>
-
+						
 						<br /> <br />
 
 						<div class="row">
