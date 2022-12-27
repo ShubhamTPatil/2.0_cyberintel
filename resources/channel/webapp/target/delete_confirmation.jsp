@@ -102,11 +102,9 @@
     	<section class="section dashboard">
 
 		<div style="text-align: center">
-            <div class="commonPadding">
 
-                <div class=pageHeader style="padding-bottom:50px;">
-                    <span class=title><webapps:pageText key="Title"/></span>
-                </div>
+			<div class="card">
+			<div class="card-body">
 
                 <div class="statusMessage" id="OK" style="width:800px; margin:0 auto;">
                     <%if(isApprovalPolicy) {%>
@@ -148,14 +146,13 @@
                 </div>
 
             </div>
-        </div>
-
-
-
-
+        
+		</div>
+		</div>
 
 		</section>
-		</main>
+	</main>
+</body>
 
 
 

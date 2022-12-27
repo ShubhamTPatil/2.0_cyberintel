@@ -48,7 +48,12 @@ List<Target> diffUserPendingPolicy = (List<Target>)session.getAttribute(IWebAppC
 
 		    <html:form styleId="targetDetailsForm" action="/distDeleteSave.do" target="_top">
 
+
             <div align="center">
+            
+            <div class="card">
+            <div class="card-body">
+            
             <div style="text-align:left; width:800px;">
               <div class="pageHeader"><span class="title"><webapps:pageText key="Title" /></span></div>
                   <logic:present name="session_multitgbool">
@@ -130,10 +135,14 @@ List<Target> diffUserPendingPolicy = (List<Target>)session.getAttribute(IWebAppC
             </logic:equal>
 
             <div id="pageNav" style="width:800px; ">
-            		<input type="button" value="<webapps:pageText shared="true" type="delete_preview" key="YesDeleteAll"/>" id="yes_all" onClick="javascript:send(document.forms.targetDetailsForm,'/distDeleteSave.do?all=true');"/>
-            		<input type="button" name="cancel" value=" <webapps:pageText key="Cancel" type="global" /> " onclick="javascript:redirect('/returnToOrigin.do');" >
+            		<input type="button" class="btn btn-sm btn-primary" value="<webapps:pageText shared="true" type="delete_preview" key="YesDeleteAll"/>" id="yes_all" onClick="javascript:send(document.forms.targetDetailsForm,'/distDeleteSave.do?all=true');"/>
+            		<input type="button" class="btn btn-sm btn-outline-primary" name="cancel" value=" <webapps:pageText key="Cancel" type="global" /> " onclick="javascript:redirect('/returnToOrigin.do');" >
             </div>
 
+</div>
+</div>
+</div>
+</div>
             </html:form>
 
 		</section>
