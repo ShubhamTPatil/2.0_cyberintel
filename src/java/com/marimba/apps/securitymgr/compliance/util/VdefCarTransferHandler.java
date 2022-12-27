@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.Properties;
-
+import com.marimba.webapps.common.Resources;
 /**
  * /** VdefCarTransfer Class w.r.t fetch new dashboard data from DB
  *
@@ -26,13 +26,13 @@ public class VdefCarTransferHandler {
 		String driveName = marimbaSetupPath.split(":")[0];
 		System.out.println(" Marimba path : " + marimbaSetupPath + " Drive : " + driveName);
 		try {
-			Properties prop = new Properties();
-			prop.load(new FileInputStream(".\\resources\\application.properties"));
+			Resources prop = new Resources("vdefFileTransferLocation.properties");
 
-			String channelCopyURL = prop.getProperty("vdef.channel.url");
-			String srcURL = prop.getProperty("vdef.source.download");
-			String destURL = prop.getProperty("vdef.source.upload");
-			System.out.println(" channelCopyURL :: " + channelCopyURL);
+			String channelCopyURL = prop.getString("vdef.channel.url");
+			//System.out.println(" Test key :: " + prop.getObject("vdef.channel.url"));
+			String srcURL = prop.getString("vdef.source.download");
+			String destURL = prop.getString("vdef.source.upload");
+			System.out.println(" channelCopyURL is :: " + channelCopyURL);
 
 			String copyChannelCommand = "runchannel " + channelCopyURL + " -src " + srcURL + " -dst " + destURL;
 
