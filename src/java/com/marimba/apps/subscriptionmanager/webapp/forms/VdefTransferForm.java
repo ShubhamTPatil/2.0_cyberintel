@@ -16,6 +16,7 @@ import org.apache.struts.action.ActionForm;
  */
 public class VdefTransferForm extends AbstractForm {
 
+	private String vdefDefaultValue;
 	private String responseMsg;
 
 	public String getResponseMsg() {
@@ -24,6 +25,14 @@ public class VdefTransferForm extends AbstractForm {
 
 	public void setResponseMsg(String responseMsg) {
 		this.responseMsg = responseMsg;
+	}
+
+	public String getVdefDefaultValue() {
+		return vdefDefaultValue;
+	}
+
+	public void setVdefDefaultValue(String vdefDefaultValue) {
+		this.vdefDefaultValue = vdefDefaultValue;
 	}
 
 }

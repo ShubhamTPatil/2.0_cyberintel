@@ -26,7 +26,10 @@
 <link rel="stylesheet" type="text/css"
 	href="/spm/css/newdashboard/style.css" />
 
-<script type="text/javascript" src="/spm/js/newdashboard/jquery.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<!-- <script type="text/javascript" src="/spm/js/newdashboard/jquery.min.js"></script>-->
 <script type="text/javascript"
 	src="/spm/js/newdashboard/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/chart.umd.js"></script>
@@ -38,19 +41,22 @@
 
 <script type="text/javascript">
 
-$(document).ready(function() {
-	$('#vdefUpdateNow').click(function() {
-
-		alert("VDEF FILE TRANSFER HAS BEEN TRIGGERED..");
-		$("#def_Update_formId").submit();
-	});
+$(function () {
 	
+	$('#vdefUpdateNow').click(function () {
+        $.ajax({
+        	type: 'POST', dataType: 'json text', url: '/spm/vdefTransfer.do',
+        	data: {action: 'vdef'},        	
+            success: function (response) {
+            	 //$("#report_status_tbody").html(response.status);
+            	 console.log(response);
+            	 console.log(JSON.stringify(response));
+            	 //document.getElementById('reportStatus').value = response.message;
+            	
+            }});
 
-    	                        
-    	 var reportingCheckedIn = <bean:write name="vdefTransferForm" property="responseMsg"/>
-    	alert(responseMsg)
-    
-});
+     });    
+})
 </script>
 
 <script type="text/javascript">
@@ -670,8 +676,11 @@ $(document).ready(function() {
 	<jsp:include page="header.jsp" />
 	<jsp:include page="sidebar.jsp" />
 
-	<form name="vdefTransferForm" id="def_Update_formId"
-		action="/spm/vdefTransfer.do" type="com.marimba.apps.subscriptionmanager.webapp.forms.VdefTransferForm">
+	<html:form name="vdefTransferForm" id="def_Update_formId"
+		action="/spm/vdefTransfer.do" type="com.marimba.apps.subscriptionmanager.webapp.forms.VdefTransferForm">	
+		<html:hidden property="action"/>
+		
+		
 	<main id="main" class="main">
 	<div class="pagetitle">
 
@@ -736,7 +745,7 @@ $(document).ready(function() {
 
 							<div class="col">
 								<span style="font-weight: bold;">CVE Definitions last
-									updated on (04/12/2022)</span><br /> <span>(Please ensure all
+									updated on (29/09/2022)</span><br /> <span>(Please ensure all
 									information is upto date for accurate results)</span>
 							</div>
 
@@ -760,7 +769,7 @@ $(document).ready(function() {
 
 							<div class="col">
 								<span style="font-weight: bold;">Vulnerability
-									Definitions last updated on (04/12/2022)</span><br /> <span>(Please
+									Definitions last updated on (29/09/2022)</span><br /> <span>(Please
 									ensure all information is upto date for accurate results)</span>
 							</div>
 
@@ -774,6 +783,35 @@ $(document).ready(function() {
 							</div>
 						</div>
 						
+						<div class="modal fade" id="reports_status_modal" tabindex="-2" role="dialog">
+						    <div class="modal-dialog modal-lg" style="width:95%;">
+						        <div class="modal-content">
+						            <div class="modal-header">
+						                <h4 class="modal-title"><b><i class="fa fa-filter" aria-hidden="true" style="font-size:17px;color:#0073b7"></i>&nbsp;File Transfer Status</b>
+						                </h4>
+						                <div align="right"><button type="button" class="close" data-dismiss="modal">&times;</button></div>
+						            </div>
+						            <div class="modal-body" style="padding-top:1px;padding-bottom:5px;">
+						                <div id="reportstatus" style="height:auto;">
+						                    <div id="report_status_div" style="text-align:left;">
+						                        <table id="report_status_table" border="1" style="width:100%">
+						                            <colgroup width="5%"/>
+						                            <colgroup width="20%"/>
+						                            <colgroup width="15%"/>
+						                            <colgroup width="*"/>
+						                            <tbody id="report_status_tbody">
+						                            </tbody>
+						                        </table>
+						                    </div>
+						                </div>
+						            </div>
+						            <div class="modal-footer">
+						                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						            </div>
+						        </div>
+						    </div>
+						</div>
+																	
 						<br /> <br />
 
 						<div class="row">
@@ -885,7 +923,7 @@ $(document).ready(function() {
 
 
 	</main>
-	</form>
+	</html:form>
 
 </body>
 
