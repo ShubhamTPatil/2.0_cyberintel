@@ -173,7 +173,7 @@ $(function () {
             'orderable': false,
             'className': 'dt-body-center',
             'render': function (data, type, full, meta) {
-                return '<input type="checkbox" class="form-check-input" name="topVulCheckbox" value="' + topVulIndex++ + '">';
+                return '<input type="checkbox" class="form-check-input" name="topVulCheckbox" value="' + full["Patches"] + '">';
             }
         },
         {
@@ -240,47 +240,32 @@ $(function () {
 
 
     var topVulMitigateInfo;
+    var topVulMitigateInfo2;
+
     $('#topVulMitigateButton').click(function () {
-      //  alert("Called topVulnerable mitigate flow...");
-        let cveArray = [];
+        let patchesArray = [];
         $('input[name=topVulCheckbox]:checked').each(function () {
-            cveArray.push($(this).val());
+            patchesArray.push($(this).val());
         })
-        console.log(cveArray);
-        // alert(cveArray);
 
-        var rows_selected = topVulDataTable.rows({ selected: true }).data();
-        // alert(rows_selected)
+        alert("Selected Patch ID: "+patchesArray);
 
-        let patchids=[];
-        patchids.push('MS09-035.Q973551.vcredist973551_x64.exe._1512607363');
-        patchids.push('MS11-025.Q2538243.vcredist2467174_x64.exe._703337344');
-        patchids.push('MS19-04-AFP-4493478.Q4493478.windows10.0-kb4493478-x64-1809.msu.1751582394');
-        patchids.push('JAVA8-51.QJAVA8U51X64.jre-8u51-windows-x64.exe.743314572');
+        // var rows_selected = topVulDataTable.rows({ selected: true }).data();
+        // alert(rows_selected);
 
-        alert(patchids);
-        var queryStr = "?patchids=" + patchids;
+        var queryStr = "?patchids=" + patchesArray;
         $.ajax({
             url: './newDashboard.do' + queryStr,
             type: 'POST',
-            dataType: 'json text',
+            dataType: 'text json',
             data: {action: 'mitigate'},
             beforeSend: function() {},
             complete: function (xhr, status) {},
             success: function (response) {
-            //  alert("mitigate flow entered.." + response);
               topVulMitigateInfo = response;
-              topVulMitigateInfo = JSON.stringify(topVulMitigateInfo);
-              topVulMitigateInfo = JSON.parse(topVulMitigateInfo);
-
-            <%--
-            let topVulMitigateData = [
-                    { "Impacted Machine": "defensight-qa1", "Status": "Missing", "Patch Details": "MS09-035.Q973551.vcredist973551_x64.exe" },
-                    { "Impacted Machine": "vm-master-trans", "Status": "Missing", "Patch Details": "MS09-035.Q973551.vcredist973551_x64.exe" },
-                    { "Impacted Machine": "reverseproxy", "Status": "Missing", "Patch Details": "MS09-035.Q973551.vcredist973551_x64.exe" }
-                    ];
-             --%>
-            createMitigateTable(topVulMitigateInfo);
+              topVulMitigateInfo2 = JSON.stringify(topVulMitigateInfo);
+              topVulMitigateInfo2 = JSON.parse(topVulMitigateInfo2);
+              createMitigateTable(topVulMitigateInfo2);
         }});
 
     });  // onClick topVulMitigateButton()
@@ -314,11 +299,24 @@ $(function () {
     --%>
 
     $('#topVulMitApplyPatches').click(function () {
-        let array = [];
+        let patchgroups = [];
         $('input[name=topVulMitCheck]:checked').each(function () {
-            array.push($(this).val());
+            patchgroups.push($(this).val());
         })
-        console.log(array);
+        // console.log(patchgroups);
+        alert("selected patch groups with machines --> "+patchgroups);
+        var queryStr = "?machinepatchgroups=" + patchgroups;
+        $.ajax({
+            url: './newDashboard.do' + queryStr,
+            type: 'POST',
+            dataType: 'text json',
+            data: {action: 'apply_patches'},
+            beforeSend: function() {},
+            complete: function (xhr, status) {},
+            success: function (response) {
+            alert(response);
+        }});
+
     });
 
 
@@ -471,7 +469,7 @@ function createMitigateTable(aaData) {
             'className': 'dt-body-center',
             'render': function (data, type, full, meta) {
                 var disabled = full["Status"] === "Pass" ? "disabled" : "";
-                return '<input type="checkbox" class="form-check-input" name="topVulMitCheck" value="' + topVulModalIndex++ + '" ' + disabled + '>';
+                return '<input type="checkbox" class="form-check-input" name="topVulMitCheck" value="' + full["Impacted Machine"]+ "@" +full["Patch Details"] + '" ' + disabled + '>';
             }
         }],
         'rowCallback': function (row, data, index) {
@@ -860,10 +858,6 @@ function createMitigateTable(aaData) {
                   </table>
                 </div>
               </div>
-          
-          
-          
-          
           
         </div>
       </div>

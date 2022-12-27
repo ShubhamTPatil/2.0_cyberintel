@@ -610,6 +610,10 @@ public abstract class AbstractAction extends DelayedAction implements IWebAppCon
         }
     }
 
+    protected boolean isNull(String s) {
+        return s == null || s.trim().length() == 0;
+    }
+
     protected String getAction(HttpServletRequest req) {
         return req.getParameter("action");
     }
