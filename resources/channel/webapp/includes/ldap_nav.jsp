@@ -108,7 +108,7 @@
                 <tr>
                     <td class="col1">&nbsp;</td>
                     <td align="right" class="col2" style="padding-right:3px;">
-                        <input name="Submit322" id="Submit322" type="button" class="smallButtons" value="<webapps:text key="page.ldap_nav.Go" />" onClick="javascript:send('search');">
+                        <input name="Submit322" id="Submit322" type="button" class="btn btn-sm btn-primary" value="<webapps:text key="page.ldap_nav.Go" />" onClick="javascript:send('search');">
                     </td>
                 </tr>
             </table>

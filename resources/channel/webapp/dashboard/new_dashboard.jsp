@@ -148,7 +148,7 @@ $(function () {
         "sorting": false, // For sorting
         "ordering": false,
         'fnDrawCallback': function (oSettings) {
-            $('.dataTables_filter').each(function () {
+            $('#topVulTable_filter').each(function () {
                 $(this).append($('#topVulMitigateButton'));
             });
         },

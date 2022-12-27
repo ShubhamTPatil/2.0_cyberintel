@@ -10,7 +10,7 @@
             <p><webapps:pageText key="windows.text" type="security_content_assignment" shared="true"/></p>
 
             
-            <table id="windows_contents_data_table" width="100%" class="table table-bordered table-striped dataTable">
+            <table id="windows_contents_data_table" class="table table-bordered table-striped dataTable">
                 <thead>
                     <th><input name="select_all" type="checkbox"></th>
                     <th style="width: 473px; vertical-align: middle;">Security Content</th>
@@ -20,7 +20,7 @@
                     <th>View Profile</th>
                 </thead>
                 <tbody>
-                    <logic:iterate name="scapBeansListWindows" id="usgcbList" scope="session" indexId="indexId">
+                    <%-- <logic:iterate name="scapBeansListWindows" id="usgcbList" scope="session" indexId="indexId">
                         <bean:define id="profile" name="usgcbList" property="sortedProfiles" toScope="request"/>
                         <bean:define id="selectedProfile" name="usgcbList" property="selectedProfile" toScope="request"/>
                         <tr>
@@ -54,7 +54,7 @@
                                 <td><button type="button" class="btn btn-info" onclick="showProfileDetails('<bean:write name="usgcbList" property="fileName"/>', $('#wprofilekey_<%= indexId.toString() %>').val(), 'windows');return false;"><i class='fa fa-eye'></i>&nbsp;View</button></td>
                             </logic:notEqual>
                         </tr>
-                    </logic:iterate>
+                    </logic:iterate> --%>
                 </tbody>
             </table>
         </td>

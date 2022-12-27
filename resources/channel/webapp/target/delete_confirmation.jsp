@@ -73,6 +73,15 @@
 	}
 %>
 
+<script type="text/javascript">
+
+$(function () {
+	$('.nav-selected').removeClass('nav-selected');
+	$('#assignment').addClass('nav-selected');
+}
+	
+</script>
+
 <%@ include file="/includes/endHeadSection.jsp" %>
 
 <body onResize="domMenu_activate('domMenu_keramik'); repositionMenu()">

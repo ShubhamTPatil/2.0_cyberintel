@@ -10,6 +10,17 @@
 <%@ include file="/includes/directives.jsp" %>
 <%@ include file="/includes/startHeadSection.jsp" %>
     <webapps:helpContext context="sm" topic="del_prev" />
+    
+    
+    <script type="text/javascript">
+
+    $(function () {
+		$('.nav-selected').removeClass('nav-selected');
+		$('#assignment').addClass('nav-selected');
+	}
+	
+	</script>
+    
 <%@ include file="/includes/endHeadSection.jsp" %>
 <%@ page import = "java.util.*" %>
 <%@ page import = "com.marimba.apps.subscription.common.objects.Target" %>
@@ -55,7 +66,7 @@ List<Target> diffUserPendingPolicy = (List<Target>)session.getAttribute(IWebAppC
             <div class="card-body">
             
             <div style="text-align:left; width:800px;">
-              <div class="pageHeader"><span class="title"><webapps:pageText key="Title" /></span></div>
+              
                   <logic:present name="session_multitgbool">
                 <% if((null != sameUserPendingPolicy && sameUserPendingPolicy.size() > 0) && (null != diffUserPendingPolicy && diffUserPendingPolicy.size() > 0)) {%>
                 <div class="statusMessage" id="warning">

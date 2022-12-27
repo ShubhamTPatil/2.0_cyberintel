@@ -218,7 +218,7 @@ $(function () {
                                         <th scope="col">Security Definition</th>
                                         <th scope="col">Profile</th>
                                         <th scope="col">Compliance</th>
-                                        <th scope="col">Last Scan</th>
+                                        <th scope="col">Last Scan Time (GMT)</th>
                                         <th scope="col">Scan Status</th>
                                     </tr>
                                 </thead>
