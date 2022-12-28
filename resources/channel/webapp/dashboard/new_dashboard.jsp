@@ -271,20 +271,28 @@ $(function () {
     });  // onClick topVulMitigateButton()
     
     $('#criPatchesMitigateButton').click(function () {
-        let array = [];
+        let patchesArray = [];
         $('input[name=criPatchCheckbox]:checked').each(function () {
-            array.push($(this).val());
+            patchesArray.push($(this).val());
         })
-        console.log(array);
-        
-        $.ajax({url: "https://gorest.co.in/public/v2/users", success: function(result){
-            let topVulMitigateData = [
-                    { "Impacted Machine": "reverseproxy", "Status": "Missing", "Patch Details": "MS09-035.Q973551.vcredist973551_x64.exe" }
-                ];
+        console.log(patchesArray);
+        alert("Selected Patches: "+patchesArray);
 
-            createMitigateTable(topVulMitigateData);
-
+        var queryStr = "?patchids=" + patchesArray;
+        $.ajax({
+            url: './newDashboard.do' + queryStr,
+            type: 'POST',
+            dataType: 'text json',
+            data: {action: 'mitigate'},
+            beforeSend: function() {},
+            complete: function (xhr, status) {},
+            success: function (response) {
+              topVulMitigateInfo = response;
+              topVulMitigateInfo2 = JSON.stringify(topVulMitigateInfo);
+              topVulMitigateInfo2 = JSON.parse(topVulMitigateInfo2);
+              createMitigateTable(topVulMitigateInfo2);
         }});
+
     });
 
     
@@ -311,7 +319,7 @@ $(function () {
             type: 'POST',
             dataType: 'text json',
             data: {action: 'apply_patches'},
-            beforeSend: function() {},
+            beforeSend: function() { alert("Patches Deployment has been initiated...");},
             complete: function (xhr, status) {},
             success: function (response) {
             alert(response);
@@ -351,7 +359,7 @@ $(function () {
            'orderable': false,
            'className': 'dt-body-center',
            'render': function (data, type, full, meta) {
-               return '<input type="checkbox" class="form-check-input" name="criPatchCheckbox" value="' + patchesIndex++ + '">';
+               return '<input type="checkbox" class="form-check-input" name="criPatchCheckbox" value="' + full["Patch Name"] + '">';
            }
        },
        {
@@ -864,7 +872,6 @@ function createMitigateTable(aaData) {
     </section>
 
     
-
     <!-- Top Vulnerability Modal -->
     <div class="modal fade" id="topVulModal" tabindex="-1" aria-labelledby="topVulModalLabel" aria-hidden="true">
       <div class="modal-dialog" style="max-width:800px;">
