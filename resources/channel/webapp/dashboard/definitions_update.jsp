@@ -44,6 +44,7 @@
 $(function () {
 	
 	$('#vdefUpdateNow').click(function () {
+		alert("VDEF FILE TRANSFER HAS BEEN TRIGGERED..");
         $.ajax({
         	type: 'POST', dataType: 'json text', url: '/spm/vdefTransfer.do',
         	data: {action: 'vdef'},        	
