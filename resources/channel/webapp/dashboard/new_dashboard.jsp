@@ -248,7 +248,7 @@ $(function () {
             patchesArray.push($(this).val());
         })
 
-        alert("Selected Patch ID: "+patchesArray);
+      //  alert("Selected Patch ID: "+patchesArray);
 
         // var rows_selected = topVulDataTable.rows({ selected: true }).data();
         // alert(rows_selected);
@@ -276,7 +276,7 @@ $(function () {
             patchesArray.push($(this).val());
         })
         console.log(patchesArray);
-        alert("Selected Patches: "+patchesArray);
+       // alert("Selected Patches: "+patchesArray);
 
         var queryStr = "?patchids=" + patchesArray;
         $.ajax({
@@ -312,7 +312,7 @@ $(function () {
             patchgroups.push($(this).val());
         })
         // console.log(patchgroups);
-        alert("selected patch groups with machines --> "+patchgroups);
+      //  alert("selected patch groups with machines --> "+patchgroups);
         var queryStr = "?machinepatchgroups=" + patchgroups;
         $.ajax({
             url: './newDashboard.do' + queryStr,
@@ -322,7 +322,7 @@ $(function () {
             beforeSend: function() { alert("Patches Deployment has been initiated...");},
             complete: function (xhr, status) {},
             success: function (response) {
-            alert(response);
+           // alert(response);
         }});
 
     });

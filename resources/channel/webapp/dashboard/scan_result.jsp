@@ -73,11 +73,9 @@ $(function () {
 	        }, {
 	            "data": "profile"
 	        }, {
-	            "data": "machineDomain"
+	            "data": "scanStaus"
 	        }, {
 	            "data": "machineLastScan"
-	        }, {
-	            "data": "scanStaus"
 	        }],
 	        'columnDefs': [{
 	            'targets': 0,
@@ -111,11 +109,9 @@ $(function () {
 	        }, {
 	            "data": "profile"
 	        }, {
-	            "data": "machineDomain"
+	            "data": "scanStaus"
 	        }, {
 	            "data": "machineLastScan"
-	        }, {
-	            "data": "scanStaus"
 	        }],
 	        'columnDefs': [{
 	            'targets': 0,
@@ -219,7 +215,7 @@ $(function () {
                                         <th scope="col">Profile</th>
                                         <th scope="col">Compliance</th>
                                         <th scope="col">Last Scan Time (GMT)</th>
-                                        <th scope="col">Scan Status</th>
+                                       <%-- <th scope="col">Scan Status</th> --%>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -275,7 +271,7 @@ $(function () {
                                         <th scope="col">Profile</th>
                                         <th scope="col">Compliance</th>
                                         <th scope="col">Last Scan</th>
-                                        <th scope="col">Scan Status</th>
+                                       <%-- <th scope="col">Scan Status</th> --%>
                                     </tr>
                                 </thead>
                                 <tbody>
