@@ -54,7 +54,7 @@ public class VdefCarFileTransferAction extends AbstractAction {
 				responseMessage="differnt process";				
 			}
 			formbean.setResponseMsg(responseMessage);
-			sendJSONResponse(response, "{message:responseMessage}");
+			sendJSONResponse(response,responseMessage);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
