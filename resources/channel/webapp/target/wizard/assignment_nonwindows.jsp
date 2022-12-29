@@ -34,7 +34,7 @@
                             <td><bean:write name="scapList" property="type"/></td>
 							<td><bean:write name="scapList" property="assessmentType"/></td>
                             <td>
-                                <select id="nwprofilekey_<%= indexId.toString() %>">
+                                <select class="form-select" id="nwprofilekey_<%= indexId.toString() %>">
                                     <logic:iterate name="profile" id="pro_file">
                                         <bean:define id="currProfileKey" name="pro_file" property="key"/>
                                         <% if (currProfileKey.equals(selectedProfile)) { %>
@@ -47,10 +47,10 @@
 
                             </td>
                             <logic:equal name="scapList" property="type" value="custom">
-                                <td><button type="button" class="btn btn-info" onclick="showProfileDetails('<bean:write name="scapList" property="fileName"/>', $('#nwprofilekey_<%= indexId.toString() %>').val(),'custom');return false;"><i class='fa fa-eye'></i>&nbsp;View</button></td>
+                                <td><button type="button" class="btn btn-sm btn-primary" onclick="showProfileDetails('<bean:write name="scapList" property="fileName"/>', $('#nwprofilekey_<%= indexId.toString() %>').val(),'custom');return false;"><i class='fa fa-eye'></i>&nbsp;View</button></td>
                             </logic:equal>
                             <logic:notEqual name="scapList" property="type" value="custom">
-                                <td><button type="button" class="btn btn-info" onclick="showProfileDetails('<bean:write name="scapList" property="fileName"/>', $('#nwprofilekey_<%= indexId.toString() %>').val(),'nonwindows');return false;"><i class='fa fa-eye'></i>&nbsp;View</button></td>
+                                <td><button type="button" class="btn btn-sm btn-primary" onclick="showProfileDetails('<bean:write name="scapList" property="fileName"/>', $('#nwprofilekey_<%= indexId.toString() %>').val(),'nonwindows');return false;"><i class='fa fa-eye'></i>&nbsp;View</button></td>
                             </logic:notEqual>
                         </tr>
                     </logic:iterate>

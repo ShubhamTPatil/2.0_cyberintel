@@ -248,7 +248,7 @@ $(function () {
             patchesArray.push($(this).val());
         })
 
-      //  alert("Selected Patch ID: "+patchesArray);
+        //alert("Selected Patch ID: "+patchesArray);
 
         // var rows_selected = topVulDataTable.rows({ selected: true }).data();
         // alert(rows_selected);
@@ -276,7 +276,7 @@ $(function () {
             patchesArray.push($(this).val());
         })
         console.log(patchesArray);
-       // alert("Selected Patches: "+patchesArray);
+        //alert("Selected Patches: "+patchesArray);
 
         var queryStr = "?patchids=" + patchesArray;
         $.ajax({
@@ -292,7 +292,7 @@ $(function () {
               topVulMitigateInfo2 = JSON.parse(topVulMitigateInfo2);
               createMitigateTable(topVulMitigateInfo2);
         }});
-
+        
     });
 
     
@@ -312,7 +312,7 @@ $(function () {
             patchgroups.push($(this).val());
         })
         // console.log(patchgroups);
-      //  alert("selected patch groups with machines --> "+patchgroups);
+        //alert("selected patch groups with machines --> "+patchgroups);
         var queryStr = "?machinepatchgroups=" + patchgroups;
         $.ajax({
             url: './newDashboard.do' + queryStr,
@@ -322,7 +322,7 @@ $(function () {
             beforeSend: function() { alert("Patches Deployment has been initiated...");},
             complete: function (xhr, status) {},
             success: function (response) {
-           // alert(response);
+            //alert(response);
         }});
 
     });
@@ -872,12 +872,13 @@ function createMitigateTable(aaData) {
     </section>
 
     
+
     <!-- Top Vulnerability Modal -->
     <div class="modal fade" id="topVulModal" tabindex="-1" aria-labelledby="topVulModalLabel" aria-hidden="true">
       <div class="modal-dialog" style="max-width:800px;">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="topVulModalLabel">Apply patches</h5>
+            <h5 class="modal-title" id="topVulModalLabel">Apply Patches</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">

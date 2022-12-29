@@ -215,7 +215,7 @@ $(function () {
                                         <th scope="col">Profile</th>
                                         <th scope="col">Compliance</th>
                                         <th scope="col">Last Scan Time (GMT)</th>
-                                       <%-- <th scope="col">Scan Status</th> --%>
+                                        <!-- <th scope="col">Scan Status</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -259,27 +259,28 @@ $(function () {
 
                             <br>
 
-                            <table id="configAssessmentTable" class="table" style="width: 100%;">
-                                <thead>
-                                    <tr>
-                                        <th><input type="checkbox" class="selectAll form-check-input"
-                                                id="configAssessmentSelectAll">
-                                        </th>
-                                        <th scope="col">Machine Name</th>
-                                        <th scope="col">Operating System</th>
-                                        <th scope="col">Security Definition</th>
-                                        <th scope="col">Profile</th>
-                                        <th scope="col">Compliance</th>
-                                        <th scope="col">Last Scan</th>
-                                       <%-- <th scope="col">Scan Status</th> --%>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-
-                                </tbody>
-                            </table>
-
+							<div class="table-responsive">
+	                            <table id="configAssessmentTable" class="table" style="width: 100%;">
+	                                <thead>
+	                                    <tr>
+	                                        <th><input type="checkbox" class="selectAll form-check-input"
+	                                                id="configAssessmentSelectAll">
+	                                        </th>
+	                                        <th scope="col">Machine Name</th>
+	                                        <th scope="col">Operating System</th>
+	                                        <th scope="col">Security Definition</th>
+	                                        <th scope="col">Profile</th>
+	                                        <th scope="col">Compliance</th>
+	                                        <th scope="col">Last Scan Time (GMT)</th>
+	                                        <!-- <th scope="col">Scan Status</th> -->
+	                                    </tr>
+	                                </thead>
+	                                <tbody>
+	
+	
+	                                </tbody>
+	                            </table>
+							</div>
                         </div>
                     </div>
                 </div>

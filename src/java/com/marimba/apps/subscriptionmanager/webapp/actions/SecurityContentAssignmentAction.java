@@ -1547,7 +1547,7 @@ public final class SecurityContentAssignmentAction extends AbstractAction {
             //custom scanners
             loadStandardCustomContentDetails("windows");
             session.setAttribute("scapBeansListWindows", scapBeansListWindows.values());
-        }
+        }                System.out.println("AB scapBeansListWindows = "+scapBeansListWindows);
     }
 
     private void loadWindowsCustomContentDetails() throws Exception {
@@ -1739,7 +1739,7 @@ public final class SecurityContentAssignmentAction extends AbstractAction {
         loadStandardCustomContentDetails("nonwindows");
 
         session.setAttribute("scapBeansListNonWindows", scapBeansListNonWindows.values());
-
+        System.out.println("AB scapBeansListNonWindows = "+scapBeansListNonWindows);
     }
 
     private void loadNonWindowsCustomContentDetails() throws Exception {

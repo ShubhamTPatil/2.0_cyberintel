@@ -20,7 +20,7 @@
                     <th>View Profile</th>
                 </thead>
                 <tbody>
-                    <%-- <logic:iterate name="scapBeansListWindows" id="usgcbList" scope="session" indexId="indexId">
+                    <logic:iterate name="scapBeansListWindows" id="usgcbList" scope="session" indexId="indexId">
                         <bean:define id="profile" name="usgcbList" property="sortedProfiles" toScope="request"/>
                         <bean:define id="selectedProfile" name="usgcbList" property="selectedProfile" toScope="request"/>
                         <tr>
@@ -36,7 +36,7 @@
                             <td><bean:write name="usgcbList" property="type"/></td>
 							<td><bean:write name="usgcbList" property="assessmentType"/></td>
                             <td>
-                                <select id="wprofilekey_<%= indexId.toString() %>">
+                                <select class="form-select" id="wprofilekey_<%= indexId.toString() %>">
                                     <logic:iterate name="profile" id="pro_file">
                                         <bean:define id="currProfileKey" name="pro_file" property="key"/>
                                         <% if (currProfileKey.equals(selectedProfile)) { %>
@@ -48,13 +48,13 @@
                                 </select>
                             </td>
                             <logic:equal name="usgcbList" property="type" value="custom">
-                                <td><button type="button" class="btn btn-info" onclick="showProfileDetails('<bean:write name="usgcbList" property="fileName"/>', $('#wprofilekey_<%= indexId.toString() %>').val(), 'custom');return false;"><i class='fa fa-eye'></i>&nbsp;View</button></td>
+                                <td><button type="button" class="btn btn-sm btn-primary" onclick="showProfileDetails('<bean:write name="usgcbList" property="fileName"/>', $('#wprofilekey_<%= indexId.toString() %>').val(), 'custom');return false;"><i class='fa fa-eye'></i>&nbsp;View</button></td>
                             </logic:equal>
                             <logic:notEqual name="usgcbList" property="type" value="custom">
-                                <td><button type="button" class="btn btn-info" onclick="showProfileDetails('<bean:write name="usgcbList" property="fileName"/>', $('#wprofilekey_<%= indexId.toString() %>').val(), 'windows');return false;"><i class='fa fa-eye'></i>&nbsp;View</button></td>
+                                <td><button type="button" class="btn btn-sm btn-primary" onclick="showProfileDetails('<bean:write name="usgcbList" property="fileName"/>', $('#wprofilekey_<%= indexId.toString() %>').val(), 'windows');return false;"><i class='fa fa-eye'></i>&nbsp;View</button></td>
                             </logic:notEqual>
                         </tr>
-                    </logic:iterate> --%>
+                    </logic:iterate>
                 </tbody>
             </table>
         </td>

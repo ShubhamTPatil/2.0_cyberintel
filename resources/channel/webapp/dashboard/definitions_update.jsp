@@ -38,28 +38,6 @@
 <script type="text/javascript" src="/spm/js/newdashboard/all.min.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/common.js"></script>
 
-
-<script type="text/javascript">
-
-$(function () {
-	
-	$('#vdefUpdateNow').click(function () {
-		alert("VDEF FILE TRANSFER HAS BEEN TRIGGERED..");
-        $.ajax({
-        	type: 'POST', dataType: 'json text', url: '/spm/vdefTransfer.do',
-        	data: {action: 'vdef'},        	
-            success: function (response) {
-            	 //$("#report_status_tbody").html(response.status);
-            	 console.log(response);
-            	 console.log(JSON.stringify(response));
-            	 //document.getElementById('reportStatus').value = response.message;
-            	
-            }});
-
-     });    
-})
-</script>
-
 <script type="text/javascript">
 
 	$(function() {
@@ -654,8 +632,35 @@ $(function () {
 								}
 							} ]
 						});
+		
+		
+	    $('#vdefUpdateNow').click(function () {
+	        alert("VDEF FILE TRANSFER HAS BEEN TRIGGERED..");
+	        $.ajax({
+	            type: 'POST', dataType: 'text', url: '/spm/vdefTransfer.do',
+	            data: {action: 'vdef'},            
+	            success: function (response) {
+	                 //$("#report_status_tbody").html(response.status);
+	                 console.log(response);
+	                 console.log(JSON.stringify(response));
+	                 
+	                 
+	                 
+	                 $('#updateSuccessMessage').text(JSON.stringify(response));
+	                 $('#updateSuccessModal').modal('show');
+
+	                 //document.getElementById('reportStatus').value = response.message;
+	                
+	            }});
+
+	     }); 
 
 	});
+	
+	
+   
+	
+	
 </script>
 
 <style>
@@ -746,7 +751,7 @@ $(function () {
 
 							<div class="col">
 								<span style="font-weight: bold;">CVE Definitions last
-									updated on (29/09/2022)</span><br /> <span>(Please ensure all
+									updated on (2022-12-28)</span><br /> <span>(Please ensure all
 									information is upto date for accurate results)</span>
 							</div>
 
@@ -754,9 +759,7 @@ $(function () {
 								<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 									<button type="button" class="btn btn-sm btn-secondary"
 										style="background-color: #d3d3d333; color: darkgray;">CANCEL</button>
-									<div class="col-md-2">
-										<button id="cveUpdateNow" type="button" class="btn btn-primary btn-md">UPDATE NOW</button>
-									</div>
+									<button id="cveUpdateNow" type="button" class="btn btn-sm btn-primary">UPDATE NOW</button>
 								</div>
 							</div>
 						</div>
@@ -770,7 +773,7 @@ $(function () {
 
 							<div class="col">
 								<span style="font-weight: bold;">Vulnerability
-									Definitions last updated on (29/09/2022)</span><br /> <span>(Please
+									Definitions last updated on (2022-09-29)</span><br /> <span>(Please
 									ensure all information is upto date for accurate results)</span>
 							</div>
 
@@ -778,8 +781,7 @@ $(function () {
 								<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 									<button type="button" class="btn btn-sm btn-secondary"
 										style="background-color: #d3d3d333; color: darkgray;">CANCEL</button>
-									<button id="vdefUpdateNow" type="button"
-													class="btn btn-primary btn-md">UPDATE NOW</button>
+									<button id="vdefUpdateNow" type="button" class="btn btn-sm btn-primary">UPDATE NOW</button>
 								</div>								
 							</div>
 						</div>
@@ -921,6 +923,23 @@ $(function () {
 
 
 	</section>
+	
+	
+	    <!-- Top Vulnerability Modal -->
+    <div class="modal fade" id="updateSuccessModal" tabindex="-1" aria-labelledby="updateSuccessModalLabel" aria-hidden="true">
+      <div class="modal-dialog" style="max-width:800px;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="updateSuccessMessage"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Ok</button>
+          </div>
+        </div>
+      </div>
+    </div>
+	
 
 
 	</main>
