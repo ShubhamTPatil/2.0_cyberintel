@@ -12,6 +12,8 @@
 <html lang="en">
 <head>
 
+<title>DefenSight</title>
+
 <link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/bootstrap-icons.min.css"/>
 <link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/all.min.css"/>
@@ -319,10 +321,11 @@ $(function () {
             type: 'POST',
             dataType: 'text json',
             data: {action: 'apply_patches'},
-            beforeSend: function() { alert("Patches Deployment has been initiated...");},
+            beforeSend: function() { $('#applyPatchesRes').text("Patches Deployment has been initiated...");},
             complete: function (xhr, status) {},
             success: function (response) {
-            //alert(response);
+            	//alert(response);
+            	$('#applyPatchesRes').text(response);
         }});
 
     });
@@ -897,10 +900,8 @@ function createMitigateTable(aaData) {
             </table>
           </div>
           <div class="modal-footer">
+          	<span id="applyPatchesRes"></span>
             <button type="button" class="btn btn-outline-primary btn-sm" data-bs-dismiss="modal">Cancel</button>
-            <%--
-            <button type="button" id="topVulMitScan" class="btn btn-outline-primary btn-sm">Scan</button>
-            --%>
             <button type="button" id="topVulMitApplyPatches" class="btn btn-primary btn-sm">Apply Patches</button>
           </div>
         </div>

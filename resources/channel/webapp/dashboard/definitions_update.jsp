@@ -15,6 +15,8 @@
 
 <head>
 
+<title>Definitions Update</title>
+
 <link rel="stylesheet" type="text/css"
 	href="/spm/css/newdashboard/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css"
