@@ -62,7 +62,7 @@ public class VdefCarFileTransferAction extends AbstractAction {
 	}
 	 protected void sendJSONResponse(HttpServletResponse response, String jsonData) throws Exception {
          PrintWriter out = response.getWriter();
-         out.println(jsonData);
+         out.print(jsonData);
          out.flush();
      }
 

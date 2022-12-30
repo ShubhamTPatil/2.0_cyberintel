@@ -637,22 +637,14 @@
 		
 		
 	    $('#vdefUpdateNow').click(function () {
-	        alert("VDEF FILE TRANSFER HAS BEEN TRIGGERED..");
 	        $.ajax({
 	            type: 'POST', dataType: 'text', url: '/spm/vdefTransfer.do',
 	            data: {action: 'vdef'},            
 	            success: function (response) {
-	                 //$("#report_status_tbody").html(response.status);
-	                 console.log(response);
-	                 console.log(JSON.stringify(response));
-	                 
-	                 
 	                 
 	                 $('#updateSuccessMessage').text(JSON.stringify(response));
 	                 $('#updateSuccessModal').modal('show');
 
-	                 //document.getElementById('reportStatus').value = response.message;
-	                
 	            }});
 
 	     }); 
