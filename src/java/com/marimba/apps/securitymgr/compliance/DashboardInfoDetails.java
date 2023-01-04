@@ -86,49 +86,31 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
-
             String sql = "select xccdf.machine_id id, xccdf.assigned_target_name target_name, os.product product, xccdf.overall_compliant_level status, count(*) count \n" +
-
                     "from inv_security_xccdf_compliance xccdf, inv_os os\n" +
-
                     "where xccdf.machine_id= os.machine_id and UPPER(assigned_target_name) like UPPER('"+targetID+"')\n" +
-
                     "group by xccdf.machine_id, xccdf.assigned_target_name, os.product, xccdf.overall_compliant_level";
 
             PreparedStatement st = pool.getConnection().prepareStatement(sql);
-
             debug("GetMachineDetails() Query Str: " + sql);
-
             ResultSet rs = st.executeQuery();
-
             Map<String, Set<String>> compDetails = new HashMap<String, Set<String>>();
 
             try {
 
                 while (rs.next()) {
-
                     String machineId = rs.getString(1);
-
                     String status = rs.getString("status");
-
                     String osType = rs.getString("product");
-
                     MachineBean machineBean = new MachineBean(machineId);
-
                     machineBean.setMachineID(machineId);
-
                     machineBean.setOsProduct(osType);
-
                     machineBean.setComplianceLevel(status);
-
                     macBeanList.put(machineId, machineBean);
 
                     Set<String> targetStatus = (null != compDetails.get(machineId)) ? compDetails.get(machineId) : new HashSet<String>(3);
-
                     targetStatus.add(status);
-
                     compDetails.put(machineId, targetStatus);
-
                 }
 
             } finally {
@@ -138,33 +120,21 @@ public class DashboardInfoDetails implements ComplianceConstants {
             }
 
             for (String machineId : compDetails.keySet()) {
-
                 Set<String> set = compDetails.get(machineId);
-
                 if (null == set) continue;
-
                 String finalStatus = STR_LEVEL_NON_COMPLIANT;
-
                 if (set.size() == 2) {
-
                     finalStatus = set.contains(STR_LEVEL_NON_COMPLIANT) ? STR_LEVEL_NON_COMPLIANT : STR_LEVEL_COMPLIANT;
-
                 }
 
                 if (set.size() == 1) {
-
                     if (set.contains(STR_LEVEL_COMPLIANT)) finalStatus = STR_LEVEL_COMPLIANT;
-
                     if (set.contains(STR_LEVEL_NON_COMPLIANT)) finalStatus = STR_LEVEL_NON_COMPLIANT;
-
                     if (set.contains(STR_LEVEL_NOT_APPLICABLE)) finalStatus = STR_LEVEL_NOT_APPLICABLE;
-
                 }
 
                 MachineBean aBean = macBeanList.get(machineId);
-
                 if (null != aBean) aBean.setComplianceLevel(finalStatus);
-
             }
 
         }
@@ -172,9 +142,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
 
         public List<MachineBean> getMachineBeanList() {
-
             return new ArrayList<MachineBean>(macBeanList.values());
-
         }
 
     }
@@ -184,35 +152,23 @@ public class DashboardInfoDetails implements ComplianceConstants {
     public static class GetMachineCount extends DatabaseAccess {
 
         SubscriptionMain main = null;
-
         int count = 0;
 
 
-
         public GetMachineCount (SubscriptionMain main, String targetId) {
-
             GetLast24HourMachineData result = new GetLast24HourMachineData(main, targetId);
-
             try {
-
                 runQuery(result);
-
                 count= result.getMachineCount();
-
             } catch (Exception dae) {
-
                 dae.printStackTrace();
-
             }
-
         }
 
 
 
         public int getMachinesCount() {
-
             return count;
-
         }
 
     }
@@ -277,13 +233,11 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
         }
 
-
         public int getMachinesCount() {
             return count;
         }
 
     }
-
 
 
     static class GetLast24HourMachineData extends QueryExecutor {
@@ -332,32 +286,21 @@ public class DashboardInfoDetails implements ComplianceConstants {
         SubscriptionMain main = null;
         int count = 0;
 
-
-
         public GetSecurityInUseDetails (SubscriptionMain main, String targetId) {
-
             GetSecurityInUseData result = new GetSecurityInUseData(main, targetId);
 
             try {
-
                 runQuery(result);
-
                 count= result.getSecurityCount();
-
             } catch (Exception dae) {
-
                 dae.printStackTrace();
-
             }
-
         }
 
 
 
         public int getSecurityCount() {
-
             return count;
-
         }
 
     }
@@ -379,7 +322,6 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
-
             String queryStr = "select count(*) as 'Security Scanner in use' from security_xccdf_content sxct " +
                     "where exists (select 1 from inv_security_xccdf_compliance  sxc where sxct.id = sxc.content_id " +
                     "and UPPER(sxc.assigned_target_name) like UPPER('"+ targetID +"'))";
@@ -396,7 +338,6 @@ public class DashboardInfoDetails implements ComplianceConstants {
                 rs.close();
             }
         }
-
 
         public int getSecurityCount() {
             return count;
@@ -442,7 +383,6 @@ public class DashboardInfoDetails implements ComplianceConstants {
         String compliantLevel = null;
         Map<String, String> result = new HashMap<String, String>();
 
-
         GetOverallComplianceData (SubscriptionMain main, String targetId, String compliantLevel) {
             super(main);
             this.targetID = targetId;
@@ -454,7 +394,6 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
-
            String queryStr = "select a.Compliant, b.[Non-Compliant] from" +
                   "(select count(*) as 'Compliant' from  inv_security_xccdf_compliance  sxc" +
                     "where overall_compliant_level = 'Compliant'" +
@@ -495,7 +434,6 @@ public class DashboardInfoDetails implements ComplianceConstants {
         List<SCAPBean> scapBeanList= new ArrayList<SCAPBean>();
 
         public GetSCAPTypeComplianceDetails (SubscriptionMain main, String targetId) {
-
             GetSCAPTypeComplianceData result = new GetSCAPTypeComplianceData(main, targetId);
             try {
                 runQuery(result);
@@ -504,7 +442,6 @@ public class DashboardInfoDetails implements ComplianceConstants {
                 dae.printStackTrace();
             }
         }
-
 
 
         public List<SCAPBean> getScapBeanList() {
@@ -560,43 +497,26 @@ public class DashboardInfoDetails implements ComplianceConstants {
     }
 
 
-
     //For scanner-wise compliant
-
     public static class GetScannerWiseCompliant extends DatabaseAccess {
-
         SubscriptionMain main = null;
-
         int count = 0;
-
         Map<String, Map<String, Integer>> scannerMap = new HashMap<String, Map<String, Integer>>();
 
-
-
         public GetScannerWiseCompliant (SubscriptionMain main, String targetId) {
-
             GetScannerWiseCompliantData result = new GetScannerWiseCompliantData(main, targetId);
 
             try {
-
                 runQuery(result);
-
                 scannerMap = result.scannerMap();
-
             } catch (Exception dae) {
-
                 dae.printStackTrace();
-
             }
-
         }
 
 
-
         public Map<String, Map<String, Integer>> getScannerMap() {
-
             return scannerMap;
-
         }
 
     }
@@ -605,120 +525,71 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
     static class GetScannerWiseCompliantData extends QueryExecutor {
 
-
-
         String targetID = null;
-
         Map<String, Map<String, Integer>> scannerMap = new HashMap<String, Map<String, Integer>>();
 
-
-
         GetScannerWiseCompliantData (SubscriptionMain main, String targetId) {
-
             super(main);
-
             this.targetID = targetId;
 
             if("all".equalsIgnoreCase(targetID)) {
-
                 targetID = "all_all";
-
             }
-
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
 
-
-
             String queryStr = "select a.content_title, a.profile_name,  a.Compliant, a.[Compliant] as 'Non-Compliant' from " +
-
                     "        (select sxc.content_title,sxc.profile_name,overall_compliant_level, count(*) as 'Compliant' " +
-
                     "         from  inv_security_xccdf_compliance sxc " +
-
                     "              where overall_compliant_level = 'Compliant' " +
-
                     "              and upper(sxc.assigned_target_name) like upper('"+targetID+"')  " +
-
                     "              group by sxc.content_title,sxc.profile_name,overall_compliant_level " +
-
                     "              union " +
-
                     "        select sxc.content_title,sxc.profile_name, overall_compliant_level,count(*) as 'Compliant' " +
-
                     "        from  inv_security_xccdf_compliance sxc " +
-
                     "              where overall_compliant_level = 'Non-Compliant' " +
-
                     "              and upper(sxc.assigned_target_name) like upper('"+targetID+"')  " +
-
                     "              group by sxc.content_title,sxc.profile_name,overall_compliant_level ) a";
-
-
 
             debug("GetScannerWiseCompliantData() Query Str :" + queryStr);
 
             PreparedStatement st = pool.getConnection().prepareStatement(queryStr);
-
-
 
             ResultSet rs = st.executeQuery();
 
             try {
 
                 while (rs.next()) {
-
                     HashMap<String, Integer> map = new HashMap<String, Integer>(2);
-
                     map.put(COMPLAINT, rs.getInt(3));
-
                     map.put(NON_COMPLAINT, rs.getInt(4));
-
                     scannerMap.put(rs.getString(1), map);
-
                 }
-
             } finally {
-
                 rs.close();
-
             }
 
         }
 
         public Map<String, Map<String, Integer>> scannerMap() {
-
             return scannerMap;
-
         }
 
     }
 
 
-
     public static class GetContentInfoForAllEndpoints extends DatabaseAccess {
-
         SubscriptionMain main;
-
         Map<String, String> contentsMap = new TreeMap<String, String>();
 
-
-
         public GetContentInfoForAllEndpoints(SubscriptionMain subMain) {
-
             main = subMain;
-
             GetContentInfoForAllEndpointsData result = new GetContentInfoForAllEndpointsData();
-
             try {
-
                 runQuery(result);
-
             } catch (Exception dae) {
-
                 dae.printStackTrace();
-
             }
 
         }
@@ -726,51 +597,35 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
 
         public Map<String, String> getContentsMap() {
-
             debug("GetContentInfoForAllEndpoints : contentsMap : " + contentsMap);
-
             return contentsMap;
-
-        }
+       }
 
 
 
         class GetContentInfoForAllEndpointsData extends QueryExecutor {
 
-
-
             GetContentInfoForAllEndpointsData() {
-
                 super(main);
-
             }
 
 
 
             protected void execute(IStatementPool pool) throws SQLException {
-
                 String queryStr = "select content_title, content_name from inv_security_xccdf_compliance";
 
                 debug("GetContentInfoForAllEndpointsData() Query Str : " + queryStr);
-
                 PreparedStatement st = pool.getConnection().prepareStatement(queryStr);
-
                 ResultSet rs = st.executeQuery();
 
                 try {
-
                     while(rs.next()) {
-
                         contentsMap.put(rs.getString(1), rs.getString(2));
-
                     }
 
                 } finally {
-
                     rs.close();
-
                     st.close();
-
                 }
 
             }
@@ -782,89 +637,52 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
 
     public static class GetProfileInfoForAllEndpoints extends DatabaseAccess {
-
         SubscriptionMain main;
-
         String contentTitle = "";
-
-
-
         Map<String, String> profilesMap = new TreeMap<String, String>();
 
 
-
         public GetProfileInfoForAllEndpoints(SubscriptionMain subMain, String content_Title) {
-
             main = subMain;
-
             contentTitle = content_Title;
 
             GetProfileInfoForAllEndpointsData result = new GetProfileInfoForAllEndpointsData();
-
             try {
-
                 runQuery(result);
-
             } catch (Exception dae) {
-
                 dae.printStackTrace();
-
             }
-
         }
 
-
-
         public Map<String, String> getProfilesMap() {
-
             debug("GetContentInfoForAllEndpoints : profilesMap : " + profilesMap);
-
             return profilesMap;
-
         }
 
 
 
         class GetProfileInfoForAllEndpointsData extends QueryExecutor {
 
-
-
             GetProfileInfoForAllEndpointsData() {
-
                 super(main);
-
             }
 
-
-
             protected void execute(IStatementPool pool) throws SQLException {
-
                 String queryStr = "select profile_name, profile_title from inv_security_xccdf_compliance where content_title = '"+contentTitle+"'";
-
                 debug("GetProfileInfoForAllEndpointsData() Query Str : " + queryStr);
 
                 PreparedStatement st = pool.getConnection().prepareStatement(queryStr);
-
                 ResultSet rs = st.executeQuery();
 
                 try {
-
                     while(rs.next()) {
-
                         profilesMap.put(rs.getString(1), rs.getString(2));
-
                     }
-
                 } finally {
-
                     rs.close();
-
                     st.close();
-
                 }
-
             }
-
         }
 
     }
@@ -874,87 +692,56 @@ public class DashboardInfoDetails implements ComplianceConstants {
     public static class GetGroupNames extends DatabaseAccess {
 
         SubscriptionMain main;
-
         String contentTitle = "";
-
         Collection<String> groupIds = new HashSet<String>();
-
         Map<String, String> groupNameMap = new TreeMap<String, String>(); // Key -> ruleid, value -> ruleName
 
 
-
         public GetGroupNames(SubscriptionMain subMain, Collection<String> ruleids) {
-
             main = subMain;
-
             groupIds.addAll(ruleids);
-
             GetRuleNameData result = new GetRuleNameData();
 
             try {
-
                 runQuery(result);
-
             } catch (Exception dae) {
-
                 dae.printStackTrace();
-
             }
 
         }
 
 
-
         public Map<String, String> getGroupNameMap() {
-
             debug("GetContentInfoForAllEndpoints : groupNameMap : " + groupNameMap);
-
             return groupNameMap;
-
         }
 
 
 
         class GetRuleNameData extends QueryExecutor {
 
-
-
             GetRuleNameData() {
-
                 super(main);
-
             }
-
 
 
             protected void execute(IStatementPool pool) throws SQLException {
 
                 String group_ids = getCollectionToString(groupIds);
-
                 String queryStr = "select distinct group_name, group_title from security_xccdf_group where group_name in (" + group_ids + ")";
-
                 debug("GetGroupNames() Query Str : " + queryStr);
-
                 PreparedStatement st = pool.getConnection().prepareStatement(queryStr);
 
                 ResultSet rs = st.executeQuery();
 
                 try {
-
                     while(rs.next()) {
-
                         groupNameMap.put(rs.getString(1), rs.getString(2));
-
                     }
-
                 } finally {
-
                     rs.close();
-
                     st.close();
-
                 }
-
             }
 
         }
@@ -966,19 +753,13 @@ public class DashboardInfoDetails implements ComplianceConstants {
     public static class GetRuleNames extends DatabaseAccess {
 
         SubscriptionMain main;
-
         String contentTitle = "";
-
         Collection<String> ruleIds = new HashSet<String>();
-
         Map<String, String> ruleNameMap = new TreeMap<String, String>(); // Key -> ruleid, value -> ruleName
 
 
-
         public GetRuleNames(SubscriptionMain subMain, Collection<String> ruleids) {
-
             main = subMain;
-
             ruleIds.addAll(ruleids);
 
             GetRuleNameData result = new GetRuleNameData();
@@ -988,9 +769,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
                 runQuery(result);
 
             } catch (Exception dae) {
-
                 dae.printStackTrace();
-
             }
 
         }
@@ -998,11 +777,8 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
 
         public Map<String, String> getRuleNameMap() {
-
             debug("GetContentInfoForAllEndpoints : groupNameMap : " + ruleNameMap);
-
             return ruleNameMap;
-
         }
 
 
@@ -1010,11 +786,8 @@ public class DashboardInfoDetails implements ComplianceConstants {
         class GetRuleNameData extends QueryExecutor {
 
 
-
             GetRuleNameData() {
-
                 super(main);
-
             }
 
 
@@ -1022,29 +795,23 @@ public class DashboardInfoDetails implements ComplianceConstants {
             protected void execute(IStatementPool pool) throws SQLException {
 
                 String rule_ids = getCollectionToString(ruleIds);
-
                 String queryStr = "select distinct rule_name, rule_title from security_xccdf_group_rule where rule_name in (" + rule_ids + ")";
 
                 debug("GetRuleNames() Query Str : " + queryStr);
-
                 PreparedStatement st = pool.getConnection().prepareStatement(queryStr);
-
                 ResultSet rs = st.executeQuery();
 
                 try {
 
-                    while(rs.next()) {
+                   while(rs.next()) {
 
                         ruleNameMap.put(rs.getString(1), rs.getString(2));
 
                     }
 
                 } finally {
-
                     rs.close();
-
                     st.close();
-
                 }
 
             }
@@ -1060,13 +827,10 @@ public class DashboardInfoDetails implements ComplianceConstants {
         StringBuilder result = new StringBuilder();
 
         for(String string : collection) {
-
             result.append("'").append(string).append("',");
-
         }
 
         return result.length() > 0 ? result.substring(0, result.length() - 1): "''";
-
     }
 
 
@@ -1137,52 +901,34 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
         }
 
+
         protected void execute(IStatementPool pool) throws SQLException {
 
-
-
             String queryStr = "select COUNT(im.id) from ldapsync_target_membership ctm, " +
-
                     "    ldapsync_targets_machines cmt, inv_machine im " +
-
                     "    where UPPER(ctm.memberof_name) like  upper('"+targetID+"') " +
-
                     "    and ctm.target_id = cmt.target_id and im.id = cmt.machine_id " +
-
                     "    and exists (select 1 from inv_security_xccdf_compliance isxc " +
-
                     "    where isxc.assigned_target_name = ctm.memberof_name)";
 
 
-
             debug("GetTotalMachineCountData() Query Str :" + queryStr);
-
             PreparedStatement st = pool.getConnection().prepareStatement(queryStr);
-
-
 
             ResultSet rs = st.executeQuery();
 
             try {
-
                 while (rs.next()) {
-
-                    count = rs.getInt(1);
-
+                   count = rs.getInt(1);
                 }
 
             } finally {
-
                 rs.close();
-
             }
-
         }
 
         public int getCount() {
-
             return count;
-
         }
 
     }
@@ -1206,8 +952,6 @@ public class DashboardInfoDetails implements ComplianceConstants {
             }
         }
 
-
-
         public List<MachineBean> getMachineBeanList() {
             return list;
         }
@@ -1217,7 +961,6 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
     }
-
 
 
     static class GetAllEndpointMachinesData extends QueryExecutor {
@@ -1483,18 +1226,8 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
-            String sqlStr = "select  t1.severity as \"SeverityName\" , max(t1.cvss_score) + 100 as \"Count\"\n" +
-                    "         from inv_sec_oval_defn_cve_details t1,\n" +
-                    "              security_cve_patch_info t2, ldapsync_targets_marimba ltm \n" +
-                    "               where t1.reference_name not like 'cpe%'\n" +
-                    "                and t1.severity != 'null'\n" +
-                    "                and t1.repository_id = t2.repository_id\n" +
-                    "                and exists (select 1 from all_patch ap, ldapsync_targets_marimba ltm \n" +
-                    "                   where  (ap.repository_id = t1.repository_id) \n" +
-                    "                   and (ap.current_status = 'Missing' or  ap.current_status = 'Installed' or ap.current_status = 'Effectively-installed'))\n" +
-                    "         group by  t1.severity";
 
-            String sqlStr2 = " select  t1.severity as \"SeverityName\" , count(t1.severity) as \"Count\"\n" +
+            String sqlStr = " select  t1.severity as \"SeverityName\" , count(t1.severity) as \"Count\"\n" +
                     "         from inv_sec_oval_defn_cve_details t1,\n" +
                     "              security_cve_patch_info t2 \n" +
                     "               where t1.reference_name not like 'cpe%'\n" +
@@ -1532,22 +1265,11 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
-            String sqlStr = "select  severity, min(cvss_score) as 'vulnerable_count' , max(published_date) Identified_date,datediff(day,max(published_date),getdate()) ageing_days\n" +
-                    "from inv_security_oval_compliance a, inv_sec_oval_defn_cve_details b where \n" +
-                    "a.content_id = b.content_id \n" +
-                    "and\n" +
-                    "b.severity in (select distinct(severity) from inv_sec_oval_defn_cve_details where severity != 'null') \n" +
-                    "and b.severity != ' '\n" +
-                    "and overall_compliant_level like '%'\n" +
-                    "and published_date >= getdate()-200\n" +
-                    "group by severity\n" +
-                    "order by severity";
-
-            String sqlStr2 = "select  severity, count(severity) as 'vulnerable_count' , min(published_date) Identified_date,min(datediff(day,published_date,getdate())) ageing_days\n" +
+            String sqlStr = "select  severity, count(severity) as 'vulnerable_count' , min(published_date) Identified_date,min(datediff(day,published_date,getdate())) ageing_days\n" +
                     "from inv_security_oval_compliance a, inv_sec_oval_defn_cve_details b where \n" +
                     "a.content_id = b.content_id and\n" +
                     "b.definition_severity in (select distinct(severity) from inv_sec_oval_defn_cve_details where severity !=' ') \n" +
-                    "and b.severity != ' '\n" +
+                    "and b.severity != ' '  and b.severity != 'null' \n" +
                     "and overall_compliant_level like 'NON%'\n" +
                     "group by severity \n" +
                     "order by severity";
@@ -1689,17 +1411,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
-            String sqlStr = "select distinct ap.repository_id as \"PatchName\", t2.severity as \"Severity\" ,count(im.id) as \"AffectedMachines\"\n" +
-                    "                    from inv_sec_oval_defn_cve_details t1, all_patch ap, security_cve_info t2, inv_machine im\n" +
-                    "                    where ap.repository_id=t1.repository_id\n" +
-                    "                    and (t1.reference_name = t2.cve_name and t1.severity != 'null' and t1.severity = 'Critical')\n" +
-                    "                    and im.id = ap.machine_id\n" +
-                    "                    and exists (select 1 from all_patch ap where\n" +
-                    "                    (ap.repository_id = t1.repository_id) \n" +
-                    "                       and (ap.current_status = 'Missing' or ap.current_status = 'Available-SP' or ap.current_status = 'Effectively-installed'))\n" +
-                    "                    group by ap.repository_id, t2. severity, im.id";
-
-            String sqlStr2 = " select distinct ap.repository_id as \"PatchName\", t2.severity as \"Severity\" ,count(distinct im.id) as \"AffectedMachines\"\n" +
+            String sqlStr = " select distinct ap.repository_id as \"PatchName\", t2.severity as \"Severity\" ,count(distinct im.id) as \"AffectedMachines\"\n" +
                     "                    from inv_sec_oval_defn_cve_details t1, all_patch ap, security_cve_info t2, inv_machine im\n" +
                     "                    where ap.repository_id=t1.repository_id\n" +
                     "                    and (t1.reference_name = t2.cve_name and t1.severity != 'null' and t1.severity = 'Critical')\n" +
@@ -1744,18 +1456,8 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
-            String sqlStr = "select distinct t1.reference_name as \"CVE_ID\", t2.severity as \"Severity\" ,count(im.id) as \"Affected_Machines\", ap.repository_id as \"Patch_ID\"\n" +
-                    "from inv_sec_oval_defn_cve_details t1, all_patch ap, security_cve_info t2, inv_machine im\n" +
-                    "where \n" +
-                    "ap.repository_id=t1.repository_id\n" +
-                    "and (t1.reference_name = t2.cve_name and t1.severity != 'null')\n" +
-                    "and im.id = ap.machine_id\n" +
-                    "and exists (select 1 from all_patch ap where \n" +
-                    "                        (ap.repository_id = t1.repository_id) \n" +
-                    "                        and (ap.current_status = 'Missing' or ap.current_status = 'Available-SP' or ap.current_status = 'Effectively-installed'))\n" +
-                    "group by t1.reference_name, t2. severity, im.id, ap.repository_id";
-            
-            String sqlStr2 = "select distinct  t1.reference_name as \"CVE_ID\", t2.severity as \"Severity\" ,count(distinct im.id) as \"Affected_Machines\", ap.repository_id as \"Patch_ID\"\n" +
+
+            String sqlStr = "select distinct  t1.reference_name as \"CVE_ID\", t2.severity as \"Severity\" ,count(distinct im.id) as \"Affected_Machines\", ap.repository_id as \"Patch_ID\"\n" +
                     "from inv_sec_oval_defn_cve_details t1, all_patch ap, security_cve_info t2, inv_machine im\n" +
                     "where \n" +
                     "ap.repository_id=t1.repository_id\n" +
@@ -1826,9 +1528,11 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
         protected void execute(IStatementPool pool) throws SQLException {
 
-            String vscanSQL = "select COUNT(*) as vscan_count from inv_machine im " +
-            " where exists (select 1 from inv_security_oval_compliance  soc where soc.machine_id = im.id)";
-           // "and UPPER(sxc.assigned_target_name) = UPPER('"+ targetID +"'))";
+
+            String vscanSQL = "select COUNT(*) as vscan_count from inv_machine im \n" +
+                    "            where exists (select 1 from inv_security_oval_compliance  soc where \n" +
+                    "  soc.machine_id = im.id and soc.overall_compliant_level not like 'NOT APPLICABLE%')";
+            // "and UPPER(sxc.assigned_target_name) = UPPER('"+ targetID +"'))";
 
             String patchScanSQL = "select COUNT(*) as patchscan_count from inv_machine im \n" +
                     " where exists (select 1 from all_patch ap where ap.machine_id = im.id) ";
@@ -1880,7 +1584,6 @@ public class DashboardInfoDetails implements ComplianceConstants {
             PreparedStatement st = pool.getConnection().prepareStatement("select  COUNT(*) as 'Scanned Machines Count' " +
                     " from inv_os ios where product like '%"+osType+"%' and exists (select 1 from ldapsync_targets_marimba ltm " +
                     " where ltm.marimba_table_primary_id = ios.machine_id)");
-
 
             ResultSet rs = st.executeQuery();
             try {
@@ -1950,7 +1653,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
             if ("reporting".equalsIgnoreCase(complianceType)) {
                 st = pool.getConnection().prepareStatement("select count(*) as 'Count', ComplianceStaus as 'Type' from derived_inv_compliance dic \n" +
-                        "where dic.scantime > (select getutcdate() - 100) \n" +
+                        "where dic.scantime > (select getutcdate() - 1) \n" +
                         "group by ComplianceStaus having count (*) > 0");
             } else if ("security".equalsIgnoreCase(complianceType)) {
                 st = pool.getConnection().prepareStatement("select count(distinct machinename) as 'Count' , overall_compliant_level as 'Type' \n" +
@@ -2022,5 +1725,3 @@ public class DashboardInfoDetails implements ComplianceConstants {
     }
 
 }
-
-

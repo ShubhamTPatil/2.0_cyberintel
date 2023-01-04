@@ -250,10 +250,7 @@ $(function () {
             patchesArray.push($(this).val());
         })
 
-        //alert("Selected Patch ID: "+patchesArray);
-
-        // var rows_selected = topVulDataTable.rows({ selected: true }).data();
-        // alert(rows_selected);
+        alert("Selected Patches for Mitigation: "+patchesArray);
 
         var queryStr = "?patchids=" + patchesArray;
         $.ajax({
@@ -278,7 +275,7 @@ $(function () {
             patchesArray.push($(this).val());
         })
         console.log(patchesArray);
-        //alert("Selected Patches: "+patchesArray);
+        alert("Selected Patches for Mitigation: "+patchesArray);
 
         var queryStr = "?patchids=" + patchesArray;
         $.ajax({
@@ -314,7 +311,11 @@ $(function () {
             patchgroups.push($(this).val());
         })
         // console.log(patchgroups);
-        //alert("selected patch groups with machines --> "+patchgroups);
+        if (patchgroups.length == 0) {
+          alert("No machines and patch groups selected for mitigate operation..");
+          return;
+        }
+        alert("Selected Patch Groups with Machines for Mitigation: "+patchgroups);
         var queryStr = "?machinepatchgroups=" + patchgroups;
         $.ajax({
             url: './newDashboard.do' + queryStr,
