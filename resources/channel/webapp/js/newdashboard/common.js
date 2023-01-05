@@ -27,6 +27,11 @@ $(function () {
         location.reload();
     });
     
+    $('.modal').modal({
+	    backdrop: 'static',
+	    keyboard: false
+	})
+    
 });
 
 function sidebarToggle() {

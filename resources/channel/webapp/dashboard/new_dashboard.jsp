@@ -20,9 +20,7 @@
 <link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/datatables.min.css"/>
 <link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/style.css"/>
 
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"
-    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-<!-- <script type="text/javascript" src="/spm/js/newdashboard/jquery.min.js"></script> -->
+<script type="text/javascript" src="/spm/js/newdashboard/jquery.min.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/chart.umd.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/datatables.min.js"></script>
@@ -35,7 +33,6 @@ var topVulDataTable;
 
 $(function () {
 
-    $('.nav-selected').removeClass('nav-selected');
     $('#dashboard').addClass('nav-selected');
     
     var sum = 0;
@@ -143,7 +140,6 @@ $(function () {
     var topVulData = '<bean:write name="newDashboardForm" property="topVulnerableData"/>';
     topVulData = topVulData.replace(/&quot;/g,'"');
     topVulData=JSON.parse(topVulData);
-    let topVulIndex = 0;
     topVulDataTable = $('#topVulTable').DataTable({
         "destroy": true, // In order to reinitialize the datatable
         "pagination": true, // For Pagination
@@ -220,6 +216,10 @@ $(function () {
             }
         }
     });
+    
+    $("#topVulModal").on("hidden.bs.modal", function () {
+        $('#topVulModalTable').DataTable().clear();
+    });
 
     var notCheckedInInfo;
     var notCheckedInInfo2;
@@ -250,7 +250,7 @@ $(function () {
             patchesArray.push($(this).val());
         })
 
-        alert("Selected Patches for Mitigation: "+patchesArray);
+        console.log("Selected Patches for Mitigation: "+patchesArray);
 
         var queryStr = "?patchids=" + patchesArray;
         $.ajax({
@@ -275,7 +275,7 @@ $(function () {
             patchesArray.push($(this).val());
         })
         console.log(patchesArray);
-        alert("Selected Patches for Mitigation: "+patchesArray);
+        console.log("Selected Patches for Mitigation: "+patchesArray);
 
         var queryStr = "?patchids=" + patchesArray;
         $.ajax({
@@ -312,10 +312,10 @@ $(function () {
         })
         // console.log(patchgroups);
         if (patchgroups.length == 0) {
-          alert("No machines and patch groups selected for mitigate operation..");
+          console.log("No machines and patch groups selected for mitigate operation..");
           return;
         }
-        alert("Selected Patch Groups with Machines for Mitigation: "+patchgroups);
+        console.log("Selected Patch Groups with Machines for Mitigation: "+patchgroups);
         var queryStr = "?machinepatchgroups=" + patchgroups;
         $.ajax({
             url: './newDashboard.do' + queryStr,
@@ -325,7 +325,7 @@ $(function () {
             beforeSend: function() { $('#applyPatchesRes').text("Patches Deployment has been initiated...");},
             complete: function (xhr, status) {},
             success: function (response) {
-            	//alert(response);
+            	//console.log(response);
             	$('#applyPatchesRes').text(response);
         }});
 
@@ -335,7 +335,6 @@ $(function () {
     var prtyPatchesData = '<bean:write name="newDashboardForm" property="priorityPatchesData"/>';
     prtyPatchesData = prtyPatchesData.replace(/&quot;/g,'"');
     prtyPatchesData=JSON.parse(prtyPatchesData);
-    let patchesIndex = 0;
 
    $('#criticalPatchesTable').DataTable({
        "destroy": true, // In order to reinitialize the datatable
@@ -454,7 +453,6 @@ function populateNotCheckedInInfo(notCheckedInData) {
 }
 
 function createMitigateTable(aaData) {
-	let topVulModalIndex = 0;
     $('#topVulModalTable').DataTable({
         "destroy": true, // In order to reinitialize the datatable
         "pagination": true, // For Pagination

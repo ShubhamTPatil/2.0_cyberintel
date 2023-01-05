@@ -53,7 +53,7 @@
                         targetType = 'custom';
                     }
                     tbodyDetails = tbodyDetails + "<tr><td>"+contentTitle+"</td><td>"+profileTitle+"</td><td>Windows - " + type + "</td><td>" + assessmentType + "</td>" +
-                        "<td><button type='button' class='btn btn-primary' onClick='editProfileDetails(\""+ contentFileName +"\",\"" + profileId +"\",\"" + profileTitle +"\",\""+ targetType+"\")'><i class='fa fa-edit'></i>Edit</button></tr>";
+                        "<td><button type='button' class='btn btn-sm btn-primary' onClick='editProfileDetails(\""+ contentFileName +"\",\"" + profileId +"\",\"" + profileTitle +"\",\""+ targetType+"\")'><i class='fa fa-edit'></i>&nbsp;Edit</button></tr>";
                 }
             }
         }
@@ -77,7 +77,7 @@
                     }
 
                     tbodyDetails = tbodyDetails + "<tr><td>"+contentTitle+"</td><td>"+profileTitle+"</td><td>Non Windows - " + type +"</td><td>" + assessmentType + "</td>" +
-                        "<td><button type='button' class='btn btn-info bg-aqua-active' onClick='editProfileDetails(\""+ contentFileName +"\",\"" + profileId +"\", \"" + profileTitle +"\",\"" + targetType + "\")'><i class='fa fa-edit'></i>Edit</button></tr>";
+                        "<td><button type='button' class='btn btn-sm btn-primary' onClick='editProfileDetails(\""+ contentFileName +"\",\"" + profileId +"\", \"" + profileTitle +"\",\"" + targetType + "\")'><i class='fa fa-edit'></i>&nbsp;Edit</button></tr>";
                 }
             }
         }

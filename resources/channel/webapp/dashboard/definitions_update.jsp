@@ -44,7 +44,6 @@
 
 	$(function() {
 
-		$('.nav-selected').removeClass('nav-selected');
 		$('#definitionsUpdate').addClass('nav-selected');
 
 		let defUpdateData = [
@@ -642,7 +641,7 @@
 	            data: {action: 'vdef'},            
 	            success: function (response) {
 	                 
-	                 $('#updateSuccessMessage').text(JSON.stringify(response));
+	                 $('#updateSuccessMessage').text(response);
 	                 $('#updateSuccessModal').modal('show');
 
 	            }});
@@ -859,7 +858,7 @@
 						<br />
 
 
-						<div class="p-3 mb-2 text-dark"
+						<div class="p-2 mb-2 text-dark"
 							style="font-size: medium; background-color: #d9edf7;">
 							<i class="fa-solid fa-circle-info text-primary"></i> New security
 							definitions are available.

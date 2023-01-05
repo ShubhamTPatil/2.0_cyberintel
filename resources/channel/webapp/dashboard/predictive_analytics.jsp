@@ -31,7 +31,6 @@
 
 $(function () {
 
-	$('.nav-selected').removeClass('nav-selected');
     $('#predictiveAnalytics').addClass('nav-selected');
 
 });

@@ -12,14 +12,11 @@
     <webapps:helpContext context="sm" topic="del_prev" />
     
     
-    <script type="text/javascript">
+<script type="text/javascript">
 
-    $(function () {
-		$('.nav-selected').removeClass('nav-selected');
-		$('#assignment').addClass('nav-selected');
-	}
-	
-	</script>
+$(function () { $('#assignments').addClass('nav-selected'); });
+
+</script>
     
 <%@ include file="/includes/endHeadSection.jsp" %>
 <%@ page import = "java.util.*" %>
@@ -38,8 +35,8 @@ List<Target> diffUserPendingPolicy = (List<Target>)session.getAttribute(IWebAppC
 
           <div class="d-flex bd-highlight justify-content-center">
             <div class="p-2 flex-grow-1 bd-highlight">
-              <span class="pagename">Assignment <span style="font-size: small">>Delete Preview</span> </span>
-              <span data-bs-toggle="tooltip" data-bs-placement="right" title="Title"><i
+              <span class="pagename">Assignments<span style="font-size: small">&nbsp;>&nbsp;Delete Preview</span> </span>
+              <span data-bs-toggle="tooltip" data-bs-placement="right" title="Delete Preview"><i
                   class="fa-solid fa-circle-info text-primary"></i></span>
             </div>
             <div class="refresh p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right"
@@ -59,13 +56,11 @@ List<Target> diffUserPendingPolicy = (List<Target>)session.getAttribute(IWebAppC
 
 		    <html:form styleId="targetDetailsForm" action="/distDeleteSave.do" target="_top">
 
-
-            <div align="center">
             
             <div class="card">
             <div class="card-body">
             
-            <div style="text-align:left; width:800px;">
+            <div>
               
                   <logic:present name="session_multitgbool">
                 <% if((null != sameUserPendingPolicy && sameUserPendingPolicy.size() > 0) && (null != diffUserPendingPolicy && diffUserPendingPolicy.size() > 0)) {%>
@@ -118,28 +113,26 @@ List<Target> diffUserPendingPolicy = (List<Target>)session.getAttribute(IWebAppC
             	<%}} %>
                 </logic:notPresent>
 
+			<div class="card-title">
+				<strong><webapps:pageText key="Targets" /></strong>
+			</div>
 
+           <table border="0" cellspacing="0" cellpadding="3" style="border-spacing:0 15px;">
+				<logic:iterate id="target" name='page_tgs_todelete' type="com.marimba.apps.subscription.common.objects.Target">
+				<tr>
+						<td>
+						<% //String tgLabel="target"; %>
+                        <bean:define id="ID" name="target" property="id" toScope="request"/>
+                        <bean:define id="Name" name="target" property="name" toScope="request"/>
+                        <bean:define id="Type" name="target" property="type" toScope="request"/>
+                        <jsp:include page="/includes/target_display_single.jsp"/>
+						</td>
+				</tr>
+				</logic:iterate>
 
-            <div class="itemStatus" style="width:800px; ">
-              <table width="100%" border="0" cellspacing="0" cellpadding="3">
-            				<tr>
-            						<td><strong><webapps:pageText key="Targets" /></strong></td>
-            				</tr>
-
-            				<logic:iterate id="target" name='page_tgs_todelete' type="com.marimba.apps.subscription.common.objects.Target">
-            				<tr>
-            						<td>
-            						<% //String tgLabel="target"; %>
-                                    <bean:define id="ID" name="target" property="id" toScope="request"/>
-                                    <bean:define id="Name" name="target" property="name" toScope="request"/>
-                                    <bean:define id="Type" name="target" property="type" toScope="request"/>
-                                    <jsp:include page="/includes/target_display_single.jsp"/>
-            						</td>
-            				</tr>
-            				</logic:iterate>
-
-              </table>
-            </div>
+           </table>
+              
+              <br/>
 
             <logic:equal name="display_delete_props" value="false">
               <html:hidden property="page_pkgs_delete_all" value="false" />
@@ -153,7 +146,7 @@ List<Target> diffUserPendingPolicy = (List<Target>)session.getAttribute(IWebAppC
 </div>
 </div>
 </div>
-</div>
+
             </html:form>
 
 		</section>

@@ -29,9 +29,7 @@
 
 <script type="text/javascript">
 
-
 $(function () {
-    $('.nav-selected').removeClass('nav-selected');
     $('#settings').addClass('nav-selected');
 });
 

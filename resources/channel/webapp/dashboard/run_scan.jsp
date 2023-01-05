@@ -38,7 +38,6 @@
 
     $(function () {
 
-      $('.nav-selected').removeClass('nav-selected');
       $('#runScan').addClass('nav-selected');
       
       var resp = '<bean:write name="newRunScanForm" property="runScanJson"/>';

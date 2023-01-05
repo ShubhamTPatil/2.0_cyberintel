@@ -28,7 +28,6 @@
 <%@ include file="/includes/startHeadSection.jsp" %>
 <title><webapps:pageText key="m6" type="global"/></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="/shell/common-rsrc/css/main.css" type="text/css">
 
 <%
     String textPfx = "Target";
@@ -75,16 +74,13 @@
 
 <script type="text/javascript">
 
-$(function () {
-	$('.nav-selected').removeClass('nav-selected');
-	$('#assignment').addClass('nav-selected');
-}
+$(function () { $('#assignments').addClass('nav-selected'); });
 	
 </script>
 
 <%@ include file="/includes/endHeadSection.jsp" %>
 
-<body onResize="domMenu_activate('domMenu_keramik'); repositionMenu()">
+<body>
 
 <script type="text/javascript" src="/shell/common-rsrc/js/wz_tooltip.js"></script>
 <main id="main" class="main">
@@ -92,8 +88,8 @@ $(function () {
 
           <div class="d-flex bd-highlight justify-content-center">
             <div class="p-2 flex-grow-1 bd-highlight">
-              <span class="pagename">Assignment <span style="font-size: small">>Delete Confirmation</span> </span>
-              <span data-bs-toggle="tooltip" data-bs-placement="right" title="Title"><i
+              <span class="pagename">Assignments<span style="font-size: small">&nbsp;>&nbsp;Delete Confirmation</span> </span>
+              <span data-bs-toggle="tooltip" data-bs-placement="right" title="Policy Delete Confirmation"><i
                   class="fa-solid fa-circle-info text-primary"></i></span>
             </div>
             <div class="refresh p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right"
@@ -103,43 +99,45 @@ $(function () {
               <i class="fa-solid fa-download"></i>
             </div>
             <div class="p-2 bd-highlight text-primary align-self-center">
-            <a href="/shell/dashboard.do"><i class="fa-solid fa-chevron-left" style="margin-right: 5px;"></i>CMS Home</a>
+            	<a href="/shell/dashboard.do"><i class="fa-solid fa-chevron-left" style="margin-right: 5px;"></i>CMS Home</a>
             </div>
           </div>
 
         </div>
     	<section class="section dashboard">
 
-		<div style="text-align: center">
-
 			<div class="card">
 			<div class="card-body">
 
-                <div class="statusMessage" id="OK" style="width:800px; margin:0 auto;">
+                <div class="card-title">
                     <%if(isApprovalPolicy) {%>
                         <%if(isServiceNowApproval) {%>
-                            <h6><strong><webapps:pageText key="approvalenabled.servicenow1"/><b><%=serviceNowLatestChangeRequestId%></b><webapps:pageText key="approvalenabled.servicenow2"/></strong><br><webapps:pageText key='<%= textPfx + "Desc" %>' /></h6>
+                            <h6><strong><webapps:pageText key="approvalenabled.servicenow1"/><b><%=serviceNowLatestChangeRequestId%></b><webapps:pageText key="approvalenabled.servicenow2"/></strong></h6>
                         <% } else if(isRemedyForceApproval) {%>
-                            <h6><strong><webapps:pageText key="approvalenabled.remedyforce1"/><b><%=remedyForceLatestChangeRequestId%></b><webapps:pageText key="approvalenabled.remedyforce2"/></strong><br><webapps:pageText key='<%= textPfx + "Desc" %>' /></h6>
+                            <h6><strong><webapps:pageText key="approvalenabled.remedyforce1"/><b><%=remedyForceLatestChangeRequestId%></b><webapps:pageText key="approvalenabled.remedyforce2"/></strong></h6>
                         <% } else {%>
-                            <h6><strong><webapps:pageText key="Confirm"/></strong><webapps:pageText key="approvalenabled"/><br><webapps:pageText key='<%= textPfx + "Desc" %>' /></h6>
+                            <h6><strong><webapps:pageText key="Confirm"/></strong><webapps:pageText key="approvalenabled"/></h6>
                         <% }%>
                     <% } else { %>
-                    <h6><strong><webapps:pageText key="Confirm"/></strong><br><webapps:pageText key='<%= textPfx + "Desc" %>' /></h6>
+                    <h6><strong><webapps:pageText key="Confirm"/></strong></h6>
                     <%} %>
+                    
+                </div>
+                
+                	<webapps:pageText key='<%= textPfx + "Desc" %>' />
+
+					<br/>
 
                     <table cellspacing="0" cellpadding="2" border="0">
                         <tbody>
                             <%  if (LDAPConnUtils.getInstance(main.getTenantName()).isADWithAutoDiscovery(main.getLDAPConfig())) { %>
                             <tr>
-                                <td valign="middle">&nbsp;</td>
-                                <td valign="middle"><webapps:pageText key="ADreplicate" />  </td>
+                                <td><webapps:pageText key="ADreplicate" />  </td>
                             </tr>
                             <% } %>
 
                             <tr>
-                                <td valign="middle">&nbsp;</td>
-                                <td valign="middle">
+                                <td>
                                     <br>
                                     <logic:notPresent name="<%=multibool%>">
                                         <html:link page="<%=singleViewPage%>"><webapps:pageText key='<%= textPfx + "View" %>'/></html:link> &nbsp;
@@ -152,11 +150,8 @@ $(function () {
                         </tbody>
                     </table>
 
-                </div>
-
             </div>
         
-		</div>
 		</div>
 
 		</section>

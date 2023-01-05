@@ -26,7 +26,7 @@
 <%@ include file="/includes/startHeadSection.jsp" %>
 <title><webapps:pageText key="m6" type="global"/></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="/shell/common-rsrc/css/main.css" type="text/css">
+<!-- <link rel="stylesheet" href="/shell/common-rsrc/css/main.css" type="text/css"> -->
 
 <%
     String textPfx = "Target";
@@ -71,49 +71,75 @@
 	boolean hasPolicyChange = main.hasPolicyChange();
 %>
 
+<script type="text/javascript">
+
+$(function () {
+	$('#assignments').addClass('nav-selected');
+});
+
+</script>
+
 <%@ include file="/includes/endHeadSection.jsp" %>
 
-<body onResize="domMenu_activate('domMenu_keramik'); repositionMenu()">
-<% if(null != EmpirumContext) {%>
-<webapps:tabs tabset="ldapEmpirumView" tab="tgtview"/>
-<% } else { %>
-<webapps:tabs tabset="main" tab="tgtview"/>
-<% } %>
-<div style="text-align: center">
-    <div class="commonPadding">
+<main id="main" class="main">
+    <div class="pagetitle">
 
-        <div class=pageheader style="padding-bottom:50px;"><span class=title><webapps:pageText key="Title"/></span></div>
-
-        <div class="statusMessage" id="OK" style="width:800px; margin:0 auto;">
-            <h6><webapps:pageText key="Confirm"/></h6>
-            <p>
-                <%if(isApprovalPolicy) {%>
-                    <%if(isServiceNowApproval) {%>
-                        <webapps:pageText key="approvalenabled.servicenow1"/><b><%=serviceNowLatestChangeRequestId%></b><webapps:pageText key="approvalenabled.servicenow2"/><webapps:pageText key='<%= textPfx + "Desc" %>' /><br>&nbsp;<br>
-                    <% } else if(isRemedyForceApproval) {%>
-                        <webapps:pageText key="approvalenabled.remedyforce1"/><b><%=remedyForceLatestChangeRequestId%></b><webapps:pageText key="approvalenabled.remedyforce2"/><webapps:pageText key='<%= textPfx + "Desc" %>' /><br>&nbsp;<br>
-                    <% } else {
-						if(hasPolicyChange) { %>
-							<webapps:pageText key="approvalenabled"/><webapps:pageText key='<%= textPfx + "Desc" %>' /><br>&nbsp;<br>
-						<% } else { %>
-							<webapps:pageText key="approvalenabled.nochange"/><webapps:pageText key='<%= textPfx + "Desc" %>' /><br>&nbsp;<br>
-						<% } 
-					}%>
-                <% } else { %>
-                <webapps:pageText key='<%= textPfx + "Desc" %>' /><br>&nbsp;<br>
-                <%}
-                    if (LDAPConnUtils.getInstance(main.getTenantName()).isADWithAutoDiscovery(main.getLDAPConfig())) {
-                %>
-                <webapps:pageText key="ADreplicate" /><br>&nbsp;<br>
-                <% } %>
-                <logic:notPresent name="<%=multibool%>">
-                    <html:link page="<%=singleViewPage%>"><webapps:pageText key='<%= textPfx + "View" %>'/></html:link> &nbsp;
-                </logic:notPresent>
-                <logic:present name="<%=multibool%>">
-                    <html:link page="<%=multiViewPage%>"><webapps:pageText key='<%= textPfx + "View" %>'/></html:link> &nbsp;
-                </logic:present>
-            </p>
+      <div class="d-flex bd-highlight justify-content-center">
+        <div class="p-2 flex-grow-1 bd-highlight">
+          <span class="pagename">Assignments<span style="font-size: small;">&nbsp;>&nbsp;<webapps:pageText key="Title"/></span></span>
+          <span data-bs-toggle="tooltip" data-bs-placement="right" title="Policy Confirmation"><i
+              class="fa-solid fa-circle-info text-primary"></i></span>
         </div>
+        <div class="refresh p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right"
+          title="Refresh" style="cursor: pointer;"><i class="fa-solid fa-arrows-rotate"></i></div>
+        <div class="p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right"
+          title="Download" style="cursor: pointer;">
+          <i class="fa-solid fa-download"></i>
+        </div>
+        <div class="p-2 bd-highlight text-primary align-self-center"> <a href="/shell/dashboard.do"> <i class="fa-solid fa-chevron-left"
+              style="margin-right: 5px;"></i>CMS Home</a>
+        </div>
+      </div>
+
     </div>
-</div>
+
+    <section class="section dashboard">
+	    <div class="card">
+	    	<div class="card-body">
+	    		<div class="card-title">
+	    			<strong><webapps:pageText key="Confirm"/></strong>
+	    		</div>
+	    		
+	    		<p>
+	                <%if(isApprovalPolicy) {%>
+	                    <%if(isServiceNowApproval) {%>
+	                        <webapps:pageText key="approvalenabled.servicenow1"/><b><%=serviceNowLatestChangeRequestId%></b><webapps:pageText key="approvalenabled.servicenow2"/><webapps:pageText key='<%= textPfx + "Desc" %>' /><br>&nbsp;<br>
+	                    <% } else if(isRemedyForceApproval) {%>
+	                        <webapps:pageText key="approvalenabled.remedyforce1"/><b><%=remedyForceLatestChangeRequestId%></b><webapps:pageText key="approvalenabled.remedyforce2"/><webapps:pageText key='<%= textPfx + "Desc" %>' /><br>&nbsp;<br>
+	                    <% } else {
+							if(hasPolicyChange) { %>
+								<webapps:pageText key="approvalenabled"/><webapps:pageText key='<%= textPfx + "Desc" %>' /><br>&nbsp;<br>
+							<% } else { %>
+								<webapps:pageText key="approvalenabled.nochange"/><webapps:pageText key='<%= textPfx + "Desc" %>' /><br>&nbsp;<br>
+							<% } 
+						}%>
+	                <% } else { %>
+	                <webapps:pageText key='<%= textPfx + "Desc" %>' /><br>&nbsp;<br>
+	                <%}
+	                    if (LDAPConnUtils.getInstance(main.getTenantName()).isADWithAutoDiscovery(main.getLDAPConfig())) {
+	                %>
+	                <webapps:pageText key="ADreplicate" /><br>&nbsp;<br>
+	                <% } %>
+	                <logic:notPresent name="<%=multibool%>">
+	                    <html:link page="<%=singleViewPage%>"><webapps:pageText key='<%= textPfx + "View" %>'/></html:link> &nbsp;
+	                </logic:notPresent>
+	                <logic:present name="<%=multibool%>">
+	                    <html:link page="<%=multiViewPage%>"><webapps:pageText key='<%= textPfx + "View" %>'/></html:link> &nbsp;
+	                </logic:present>
+	            </p>
+	    		
+	    	</div>
+	    </div>
+    </section>
+</main>
 <%@ include file="/includes/footer.jsp" %>
