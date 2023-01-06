@@ -14,10 +14,11 @@ import org.apache.struts.action.ActionForm;
  * @author Inmkaklij
  * @version 1.1, 09/25/2001
  */
-public class VdefTransferForm extends AbstractForm {
+public class DefinitionUpdateForm extends AbstractForm {
 
 	private String vdefDefaultValue;
 	private String responseMsg;
+	private String definationUpdateResponse;
 
 	public String getResponseMsg() {
 		return responseMsg;
@@ -35,4 +36,11 @@ public class VdefTransferForm extends AbstractForm {
 		this.vdefDefaultValue = vdefDefaultValue;
 	}
 
+	public String getDefinationUpdateResponse() {
+		return definationUpdateResponse;
+	}
+
+	public void setDefinationUpdateResponse(String definationUpdateResponse) {
+		this.definationUpdateResponse = definationUpdateResponse;
+	}
 }

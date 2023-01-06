@@ -676,7 +676,7 @@
 	<jsp:include page="sidebar.jsp" />
 
 	<html:form name="vdefTransferForm" id="def_Update_formId"
-		action="/spm/vdefTransfer.do" type="com.marimba.apps.subscriptionmanager.webapp.forms.VdefTransferForm">	
+		action="/spm/vdefTransfer.do" type="com.marimba.apps.subscriptionmanager.webapp.forms.DefinitionUpdateForm">	
 		<html:hidden property="action"/>
 		
 		

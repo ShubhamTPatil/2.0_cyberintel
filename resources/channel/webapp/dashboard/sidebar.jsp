@@ -9,9 +9,10 @@
         data-bs-placement="right" title="Predictive Analytics"> <i class="fa-solid fa-network-wired"></i> </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="definitionsUpdate" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/dashboard/definitions_update.jsp"
+ 	  <a class="nav-link" id="definitionsUpdate" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/definitions_update.do"
           title="Definitions Update">
-          <i class="fa-solid fa-recycle"></i> </a>
+          <i class="fa-solid fa-recycle"></i> 
+      </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" id="assignments" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/initTargetView2.do"

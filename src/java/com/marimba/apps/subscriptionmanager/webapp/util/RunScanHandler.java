@@ -114,7 +114,12 @@ public class RunScanHandler {
 						if (line == null) {
 							break;
 						}
-						System.out.println(" Command execution result :: " + line);
+
+						if (line.contains("not recognized")) {
+							throw new Exception(line);
+						} else {
+							System.out.println(" Command execution result :: " + line);
+						}
 					}
 				}
 			} else {

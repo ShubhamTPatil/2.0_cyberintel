@@ -1,6 +1,7 @@
 package com.marimba.apps.securitymgr.compliance.util;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.Properties;
@@ -35,11 +36,12 @@ public class VdefCarTransferHandler {
 
 			String copyChannelCommand = "runchannel " + channelCopyURL + " -src " + srcURL + " -dst " + destURL;
 
-			System.out.println(" Command is ready :" + copyChannelCommand);
+			ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/C", copyChannelCommand)
+					.directory(new File(marimbaSetupPath + "\\Tuner\\"));
 
-			ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/" + driveName,
-					"cd \"" + "" + marimbaSetupPath + "\\Tuner\\\"" + "" + " && " + copyChannelCommand);
-
+			System.out.println("Working Directory : " + builder.directory().getPath() + "\n Command to execute ::"
+					+ builder.command().get(2));
+			
 			builder.redirectErrorStream(true);
 			Process p = builder.start();
 			BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -49,8 +51,13 @@ public class VdefCarTransferHandler {
 				if (line == null) {
 					break;
 				}
-				System.out.println(line);
-				responseMessage = "vDef file transfer has been triggered .";
+
+				if (line.contains("not recognized")) {
+					throw new Exception(line);
+				} else {
+					System.out.println(line);
+					responseMessage = "vDef file transfer has been triggered .";
+				}
 			}
 		} catch (Exception e) {
 			responseMessage = "vDef file transfer is failed";
