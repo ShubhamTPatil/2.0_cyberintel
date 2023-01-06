@@ -29,7 +29,6 @@ public class VdefCarTransferHandler {
 			Resources prop = new Resources("vdefFileTransferLocation.properties");
 
 			String channelCopyURL = prop.getString("vdef.channel.url");
-			//System.out.println(" Test key :: " + prop.getObject("vdef.channel.url"));
 			String srcURL = prop.getString("vdef.source.download");
 			String destURL = prop.getString("vdef.source.upload");
 			System.out.println(" channelCopyURL is :: " + channelCopyURL);
@@ -51,7 +50,7 @@ public class VdefCarTransferHandler {
 					break;
 				}
 				System.out.println(line);
-				responseMessage = "vDef file has been transfered successfully";
+				responseMessage = "vDef file transfer has been triggered .";
 			}
 		} catch (Exception e) {
 			responseMessage = "vDef file transfer is failed";

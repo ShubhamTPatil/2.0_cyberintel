@@ -5,6 +5,7 @@
 package com.marimba.apps.subscriptionmanager.webapp.util;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,6 +14,7 @@ import java.util.List;
 
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
 import com.marimba.apps.subscriptionmanager.webapp.forms.RunScanForm;
+import com.marimba.webapps.common.Resources;
 
 /**
  * RunScanHandler Class w.r.t fetch run scan results.
@@ -22,6 +24,10 @@ import com.marimba.apps.subscriptionmanager.webapp.forms.RunScanForm;
  */
 
 public class RunScanHandler {
+
+	private static final String BCAC_HOME = "BCAC_HOME";
+	private static final String RUN_SCAN_CLI_PROPERTIES = "runScanCli.properties";
+	private static final String V_INSPECTOR_CHANNEL_URL = "vInspector.channel.url";
 
 	SubscriptionMain main;
 
@@ -74,11 +80,12 @@ public class RunScanHandler {
 		// <Take TunerAdministrator of CMS from map.txt>
 		// -start -tuner <List of machines having format<IP:RCP port>>
 		// -channel <VInspector URL>.
-		System.out.println(" Environment variable :: " + System.getenv("BCAC_HOME"));
+		Resources prop = new Resources(RUN_SCAN_CLI_PROPERTIES);
+		String vInspectorURL = prop.getString(V_INSPECTOR_CHANNEL_URL);
+		System.out.println(" Environment variable :: " + System.getenv(BCAC_HOME));
 		try {
-			String marimbaSetupPath = System.getenv("BCAC_HOME");
-			String driveName = marimbaSetupPath.split(":")[0];
-			System.out.println(" map txt file path : " + marimbaSetupPath + " \n Drive ID : " + driveName);
+			String marimbaSetupPath = System.getenv(BCAC_HOME);
+			System.out.println(" marimba setup path :" + marimbaSetupPath);
 
 			// get tunerAdmin URL from map.txt file located in marimba setup.
 
@@ -87,16 +94,16 @@ public class RunScanHandler {
 			if (null != tunerAdminURL && !tunerAdminURL.isEmpty()) {
 				for (String ipPort : ipPortList) {
 
-					System.out.println("Received IP:Port is ==> " + ipPort);
-					String runScanCommand = "runchannel " + tunerAdminURL + " -start -tuner " + ipPort
-							+ " -channel http://defensight.marimbacastanet.com:5282/vInspector";
+					System.out.println("Received IP:Port is ==> " + ipPort + " & \n vInspector URL : " + vInspectorURL);
 
-					System.out.println(" Command is ready to trigger scan:" + runScanCommand);
+					String runScanCommand = "runchannel " + tunerAdminURL + " -start -tuner " + ipPort + " -channel "
+							+ vInspectorURL;
 
-					ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/" + driveName,
-							"cd " + marimbaSetupPath + "\\Tuner\\" + " && " + runScanCommand);
+					ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/C", runScanCommand)
+							.directory(new File(marimbaSetupPath + "\\Tuner\\"));
 
-					System.out.println("Working Directory : " + builder.command().get(2));
+					System.out.println("Working Directory : " + builder.directory().getPath()
+							+ "\n Command to execute ::" + builder.command().get(2));
 
 					builder.redirectErrorStream(true);
 					Process p = builder.start();
