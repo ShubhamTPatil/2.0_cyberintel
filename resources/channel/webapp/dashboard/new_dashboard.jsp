@@ -275,7 +275,7 @@ $(function () {
             patchesArray.push($(this).val());
         })
         console.log(patchesArray);
-        console.log("Selected Patches for Mitigation: "+patchesArray);
+        alert("Selected Patches for Mitigation: "+patchesArray);
 
         var queryStr = "?patchids=" + patchesArray;
         $.ajax({
@@ -294,16 +294,6 @@ $(function () {
         
     });
 
-    
-    <%--
-    $('#topVulMitScan').click(function () {
-        let array = [];
-        $('input[name=topVulMitCheck]:checked').each(function () {
-            array.push($(this).val());
-        })
-        console.log(array);
-    });
-    --%>
 
     $('#topVulMitApplyPatches').click(function () {
         let patchgroups = [];
@@ -502,9 +492,7 @@ function createMitigateTable(aaData) {
 
 </script>
 
-
 <body>
-
 <html:form name ="newDashboardForm" action="/newDashboard.do" type="com.marimba.apps.subscriptionmanager.webapp.forms.NewDashboardViewForm">
 <html:hidden property="action"/>
 
