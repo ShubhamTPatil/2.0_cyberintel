@@ -1,14 +1,21 @@
 <%@ page import="com.marimba.apps.subscription.common.ISubscriptionConstants" contentType="text/html;charset=UTF-8" %>
-<%@ include file="/includes/directives.jsp" %>
 <%@ include file="/includes/startHeadSection.jsp" %>
 
-<link rel="stylesheet" type="text/css" href="/spm/css/datatables.min.css"/>
+<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
+<%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
+<%@ taglib uri="/WEB-INF/webapps.tld" prefix="webapps" %>
+<%@ taglib uri="/WEB-INF/app.tld" prefix="sm" %>
+
+<script type="text/javascript" src="/spm/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/spm/js/bootstrap-dialog.min.js"></script>
+
+
+<script type="text/javascript" src="/spm/js/application.js"></script>
+
 <link rel="stylesheet" type="text/css" href="/spm/includes/easyui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="/spm/includes/easyui/themes/icon.css">
-<link rel="stylesheet" type="text/css" href="/spm/css/bootstrap.min.css"/>
-<link rel="stylesheet" type="text/css" href="/spm/css/bootstrap-dialog.min.css"/>
 <link rel="stylesheet" type="text/css" href="/spm/css/bootstrap-datepicker3.min.css"/>
-<link rel="stylesheet" type="text/css" href="/spm/css/datatables.min.css"/>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="/spm/includes/assets/adminlte/css/adminlte.min.css">
 <link rel="stylesheet" type="text/css" href="/spm/css/_all-skins.min.css"/>
@@ -18,22 +25,25 @@
 <link rel="stylesheet" type="text/css" href="/spm/css/fuelux.css">
 
 <script type="text/javascript" src="/spm/includes/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="/spm/js/jquery.min.js"></script>
-<script type="text/javascript" src="/spm/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/spm/js/bootstrap-dialog.min.js"></script>
 <script type="text/javascript" src="/spm/js/chart.min.js"></script>
 <script type="text/javascript" src="/spm/js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="/spm/js/application.js"></script>
-<script type="text/javascript" src="/spm/js/datatables.min.js"></script>
 <script type="text/javascript" src="/spm/js/wizard.js"></script>
 
+<style type="text/css">
+    .slider-arrow {
+
+        background: #d9dada none repeat scroll 0 0; float: left;
+
+        font-size: 25px; position: fixed; margin-left: -2px;
+
+    }
+</style>
 
 <%@ include file="/includes/endHeadSection.jsp" %>
 <%@ include file="/includes/info.jsp" %>
 
 <body>
-    <webapps:tabs tabset="main" tab="updates"/>
-    <html:form name ="vDeskUpdatesForm" action="/updates.do" type="com.marimba.apps.subscriptionmanager.webapp.forms.VDeskUpdatesForm">
+    <html:form name ="defenSightUpdatesForm" action="/defensightupdates.do" type="com.marimba.apps.subscriptionmanager.webapp.forms.DefenSightUpdatesForm">
         <html:hidden property="action"/>
 
         <div style="padding-left:25px; padding-right:25px;">
@@ -70,10 +80,9 @@
                 </td>
             </tr></table>
             <%@include file="/includes/help.jsp" %>
-
             <div class="box">
                 <div class="box-body">
-                    <table id="security_updates_table" class="table table-bordered table-striped dataTable no-footer" style="width: 100%;">
+                    <table id="security_updates_table" class="table table-bordered table-striped dataTable no-footer" style="width:97%;margin-left:55px;">
                         <thead>
                             <tr>
                                 <th style="width: 56%;"><webapps:pageText key="securitycontent"/></th>
@@ -115,7 +124,6 @@
                 </div>
             </div>
         </div>
-
         <div id="viewprofiledetailswindow" class="modal fade" role="dialog" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
             <div class="modal-dialog" style=width:80%;height:100%;>
                 <div class="modal-content">
@@ -123,7 +131,6 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title text-left">Security Content Details</h4>
                     </div>
-
                     <table width="100%">
                         <tr>
                             <td width="30%" align="right" valign="center"><b>Guide:&nbsp;</b></td>
@@ -134,7 +141,6 @@
                             <td width="70%" align="left" valign="center"><div id="viewprofiledetailswindowProfiles"></div></td>
                         </tr>
                     </table>
-
                     <div id="viewProfileInfoDiv" class="modal-body">
                         <iframe id="iframeViewProfileInfo" src="/spm/scap_profile_details_template.html" width="100%" height="550px" frameBorder="0"></iframe>
                     </div>
@@ -143,15 +149,12 @@
                 </div>
             </div>
         </div>
-
         <script type="text/javascript">
             var contentsDataTable;
             var rows_selected_contents = [];
-
             $(document).ready(function() {
                 populateContentsDataTable('#security_updates_table');
             });
-
             function populateContentsDataTable(tableSelector) {
                 contentsDataTable = $('#security_updates_table').dataTable(
                     {
@@ -178,12 +181,10 @@
                     }, 10000);
 				<% } %>
             }
-
             function reload() {
-                vDeskUpdatesForm.action = "/spm/updates.do?action=reload";
-                vDeskUpdatesForm.submit();
+                defenSightUpdatesForm.action = "/spm/updates.do?action=reload";
+                defenSightUpdatesForm.submit();
             }
-
         </script>
     </html:form>
 </body>
