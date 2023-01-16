@@ -8,13 +8,8 @@
 
 
 <!-- Generic Help -->
-<div class="helpText"> 
-	<div class="pageInfo"> 
-		<table cellspacing="0" cellpadding="2" border="0">
-			<tr> 
-				<td valign="top"><img src="/spm/common-rsrc/images/info_circle.gif" width="24" height="24" class="infoImage"></td>
-				<td><p><webapps:pageText key="IntroShort" /></p></td>
-			</tr>
-		</table>
-	</div>
+<div class="helpText">
+	<div class="p-2 mb-2 text-dark" style="font-size: medium; background-color:#d9edf7;">
+	    <webapps:pageText key="IntroShort" />
+	</div> 
 </div>
