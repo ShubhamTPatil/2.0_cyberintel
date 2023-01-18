@@ -60,7 +60,7 @@ public class RunScanDetails {
 
 		protected void execute(IStatementPool pool) throws SQLException {
 
-			System.out.println("execute method gets called ");
+			System.out.println("GetRunScanData execute method gets called ");
 			ResultSet masterRS = null;
 			ResultSet subQuery1Rs = null;
 			ResultSet subQuery2Rs = null;
