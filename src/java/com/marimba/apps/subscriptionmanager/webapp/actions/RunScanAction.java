@@ -27,7 +27,7 @@ import com.marimba.apps.subscriptionmanager.webapp.actions.AbstractAction;
 /**
  * 
  * @author Inmkaklij This action class is responsible to show case run scan
- *         results.
+ *       trigger.
  * 
  */
 public class RunScanAction extends AbstractAction {
