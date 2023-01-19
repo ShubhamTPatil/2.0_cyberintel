@@ -35,7 +35,7 @@ public class RunScanAction extends AbstractAction {
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
 
-		System.out.println("runscan action execute method has been called ");
+		System.out.println("runscan action execute method has been called  ");
 		init(request);
 		RunScanForm formbean = (RunScanForm) form;
 		try {
