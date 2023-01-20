@@ -1227,7 +1227,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
         protected void execute(IStatementPool pool) throws SQLException {
 
-            String sqlStr = " select  t1.severity as \"SeverityName\" , count(t1.severity) as \"Count\"\n" +
+            String sqlStr2 = " select  t1.severity as \"SeverityName\" , count(t1.severity) as \"Count\"\n" +
                     "         from inv_sec_oval_defn_cve_details t1,\n" +
                     "              security_cve_patch_info t2 \n" +
                     "               where t1.reference_name not like 'cpe%'\n" +
@@ -1238,12 +1238,15 @@ public class DashboardInfoDetails implements ComplianceConstants {
                     "             and (ap.current_status = 'Missing' or ap.current_status = 'Available-SP'))\n" +
                     "         group by  t1.severity";
 
+            // Taken results from derived table
+            String sqlStr = "select * from ds_derived_donught_chart";
+
             PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
             ResultSet rs = st.executeQuery();
             try {
                 while(rs.next()) {
-                 String severity = rs.getString("SeverityName");
-                 String severityCnt = String.valueOf(rs.getInt("Count"));
+                 String severity = rs.getString("severity_name");
+                 String severityCnt = String.valueOf(rs.getInt("severity_count"));
                  vulStatsInfo.put(severity, severityCnt);
                 }
             } finally {
@@ -1265,7 +1268,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
-            String sqlStr = "select  severity, count(severity) as 'vulnerable_count' , min(published_date) Identified_date,min(datediff(day,published_date,getdate())) ageing_days\n" +
+            String sqlStr2 = "select  severity, count(severity) as 'vulnerable_count' , min(published_date) Identified_date,min(datediff(day,published_date,getdate())) ageing_days\n" +
                     "from inv_security_oval_compliance a, inv_sec_oval_defn_cve_details b where \n" +
                     "a.content_id = b.content_id and\n" +
                     "b.definition_severity in (select distinct(severity) from inv_sec_oval_defn_cve_details where severity !=' ') \n" +
@@ -1273,6 +1276,9 @@ public class DashboardInfoDetails implements ComplianceConstants {
                     "and overall_compliant_level like 'NON%'\n" +
                     "group by severity \n" +
                     "order by severity";
+
+            // Taken results from derived table
+            String sqlStr = "select * from ds_derived_ageing_chart";
 
             PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
             ResultSet rs = st.executeQuery();
@@ -1411,7 +1417,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
-            String sqlStr = " select distinct ap.repository_id as \"PatchName\", t2.severity as \"Severity\" ,count(distinct im.id) as \"AffectedMachines\"\n" +
+            String sqlStr2 = " select distinct ap.repository_id as \"PatchName\", t2.severity as \"Severity\" ,count(distinct im.id) as \"AffectedMachines\"\n" +
                     "                    from inv_sec_oval_defn_cve_details t1, all_patch ap, security_cve_info t2, inv_machine im\n" +
                     "                    where ap.repository_id=t1.repository_id\n" +
                     "                    and (t1.reference_name = t2.cve_name and t1.severity != 'null' and t1.severity = 'Critical')\n" +
@@ -1421,14 +1427,17 @@ public class DashboardInfoDetails implements ComplianceConstants {
                     "                       and (ap.current_status = 'Missing' or ap.current_status = 'Available-SP'))\n" +
                     "                    group by ap.repository_id, t2. severity, im.id";
 
+            // Taken results from derived table
+            String sqlStr = "select * from ds_derived_crit_patches";
+
             PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
             ResultSet rs = st.executeQuery();
             try {
                 while(rs.next()) {
                     PriorityPatchesBean prtyPatchesBean = new PriorityPatchesBean();
-                    String patchName = rs.getString("PatchName");
-                    String severity = rs.getString("Severity");
-                    String affectedMachines = String.valueOf(rs.getInt("AffectedMachines"));
+                    String patchName = rs.getString("patch_name");
+                    String severity = rs.getString("severity");
+                    String affectedMachines = String.valueOf(rs.getInt("affected_machines"));
                   // System.out.println("DebugInfo-Result: "+ patchName + "\t" + severity + "\t" + affectedMachines);
                     prtyPatchesBean.setPatchName(patchName);
                     prtyPatchesBean.setSeverity(severity);
@@ -1457,7 +1466,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
         protected void execute(IStatementPool pool) throws SQLException {
 
-            String sqlStr = "select distinct  t1.reference_name as \"CVE_ID\", t2.severity as \"Severity\" ,count(distinct im.id) as \"Affected_Machines\", ap.repository_id as \"Patch_ID\"\n" +
+            String sqlStr2 = "select distinct  t1.reference_name as \"CVE_ID\", t2.severity as \"Severity\" ,count(distinct im.id) as \"Affected_Machines\", ap.repository_id as \"Patch_ID\"\n" +
                     "from inv_sec_oval_defn_cve_details t1, all_patch ap, security_cve_info t2, inv_machine im\n" +
                     "where \n" +
                     "ap.repository_id=t1.repository_id\n" +
@@ -1468,15 +1477,18 @@ public class DashboardInfoDetails implements ComplianceConstants {
                     "\t\t\t   and (ap.current_status = 'Missing' or ap.current_status = 'Available-SP'))\n" +
                     "group by t1.reference_name, t2. severity, ap.repository_id";
 
+            // Taken results from derived table
+            String  sqlStr = "select * from ds_derived_top_vuln";
+
             PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
             ResultSet rs = st.executeQuery();
             try {
                 while(rs.next()) {
                     TopVulnerableStatusBean topVulBean = new TopVulnerableStatusBean(); 
-                    String cveID = rs.getString("CVE_ID");
-                    String severity = rs.getString("Severity");
-                    String affectedMachines = String.valueOf(rs.getInt("Affected_Machines"));
-                    String patchID = rs.getString("Patch_ID");
+                    String cveID = rs.getString("cve_id");
+                    String severity = rs.getString("severity");
+                    String affectedMachines = String.valueOf(rs.getInt("affected_machines"));
+                    String patchID = rs.getString("patch_id");
 
                     topVulBean.setCveId(cveID);
                     topVulBean.setSeverity(severity);
