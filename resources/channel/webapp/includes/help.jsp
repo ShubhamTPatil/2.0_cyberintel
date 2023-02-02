@@ -10,6 +10,6 @@
 <!-- Generic Help -->
 <div class="helpText">
 	<div class="p-2 mb-2 text-dark" style="font-size: medium; background-color:#d9edf7;">
-	    <webapps:pageText key="IntroShort" />
+	    <i class="fa-solid fa-circle-dot text-primary" style="font-size:small;"></i>&nbsp;<webapps:pageText key="IntroShort" />
 	</div> 
 </div>

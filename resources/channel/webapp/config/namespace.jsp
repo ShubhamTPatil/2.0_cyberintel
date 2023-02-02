@@ -21,6 +21,11 @@
 
 <%@ include file="/includes/startHeadSection.jsp" %>
 <webapps:helpContext context="spm" topic="namesp" />
+
+<script type="text/javascript">
+$(function () { $('#settings').addClass('nav-selected'); });
+</script>
+
 <%@ include file="/includes/endHeadSection.jsp" %>
 <%@ page import="com.marimba.apps.subscriptionmanager.intf.IWebAppConstants" %>
 <%
@@ -80,7 +85,7 @@ Object EmpirumContext = session.getAttribute(IWebAppConstants.EMPIRUM_APP_MAIN);
 		                    <tr>
 		                        <td align="right" nowrap><webapps:pageText key="Prompt" /></td>
 		                        <td>
-		                            <select property="namespace" class="form-select" value='<%= ((NamespaceForm) session.getAttribute("namespaceForm")).getNamespace() %>' >
+		                            <select property="namespace" class="form-select" value='<%= ((NamespaceForm) session.getAttribute("namespaceForm")).getNamespace() %>' style="padding-top: 2px; padding-bottom: 2px;">
 		                                <option value=""><webapps:pageText key="DefLoc" /></option>
 		                                <options property="namespaceList" />
 		                            </select>

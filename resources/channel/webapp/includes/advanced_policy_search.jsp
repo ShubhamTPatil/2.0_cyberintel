@@ -111,6 +111,13 @@
 
 <script type="text/javascript">
 
+$(function () {
+	
+	console.log('advanced_policy_search');
+	
+});
+
+
 var errMessage = ["<webapps:text key='page.adv_policy_search.invaid_date' />", "<webapps:text key='page.adv_policy_search.invalid_month' />", "<webapps:text key='page.adv_policy_search.invalid_day' />",
 		  "<webapps:text key='page.adv_policy_search.invalid_year' />", "<webapps:text key='page.adv_policy_search.between_search.required_field_missing' />", "<webapps:text key='page.adv_policy_search.required' />", "<webapps:text key='page.adv_policy_search.invalid_date_range' />"];
 

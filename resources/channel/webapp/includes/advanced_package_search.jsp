@@ -113,7 +113,7 @@
     SubscriptionMain subsMain = TenantHelper.getTenantSubMain(servContext, request.getSession(), userPrincipal.getTenantName());
     Map<String, String> LDAPVarsMap = subsMain.getLDAPVarsMap();
 %>
-<script type="text/javascript">
+<script type="text/javascript">$(function () {		console.log('advanced_package');	});
 
 var errMessage = ["<webapps:text key='page.adv_policy_search.invaid_date' />", "<webapps:text key='page.adv_policy_search.invalid_month' />", "<webapps:text key='page.adv_policy_search.invalid_day' />",
         		  "<webapps:text key='page.adv_policy_search.invalid_year' />", "<webapps:text key='page.adv_policy_search.required' />", "<webapps:text key='page.advanced_package_search.attribute_empty' />"];
