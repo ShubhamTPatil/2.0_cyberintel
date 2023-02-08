@@ -536,3 +536,21 @@ h6 {
 .dataTables_paginate>ul.pagination>li>a  {
   font-size: small;
 }
+.requiredField {
+    font-size: 14px;
+    padding: 4px 8px;
+    border-top: 1px solid #999999;
+    border-right: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+    border-left: 4px solid #FF6666;
+    background-color: #FFFFFF;
+}
+
+.redText,.txt_red{
+    color: #FF0000;
+    
+}
+
+.greenText {
+    color: #339933;
+}
