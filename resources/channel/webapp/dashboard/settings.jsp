@@ -180,7 +180,7 @@ $(function () {
                                 <i class="fa-solid fa-building-shield"></i>
                             </div>
                             <div class="col-sm-10">
-                                <a href="/spm/usgcbSecurityTemplateListing.do?action=load">Custom security content definition</a><br>
+                                <a href="/spm/customSecurityTemplateListing.do?action=load">Custom security content definition</a><br>
                                 Define custom SCAP content to be processed at endpoints, to validate the security compliance
                                 (Applicable only for Operating System).
                             </div>

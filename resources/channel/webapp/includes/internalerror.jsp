@@ -219,7 +219,8 @@
 
 %>
 
-<%@ include file="/includes/headSection.jsp" %>
+<%@ include file="/includes/startHeadSection.jsp" %>
+<%@ include file="/includes/endHeadSection.jsp" %>
 <%@ page import="com.marimba.apps.subscriptionmanager.intf.IWebAppConstants" %>
 <%
 Object EmpirumContext = session.getAttribute(IWebAppConstants.EMPIRUM_APP_MAIN);
@@ -270,7 +271,7 @@ it is a frame.
 
 <logic:notPresent name="jspException">
 
- <logic:equal name="inFrame" value="false">
+<%--  <logic:equal name="inFrame" value="false">
 
  <%@ include file="/includes/body.html" %>
 
@@ -293,8 +294,8 @@ it is a frame.
 
  </logic:equal>
 
-
-
+ --%>
+ 
  <logic:equal name="inFrame" value="true">
 
  <%@ include file="/includes/body.html" %>
@@ -311,11 +312,43 @@ it is a frame.
 
 
 
-<html:form name="internalErrorForm" action="/internalErrorState.do" type="com.marimba.apps.subscriptionmanager.webapp.forms.InternalErrorForm" >   
+<html:form name="internalErrorForm" action="/internalErrorState.do" type="com.marimba.apps.subscriptionmanager.webapp.forms.InternalErrorForm" >
 
-<div align="left" style="margin-left:20px; margin-right:20px;">
+<main id="main" class="main">
+    <div class="pagetitle">
+
+      <div class="d-flex bd-highlight justify-content-center">
+        <div class="p-2 flex-grow-1 bd-highlight">
+          <span class="pagename">Internal Error</span>
+          <span data-bs-toggle="tooltip" data-bs-placement="right" title="Internal Error"><i
+              class="fa-solid fa-circle-info text-primary"></i></span>
+        </div>
+        <div class="refresh p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right"
+          title="Refresh" style="cursor: pointer;"><i class="fa-solid fa-arrows-rotate"></i></div>
+        <div class="p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right"
+          title="Download" style="cursor: pointer;">
+          <i class="fa-solid fa-download"></i>
+        </div>
+        <div class="p-2 bd-highlight text-primary align-self-center"> <a href="/shell/dashboard.do"> <i class="fa-solid fa-chevron-left"
+              style="margin-right: 5px;"></i>CMS Home</a>
+        </div>
+      </div>
+
+    </div>
+
+    <section class="section dashboard">
+    
+ 
+   
+
+<!-- <div align="left" style="margin-left:20px; margin-right:20px;"> -->
 <div class="statusMessage" id="critical">
-   <h6>
+
+<div class="card">
+<div class="card-body">
+<br/>	
+<div class="p-1 mb-2 text-white" style="font-size: medium; background-color:#FF0000;">	
+	
    <logic:present name="CRITICALERROR">
 
                 <logic:equal name="CRITICALERROR" value="true">
@@ -336,9 +369,10 @@ it is a frame.
 	<webapps:pageText shared="true" type="internalerror" key="InternalErrorMsg"/>
 
    </logic:notPresent>   
-   </h6>
+   
+</div>
 
-   <p>
+   
    <logic:present name="INTERNALERROR">
 
 				<logic:iterate id="error" name="internalerrors" >
@@ -392,10 +426,15 @@ it is a frame.
 				</logic:present>
 
              </logic:notPresent>
-   </p>
+   
+   </div>
 </div>
-  <div align="left" style="width:100%; margin-top:15px;">
-		
+
+</div>
+
+<div class="card">
+<div class="card-body">
+ <br/>	
 
    <table border="0" cellspacing="0" cellpadding="10" class="textGeneral">
     <tr>
@@ -499,13 +538,14 @@ it is a frame.
 </div>
 </div>
 
+</section>
+</main>
+
 </html:form>
 
 
 
-</logic:present> <%-- end of the present check for  internal errors--%>
-
-
+<%-- </logic:present> end of the present check for  internal errors --%>
 
 <%@ include file="/includes/footer.jsp" %>
 
