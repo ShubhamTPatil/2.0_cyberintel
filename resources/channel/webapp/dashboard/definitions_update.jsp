@@ -3,10 +3,12 @@
 // Confidential and Proprietary Information of Harman International.
 <!-- Author: Nandakumar Sankaralingam -->
 --%>
+
 <%@ page
 	import="com.marimba.apps.subscription.common.ISubscriptionConstants"
 	contentType="text/html;charset=UTF-8"%>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
 <%@ taglib uri="/WEB-INF/webapps.tld" prefix="webapps"%>
 
@@ -14,29 +16,19 @@
 <html lang="en">
 
 <head>
+<title>DefenSight-Definitions Updates</title>
 
-<title>Definitions Update</title>
+<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/bootstrap-icons.min.css"/>
+<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/all.min.css"/>
+<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/datatables.min.css"/>
+<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/style.css"/>
 
-<link rel="stylesheet" type="text/css"
-	href="/spm/css/newdashboard/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css"
-	href="/spm/css/newdashboard/bootstrap-icons.min.css" />
-<link rel="stylesheet" type="text/css"
-	href="/spm/css/newdashboard/all.min.css" />
-<link rel="stylesheet" type="text/css"
-	href="/spm/css/newdashboard/datatables.min.css" />
-<link rel="stylesheet" type="text/css"
-	href="/spm/css/newdashboard/style.css" />
-
-
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"
-    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-<!-- <script type="text/javascript" src="/spm/js/newdashboard/jquery.min.js"></script>-->
-<script type="text/javascript"
-	src="/spm/js/newdashboard/bootstrap.bundle.min.js"></script>
+<script language="javascript" src="/shell/common-rsrc/js/master.js"></script>
+<script type="text/javascript" src="/spm/js/newdashboard/jquery.min.js"></script>
+<script type="text/javascript" src="/spm/js/newdashboard/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/chart.umd.js"></script>
-<script type="text/javascript"
-	src="/spm/js/newdashboard/datatables.min.js"></script>
+<script type="text/javascript" src="/spm/js/newdashboard/datatables.min.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/all.min.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/common.js"></script>
 
@@ -636,11 +628,14 @@
 		
 		
 	    $('#vdefUpdateNow').click(function () {
+	      // alert("Calling VDef update operations...");
 	        $.ajax({
-	            type: 'POST', dataType: 'text', url: '/spm/vdefTransfer.do',
-	            data: {action: 'vdef'},            
+	            type: 'POST',
+	            dataType: 'text',
+	            url: './definitionupdate.do',
+	            data: {action: 'update_vdef'},
 	            success: function (response) {
-	                 
+	                 alert(response);
 	                 $('#updateSuccessMessage').text(response);
 	                 $('#updateSuccessModal').modal('show');
 
@@ -650,8 +645,11 @@
 
 	});
 	
-	
-   
+
+     function ok(frm, action) {
+       frm.action.value = action;
+       frm.submit();
+     }
 	
 	
 </script>
@@ -671,15 +669,14 @@
 
 <body>
 
-
 	<jsp:include page="header.jsp" />
 	<jsp:include page="sidebar.jsp" />
 
-	<html:form name="vdefTransferForm" id="def_Update_formId"
-		action="/spm/vdefTransfer.do" type="com.marimba.apps.subscriptionmanager.webapp.forms.DefinitionUpdateForm">	
-		<html:hidden property="action"/>
-		
-		
+	<html:form name="definitionUpdateForm" action="/definitionupdate.do"
+	    type="com.marimba.apps.subscriptionmanager.webapp.forms.DefinitionUpdateForm" onsubmit="return false;">
+
+    <html:hidden property="action"/>
+
 	<main id="main" class="main">
 	<div class="pagetitle">
 
@@ -711,7 +708,6 @@
 
 
 	<section class="section dashboard">
-
 		<div class="card">
 			<nav>
 				<div class="nav nav-tabs nav-title" id="nav-tab" role="tablist">
@@ -719,7 +715,7 @@
 						data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
 						role="tab" aria-controls="nav-home" aria-selected="true">CVE
 						INFORMATION</button>
-					<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+					<button class="nav-link" id="updatesTabButton" data-bs-toggle="tab"
 						data-bs-target="#nav-profile" type="button" role="tab"
 						aria-controls="nav-profile" aria-selected="false">UPDATES</button>
 				</div>
@@ -737,7 +733,7 @@
 							every month.
 						</div>
 
-						<br />
+						<br/>
 
 						<div class="row"
 							style="box-shadow: 1px 3px 3px #3333333d !important; padding-bottom: 20px;">
@@ -756,25 +752,93 @@
 								</div>
 							</div>
 						</div>
+                       <br/>
 
+	     <div class="card">
+    	   <div class="card-body">
+    		    <div class="card-title">
+    			    <webapps:pageText key="vdefupdateinfo.header"/>
+    		    </div>
+    		   <webapps:pageText key="vdefSecInfo"/>
+    		 <br/> <br/>
+          	 <div class="row"
+ 			       style="box-shadow: 1px 3px 3px #3333333d !important; padding-bottom: 20px;">
+                <table border="0" cellspacing="1" cellpadding="5">
+                    <tr>
+                        <td align="right" valign="top">
+                            <webapps:pageText key="mastertxurl"/>
+                        </td>
+                        <td valign="top">
+                            <webapps:errorsPresent property="publishTxUrl">
+                                <img src="/shell/common-rsrc/images/errorsmall.gif" width="19" height="16" border="0">
+                            </webapps:errorsPresent>
+                            <html:text name="definitionUpdateForm" property="publishTxUrl" styleId="port2" size="65" maxlength="110" styleClass="requiredField"/><webapps:txbrowser field="port2" styleId="typeurlBrowse"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" valign="top">
+                            <span class="textGeneral"><webapps:pageText key="PublishUserName"/></span>
+                        </td>
+                        <td valign="top">
+                            <webapps:errorsPresent property="publishUserName">
+                                <img src="/shell/common-rsrc/images/errorsmall.gif" width="19" height="16" border="0">
+                            </webapps:errorsPresent>
+                            <html:text name="definitionUpdateForm" property="publishUserName" size="20" styleClass="optionalField"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" valign="top">
+                            <span class="textGeneral"><webapps:pageText key="PublishPassword"/></span>
+                        </td>
+                        <td valign="top">
+                            <webapps:errorsPresent property="publishPassword">
+                                <img src="/shell/common-rsrc/images/errorsmall.gif" width="19" height="16" border="0">
+                            </webapps:errorsPresent>
+                            <html:password name="definitionUpdateForm" property="publishPassword" styleId="ppasswd"
+                             styleClass="optionalField"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" valign="top">
+                            <span class="textGeneral"><webapps:pageText key="ChannelStoreUserName"/></span>
+                        </td>
+                        <td valign="top">
+                            <webapps:errorsPresent property="channelStoreUserName">
+                                <img src="/shell/common-rsrc/images/errorsmall.gif" width="19" height="16" border="0">
+                            </webapps:errorsPresent>
+                            <html:text name="definitionUpdateForm" property="channelStoreUserName" size="20" styleClass="optionalField"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" valign="top">
+                            <span class="textGeneral"><webapps:pageText key="ChannelStorePassword"/></span>
+                        </td>
+                        <td valign="top">
+                            <webapps:errorsPresent property="channelStorePassword">
+                                <img src="/shell/common-rsrc/images/errorsmall.gif" width="19" height="16" border="0">
+                            </webapps:errorsPresent>
+                            <html:password name="definitionUpdateForm" property="channelStorePassword" styleId="spasswd"
+                             styleClass="optionalField"/>
+                        </td>
+                    </tr>
+                </table>
+               </div>
+              </div>
+            </div>
 
-
-						<br /> <br />
-
-						<div class="row"
-							style="box-shadow: 1px 3px 3px #3333333d !important; padding-bottom: 20px;">
-
-							<div class="col">
+            <div class="row"
+ 			   style="box-shadow: 1px 3px 3px #3333333d !important; padding-bottom: 20px;">
+    			<div class="col">
 								<span style="font-weight: bold;">Vulnerability
-									Definitions last updated on (2022-09-29)</span><br /> <span>(Please
+									Definitions last updated on <bean:write name="definitionUpdateForm" property="vdefLastUpdated" filter="false"/> </span> <br/> <span>(Please
 									ensure all information is upto date for accurate results)</span>
 							</div>
-
 							<div class="col">
 								<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 									<button type="button" class="btn btn-sm btn-secondary"
 										style="background-color: #d3d3d333; color: darkgray;">CANCEL</button>
-									<button id="vdefUpdateNow" type="button" class="btn btn-sm btn-primary">UPDATE NOW</button>
+									<%-- <button id="vdefUpdateNow" type="button" class="btn btn-sm btn-primary">UPDATE NOW</button> --%>
+									<input type="button" id="vdefpublish" onclick="ok(this.form, 'update_vdef')" class="btn btn-sm btn-primary" value="UPDATE NOW">
 								</div>								
 							</div>
 						</div>
@@ -808,9 +872,10 @@
 						    </div>
 						</div>
 																	
-						<br /> <br />
+						<br/> <br/>
 
-						<div class="row">
+                  <%--
+					  <div class="row">
 							<div class="col-sm-3">
 								<div class="progress"
 									style="height: 8px !important; - -bs-progress-bar-bg: #1976d2 !important;">
@@ -847,8 +912,11 @@
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="nav-profile" role="tabpanel"
-						aria-labelledby="nav-profile-tab">
+                  --%>
+
+
+				   <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+					 	aria-labelledby="nav-profile-tab">
 
 						<br />
 						<div>From this page, you can manage the available security
@@ -913,12 +981,10 @@
 
 			</div>
 		</div>
-
-
 	</section>
 	
 	
-	    <!-- Top Vulnerability Modal -->
+	<!-- VDef Update Message Info Model -->
     <div class="modal fade" id="updateSuccessModal" tabindex="-1" aria-labelledby="updateSuccessModalLabel" aria-hidden="true">
       <div class="modal-dialog" style="max-width:800px;">
         <div class="modal-content">
@@ -932,11 +998,9 @@
         </div>
       </div>
     </div>
-	
+ </main>
 
-
-	</main>
-	</html:form>
+ </html:form>
 
 </body>
 

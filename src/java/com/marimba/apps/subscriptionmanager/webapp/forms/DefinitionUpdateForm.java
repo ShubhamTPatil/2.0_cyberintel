@@ -1,24 +1,92 @@
-// Copyright 1997-2003, Marimba, Inc. All Rights Reserved.
-// Confidential and Proprietary Information of Marimba, Inc.
-// Protected by or for use under one or more of the following patents:
-// U.S. Patent Nos. 5,919,247, 6,272,536, 6,367,075, 6,381,631,
-// and 6,430,608. Other Patents Pending.
+// Copyright 2022-2023, Harman International. All Rights Reserved.
+// Confidential and Proprietary Information of Harman International.
+
+// $File$, $Revision$, $Date$
 
 package com.marimba.apps.subscriptionmanager.webapp.forms;
 
 import org.apache.struts.action.ActionForm;
 
 /**
- * Used to handle run scan results.
+ *	  Definitions Update Form w.r.t handle definitions update
+ *	  and CVE JSON operations (automated)
+ *   @author Nandakumar Sankaralingam
+ *   Version: $Revision$, $Date$
  *
- * @author Inmkaklij
- * @version 1.1, 09/25/2001
- */
+ **/
+
 public class DefinitionUpdateForm extends AbstractForm {
 
 	private String vdefDefaultValue;
 	private String responseMsg;
 	private String definationUpdateResponse;
+
+    private String action = null;
+    private String publishTxUrl;
+    private String publishUserName;
+    private String publishPassword;
+    private String channelStoreUserName;
+    private String channelStorePassword;
+    private String vdefLastUpdated;
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
+
+    public String getVdefLastUpdated() {
+        return vdefLastUpdated;
+    }
+
+    public void setVdefLastUpdated(String vdefLastUpdated) {
+        this.vdefLastUpdated = vdefLastUpdated;
+    }
+
+    public String getPublishTxUrl() {
+        return publishTxUrl;
+    }
+
+    public void setPublishTxUrl(String publishTxUrl) {
+        this.publishTxUrl = publishTxUrl;
+    }
+
+    public String getPublishUserName() {
+        return publishUserName;
+    }
+
+    public void setPublishUserName(String publishUserName) {
+        this.publishUserName = publishUserName;
+    }
+
+    public String getPublishPassword() {
+        return publishPassword;
+    }
+
+    public void setPublishPassword(String publishPassword) {
+        this.publishPassword = publishPassword;
+    }
+
+    public String getChannelStoreUserName() {
+        return channelStoreUserName;
+    }
+
+    public void setChannelStoreUserName(String channelStoreUserName) {
+        this.channelStoreUserName = channelStoreUserName;
+    }
+
+    public String getChannelStorePassword() {
+        return channelStorePassword;
+    }
+
+    public void setChannelStorePassword(String channelStorePassword) {
+        this.channelStorePassword = channelStorePassword;
+    }
+
+
 
 	public String getResponseMsg() {
 		return responseMsg;

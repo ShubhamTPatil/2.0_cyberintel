@@ -3,8 +3,6 @@
 // $File$, $Revision$, $Date$
 package com.marimba.apps.subscriptionmanager.webapp.actions;
 
-import com.marimba.apps.securitymgr.compliance.util.DefinitionUpdateHandler;
-import com.marimba.apps.securitymgr.compliance.util.VdefCarTransferHandler;
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
 import com.marimba.apps.subscriptionmanager.webapp.forms.DefenSightUpdatesForm;
 import com.marimba.webapps.intf.IWebAppsConstants;
