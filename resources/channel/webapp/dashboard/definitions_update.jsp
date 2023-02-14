@@ -772,7 +772,7 @@
                             <webapps:errorsPresent property="publishTxUrl">
                                 <img src="/shell/common-rsrc/images/errorsmall.gif" width="19" height="16" border="0">
                             </webapps:errorsPresent>
-                            <html:text name="definitionUpdateForm" property="publishTxUrl" styleId="port2" size="65" maxlength="110" styleClass="requiredField"/><webapps:txbrowser field="port2" styleId="typeurlBrowse"/>
+                            <html:text name="definitionUpdateForm" property="publishTxUrl" styleId="port2" size="30" maxlength="110" styleClass="requiredField"/>
                         </td>
                     </tr>
                     <tr>
@@ -783,7 +783,7 @@
                             <webapps:errorsPresent property="publishUserName">
                                 <img src="/shell/common-rsrc/images/errorsmall.gif" width="19" height="16" border="0">
                             </webapps:errorsPresent>
-                            <html:text name="definitionUpdateForm" property="publishUserName" size="20" styleClass="optionalField"/>
+                            <html:text name="definitionUpdateForm" property="publishUserName" size="25" styleClass="optionalField"/>
                         </td>
                     </tr>
                     <tr>
@@ -794,7 +794,7 @@
                             <webapps:errorsPresent property="publishPassword">
                                 <img src="/shell/common-rsrc/images/errorsmall.gif" width="19" height="16" border="0">
                             </webapps:errorsPresent>
-                            <html:password name="definitionUpdateForm" property="publishPassword" styleId="ppasswd"
+                            <html:password name="definitionUpdateForm" property="publishPassword" size="25" styleId="ppasswd"
                              styleClass="optionalField"/>
                         </td>
                     </tr>
@@ -806,7 +806,7 @@
                             <webapps:errorsPresent property="channelStoreUserName">
                                 <img src="/shell/common-rsrc/images/errorsmall.gif" width="19" height="16" border="0">
                             </webapps:errorsPresent>
-                            <html:text name="definitionUpdateForm" property="channelStoreUserName" size="20" styleClass="optionalField"/>
+                            <html:text name="definitionUpdateForm" property="channelStoreUserName" size="25" styleClass="optionalField"/>
                         </td>
                     </tr>
                     <tr>
@@ -817,7 +817,7 @@
                             <webapps:errorsPresent property="channelStorePassword">
                                 <img src="/shell/common-rsrc/images/errorsmall.gif" width="19" height="16" border="0">
                             </webapps:errorsPresent>
-                            <html:password name="definitionUpdateForm" property="channelStorePassword" styleId="spasswd"
+                            <html:password name="definitionUpdateForm" property="channelStorePassword" size="25" styleId="spasswd"
                              styleClass="optionalField"/>
                         </td>
                     </tr>
@@ -837,7 +837,6 @@
 								<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 									<button type="button" class="btn btn-sm btn-secondary"
 										style="background-color: #d3d3d333; color: darkgray;">CANCEL</button>
-									<%-- <button id="vdefUpdateNow" type="button" class="btn btn-sm btn-primary">UPDATE NOW</button> --%>
 									<input type="button" id="vdefpublish" onclick="ok(this.form, 'update_vdef')" class="btn btn-sm btn-primary" value="UPDATE NOW">
 								</div>								
 							</div>
@@ -874,57 +873,16 @@
 																	
 						<br/> <br/>
 
-                  <%--
-					  <div class="row">
-							<div class="col-sm-3">
-								<div class="progress"
-									style="height: 8px !important; - -bs-progress-bar-bg: #1976d2 !important;">
-									<div class="progress-bar active" name="CVEprogress"
-										role="progressbar" aria-valuenow="80" aria-valuemin="0"
-										aria-valuemax="100" style="width: 100%"></div>
-								</div>
-							</div>
-							<div class="col-sm-9"></div>
-						</div>
-						<div class="row">
-							<div class="col-sm-3">
-								<span style="font-size: 10px !important;">Json file
-									download is completed</span>
-							</div>
-							<div class="col-sm-9"></div>
-						</div>
-						<br />
-						<div class="row">
-							<div class="col-sm-3">
-								<div class="progress"
-									style="height: 8px !important; - -bs-progress-bar-bg: #1976d2 !important;">
-									<div class="progress-bar active" name="CVEprogress"
-										role="progressbar" aria-valuenow="80" aria-valuemin="0"
-										aria-valuemax="100" style="width: 80%"></div>
-								</div>
-							</div>
-							<div class="col-sm-9"></div>
-						</div>
-						<div class="row">
-							<div class="col-sm-3">
-								<span style="font-size: 10px !important;">File insertion
-									to database is in progress</span>
-							</div>
-						</div>
-					</div>
-                  --%>
-
-
 				   <div class="tab-pane fade" id="nav-profile" role="tabpanel"
 					 	aria-labelledby="nav-profile-tab">
 
-						<br />
+						<br/>
 						<div>From this page, you can manage the available security
 							content updates. You can synchronize the security content,
 							monitor the progress of sync operations, or can view the details
-							of a security content.</div>
-						<br />
-
+							of a security content.
+					    </div>
+						<br/>
 
 						<div class="p-2 mb-2 text-dark"
 							style="font-size: medium; background-color: #d9edf7;">
@@ -932,7 +890,7 @@
 							definitions are available.
 						</div>
 
-						<br />
+						<br/>
 
 						<div class="row">
 							<div class="col-md-2">
