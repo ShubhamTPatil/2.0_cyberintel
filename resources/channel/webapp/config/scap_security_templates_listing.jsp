@@ -12,8 +12,8 @@
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/includes/directives.jsp" %>
-
-<script>
+<%@ include file="/includes/startHeadSection.jsp" %>
+<script>$(function () {    $('#settings').addClass('nav-selected');});
 
 function saveState(form, forwardaction) {
     var fullpath = "<webapps:fullPath path='" + forwardaction + "' />";
@@ -85,8 +85,6 @@ function isAnySelected() {
 
 </script>
 
-<%@ include file="/includes/startHeadSection.jsp" %>
-
 <%@ include file="/includes/endHeadSection.jsp" %>
 <%@ page import="com.marimba.apps.subscriptionmanager.intf.IWebAppConstants" %>
 <%
@@ -95,24 +93,18 @@ function isAnySelected() {
 <webapps:helpContext context="spm" topic="SCAPSecurity_Options"/>
 
 <body>
-
+<%-- 
 <% if(null != EmpirumContext) {%>
 <webapps:tabs tabset="ldapEmpirumView" tab="cfgview"/>
 <% } else { %>
 <webapps:tabs tabset="main" tab="cfgview"/>
 <% } %>
-
+ --%>
 <html:form name="scapSecurityProfileForm" action="/scapSecurityTemplateListing.do" type="com.marimba.apps.subscriptionmanager.webapp.forms.scapSecurityProfileForm" >
-
 <html:hidden property="forward" />
-
-<div align="center">
-<div class="commonPadding">
-<div class="pageHeader"><span class="title"><webapps:pageText key="Title"/></span></div>
+    <%@ include file="/dashboard/startMainSection.jsp"%>    <div class="card">      <div class="card-body">        <br />        
 <%@ include file="/includes/usererrors.jsp" %>
 <%@ include file="/includes/help.jsp" %>
-
-<div id="contentPadding" style="width:65%">
 
 <logic:present scope="request" name="result">
     <bean:define id="res" name="result"/>
@@ -180,22 +172,20 @@ function isAnySelected() {
 </logic:notPresent>
 
 <div class="tableWrapper" style="width:100%;">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <table class="mb-2 mt-2" width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr valign="middle" class="smallButtons">
             <td nowrap class="tableRowActions">
-                <input disabled name="removeBtn" id="removeBtn" type="button" value="<webapps:pageText key="remove" type="button" shared="true"/>" onClick="javascript:saveState(document.scapSecurityProfileForm, '/scapSecurityTemplateListing.do?action=remove');">
+                <input disabled name="removeBtn" class="btn btn-sm btn-outline-primary" id="removeBtn" type="button" value="<webapps:pageText key="remove" type="button" shared="true"/>" onClick="javascript:saveState(document.scapSecurityProfileForm, '/scapSecurityTemplateListing.do?action=remove');">
             </td>
-            <td nowrap class="tableRowActions">
-                <input disabled name="editBtn" id="editBtn" type="button" value="<webapps:pageText key="edit" type="button" shared="true"/>" onClick="javascript:saveState(document.scapSecurityProfileForm, '/scapSecurityTemplateListing.do?action=edit');">
+            <td nowrap class="tableRowActions px-2">
+                <input disabled name="editBtn" class="btn btn-sm btn-primary" id="editBtn" type="button" value="<webapps:pageText key="edit" type="button" shared="true"/>" onClick="javascript:saveState(document.scapSecurityProfileForm, '/scapSecurityTemplateListing.do?action=edit');">
             </td>
             <td nowrap class="tableRowActions" width="100%" align="right">
-                <input name="addBtn" id="addBtn" type="button" value="<webapps:pageText key="add" type="button" shared="true"/>" onClick="javascript:saveState(document.scapSecurityProfileForm, '/scapSecurityTemplateListing.do?action=add');">
+                <input name="addBtn" class="btn btn-sm btn-primary" id="addBtn" type="button" value="<webapps:pageText key="add" type="button" shared="true"/>" onClick="javascript:saveState(document.scapSecurityProfileForm, '/scapSecurityTemplateListing.do?action=add');">
             </td>
         </tr>
-    </table>
-
-    <div id="headerSection"class="headerSection" style="width:100%; text-align:left; overflow:hidden;" >
-        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    </table>
+        <table class="table table-striped" width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 0">
             <colgroup width="0*">
             </colgroup>
             <colgroup width="30%">
@@ -210,46 +200,17 @@ function isAnySelected() {
                     <td class="tableHeaderCell"><webapps:pageText key="TitleName"/></td>
                     <td class="tableHeaderCell"><webapps:pageText key="TitleDesc"/></td>
                 </tr>
-            </thead>
-        </table>
-    </div>
-
-    <div id="dataSection" style="width:100%;">
-        <table width="100%" border="0" cellpadding="0" cellspacing="0">
-            <colgroup width="0*">
-            </colgroup>
-            <colgroup width="30%">
-            </colgroup>
-            <colgroup width="65%">
-            </colgroup>
-            <tbody>
-                <logic:iterate id="profile" indexId="index" name="profiles">
-                    <tr <% if(index.intValue() % 2 == 1) {%>class="alternateRowColor"<%}%>>
-                        <td class="rowLevel1" <logic:equal name="index" value="0">style="border-top:0px;"</logic:equal>>
-                            <input type="checkbox" id="profile_sel_<bean:write name="profile" property="name"/>" name="profile_sel_<bean:write name="profile" property="name"/>" onClick="setCheckedAll(checked);isAnySelected();">
-                        </td>
-                        <td class="rowLevel1" <logic:equal name="index" value="0">style="border-top:0px;"</logic:equal>>
-                            <bean:write name="profile" property="name"/>
-                        </td>
-                        <td class="rowLevel1" <logic:equal name="index" value="0">style="border-top:0px;"</logic:equal>>
-                            <bean:write name="profile" property="description"/>
-                        </td>
-                    </tr>
-                </logic:iterate>
-            </tbody>
+            </thead>            <tbody>                <logic:iterate id="profile" indexId="index" name="profiles">                    <tr <% if(index.intValue() % 2 == 1) {%>class="alternateRowColor"<%}%>>                        <td class="rowLevel1" <logic:equal name="index" value="0">style="border-top:0px;"</logic:equal>>                            <input type="checkbox" id="profile_sel_<bean:write name="profile" property="name"/>" name="profile_sel_<bean:write name="profile" property="name"/>" onClick="setCheckedAll(checked);isAnySelected();">                        </td>                        <td class="rowLevel1" <logic:equal name="index" value="0">style="border-top:0px;"</logic:equal>>                            <bean:write name="profile" property="name"/>                        </td>                        <td class="rowLevel1" <logic:equal name="index" value="0">style="border-top:0px;"</logic:equal>>                            <bean:write name="profile" property="description"/>                        </td>                    </tr>                </logic:iterate>            </tbody>
         </table>
     </div>
 </div>
-
-
-<div id="pageNav">
-    <input type="button" class="mainBtn" name="done" value=" <webapps:pageText key="done" shared="true" type="button" /> " onClick="javascript:saveState(document.scapSecurityProfileForm, '/config.do');">
-</div>
-</div>
-</div>
 </div>
 
+<div class="col" style="text-align: end;">
+    <input type="button" class="btn btn-sm btn-primary mainBtn" name="done" value=" <webapps:pageText key="done" shared="true" type="button" /> " onClick="javascript:saveState(document.scapSecurityProfileForm, '/config.do');">
+</div>
+<%@ include file="/dashboard/endMainSection.jsp"%>
 </html:form>
 
 </body>
-</html:html>
+</html>
