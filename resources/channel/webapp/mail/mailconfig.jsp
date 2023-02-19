@@ -8,38 +8,6 @@
 <!DOCTYPE html>
 <%@ include file="/includes/startHeadSection.jsp"%>
 
-<script type="text/javascript">
-  $(document).ready(function() {
-	  
-	  $('#settings').addClass('nav-selected');
-	  
-    var checked = $('#useAuth').prop('checked');
-    $('#user, #password').prop('disabled', !checked);
-  });
-
-  $('#useAuth').click(function() {
-    $('#user, #password').prop('disabled', !this.checked);
-  });
-
-  function doSubmit(form, act) {
-    if ('removeConfirm' == act) {
-      $('#warning').slideToggle();
-      showHideButtons([ "btn1", "btn2", "btn3" ], true);
-    } else if ('cancelRemove' == act) {
-      $('#warning').slideToggle();
-      showHideButtons([ "btn1", "btn2", "btn3" ], false);
-    } else {
-      form.action.value = act;
-      form.submit();
-    }
-  }
-  function showHideButtons(btns, visibility) {
-    for ( var x = 0 in btns)
-      $('#' + btns[x]).prop('disabled', visibility);
-  }
-</script>
-
-
 <style type="text/css">
 select {
 	border: 1px solid #ccc;
@@ -310,4 +278,34 @@ select {
 
 
 </body>
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    $('#settings').addClass('nav-selected');
+    
+    var checked = $('#useAuth').prop('checked');
+    $('#user, #password').prop('disabled', !checked);
+  });
+
+  $('#useAuth').click(function() {
+    $('#user, #password').prop('disabled', !this.checked);
+  });
+
+  function doSubmit(form, act) {
+    if ('removeConfirm' == act) {
+      $('#warning').slideToggle();
+      showHideButtons([ "btn1", "btn2", "btn3" ], true);
+    } else if ('cancelRemove' == act) {
+      $('#warning').slideToggle();
+      showHideButtons([ "btn1", "btn2", "btn3" ], false);
+    } else {
+      form.action.value = act;
+      form.submit();
+    }
+  }
+  function showHideButtons(btns, visibility) {
+    for ( var x = 0 in btns)
+      $('#' + btns[x]).prop('disabled', visibility);
+  }
+</script>
 </html>
