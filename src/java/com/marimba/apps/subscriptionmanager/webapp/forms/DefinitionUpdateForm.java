@@ -17,7 +17,6 @@ import org.apache.struts.action.ActionForm;
 
 public class DefinitionUpdateForm extends AbstractForm {
 
-	private String vdefDefaultValue;
 	private String responseMsg;
 	private String definationUpdateResponse;
 
@@ -28,6 +27,8 @@ public class DefinitionUpdateForm extends AbstractForm {
     private String channelStoreUserName;
     private String channelStorePassword;
     private String vdefLastUpdated;
+    private String cveStorageDir;
+    private String cveJsonLastUpdated;
 
     public String getAction() {
         return action;
@@ -37,6 +38,23 @@ public class DefinitionUpdateForm extends AbstractForm {
         this.action = action;
     }
 
+
+    public String getCveStorageDir() {
+        return cveStorageDir;
+    }
+
+    public void setCveStorageDir(String cveStorageDir) {
+        this.cveStorageDir = cveStorageDir;
+    }
+
+
+    public String getCveJsonLastUpdated() {
+        return cveJsonLastUpdated;
+    }
+
+    public void setCveJsonLastUpdated(String cveJsonLastUpdated) {
+        this.cveJsonLastUpdated = cveJsonLastUpdated;
+    }
 
     public String getVdefLastUpdated() {
         return vdefLastUpdated;
@@ -96,13 +114,6 @@ public class DefinitionUpdateForm extends AbstractForm {
 		this.responseMsg = responseMsg;
 	}
 
-	public String getVdefDefaultValue() {
-		return vdefDefaultValue;
-	}
-
-	public void setVdefDefaultValue(String vdefDefaultValue) {
-		this.vdefDefaultValue = vdefDefaultValue;
-	}
 
 	public String getDefinationUpdateResponse() {
 		return definationUpdateResponse;

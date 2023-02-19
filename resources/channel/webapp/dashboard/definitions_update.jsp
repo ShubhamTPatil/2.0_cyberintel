@@ -36,597 +36,6 @@
 
 	$(function() {
 
-		$('#definitionsUpdate').addClass('nav-selected');
-
-		let defUpdateData = [
-				{
-					"SecurityProfileName" : "SCAP-compliant definitions for Desktop Security policies manipulation",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-
-				{
-					"SecurityProfileName" : "Guide to the Secure Configuration of CentOS 6",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-
-				{
-					"SecurityProfileName" : "Guide to the Secure Configuration of CentOS 7",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-
-				{
-					"SecurityProfileName" : "Guide to the Secure Configuration of Google Chromium",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-
-				{
-					"SecurityProfileName" : "Guide to the Secure Configuration of Google Chromium",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-
-				{
-					"SecurityProfileName" : "Guide to the Secure Configuration of Debian 8",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-
-				{
-					"SecurityProfileName" : "Guide to the Secure Configuration of Firefox",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-
-				{
-					"SecurityProfileName" : "Guide to the Secure Configuration of Java Runtime Environment",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-
-				{
-					"SecurityProfileName" : "Guide to the Secure Configuration of Red Hat OpenStack Platform 7",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-
-				{
-					"SecurityProfileName" : "Guide to the Secure Configuration of Red Hat Enterprise Linux 6",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-
-				{
-					"SecurityProfileName" : "Guide to the Secure Configuration of Red Hat Enterprise Linux 7",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-
-				{
-					"SecurityProfileName" : "Guide to the Secure Configuration of Scientific Linux 6",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-
-				{
-					"SecurityProfileName" : "Guide to the Secure Configuration of Scientific Linux 7",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-
-				{
-					"SecurityProfileName" : "File content for OVAL file suspicious-cyberesi-oval.xml",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Adobe Acrobat Reader DC Classic Track Security Technical Implementation Guide",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Adobe Acrobat Reader DC Continuous Track Security Technical Implementation Guide",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft DotNet Framework 4.0 STIG",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Google Chrome Current Windows STIG",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Internet Explorer 11 Security Technical Implementation Guide",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Office System 2013 STIG",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Office System 2016 Security Technical Implementation Guide",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Outlook 2013 STIG",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Publisher 2016 Security Technical Implementation Guide",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Windows Server 2008 R2 Domain Controller Security Technical Implementation Guide",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Windows Server 2008 R2 Member Server Security Technical Implementation Guide",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Windows Defender Antivirus Security Technical Implementation Guide",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Windows Server 2016 Security Technical Implementation Guide Windows Server 2016 Standalone Server Windows Server 2016 Domain Controller Windows Server 2016 Member Server",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Windows 10 Security Technical Implementation Guide",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Windows 2008 Domain Controller Security Technical Implementation Guide",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Windows 2008 Member Server Security Technical Implementation Guide",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Windows Firewall with Advanced Security Security Technical Implementation Guide",
-					"AssessmentType" : "Configuration",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Red Hat Enterprise Linux 3 OVAL definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Red Hat Enterprise Linux 4 OVAL definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Red Hat Enterprise Linux 5 OVAL definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Red Hat Enterprise Linux 6 OVAL definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Red Hat Enterprise Linux 7 OVAL definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "CentOS Linux 4 OVAL Patch definitions",
-					"AssessmentType" : "Patch",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "CentOS Linux 3 OVAL Patch definitions",
-					"AssessmentType" : "Patch",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "CentOS Linux 5 OVAL Patch definitions",
-					"AssessmentType" : "Patch",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "CentOS Linux 6 OVAL Patch definitions",
-					"AssessmentType" : "Patch",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "CentOS Linux 7 OVAL Patch definitions",
-					"AssessmentType" : "Patch",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "CentOS Linux 3 OVAL Vulnerability definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "CentOS Linux 4 OVAL Vulnerability definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "CentOS Linux 5 OVAL Vulnerability definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "CentOS Linux 6 OVAL Vulnerability definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "CentOS Linux 7 OVAL Vulnerability definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Non-Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows 10 OVAL Patch Definitions",
-					"AssessmentType" : "Patch",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows 7 OVAL Patch Definitions",
-					"AssessmentType" : "Patch",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows 8 OVAL Patch Definitions",
-					"AssessmentType" : "Patch",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows 8.1 OVAL Patch Definitions",
-					"AssessmentType" : "Patch",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows Server 2003 OVAL Patch Definitions",
-					"AssessmentType" : "Patch",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows Server 2008 R2 OVAL Patch Definitions",
-					"AssessmentType" : "Patch",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows Server 2008 OVAL Patch Definitions",
-					"AssessmentType" : "Patch",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows Server 2012 OVAL Patch Definitions",
-					"AssessmentType" : "Patch",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows Server 2012 R2 OVAL Patch Definitions",
-					"AssessmentType" : "Patch",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows Server 2019 OVAL Patch Definitions",
-					"AssessmentType" : "Patch",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows Storage Server 2012 OVAL Patch Definitions",
-					"AssessmentType" : "Patch",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows Server 2016 OVAL Patch Definitions",
-					"AssessmentType" : "Patch",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows Vista OVAL Patch Definitions",
-					"AssessmentType" : "Patch",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows XP OVAL Patch Definitions",
-					"AssessmentType" : "Patch",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows 10 OVAL Vulnerability Definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows 7 OVAL Vulnerability Definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows 8.1 OVAL Vulnerability Definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows 8 OVAL Vulnerability Definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows Server 2003 R2 OVAL Vulnerability Definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows Server 2003 OVAL Vulnerability Definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows Server 2008 R2 OVAL Vulnerability Definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows Server 2008 OVAL Vulnerability Definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows Server 2012 R2 OVAL Vulnerability Definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows Server 2012 OVAL Vulnerability Definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows Server 2016 OVAL Vulnerability Definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows Server 2019 OVAL Vulnerability Definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows Storage Server 2012 OVAL Vulnerability Definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows Vista OVAL Vulnerability Definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				},
-				{
-					"SecurityProfileName" : "Microsoft Windows XP OVAL Vulnerability Definitions",
-					"AssessmentType" : "Vulnerability",
-					"Platform" : "Windows",
-					"LastUpdated" : "2022-12-18 10:40:20.0",
-					"Status" : "Sync Required"
-				} ];
-
-		let defUpdateIndex = 0;
-
-		$('#defUpdateTable')
-				.DataTable(
-						{
-							"destroy" : true, // In order to reinitialize the datatable
-							"pagination" : true, // For Pagination
-							"bPaginate" : true,
-							"sorting" : false, // For sorting
-							"ordering" : false,
-							"searching" : true,
-							"aaData" : defUpdateData,
-							"columns" : [ {}, {
-								"data" : "SecurityProfileName"
-							}, {
-								"data" : "AssessmentType"
-							}, {
-								"data" : "Platform"
-							}, {
-								"data" : "LastUpdated"
-							}, {
-								"data" : "Status"
-							} ],
-							'columnDefs' : [ {
-								'targets' : 0,
-								'searchable' : true,
-								'orderable' : false,
-								'className' : 'dt-body-left',
-								'render' : function(data, type, full, meta) {
-									return '<input type="checkbox" class="form-check-input" name="vulAssessmentCheckbox" value="' + defUpdateIndex++ + '">';
-								}
-							} ]
-						});
-		
-		
 	    $('#vdefUpdateNow').click(function () {
 	      // alert("Calling VDef update operations...");
 	        $.ajax({
@@ -640,13 +49,11 @@
 	                 $('#updateSuccessModal').modal('show');
 
 	            }});
-
-	     }); 
-
+	     });
 	});
 	
 
-     function ok(frm, action) {
+     function doSubmit(frm, action) {
        frm.action.value = action;
        frm.submit();
      }
@@ -733,14 +140,34 @@
 							every month.
 						</div>
 
-						<br/>
+            <div class="card">
+    	        <div class="card-body">
+          	        <div class="row"
+ 			       style="box-shadow: 1px 3px 3px #3333333d !important; padding-bottom: 20px;">
+                <table border="0" cellspacing="1" cellpadding="5">
+                    <tr>
+                        <td align="right" valign="top">
+                            <webapps:pageText key="cvejson.storagedir"/>
+                        </td>
+                        <td valign="top">
+                            <webapps:errorsPresent property="cveStorageDir">
+                                <img src="/shell/common-rsrc/images/errorsmall.gif" width="19" height="16" border="0">
+                            </webapps:errorsPresent>
+                            <html:text name="definitionUpdateForm" property="cveStorageDir"  size="30" styleClass="requiredField"/>
+                        </td>
+                    </tr>
+                  </table>
+                 </div>
+               </div>
+              </div>
 
+						<br/>
 						<div class="row"
 							style="box-shadow: 1px 3px 3px #3333333d !important; padding-bottom: 20px;">
 
 							<div class="col">
 								<span style="font-weight: bold;">CVE Definitions last
-									updated on (2022-12-28)</span><br /> <span>(Please ensure all
+									updated on <bean:write name="definitionUpdateForm" property="cveJsonLastUpdated" filter="false"/> </span><br /> <span>(Please ensure all
 									information is upto date for accurate results)</span>
 							</div>
 
@@ -748,7 +175,7 @@
 								<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 									<button type="button" class="btn btn-sm btn-secondary"
 										style="background-color: #d3d3d333; color: darkgray;">CANCEL</button>
-									<button id="cveUpdateNow" type="button" class="btn btn-sm btn-primary">UPDATE NOW</button>
+									<input type="button" id="cveUpdateNow" onclick="doSubmit(this.form, 'update_cvejson')" class="btn btn-sm btn-primary" value="UPDATE NOW">
 								</div>
 							</div>
 						</div>
@@ -772,7 +199,7 @@
                             <webapps:errorsPresent property="publishTxUrl">
                                 <img src="/shell/common-rsrc/images/errorsmall.gif" width="19" height="16" border="0">
                             </webapps:errorsPresent>
-                            <html:text name="definitionUpdateForm" property="publishTxUrl" styleId="port2" size="30" maxlength="110" styleClass="requiredField"/>
+                            <html:text name="definitionUpdateForm" property="publishTxUrl"  size="30" maxlength="110" styleClass="requiredField"/>
                         </td>
                     </tr>
                     <tr>
@@ -837,7 +264,7 @@
 								<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 									<button type="button" class="btn btn-sm btn-secondary"
 										style="background-color: #d3d3d333; color: darkgray;">CANCEL</button>
-									<input type="button" id="vdefpublish" onclick="ok(this.form, 'update_vdef')" class="btn btn-sm btn-primary" value="UPDATE NOW">
+									<input type="button" id="vdefpublish" onclick="doSubmit(this.form, 'update_vdef')" class="btn btn-sm btn-primary" value="UPDATE NOW">
 								</div>								
 							</div>
 						</div>

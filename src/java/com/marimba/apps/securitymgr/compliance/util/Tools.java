@@ -28,14 +28,13 @@ import com.marimba.castanet.checksum.*;
 import com.marimba.tools.util.*;
 import com.marimba.tools.util.DebugFlag;
 
-
-
 /**
  * Miscellaneous helper functions.
  *
  * @author      Nandakumar Sankaralingam
  * @version 	$Revision$, $Date$
  */
+
 public class Tools  {
     private static final ChecksumAlgorithm csa = ChecksumFactory.getAlgorithm("MD5");
     public static final String CHAR_ENCODING_UTF_8    = "UTF-8";
@@ -169,28 +168,252 @@ public class Tools  {
     }
 
 
+    public static boolean getFile(URL url, File dir, String name) throws IOException, MalformedURLException {
+        return Tools.getFile(url, dir, name, false);
+    }
 
-    public static String getWindowsPatchId(String bulletinId, String qnumber, String patchName) {
-	 StringBuffer sb = new StringBuffer();
-     try {
-        if (bulletinId != null) {
-            sb.append(bulletinId);
-            sb.append(".");
-        }
-        if (qnumber != null) {
-            sb.append(qnumber);
-            sb.append(".");
-        }
-        sb.append(patchName);
-        sb.append(".");
-        sb.append(Integer.toString(patchName.hashCode()).replace('-','_'));
-     } catch (Exception e) {
-         e.printStackTrace();
-     }
-	 return sb.toString();
+    public static boolean getFile(URL url, File dir, String name,  boolean absoluteURL) throws IOException, MalformedURLException {
+        return Tools.getFile(url, dir, name, absoluteURL, false);
+
     }
 
 
+    public static boolean getFile(URL url, File dir, String name,  boolean absoluteURL, boolean force) throws IOException, MalformedURLException {
+        long modSince = 0;
+
+        File dest = new File(dir, name);
+        File desttmp = new File(dir,name+"TMP");
+        long size = -1;
+
+        if (!dest.exists() && desttmp.isFile() && !force) {
+            size = desttmp.length();
+        }
+        if (dest.isFile() && !force) {
+            modSince = dest.lastModified();
+        }
+
+        if (!absoluteURL) {
+            url = new URL(url, name);
+        }
+
+        String urlStr = url.toString();
+        boolean isHttps = urlStr.startsWith("https");
+
+        IConfig tunerConfig = getTunerConfig();
+        MarimbaProxyAuthenticator authenticator = new MarimbaProxyAuthenticator(tunerConfig, url);
+
+        URLConnection conn;
+        boolean partial = false;
+
+        boolean isHttp = urlStr.startsWith("http:");
+        if(tunerConfig != null && (authenticator.isMarimbaProxyEnabled() && (!isHttp))) {
+            url = new URL(urlStr);
+            if (DEBUG > 4) {
+                System.out.println("DebugInfo: proxy IS set");
+            }
+            if(authenticator.haveProxyCredentials()) {
+                if (DEBUG > 4) {
+                    System.out.println("DebugInfo: do have specific proxy credentials, set authenticator");
+                }
+                Authenticator.setDefault(authenticator);
+            } else {
+                if (DEBUG > 4) {
+                    System.out.println("DebugInfo: no specific proxy credentials");
+                }
+            }
+            conn = url.openConnection(authenticator.getProxy());
+        } else {
+            if (DEBUG > 4) {
+                System.out.println("DebugInfo: turns out no proxy is set");
+            }
+            conn =  url.openConnection();
+        }
+
+        if (!isHttps && conn instanceof HttpURLConnection) {
+            HttpURLConnection hconn = (HttpURLConnection)conn;
+
+            if (DEBUG > 4) {
+                System.out.println("DebugInfo: Downloading the file via HttpURLConnection.....");
+            }
+
+            // DAS: have to set the field, since conn.setIfModifiedSince doesn't
+            // seem to work.
+            if (modSince != 0) {
+                TimeZone tz = TimeZone.getTimeZone("GMT");
+                GregorianCalendar gc = new GregorianCalendar(tz);
+                SimpleDateFormat sdf = new SimpleDateFormat();
+                sdf.applyPattern("EEE, d MMM yyyy hh:mm:ss z");
+                sdf.setCalendar(gc);
+                String d = sdf.format(new Date(modSince));
+                hconn.setRequestProperty("If-Modified-Since", d);
+            }
+            if (size > 0) {
+                hconn.setRequestProperty("Range", "bytes=" + size + "-");
+            }
+
+            hconn.connect();
+
+            // Check the response-code
+            int res = hconn.getResponseCode();
+            switch (res) {
+                case HttpURLConnection.HTTP_NOT_MODIFIED:
+                    System.out.println("NOT MODIFIED - returning");
+                    hconn.disconnect();
+                    // REMIND: Hmmm... according to the contract above this should really return false
+                    // I am however reluctant to change this now as there might be code relying on
+                    // the actual behavior...
+                    return true;
+                case HttpURLConnection.HTTP_PARTIAL:
+                    partial = true;
+                    break;
+                case HttpURLConnection.HTTP_OK:
+                    // We're good, grab the data
+                    break;
+                default:
+                    // We've got an error
+                    try {
+                        hconn.disconnect();
+                    } finally {
+                        throw new IOException("Download failed. HTTP error-code " + res);
+                    }
+            }
+        } else if (isHttps || conn instanceof HttpURLConnection) {  // For https connection
+            try {
+
+                SSLContext sslctx = SSLContext.getInstance("SSL");
+                sslctx.init(null, new X509TrustManager[] { new TrustManager() }, null);
+                HttpsURLConnection.setDefaultSSLSocketFactory(sslctx.getSocketFactory());
+
+                if (DEBUG > 4) {
+                    System.out.println("DebugInfo: Downloading the file  via Https....");
+                }
+
+                HttpURLConnection hconn = (HttpURLConnection)conn;
+                hconn.setRequestMethod("GET");
+                hconn.setDoOutput(true);
+
+                // DAS: have to set the field, since conn.setIfModifiedSince doesn't
+                // seem to work.
+                if (modSince != 0) {
+                    TimeZone tz = TimeZone.getTimeZone("GMT");
+                    GregorianCalendar gc = new GregorianCalendar(tz);
+                    SimpleDateFormat sdf = new SimpleDateFormat();
+                    sdf.applyPattern("EEE, d MMM yyyy hh:mm:ss z");
+                    sdf.setCalendar(gc);
+                    String d = sdf.format(new Date(modSince));
+                    hconn.setRequestProperty("If-Modified-Since", d);
+                }
+                if (size > 0) {
+                    hconn.setRequestProperty("Range", "bytes=" + size + "-");
+                }
+
+                hconn.connect();
+
+                // Check the response-code
+                int res = hconn.getResponseCode();
+                switch (res) {
+                    case HttpsURLConnection.HTTP_NOT_MODIFIED:
+                        System.out.println("NOT MODIFIED - returning");
+                        hconn.disconnect();
+                        // REMIND: Hmmm... according to the contract above this should really return false
+                        // I am however reluctant to change this now as there might be code relying on
+                        // the actual behavior...
+                        return true;
+                    case HttpsURLConnection.HTTP_PARTIAL:
+                        partial = true;
+                        break;
+                    case HttpsURLConnection.HTTP_OK:
+                        // We're good, grab the data
+                        break;
+                    default:
+                        // We've got an error
+                        try {
+                            hconn.disconnect();
+                        } finally {
+                            throw new IOException("Download failed. HTTP error-code " + res);
+                        }
+                }
+            } catch(Exception ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            conn.connect();
+        }
+
+        InputStream in = conn.getInputStream();
+        try {
+            RandomAccessFile raf = new RandomAccessFile(desttmp, "rw");
+            try {
+                byte[] buf = new byte[4096];
+                if (partial) {
+                    raf.seek(size);
+                }
+                int len = 0;
+                while ((len = in.read(buf, 0, buf.length)) > 0) {
+                    raf.write(buf, 0, len);
+                }
+                dest.delete();
+            } finally {
+                raf.close();
+            }
+            if (!desttmp.renameTo(dest)) {
+                throw new IOException("Failed to rename " + desttmp + " to " + dest);
+            }
+        } finally {
+            in.close();
+        }
+        if (conn instanceof HttpURLConnection) {
+            ((HttpURLConnection)conn).disconnect();
+        }
+
+        return true;
+    }
+
+
+    // Inner class for Marimba Proxy Auhenticator
+    static class MarimbaProxyAuthenticator extends Authenticator {
+        private final IConfig tunerConfig;
+        private final URL u;
+
+        public MarimbaProxyAuthenticator(IConfig tunerConfig, URL u) {
+            debug("Initialized MarimbaProxyAuthenticator");
+            this.tunerConfig = tunerConfig;
+            this.u = u;
+        }
+
+        public boolean isMarimbaProxyEnabled() {
+            return "true".equalsIgnoreCase(tunerConfig.getProperty("marimba.proxy.enable"));
+        }
+
+        public boolean haveProxyCredentials() {
+            return tunerConfig.getProperty("marimba.proxy.https.password") != null;
+        }
+
+        public Proxy getProxy() {
+            String proxyString = tunerConfig.getProperty("marimba.proxy."+u.getProtocol()+".host");
+            String[] elems = proxyString.split(":");
+            if (DEBUG > 4) {
+                debug("MarimbaProxyAuthenticator proxy will return: "+elems[0]+" and "+elems[1]);
+            }
+            return new Proxy(Proxy.Type.HTTP, new InetSocketAddress(elems[0], Integer.parseInt(elems[1])));
+        }
+
+        public PasswordAuthentication getPasswordAuthentication() {
+            String encodedPassword = tunerConfig.getProperty("marimba.proxy."+u.getProtocol()+".password");
+            String decodedPassword = Password.decode(encodedPassword);
+            String[] elems = decodedPassword.split(":");
+            if (DEBUG > 4) {
+                debug("MarimbaProxyAuthenticator proxy will return: "+elems[0]+" and "+elems[1]);
+            }
+            return (new PasswordAuthentication(elems[0],
+                    elems[1].toCharArray()));
+        }
+
+        protected void debug(String msg) {
+            System.out.println("MarimbaProxyAuthenticator: "+msg);
+        }
+
+    }
 
     /**
      * Copies data from one stream to another.
@@ -445,6 +668,35 @@ public class Tools  {
 	}
     }
 
+    public static final void gunzip(File sourceFile, File targetFile) {
+        // GZip input and output file.
+        try {
+            // Create a file input stream to read the source file.
+            FileInputStream fis = new FileInputStream(sourceFile);
+
+            // Create a gzip input stream to decompress the source
+            // file defined by the file input stream.
+            GZIPInputStream gzis = new GZIPInputStream(fis);
+
+            // Create file output stream where the decompression result
+            // will be stored.
+            FileOutputStream fos = new FileOutputStream(targetFile);
+
+            // Create a buffer and temporary variable used during the
+            // file decompress process.
+            byte[] buffer = new byte[4096];
+            int length;
+
+            // Read from the compressed source file and write the
+            // decompress file.
+            while ((length = gzis.read(buffer)) > 0) {
+                fos.write(buffer, 0, length);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Unzip a file inputstream to the specified directory.
      */
@@ -674,5 +926,19 @@ public static final void unziplocale(InputStream in, File dir, String[] newLocal
        }
        return port;
    }
+
+    static class TrustManager implements X509TrustManager {
+        public void checkClientTrusted(X509Certificate[] chain, String
+                authType) {
+        }
+
+        public void checkServerTrusted(X509Certificate[] chain, String
+                authType) {
+        }
+
+        public X509Certificate[] getAcceptedIssuers() {
+            return new X509Certificate[0];
+        }
+    }
 
 }
