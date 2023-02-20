@@ -33,8 +33,8 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="scanResult" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/ScanResults.do"
-          title="Scan Result">
+        <a class="nav-link" id="scanResult" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/reports.do"
+          title="Scan Results">
           <i class="fa-solid fa-file-lines"></i>
         </a>
       </li>

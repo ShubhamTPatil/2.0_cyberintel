@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"%>
-
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
@@ -20,7 +19,6 @@
     <link rel="stylesheet" type="text/css" href="/spm/includes/assets/adminlte/css/adminlte.min.css">
     <link rel="stylesheet" type="text/css" href="/spm/css/application.css"/>
     <link rel="stylesheet" type="text/css" href="./css/jquery.contextmenu.min.css">
-
     <script type="text/javascript" src="/spm/js/jquery.min.js"></script>
     <script type="text/javascript" src="/spm/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/spm/js/bootstrap-dialog.min.js"></script>
@@ -47,7 +45,6 @@
 <html:hidden property="action"/>
 <html:hidden styleId="displayPath" property="displayPath"/>
 <html:hidden styleId="reportStatus" property="reportStatus"/>
-
 <section class="content-header"><h1><bean:write name="vDeskResultsForm" property="displayPath"/></h1></section>
 <section class="content">
     <div class="row" style="display:none">
@@ -83,7 +80,6 @@
                                 <th data-orderable="false" data-searchable="false">Rules Compliance</th>
                             </logic:equal>
                         </tr>
-
                     </thead>
                 </logic:present>
                 <logic:present name="vDeskResultsForm" property="valuesList">
@@ -112,7 +108,6 @@
         </div>
     </div>
 </section>
-
 <div id="query_modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -125,7 +120,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="rules_status_modal" tabindex="-1" role="dialog" aria-labelledby="rules_status_modal_label" aria-hidden="true">
     <div class="modal-dialog" style="width:95%;">
         <div class="modal-content">
@@ -154,7 +148,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="reports_filter_modal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" style="width:95%;">
         <div class="modal-content">
@@ -202,7 +195,6 @@
                         </table>
                     </div>
                 </div>
-
                 <h4 class="box-title"><div style="color: #3399ff;"><b>Columns</b></div></h4>
                 <h4 style="display: inline"><i class="fa fa-info-circle text-blue" aria-hidden="true"></i></h4>&nbsp;Specify the columns to be included in the generated reports<br><br>
                 <div id="columns_filter_div" style="text-align:left;">
@@ -257,7 +249,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="reports_status_modal" tabindex="-2" role="dialog">
     <div class="modal-dialog modal-lg" style="width:95%;">
         <div class="modal-content">
@@ -286,7 +277,6 @@
         </div>
     </div>
 </div>
-
 <script type="text/javascript">
 var selected_rows = [];
 var selection_type = 0;
@@ -359,17 +349,14 @@ $(document).ready(function() {
     } else {
         $('.dt-buttons a:nth-child(4)').hide();
     }
-
     $('#results_table tbody').on('click', 'input[type="checkbox"]', function(e) {
         var row = $(this).closest("tr");    // Find the row
         var datatableRow = table.row(row).data();
         var machineName = datatableRow[1];
         var contentId = datatableRow[3];
         var profileId = datatableRow[4];
-
         if (this.checked) selected_rows.push({'machine_name': machineName, 'contentId': contentId, "profileId": profileId});
         else selected_rows.splice($.inArray(machineName, selected_rows), 1);
-
         var allPageRows = table.rows({page: 'all', search: 'applied'}).nodes();
         if ($(allPageRows).length === selected_rows.length) {
             $('#select_all').get(0).indeterminate = false;
@@ -380,7 +367,6 @@ $(document).ready(function() {
         }
         e.stopPropagation();
     });
-
     $('#btn_generate_report').click(function() {
         var isRunningReport = document.getElementById('reportStatus').value;
         if (isRunningReport == 'true') {
@@ -452,7 +438,6 @@ function downloadOverallResult() {
         alertError ('Error', 'Please select atleast one column filter to proceed further');
         return false;
     }
-
     // file format
     var fileFormatType = $('#report_type_format').val();
     var fileFormat = 'xls';
@@ -463,7 +448,6 @@ function downloadOverallResult() {
     } else {
         fileFormat = 'xls';
     }
-		
     var singleReport = $('#report_type').val() == 'single' ? 'true' : 'false';
     $.ajax({
         type: 'POST', dataType: 'json', url: '/spm/machineoverallfiledownloader', httpMethod: 'POST',
@@ -484,7 +468,6 @@ function downloadOverallResult() {
         }
     });
 }
-
 function showReportGenerationStatus() {
     $.ajax({
         type: 'POST', dataType: 'json', url: '/spm/reportgenerationstatus', httpMethod: 'POST',
@@ -531,7 +514,6 @@ function isReportRunning() {
         }
     });
 }
-
 function applyPDFStyles(doc) {
     doc.defaultStyle.fontSize = 10;
     doc.styles.title.fontSize = 12;
@@ -543,13 +525,11 @@ function applyPDFStyles(doc) {
     doc.styles.tableBodyOdd.fillColor = '#ffffff';
     doc.styles.tableBodyEven.fillColor = '#e9e9e9';
     doc.styles.tableHeader.noWrap = false;
-
     // doc.content[0] -> title
     // doc.content[1] -> message
     // doc.content[2] -> table
     // change message
     //        doc.content[2].table.widths = Array(doc.content[2].table.body[0].length + 1).join('*').split('');
-
     var cols = [];
     cols[0] = {text: 'Left part', alignment: 'left', margin:[20]};
     cols[1] = {text: 'Right part', alignment: 'right', margin:[0,0,20]};
@@ -558,7 +538,6 @@ function applyPDFStyles(doc) {
     // doc['footer'] = objFooter;
     // doc['header'] = objFooter;
 }
-
 function downloadFile(table, docType) {
     var data = table.buttons.exportData({columns: ':visible'});
     var jsondata = JSON.stringify(data);
@@ -574,7 +553,6 @@ function downloadFile(table, docType) {
         }
     });
 }
-
 function triggerEmail(table, docType) {
     var data = table.buttons.exportData({columns: ':visible'});
     var jsondata = JSON.stringify(data);
@@ -590,12 +568,10 @@ function triggerEmail(table, docType) {
         error: function(jqXHR, textStatus, errorThrown) {closeSpinnerForce('body_div');}
     });
 }
-
 function doSubmit(form, act) {
     form.action.value = act;
     form.submit();
 }
-
 function showMachineEvents(machine, contentId) {
     $.ajax({
         url: './rule_results.do', type: 'GET', dataType: 'json',
@@ -644,27 +620,23 @@ function showMachineEvents(machine, contentId) {
         complete: function() {closeSpinnerForce('body_div');}
     });
 }
-
 function updateDataTableSelectAllCtrl(table){
     var $table             = table.table().node();
     var $chkbox_all        = $('tbody input[type="checkbox"]', $table);
     var $chkbox_checked    = $('tbody input[type="checkbox"]:checked', $table);
     var chkbox_select_all  = $('thead input[name="select_all"]', $table).get(0);
-
     // If none of the checkboxes are checked
     if($chkbox_checked.length === 0){
         chkbox_select_all.checked = false;
         if('indeterminate' in chkbox_select_all){
             chkbox_select_all.indeterminate = false;
         }
-
         // If all of the checkboxes are checked
     } else if ($chkbox_checked.length === $chkbox_all.length){
         chkbox_select_all.checked = true;
         if('indeterminate' in chkbox_select_all){
             chkbox_select_all.indeterminate = false;
         }
-
         // If some of the checkboxes are checked
     } else {
         chkbox_select_all.checked = true;
@@ -673,7 +645,6 @@ function updateDataTableSelectAllCtrl(table){
         }
     }
 }
-
 function selectAllContextMenu() {
     $.contextMenu({
         selector: '#select_all', trigger: 'left',
@@ -704,7 +675,6 @@ function selectAllContextMenu() {
                 $.each(allPageRows, function(index, value) {value.querySelector("td input[type='checkbox']").checked = false;});
                 selection_type = 0;
             }
-
             $.each(allPageRows, function(index, value) {
                 if (value.querySelector("td input[type='checkbox']").checked)
                 {
@@ -728,7 +698,5 @@ function selectAllContextMenu() {
 }
 </script>
 </html:form>
-
 </body>
 </html>
-

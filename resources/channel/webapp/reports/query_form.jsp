@@ -1,3 +1,9 @@
+<%--
+// Copyright 2022-2023, Harman International. All Rights Reserved.
+// Confidential and Proprietary Information of Harman International.
+<!-- Author: Nandakumar Sankaralingam -->
+--%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/includes/directives.jsp" %>
 <%@ include file="/includes/headSection.jsp" %>
 <%@ include file="/includes/common_js.jsp" %>
@@ -9,20 +15,49 @@
 <script type="text/javascript" src="/spm/js/jquery.min.js"></script>
 <script type="text/javascript" src="/spm/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/spm/js/bootstrap-dialog.min.js"></script>
-
 <link rel="stylesheet" type="text/css" href="/spm/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="/spm/css/bootstrap-dialog.min.css"/>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="/spm/includes/assets/adminlte/css/adminlte.min.css">
+
+<%--
+<script type="text/javascript" src="/spm/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/spm/js/bootstrap-dialog.min.js"></script>
+<script type="text/javascript" src="/spm/js/application.js"></script>
+--%>
+
+<link rel="stylesheet" type="text/css" href="/spm/includes/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="/spm/includes/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="/spm/css/bootstrap-datepicker3.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/spm/includes/assets/adminlte/css/adminlte.min.css">
+<link rel="stylesheet" type="text/css" href="/spm/css/_all-skins.min.css"/>
+<link rel="stylesheet" type="text/css" href="/spm/css/application.css"/>
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
+<link rel="stylesheet" type="text/css" href="/spm/css/application.css"/>
+<link rel="stylesheet" type="text/css" href="/spm/css/fuelux.css">
+
+
 <script type="text/javascript">
     function submitForm(form, pageType, formTarget) {
         form.target = formTarget;
         form.submit();
     }
 </script>
+
+<style type="text/css">
+    .slider-arrow {
+
+        background: #d9dada none repeat scroll 0 0; float: left;
+
+        font-size: 25px; position: fixed; margin-left: -2px;
+
+    }
+</style>
+
+
 <body>
 <script type="text/javascript" src="/shell/common-rsrc/js/wz_tooltip.js"></script>
-
 <form name="vDeskReportForm" action="/spm/reports.do" method="post">
     <logic:notPresent name="atlas.form.nopath">
         <input type="hidden" name="path" value="<bean:write name="atlas.form" property="path"/>">
@@ -63,7 +98,6 @@
         <webapps:pageText key="noquery"/>
     </logic:present>
 </form>
-
 <div id="query_modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">

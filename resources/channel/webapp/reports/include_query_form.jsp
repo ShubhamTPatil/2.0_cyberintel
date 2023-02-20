@@ -12,7 +12,6 @@ function checkEnter2(event, form) {
     }
 }
 </script>
-
 <table width="90%" border="0" cellpadding="3" cellspacing="0">
   <logic:iterate id="arg" indexId="argIndex" name="atlas.form" property="args">
   <tr>
