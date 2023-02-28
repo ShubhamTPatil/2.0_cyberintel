@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="/spm/includes/assets/adminlte/css/adminlte.min.css">
     <link rel="stylesheet" type="text/css" href="/spm/css/application.css"/>
     <link rel="stylesheet" type="text/css" href="./css/jquery.contextmenu.min.css">
+
     <script type="text/javascript" src="/spm/js/jquery.min.js"></script>
     <script type="text/javascript" src="/spm/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/spm/js/bootstrap-dialog.min.js"></script>

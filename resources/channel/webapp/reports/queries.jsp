@@ -9,13 +9,6 @@
 <%@ include file="/includes/common_js.jsp" %>
 <%@ taglib uri="/WEB-INF/app.tld" prefix="sm" %>
 
-<%--
-<script type="text/javascript" src="/spm/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/spm/js/bootstrap-dialog.min.js"></script>
-
-<script type="text/javascript" src="/spm/js/application.js"></script>
---%>
-
 <link rel="stylesheet" type="text/css" href="/spm/includes/easyui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="/spm/includes/easyui/themes/icon.css">
 <link rel="stylesheet" type="text/css" href="/spm/css/bootstrap-datepicker3.min.css"/>
@@ -62,15 +55,15 @@
     #tx_channel_tree .channel {background: url(../assets/img/package.gif);background-size: 16px 14px;background-repeat: no-repeat;margin-right: -3px;margin-top: 6px;}
     #tx_channel_tree .transmitter {background: url(../assets/img/master.gif);background-size: 22px 19px;background-repeat: no-repeat;}
 </style>
-
 <body>
 <script type="text/javascript" src="/shell/common-rsrc/js/wz_tooltip.js"></script>
+
 <html:form name="vDeskReportForm" action="/reports.do" type="com.marimba.apps.securitymgr.webapp.forms.VDeskReportForm">
     <table width="320" cellspacing="0" cellpadding="0" border="0">
-        <tr><td class="tableTitle">&nbsp;&nbsp;&nbsp;<webapps:pageText key="reports"/></td></tr>
+        <tr><td class="tableTitle">&nbsp;<webapps:pageText key="reports"/></td></tr>
     </table>
     <div class="tableWrapper" style="width: 318px;">
-        <div id="dataSection" style="height: 100px; width:100%; overflow:auto; padding-left: 81px; line-height: 5px;">
+        <div id="dataSection" style="height: 100px; width:100%; overflow:auto; padding-left:5px; line-height: 5px;">
         <div id="query_content_tree">&nbsp;</div>
         </div>
     </div>

@@ -33,7 +33,6 @@ import java.io.PrintWriter;
 import java.util.*;
 
 public class VDeskReportAction extends DelayedAction implements IAppConstants {
-
     int DEBUG = DebugFlag.getDebug("SECURITY/REPORTING");
 
     public VDeskReportAction.Task create(ActionMapping mapping, ActionForm form, HttpServletRequest request,
@@ -69,7 +68,7 @@ public class VDeskReportAction extends DelayedAction implements IAppConstants {
             this.reportForm = reportForm;
             this.sess = request.getSession();
             this.locale = request.getLocale();
-            this.errors = (ActionErrors)request.getAttribute(Globals.ERROR_KEY);
+            this.errors = (ActionErrors) request.getAttribute(Globals.ERROR_KEY);
             if (this.errors == null) this.errors = new ActionErrors();
         }
 
@@ -92,13 +91,13 @@ public class VDeskReportAction extends DelayedAction implements IAppConstants {
             }
             if ("selected_query".equals(action)) {
                 if (null == path || "".equals(path.trim())) {
-                    path = "/Configuration Assessment/Machines assessed in last 24 hours";
+                    path = "/Configuration Assessment/Detailed Report - Machine Compliance based on Security Scanner";
                 }
                 if ("/Configuration Assessment/".equals(path)) {
-                    path = "/Configuration Assessment/Machines assessed in last 24 hours";
+                    path = "/Configuration Assessment/Detailed Report - Machine Compliance based on Security Scanner";
                 }
                 if ("/Vulnerability Assessment/".equals(path)) {
-                    path = "/Vulnerability Assessment/Machines assessed in last 24 hours";
+                    path = "/Vulnerability Assessment/Detailed Report - Machine Compliance based on Security Scanner";
                 }
                 DirNode node = queryListing.queryMap.get(path);
                 reportForm.setArgs(getArgs(node, request));
@@ -117,11 +116,11 @@ public class VDeskReportAction extends DelayedAction implements IAppConstants {
                 DirNode node = queryListing.queryMap.get(reportForm.getPath());
                 reportForm.setArgs(getArgs(node, request));
                 String sql = node.getValue("atlas.node.sql");
-                for(ArgBean argBean: reportForm.getArgs()) {
-                    for(String value: argBean.getValues()) {
+                for (ArgBean argBean : reportForm.getArgs()) {
+                    for (String value : argBean.getValues()) {
                         value = argBean.getSqlValue(value, 0);
                         int i = 0;
-                        String str= "$"+ ++i;
+                        String str = "$" + ++i;
                         if (value.indexOf(",") > -1) {
                             String modifiedValue = "";
                             String argCriteria = node.getValue("atlas.node.sql.arg" + i + ".criteria");
@@ -175,7 +174,6 @@ public class VDeskReportAction extends DelayedAction implements IAppConstants {
                 forward = mapping.findForward("query_result");
                 return;
             }
-
             forward = mapping.findForward("view");
         }
 
@@ -184,9 +182,8 @@ public class VDeskReportAction extends DelayedAction implements IAppConstants {
         }
 
         private QueryListing getQueryListing(HttpSession session) {
-
             if (session.getAttribute("query_listing") != null) {
-                return (QueryListing)session.getAttribute("query_listing");
+                return (QueryListing) session.getAttribute("query_listing");
             }
             QueryListing queryListing = null;
             XMLParser theXMLParser = new XMLParser();
@@ -196,19 +193,17 @@ public class VDeskReportAction extends DelayedAction implements IAppConstants {
                 queryListing = new QueryListing();
                 theXMLParser.parse(xmlInputStream, queryListing);
                 sess.setAttribute("query_listing", queryListing);
-            } catch (Exception e ) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return queryListing;
         }
     }
 
-    public ArgBean[] getArgs(DirNode node, HttpServletRequest request){
+    public ArgBean[] getArgs(DirNode node, HttpServletRequest request) {
         int numArg = getInteger(node.getValue("atlas.args"), 0);
-
         ArgBean[] args = new ArgBean[numArg];
         boolean fine = true;
-
         for (int i = 0; i < numArg; i++) {
             String id = node.getValue(ARG_ID_PREFIX + i);
             String name = node.getValue(ARG_NAME_PREFIX + i);
@@ -233,7 +228,6 @@ public class VDeskReportAction extends DelayedAction implements IAppConstants {
 
     private Collection<Map<String, Object>> constructFirstJsonObject() {
         Collection<Map<String, Object>> contents = new ArrayList<Map<String, Object>>();
-
         Map<String, Object> aMap = new LinkedHashMap<String, Object>();
         String type = "folder";
         Map<String, Boolean> statemap = new HashMap<String, Boolean>();
@@ -243,9 +237,7 @@ public class VDeskReportAction extends DelayedAction implements IAppConstants {
         //aMap.put("icon", type);
         aMap.put("children", true);
         aMap.put("state", statemap);
-
         contents.add(aMap);
-
         aMap = new LinkedHashMap<String, Object>();
         type = "folder";
         statemap = new HashMap<String, Boolean>();
@@ -255,9 +247,7 @@ public class VDeskReportAction extends DelayedAction implements IAppConstants {
         //aMap.put("icon", type);
         aMap.put("children", true);
         aMap.put("state", statemap);
-
         contents.add(aMap);
-
         System.out.println("constructJsonObject contents to view(" + contents.size() + "): " + contents);
         return contents;
     }
@@ -272,10 +262,8 @@ public class VDeskReportAction extends DelayedAction implements IAppConstants {
             aMap.put("id", node.getName());
             aMap.put("text", node.getDisplayName());
             //aMap.put("icon", type);
-
             aMap.put("children", "directory".equals(type));
             aMap.put("state", statemap);
-
             contents.add(aMap);
         }
         System.out.println("constructJsonObject contents to view(" + contents.size() + "): " + contents);
@@ -283,16 +271,14 @@ public class VDeskReportAction extends DelayedAction implements IAppConstants {
     }
 
     private void createResponse(HttpServletResponse response, Collection<Map<String, Object>> jsonMap) {
-          try {
+        try {
             PrintWriter out = response.getWriter();
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("contents", jsonMap);
-
             out.println(jsonObject);
             out.flush();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }
