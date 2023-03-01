@@ -46,10 +46,6 @@ Object EmpirumContext = session.getAttribute(IWebAppConstants.EMPIRUM_APP_MAIN);
         </div>
         <div class="refresh p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right"
           title="Refresh" style="cursor: pointer;"><i class="fa-solid fa-arrows-rotate"></i></div>
-        <div class="p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right"
-          title="Download" style="cursor: pointer;">
-          <i class="fa-solid fa-download"></i>
-        </div>
         <div class="p-2 bd-highlight text-primary align-self-center"> <a href="/shell/dashboard.do"> <i class="fa-solid fa-chevron-left"
               style="margin-right: 5px;"></i>CMS Home</a>
         </div>
