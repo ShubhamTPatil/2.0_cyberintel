@@ -862,6 +862,7 @@ public class SubscriptionMain implements ISubscriptionConstants, IMainDataSource
             pluginDirProps.setProperty("subscriptionplugin.db.class", userPluginProps.getProperty("subscriptionmanager.db.class"));
             pluginDirProps.setProperty("subscriptionplugin.db.url", userPluginProps.getProperty("subscriptionmanager.db.url"));
             pluginDirProps.setProperty("subscriptionplugin.securityinfo.url", userPluginProps.getProperty("subscriptionmanager.securityinfo.url"));
+            pluginDirProps.setProperty("subscriptionplugin.cvedownloader.url", userPluginProps.getProperty("subscriptionmanager.cvedownloader.url"));
             pluginDirProps.setProperty("subscriptionplugin.db.username", userPluginProps.getProperty("subscriptionmanager.db.username"));
             pluginDirProps.setProperty("subscriptionplugin.db.password", userPluginProps.getProperty("subscriptionmanager.db.password"));
             pluginDirProps.setProperty("subscriptionplugin.db.thread.min", userPluginProps.getProperty("subscriptionmanager.db.thread.min"));
@@ -873,6 +874,8 @@ public class SubscriptionMain implements ISubscriptionConstants, IMainDataSource
             pluginDirProps.setProperty("subscriptionplugin.subscribepassword", userPluginProps.getProperty("subscriptionmanager.publishurl.subscribepassword"));
             pluginDirProps.setProperty("subscriptionplugin.securityinfo.subscribeuser", userPluginProps.getProperty("subscriptionmanager.securityinfo.subscribeuser"));
             pluginDirProps.setProperty("subscriptionplugin.securityinfo.subscribepassword", userPluginProps.getProperty("subscriptionmanager.securityinfo.subscribepassword"));
+            pluginDirProps.setProperty("subscriptionplugin.cvedownloader.subscribeuser", userPluginProps.getProperty("subscriptionmanager.cvedownloader.subscribeuser"));
+            pluginDirProps.setProperty("subscriptionplugin.cvedownloader.subscribepassword", userPluginProps.getProperty("subscriptionmanager.cvedownloader.subscribepassword"));
             pluginDirProps.setProperty("subscriptionplugin.customscanner.url", userPluginProps.getProperty("subscriptionmanager.customscanner.url"));
             pluginDirProps.setProperty("subscriptionplugin.customscanner.subscribeuser", userPluginProps.getProperty("subscriptionmanager.customscanner.subscribeuser"));
             pluginDirProps.setProperty("subscriptionplugin.customscanner.subscribepassword", userPluginProps.getProperty("subscriptionmanager.customscanner.subscribepassword"));

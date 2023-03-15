@@ -38,6 +38,10 @@ public class DefenSightUpdatesForm extends AbstractForm implements IMapProperty 
         IWorkspace workspace = (IWorkspace) smmain.getFeatures().getChild("workspace");
         String securityInfoChnlUrl = smmain.getConfig().getProperty("subscriptionmanager.securityinfo.url");
         IChannel channel = workspace.getChannel(securityInfoChnlUrl);
+
+        String cvedownloaderChUrl = smmain.getConfig().getProperty("subscriptionmanager.cvedownloader.url");
+        IChannel channel2 = workspace.getChannel(cvedownloaderChUrl);
+
         if (null == channel) {
             setValue("scapUpdateAvailable", "false");
             return;

@@ -293,10 +293,7 @@ function checkElasticServerStatus(){
                     <img src="/shell/common-rsrc/images/errorsmall.gif" width="19" height="16" border="0">
                   </webapps:errorsPresent> <html:password name="setPluginForm" property="subscribePasswd" styleId="spasswd" onfocus="changePublishPassword(document.forms.setPluginForm['value(changedSubscribePwd)'],document.forms.setPluginForm,document.getElementById('spasswd'))'])" styleClass="optionalField" /></td>
               </tr>
-
-
             </table>
-
           </div>
         </div>
 
@@ -328,11 +325,34 @@ function checkElasticServerStatus(){
         <div class="card">
           <div class="card-body">
             <div class="card-title">
-              <webapps:pageText key="customscanner.hdr" />
+              <webapps:pageText key="cvedownloader.hdr" />
             </div>
 
-            <webapps:pageText key="customscanner.sectInfo" />
+            <webapps:pageText key="cvedownloader.sectInfo" />
+            <br /> <br />
+            <table border="0" cellspacing="1" cellpadding="5">
+              <tr valign="middle">
+                <td align="right" valign="top"><webapps:pageText key="cvedownloder.info.channel" /></td>
+                <td valign="top"><html:text property="value(cvedownloader.url)" styleId="port4" size="65" maxlength="110" styleClass="requiredField" /> <webapps:txbrowser field="port4" styleId="cvedownloaderBrowse" /></td>
+              </tr>
+              <tr>
+                <td align="right" valign="top"><span class="textGeneral"><webapps:pageText key="cveSubscribeUserName" /></span></td>
+                <td valign="top"><html:text property="value(cvedownloader.subscribeuser)" size="20" styleClass="optionalField" /></td>
+              </tr>
+              <tr>
+                <td align="right" valign="top"><span class="textGeneral"><webapps:pageText key="cveSubscribePassword" /></span></td>
+                <td valign="top"><html:password name="setPluginForm" property="cvedownloaderPassword" styleId="cvedownloaderPassword" onfocus="changePublishPassword(document.forms.setPluginForm['value(changedCveSubPassword)'],document.forms.setPluginForm,document.getElementById('cvedownloaderPassword'))'])" styleClass="optionalField" /></td>
+              </tr>
+            </table>
+          </div>
+        </div>
 
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">
+              <webapps:pageText key="customscanner.hdr" />
+            </div>
+            <webapps:pageText key="customscanner.sectInfo" />
             <br /> <br />
             <table border="0" cellspacing="1" cellpadding="5">
               <tr valign="middle">

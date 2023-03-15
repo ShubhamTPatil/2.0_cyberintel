@@ -55,6 +55,7 @@ public final class PluginPreviewAction extends AbstractAction {
             "title8", "repeaterInsert",
             "title9", "elasticurl",
             "title10", "cveFiltersDir",
+            "title11", "cvedownloader.url", "cvedownloader.subscribeuser", "cvedownloader.subscribepassword",
             "title3", "vendor", "ldaphost", "basedn", "binddn", "bindpasswd","usessl", "authmethod","poolsize", "lastgoodhostexptime"
 
     };
@@ -67,6 +68,7 @@ public final class PluginPreviewAction extends AbstractAction {
             "title8", "subscriptionmanager.repeaterInsert",
             "title9", "subscriptionmanager.elasticurl",
             "title10", "subscriptionmanager.cveFiltersDir",
+            "title11", "subscriptionmanager.cvedownloader.url", "subscriptionmanager.cvedownloader.subscribeuser", "subscriptionmanager.cvedownloader.subscribepassword",
             "title3", "subscriptionmanager.vendor", "subscriptionmanager.ldaphost",
             "subscriptionmanager.basedn", "subscriptionmanager.binddn", "subscriptionmanager.bindpasswd","subscriptionmanager.usessl", "subscriptionmanager.authmethod","subscriptionmanager.poolsize", "subscriptionmanager.lastgoodhostexptime", "subscriptionmanager.pallowprov",
 
@@ -211,6 +213,7 @@ public final class PluginPreviewAction extends AbstractAction {
 
                 if ("bindpasswd".equals(configProps [i]) || "publishurl.password".equals(configProps [i]) || "publishurl.subscribepassword".equals(configProps [i])
                         || "securityinfo.subscribepassword".equals(configProps [i])
+                        || "cvedownloader.subscribepassword".equals(configProps [i])
                         || "customscanner.subscribepassword".equals(configProps [i]) || "db.password".equals(configProps [i])) {
                     if (((formValue == null) || (formValue.length() == 0))) {
                         entry.setValue("assignedValue", "");

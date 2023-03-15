@@ -103,12 +103,14 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
 
             try {
 
+                action = definitionUpdateForm.getAction();
+                System.out.println("DebugInfo: DefinitionUpdate - Action: " + action);
+                System.out.println("DebugInfo: DefinitionUpdate - actionString: " + actionString);
+
                 if (isEmpty(action)) {
                     initDefinitionsUpdateConfig();
                     loadFormData(getDefinitionsUpdateConfig(), definitionUpdateForm);
                 }
-                action = definitionUpdateForm.getAction();
-                System.out.println("DebugInfo: DefinitionUpdate - Action: " + action);
 
                 if ("update_vdef".equals(action)) {
                     String  masterTxUrl = definitionUpdateForm.getPublishTxUrl();
@@ -121,12 +123,17 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                     System.out.println("DebugInfo: Publish UserName: " + pubUser);
                     System.out.println("DebugInfo: Publish Password: " + pubPwd);
 
+                    pubPwd = encode(pubPwd);
+                    chstorePwd = encode(chstorePwd);
+
                     initDefinitionsUpdateConfig();
                     ConfigProps config = getDefinitionsUpdateConfig();
                     if (config != null) {
                         config.setProperty("destination.mastertx.url", masterTxUrl);
                         config.setProperty("publish.tx.user", pubUser);
                         config.setProperty("publish.tx.password", pubPwd);
+                        config.setProperty("channelstore.authenticate.user", chstoreUser);
+                        config.setProperty("channelstore.authenticate.password", chstorePwd);
                         config.save();
                     }
                     String srcUrl = config.getProperty("products.mastertx.url");
@@ -170,25 +177,25 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                     String publishTxUrl = definitionUpdateForm.getPublishTxUrl();
                     String cveStorageDir = definitionUpdateForm.getCveStorageDir();
 
-                   // System.out.println("DebugInfo: publishTxUrl ==> " + publishTxUrl);
-                   // System.out.println("DebugInfo: cveStorageDir ==> " + cveStorageDir);
+                    System.out.println("DebugInfo: publishTxUrl ==> " + publishTxUrl);
+                    System.out.println("DebugInfo: cveStorageDir ==> " + cveStorageDir);
 
                     try {
                         if (!isNull(cveStorageDir)) {
                         File cvejsonDir = new File(cveStorageDir);
                         if (!cvejsonDir.exists()) {
                             cvejsonDir.mkdirs();
+                        }
                             config.setProperty("defensight.cvejson.storagedir.location", cveStorageDir);
                             config.save();
                             config.close();
-                        }
                         }
 
                         tunerConfig = (IConfig) features.getChild("tunerConfig");
                         Tools.setTunerConfig(tunerConfig);
                         String tunerInstallDir = tunerConfig.getProperty("marimba.tuner.install.dir");
 
-                        boolean downloadfailed = downloadCVEJSON(urlStr, 5, cvejsonFile);
+                        boolean downloadfailed = downloadCVEJSON(urlStr, 5, cvejsonZipFile);
                         if (!downloadfailed) {
                            System.out.println("CVE JSON Zip File Download Succeeded...");
                         } else {
@@ -196,7 +203,9 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                         }
                         File jsonZipFile = new File(cveStorageDir, cvejsonZipFile);
                         System.out.println("DebugInfo: CVE JSON ZipFile Path ==> "+jsonZipFile.getCanonicalPath());
-                        File unzipDst = new File("D:\\2020", cvejsonFile);
+                        String cveDir  = getDefinitionsUpdateConfig().getProperty("defensight.cvejson.storagedir.location");
+                        tunerConfig.setProperty("cvedownloader.storage.directory", cveStorageDir);
+                        File unzipDst = new File(cveDir, cvejsonFile);
 
                         actionString = "cvejson_unzip";
                         Tools.gunzip(jsonZipFile, unzipDst);
@@ -241,7 +250,7 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                         actionString = "csvdata_sqldbupdate";
                         String sqlscriptsDirPath = scriptDir.getCanonicalPath() + "\\" + "create-tables.sql";
                         System.out.println("DebugInfo:<run.sql> sqlscriptsDirPath ==> " + sqlscriptsDirPath);
-                        RunSQLScript rsScript = new RunSQLScript(sqlscriptsDirPath, main);
+                        RunSQLScript rsScript = null;
 
                         sqlscriptsDirPath = scriptDir.getCanonicalPath() + "\\" + "run.sql";
                         rsScript = new RunSQLScript(sqlscriptsDirPath, main);
@@ -479,9 +488,19 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
 
         private void loadFormData(ConfigProps config, DefinitionUpdateForm defnForm) {
             if (config != null) {
+                String txPwd = config.getProperty("publish.tx.password");
+                if (isEncoded(txPwd)) {
+                    txPwd = txPwd.substring(BASE64.length());
+                    txPwd = Password.decode(txPwd);
+                }
+                String chStorePwd = config.getProperty("channelstore.authenticate.password");
+                if (isEncoded(chStorePwd)) {
+                    chStorePwd = chStorePwd.substring(BASE64.length());
+                    chStorePwd = Password.decode(chStorePwd);
+                }
                 defnForm.setPublishTxUrl(config.getProperty("destination.mastertx.url"));
                 defnForm.setPublishUserName(config.getProperty("publish.tx.user"));
-                defnForm.setPublishPassword(config.getProperty("publish.tx.password"));
+                defnForm.setPublishPassword(PSWDSTR);
                 defnForm.setVdefLastUpdated(config.getProperty("vdefchannel.lastcopied.timestamp"));
                 defnForm.setCveStorageDir(config.getProperty("defensight.cvejson.storagedir.location"));
                 defnForm.setCveJsonLastUpdated(config.getProperty("defensight.cvejson.lastupdated.timestamp"));
@@ -521,16 +540,17 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
             if (rootDir != null && rootDir.isDirectory()) {
                 File configFile = new File(rootDir, "definitions_update_config.txt");
                 try {
+                    String cvedownloaderUrl = main.getConfig().getProperty("subscriptionmanager.cvedownloader.url");
                     if (!configFile.exists()) {
                         config = new ConfigProps(configFile);
                         config.setProperty("products.mastertx.url", "http://marimbastaging.harman.com/Clarinet/m9004f/Current/vDef");
                         config.setProperty("destination.mastertx.url", "");
                         config.setProperty("publish.tx.user", "");
                         config.setProperty("publish.tx.password", "");
-                        config.setProperty("channelstore.username", "");
-                        config.setProperty("channelstore.password", "");
-                        config.setProperty("defensight.cvejson.downloadurl","");
-                        config.setProperty("defensight.cvedownloaderchannel.location","http://localhost:5282/DefenSight/CVEDownloader");
+                        config.setProperty("channelstore.authenticate.user", "");
+                        config.setProperty("channelstore.authenticate.password", "");
+                        config.setProperty("defensight.cvejson.downloadurl", "https://cve.circl.lu/static/circl-cve-search-expanded.json.gz");
+                        config.setProperty("defensight.cvedownloaderchannel.location", cvedownloaderUrl);
                         if (!config.save()) {
                             throw new Exception("Failed to save mitigate configurations");
                         }

@@ -434,6 +434,10 @@ public class SubscriptionInitServlet extends HttpServlet implements IObserver, I
                     IWorkspace workspace = (IWorkspace) main.getFeatures().getChild("workspace");
                     String securityInfoChnlUrl = main.getConfig().getProperty("subscriptionmanager.securityinfo.url");
                     IChannel channel = workspace.getChannel(securityInfoChnlUrl);
+
+                    String cvedownlderChUrl = main.getConfig().getProperty("subscriptionmanager.cvedownloader.url");
+                    IChannel channel2 = workspace.getChannel(cvedownlderChUrl);
+
                     if (key.equalsIgnoreCase("marimba.securityinfo.sync.status." + channel.getURL())) {
                         if ("insync".equals(val)) {
                         	// After completion of content security synchronization from updates tab, vDesk channel should be restarted otherwise latest contents are not reflected
