@@ -660,9 +660,14 @@ class PluginLDAPUtils
         // the config.xml if version of Subscription Service requesting an update
         // is less than 5.0
         Object profileObj = request.getProfileAttribute(SERVICE_VERSION_PROFILE_ATTR);
-
         if (profileObj != null) {
             String vers = profileObj.toString();
+
+            // #defensight fix - todo
+            if (vers.equalsIgnoreCase("2.0_cyberintel") || vers.indexOf("cyberintel") != -1
+                    || vers.startsWith("2.0")) {
+                vers = "9.0.04d";  // Using earlier vInspector plug-in version
+            }
 
             if (vers != null) {
                 int mjrInd = vers.indexOf(".");
