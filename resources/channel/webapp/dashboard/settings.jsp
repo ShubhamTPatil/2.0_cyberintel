@@ -206,6 +206,24 @@ $(function () {
                     </div>
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">
+                        <div class="row">
+                            <br>
+                            <div class="col-sm-2 align-self-center text-center">
+                                <i class="fa-solid fas fa-sync"></i>
+                            </div>
+                            <div class="col-sm-10">
+                                <a href="/shell/settings/defensightdashboarddatasync.do">DefenSight-Dashboard data table Synchronization Service</a><br>
+                                Configure the DefenSight dashboard data synchronization service for use by defensight features such as top vulnerability, vulnerability statistics and ageing chart.
+                            </div>
+                        </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
       
     </section>
