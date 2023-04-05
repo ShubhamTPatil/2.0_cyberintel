@@ -69,6 +69,9 @@ public class RunSQLScript extends DatabaseAccess {
 
                 //Initialize the script runner
                 ScriptRunner sr = new ScriptRunner(conn);
+                sr.setStopOnError(true);
+                sr.setLogWriter(null);
+                sr.setAutoCommit(true);
 
                 //Creating a reader object
                 Reader reader = new BufferedReader(new FileReader(scriptFilePath));
@@ -81,13 +84,13 @@ public class RunSQLScript extends DatabaseAccess {
                 st = pool.getConnection().prepareStatement(queryStr);
                 rs = st.executeQuery();
 
-
                 try {
                     if (rs.next()) {
                         long count = rs.getLong(1);
                         System.out.println("DebugInfo: Table - <product_cve_info> count: " + count);
                     }
                 } finally {
+                    st.close();
                     rs.close();
                 }
                 System.out.println("Script Execution Done..");

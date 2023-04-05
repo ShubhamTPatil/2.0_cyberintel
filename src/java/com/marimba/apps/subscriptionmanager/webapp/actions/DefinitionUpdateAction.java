@@ -22,6 +22,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.marimba.apps.subscription.common.ISubscriptionConstants;
+import com.marimba.apps.subscriptionmanager.compliance.intf.ICveUpdateConstants;
 import com.marimba.apps.subscription.common.intf.IUser;
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
 
@@ -61,7 +62,7 @@ import com.marimba.apps.subscriptionmanager.webapp.forms.DefinitionUpdateForm;
  * @version: $Date$, $Revision$
  */
 
-public class DefinitionUpdateAction extends AbstractAction implements IWebAppConstants, ISubscriptionConstants {
+public class DefinitionUpdateAction extends AbstractAction implements IWebAppConstants, ISubscriptionConstants, ICveUpdateConstants {
 
 
     protected Task createTask(ActionMapping mapping, ActionForm form, HttpServletRequest request,HttpServletResponse response) {
@@ -76,6 +77,11 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
         private IWorkspace ws;
         static final String PSWDSTR                 = "******";
         static final String BASE64                  = "base64:";
+
+        static final String CVE_CREATE_SQL          = "create-tables.sql";
+        static final String CVE_UPDATE_SQL          = "update-tables.sql";
+        static final String CVE_RUN_SQL             = "run.sql";
+
         HttpServletRequest request;
         HttpServletResponse response;
         Locale locale;
@@ -212,7 +218,7 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
 
                         IApplicationContext iappContext = (IApplicationContext) main.getFeatures().getChild("context");
                         String cveDownloaderChannel =  fetchCVEDownloaderChannelUrl(iappContext);
-                          System.out.println("DebugInfo: CVE DOWNLOADER Channel URL ==> " + cveDownloaderChannel);
+                       // System.out.println("DebugInfo: CVE DOWNLOADER Channel URL ==> " + cveDownloaderChannel);
                         if (isNull(cveDownloaderChannel)) {
                             System.out.println("DebugInfo: CVE DOWNLOADER Channel URL not found.. Going to subscribe from Master Transmitter");
                             String cvedownloadChUrl = config.getProperty("defensight.cvedownloaderchannel.location");
@@ -238,6 +244,9 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                             scriptDir = new File(cveStorageDir, "sqlscripts");
                             if (!scriptDir.exists()) scriptDir.mkdirs();
 
+                            boolean fileStatus = makeCveSchemaSqlScripts(scriptDir);
+                            System.out.println("DebugInfo: CVE SQL scripts created and updated successfully..." + fileStatus);
+
                             int csvfilesCnt =  csvFilesDir.list().length;
                             System.out.println("DebugInfo: Number of CSV files: "+csvfilesCnt);
                             String csvFilesDirPath =  csvFilesDir.getCanonicalPath();
@@ -248,15 +257,25 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                         }
 
                         actionString = "csvdata_sqldbupdate";
-                        String sqlscriptsDirPath = scriptDir.getCanonicalPath() + "\\" + "create-tables.sql";
-                        System.out.println("DebugInfo:<run.sql> sqlscriptsDirPath ==> " + sqlscriptsDirPath);
-                        RunSQLScript rsScript = null;
+                        String sqlscriptsDirPath = scriptDir.getCanonicalPath() + "\\" + CVE_CREATE_SQL;
+                        System.out.println("DebugInfo: SQL scripts directory path ==> " + sqlscriptsDirPath);
+                        RunSQLScript rsScript = new RunSQLScript(sqlscriptsDirPath, main);
 
-                        sqlscriptsDirPath = scriptDir.getCanonicalPath() + "\\" + "run.sql";
+                        if (rsScript.getStatus()) {
+                            System.out.println("DebugInfo: CVE JSON create-tables.sql into DefenSight Database - SUCCEEDED");
+                        }
+
+                        sqlscriptsDirPath = scriptDir.getCanonicalPath() + "\\" + CVE_RUN_SQL;
                         rsScript = new RunSQLScript(sqlscriptsDirPath, main);
 
                         if (rsScript.getStatus()) {
-                          System.out.println("DebugInfo: CVE JSON update into DefenSight Database - SUCCEEDED");
+                           System.out.println("DebugInfo: CVE JSON update bulk insertion into DefenSight Database - SUCCEEDED");
+
+                            sqlscriptsDirPath = scriptDir.getCanonicalPath() + "\\" + CVE_UPDATE_SQL;
+                            rsScript = new RunSQLScript(sqlscriptsDirPath, main);
+                            if (rsScript.getStatus()) {
+                                System.out.println("DebugInfo: CVE JSON update-tables.sql into DefenSight Database - SUCCEEDED");
+                            }
 
                             long currentTimestampVal = System.currentTimeMillis();
                             java.util.Date date = new java.util.Date(currentTimestampVal);
@@ -295,11 +314,51 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
             forward = mapping.findForward("view");
         }
 
+
+        private boolean makeCveSchemaSqlScripts(File cvestorageDir) {
+            boolean fileStatus = true;
+            try{
+                File createScriptFile = new File(cvestorageDir, CVE_CREATE_SQL);
+                FileOutputStream fout = new FileOutputStream(createScriptFile);
+                String scriptContent = CREATE_TABLE_SQL;
+                byte[] bytesArray = scriptContent.getBytes();
+                fout.write(bytesArray);
+                fout.flush();
+                fout.close();
+                System.out.println(CVE_CREATE_SQL + " - File written successfully... ");
+
+                File updateScriptFile = new File(cvestorageDir, CVE_UPDATE_SQL);
+                fout = new FileOutputStream(updateScriptFile);
+                scriptContent = UPDATE_TABLE_SQL;
+                bytesArray = scriptContent.getBytes();
+                fout.write(bytesArray);
+                fout.flush();
+                fout.close();
+                System.out.println(UPDATE_TABLE_SQL + " - File written successfully... ");
+
+            }catch (Exception ex) {
+                fileStatus = false;
+                ex.printStackTrace();
+                System.out.println("Failed to create cve setup sql script files: " +ex.getMessage());
+            }
+            return fileStatus;
+        }     
+
+        // To update bulk insertion sql script for csv files
         private void updateScriptFile(File scriptDir, String csvDirPath,  int csvFilesCnt) {
            try{
+
+               String dataSourceName = main.getProperty("subscriptionmanager.db.name");
+
                File runSqlFile = new File(scriptDir, "run.sql");
                BufferedWriter bout = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(runSqlFile), "UTF-8"));
                
+               String permString = "Use master;";
+               bout.write(permString);bout.newLine();
+               bout.write("GRANT ADMINISTER BULK OPERATIONS TO inventory;");bout.newLine();
+               permString = "Use " + dataSourceName + ";";
+               bout.write(permString);bout.newLine();
+
                String scriptContent = "BULK INSERT vendor_info FROM '" + csvDirPath +
                        "\\csv-vendor-0.csv' WITH (FIELDTERMINATOR = ',', ROWTERMINATOR = '\\n');";
                bout.write(scriptContent);
@@ -318,6 +377,13 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                    bout.write(scriptContent);
                    bout.newLine();
                }
+
+               permString = "Use master;";
+               bout.write(permString);bout.newLine();
+               bout.write("REVOKE ADMINISTER BULK OPERATIONS FROM inventory;");bout.newLine();
+               permString = "Use " + dataSourceName + ";";
+               bout.write(permString);bout.newLine();
+
                bout.flush();
                bout.close();
                System.out.println("SQL script <run.sql> file updated successfully... ");
