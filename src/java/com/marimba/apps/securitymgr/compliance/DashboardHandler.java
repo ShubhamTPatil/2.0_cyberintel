@@ -10,10 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
-import com.marimba.apps.subscriptionmanager.beans.MitigatePatchesBean;
-import com.marimba.apps.subscriptionmanager.beans.ReportingNotCheckedInBean;
-import com.marimba.apps.subscriptionmanager.beans.TopVulnerableStatusBean;
-import com.marimba.apps.subscriptionmanager.beans.PriorityPatchesBean;
+import com.marimba.apps.subscriptionmanager.beans.*;
 import com.marimba.apps.subscriptionmanager.compliance.intf.ComplianceConstants;
 
 /**
@@ -122,7 +119,20 @@ public class DashboardHandler implements ComplianceConstants {
         return vulSeverityInfo;
     }
 
-    // Get Top Vulnerabilities Info 
+    // Get Patch Compliance Status Info after mitigate operation
+    public List<PatchComplianceStatusBean> getPatchComplianceStatusInfo(String action) {
+        List<PatchComplianceStatusBean> patchComplianceStatusInfo =  new ArrayList<PatchComplianceStatusBean>();
+        try {
+
+            patchComplianceStatusInfo = new DashboardInfoDetails.GetPatchComplianceStatusInfo(main, action).getPatchComplianceStatusInfo();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return patchComplianceStatusInfo;
+    }
+
+    // Get Top Vulnerabilities Info
     public List<TopVulnerableStatusBean> getTopVulnerabilitiesInfo() {
         List<TopVulnerableStatusBean> topVulInfo =  new ArrayList<TopVulnerableStatusBean>();
         try {

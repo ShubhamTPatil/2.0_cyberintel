@@ -8,10 +8,7 @@ import com.marimba.apps.securitymgr.db.DatabaseAccess;
 import com.marimba.apps.securitymgr.db.QueryExecutor;
 import com.marimba.apps.securitymgr.view.SCAPBean;
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
-import com.marimba.apps.subscriptionmanager.beans.MitigatePatchesBean;
-import com.marimba.apps.subscriptionmanager.beans.PriorityPatchesBean;
-import com.marimba.apps.subscriptionmanager.beans.ReportingNotCheckedInBean;
-import com.marimba.apps.subscriptionmanager.beans.TopVulnerableStatusBean;
+import com.marimba.apps.subscriptionmanager.beans.*;
 import com.marimba.apps.subscriptionmanager.compliance.intf.ComplianceConstants;
 import com.marimba.apps.subscriptionmanager.compliance.view.MachineBean;
 import com.marimba.apps.subscriptionmanager.compliance.view.MachineListBean;
@@ -1364,6 +1361,27 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
     }
 
+    public static class GetPatchComplianceStatusInfo extends DatabaseAccess {
+        List<PatchComplianceStatusBean> patchCompStatusInfo = new ArrayList<PatchComplianceStatusBean>();
+        String action;
+
+        public GetPatchComplianceStatusInfo(SubscriptionMain main, String action) {
+            this.action = action;
+            GetPatchComplianceStatusData result = new GetPatchComplianceStatusData(main, action);
+
+            try {
+                runQuery(result);
+                patchCompStatusInfo = result.getPatchComplianceStatusInfo();
+            } catch (Exception dae) {
+                dae.printStackTrace();
+            }
+        }
+
+        public List<PatchComplianceStatusBean> getPatchComplianceStatusInfo() {
+            return patchCompStatusInfo;
+        }
+    }
+
     static class GetMitigatePatchesData extends QueryExecutor {
         List<MitigatePatchesBean> mitigatePatchesInfo = new ArrayList<MitigatePatchesBean>();
         String repIDs;
@@ -1504,6 +1522,84 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
         public List<TopVulnerableStatusBean> getTopVulnerabilitiesInfo() {
             return topVulInfo;
+        }
+
+    }
+
+    static class GetPatchComplianceStatusData extends QueryExecutor {
+        List<PatchComplianceStatusBean> patchCompStatusInfo = new ArrayList<PatchComplianceStatusBean>();
+        String action;
+
+        GetPatchComplianceStatusData(SubscriptionMain main, String action) {
+            super(main);
+            this.action = action;
+        }
+
+        protected void execute(IStatementPool pool) throws SQLException {
+
+            String sqlStr = "select distinct im.id, im.name, patchgrp.patch, patchgrp.patchgroup, mc.compliance_level \n" +
+                    "from inv_machine im, all_patch ap, inv_machinecompliance mc, GetPatchGroupInformation() patchgrp\n" +
+                    "where  im.id =  ap.machine_id\n" +
+                    "and ap.repository_id = patchgrp.patch\n" +
+                    "and (im.id = mc.machine_id\n" +
+                    "and mc.url like '%PatchManagement%')\n" +
+                    "and (upper(ap.current_status) = upper('Effectively-Installed') or upper(ap.current_status) = upper('Installed'))\n" +
+                    "and mc.compliance_level ='COMPLIANT' ";
+
+            if ("patch_notapplied".equalsIgnoreCase(action)) {
+                 sqlStr = "select distinct im.id, im.name, patchgrp.patch, patchgrp.patchgroup, mc.compliance_level \n" +
+                         "from inv_machine im, all_patch ap, inv_machinecompliance mc, GetPatchGroupInformation() patchgrp\n" +
+                         "where  im.id =  ap.machine_id\n" +
+                         "and ap.repository_id = patchgrp.patch\n" +
+                         "and (im.id = mc.machine_id\n" +
+                         "and mc.url like '%PatchManagement%')\n" +
+                         "and (upper(ap.current_status) = upper('Missing') or upper(ap.current_status) = upper('Available-SP'))\n" +
+                         "and mc.compliance_level ='NON-COMPLIANT'";
+            } else if ("patch_notscanned".equalsIgnoreCase(action)) {
+                sqlStr = "select distinct im.id, im.name, patchgrp.patch, patchgrp.patchgroup from inv_machine im, all_patch ap, \n" +
+                        "inv_machinecompliance mc, GetPatchGroupInformation() patchgrp\n" +
+                        "where  im.id =  ap.machine_id\n" +
+                        "and ap.repository_id = patchgrp.patch\n" +
+                        "and (im.id = mc.machine_id\n" +
+                        "and mc.url like '%PatchManagement%')\n" +
+                        "  and not exists (select 1 from inv_tunerchannel itc,inv_tuner it\n" +
+                        "  where (itc.url like '%SubscriptionService%' or itc.url like '%PatchService%') and\n" +
+                        "  (itc.tuner_id = it.tuner_id and it.machine_id = im.id)\n" +
+                        "  and it.machine_id = im.id \n" +
+                        "  and itc.state = 'subscribed' or itc.state = 'running')";
+            }
+
+            PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
+            ResultSet rs = st.executeQuery();
+            try {
+                while(rs.next()) {
+                    PatchComplianceStatusBean pcsBean = new PatchComplianceStatusBean();
+                    String machineId = rs.getString("id");
+                    String machineName = rs.getString("name");
+                    String patch = rs.getString("patch");
+                    String patchgroup = rs.getString("patchgroup");
+                    String complevel = "";
+                    if ("patch_applied".equalsIgnoreCase(action) || "patch_notapplied".equalsIgnoreCase(action)) {
+                      complevel = rs.getString("compliance_level");
+                    } else {
+                      complevel = "Not Scanned";
+                    }
+
+                    pcsBean.setMachineId(machineId);
+                    pcsBean.setMachineName(machineName);
+                    pcsBean.setPatch(patch);
+                    pcsBean.setPatchGroup(patchgroup);
+                    pcsBean.setComplianceLevel(complevel);
+
+                    patchCompStatusInfo.add(pcsBean);
+                }
+            } finally {
+                rs.close();
+            }
+        }
+
+        public List<PatchComplianceStatusBean> getPatchComplianceStatusInfo() {
+            return patchCompStatusInfo;
         }
 
     }

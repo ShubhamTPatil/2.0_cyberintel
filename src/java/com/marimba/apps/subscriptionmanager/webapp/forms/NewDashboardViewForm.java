@@ -12,16 +12,13 @@ package com.marimba.apps.subscriptionmanager.webapp.forms;
   *
  **/
 
-import com.marimba.apps.subscriptionmanager.beans.PriorityPatchesBean;
-import com.marimba.apps.subscriptionmanager.beans.ReportingNotCheckedInBean;
-import com.marimba.apps.subscriptionmanager.beans.TopVulnerableStatusBean;
+import com.marimba.apps.subscriptionmanager.beans.*;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 
 
-import com.marimba.apps.subscriptionmanager.beans.VulnerableStatusBean;
 import java.io.*;
 import java.net.*;
 
@@ -57,6 +54,7 @@ public class NewDashboardViewForm
     private VulnerableStatusBean vulnerableStatusBean;
     private String totalVulnerable;
     private List<TopVulnerableStatusBean> topVulnerableList = new ArrayList<TopVulnerableStatusBean>();
+    private List<PatchComplianceStatusBean> pcsInfoList = new ArrayList<PatchComplianceStatusBean>();
     private List<PriorityPatchesBean> priorityPatchesList = new ArrayList<PriorityPatchesBean>();
     private List<ReportingNotCheckedInBean> rptNotCheckedInList = new ArrayList<ReportingNotCheckedInBean>();
     private String topVulnerableData = "[]";
@@ -235,6 +233,14 @@ public class NewDashboardViewForm
 
     public void setTopVulnerableList(List<TopVulnerableStatusBean> topVulnerableList) {
         this.topVulnerableList = topVulnerableList;
+    }
+
+    public List<PatchComplianceStatusBean> getPatchComplianceStatusList() {
+        return pcsInfoList;
+    }
+
+    public void setPatchComplianceStatusList(List<PatchComplianceStatusBean> pcsInfoList) {
+        this.pcsInfoList = pcsInfoList;
     }
 
     public List<PriorityPatchesBean> PriorityPatchesList() {
