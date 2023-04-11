@@ -258,7 +258,7 @@ function checkElasticServerStatus(){
             <div class="card-title">
               <webapps:pageText key="securityplugin.hdr" />
             </div>
-            <webapps:pageText key="pluginStatus.sectInfo" />
+            <webapps:pageText key="securityplugin.sectInfo" />
             <br /> <br />
 
             <table border="0" cellspacing="1" cellpadding="5">
