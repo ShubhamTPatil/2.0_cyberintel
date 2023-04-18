@@ -63,15 +63,14 @@
 
       <section class="section dashboard">
 
-        <div class="card">
-
-          <nav>
+          <nav style="background-color: #fff;">
             <div class="nav nav-tabs nav-title" id="nav-tab" role="tablist">
-              <a href="/spm/definitionupdate.do" class="nav-link">CVE INFORMATION</a>
-              <button type="button" class="nav-link active" id="updatesTabButton" data-bs-toggle="tab" data-bs-target="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">UPDATES</button>
+              <a href="/spm/definitionupdate.do" class="nav-link">CVE and Vulnerabilities Definitions Updates</a>
+              <button type="button" class="nav-link active" id="updatesTabButton" data-bs-toggle="tab" data-bs-target="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false" style="background-color: #fff; z-index:1;">Repository Updates</button>
             </div>
           </nav>
-
+          
+        <div class="card">
           <div class="card-body">
             <br />
             <table width="100%">

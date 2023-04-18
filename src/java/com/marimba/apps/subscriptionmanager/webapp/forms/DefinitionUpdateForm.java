@@ -29,6 +29,12 @@ public class DefinitionUpdateForm extends AbstractForm {
     private String vdefLastUpdated;
     private String cveStorageDir;
     private String cveJsonLastUpdated;
+    private int updateCvejsonStartStep;
+    private boolean cveJsonUpdateThreadRunning;
+    private int cveJsonUpdateStep;
+    private String cveJsonUpdateMsg;
+    private String cveJsonUpdateError;
+    private String vDefError;
 
     public String getAction() {
         return action;
@@ -122,4 +128,54 @@ public class DefinitionUpdateForm extends AbstractForm {
 	public void setDefinationUpdateResponse(String definationUpdateResponse) {
 		this.definationUpdateResponse = definationUpdateResponse;
 	}
+	
+
+	public int getUpdateCvejsonStartStep() {
+		return updateCvejsonStartStep;
+	}
+
+	public void setUpdateCvejsonStartStep(int updateCvejsonStartStep) {
+		this.updateCvejsonStartStep = updateCvejsonStartStep;
+	}
+
+	public boolean isCveJsonUpdateThreadRunning() {
+		return cveJsonUpdateThreadRunning;
+	}
+
+	public void setCveJsonUpdateThreadRunning(boolean cveJsonUpdateThreadRunning) {
+		this.cveJsonUpdateThreadRunning = cveJsonUpdateThreadRunning;
+	}
+
+	public int getCveJsonUpdateStep() {
+		return cveJsonUpdateStep;
+	}
+
+	public void setCveJsonUpdateStep(int cveJsonUpdateStep) {
+		this.cveJsonUpdateStep = cveJsonUpdateStep;
+	}
+
+	public String getCveJsonUpdateMsg() {
+		return cveJsonUpdateMsg;
+	}
+
+	public void setCveJsonUpdateMsg(String cveJsonUpdateMsg) {
+		this.cveJsonUpdateMsg = cveJsonUpdateMsg;
+	}
+
+	public String getCveJsonUpdateError() {
+		return cveJsonUpdateError;
+	}
+
+	public void setCveJsonUpdateError(String cveJsonUpdateError) {
+		this.cveJsonUpdateError = cveJsonUpdateError;
+	}
+
+	public String getvDefError() {
+		return vDefError;
+	}
+
+	public void setvDefError(String vDefError) {
+		this.vDefError = vDefError;
+	}
+	
 }
