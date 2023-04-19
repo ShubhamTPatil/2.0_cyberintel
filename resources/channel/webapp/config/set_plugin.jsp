@@ -140,6 +140,8 @@ function setCheckBoxValue(eid, propertyname) {
     }
 }
 </script>
+
+
 <script rel="javascript" type="text/javascript">
 function checkElasticServerStatus(){
 	var elasticurl = $('#elastic_url').val();
@@ -157,6 +159,27 @@ function checkElasticServerStatus(){
     });
 }
 </script>
+
+<style>
+#table{
+border:1px solid #dd4b39;
+width: 100%;
+}
+#error_info{
+    background-color: #dd4b39;
+    display: block;
+    padding: 12px;
+    position: relative;
+    color: white;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 0.1em;"
+}
+
+</style>
 
 <%-- Body content --%>
 <body>
@@ -189,15 +212,15 @@ function checkElasticServerStatus(){
 
       <section class="section dashboard">
 
-        <table border="0" cellspacing="1" cellpadding="5">
+       <table id="table" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td colspan="2">
+            <td colspan="0">
               <%-- Errors Display --%>
               <table width="90%">
                 <%@ include file="/includes/usererrors.jsp"%>
                 <logic:present scope="request" name="errors">
                   <div class="statusMessage" id="critical">
-                    <h6>
+                    <h6 id="error_info">
                       <webapps:text key="page.usererrors.beforeproceeding" />
                     </h6>
                     <p>
@@ -210,9 +233,6 @@ function checkElasticServerStatus(){
                   </div>
                 </logic:present>
               </table>
-            </td>
-          </tr>
-        </table>
 
         <div class="card">
           <div class="card-body">
