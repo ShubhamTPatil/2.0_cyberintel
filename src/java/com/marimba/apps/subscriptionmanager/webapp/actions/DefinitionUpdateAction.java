@@ -133,7 +133,7 @@ public class DefinitionUpdateAction extends AbstractAction
 					json.put("status", Integer.valueOf(status));
 					json.put("error", error);
 					json.put("message", message);
-					System.out.println("Response : " + json.toString());
+					//System.out.println("Response : " + json.toString());
 					sendJSONResponse(response, json.toString());
 
 				} else if ("checkThreadStatus".equals(action)) {
@@ -141,10 +141,11 @@ public class DefinitionUpdateAction extends AbstractAction
 					Set<Thread> threads = Thread.getAllStackTraces().keySet();
 					for (Thread t : threads) {
 						if (t.getName() == "cveJsonUpdateThread") {
-							System.out.printf("%-15s \t %-15s \t %-15s \t %s\n", "Name", "State", "Priority",
-									"isDaemon");
-							System.out.printf("%-15s \t %-15s \t %-15d \t %s\n", t.getName(), t.getState(),
-									t.getPriority(), t.isDaemon());
+							/*
+							 * System.out.printf("%-15s \t %-15s \t %-15s \t %s\n", "Name", "State",
+							 * "Priority", "isDaemon"); System.out.printf("%-15s \t %-15s \t %-15d \t %s\n",
+							 * t.getName(), t.getState(), t.getPriority(), t.isDaemon());
+							 */
 							JSONObject json = new JSONObject();
 							json.put("cveJsonUpdateThread", true);
 							sendJSONResponse(response, json.toString());
@@ -184,7 +185,7 @@ public class DefinitionUpdateAction extends AbstractAction
 						config.save();
 					}
 					String srcUrl = config.getProperty("products.mastertx.url");
-					String dstUrl = masterTxUrl + "/vDef_DefenSight/vDef";
+					String dstUrl = masterTxUrl + "/DefenSight/vDef";
 					boolean copyFailed = executeVdefChannelCopy(srcUrl, dstUrl, pubUser, pubPwd);
 					if (!copyFailed) {
 						long currentTimestampVal = System.currentTimeMillis();
@@ -208,7 +209,7 @@ public class DefinitionUpdateAction extends AbstractAction
 						definitionUpdateForm.setvDefError("");
 					} else {
 						System.out.println("vDef channel copy operation failed from Products Tx..");
-						config.setProperty("vdefchannel.copy.error", "vDef channel copy operation failed from Products Tx "+srcUrl);
+						config.setProperty("vdefchannel.copy.error", "vDef channel copy operation failed.");
 						config.save();
 						config.close();
 					}
@@ -220,12 +221,6 @@ public class DefinitionUpdateAction extends AbstractAction
 
 					Runnable update_cvejson_runnable = new Runnable() {
 
-						public void stop() {
-							Thread thread = Thread.currentThread();
-							System.out.println("Stopping THREAD: " + thread.getName() + " (" + thread.getId() + ")");
-							thread = null;
-						}
-
 						public void run() {
 
 							Thread thread = Thread.currentThread();
@@ -236,7 +231,7 @@ public class DefinitionUpdateAction extends AbstractAction
 
 							int updateCvejsonStartStep = definitionUpdateForm.getUpdateCvejsonStartStep();
 
-							System.out.println("updateCvejsonStartStep = " + updateCvejsonStartStep);
+							//System.out.println("updateCvejsonStartStep = " + updateCvejsonStartStep);
 
 							String publishTxUrl = definitionUpdateForm.getPublishTxUrl();
 							String cveStorageDir = definitionUpdateForm.getCveStorageDir();
@@ -414,7 +409,6 @@ public class DefinitionUpdateAction extends AbstractAction
 
 										fetchCVEDownloaderChannelUrl(iappContext);
 
-										System.out.println("cveDownloderChPath = " + cveDownloderChPath);
 										if (cveDownloderChPath == null) {
 											config.setProperty("cvejsonupdate.process.message", "");
 											config.setProperty("cvejsonupdate.process.error",
@@ -849,7 +843,6 @@ public class DefinitionUpdateAction extends AbstractAction
 		}
 
 		private String fetchCVEDownloaderChannelUrl(IApplicationContext context) throws Exception {
-			System.out.println("fetchCVEDownloaderChannelUrl");
 			String cveDownloaderChUrl = "";
 			File file = new File(context.getDataDirectory());
 			String s = file.getParent();

@@ -219,7 +219,7 @@
 				  				
 				  					const divId = '#step-'+(response.status+1)+'-error';
 				  					if(typeof response != "undefined" && typeof response.error != "undefined" && response.error != null && response.error.trim() != "") {
-				  						$(divId).html(response.error+"<br> CVE Update process has stopped. You can start again by clicking on UPDATE NOW button.");
+				  						$(divId).html(response.error);
 				  	    		} else {
 				  	    			$(divId).text("");
 				  	    		}
@@ -375,18 +375,6 @@
                   <i class="fa-solid fa-circle-info text-primary"></i> Please ensure the CVE’s information is up-to-date to verify your end points against the latest published CVE’s.
                 </div>
 
-                <%--                 <div class="row">
-                  <div class="col">
-                    <span style="font-weight: bold;">CVE Definitions</span>
-                  </div>
-                  <div class="col" style="text-align: right;">
-                    Last updated on:
-                    <bean:write name="definitionUpdateForm" property="cveJsonLastUpdated" filter="false" />
-                  </div>
-                  <div style="font-size: small;">(Please ensure the CVE’s information is up-to-date to verify your end points against the latest published CVE’s)</div>
-                </div>
- --%>
-
                 <div class="row g-3 align-items-center">
                   <div class="col-auto">
                     <label for="definitionUpdateForm" class="col-form-label"><webapps:pageText key="cvejson.storagedir" /></label>
@@ -494,20 +482,6 @@
                   <i class="fa-solid fa-circle-info text-primary"></i> Please ensure the Vulnerability and Patch information is up-to-date to verify your end points against the latest published Vulnerability and Patch definitions. <br /> <i class="fa-solid fa-circle-info text-primary"></i> Specify the Master Transmitter where the vDef channel shall be published.
                 </div>
 
-
-                <%-- <div class="row">
-                    <div class="col">
-                      <span style="font-weight: bold;">Vulnerability and Patch Definitions Update Settings</span>
-                    </div>
-                    <div class="col" style="text-align: right;">
-                      Last updated on:
-                      <bean:write name="definitionUpdateForm" property="vdefLastUpdated" filter="false" />
-                    </div>
-                    <div style="font-size: small;">(Please ensure the Vulnerability and Patch information is up-to-date to verify your end points against the latest published Vulnerability and Patch definitions)</div>
-                    <div style="font-size: small;">Specify the Master Transmitter where the vDef channel shall be published</div>
-                  </div>
-                   --%>
-
                 <div class="row" style="margin-top: 20px;">
                   <table border="0" cellspacing="1" cellpadding="5">
                     <tr>
@@ -545,19 +519,12 @@
 
                 <div class="row">
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <!-- <button type="button" class="btn btn-sm btn-secondary" style="background-color: #d3d3d333; color: darkgray;">CANCEL</button> -->
                     <span id="vDefError" class="text-danger" style="margin-right:10px"></span>
                     <input type="button" id="vdefpublish" onclick="doSubmit(this.form, 'update_vdef')" class="btn btn-sm btn-primary" value="UPDATE NOW">
                   </div>
                 </div>
 
               </div>
-
-              <!-- <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-              
-                
-              </div> -->
-
 
             </div>
           </div>
