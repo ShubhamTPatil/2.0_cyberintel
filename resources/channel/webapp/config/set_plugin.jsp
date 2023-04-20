@@ -160,26 +160,7 @@ function checkElasticServerStatus(){
 }
 </script>
 
-<style>
-#table{
-border:1px solid #dd4b39;
-width: 100%;
-}
-#error_info{
-    background-color: #dd4b39;
-    display: block;
-    padding: 12px;
-    position: relative;
-    color: white;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-size: 18px;
-    font-family: inherit;
-    font-weight: 500;
-    line-height: 1.1;
-    margin-bottom: 0.1em;"
-}
 
-</style>
 
 <%-- Body content --%>
 <body>
@@ -197,7 +178,7 @@ width: 100%;
 
         <div class="d-flex bd-highlight justify-content-center">
           <div class="p-2 flex-grow-1 bd-highlight">
-            <span class="pagename"><webapps:pageText key="Title" /></span> <span data-bs-toggle="tooltip" data-bs-placement="right" title="<webapps:pageText key="Title"/>"><i class="fa-solid fa-circle-info text-primary"></i></span>
+            <span class="pagename"><webapps:pageText key="Title" /></span> <span data-bs-toggle="tooltip" data-bs-placement="right"><i class="fa-solid fa-circle-info text-primary"></i></span>
           </div>
           <div class="refresh p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right" title="Refresh" style="cursor: pointer;">
             <i class="fa-solid fa-arrows-rotate"></i>
@@ -212,15 +193,15 @@ width: 100%;
 
       <section class="section dashboard">
 
-       <table id="table" border="0" cellspacing="0" cellpadding="0">
+       <table border="0" cellspacing="1" cellpadding="5">
           <tr>
-            <td colspan="0">
+            <td colspan="2">
               <%-- Errors Display --%>
               <table width="90%">
                 <%@ include file="/includes/usererrors.jsp"%>
                 <logic:present scope="request" name="errors">
                   <div class="statusMessage" id="critical">
-                    <h6 id="error_info">
+                    <h6>
                       <webapps:text key="page.usererrors.beforeproceeding" />
                     </h6>
                     <p>
