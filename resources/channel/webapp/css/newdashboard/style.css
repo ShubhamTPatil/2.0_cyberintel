@@ -554,3 +554,7 @@ h6 {
 .greenText, .txt_green {
     color: #339933;
 }
+
+.textHighlighted {
+	background-color: #FFFF00
+}
