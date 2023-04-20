@@ -244,10 +244,10 @@ function checkElasticServerStatus(){
             <br /> <br /> <span class="textGeneral"><webapps:pageText key="pluginStatus" /></span>
 
             <html:select property="value(pluginStatus)">
-              <html:option value="Enable">
+              <html:option value="enable">
                 <webapps:pageText key="plugin.enable" />
               </html:option>
-              <html:option value="Disable">
+              <html:option value="disable">
                 <webapps:pageText key="plugin.disable" />
               </html:option>
             </html:select>
