@@ -117,19 +117,19 @@ function checkNum() {
 // this function checks that the password and the confirm password are the same
 
 function checkPasswords() {
+    bindpasswd = document.getElementById('bindpasswd').value;
+    confirmpassword = document.getElementById('bindpasswd2').value;
 
-    pass1 = document.getElementById('bindpasswd').value;
-    pass2 = document.getElementById('bindpasswd2').value;
-
-    if(pass1 == pass2) {
-        return true;
-    }
-    document.getElementById('bindpasswd2').value="";
-    document.getElementById('bindpasswd').focus();
-    document.getElementById('bindpasswd').select();
-    alert("<webapps:pageText key="PasswordMatchError" />");
+  if(bindpasswd != confirmpassword){
+      $('#error-message').text("<webapps:pageText key="PasswordMatchError" />");
+     document.getElementById('bindpasswd2').value="";
+     document.getElementById('bindpasswd').focus();
+     document.getElementById('bindpasswd').select();
     return false;
-
+      } else {
+            $('#error-message').text(' ');
+    return true;
+      }
 }
 
 function setCheckBoxValue(eid, propertyname) {
@@ -159,13 +159,31 @@ function checkElasticServerStatus(){
     });
 }
 </script>
+<style>
+#table{
+border:1px solid #dd4b39;
+width: 100%;
+}
+#error_info{
+    background-color: #dd4b39;
+    display: block;
+    padding: 12px;
+    position: relative;
+    color: white;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 0.1em;"
+}
 
-
+</style>
 
 <%-- Body content --%>
 <body>
 
-  <html:form name="setPluginForm" action="/pluginSave.do" type="com.marimba.apps.subscriptionmanager.webapp.forms.SetPluginForm" onsubmit="return checkPasswords()">
+  <html:form name="setPluginForm" action="/pluginSave.do" type="com.marimba.apps.subscriptionmanager.webapp.forms.SetPluginForm">
     <html:hidden property="value(prevPage)" />
     <html:hidden property="value(changedPassword)" value="false" />
     <html:hidden property="value(changedPublishPwd)" value="false" />
@@ -178,7 +196,7 @@ function checkElasticServerStatus(){
 
         <div class="d-flex bd-highlight justify-content-center">
           <div class="p-2 flex-grow-1 bd-highlight">
-            <span class="pagename"><webapps:pageText key="Title" /></span> <span data-bs-toggle="tooltip" data-bs-placement="right"><i class="fa-solid fa-circle-info text-primary"></i></span>
+            <span class="pagename"><webapps:pageText key="Title" /></span> <span data-bs-toggle="tooltip" data-bs-placement="right" title="<webapps:pageText key="Title"/>"><i class="fa-solid fa-circle-info text-primary"></i></span>
           </div>
           <div class="refresh p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right" title="Refresh" style="cursor: pointer;">
             <i class="fa-solid fa-arrows-rotate"></i>
@@ -193,15 +211,15 @@ function checkElasticServerStatus(){
 
       <section class="section dashboard">
 
-       <table border="0" cellspacing="1" cellpadding="5">
+       <table id="table" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td colspan="2">
+            <td colspan="0">
               <%-- Errors Display --%>
               <table width="90%">
                 <%@ include file="/includes/usererrors.jsp"%>
                 <logic:present scope="request" name="errors">
                   <div class="statusMessage" id="critical">
-                    <h6>
+                    <h6 id="error_info">
                       <webapps:text key="page.usererrors.beforeproceeding" />
                     </h6>
                     <p>
@@ -244,10 +262,10 @@ function checkElasticServerStatus(){
             <br /> <br /> <span class="textGeneral"><webapps:pageText key="pluginStatus" /></span>
 
             <html:select property="value(pluginStatus)">
-              <html:option value="enable">
+              <html:option value="Enable">
                 <webapps:pageText key="plugin.enable" />
               </html:option>
-              <html:option value="disable">
+              <html:option value="Disable">
                 <webapps:pageText key="plugin.disable" />
               </html:option>
             </html:select>
@@ -397,7 +415,7 @@ function checkElasticServerStatus(){
 
               <tr valign="middle">
                 <td align="right" valign="top"><webapps:pageText key="db.hostname" /></td>
-                <td valign="top"><html:text property="value(db.hostname)" styleClass="requiredField" size="20" /></td>
+                <td valign="top"><html:text property="value(db.hostname)" styleClass="requiredField" size="20" styleId="hname" /></td>
               </tr>
 
               <tr valign="middle">
@@ -554,13 +572,16 @@ function checkElasticServerStatus(){
                 <td align="right" width="200" valign="top"><span class="textGeneral"><webapps:pageText key="Password" /></span></td>
                 <td valign="top"><webapps:errorsPresent property="bindpasswd">
                     <img src="/shell/common-rsrc/images/errorsmall.gif" width="19" height="16" border="0">
-                  </webapps:errorsPresent> <html:password property="bindpasswd" name="setPluginForm" styleId="bindpasswd" onfocus="changePassword(document.forms.setPluginForm,document.getElementById('bindpasswd'),document.getElementById('bindpasswd2'))" /></td>
+                  </webapps:errorsPresent> <html:password property="bindpasswd" name="setPluginForm" styleId="bindpasswd" /></td>
               </tr>
               <tr valign="middle">
                 <td align="right" width="200" valign="top"><span class="textGeneral"><webapps:pageText key="ConfirmPassword" /></span></td>
                 <td valign="top"><webapps:errorsPresent property="bindpasswd2">
                     <img src="/shell/common-rsrc/images/errorsmall.gif" width="19" height="16" border="0">
-                  </webapps:errorsPresent> <html:password property="bindpasswd2" name="setPluginForm" styleId="bindpasswd2" /></td>
+                  </webapps:errorsPresent> <html:password property="bindpasswd2" name="setPluginForm" styleId="bindpasswd2"  onblur="checkPasswords()"/>
+                  <span id="error-message" style="color:red"></span>
+
+                  </td>
               </tr>
               <tr valign="middle">
                 <td align="right" width="200" valign="top"><span class="textGeneral"><webapps:pageText key="LDAPPoolSize" /></span></td>
@@ -671,7 +692,7 @@ function checkElasticServerStatus(){
         </div>
 
         <div class="col" style="text-align: right;">
-          <input type="submit" class="mainBtn btn btn-sm btn-primary" value="<webapps:pageText shared="true" type="button" key="preview"/>" /> <input type="button" class="btn btn-sm btn-outline-primary" value="<webapps:pageText shared="true" type="button" key="cancel"/>" onClick="javascript:send(document.setPluginForm,'/pluginCancel.do');">
+          <input type="submit" class="mainBtn btn btn-sm btn-primary" value="<webapps:pageText shared="true" type="button" key="preview"/>"/> <input type="button" class="btn btn-sm btn-outline-primary" value="<webapps:pageText shared="true" type="button" key="cancel"/>" onClick="javascript:send(document.setPluginForm,'/pluginCancel.do');">
         </div>
 
       </section>
