@@ -389,6 +389,19 @@ public final class PluginPreviewAction extends AbstractAction {
 				errors.addElement(printMsg(locale, "errors.database.conminmax"));
 			}
 		}
+		if (!isValidBindDn(getPropertyValue(formbean, "binddn"))) {
+			errors.addElement(printMsg(locale, "errors.required", printMsg(locale, "errors.directory.binddn")));
+		}
+
+		if (!isValidBaseDn(getPropertyValue(formbean, "basedn"))) {
+			errors.addElement(printMsg(locale, "errors.required", printMsg(locale, "errors.directory.basedn")));
+		}
+		if (!isValidLdapHost(getPropertyValue(formbean, "ldaphost"))) {
+			errors.addElement(printMsg(locale, "errors.required", printMsg(locale, "errors.directory.ldaphost")));
+		}
+
+
+
 	}
 
 	boolean validateConnectionSettings(IMapProperty formbean) {
@@ -441,9 +454,21 @@ public final class PluginPreviewAction extends AbstractAction {
 			return true;
 		}
 	}
-	
-	private boolean isValidDbName(String dbname) {
-		return ValidationUtil.required(dbname);
+
+	private boolean isValidDbName(String dbName){
+		return ValidationUtil.required(dbName);
+	}
+
+	private boolean isValidBindDn(String bindDn) {
+		return ValidationUtil.required(bindDn);
+	}
+
+	private boolean isValidBaseDn(String baseDn) {
+		return ValidationUtil.required(baseDn);
+	}
+
+	private boolean isValidLdapHost(String ldaphost) {
+		return ValidationUtil.required(ldaphost);
 	}
 
 	private boolean isValidHost(String host) {
