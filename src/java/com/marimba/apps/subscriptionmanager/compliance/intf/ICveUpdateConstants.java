@@ -77,7 +77,7 @@ public interface ICveUpdateConstants {
             "where not exists (select 1 from security_cve_info ts with (nolock) where tp.cve_id = ts.cve_name); \n" +
             "\n" +
             "update security_cve_info set severity='None' where cvss_score is not null and cvss_score = 0; \n" +
-            "update security_cve_info set severity='Low' where cvss_score is not null and cvss_score  >= 0.1 and cvss_score <=3.9; \n" +
+            "update security_cve_info set severity='Low' where cvss_score is not null and ((cvss_score  >= 0.1 and cvss_score <=3.9) or cvss_score=-1); \n" +
             "update security_cve_info set severity='Medium' where cvss_score is not null and cvss_score >= 4.0 and cvss_score <=6.9; \n" +
             "update security_cve_info set severity='High' where cvss_score is not null and cvss_score >= 7.0 and cvss_score <=8.9; \n" +
             "update security_cve_info set severity='Critical' where cvss_score is not null and cvss_score >= 9.0 and cvss_score <=10.0;";
