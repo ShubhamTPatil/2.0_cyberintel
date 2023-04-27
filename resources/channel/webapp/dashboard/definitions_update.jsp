@@ -189,8 +189,8 @@
 
 			let cveStorageDir = $('input[name="cveStorageDir"]').val();
 			
-			if (typeof cveStorageDir != "undefined"
-					&& cveStorageDir.trim() != "" && cveStorageDir != null) {
+			if (typeof cveStorageDir != "undefined" && cveStorageDir != null
+					&& cveStorageDir.trim() != "") {
 				
 				$('#cveUpdateNow').prop('disabled', true);
 				$('#cveForceUpdate').prop('disabled', true);
@@ -256,7 +256,7 @@
 				var alertModal = new bootstrap.Modal(document.getElementById('alertModal'), {
 					  keyboard: false
 				});
-				$('#alertMessage').html('CVE download location could not be empty.');
+				$('#alertMessage').html('CVE download location should not be empty.');
 				alertModal.show();
 			}
 		}
@@ -298,8 +298,21 @@
 		}
 
 	function doSubmit(frm, action) {
-		frm.action.value = action;
-		frm.submit();
+		
+		
+		let publishTxUrl = $('input[name="publishTxUrl"]').val();
+		
+		if (typeof publishTxUrl != "undefined" && publishTxUrl != null
+			&& publishTxUrl.trim() != "") {
+			frm.action.value = action;
+			frm.submit();
+		} else {
+			var alertModal = new bootstrap.Modal(document.getElementById('alertModal'), {
+				  keyboard: false
+			});
+			$('#alertMessage').html('Master transmitter URL should not be empty.');
+			alertModal.show();
+		}
 	}
 
 

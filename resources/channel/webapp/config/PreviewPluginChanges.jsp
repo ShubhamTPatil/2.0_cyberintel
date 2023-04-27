@@ -91,10 +91,10 @@
                   <logic:equal name="previewValues" property="value(showall)" value="true">
                     <nav>
                       <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" type="button" role="tab" aria-selected="true">
+                        <button class="nav-link" type="button" role="tab" aria-selected="false">
                           <a href="/spm/pluginSave.do?showAll=false"><webapps:pageText key="mychanges" /></a>
                         </button>
-                        <button class="nav-link" type="button" role="tab" aria-selected="false">
+                        <button class="nav-link active" type="button" role="tab" aria-selected="true">
                           <webapps:pageText key="allsettings" />
                         </button>
                       </div>
