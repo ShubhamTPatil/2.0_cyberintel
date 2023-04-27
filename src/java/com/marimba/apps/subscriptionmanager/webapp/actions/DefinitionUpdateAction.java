@@ -347,6 +347,17 @@ public class DefinitionUpdateAction extends AbstractAction
 										config.setProperty("cvejsonupdate.process.error", "");
 										config.save();
 
+                                        String cvedownloaderUrl = main.getConfig().getProperty("subscriptionmanager.cvedownloader.url");
+                                        IChannel ch = subscribeCveDownloaderChannel(cvedownloaderUrl);
+                                        if (ch != null) {
+                                            String subscribedUrl = ch.getURL();
+                                            System.out.println("DebugInfo: CVE DOWNLOADER Channel subscribedUrl succeeded - " + subscribedUrl);
+                                            config.setProperty("defensight.cvedownloaderchannel.location",  subscribedUrl);
+                                            config.setProperty("cvejsonupdate.process.message", "");
+                                            config.setProperty("cvejsonupdate.process.error", "");
+                                            config.save();
+                                        }
+
 										String cvedownloadChUrl = config
 												.getProperty("defensight.cvedownloaderchannel.location");
 
@@ -362,7 +373,7 @@ public class DefinitionUpdateAction extends AbstractAction
 											return;
 										}
 
-										IChannel ch = subscribeCveDownloaderChannel(cvedownloadChUrl);
+										ch = subscribeCveDownloaderChannel(cvedownloadChUrl);
 										System.out.println("ch.getURL() = " + ch.getURL());
 
 										if (ch != null) {
