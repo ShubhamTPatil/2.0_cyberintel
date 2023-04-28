@@ -200,6 +200,12 @@ function redirect(submitaction) {
     top.location = "<html:rewrite page='" + submitaction + "' />";
 }
 
+$(document).ready(function() {
+ var input =  $("#authError").val();
+ if(input === 'true')
+ $('#bindpasswd').val("");
+});
+
 function checkHosts() {	
 	let hostname = $('input[name="value(ldaphost)"]').val();
 	let basedn = $('input[name="value(basedn)"]').val();
@@ -805,7 +811,8 @@ function checkElasticServerStatus(){
                                       </logic:equal> <logic:equal name="host" property="value(failure_detail)" value="10">
                                         <webapps:pageText key="userwrongpwd" />
                                       </logic:equal> <logic:equal name="host" property="value(failure_detail)" value="11">
-                                        <webapps:pageText key="userlogonfailure" />
+                                        <webapps:pageText key="userlogonfailure"/>
+                                        <input type="text" style="display:none" id="authError" value="true">
                                       </logic:equal> <logic:equal name="host" property="value(failure_detail)" value="12">
                                         <webapps:pageText key="nosuchuser" />
                                       </logic:equal> <logic:equal name="host" property="value(failure_detail)" value="13">
