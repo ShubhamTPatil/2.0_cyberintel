@@ -1215,6 +1215,27 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
     }
 
+
+    public static class GetChannelStoreCredentialsInfo extends DatabaseAccess {
+        Map<String, String> channelStoreCreds = new LinkedHashMap<String, String>();
+
+        public GetChannelStoreCredentialsInfo(SubscriptionMain main, String username, String password) {
+
+            GetChannelStoreCredentialsData result = new GetChannelStoreCredentialsData(main, username, password);
+
+            try {
+                runQuery(result);
+                channelStoreCreds = result.getChannelStoreCredentialsInfo();
+            } catch (Exception dae) {
+                dae.printStackTrace();
+            }
+        }
+
+        public Map<String, String> getChannelStoreCredentialsInfo() {
+            return channelStoreCreds;
+        }
+    }
+
     static class GetVulnerableStatsInfoData extends QueryExecutor {
         Map<String, String> vulStatsInfo = new LinkedHashMap<String, String>();
 
@@ -1822,6 +1843,41 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
         public int getNonCompliant() {
             return nonCompliant;
+        }
+
+    }
+
+    static class GetChannelStoreCredentialsData extends QueryExecutor {
+        Map<String, String> channelStoreCredsInfo = new LinkedHashMap<String, String>();
+        String username;
+        String password;
+        
+        GetChannelStoreCredentialsData(SubscriptionMain main, String username, String password) {
+            super(main);
+            this.username = username;
+            this.password = password;
+        }
+
+        protected void execute(IStatementPool pool) throws SQLException {
+
+            String sqlStr = "select * from cs_user_details where upper(user_name)=upper('" + username + "') and password='" + password + "'";
+
+            PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
+            ResultSet rs = st.executeQuery();
+            try {
+                while(rs.next()) {
+                    String user = rs.getString("user_name");
+                    String pwd = rs.getString("password");
+                    channelStoreCredsInfo.put("username", user);
+                    channelStoreCredsInfo.put("password", pwd);
+                }
+            } finally {
+                rs.close();
+            }
+        }
+
+        public Map<String, String> getChannelStoreCredentialsInfo() {
+            return channelStoreCredsInfo;
         }
 
     }

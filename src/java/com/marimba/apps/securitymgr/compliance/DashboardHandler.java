@@ -194,6 +194,19 @@ public class DashboardHandler implements ComplianceConstants {
         return rptNotCheckedIn;
     }
 
+    // Get channel store user and password
+    public Map<String, String> getChannelStoreCredentials(String username, String password) {
+        Map<String, String> channelStoreCreds =  new LinkedHashMap<String, String>();
+        try {
+
+            channelStoreCreds = new DashboardInfoDetails.GetChannelStoreCredentialsInfo(main, username, password).getChannelStoreCredentialsInfo();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return channelStoreCreds;
+    }
+
     //Controller for total number of scurity scanners in use
     public int getSecuirtyInUseCount(String targetId) {
         int count = 0;
