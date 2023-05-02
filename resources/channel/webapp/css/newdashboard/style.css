@@ -527,20 +527,20 @@ opacity
 	border-top: 1px solid #999999;
 	border-right: 1px solid #999999;
 	border-bottom: 1px solid #999999;
-	border-left: 4px solid #FF6666;
+	border-left: 4px solid #dc3545;
 	background-color: #FFFFFF;
 }
 
 .redText, .txt_red {
-	color: #FF0000;
+	color: #dc3545;
 }
 
 .greenText, .txt_green {
-	color: #339933;
+	color: #198754;
 }
 
 .textHighlighted {
-	background-color: #FFFF00
+	background-color: #ffc107
 }
 
 /* status message boxes */

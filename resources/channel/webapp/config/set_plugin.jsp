@@ -34,7 +34,7 @@ $(function () {
 function vInspectorUrlRequired(flag) {
 
 	if(isEmpty($('input[name="value(publishurl)"]').val())) {
-		$('#vInspector-url-error').html("Please enter vInspector URL");
+		$('#vInspector-url-error').html("<webapps:pageText key="empty.vInspector" />");
 		if(!flag) {
 			$('html, body').animate({
 			    scrollTop: $('#pluginStatusCard').offset().top
@@ -49,7 +49,7 @@ function vInspectorUrlRequired(flag) {
 
 function vDefUrlRequired(flag) {
 	if(isEmpty($('input[name="value(securityinfo.url)"]').val())) {
-		$('#vDef-url-error').html("Please enter vDef URL");
+		$('#vDef-url-error').html("<webapps:pageText key="empty.vDef" />");
 		if(!flag) {
   		$('html, body').animate({
           scrollTop: $('#vInspectorCard').offset().top
@@ -64,7 +64,7 @@ function vDefUrlRequired(flag) {
 
 function cveDownloaderRequired(flag) {
 	if(isEmpty($('input[name="value(cvedownloader.url)"]').val())) {
-		$('#cve-downloader-url-error').html("Please enter CVE Downloader URL");
+		$('#cve-downloader-url-error').html("<webapps:pageText key="empty.cveDownloader" />");
 		if(!flag) {
   		$('html, body').animate({
           scrollTop: $('#vDefCard').offset().top
@@ -79,7 +79,7 @@ function cveDownloaderRequired(flag) {
 
 function vMediateUrlRequired(flag) {
 	if(isEmpty($('input[name="value(customscanner.url)"]').val())) {
-		$('#vMediate-url-error').html("Please enter vMediate channel URL");
+		$('#vMediate-url-error').html("<webapps:pageText key="empty.vMediate" />");
 		if(!flag) {
   		$('html, body').animate({
           scrollTop: $('#cveCard').offset().top
@@ -101,7 +101,7 @@ function dbDetailsRequired(flag) {
 	let pass = $('input[name="value(db.password)"]').val();
 	
 	if(isEmpty(hostname) || isEmpty(port) || isEmpty(sid) || isEmpty(uname) || isEmpty(pass)) {
-		$('#db-error').html("Please enter all required fields");
+		$('#db-error').html("<webapps:pageText key="empty.dbDetails" />");
 		if(!flag) {
   		$('html, body').animate({
           scrollTop: $('#vMediateCard').offset().top
@@ -120,7 +120,7 @@ function dbConnectionRequired(flag) {
 	let max = $('input[name="value(db.thread.max)"]').val();
 	
 	if(isEmpty(min) || isEmpty(max)) {
-		$('#db-connection-error').html("Please enter details for Database Connection limit");
+		$('#db-connection-error').html("<webapps:pageText key="empty.dbConnections" />");
 		if(!flag) {
   		$('html, body').animate({
           scrollTop: $('#dbCard').offset().top
@@ -136,7 +136,7 @@ function dbConnectionRequired(flag) {
 function elasticUrlRequired(flag) {
 	
 	if(isEmpty($('input[name="value(elasticurl)"]').val())) {
-		$('#elastic-url-error').html("Please enter elastic URL");
+		$('#elastic-url-error').html("<webapps:pageText key="empty.elasticInsertion" />");
 		if(!flag) {
   		$('html, body').animate({
           scrollTop: $('#repeaterCard').offset().top
@@ -158,7 +158,7 @@ function ldapRequired(flag) {
 	let bindpasswd = $('#bindpasswd').val();
 	
 	if(isEmpty(hostname) || isEmpty(basedn) || isEmpty(binddn) || isEmpty(poolsize) || isEmpty(bindpasswd)) {
-		$('#ldap-error').html("Please enter all required details");
+		$('#ldap-error').html("<webapps:pageText key="empty.ldapDetails" />");
 		if(!flag) {
   		$('html, body').animate({
           scrollTop: $('#elasticCard').offset().top
@@ -214,7 +214,7 @@ function checkHosts() {
 	let bindpasswd = $('#bindpasswd').val();
 	
 	if(isEmpty(hostname) || isEmpty(basedn) || isEmpty(binddn) || isEmpty(poolsize) || isEmpty(bindpasswd)) {
-		$('#ldap-error').html("Please enter all required details");
+		$('#ldap-error').html("<webapps:pageText key="empty.ldapDetails" />");
 		$('html, body').animate({
         scrollTop: $('#elasticCard').offset().top
     }, 2000);
@@ -334,18 +334,24 @@ function setCheckBoxValue(eid, propertyname) {
 
 function checkElasticServerStatus(){
 	var elasticurl = $('#elastic_url').val();
-	$.ajax({
-        type: "GET", dataType: "json", url: "/spm/checkElasticStatus.do",
-        data: {elasticurl : elasticurl},
-        success: function (data) {
-       			if(data.elasticstatus == "Up") {
-       				$('#elastic_server_status').html('<span class="greenText">Server is Up and running</span>');}
-       			else if(data.elasticstatus == "Down") {
-       				$('#elastic_server_status').html('<span class="redText">Server is currently Unavailable</span>');}
-       			else {
-       				$('#elastic_server_status').html('<span class="redText">Please Check Elastic Insertion URL  </span>');}
-        	}
-    });
+	
+	if(isEmpty(elasticurl)) {
+		$('#elastic_server_status').html("<span class="redText"><webapps:pageText key="empty.elasticInsertion" /></span>");
+	}	else {
+		$('#elastic_server_status').html("<div class=\"spinner-border spinner-border-sm text-primary\" role=\"status\"><span class=\"visually-hidden\">Loading...</span></div>");
+  	$.ajax({
+          type: "GET", dataType: "json", url: "/spm/checkElasticStatus.do",
+          data: {elasticurl : elasticurl},
+          success: function (data) {
+         			if(data.elasticstatus == "Up") {
+         				$('#elastic_server_status').html('<span class="greenText">Server is Up and running</span>');}
+         			else if(data.elasticstatus == "Down") {
+         				$('#elastic_server_status').html('<span class="redText">Server is currently Unavailable</span>');}
+         			else {
+         				$('#elastic_server_status').html('<span class="redText">Please Check Elastic Insertion URL  </span>');}
+          	}
+    	});
+	}
 }
 </script>
 
