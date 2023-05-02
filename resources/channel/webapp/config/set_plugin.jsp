@@ -336,7 +336,7 @@ function checkElasticServerStatus(){
 	var elasticurl = $('#elastic_url').val();
 	
 	if(isEmpty(elasticurl)) {
-		$('#elastic_server_status').html("<span class="redText"><webapps:pageText key="empty.elasticInsertion" /></span>");
+		$('#elastic_server_status').html("<span class=\"redText\"><webapps:pageText key="empty.elasticInsertion" /></span>");
 	}	else {
 		$('#elastic_server_status').html("<div class=\"spinner-border spinner-border-sm text-primary\" role=\"status\"><span class=\"visually-hidden\">Loading...</span></div>");
   	$.ajax({
