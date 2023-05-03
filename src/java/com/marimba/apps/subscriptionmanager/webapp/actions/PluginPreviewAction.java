@@ -121,6 +121,10 @@ public final class PluginPreviewAction extends AbstractAction {
 
 		debug("execute(), SetPluginSaveAction: publishUrl = " + publishUrl);
 
+		String pluginStatus = (String) formbean.getValue("pluginStatus");
+		System.out.println("Retrieved plugin status : " + pluginStatus);
+		request.getSession().setAttribute("pluginStatus", pluginStatus);
+
 		userForm.setPrevPage("previewCancel");
 
 		// get saved values
@@ -400,21 +404,19 @@ public final class PluginPreviewAction extends AbstractAction {
 			errors.addElement(printMsg(locale, "errors.required", printMsg(locale, "errors.directory.ldaphost")));
 		}
 
-
-
 	}
 
 	boolean validateConnectionSettings(IMapProperty formbean) {
 		String minStr = getPropertyValue(formbean, "db.thread.min");
 		String maxStr = getPropertyValue(formbean, "db.thread.max");
-		
+
 		int min = Integer.parseInt(minStr);
 		int max = Integer.parseInt(maxStr);
-		
+
 		if (min < 0) {
 			return true;
 		}
-		
+
 		if (!validateDigits(minStr) || !validateDigits(maxStr)) {
 			return false;
 		}
@@ -448,14 +450,14 @@ public final class PluginPreviewAction extends AbstractAction {
 	public boolean isValidNumericInput(String input) {
 		if (input.matches("[a-zA-Z_]+")) {
 			debug("User should not allow to enter alphabets");
-		    return false;
-		}else {
+			return false;
+		} else {
 			debug("Received valid input");
 			return true;
 		}
 	}
 
-	private boolean isValidDbName(String dbName){
+	private boolean isValidDbName(String dbName) {
 		return ValidationUtil.required(dbName);
 	}
 
