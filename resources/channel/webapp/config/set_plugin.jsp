@@ -360,7 +360,7 @@ function checkElasticServerStatus(){
 <%-- Body content --%>
 <body>
 
-  <html:form name="setPluginForm" action="/pluginSave.do" type="com.marimba.apps.subscriptionmanager.webapp.forms.SetPluginForm">
+  <html:form name="setPluginForm" action="/pluginSave.do?showAll=false" type="com.marimba.apps.subscriptionmanager.webapp.forms.SetPluginForm">
     <html:hidden property="value(prevPage)" />
     <html:hidden property="value(changedPassword)" value="false" />
     <html:hidden property="value(changedPublishPwd)" value="false" />
