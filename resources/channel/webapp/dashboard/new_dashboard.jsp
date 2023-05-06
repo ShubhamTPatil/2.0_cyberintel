@@ -164,6 +164,8 @@ $(function () {
             "data": "Impacted Machines"
         }, {
             "data": "Patches"
+        }, {
+            "data": "Status"
         }],
         'columnDefs': [{
             'targets': 0,
@@ -191,6 +193,9 @@ $(function () {
             'className': 'dt-body-left',
         }, {
             'targets': 2,
+            'className': 'dt-body-left',
+        }, {
+            'targets': 5,
             'className': 'dt-body-left',
         }],
         'rowCallback': function (row, data, index) {
@@ -747,6 +752,7 @@ function createMitigateTable(aaData) {
                         <th scope="col" style="text-align: left;">Severity</th>
                         <th scope="col">Impacted Machines</th>
                         <th scope="col" style="text-align: left;">Patches Available</th>
+                        <th scope="col" style="text-align: left;">Status</th>
                       </tr>
                     </thead>
                     <tbody></tbody>

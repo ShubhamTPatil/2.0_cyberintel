@@ -1528,11 +1528,13 @@ public class DashboardInfoDetails implements ComplianceConstants {
                     String severity = rs.getString("severity");
                     String affectedMachines = String.valueOf(rs.getInt("affected_machines"));
                     String patchID = rs.getString("patch_id");
+                    String status = rs.getString("status");
 
                     topVulBean.setCveId(cveID);
                     topVulBean.setSeverity(severity);
                     topVulBean.setAffectedMachines(affectedMachines);
                     topVulBean.setPatchId(patchID);
+                    topVulBean.setStatus(status);
 
                     topVulInfo.add(topVulBean);
                 }

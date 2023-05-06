@@ -22,6 +22,7 @@ public class TopVulnerableStatusBean {
     String severity;
     String affectedMachines;
     String patchId;
+    String status;
 
     public String getCveId() {
         return cveId;
@@ -53,6 +54,14 @@ public class TopVulnerableStatusBean {
 
     public void setPatchId(String patchId) {
         this.patchId = patchId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }
