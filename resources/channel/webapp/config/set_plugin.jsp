@@ -774,7 +774,10 @@ function checkElasticServerStatus(){
                       <td align="right" width="200" valign="top"><span class="textGeneral"><webapps:pageText key="LastGoodHostExpTime" /></span></td>
                       <td valign="top"><webapps:errorsPresent property="lastgoodhostexptime">
                           <img src="/shell/common-rsrc/images/errorsmall.gif" width="19" height="16" border="0">
-                        </webapps:errorsPresent> <%-- html:text property="value(lastgoodhostexptime)" styleClass="optionalField" size="12" maxlength="6" onkeypress="return restrictKeyPressInteger(event)"/ --%> <html:text property="value(lastgoodhostexptime)" styleId="exptime" styleClass="optionalField" size="12" maxlength="6" onkeypress="return restrictKeyPressInteger(event)" onblur="checkNum()" /> <%-- Symbio modified 05/18/2005 --%></td>
+                        </webapps:errorsPresent> 
+                        <html:text property="value(lastgoodhostexptime)" styleClass="optionalField" size="12" maxlength="6" onkeypress="return restrictKeyPressInteger(event)"/>
+                        <%-- <html:text property="value(lastgoodhostexptime)" styleId="exptime" styleClass="optionalField" size="12" maxlength="6" onkeypress="return restrictKeyPressInteger(event)" onblur="checkNum()" />  --%><%-- Symbio modified 05/18/2005 --%>
+                      </td>
                     </tr>
                     <tr class="textGeneral">
                       <td align="right" valign="middle">&nbsp;</td>
