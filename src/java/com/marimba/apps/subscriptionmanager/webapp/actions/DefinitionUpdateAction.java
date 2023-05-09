@@ -129,6 +129,7 @@ public class DefinitionUpdateAction extends AbstractAction
 					String status = config.getProperty("cvejsonupdate.process.status");
 					String error = config.getProperty("cvejsonupdate.process.error");
 					String message = config.getProperty("cvejsonupdate.process.message");
+                    status = isNull(status) ? "0" : status;
 
 					JSONObject json = new JSONObject();
 					json.put("status", Integer.valueOf(status));
