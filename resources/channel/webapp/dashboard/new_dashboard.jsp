@@ -222,6 +222,34 @@ $(function () {
         }
     });
     
+  	//Get the column index for the Status column to be used in the method below ($.fn.dataTable.ext.search.push)
+    //This tells datatables what column to filter on when a user selects a value from the dropdown.
+    //It's important that the text used here (Status) is the same for used in the header of the column to filter
+    var statusIndex = 0;
+    $("#topVulTable th").each(function (i) {
+      if ($($(this)).html() == "Status") {
+    	  statusIndex = i; return false;
+      }
+    });
+
+    //Use the built in datatables API to filter the existing rows by the Category column
+    $.fn.dataTable.ext.search.push(
+      function (settings, data, dataIndex) {
+        var selectedItem = $('#topVulFilter').val()
+        var status = data[statusIndex];
+        if (selectedItem === "" || status.includes(selectedItem)) {
+          return true;
+        }
+        return false;
+      }
+    );
+
+    //Set the change event for the Status Filter dropdown to redraw the datatable each time
+    //a user selects a new filter.
+    $("#topVulFilter").change(function (e) {
+    	topVulDataTable.draw();
+    });
+    
     $("#topVulModal").on("hidden.bs.modal", function () {
         $('#topVulModalTable').DataTable().clear();
     });
@@ -724,16 +752,13 @@ function createMitigateTable(aaData) {
 
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa-solid fa-sliders"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-                    <li><a class="dropdown-item">Patch applied</a></li>
-                    <li><a class="dropdown-item">Patch applied but not scanned</a></li>
-                    <li><a class="dropdown-item">Patch not applied</a></li>
-                  </ul>
+                <div class="filter" style="margin-right:15px;">
+                  <select id="topVulFilter" class="form-select form-select-sm">
+                    <option value="">Show All</option>
+                    <option value="Patch Applied">Patch Applied</option>
+                    <option value="Patch Not Applied">Patch Not Applied</option>
+                    <option value="Patch Failed">Patch Failed</option>
+                  </select>
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">Top Vulnerabilities
