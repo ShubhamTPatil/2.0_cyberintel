@@ -26,6 +26,12 @@
 $(function () { $('#settings').addClass('nav-selected'); });
 </script>
 
+<style>
+#skipSettingBox {
+  margin-top:0;
+}
+</style>
+
 <%@ include file="/includes/endHeadSection.jsp" %>
 <%@ page import="com.marimba.apps.subscriptionmanager.intf.IWebAppConstants" %>
 <%
@@ -81,16 +87,20 @@ Object EmpirumContext = session.getAttribute(IWebAppConstants.EMPIRUM_APP_MAIN);
 		                    <tr>
 		                        <td align="right" nowrap><webapps:pageText key="Prompt" /></td>
 		                        <td>
-		                            <select property="namespace" class="form-select" value='<%= ((NamespaceForm) session.getAttribute("namespaceForm")).getNamespace() %>' style="padding-top: 2px; padding-bottom: 2px;">
+		                            <%-- <select property="namespace" class="form-select" value='<%= ((NamespaceForm) session.getAttribute("namespaceForm")).getNamespace() %>' style="padding-top: 2px; padding-bottom: 2px;">
 		                                <option value=""><webapps:pageText key="DefLoc" /></option>
 		                                <options property="namespaceList" />
-		                            </select>
+		                            </select> --%>
+                                <html:select property="namespace" styleClass="form-select" value='<%= ((NamespaceForm) session.getAttribute("namespaceForm")).getNamespace() %>' >
+                                    <html:option value=""><webapps:pageText key="DefLoc" /></html:option>
+                                    <html:options property="namespaceList" />
+                                </html:select>
 		                        </td>
 		                    </tr>
 		                    <tr>
-		                        <td align="right"><input class="form-check-input" type="checkbox" name="namespaceForm" styleId="skipSettingBox" property="value(namespace_skipsetting)" value="true" style="margin-top:0;"/></td>
-		                        <td><label class="form-check-label" for="skipSettingBox"><webapps:pageText key="SkipSetting" /></label></td>
-		                    </tr>
+		                         <td align="right"><html:checkbox name="namespaceForm" styleClass="form-check-input" styleId="skipSettingBox" property="value(namespace_skipsetting)" value="true" /></td>
+                             <td><label for="skipSettingBox" styleClass="form-check-label"><webapps:pageText key="SkipSetting" /></label></td>
+                        </tr>
 		                </table>
 		            </div>
 		            
