@@ -183,6 +183,7 @@ function doSubmit(frm) {
 	flag = vMediateUrlRequired(flag);
 	flag = dbDetailsRequired(flag);
 	flag = dbConnectionRequired(flag);
+	flag = elasticUrlRequired(flag);
 	flag = ldapRequired(flag);
 	
 	if(!flag) 
@@ -531,7 +532,7 @@ function checkElasticServerStatus(){
                   <table border="0" cellspacing="1" cellpadding="5">
                     <tr valign="middle">
                       <td align="right" valign="top"><webapps:pageText key="cvedownloder.info.channel" /></td>
-                      <td valign="top"><html:text property="value(cvedownloader.url)" styleId="port4" size="65" maxlength="110" styleClass="requiredField" /> <webapps:txbrowser field="port4" styleId="cvedownloaderBrowse" /></td>
+                      <td valign="top"><html:text property="value(cvedownloader.url)" styleId="port5" size="65" maxlength="110" styleClass="requiredField" /> <webapps:txbrowser field="port5" styleId="cvedownloaderBrowse" /></td>
                     </tr>
                     <tr>
                       <td align="right" valign="top"><span class="textGeneral"><webapps:pageText key="cveSubscribeUserName" /></span></td>
@@ -570,7 +571,7 @@ function checkElasticServerStatus(){
                 </div>
               </div>
 
-              <div class="card" id="bdCard">
+              <div class="card" id="dbCard">
                 <div class="card-body">
                   <div class="card-title">
                     <webapps:pageText key="database.title" />
