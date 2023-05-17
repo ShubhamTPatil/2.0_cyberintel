@@ -2,7 +2,7 @@
 <html lang="en">
 <aside id="sidebar" class="sidebar" style="height: 100%; width: 85px;">
   <ul class="sidebar-nav" id="sidebar-nav">
-    <li class="nav-item"><a class="nav-link" id="dashboard" href="/spm/newDashboard.do" data-bs-toggle="tooltip" data-bs-placement="right" title="Dashboard"> <img src="/spm/images/lucide_layout-dashboard.png" style="height:18px;width:18px">
+    <li class="nav-item"><a class="nav-link" id="dashboard" href="/spm/init.jsp" data-bs-toggle="tooltip" data-bs-placement="right" title="Dashboard"> <img src="/spm/images/lucide_layout-dashboard.png" style="height:18px;width:18px">
     </a></li>
     <li class="nav-item"><a class="nav-link" id="definitionsUpdate" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/definitionupdate.do" title="Definitions Update"> <img src="/spm/images/clarity_update-line.png" style="height:18px;width:18px">
     </a></li>
