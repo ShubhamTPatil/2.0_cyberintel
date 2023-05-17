@@ -208,6 +208,9 @@ $(document).ready(function() {
 });
 
 function checkHosts() {	
+	
+	$('#ldapConnectionStatus').html("");
+	
 	let hostname = $('input[name="value(ldaphost)"]').val();
 	let basedn = $('input[name="value(basedn)"]').val();
 	let binddn = $('input[name="value(binddn)"]').val();
@@ -792,7 +795,7 @@ function checkElasticServerStatus(){
                       <tr>
                         <td align="right">&nbsp;</td>
                         <td>
-                          <table cellspacing="2" cellpadding="2" border="0">
+                          <table id="ldapConnectionStatus" cellspacing="2" cellpadding="2" border="0">
                             <logic:iterate id="host" name="host_test_results" type="com.marimba.webapps.tools.util.PropsBean">
                               <tr>
                                 <logic:equal name="setPluginForm" property="disableModify" value="false">
