@@ -33,11 +33,9 @@ public class RunScanDetails {
 
 		public GetRunScanDetails(SubscriptionMain main) {
 
-			System.out.println("START - GetRunScanDetails() Constructor");
 			GetRunScanData result = new GetRunScanData(main);
 
 			try {
-				System.out.println("RUN Quey gets called ");
 				runQuery(result);
 				runScanJsonResponse = result.getRunScanData();
 			} catch (Exception dae) {
@@ -60,7 +58,6 @@ public class RunScanDetails {
 
 		protected void execute(IStatementPool pool) throws SQLException {
 
-			System.out.println("GetRunScanData execute method gets called ");
 			ResultSet masterRS = null;
 			ResultSet subQuery1Rs = null;
 			ResultSet subQuery2Rs = null;
@@ -79,7 +76,6 @@ public class RunScanDetails {
 
 				PreparedStatement masterQueryPrStatement = pool.getConnection().prepareStatement(masterQuery);
 				masterRS = masterQueryPrStatement.executeQuery();
-				System.out.println("masterQueryRs size : " + masterRS.getFetchSize());
 
 				// Machine List object
 				@SuppressWarnings("unchecked")
@@ -97,7 +93,6 @@ public class RunScanDetails {
 				String subQuery1 = "Select top 1 modified,cvss_time from product_cve_info";
 				PreparedStatement subQuery1PrepareStatement = pool.getConnection().prepareStatement(subQuery1);
 				subQuery1Rs = subQuery1PrepareStatement.executeQuery();
-				System.out.println("subQuery1 size : " + subQuery1Rs.getFetchSize());
 
 				while (subQuery1Rs.next()) {
 					dataObject.setcVELastUpdated(subQuery1Rs.getString("modified"));
@@ -107,7 +102,6 @@ public class RunScanDetails {
 				String subQuery2 = "Select top 1 modified_date from security_cve_info";
 				PreparedStatement subQuery2PrepareStatement = pool.getConnection().prepareStatement(subQuery2);
 				subQuery2Rs = subQuery2PrepareStatement.executeQuery();
-				System.out.println("subQuery2Rs size : " + subQuery2Rs.getFetchSize());
 
 				while (subQuery2Rs.next()) {
 					dataObject.setSecDefLastUpdated(subQuery2Rs.getString("modified_date"));
