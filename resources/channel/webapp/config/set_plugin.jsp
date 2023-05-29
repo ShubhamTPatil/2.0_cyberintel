@@ -29,6 +29,15 @@ Object EmpirumContext = session.getAttribute(IWebAppConstants.EMPIRUM_APP_MAIN);
 
 $(function () { 
 	$('#settings').addClass('nav-selected');
+	
+	$('#elastic_url').on( "change", function() {
+		$('#elastic_server_status').html("");
+	});
+	
+	$('#ldapCard :input').on( "change", function() {
+		$('#ldapConnectionStatus').remove();
+	});
+	
 });
 
 function vInspectorUrlRequired(flag) {
@@ -229,6 +238,17 @@ function checkHosts() {
 	}
 }
 
+function restrictKeyPressNaturalNumber(evt) {
+	var charCode = (evt.which) ? evt.which : event.keyCode;
+  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    return false;
+  }
+  if (evt.key === '0' && evt.target.value.length === 0) {
+    return false;
+  }
+  return true;
+}
+
 // restrict a key press to only integers
 function restrictKeyPressInteger(evt) {
     var key;
@@ -340,8 +360,11 @@ function checkElasticServerStatus(){
 	var elasticurl = $('#elastic_url').val();
 	
 	if(isEmpty(elasticurl)) {
-		$('#elastic_server_status').html("<span class=\"redText\"><webapps:pageText key="empty.elasticInsertion" /></span>");
+		//$('#elastic_server_status').html("<span class=\"redText\"><webapps:pageText key="empty.elasticInsertion" /></span>");
+		//elasticUrlRequired(false);
+		$('#elastic-url-error').html("<webapps:pageText key="empty.elasticInsertion" />");
 	}	else {
+		$('#elastic-url-error').html("");
 		$('#elastic_server_status').html("<div class=\"spinner-border spinner-border-sm text-primary\" role=\"status\"><span class=\"visually-hidden\">Loading...</span></div>");
   	$.ajax({
           type: "GET", dataType: "json", url: "/spm/checkElasticStatus.do",
@@ -760,7 +783,7 @@ function checkElasticServerStatus(){
                       <td align="right" width="200" valign="top"><span class="textGeneral"><webapps:pageText key="Password" /></span></td>
                       <td valign="top"><webapps:errorsPresent property="bindpasswd">
                           <img src="/shell/common-rsrc/images/errorsmall.gif" width="19" height="16" border="0">
-                        </webapps:errorsPresent> <html:password property="bindpasswd" name="setPluginForm" styleClass="requiredField" styleId="bindpasswd" onfocus="changePassword(document.forms.setPluginForm,document.getElementById('bindpasswd'),document.getElementById('bindpasswd2'))"/></td>
+                        </webapps:errorsPresent> <html:password property="bindpasswd" name="setPluginForm" styleClass="requiredField" styleId="bindpasswd" onfocus="changePassword(document.forms.setPluginForm,document.getElementById('bindpasswd'),document.getElementById('bindpasswd2')); $('#ldapConnectionStatus').remove();"/></td>
                     </tr>
                     <tr valign="middle" style="display:none;">
                       <td align="right" width="200" valign="top"><span class="textGeneral"><webapps:pageText key="ConfirmPassword" /></span></td>
@@ -779,7 +802,7 @@ function checkElasticServerStatus(){
                       <td valign="top"><webapps:errorsPresent property="lastgoodhostexptime">
                           <img src="/shell/common-rsrc/images/errorsmall.gif" width="19" height="16" border="0">
                         </webapps:errorsPresent> 
-                        <html:text property="value(lastgoodhostexptime)" styleClass="optionalField" size="12" maxlength="6" onkeypress="return restrictKeyPressInteger(event)"/>
+                        <html:text property="value(lastgoodhostexptime)" styleClass="optionalField" size="12" maxlength="6" onkeypress="return restrictKeyPressNaturalNumber(event)"/>
                         <%-- <html:text property="value(lastgoodhostexptime)" styleId="exptime" styleClass="optionalField" size="12" maxlength="6" onkeypress="return restrictKeyPressInteger(event)" onblur="checkNum()" />  --%><%-- Symbio modified 05/18/2005 --%>
                       </td>
                     </tr>
