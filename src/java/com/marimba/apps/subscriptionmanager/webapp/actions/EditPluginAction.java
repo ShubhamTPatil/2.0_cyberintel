@@ -48,6 +48,7 @@ public final class EditPluginAction extends AbstractAction {
             throw new GUIException(e);
         }
         SetPluginForm selectForm = (SetPluginForm) form;
+        selectForm.setPrevPage("");
         selectForm.initialize(main);
         // clear out the previous test results, in case they were set for 29454
         request.getSession().removeAttribute(TEST_RESULT);

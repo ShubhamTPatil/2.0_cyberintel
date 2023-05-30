@@ -423,6 +423,10 @@ public final class SetPluginSaveAction extends AbstractAction {
 
         smmain.logAuditInfo(LOG_AUDIT_SET_PLUGIN, LOG_AUDIT, "Policy Manager", userPluginProps.getProperty("subscriptionmanager.publishurl"), request, SAVE_PLUGIN_PROPS);
 
+        String pluginStatus = getPropertyValue(formbean, "pluginStatus");
+		System.out.println("Retrieved plugin status : " + pluginStatus);
+		request.getSession().setAttribute("pluginStatus", pluginStatus);
+        
         return mapping.findForward(fwd);
     }
 

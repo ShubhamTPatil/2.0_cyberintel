@@ -121,10 +121,6 @@ public final class PluginPreviewAction extends AbstractAction {
 
 		debug("execute(), SetPluginSaveAction: publishUrl = " + publishUrl);
 
-		String pluginStatus = (String) formbean.getValue("pluginStatus");
-		System.out.println("Retrieved plugin status : " + pluginStatus);
-		request.getSession().setAttribute("pluginStatus", pluginStatus);
-
 		userForm.setPrevPage("previewCancel");
 
 		// get saved values

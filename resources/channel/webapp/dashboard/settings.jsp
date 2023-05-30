@@ -74,6 +74,11 @@
 			</p>
 		</div>
 	</logic:equal>
+  
+  <%
+  // Removing after display
+  session.removeAttribute("pluginStatus");
+  %>
 	
 	<div class="pagetitle">
 
