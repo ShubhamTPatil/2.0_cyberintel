@@ -192,7 +192,6 @@ function doSubmit(frm) {
 	flag = vMediateUrlRequired(flag);
 	flag = dbDetailsRequired(flag);
 	flag = dbConnectionRequired(flag);
-	flag = elasticUrlRequired(flag);
 	flag = ldapRequired(flag);
 	
 	if(!flag) 
@@ -703,7 +702,7 @@ function checkElasticServerStatus(){
                   <table border="0" cellspacing="1" cellpadding="5">
                     <tr valign="middle">
                       <td align="right" valign="top"><webapps:pageText key="elastic.url" /></td>
-                      <td valign="top"><html:text property="value(elasticurl)" styleId="elastic_url" size="65" maxlength="110" styleClass="requiredField" /></td>
+                      <td valign="top"><html:text property="value(elasticurl)" styleId="elastic_url" size="65" maxlength="110" /></td>
                     </tr>
 
                     <tr class="textGeneral">

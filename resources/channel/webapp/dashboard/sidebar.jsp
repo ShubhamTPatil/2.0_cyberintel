@@ -8,7 +8,7 @@
     </a></li>
     <li class="nav-item"><a class="nav-link" id="assignments" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/initTargetView2.do" title="Assignments"> <img src="/spm/images/material-symbols_assignment-ind-outline-sharp.png" style="height:18px;width:18px">
     </a></li>
-    <li class="nav-item"><a class="nav-link" id="runScan" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/newRunScan.do" title="Run Scan"> <img src="/spm/images/ant-design_security-scan-outlined.png" style="height:18px;width:18px">
+    <li class="nav-item"><a class="nav-link" id="runScan" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/runscan.do" title="Run Scan"> <img src="/spm/images/ant-design_security-scan-outlined.png" style="height:18px;width:18px">
     </a></li>
     <li class="nav-item"><a class="nav-link" id="scanResult" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/reports.do" title="Scan Results"> <img src="/spm/images/carbon_result.png" style="height:18px;width:18px">
     </a></li>
