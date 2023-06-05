@@ -295,6 +295,9 @@ var selected_columns = [];
 var displayPath = $('#displayPath').val();
 $(document).ready(function() {
     app.initApp();
+    $('#rules_status_table').css({
+        'font-size': '13px'
+      });
     table = $('#results_table').DataTable({
         lengthMenu: [10, 25, 50],
         initComplete: function() {selectAllContextMenu(); },
