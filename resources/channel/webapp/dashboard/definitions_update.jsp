@@ -488,7 +488,7 @@
               <div class="card-body">
 
                 <h5 class="card-title">
-                  Vulnerability and Patch Definitions Update Settings <span style="float: right; font-size: medium;">Last updated on: <span id="vdefLastUpdated" class="fw-bold"></span></span>
+                  Vulnerability and Patch Definitions Update Settings <span id="vDefError" class="text-danger fw-bold" style="margin-right:10px"></span> <span style="float: right; font-size: medium;">Last updated on: <span id="vdefLastUpdated" class="fw-bold"></span></span>
                 </h5>
                 <hr class="divider" />
                 <div class="p-2 mb-2 text-dark">
@@ -532,7 +532,6 @@
 
                 <div class="row">
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <span id="vDefError" class="text-danger" style="margin-right:10px"></span>
                     <input type="button" id="vdefpublish" onclick="doSubmit(this.form, 'update_vdef')" class="btn btn-sm btn-primary" value="UPDATE NOW">
                   </div>
                 </div>
