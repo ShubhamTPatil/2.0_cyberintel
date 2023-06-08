@@ -238,7 +238,7 @@ function checkHosts() {
 }
 
 function restrictKeyPressNaturalNumber(evt) {
-	var charCode = (evt.which) ? evt.which : event.keyCode;
+	var charCode = (evt.which) ? evt.which : evt.keyCode;
   if (charCode > 31 && (charCode < 48 || charCode > 57)) {
     return false;
   }
@@ -246,6 +246,13 @@ function restrictKeyPressNaturalNumber(evt) {
     return false;
   }
   return true;
+}
+
+function checkInputZero() {
+	if($('#lastgoodhostexptime').val() == 0) {
+		alert("Enter positive integer for expiration time.");
+		$('#lastgoodhostexptime').val(""); 
+	}
 }
 
 // restrict a key press to only integers
@@ -801,7 +808,7 @@ function checkElasticServerStatus(){
                       <td valign="top"><webapps:errorsPresent property="lastgoodhostexptime">
                           <img src="/shell/common-rsrc/images/errorsmall.gif" width="19" height="16" border="0">
                         </webapps:errorsPresent> 
-                        <html:text property="value(lastgoodhostexptime)" styleClass="optionalField" size="12" maxlength="6" onkeypress="return restrictKeyPressNaturalNumber(event)"/>
+                        <html:text property="value(lastgoodhostexptime)" styleId="lastgoodhostexptime" styleClass="optionalField" size="12" maxlength="6" onkeypress="return restrictKeyPressNaturalNumber(event)" onchange="checkInputZero()"/>
                         <%-- <html:text property="value(lastgoodhostexptime)" styleId="exptime" styleClass="optionalField" size="12" maxlength="6" onkeypress="return restrictKeyPressInteger(event)" onblur="checkNum()" />  --%><%-- Symbio modified 05/18/2005 --%>
                       </td>
                     </tr>
