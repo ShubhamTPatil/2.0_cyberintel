@@ -319,10 +319,12 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
                 return false;
             }
             ArrayList<Integer> latestContentIds = new ArrayList<Integer>();
+            String latestInsertedContentId = "";
             for (SecurityComplianceBean securityComplianceBean : securityComplianceBeans) {
                 boolean securityComplianceBeanInserted = false;
                 scanType = securityComplianceBean.getScanType();
                 String contentId = securityComplianceBean.getContentId();
+                latestInsertedContentId = contentId;
                 String contentFileName = securityComplianceBean.getContentFileName();
                 String contentTitle = securityComplianceBean.getContentTitle();
                 String contentTargetOS = securityComplianceBean.getContentTargetOS();
@@ -480,6 +482,7 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
                     }
                 }
             }
+            
             if (inserted && (latestContentIds != null)) {
                 String result = "";
                 String deleteStmt = "";
@@ -492,7 +495,7 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
                         }
                     }
                     if (result.length() > 0) {
-                        deleteStmt = "delete from security_" + scanType + "_compliance where id NOT IN (" + result + ") and machine_id = (select id from inv_machine where name = '" + securityComplianceForMachine.replaceAll("'", "''") + "')";
+                        deleteStmt = "delete from security_" + scanType + "_compliance where id NOT IN (" + result + ") and content_id = (select id from security_oval_content where content_name = '"+latestInsertedContentId+"')) and machine_id = (select id from inv_machine where name = '" + securityComplianceForMachine.replaceAll("'", "''") + "')";
                     }
                 } else {
                     if ((securityComplianceForMachine != null) && (securityComplianceForMachine.trim().length() > 0)) {
