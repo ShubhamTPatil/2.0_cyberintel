@@ -495,7 +495,10 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
                         }
                     }
                     if (result.length() > 0) {
-                        deleteStmt = "delete from security_" + scanType + "_compliance where id NOT IN (" + result + ") and content_id = (select id from security_oval_content where content_name = '"+latestInsertedContentId+"') and machine_id = (select id from inv_machine where name = '" + securityComplianceForMachine.replaceAll("'", "''") + "')";
+                        deleteStmt = "delete from security_" + scanType + "_compliance "
+                        		+ "where id NOT IN (" + result + ") "
+                        				+ "and content_id = (select distinct id from security_oval_content where content_name = '"+latestInsertedContentId+"') "
+                        						+ "and machine_id = (select id from inv_machine where name = '" + securityComplianceForMachine.replaceAll("'", "''") + "')";
                     }
                 } else {
                     if ((securityComplianceForMachine != null) && (securityComplianceForMachine.trim().length() > 0)) {
