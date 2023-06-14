@@ -194,6 +194,8 @@ function doSubmit(frm) {
 	flag = dbConnectionRequired(flag);
 	flag = ldapRequired(flag);
 	
+	$('#elastic-url-error').html("");
+	
 	if(!flag) 
 		frm.submit();
 }
