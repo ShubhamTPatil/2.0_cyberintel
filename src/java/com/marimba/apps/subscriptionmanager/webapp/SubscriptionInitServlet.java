@@ -653,7 +653,8 @@ public class SubscriptionInitServlet extends HttpServlet implements IObserver, I
         server.removeObserver(this);
         if (null != tunerConfig) tunerConfig.removeObserver(this);
         debugLeaving(dCurrentMethod);
-        SCAPUtils.getSCAPUtils().destory();
+        //performing clean up activity for MapDB related collections
+        SCAPUtils.getSCAPUtils().destroy();
     }
     private void closeTaskService() {
         try {
