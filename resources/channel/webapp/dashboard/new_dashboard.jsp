@@ -106,7 +106,10 @@ $(function () {
             plugins: {
                 legend: {
                     display: true,
-                    position: 'bottom'
+                    position: 'bottom',
+                    labels: {
+                      boxWidth: 20, // Set the desired width of the legend
+                    }
                 },
                 tooltip: {
                     callbacks: {

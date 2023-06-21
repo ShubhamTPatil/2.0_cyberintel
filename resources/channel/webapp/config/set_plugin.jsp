@@ -253,7 +253,7 @@ function restrictKeyPressNaturalNumber(evt) {
 function checkInputZero() {
 	if($('#lastgoodhostexptime').val() == 0) {
 		alert("Enter positive integer for expiration time.");
-		$('#lastgoodhostexptime').val(""); 
+		$('#lastgoodhostexptime').val("5");
 	}
 }
 

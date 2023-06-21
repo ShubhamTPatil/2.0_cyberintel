@@ -452,52 +452,41 @@ h1, h2, h3, h4, h5, h6 {
 	}
 }
 
-@
--webkit-keyframes dropdown-animate { 0% {
-	opacity: 0;
+@-webkit-keyframes dropdown-animate {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+
+  0% {
+    opacity: 0;
+  }
 }
 
-100
-%
-{
-opacity
-:
-1;
-}
-0
-%
-{
-opacity
-:
-0;
-}
-}
-@
-keyframes dropdown-animate { 0% {
-	opacity: 0;
+@keyframes dropdown-animate {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+
+  0% {
+    opacity: 0;
+  }
 }
 
-100
-%
-{
-opacity
-:
-1;
-}
-0
-%
-{
-opacity
-:
-0;
-}
-}
+
 .compliance span {
-	font-size: small;
+  font-size: small;
 }
 
-.compliance .progress { -
-	-bs-progress-height: 0.6rem;
+.compliance .progress {
+  --bs-progress-height: 0.6rem;
 }
 
 #criticalPatchesTable_filter>label>input {
@@ -619,5 +608,5 @@ opacity
 }
 
 .errorText {
-    color: #dc3545;
+	color: #dc3545;
 }
