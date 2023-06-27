@@ -81,7 +81,7 @@
 		const step = <bean:write name="definitionUpdateForm" property="cveJsonUpdateStep" filter="false" />;
 		
 		const msg = '<bean:write name="definitionUpdateForm" property="cveJsonUpdateMsg" filter="false" />';
-		const msgDivId = '#step-'+(step+1)+'-msg';i
+		const msgDivId = '#step-'+(step+1)+'-msg';
 		$(msgDivId).html(msg);
 		
 		const error = '<bean:write name="definitionUpdateForm" property="cveJsonUpdateError" filter="false" />';
@@ -120,10 +120,13 @@
 	});
 	
 	
-	function checkAfter10Seconds() {
-		  return new Promise(resolve => {
-		    setTimeout(() => {
-		    	
+	function checkAfter10Seconds(timeout) {
+		
+		console.log("timeout = "+timeout);
+		console.log(new Date());
+		
+			  return new Promise(resolve => {
+		    setTimeout(() => {		    	
 			    	$.ajax({
 							url : './definitionupdate.do',
 							type : 'POST',
@@ -139,14 +142,16 @@
 							}
 						});  
 		    	
-		    }, 10000);
-		    
+		    }, timeout);
 		  });
 		}
 
 		async function asyncCall() {
+			let timeout = 500;
+			
 		  while(1) {
-  		  const result = await checkAfter10Seconds();
+  		  const result = await checkAfter10Seconds(timeout);
+  			timeout = 10000;
   		  
   			// Expected output: "resolved"
   			
@@ -169,6 +174,14 @@
 				$(msgDivId).html(result.message);
   		
   			const divId = '#step-'+(result.status+1)+'-error';
+  			
+  			if(result.status == 0 && result.error != "") {
+    			var alertModal = new bootstrap.Modal(document.getElementById('alertModal'), {
+  				  keyboard: false
+      		});
+      		$('#alertMessage').html(result.error);
+      		alertModal.show();
+  			}
 				
     		if(typeof result != "undefined" && typeof result.error != "undefined" && result.error != null && result.error.trim() != "") {
   				$(divId).html(result.error);
@@ -431,7 +444,7 @@
                   <div class="tab-content">
                     <div id="step-1" class="tab-pane cveJsonMessage" role="tabpanel" aria-labelledby="step-1">
                       <div id="step-1-msg"></div>
-                      <div id="step-1-error" class="text-danger"></div>
+                      <div id="step-1-error" style="display:none;" class="text-danger"></div>
                     </div>
                     <div id="step-2" class="tab-pane cveJsonMessage" role="tabpanel" aria-labelledby="step-2">
                       <div class="d-flex align-items-center">

@@ -9,6 +9,9 @@ import java.io.*;
 import java.net.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -259,6 +262,33 @@ public class DefinitionUpdateAction extends AbstractAction
 
 							String publishTxUrl = definitionUpdateForm.getPublishTxUrl();
 							String cveStorageDir = definitionUpdateForm.getCveStorageDir();
+							
+							System.out.println("cveStorageDir = "+ cveStorageDir);
+							
+							Path path = Paths.get(cveStorageDir);
+							
+					        if (!Files.exists(path)) {
+					            try {
+					                Files.createDirectory(path);
+					                System.out.println("Directory created successfully!");
+					                config.setProperty("cvejsonupdate.process.status", "0");
+					                config.setProperty("cvejsonupdate.process.error", "");
+					                config.save();
+					                config.close();
+					                loadFormData(config, definitionUpdateForm);
+					            } catch (Exception e) {
+					                System.out.println("An error occurred while creating the directory: " + e.getMessage());
+					                config.setProperty("cvejsonupdate.process.status", "0");
+					                config.setProperty("cvejsonupdate.process.error", "CVE download location is invalid");
+					                config.save();
+					                config.close();
+					                loadFormData(config, definitionUpdateForm);
+					                return;
+					            }
+					        } else {
+					            System.out.println("Directory already exists!");
+					        }
+							
 
 							tunerConfig = (IConfig) features.getChild("tunerConfig");
 							Tools.setTunerConfig(tunerConfig);
@@ -884,9 +914,6 @@ public class DefinitionUpdateAction extends AbstractAction
 			String s = file.getParent();
 			String s1 = s.substring(0, s.indexOf("ch."));
 			String s2 = (new StringBuilder()).append(s1).append("map.txt").toString();
-
-			System.out.println("s1 = " + s1);
-			System.out.println("s2 = " + s2);
 
 			// Removed Try Catch
 			BufferedReader bufferedreader = new BufferedReader(new FileReader(new File(s2)));
