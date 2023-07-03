@@ -31,10 +31,10 @@ public class DashboardHandler implements ComplianceConstants {
     }
 
     //Controller for total number of machine
-    public int getEnrolledMachines(String targetId) {
+    public int getEnrolledMachines() {
         int count = 0;
         try {
-            count = new DashboardInfoDetails.GetAllEndpointMachineCount(main, targetId).getMachinesCount();
+            count = new DashboardInfoDetails.GetAllEndpointMachineCount(main).getMachinesCount();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -59,7 +59,7 @@ public class DashboardHandler implements ComplianceConstants {
         int count = 0;
         try {
 
-            count = new DashboardInfoDetails.GetAllEndpointMachineCount(main, osType).getMachinesCount();
+            count = new DashboardInfoDetails.GetAllEndpointMachineCountByOS(main, osType).getMachinesCount();
 
         } catch (Exception ex) {
             ex.printStackTrace();

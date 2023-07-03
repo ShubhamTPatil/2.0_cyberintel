@@ -1153,14 +1153,33 @@ public class DashboardInfoDetails implements ComplianceConstants {
             return complianceResult;
         }
     }
+    
+    public static class GetAllEndpointMachineCountByOS extends DatabaseAccess {
+        SubscriptionMain main = null;
+        int count = 0;
+
+        public GetAllEndpointMachineCountByOS(SubscriptionMain main, String osType) {
+        	GetAllEndpointMachineCountDataByOS result = new GetAllEndpointMachineCountDataByOS(main, osType);
+            try {
+                runQuery(result);
+                count = result.getCount();
+            } catch (Exception dae) {
+                dae.printStackTrace();
+            }
+        }
+
+        public int getMachinesCount() {
+            return count;
+        }
+    }
 
 
     public static class GetAllEndpointMachineCount extends DatabaseAccess {
         SubscriptionMain main = null;
         int count = 0;
 
-        public GetAllEndpointMachineCount(SubscriptionMain main, String osType) {
-            GetAllEndpointMachineCountData result = new GetAllEndpointMachineCountData(main, osType);
+        public GetAllEndpointMachineCount(SubscriptionMain main) {
+            GetAllEndpointMachineCountData result = new GetAllEndpointMachineCountData(main);
             try {
                 runQuery(result);
                 count = result.getCount();
@@ -1697,14 +1716,13 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
     }
-
-
-
-    static class GetAllEndpointMachineCountData extends QueryExecutor {
+    
+    
+    static class GetAllEndpointMachineCountDataByOS extends QueryExecutor {
         int count = 0;
         String osType;
 
-        GetAllEndpointMachineCountData(SubscriptionMain main, String osType) {
+        GetAllEndpointMachineCountDataByOS(SubscriptionMain main, String osType) {
             super(main);
             this.osType = osType;
         }
@@ -1715,6 +1733,37 @@ public class DashboardInfoDetails implements ComplianceConstants {
             PreparedStatement st = pool.getConnection().prepareStatement("select  COUNT(*) as 'Scanned Machines Count' " +
                     " from inv_os ios where product like '%"+osType+"%' and exists (select 1 from ldapsync_targets_marimba ltm " +
                     " where ltm.marimba_table_primary_id = ios.machine_id)");
+
+            ResultSet rs = st.executeQuery();
+            try {
+                if (rs.next()) {
+                    count = rs.getInt(1);
+                }
+            } finally {
+                rs.close();
+            }
+
+        }
+
+        public int getCount() {
+            return count;
+        }
+
+    }
+
+
+
+    static class GetAllEndpointMachineCountData extends QueryExecutor {
+        int count = 0;
+
+        GetAllEndpointMachineCountData(SubscriptionMain main) {
+            super(main);
+        }
+
+
+        protected void execute(IStatementPool pool) throws SQLException {
+
+            PreparedStatement st = pool.getConnection().prepareStatement("select  COUNT(*) as 'Enrolled Machines Count'  from ldapsync_targets_machines");
 
             ResultSet rs = st.executeQuery();
             try {
@@ -1783,9 +1832,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
             PreparedStatement st = null;
 
             if ("reporting".equalsIgnoreCase(complianceType)) {
-                st = pool.getConnection().prepareStatement("select count(*) as 'Count', ComplianceStaus as 'Type' from derived_inv_compliance dic \n" +
-                        "where dic.scantime > (select getutcdate() - 1) \n" +
-                        "group by ComplianceStaus having count (*) > 0");
+                st = pool.getConnection().prepareStatement("select count(*) as 'Count', ComplianceStaus as 'Type' from derived_inv_compliance group by ComplianceStaus");
             } else if ("security".equalsIgnoreCase(complianceType)) {
                 st = pool.getConnection().prepareStatement("select count(distinct machinename) as 'Count' , overall_compliant_level as 'Type' \n" +
                         "from inv_security_oval_comp_overall group by overall_compliant_level having count(*) > 0");
