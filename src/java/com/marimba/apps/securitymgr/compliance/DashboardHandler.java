@@ -66,6 +66,42 @@ public class DashboardHandler implements ComplianceConstants {
         }
         return count;
     }
+    
+    public int getScannedMachinesCount(String scanType) {
+    	int count = 0;
+    	
+    	try {
+    		
+    		ArrayList<String> fileNames = new DashboardInfoDetails.GetScannedEndpointMachines(main).getContentFileNames();
+    		
+    		for (String fileName : fileNames) {
+				String assessmentType = "Configuration";
+
+				if (fileName.startsWith("oval.vulnerability")) {
+				    assessmentType = "Vulnerability";
+				} else if (fileName.startsWith("oval.patch")) {
+				    assessmentType = "Patch";
+				} else if (fileName.startsWith("oval.compliance")) {
+				    assessmentType = "Compliance";
+				} else if (fileName.startsWith("oval.inventory")) {
+				    assessmentType = "Inventory";
+				} else if (fileName.startsWith("oval.miscellaneous")) {
+				    assessmentType = "Miscellaneous";
+				} else {
+				    assessmentType = "Vulnerability";
+				}
+				
+				if(assessmentType == scanType) {
+		    		count++;
+		    	}
+			}
+    		
+    	} catch (Exception e) {
+    		e.printStackTrace();
+		}
+    	
+    	return count;
+    }
 
     //total number of machine by VScan
     public int getVScanMachinesCount(String scanType) {

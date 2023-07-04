@@ -1645,7 +1645,27 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
     }
+    
+    public static class GetScannedEndpointMachines extends DatabaseAccess {
+    	ArrayList<String> contentFileNames = new ArrayList<String>();
+    	
+         public GetScannedEndpointMachines(SubscriptionMain main) {
 
+        	 GetScannedEndpointMachinesData result = new GetScannedEndpointMachinesData(main);
+
+             try {
+                 runQuery(result);
+            	 contentFileNames = result.getContentFileNames();
+             } catch (Exception dae) {
+                 dae.printStackTrace();
+             }
+         }
+
+         public ArrayList<String> getContentFileNames() {
+             return contentFileNames;
+         }
+     }
+    
     public static class GetScanEndPointMachineCount extends DatabaseAccess {
        int count = 0;
 
@@ -1664,6 +1684,36 @@ public class DashboardInfoDetails implements ComplianceConstants {
         public int getScanCount() {
             return count;
         }
+    }
+    
+    static class GetScannedEndpointMachinesData extends QueryExecutor {
+    	ArrayList<String> contentFileNames = new ArrayList<String>();
+    	
+    	GetScannedEndpointMachinesData(SubscriptionMain main) {
+            super(main);
+        }
+    	
+    	protected void execute(IStatementPool pool) throws SQLException {
+    		
+    		String sqlStr = "select content_file_name from inv_security_oval_compliance isoc\r\n"
+    				+ "where exists (select 1 from ldapsync_targets_machines ltm where isoc.machine_id = ltm.machine_id)";
+    		
+    		PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
+    		
+    		ResultSet rs = st.executeQuery();
+            try {
+                while (rs.next()) {
+                	contentFileNames.add(rs.getString("content_file_name"));
+                }
+            } finally {
+				rs.close();
+			}
+    	}
+    	
+    	ArrayList<String> getContentFileNames() {
+    		return contentFileNames;	
+    	}
+    	
     }
 
      // To get VScan or Patch Scan machines count
