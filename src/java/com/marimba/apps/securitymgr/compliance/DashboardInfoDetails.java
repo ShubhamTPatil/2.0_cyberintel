@@ -1695,8 +1695,9 @@ public class DashboardInfoDetails implements ComplianceConstants {
     	
     	protected void execute(IStatementPool pool) throws SQLException {
     		
-    		String sqlStr = "select content_file_name from inv_security_oval_compliance isoc\r\n"
-    				+ "where exists (select 1 from ldapsync_targets_machines ltm where isoc.machine_id = ltm.machine_id)";
+    		String sqlStr = "select content_file_name from inv_security_oval_compliance isoc \r\n"
+    				+ "where exists (select 1 from ldapsync_targets_machines ltm where isoc.machine_id = ltm.machine_id)\r\n"
+    				+ "and finished_at >= DATEADD(HOUR, -24, GETDATE())";
     		
     		PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
     		
@@ -1885,7 +1886,8 @@ public class DashboardInfoDetails implements ComplianceConstants {
                 st = pool.getConnection().prepareStatement("select count(*) as 'Count', ComplianceStaus as 'Type' from derived_inv_compliance group by ComplianceStaus");
             } else if ("security".equalsIgnoreCase(complianceType)) {
                 st = pool.getConnection().prepareStatement("select count(distinct machinename) as 'Count' , overall_compliant_level as 'Type' \n" +
-                        "from inv_security_oval_comp_overall group by overall_compliant_level having count(*) > 0");
+                        "from inv_security_oval_comp_overall where exists (select 1 from ldapsync_targets_machines ltm where inv_security_oval_comp_overall.machine_id = ltm.machine_id) \n"+
+                        "group by overall_compliant_level having count(*) > 0");
             } else {
                 st = pool.getConnection().prepareStatement("select * from derived_patch_compliance");
             }
