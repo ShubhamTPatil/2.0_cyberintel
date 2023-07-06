@@ -1245,19 +1245,14 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
         protected void execute(IStatementPool pool) throws SQLException {
 
-            String sqlStr2 = " select  t1.severity as \"SeverityName\" , count(t1.severity) as \"Count\"\n" +
-                    "         from inv_sec_oval_defn_cve_details t1,\n" +
-                    "              security_cve_patch_info t2 \n" +
-                    "               where t1.reference_name not like 'cpe%'\n" +
-                    "\t\t\t    and t1.severity != 'null'\n" +
-                    "                and t1.repository_id = t2.repository_id\n" +
-                    "                and exists (select 1 from all_patch ap where \n" +
-                    "                 (ap.repository_id = t1.repository_id) \n" +
-                    "             and (ap.current_status = 'Missing' or ap.current_status = 'Available-SP'))\n" +
-                    "         group by  t1.severity";
+            String sqlStr = " select t1.severity as severity_name , count(t1.severity) as severity_count from inv_sec_oval_defn_cve_records t1, security_cve_patch_info t2 \n" +
+                    " where t1.reference_name not like 'cpe%' \n" +
+                    " and t1.severity != 'null' and t1.repository_id = t2.repository_id \n" +
+                    " and t1.severity != ' '\n" +
+                    "group by t1.severity ";
 
             // Taken results from derived table
-            String sqlStr = "select * from ds_derived_donught_chart";
+            String sqlStr2 = "select * from ds_derived_donught_chart";
 
             PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
             ResultSet rs = st.executeQuery();
@@ -1659,16 +1654,13 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
         protected void execute(IStatementPool pool) throws SQLException {
 
+            String vscanSQL = "select  COUNT(*) as vscan_count from inv_machine im \n" +
+                              " where exists (select 1 from inv_security_oval_compliance  soc where \n" +
+                              " soc.machine_id = im.id and soc.content_name like '%oval.vulnerability%')";
 
-            String vscanSQL = "select COUNT(*) as vscan_count from inv_machine im \n" +
-                    "            where exists (select 1 from inv_security_oval_compliance  soc where \n" +
-                    "  soc.machine_id = im.id and soc.overall_compliant_level not like 'NOT APPLICABLE%')";
-            // "and UPPER(sxc.assigned_target_name) = UPPER('"+ targetID +"'))";
-
-            String patchScanSQL = "select COUNT(*) as patchscan_count from inv_machine im \n" +
-                    " where exists (select 1 from all_patch ap where ap.machine_id = im.id) ";
-                  //  " and exists (select 1 from ldapsync_targets_marimba ltm " +
-                  //  " where ltm.marimba_table_primary_id = im.machine_id)";
+            String patchScanSQL = "select  COUNT(*) as patchscan_count from inv_machine im \n" +
+                                  " where exists (select 1 from inv_security_oval_compliance  soc where \n" +
+                                  " soc.machine_id = im.id and soc.content_name like '%oval.patch%')";
 
             PreparedStatement st = null;
             if ("vscan".equalsIgnoreCase(scanType)) {
@@ -1711,10 +1703,17 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
 
         protected void execute(IStatementPool pool) throws SQLException {
-
-            PreparedStatement st = pool.getConnection().prepareStatement("select  COUNT(*) as 'Scanned Machines Count' " +
-                    " from inv_os ios where product like '%"+osType+"%' and exists (select 1 from ldapsync_targets_marimba ltm " +
-                    " where ltm.marimba_table_primary_id = ios.machine_id)");
+            String sql = "";
+            if ("all".equals(osType)) {
+               sql =  "select  COUNT(distinct im.id) as 'Scanned Machines Count' \n" +
+                        " from inv_machine im, ldapsync_targets_marimba ltm  \n" +
+                        " where ltm.marimba_table_primary_id = im.id" ;
+            } else {
+               sql = 	"select  COUNT(distinct ios.machine_id) as 'Scanned Machines Count' " +
+                       " from inv_os ios where product like '%" + osType + "%' and exists (select 1 from ldapsync_targets_marimba ltm " +
+                       " where ltm.marimba_table_primary_id = ios.machine_id) ";
+            }
+            PreparedStatement st = pool.getConnection().prepareStatement(sql);
 
             ResultSet rs = st.executeQuery();
             try {
@@ -1784,8 +1783,8 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
             if ("reporting".equalsIgnoreCase(complianceType)) {
                 st = pool.getConnection().prepareStatement("select count(*) as 'Count', ComplianceStaus as 'Type' from derived_inv_compliance dic \n" +
-                        "where dic.scantime > (select getutcdate() - 1) \n" +
-                        "group by ComplianceStaus having count (*) > 0");
+                        "   where exists (select 1 from ldapsync_targets_marimba ltm where ltm.marimba_table_primary_id = dic.machine_id)\n" +
+                        "    group by ComplianceStaus having count (*) > 0");
             } else if ("security".equalsIgnoreCase(complianceType)) {
                 st = pool.getConnection().prepareStatement("select count(distinct machinename) as 'Count' , overall_compliant_level as 'Type' \n" +
                         "from inv_security_oval_comp_overall group by overall_compliant_level having count(*) > 0");
