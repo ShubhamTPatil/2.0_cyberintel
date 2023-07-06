@@ -31,10 +31,10 @@ public class DashboardHandler implements ComplianceConstants {
     }
 
     //Controller for total number of machine
-    public int getEnrolledMachines() {
+    public int getEnrolledMachines(String targetId) {
         int count = 0;
         try {
-            count = new DashboardInfoDetails.GetAllEndpointMachineCount(main).getMachinesCount();
+            count = new DashboardInfoDetails.GetAllEndpointMachineCount(main, targetId).getMachinesCount();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -59,48 +59,12 @@ public class DashboardHandler implements ComplianceConstants {
         int count = 0;
         try {
 
-            count = new DashboardInfoDetails.GetAllEndpointMachineCountByOS(main, osType).getMachinesCount();
+            count = new DashboardInfoDetails.GetAllEndpointMachineCount(main, osType).getMachinesCount();
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return count;
-    }
-    
-    public int getScannedMachinesCount(String scanType) {
-    	int count = 0;
-    	
-    	try {
-    		
-    		ArrayList<String> fileNames = new DashboardInfoDetails.GetScannedEndpointMachines(main).getContentFileNames();
-    		
-    		for (String fileName : fileNames) {
-				String assessmentType = "Configuration";
-
-				if (fileName.startsWith("oval.vulnerability")) {
-				    assessmentType = "Vulnerability";
-				} else if (fileName.startsWith("oval.patch")) {
-				    assessmentType = "Patch";
-				} else if (fileName.startsWith("oval.compliance")) {
-				    assessmentType = "Compliance";
-				} else if (fileName.startsWith("oval.inventory")) {
-				    assessmentType = "Inventory";
-				} else if (fileName.startsWith("oval.miscellaneous")) {
-				    assessmentType = "Miscellaneous";
-				} else {
-				    assessmentType = "Vulnerability";
-				}
-				
-				if(assessmentType == scanType) {
-		    		count++;
-		    	}
-			}
-    		
-    	} catch (Exception e) {
-    		e.printStackTrace();
-		}
-    	
-    	return count;
     }
 
     //total number of machine by VScan

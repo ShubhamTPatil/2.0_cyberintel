@@ -1153,33 +1153,14 @@ public class DashboardInfoDetails implements ComplianceConstants {
             return complianceResult;
         }
     }
-    
-    public static class GetAllEndpointMachineCountByOS extends DatabaseAccess {
-        SubscriptionMain main = null;
-        int count = 0;
-
-        public GetAllEndpointMachineCountByOS(SubscriptionMain main, String osType) {
-        	GetAllEndpointMachineCountDataByOS result = new GetAllEndpointMachineCountDataByOS(main, osType);
-            try {
-                runQuery(result);
-                count = result.getCount();
-            } catch (Exception dae) {
-                dae.printStackTrace();
-            }
-        }
-
-        public int getMachinesCount() {
-            return count;
-        }
-    }
 
 
     public static class GetAllEndpointMachineCount extends DatabaseAccess {
         SubscriptionMain main = null;
         int count = 0;
 
-        public GetAllEndpointMachineCount(SubscriptionMain main) {
-            GetAllEndpointMachineCountData result = new GetAllEndpointMachineCountData(main);
+        public GetAllEndpointMachineCount(SubscriptionMain main, String osType) {
+            GetAllEndpointMachineCountData result = new GetAllEndpointMachineCountData(main, osType);
             try {
                 runQuery(result);
                 count = result.getCount();
@@ -1645,27 +1626,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
     }
-    
-    public static class GetScannedEndpointMachines extends DatabaseAccess {
-    	ArrayList<String> contentFileNames = new ArrayList<String>();
-    	
-         public GetScannedEndpointMachines(SubscriptionMain main) {
 
-        	 GetScannedEndpointMachinesData result = new GetScannedEndpointMachinesData(main);
-
-             try {
-                 runQuery(result);
-            	 contentFileNames = result.getContentFileNames();
-             } catch (Exception dae) {
-                 dae.printStackTrace();
-             }
-         }
-
-         public ArrayList<String> getContentFileNames() {
-             return contentFileNames;
-         }
-     }
-    
     public static class GetScanEndPointMachineCount extends DatabaseAccess {
        int count = 0;
 
@@ -1684,37 +1645,6 @@ public class DashboardInfoDetails implements ComplianceConstants {
         public int getScanCount() {
             return count;
         }
-    }
-    
-    static class GetScannedEndpointMachinesData extends QueryExecutor {
-    	ArrayList<String> contentFileNames = new ArrayList<String>();
-    	
-    	GetScannedEndpointMachinesData(SubscriptionMain main) {
-            super(main);
-        }
-    	
-    	protected void execute(IStatementPool pool) throws SQLException {
-    		
-    		String sqlStr = "select content_file_name from inv_security_oval_compliance isoc \r\n"
-    				+ "where exists (select 1 from ldapsync_targets_machines ltm where isoc.machine_id = ltm.machine_id)\r\n"
-    				+ "and finished_at >= DATEADD(HOUR, -24, GETDATE())";
-    		
-    		PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
-    		
-    		ResultSet rs = st.executeQuery();
-            try {
-                while (rs.next()) {
-                	contentFileNames.add(rs.getString("content_file_name"));
-                }
-            } finally {
-				rs.close();
-			}
-    	}
-    	
-    	ArrayList<String> getContentFileNames() {
-    		return contentFileNames;	
-    	}
-    	
     }
 
      // To get VScan or Patch Scan machines count
@@ -1767,13 +1697,14 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
     }
-    
-    
-    static class GetAllEndpointMachineCountDataByOS extends QueryExecutor {
+
+
+
+    static class GetAllEndpointMachineCountData extends QueryExecutor {
         int count = 0;
         String osType;
 
-        GetAllEndpointMachineCountDataByOS(SubscriptionMain main, String osType) {
+        GetAllEndpointMachineCountData(SubscriptionMain main, String osType) {
             super(main);
             this.osType = osType;
         }
@@ -1784,37 +1715,6 @@ public class DashboardInfoDetails implements ComplianceConstants {
             PreparedStatement st = pool.getConnection().prepareStatement("select  COUNT(*) as 'Scanned Machines Count' " +
                     " from inv_os ios where product like '%"+osType+"%' and exists (select 1 from ldapsync_targets_marimba ltm " +
                     " where ltm.marimba_table_primary_id = ios.machine_id)");
-
-            ResultSet rs = st.executeQuery();
-            try {
-                if (rs.next()) {
-                    count = rs.getInt(1);
-                }
-            } finally {
-                rs.close();
-            }
-
-        }
-
-        public int getCount() {
-            return count;
-        }
-
-    }
-
-
-
-    static class GetAllEndpointMachineCountData extends QueryExecutor {
-        int count = 0;
-
-        GetAllEndpointMachineCountData(SubscriptionMain main) {
-            super(main);
-        }
-
-
-        protected void execute(IStatementPool pool) throws SQLException {
-
-            PreparedStatement st = pool.getConnection().prepareStatement("select  COUNT(*) as 'Enrolled Machines Count'  from ldapsync_targets_machines");
 
             ResultSet rs = st.executeQuery();
             try {
@@ -1883,11 +1783,12 @@ public class DashboardInfoDetails implements ComplianceConstants {
             PreparedStatement st = null;
 
             if ("reporting".equalsIgnoreCase(complianceType)) {
-                st = pool.getConnection().prepareStatement("select count(*) as 'Count', ComplianceStaus as 'Type' from derived_inv_compliance group by ComplianceStaus");
+                st = pool.getConnection().prepareStatement("select count(*) as 'Count', ComplianceStaus as 'Type' from derived_inv_compliance dic \n" +
+                        "where dic.scantime > (select getutcdate() - 1) \n" +
+                        "group by ComplianceStaus having count (*) > 0");
             } else if ("security".equalsIgnoreCase(complianceType)) {
                 st = pool.getConnection().prepareStatement("select count(distinct machinename) as 'Count' , overall_compliant_level as 'Type' \n" +
-                        "from inv_security_oval_comp_overall where exists (select 1 from ldapsync_targets_machines ltm where inv_security_oval_comp_overall.machine_id = ltm.machine_id) \n"+
-                        "group by overall_compliant_level having count(*) > 0");
+                        "from inv_security_oval_comp_overall group by overall_compliant_level having count(*) > 0");
             } else {
                 st = pool.getConnection().prepareStatement("select * from derived_patch_compliance");
             }
