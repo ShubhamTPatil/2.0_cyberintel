@@ -1291,7 +1291,19 @@ public class DashboardInfoDetails implements ComplianceConstants {
                     "order by severity";
 
             // Taken results from derived table
-            String sqlStr = "select * from ds_derived_ageing_chart";
+            //String sqlStr = "select * from ds_derived_ageing_chart";
+            String sqlStr = "SELECT severity\r\n"
+            		+ "	,COUNT(*) AS vulnerable_count\r\n"
+            		+ "	,t1.published_date AS identified_date\r\n"
+            		+ "	,DATEDIFF(DAY, t1.published_date, GETDATE()) AS ageing_days\r\n"
+            		+ "FROM inv_sec_oval_defn_cve_records t1\r\n"
+            		+ "	,security_cve_patch_info t2\r\n"
+            		+ "WHERE t1.reference_name NOT LIKE 'cpe%'\r\n"
+            		+ "	AND t1.severity != 'null'\r\n"
+            		+ "	AND t1.repository_id = t2.repository_id\r\n"
+            		+ "	AND t1.severity != ' '\r\n"
+            		+ "	AND t1.published_date IS NOT NULL\r\n"
+            		+ "GROUP BY t1.severity, t1.published_date;";
 
             PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
             ResultSet rs = st.executeQuery();
