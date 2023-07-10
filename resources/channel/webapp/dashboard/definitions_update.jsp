@@ -328,6 +328,9 @@
 		}
 	}
 
+    function checkRemoteDB(frm) {
+       // do nothing
+    }
 
 </script>
 
@@ -412,6 +415,14 @@
                     <html:text name="definitionUpdateForm" property="cveStorageDir" size="30" styleClass="requiredField form-control" />
                   </div>
                 </div>
+
+                <div class="row g-3 align-items-center">
+                  <div class="col-auto">&nbsp;</div>
+                  <div class="col-auto">
+                    <html:checkbox name="definitionUpdateForm" property="remoteDatabase" styleId="remoteDb" value="true" onclick="checkRemoteDB(this.form);"/>
+                    &nbsp;DefenSight using Remote Database connectivity.
+                  </div>
+                <//div>
 
                 <div class="row">
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">

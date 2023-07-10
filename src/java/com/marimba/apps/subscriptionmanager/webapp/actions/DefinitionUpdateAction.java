@@ -99,6 +99,7 @@ public class DefinitionUpdateAction extends AbstractAction
 		String cveDownloderChPath;
 		ConfigProps config = null;
 		IConfig tunerConfig = null;
+        boolean isRemoteDatabaseEnabled = false;
 
 		DefinitionUpdateTask(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 				HttpServletResponse response) {
@@ -119,16 +120,30 @@ public class DefinitionUpdateAction extends AbstractAction
 
 				action = definitionUpdateForm.getAction();
 				System.out.println("DebugInfo: DefinitionUpdate - Action: " + action);
-
-				if (isEmpty(action)) {
+                
+				
+                if (isEmpty(action)) {
 					initDefinitionsUpdateConfig();
 					loadFormData(getDefinitionsUpdateConfig(), definitionUpdateForm);
 				}
 
+                String isRemoteDB = definitionUpdateForm.getRemoteDatabase();
+                System.out.println("DebugInfo: isRemoteDatabase Enabled  " + definitionUpdateForm.getRemoteDatabase());
+                if (isEmpty(isRemoteDB) || "false".equals(isRemoteDB)) {
+                    isRemoteDatabaseEnabled = false;
+                } else {
+                    isRemoteDatabaseEnabled = true;
+                }
+                
 				if ("getCveUpdateStatus".equals(action)) {
 
 					initDefinitionsUpdateConfig();
 					config = getDefinitionsUpdateConfig();
+                    if (isRemoteDatabaseEnabled) {
+                        config.setProperty("defensight.cms.dbconnection.remote", "true");
+                        config.save();
+                    }
+
 					String status = config.getProperty("cvejsonupdate.process.status");
 					String error = config.getProperty("cvejsonupdate.process.error");
 					String message = config.getProperty("cvejsonupdate.process.message");
@@ -501,6 +516,11 @@ public class DefinitionUpdateAction extends AbstractAction
 										int csvfilesCnt = csvFilesDir.list().length;
 										System.out.println("DebugInfo: Number of CSV files: " + csvfilesCnt);
 										String csvFilesDirPath = csvFilesDir.getCanonicalPath();
+                                        
+                                        if (isRemoteDatabaseEnabled) {
+                                            String remoteDBpath = getDefinitionsUpdateConfig().getProperty("defensight.cve.json.remotestorage.path");
+                                            csvFilesDirPath = remoteDBpath + "\\" + "csv_data";
+                                        }
 										updateScriptFile(scriptDir, csvFilesDirPath, csvfilesCnt);
 
 									} else {
@@ -965,7 +985,7 @@ public class DefinitionUpdateAction extends AbstractAction
 						config.setProperty("cvejsonupdate.process.message",
 								"Please start the CVE Definitions update process.");
 						config.setProperty("vdefchannel.copy.error","");
-
+                        config.setProperty("defensight.cms.dbconnection.remote", "false");
 						if (!config.save()) {
 							throw new Exception("Failed to save mitigate configurations");
 						}
