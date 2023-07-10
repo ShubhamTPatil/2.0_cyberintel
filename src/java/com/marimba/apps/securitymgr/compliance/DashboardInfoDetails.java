@@ -1512,41 +1512,48 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
         protected void execute(IStatementPool pool) throws SQLException {
 
-            String sqlStr2 = "select distinct  t1.reference_name as \"CVE_ID\", t2.severity as \"Severity\" ,count(distinct im.id) as \"Affected_Machines\", ap.repository_id as \"Patch_ID\"\n" +
-                    "from inv_sec_oval_defn_cve_details t1, all_patch ap, security_cve_info t2, inv_machine im\n" +
-                    "where \n" +
-                    "ap.repository_id=t1.repository_id\n" +
-                    "and (t1.reference_name = t2.cve_name and t1.severity != 'null')\n" +
-                    "and im.id = ap.machine_id\n" +
-                    "and exists (select 1 from all_patch ap where \n" +
-                    "\t\t\t   (ap.repository_id = t1.repository_id) \n" +
-                    "\t\t\t   and (ap.current_status = 'Missing' or ap.current_status = 'Available-SP'))\n" +
-                    "group by t1.reference_name, t2. severity, ap.repository_id";
+            String sqlStr2 = "select  t1.cve_name as cve_id, t1.severity as severity,count(distinct ap.machine_id) as " +
+                    "affected_machines,   ap.repository_id as patch_id,  case when (ap.current_status = 'Missing' or " +
+                    "ap.current_status = 'Available-SP')  then 'Patch Not Applied'   " +
+                    "when (ap.current_status = 'Effectively-Installed' or  ap.current_status = 'Installed') " +
+                    " then 'Patch Applied'   when (ap.current_status = 'Reboot-pending' or  " +
+                    "ap.current_status = 'Reboot-Pending-SP')  then 'Patch Applied Reboot Required'   " +
+                    "else 'Patch Failed'  end as status,   (t1.cvss_score * count(distinct ap.machine_id)) " +
+                    "as risk_score   from inv_sec_oval_defn_cve_records t1, security_cve_patch_info t2, all_patch ap   " +
+                    "where t1.reference_name not like 'cpe%' and t1.severity != 'null'  and t1.severity != ''  " +
+                    "and t1.repository_id = t2.repository_id  and t2.cve_name = ap.[cve id]  " +
+                    "and exists (select 1 from ldapsync_targets_marimba ltm " +
+                    "where ltm.marimba_table_primary_id = ap.machine_id)  " +
+                    "group by t1.cve_name, t1.severity, t1.cvss_score, " +
+                    "ap.current_status,ap.repository_id order by   risk_score desc";
 
             // Taken results from derived table
             String  sqlStr = "select * from ds_derived_top_vuln";
 
-            PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
+            PreparedStatement st = pool.getConnection().prepareStatement(sqlStr2);
             ResultSet rs = st.executeQuery();
             try {
                 while(rs.next()) {
-                    TopVulnerableStatusBean topVulBean = new TopVulnerableStatusBean(); 
+                    TopVulnerableStatusBean topVulBean = new TopVulnerableStatusBean();
                     String cveID = rs.getString("cve_id");
                     String severity = rs.getString("severity");
                     String affectedMachines = String.valueOf(rs.getInt("affected_machines"));
                     String patchID = rs.getString("patch_id");
                     String status = rs.getString("status");
+                    String risk_score = rs.getString("risk_score");
 
                     topVulBean.setCveId(cveID);
                     topVulBean.setSeverity(severity);
                     topVulBean.setAffectedMachines(affectedMachines);
                     topVulBean.setPatchId(patchID);
                     topVulBean.setStatus(status);
+                    topVulBean.setRiskScore(risk_score);
 
                     topVulInfo.add(topVulBean);
                 }
             } finally {
                 rs.close();
+                sqlStr2=null;
             }
         }
 

@@ -169,6 +169,8 @@ $(function () {
             "data": "Patches"
         }, {
             "data": "Status"
+        }, {
+             "data": "Risk Score"
         }],
         'columnDefs': [{
             'targets': 0,
@@ -200,6 +202,9 @@ $(function () {
         }, {
             'targets': 5,
             'className': 'dt-body-left',
+        }, {
+             'targets': 6,
+             'className': 'dt-body-left',
         }],
         'rowCallback': function (row, data, index) {
             switch (data['Severity']) {
@@ -758,9 +763,11 @@ function createMitigateTable(aaData) {
                 <div class="filter" style="margin-right:15px;">
                   <select id="topVulFilter" class="form-select form-select-sm">
                     <option value="">Show All</option>
-                    <option value="Patch Applied">Patch Applied</option>
+                    <option value="Patch Assigned">Patch Assigned</option>
+                    <option value="Patch Applied, Reboot required">Patch Applied, Reboot required</option>
                     <option value="Patch Not Applied">Patch Not Applied</option>
                     <option value="Patch Failed">Patch Failed</option>
+                    <option value="Patch Not Available">Patch Not Available</option>
                   </select>
                 </div>
                 <div class="card-body">
@@ -781,6 +788,7 @@ function createMitigateTable(aaData) {
                         <th scope="col">Impacted Machines</th>
                         <th scope="col" style="text-align: left;">Patches Available</th>
                         <th scope="col" style="text-align: left;">Status</th>
+                        <th scope="col" style="text-align: left;">Risk Score</th>
                       </tr>
                     </thead>
                     <tbody></tbody>

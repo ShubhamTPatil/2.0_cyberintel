@@ -24,6 +24,16 @@ public class TopVulnerableStatusBean {
     String patchId;
     String status;
 
+    String riskScore;
+
+    public String getRiskScore() {
+        return riskScore;
+    }
+
+    public void setRiskScore(String riskScore) {
+        this.riskScore = riskScore;
+    }
+
     public String getCveId() {
         return cveId;
     }
