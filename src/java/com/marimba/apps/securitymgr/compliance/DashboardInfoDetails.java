@@ -1515,12 +1515,11 @@ public class DashboardInfoDetails implements ComplianceConstants {
             String sqlStr2 = "select  t1.cve_name as cve_id, t1.severity as severity,count(distinct ap.machine_id) as " +
                     "affected_machines,   ap.repository_id as patch_id,  case when (ap.current_status = 'Missing' or " +
                     "ap.current_status = 'Available-SP')  then 'Patch Not Applied'   " +
-                    "when (ap.current_status = 'Effectively-Installed' or  ap.current_status = 'Installed') " +
-                    " then 'Patch Applied'   when (ap.current_status = 'Reboot-pending' or  " +
-                    "ap.current_status = 'Reboot-Pending-SP')  then 'Patch Applied Reboot Required'   " +
-                    "else 'Patch Failed'  end as status,   (t1.cvss_score * count(distinct ap.machine_id)) " +
-                    "as risk_score   from inv_sec_oval_defn_cve_records t1, security_cve_patch_info t2, all_patch ap   " +
-                    "where t1.reference_name not like 'cpe%' and t1.severity != 'null'  and t1.severity != ''  " +
+                    "when (ap.current_status = 'Reboot-pending' or  " +
+                    "ap.current_status = 'Reboot-Pending-SP')  then 'Patch Applied, Reboot Required'   " +
+                    "else 'Patch Failed'  end as status,(t1.cvss_score * count(distinct ap.machine_id)) " +
+                    "as risk_score from inv_sec_oval_defn_cve_records t1, security_cve_patch_info t2, all_patch ap   " +
+                    "where t1.reference_name not like 'cpe%' and t1.severity != 'null' and t1.severity != ''  " +
                     "and t1.repository_id = t2.repository_id  and t2.cve_name = ap.[cve id]  " +
                     "and exists (select 1 from ldapsync_targets_marimba ltm " +
                     "where ltm.marimba_table_primary_id = ap.machine_id)  " +
