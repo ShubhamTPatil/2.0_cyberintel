@@ -1674,11 +1674,11 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
             String vscanSQL = "select  COUNT(*) as vscan_count from inv_machine im \n" +
                               " where exists (select 1 from inv_security_oval_compliance  soc where \n" +
-                              " soc.machine_id = im.id and soc.content_name like '%oval.vulnerability%')";
+                              " soc.machine_id = im.id and soc.content_name like '%oval.vulnerability%' and soc.finished_at >= DATEADD(day, -1, GETDATE()))";
 
             String patchScanSQL = "select  COUNT(*) as patchscan_count from inv_machine im \n" +
                                   " where exists (select 1 from inv_security_oval_compliance  soc where \n" +
-                                  " soc.machine_id = im.id and soc.content_name like '%oval.patch%')";
+                                  " soc.machine_id = im.id and soc.content_name like '%oval.patch%' and soc.finished_at >= DATEADD(day, -1, GETDATE()))";
 
             PreparedStatement st = null;
             if ("vscan".equalsIgnoreCase(scanType)) {

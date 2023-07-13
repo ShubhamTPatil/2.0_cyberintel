@@ -437,11 +437,9 @@ $(function () {
      });
    
    var reportingNotCheckedIn = <bean:write name="newDashboardForm" property="reportingNotCheckedIn"/>;
-   var reportingNotAvailable = <bean:write name="newDashboardForm" property="reportingNotAvailable"/>;
    var reportingCheckedIn = <bean:write name="newDashboardForm" property="reportingCheckedIn"/>;
-   var reportingSum = reportingNotCheckedIn + reportingNotAvailable + reportingCheckedIn;
+   var reportingSum = reportingNotCheckedIn + reportingCheckedIn;
    $('#reportingNotCheckedIn').css("width",(reportingNotCheckedIn/reportingSum)*100+"%");
-   $('#reportingNotAvailable').css("width",(reportingNotAvailable/reportingSum)*100+"%");
    $('#reportingCheckedIn').css("width",(reportingCheckedIn/reportingSum)*100+"%");
    
    
@@ -697,13 +695,6 @@ function createMitigateTable(aaData) {
                     <div class="progress" style="margin-bottom:10px;">
                       <div id="reportingNotCheckedIn" class="progress-bar" role="progressbar"
                         style="width:0; background-color: #FF5F60" aria-valuemax="100"></div>
-                    </div>
-                    
-                    <span> Not available </span><br/>
-                    <span style="color: #F3CC63;"><bean:write name="newDashboardForm" property="reportingNotAvailable"/></span>
-                    <div class="progress" style="margin-bottom:10px;">
-                      <div id="reportingNotAvailable" class="progress-bar" role="progressbar"
-                        style="width:0; background-color: #F3CC63" aria-valuemax="100"></div>
                     </div>
                     
                     <span> Checked-in </span><br/>

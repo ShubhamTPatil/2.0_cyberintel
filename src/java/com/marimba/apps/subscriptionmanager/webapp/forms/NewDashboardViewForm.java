@@ -63,7 +63,6 @@ public class NewDashboardViewForm
 
     private String reportingCheckedIn = "0";
     private String reportingNotCheckedIn = "0";
-    private String reportingNotAvailable = "0";
     private String securityCompliant = "0";
     private String securityNonCompliant = "0";
     private String patchCompliant = "0";
@@ -281,14 +280,6 @@ public class NewDashboardViewForm
 
     public void setReportingNotCheckedIn(String reportingNotCheckedIn) {
         this.reportingNotCheckedIn = reportingNotCheckedIn;
-    }
-
-    public String getReportingNotAvailable() {
-        return reportingNotAvailable;
-    }
-
-    public void setReportingNotAvailable(String reportingNotAvailable) {
-        this.reportingNotAvailable = reportingNotAvailable;
     }
 
     public String getSecurityCompliant() {
