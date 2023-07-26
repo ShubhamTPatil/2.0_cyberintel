@@ -30,7 +30,6 @@
 <script type="text/javascript">
 
 var topVulDataTable;
-
 $(function () {
 
     $('#dashboard').addClass('nav-selected');
@@ -140,96 +139,116 @@ $(function () {
         }
     });
 
-    var topVulData = '<bean:write name="newDashboardForm" property="topVulnerableData"/>';
-    topVulData = topVulData.replace(/&quot;/g,'"');
-    topVulData=JSON.parse(topVulData);
-    topVulDataTable = $('#topVulTable').DataTable({
-        "destroy": true, // In order to reinitialize the datatable
-        "pagination": true, // For Pagination
-        "sorting": false, // For sorting
-        "ordering": false,
-        'fnDrawCallback': function (oSettings) {
-            $('#topVulTable_filter').each(function () {
-                $(this).append($('#topVulMitigateButton'));
-            });
-        },
-        language: {
-            search: "_INPUT_",
-            searchPlaceholder: "Search..."
-        },
-        "aaData": topVulData,
-        "columns": [{},
-        {
-            "data": "CVE-ID"
-        }, {
-            "data": "Severity"
-        }, {
-            "data": "Impacted Machines"
-        }, {
-            "data": "Patches"
-        }, {
-            "data": "Status"
-        }, {
-             "data": "Risk Score"
-        }],
-        'columnDefs': [{
-            'targets': 0,
-            'searchable': true,
-            'orderable': false,
-            'className': 'dt-body-center',
-            'render': function (data, type, full, meta) {
-                return '<input type="checkbox" class="form-check-input" name="topVulCheckbox" value="' + full["Patches"] + '">';
-            }
-        },
-        {
-            'targets': 4,
-            'className': 'dt-body-left',
-            'render': function (data, type, full, meta) {
-                const splitArray = data.split(".");
-                let displayValue = "";
-                if(splitArray.length == 1)
-                    displayValue = splitArray[0]
-                else
-                    displayValue = splitArray[0]+'.'+splitArray[1];
-                return '<span data-bs-toggle="tooltip" data-bs-placement="right" title='+data+' cursor:context-menu;">'+displayValue+'</span>';
-            }
-        }, {
-            'targets': 1,
-            'className': 'dt-body-left',
-        }, {
-            'targets': 2,
-            'className': 'dt-body-left',
-        }, {
-            'targets': 5,
-            'className': 'dt-body-left',
-        }, {
-             'targets': 6,
-             'className': 'dt-body-left',
-        }],
-        'rowCallback': function (row, data, index) {
-            switch (data['Severity']) {
-                case 'Critical':
-                    $(row).find('td:eq(2)').addClass('criticalColor');
-                    break;
+   topVulDataTable = $('#topVulTable').DataTable({
+       "destroy": true, // In order to reinitialize the datatable
+       "pagination": true, // For Pagination
+       "ajax": {
+           "url": './topVulDashboard.do',
+           "data": function(req) {
+               req.page = req.start / req.length + 1,
+               req.pageSize = req.length
+               req.filter = $('#topVulFilter').find(":selected").val();
+           }
+       },
+       "server": true,
+       "serverSide": true,
+       "processing": true,
+       "sorting": false, // For sorting
+       "ordering": false,
+       'fnDrawCallback': function(oSettings) {
+           $('#topVulTable_filter').each(function() {
+               $(this).append($('#topVulMitigateButton'));
+           });
+       },
+       language: {
+           search: "_INPUT_",
+           searchPlaceholder: "Search..."
+       },
+       "columns": [{},
+           {
+               "title": "CVE-ID",
+               "data": "cveId"
+           },
+           {
+               "title": "Severity",
+               "data": "severity"
+           },
+           {
+               "title": "Impacted Machines",
+               "data": "affectedMachines"
+           },
+           {
+               "title": "Patches",
+               "data": "patchId"
+           },
+           {
+               "title": "Status",
+               "data": "status"
+           },
+           {
+               "title": "Risk Score",
+               "data": "riskScore"
+           }
+       ],
+       'columnDefs': [{
+               'targets': 0,
+               'searchable': false,
+               'orderable': false,
+               'className': 'dt-body-center',
+               'render': function(data, type, full, meta) {
+                   return '<input type="checkbox" class="form-check-input" name="topVulCheckbox" value="' + full["patchId"] + '">';
+               }
+           },
+           {
+               'targets': 4,
+               'className': 'dt-body-left',
+               'render': function(data, type, full, meta) {
+                   const splitArray = data.split(".");
+                   let displayValue = "";
+                   if (splitArray.length == 1)
+                       displayValue = splitArray[0]
+                   else
+                       displayValue = splitArray[0] + '.' + splitArray[1];
+                   return '<span data-bs-toggle="tooltip" data-bs-placement="right" title=' + data + ' cursor:context-menu;">' + displayValue + '</span>';
+               }
+           }, {
+               'targets': 1,
+               'className': 'dt-body-left',
+           }, {
+               'targets': 2,
+               'className': 'dt-body-left',
+           }, {
+               'targets': 5,
+               'className': 'dt-body-left',
+           }, {
+               'targets': 6,
+               'className': 'dt-body-left',
+           }
+       ],
+       'rowCallback': function(row, data, index) {
+           switch (data['severity']) {
+               case 'Critical':
+                   $(row).find('td:eq(2)').addClass('criticalColor');
+                   break;
 
-                case 'High':
-                    $(row).find('td:eq(2)').addClass('highColor');
-                    break;
+               case 'High':
+                   $(row).find('td:eq(2)').addClass('highColor');
+                   break;
 
-                case 'Medium':
-                    $(row).find('td:eq(2)').addClass('mediumColor');
-                    break;
+               case 'Medium':
+                   $(row).find('td:eq(2)').addClass('mediumColor');
+                   break;
 
-                case 'Low':
-                    $(row).find('td:eq(2)').addClass('lowColor');
-                    break;
+               case 'Low':
+                   $(row).find('td:eq(2)').addClass('lowColor');
+                   break;
 
-                default:
-                    break;
-            }
-        }
-    });
-    
+               default:
+                   break;
+           }
+       }
+   });
+
   	//Get the column index for the Status column to be used in the method below ($.fn.dataTable.ext.search.push)
     //This tells datatables what column to filter on when a user selects a value from the dropdown.
     //It's important that the text used here (Status) is the same for used in the header of the column to filter
