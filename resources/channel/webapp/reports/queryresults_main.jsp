@@ -35,6 +35,7 @@
         textarea {
    			resize: none;
 		}
+        .bootstrap-dialog-message {overflow-wrap: anywhere;}
     </style>
     <%
         ServletContext context =  pageContext.getServletContext();
