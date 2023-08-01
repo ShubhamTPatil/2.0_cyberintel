@@ -142,19 +142,19 @@ $(function () {
    topVulDataTable = $('#topVulTable').DataTable({
        "destroy": true, // In order to reinitialize the datatable
        "pagination": true, // For Pagination
+       "server": true,
+       "serverSide": true,
+       "processing": true,
+       "searching":false,
        "ajax": {
            "url": './topVulDashboard.do',
            "data": function(req) {
                req.page = req.start / req.length + 1,
                req.pageSize = req.length
                req.filter = $('#topVulFilter').find(":selected").val();
+               req.search = $('#topVulSearch').val();
            }
        },
-       "server": true,
-       "serverSide": true,
-       "processing": true,
-       "sorting": false, // For sorting
-       "ordering": false,
        'fnDrawCallback': function(oSettings) {
            $('#topVulTable_filter').each(function() {
                $(this).append($('#topVulMitigateButton'));
@@ -249,6 +249,10 @@ $(function () {
        }
    });
 
+  $("#btnTopVulSearch").click(function(event) {
+      topVulDataTable.draw();
+  });
+
   	//Get the column index for the Status column to be used in the method below ($.fn.dataTable.ext.search.push)
     //This tells datatables what column to filter on when a user selects a value from the dropdown.
     //It's important that the text used here (Status) is the same for used in the header of the column to filter
@@ -276,7 +280,7 @@ $(function () {
     $("#topVulFilter").change(function (e) {
     	topVulDataTable.draw();
     });
-    
+
     $("#topVulModal").on("hidden.bs.modal", function () {
         $('#topVulModalTable').DataTable().clear();
     });
@@ -781,13 +785,19 @@ function createMitigateTable(aaData) {
                   </select>
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">Top Vulnerabilities
-                    <!-- Button trigger modal -->
-                    <button type="button" id="topVulMitigateButton" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                      data-bs-target="#topVulModal" style="margin-left: 10px;">
-                      Mitigate Selected
-                    </button>
-                  </h5>
+                  <h5 class="card-title">Top Vulnerabilities </h5>
+
+                   <div class="input-group" style="margin-bottom: 10px;">
+                                       <input type="search" class="form-control" placeholder="Search CVE-ID or Patch ID" id="topVulSearch">
+                                       <button type="button" id="btnTopVulSearch" class="btn btn-primary btn-sm">
+                                           <i class="fas fa-search"></i>
+                                       </button>
+
+                                   <button type="button" id="topVulMitigateButton" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                       data-bs-target="#topVulModal" style="margin-left: 10px;">
+                                       Mitigate Selected
+                                   </button>
+                   				</div>
 
                   <table id="topVulTable" class="table table-borderless" style="width: 100%;">
                     <thead>
