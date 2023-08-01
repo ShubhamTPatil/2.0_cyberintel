@@ -1511,7 +1511,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
         protected void execute(IStatementPool pool) throws SQLException {
 
-            String sqlStr = " select  t1.cve_name as cve_id, t1.severity as severity,count(distinct ap.machine_id) as \n" +
+            String sqlStr2 = " select  t1.cve_name as cve_id, t1.severity as severity,count(distinct ap.machine_id) as \n" +
                     "                    affected_machines, ap.repository_id as patch_id, \n" +
                     "                                    case when (ap.current_status = 'Missing' or  \n" +
                     "                    ap.current_status = 'Available-SP')  then 'Patch Not Applied'    \n" +
@@ -1532,7 +1532,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
                     "                    ap.current_status,ap.patch_state, ap.repository_id order by risk_score desc";
 
             // Taken results from derived table
-            String  sqlStr2 = "select * from ds_derived_top_vuln";
+            String  sqlStr = "select * from ds_derived_top_vuln";
 
             PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
             ResultSet rs = st.executeQuery();
