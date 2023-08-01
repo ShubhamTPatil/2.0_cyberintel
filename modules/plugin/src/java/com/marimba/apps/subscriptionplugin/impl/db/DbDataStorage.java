@@ -448,15 +448,22 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
                     }
                     closePool(pool);
                 }
+
+                boolean isNewInsert = true;
+                int complianceId = 0;
                 if (existingComplianceEntryId != -1) {
+                    isNewInsert = false;
                     //its an update to existing scan record....
                     securityComplianceBeanInserted = true;
                     latestContentIds.add(existingComplianceEntryId);
+                    complianceId = existingComplianceEntryId;
                 } else {
                     //new scan record inserted...
                     int maxID = getMaxId("security_" + scanType + "_compliance");
                     debug(INFO, "insertScanDetails(), maxID - " + maxID);
                     securityComplianceBeanInserted = (lastInsertedScanRecordId < maxID);
+                    complianceId = maxID;
+                    
                     if (!securityComplianceBeanInserted) {
                         if (!dbConnected) {
                             error += logMessage + " --> Database Connection Failed;";
@@ -472,6 +479,8 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
                 debug(INFO, "insertScanDetails(), securityComplianceBeanInserted - " + securityComplianceBeanInserted);
                 inserted = inserted ? securityComplianceBeanInserted : false;
 
+                processRuleComplianceDataForInsert(securityComplianceBean, complianceId, isNewInsert);
+                
                 if (securityComplianceBeanInserted) {
                     securityServiceSettings.getPluginContext().log(LOG_PLUGIN_REPORT_INSERTED_DB, LOG_AUDIT, logMessage);
                 } else {
@@ -536,6 +545,64 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
             debug(INFO, "insertScanDetails(), inserted - " + inserted);
         }
         return inserted;
+    }
+
+    private void deleteRuleComplianceData(int complianceId) throws SQLException {
+        IStatementPool deleteStmtPool = null;
+        try {
+            String deleteStmt = "delete from oval_rules_compliance_result where compliance_id = " +complianceId;
+            if ((deleteStmt != null) && (deleteStmt.trim().length() > 0)) {
+                deleteStmtPool = getPool();
+                if (deleteStmtPool != null) {
+                    boolean deleteStmtResult = ExecuteInsertUpdate(deleteStmt, deleteStmtPool);
+                    debug(INFO, "Deleted rules compliance data - result status: " + deleteStmtResult);
+                }
+            }
+        } catch (SQLException e) {
+            if (ERROR) {
+                e.printStackTrace();
+            }
+        } finally {
+            closePool(deleteStmtPool);
+        }
+    }
+    
+    private void processRuleComplianceDataForInsert(SecurityComplianceBean securityComplianceBean,
+                                         int complianceId, boolean isNewInsert) throws Exception {
+        IStatementPool stmtPool = null;
+        try {
+            stmtPool = getPool();
+            if (!isNewInsert) {
+                deleteRuleComplianceData(complianceId);
+            }
+
+            HashMap<String, String> rulesBean = securityComplianceBean.getRulesCompliance();
+            int contentId = getContentId(securityComplianceBean.getScanType(), securityComplianceBean.getContentId());
+
+            for (Map.Entry<String, String> entry : rulesBean.entrySet()) {
+                String defName = entry.getKey();
+                String defResult = rulesBean.get(defName);
+                debug(DETAILED_INFO, "Before insert operation defName: " + defName + ", defResult: " + defResult + " for content id: " +contentId);
+                String insertStr = "INSERT INTO oval_rules_compliance_result(compliance_id, content_id, definition_name, " +
+                        "definition_result) VALUES(?, ?, ?, ?)";
+                PreparedStatement stmt = stmtPool.getConnection().prepareStatement(insertStr);
+                try {
+                    stmt.setInt(1, complianceId);
+                    stmt.setInt(2, contentId);
+                    stmt.setString(3, defName);
+                    stmt.setString(4, defResult);
+                    int rowInserted = stmt.executeUpdate();
+                    if (rowInserted > 0)
+                        debug(DETAILED_INFO, "Definition Rule: " + defName + " inserted into DB");
+                } finally {
+                    stmt.close();
+                    stmt = null;
+                }            }
+        } catch(Exception ex) {
+            throw ex;
+        } finally {
+            closePool(stmtPool);
+        }
     }
 
     public int getMaxId(String tableName) {
@@ -605,6 +672,38 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
         return retVal;
     }
 
+    // To get content id from security compliance data
+    public int getContentId(String scanType, String contentName) throws SQLException {
+        String sqlStr = "select distinct content_id from inv_security_" + scanType + "_compliance \n" +
+                "where content_name = '" + contentName + "'";
+        int contentId = -1;
+        IStatementPool pool = null;
+        try {
+            pool = getPool();
+            if (pool != null) {
+                PreparedStatement stmt = pool.getConnection().prepareStatement(sqlStr);
+                ResultSet rs = stmt.executeQuery();
+                try {
+                    if (rs.next()) {
+                     contentId = rs.getInt(1);
+                    }
+                } finally {
+                   rs.close();
+                   stmt.close();
+                }
+            }
+        } catch (SQLException e) {
+            if (ERROR) {
+                e.printStackTrace();
+            }
+            contentId = -1;
+        } finally {
+            closePool(pool);
+        }
+        debug(INFO, "getContentId(), retVal - " + contentId);
+        return contentId;
+    }
+
     public int getComplianceId(String scanType, String contentName, String profileName, String machineName, String assignedTargetName) {
         debug(INFO, "getComplianceId(), scanType - " + scanType);
         debug(INFO, "getComplianceId(), contentName - " + contentName);
@@ -644,6 +743,7 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
         return retVal;
     }
 
+    
     public String[] getGroupName(String scanType, String contentName, String ruleName) {
         debug(INFO, "getGroupName(), scanType - " + scanType);
         debug(INFO, "getGroupName(), contentName - " + contentName);
