@@ -1245,14 +1245,19 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
         protected void execute(IStatementPool pool) throws SQLException {
 
-            String sqlStr = " select t1.severity as severity_name , count(t1.severity) as severity_count from inv_sec_oval_defn_cve_records t1, security_cve_patch_info t2 \n" +
-                    " where t1.reference_name not like 'cpe%' \n" +
-                    " and t1.severity != 'null' and t1.repository_id = t2.repository_id \n" +
-                    " and t1.severity != ' '\n" +
-                    "group by t1.severity ";
+            String sqlStr2 = "select t1.severity  as severity_name , count(t1.severity) as severity_count \n" +
+                    "from inv_sec_oval_defn_cve_details t1, security_cve_patch_info t2 \n" +
+                    "where t1.reference_name not like 'cpe%' \n" +
+                    "and t1.severity != 'null' and t1.repository_id = t2.repository_id \n" +
+                    "and t1.reference_name = t2.cve_name\n" +
+                    "and t1.severity != ' '\n" +
+                    "and exists (select 1 from oval_rules_comp_result_view rc \n" +
+                    "                 where rc.content_id = t1.content_id  \n" +
+                    "               and rc.definition_result = 'fail' and rc.definition_name = t1.definition_name)\n" +
+                    "group by t1.severity";
 
             // Taken results from derived table
-            String sqlStr2 = "select * from ds_derived_donught_chart";
+            String sqlStr = "select * from ds_derived_donught_chart";
 
             PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
             ResultSet rs = st.executeQuery();
@@ -1281,29 +1286,21 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
-            String sqlStr2 = "select  severity, count(severity) as 'vulnerable_count' , min(published_date) Identified_date,min(datediff(day,published_date,getdate())) ageing_days\n" +
-                    "from inv_security_oval_compliance a, inv_sec_oval_defn_cve_details b where \n" +
-                    "a.content_id = b.content_id and\n" +
-                    "b.definition_severity in (select distinct(severity) from inv_sec_oval_defn_cve_details where severity !=' ') \n" +
-                    "and b.severity != ' '  and b.severity != 'null' \n" +
-                    "and overall_compliant_level like 'NON%'\n" +
-                    "group by severity \n" +
-                    "order by severity";
+            String sqlStr2 = "SELECT severity ,COUNT(*) AS vulnerable_count,t1.published_date AS identified_date\n" +
+                    "    ,DATEDIFF(DAY, t1.published_date, GETDATE()) AS ageing_days\n" +
+                    "    FROM inv_sec_oval_defn_cve_details t1 ,security_cve_patch_info t2\n" +
+                    "    WHERE t1.reference_name NOT LIKE 'cpe%'\n" +
+                    "    AND t1.severity != 'null'\n" +
+                    "    AND t1.repository_id = t2.repository_id\n" +
+                    "    AND t1.severity != ' '\n" +
+                    "    AND t1.published_date IS NOT NULL\n" +
+                    "       and exists (select 1 from oval_rules_comp_result_view rc \n" +
+                    "           where rc.content_id = t1.content_id  \n" +
+                    "            and rc.definition_result = 'fail' and rc.definition_name = t1.definition_name)\n" +
+                    "   GROUP BY t1.severity, t1.published_date";
 
             // Taken results from derived table
-            //String sqlStr = "select * from ds_derived_ageing_chart";
-            String sqlStr = "SELECT severity\r\n"
-            		+ "	,COUNT(*) AS vulnerable_count\r\n"
-            		+ "	,t1.published_date AS identified_date\r\n"
-            		+ "	,DATEDIFF(DAY, t1.published_date, GETDATE()) AS ageing_days\r\n"
-            		+ "FROM inv_sec_oval_defn_cve_records t1\r\n"
-            		+ "	,security_cve_patch_info t2\r\n"
-            		+ "WHERE t1.reference_name NOT LIKE 'cpe%'\r\n"
-            		+ "	AND t1.severity != 'null'\r\n"
-            		+ "	AND t1.repository_id = t2.repository_id\r\n"
-            		+ "	AND t1.severity != ' '\r\n"
-            		+ "	AND t1.published_date IS NOT NULL\r\n"
-            		+ "GROUP BY t1.severity, t1.published_date;";
+            String sqlStr = "select * from ds_derived_ageing_chart";
 
             PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
             ResultSet rs = st.executeQuery();
@@ -1463,15 +1460,17 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
         protected void execute(IStatementPool pool) throws SQLException {
-            String sqlStr2 = " select distinct ap.repository_id as \"PatchName\", t2.severity as \"Severity\" ,count(distinct im.id) as \"AffectedMachines\"\n" +
-                    "                    from inv_sec_oval_defn_cve_details t1, all_patch ap, security_cve_info t2, inv_machine im\n" +
-                    "                    where ap.repository_id=t1.repository_id\n" +
-                    "                    and (t1.reference_name = t2.cve_name and t1.severity != 'null' and t1.severity = 'Critical')\n" +
-                    "                    and im.id = ap.machine_id\n" +
-                    "                    and exists (select 1 from all_patch ap where\n" +
-                    "                    (ap.repository_id = t1.repository_id) \n" +
-                    "                       and (ap.current_status = 'Missing' or ap.current_status = 'Available-SP'))\n" +
-                    "                    group by ap.repository_id, t2. severity, im.id";
+            String sqlStr2 = "select distinct t1.repository_id as PatchName,  t1.severity as Severity,\n" +
+                    "    count(distinct im.machine_id) as AffectedMachines \n" +
+                    "       from inv_sec_oval_defn_cve_details t1, security_cve_patch_info t2, inv_security_oval_compliance im \n" +
+                    "       where t1.reference_name not like 'cpe%'\n" +
+                    "       and t1.reference_name = t2.cve_name\n" +
+                    "       and (t1.severity != 'null' and t1.severity != ' ' and t1.severity = 'Critical')\n" +
+                    "       and t1.content_id = im.content_id\n" +
+                    "       and exists (select 1 from oval_rules_comp_result_view rc \n" +
+                    "                 where rc.content_id = t1.content_id  \n" +
+                    "                              and rc.definition_result = 'fail' and rc.definition_name = t1.definition_name)\n" +
+                    "     group by t1.repository_id, t1.severity, im.machine_id";
 
             // Taken results from derived table
             String sqlStr = "select * from ds_derived_crit_patches";
@@ -1512,24 +1511,30 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
         protected void execute(IStatementPool pool) throws SQLException {
 
-            String sqlStr2 = "select  t1.cve_name as cve_id, t1.severity as severity,count(distinct ap.machine_id) as " +
-                    "affected_machines,   ap.repository_id as patch_id,  case when (ap.current_status = 'Missing' or " +
-                    "ap.current_status = 'Available-SP')  then 'Patch Not Applied'   " +
-                    "when (ap.current_status = 'Reboot-pending' or  " +
-                    "ap.current_status = 'Reboot-Pending-SP')  then 'Patch Applied, Reboot Required'   " +
-                    "else 'Patch Failed'  end as status,(t1.cvss_score * count(distinct ap.machine_id)) " +
-                    "as risk_score from inv_sec_oval_defn_cve_records t1, security_cve_patch_info t2, all_patch ap   " +
-                    "where t1.reference_name not like 'cpe%' and t1.severity != 'null' and t1.severity != ''  " +
-                    "and t1.repository_id = t2.repository_id  and t2.cve_name = ap.[cve id]  " +
-                    "and exists (select 1 from ldapsync_targets_marimba ltm " +
-                    "where ltm.marimba_table_primary_id = ap.machine_id)  " +
-                    "group by t1.cve_name, t1.severity, t1.cvss_score, " +
-                    "ap.current_status,ap.repository_id order by   risk_score desc";
+            String sqlStr = " select  t1.cve_name as cve_id, t1.severity as severity,count(distinct ap.machine_id) as \n" +
+                    "                    affected_machines, ap.repository_id as patch_id, \n" +
+                    "                                    case when (ap.current_status = 'Missing' or  \n" +
+                    "                    ap.current_status = 'Available-SP')  then 'Patch Not Applied'    \n" +
+                    "                    when (ap.current_status = 'Reboot-pending' or   \n" +
+                    "                    ap.current_status = 'Reboot-Pending-SP')  then 'Patch Applied, Reboot Required'    \n" +
+                    "                    when (ap.current_status = 'Missing' and ap.patch_state = 'failed')  then 'Patch Failed'    \n" +
+                    "                    else 'Patch Not Available' end as status,\n" +
+                    "                      (t1.cvss_score * count(distinct ap.machine_id))  \n" +
+                    "                    as risk_score from inv_sec_oval_defn_cve_records t1, security_cve_patch_info t2, all_patch ap    \n" +
+                    "                    where t1.reference_name not like 'cpe%' and t1.severity != 'null' and t1.severity != ''   \n" +
+                    "                    and t1.repository_id = t2.repository_id  and t2.cve_name = ap.[cve id]  \n" +
+                    "                                    and exists (select 1 from oval_rules_comp_result_view rc \n" +
+                    "                                           where rc.content_id = t1.content_id  \n" +
+                    "                                           and rc.definition_result = 'fail' and rc.definition_name = t1.definition_name)\n" +
+                    "                    and exists (select 1 from ldapsync_targets_marimba ltm  \n" +
+                    "                    where ltm.marimba_table_primary_id = ap.machine_id)   \n" +
+                    "                    group by t1.cve_name, t1.severity, t1.cvss_score,  \n" +
+                    "                    ap.current_status,ap.patch_state, ap.repository_id order by risk_score desc";
 
             // Taken results from derived table
-            String  sqlStr = "select * from ds_derived_top_vuln";
+            String  sqlStr2 = "select * from ds_derived_top_vuln";
 
-            PreparedStatement st = pool.getConnection().prepareStatement(sqlStr2);
+            PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
             ResultSet rs = st.executeQuery();
             try {
                 while(rs.next()) {
