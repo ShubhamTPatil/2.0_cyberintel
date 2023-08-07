@@ -450,20 +450,31 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
                 }
 
                 boolean isNewInsert = true;
-                int complianceId = 0;
+                int ovalComplianceId = 0;
+                int stigComplianceId = 0;
+
                 if (existingComplianceEntryId != -1) {
                     isNewInsert = false;
                     //its an update to existing scan record....
                     securityComplianceBeanInserted = true;
                     latestContentIds.add(existingComplianceEntryId);
-                    complianceId = existingComplianceEntryId;
+                    if ("oval".equals(scanType)) {
+                        ovalComplianceId = existingComplianceEntryId;
+                    } else if ("xccdf".equals(scanType)) {
+                        stigComplianceId = existingComplianceEntryId;
+                    }
                 } else {
                     //new scan record inserted...
                     int maxID = getMaxId("security_" + scanType + "_compliance");
                     debug(INFO, "insertScanDetails(), maxID - " + maxID);
                     securityComplianceBeanInserted = (lastInsertedScanRecordId < maxID);
-                    complianceId = maxID;
-                    
+
+                    if ("oval".equalsIgnoreCase(scanType)) {
+                        ovalComplianceId = maxID;
+                    } else if ("xccdf".equalsIgnoreCase(scanType)) {
+                        stigComplianceId = maxID;
+                    }
+
                     if (!securityComplianceBeanInserted) {
                         if (!dbConnected) {
                             error += logMessage + " --> Database Connection Failed;";
@@ -479,8 +490,12 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
                 debug(INFO, "insertScanDetails(), securityComplianceBeanInserted - " + securityComplianceBeanInserted);
                 inserted = inserted ? securityComplianceBeanInserted : false;
 
-                processRuleComplianceDataForInsert(securityComplianceBean, complianceId, isNewInsert);
-                
+                if ("oval".equals(scanType)) {
+                    processOvalRulesComplianceDataForInsert(securityComplianceBean, machineId, ovalComplianceId, isNewInsert);
+                } else if ("xccdf".equals(scanType)) {
+                    processStigRulesComplianceDataForInsert(securityComplianceBean, machineId, stigComplianceId, isNewInsert);
+                }
+
                 if (securityComplianceBeanInserted) {
                     securityServiceSettings.getPluginContext().log(LOG_PLUGIN_REPORT_INSERTED_DB, LOG_AUDIT, logMessage);
                 } else {
@@ -547,7 +562,7 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
         return inserted;
     }
 
-    private void deleteRuleComplianceData(int complianceId) throws SQLException {
+    private void deleteOvalRuleComplianceData(int complianceId) throws SQLException {
         IStatementPool deleteStmtPool = null;
         try {
             String deleteStmt = "delete from oval_rules_compliance_result where compliance_id = " +complianceId;
@@ -566,14 +581,34 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
             closePool(deleteStmtPool);
         }
     }
-    
-    private void processRuleComplianceDataForInsert(SecurityComplianceBean securityComplianceBean,
-                                         int complianceId, boolean isNewInsert) throws Exception {
+
+    private void deleteStigRuleComplianceData(int complianceId) throws SQLException {
+        IStatementPool deleteStmtPool = null;
+        try {
+            String deleteStmt = "delete from xccdf_rules_compliance_result where compliance_id = " +complianceId;
+            if ((deleteStmt != null) && (deleteStmt.trim().length() > 0)) {
+                deleteStmtPool = getPool();
+                if (deleteStmtPool != null) {
+                    boolean deleteStmtResult = ExecuteInsertUpdate(deleteStmt, deleteStmtPool);
+                    debug(INFO, "Deleted rules compliance data - result status: " + deleteStmtResult);
+                }
+            }
+        } catch (SQLException e) {
+            if (ERROR) {
+                e.printStackTrace();
+            }
+        } finally {
+            closePool(deleteStmtPool);
+        }
+    }
+
+    private void processOvalRulesComplianceDataForInsert(SecurityComplianceBean securityComplianceBean,
+                                                    int machineId, int complianceId, boolean isNewInsert) throws Exception {
         IStatementPool stmtPool = null;
         try {
             stmtPool = getPool();
             if (!isNewInsert) {
-                deleteRuleComplianceData(complianceId);
+                deleteOvalRuleComplianceData(complianceId);
             }
 
             HashMap<String, String> rulesBean = securityComplianceBean.getRulesCompliance();
@@ -582,18 +617,60 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
             for (Map.Entry<String, String> entry : rulesBean.entrySet()) {
                 String defName = entry.getKey();
                 String defResult = rulesBean.get(defName);
-                debug(DETAILED_INFO, "Before insert operation defName: " + defName + ", defResult: " + defResult + " for content id: " +contentId);
-                String insertStr = "INSERT INTO oval_rules_compliance_result(compliance_id, content_id, definition_name, " +
-                        "definition_result) VALUES(?, ?, ?, ?)";
+                debug(DETAILED_INFO, "Before OVAL rules insert defName: " + defName + ", defResult: " + defResult + " for content id: " +
+                        contentId + " , machine id: "+machineId + ", compliance id: " +complianceId);
+                String insertStr = "INSERT INTO oval_rules_compliance_result(machine_id, compliance_id, content_id, definition_name, " +
+                        "definition_result) VALUES(?, ?, ?, ?, ?)";
                 PreparedStatement stmt = stmtPool.getConnection().prepareStatement(insertStr);
                 try {
-                    stmt.setInt(1, complianceId);
-                    stmt.setInt(2, contentId);
-                    stmt.setString(3, defName);
-                    stmt.setString(4, defResult);
+                    stmt.setInt(1, machineId);
+                    stmt.setInt(2, complianceId);
+                    stmt.setInt(3, contentId);
+                    stmt.setString(4, defName);
+                    stmt.setString(5, defResult);
                     int rowInserted = stmt.executeUpdate();
                     if (rowInserted > 0)
-                        debug(DETAILED_INFO, "Definition Rule: " + defName + " inserted into DB");
+                        debug(DETAILED_INFO, "Definition Rule: " + defName + " inserted into DB for OVAL xml: " + contentId);
+                } finally {
+                    stmt.close();
+                    stmt = null;
+                }            }
+        } catch(Exception ex) {
+            throw ex;
+        } finally {
+            closePool(stmtPool);
+        }
+    }
+
+    private void processStigRulesComplianceDataForInsert(SecurityComplianceBean securityComplianceBean,
+                                         int machineId, int complianceId, boolean isNewInsert) throws Exception {
+        IStatementPool stmtPool = null;
+        try {
+            stmtPool = getPool();
+            if (!isNewInsert) {
+                deleteStigRuleComplianceData(complianceId);
+            }
+
+            HashMap<String, String> rulesBean = securityComplianceBean.getRulesCompliance();
+            int contentId = getContentId(securityComplianceBean.getScanType(), securityComplianceBean.getContentId());
+
+            for (Map.Entry<String, String> entry : rulesBean.entrySet()) {
+                String defName = entry.getKey();
+                String defResult = rulesBean.get(defName);
+                debug(DETAILED_INFO, "Before STIG rules insert defName: " + defName + ", defResult: " + defResult + " for content id: " +
+                        contentId + " , machine id: " + machineId + ", compliance id: " +complianceId);
+                String insertStr = "INSERT INTO xccdf_rules_compliance_result(machine_id, compliance_id, content_id, definition_name, " +
+                        "definition_result) VALUES(?, ?, ?, ?, ?)";
+                PreparedStatement stmt = stmtPool.getConnection().prepareStatement(insertStr);
+                try {
+                    stmt.setInt(1, machineId);
+                    stmt.setInt(2, complianceId);
+                    stmt.setInt(3, contentId);
+                    stmt.setString(4, defName);
+                    stmt.setString(5, defResult);
+                    int rowInserted = stmt.executeUpdate();
+                    if (rowInserted > 0)
+                        debug(DETAILED_INFO, "Definition Rule: " + defName + " inserted into DB for STIG xml: " + contentId);
                 } finally {
                     stmt.close();
                     stmt = null;
