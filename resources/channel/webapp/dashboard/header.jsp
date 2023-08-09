@@ -4,7 +4,7 @@
 
 <header id="header" class="header fixed-top d-flex align-items-center">
   <div class="d-flex align-items-center justify-content-between">
-    <a href="/shell/dashboard.do" class="logo d-flex align-items-center"> <img src="/spm/images/harman_defensight_logo_h.png" style="min-height: 60px;" alt="Harman DefenSight">
+    <a href="/spm/init.jsp" class="logo d-flex align-items-center"> <img src="/spm/images/harman_defensight_logo_h.png" style="min-height: 60px;" alt="Harman DefenSight">
     </a> <i onclick="sidebarToggle()" class="fa-solid fa-bars toggle-sidebar-btn"></i>
   </div>
 
