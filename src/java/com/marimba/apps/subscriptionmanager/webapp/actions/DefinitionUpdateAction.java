@@ -120,23 +120,20 @@ public class DefinitionUpdateAction extends AbstractAction
 
 				action = definitionUpdateForm.getAction();
 				System.out.println("DebugInfo: DefinitionUpdate - Action: " + action);
-                
-				
+                String isRemoteDB = definitionUpdateForm.getRemoteDatabase();
+
                 if (isEmpty(action)) {
 					initDefinitionsUpdateConfig();
 					loadFormData(getDefinitionsUpdateConfig(), definitionUpdateForm);
 				}
 
-                String isRemoteDB = definitionUpdateForm.getRemoteDatabase();
-                System.out.println("DebugInfo: isRemoteDatabase Enabled  " + definitionUpdateForm.getRemoteDatabase());
                 if (isEmpty(isRemoteDB) || "false".equals(isRemoteDB)) {
                     isRemoteDatabaseEnabled = false;
                 } else {
                     isRemoteDatabaseEnabled = true;
                 }
-                
-				if ("getCveUpdateStatus".equals(action)) {
 
+				if ("getCveUpdateStatus".equals(action)) {
 					initDefinitionsUpdateConfig();
 					config = getDefinitionsUpdateConfig();
                     if (isRemoteDatabaseEnabled) {
@@ -278,10 +275,7 @@ public class DefinitionUpdateAction extends AbstractAction
 							String publishTxUrl = definitionUpdateForm.getPublishTxUrl();
 							String cveStorageDir = definitionUpdateForm.getCveStorageDir();
 							
-							System.out.println("cveStorageDir = "+ cveStorageDir);
-							
 							Path path = Paths.get(cveStorageDir);
-							
 					        if (!Files.exists(path)) {
 					            try {
 					                Files.createDirectory(path);
@@ -379,7 +373,7 @@ public class DefinitionUpdateAction extends AbstractAction
 									File unzipDst = new File(cveDir, cvejsonFile);
 
 									actionString = "cvejson_unzip";
-									Tools.gunzip(jsonZipFile, unzipDst);
+								    Tools.gunzip(jsonZipFile, unzipDst);
 
 								} catch (Exception ex) {
 									ex.printStackTrace();
@@ -473,7 +467,6 @@ public class DefinitionUpdateAction extends AbstractAction
 
 									boolean csvStatus = generateCveJsonToCsvFiles(tunerInstallDir,
 											cveDownloaderChannel);
-
 									File scriptDir = null;
 									if (csvStatus) {
 										System.out.println("DebugInfo: CVE JSON into CSV files generation succeeded - "
@@ -499,7 +492,6 @@ public class DefinitionUpdateAction extends AbstractAction
 										File cvedownloaderCsvData = new File(cveDownloderChPath);
 
 										Tools.copyDir(cvedownloaderCsvData, csvFilesDir);
-
 										scriptDir = new File(cveStorageDir, "sqlscripts");
 										if (!scriptDir.exists())
 											scriptDir.mkdirs();
@@ -516,13 +508,20 @@ public class DefinitionUpdateAction extends AbstractAction
 										int csvfilesCnt = csvFilesDir.list().length;
 										System.out.println("DebugInfo: Number of CSV files: " + csvfilesCnt);
 										String csvFilesDirPath = csvFilesDir.getCanonicalPath();
-                                        
                                         if (isRemoteDatabaseEnabled) {
-                                            String remoteDBpath = getDefinitionsUpdateConfig().getProperty("defensight.cve.json.remotestorage.path");
+                                            String remoteDBpath = getDefinitionsUpdateConfig().getProperty("defensight.remotedb.storagedir");
                                             csvFilesDirPath = remoteDBpath + "\\" + "csv_data";
                                         }
 										updateScriptFile(scriptDir, csvFilesDirPath, csvfilesCnt);
 
+                                        if (isRemoteDatabaseEnabled) {
+                                            config = getDefinitionsUpdateConfig();
+                                            String  remoteStorageDir =  config.getProperty("defensight.remotedb.storagedir");
+                                            File remoteStorageFileDir = new File(remoteStorageDir, "csv_data");
+                                            Tools.copyDir(csvFilesDir, remoteStorageFileDir);
+                                            remoteStorageFileDir = new File(remoteStorageDir, "sqlscripts");
+                                            Tools.copyDir(scriptDir, remoteStorageFileDir);
+                                        }
 									} else {
 										System.out.println(
 												"DebugInfo: CVE JSON into CSV files generation failed - " + csvStatus);

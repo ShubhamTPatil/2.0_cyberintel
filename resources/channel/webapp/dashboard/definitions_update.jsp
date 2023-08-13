@@ -43,7 +43,8 @@
 		var alertModal = new bootstrap.Modal(document.getElementById('alertModal'), {
 			  keyboard: false
 		});
-		
+
+        let remoteDatabase = ''
 		$('#cveUpdateNow').click(function() {
 			/* 
 			let cveStorageDir = $('input[name="cveStorageDir"]').val();
@@ -126,13 +127,14 @@
 		console.log(new Date());
 		
 			  return new Promise(resolve => {
-		    setTimeout(() => {		    	
+		    setTimeout(() => {
 			    	$.ajax({
 							url : './definitionupdate.do',
 							type : 'POST',
 							dataType : 'text json',
 							data : {
-								action : "getCveUpdateStatus"
+								action : "getCveUpdateStatus",
+								remoteDatabase : remoteDatabase
 							},
 							beforeSend : function() {
 							},
@@ -201,7 +203,7 @@
 			$('#smartwizard').smartWizard("reset");
 
 			let cveStorageDir = $('input[name="cveStorageDir"]').val();
-			
+			remoteDatabase = $('input[name="remoteDatabase"]').val();
 			if (typeof cveStorageDir != "undefined" && cveStorageDir != null
 					&& cveStorageDir.trim() != "") {
 				
@@ -216,7 +218,8 @@
 							type : 'POST',
 							dataType : 'text json',
 							data : {
-								action : "getCveUpdateStatus"
+								action : "getCveUpdateStatus",
+								remoteDatabase: remoteDatabase
 							},
 							beforeSend : function() {
 							},
@@ -243,7 +246,7 @@
 				  				else {
 				  					wizardStep = 0;
 				  				}
-				  				
+
 				  				$.ajax({
 				  					url : './definitionupdate.do',
 				  					type : 'POST',
@@ -251,6 +254,7 @@
 				  					data : {
 				  						action : 'update_cvejson',
 				  						cveStorageDir : cveStorageDir,
+				  						remoteDatabase : remoteDatabase,
 				  						updateCvejsonStartStep:	wizardStep
 				  					},
 				  					beforeSend : function() {
@@ -420,7 +424,7 @@
                   <div class="col-auto">&nbsp;</div>
                   <div class="col-auto">
                     <html:checkbox name="definitionUpdateForm" property="remoteDatabase" styleId="remoteDb" value="true" onclick="checkRemoteDB(this.form);"/>
-                    &nbsp;DefenSight using Remote Database connectivity.
+                    &nbsp;<webapps:pageText key="cvejson.remotestoragedir"/>
                   </div>
                 <//div>
 
