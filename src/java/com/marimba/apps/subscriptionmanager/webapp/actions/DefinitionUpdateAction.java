@@ -18,6 +18,7 @@ import java.util.*;
 import java.text.ParseException;
 
 import com.marimba.apps.securitymgr.compliance.DashboardHandler;
+import com.marimba.apps.securitymgr.compliance.util.*;
 import com.marimba.intf.application.*;
 import com.marimba.intf.castanet.*;
 import com.marimba.intf.util.IConfig;
@@ -30,11 +31,8 @@ import com.marimba.apps.subscriptionmanager.compliance.intf.ICveUpdateConstants;
 import com.marimba.apps.subscription.common.intf.IUser;
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
 
-import com.marimba.apps.securitymgr.compliance.util.ChannelCopier;
-import com.marimba.apps.securitymgr.compliance.util.Tools;
 import com.marimba.apps.securitymgr.utils.json.JSONArray;
 import com.marimba.apps.securitymgr.utils.json.JSONObject;
-import com.marimba.apps.securitymgr.compliance.util.RunSQLScript;
 import com.marimba.apps.subscriptionmanager.intf.IWebAppConstants;
 import com.marimba.intf.application.IApplicationContext;
 import com.marimba.intf.castanet.IWorkspace;
@@ -57,7 +55,6 @@ import com.marimba.tools.util.Password;
 import com.marimba.tools.util.Props;
 
 import com.marimba.tools.config.*;
-import com.marimba.apps.securitymgr.compliance.util.DefinitionUpdateHandler;
 import com.marimba.apps.subscriptionmanager.webapp.forms.DefinitionUpdateForm;
 
 /**
@@ -187,12 +184,24 @@ public class DefinitionUpdateAction extends AbstractAction
 				//	System.out.println("DebugInfo: Master Tx Url: " + masterTxUrl);
 				//	System.out.println("DebugInfo: Publish UserName: " + pubUser);
 				//	System.out.println("DebugInfo: Publish Password: " + pubPwd);
+                //	System.out.println("DebugInfo: CS UserName: " + chstoreUser);
+                //  System.out.println("DebugInfo: CS Password: " + chstorePwd);
 
-					pubPwd = encode(pubPwd);
-					chstorePwd = encode(chstorePwd);
+                    initDefinitionsUpdateConfig();
+                    ConfigProps config = getDefinitionsUpdateConfig();
+                    
+                    if (pubPwd != null && (!pubPwd.startsWith(PSWDSTR))) {
+					    pubPwd = encode(pubPwd);
+                    } else {
+                        pubPwd =  config.getProperty("publish.tx.password");
+                    }
+                    
+                    if (chstorePwd!= null && (!chstorePwd.startsWith(PSWDSTR))) {
+					    chstorePwd = encode(chstorePwd);
+                    } else {
+                        chstorePwd = config.getProperty("channelstore.authenticate.password");
+                    }
 
-					initDefinitionsUpdateConfig();
-					ConfigProps config = getDefinitionsUpdateConfig();
 					if (config != null) {
 						config.setProperty("destination.mastertx.url", masterTxUrl);
 						config.setProperty("publish.tx.user", pubUser);
@@ -202,21 +211,38 @@ public class DefinitionUpdateAction extends AbstractAction
 						config.save();
 					}
 
-                    // channel store credentials validation
+                    // channel store credentials authenticate validation on products tx.
+                    boolean csAuthStatus = false;
+                    String errArg = "";
+
                     try {
-                        DashboardHandler dashboardHandler = new DashboardHandler(main);
-                        String user = config.getProperty("channelstore.authenticate.user");
-                        String pwd = config.getProperty("channelstore.authenticate.password");
-                        if (isEncoded(pwd)) {
-                            pwd = Password.decode(pwd);
+                        IApplicationContext context = (IApplicationContext) main.getFeatures().getChild("context");
+                        ChannelStoreAuthenticateEngine cse = new ChannelStoreAuthenticateEngine();
+                        cse.init(context);
+
+                        chstoreUser = config.getProperty("channelstore.authenticate.user");
+                        chstorePwd = config.getProperty("channelstore.authenticate.password");
+                        if (isEncoded(chstorePwd)) {
+                            chstorePwd = Password.decode(chstorePwd);
                         }
-                        Map<String, String> cscreds = dashboardHandler.getChannelStoreCredentials(user, pwd);
-                        if (cscreds.size() == 0) {
+                        try {
+                            csAuthStatus = cse.authenticateUser(chstoreUser, chstorePwd);
+                            System.out.println("DebugInfo: Channel Store Authentication Status: " + csAuthStatus);
+                        } catch(Exception ex) {
+                           System.out.println("Error Occurred while validate CS credentials - " +ex.getMessage());
+                           ex.printStackTrace();
+                           errArg = getString(locale, "page.definitions_update.error.invalid.channelstore.creds");
+
+                        }
+                        if (!csAuthStatus) {
                             definitionUpdateForm.setCveJsonUpdateError("Channel Store Authentication Failed - Invalid Credentials");
+                            errArg = getString(locale, "page.definitions_update.error.invalid.channelstore.creds");
                             config.setProperty("channelstore.authentication.succeeded", "false");
+                            System.out.println("LogInfo: Channel Store Authentication failed - "+ "user rejected!");
                         }
-                        if (cscreds.size() == 2) {
+                        if (csAuthStatus) {
                            config.setProperty("channelstore.authentication.succeeded", "true");
+                           System.out.println("LogInfo: Channel Store Authentication succeeded - "+ "user validated!");
                         }
                         config.save();
                     } catch(Exception ex) {
@@ -225,7 +251,15 @@ public class DefinitionUpdateAction extends AbstractAction
 
                     String srcUrl = config.getProperty("products.mastertx.url");
 					String dstUrl = masterTxUrl + "/DefenSight/vDef";
-					boolean copyFailed = executeVdefChannelCopy(srcUrl, dstUrl, pubUser, pubPwd);
+                    if (isEncoded(pubPwd)) {
+                        pubPwd = Password.decode(pubPwd);
+                    }
+                    boolean copyFailed = true;
+                    if (csAuthStatus) {
+                        copyFailed = executeVdefChannelCopy(srcUrl, dstUrl, pubUser, pubPwd);
+                        errArg = "";
+                    }
+
 					if (!copyFailed) {
 						long currentTimestampVal = System.currentTimeMillis();
 						java.util.Date date = new java.util.Date(currentTimestampVal);
@@ -244,11 +278,11 @@ public class DefinitionUpdateAction extends AbstractAction
 						definitionUpdateForm.setVdefLastUpdated(dateVal);
 						config.save();
 						config.close();
-						System.out.println("vDef channel copy operation succeeded from Products Tx..");
+						System.out.println("LogInfo: vDef channel copy operation succeeded from Products Tx..");
 						definitionUpdateForm.setvDefError("");
 					} else {
-						System.out.println("vDef channel copy operation failed from Products Tx..");
-						config.setProperty("vdefchannel.copy.error", "vDef channel copy operation failed.");
+						System.out.println("LogInfo: vDef channel copy operation failed from Products Tx.");
+						config.setProperty("vdefchannel.copy.error", getString(locale, "page.definition_update.copy.operation.failed", errArg));
 						config.save();
 						config.close();
 					}
@@ -904,7 +938,11 @@ public class DefinitionUpdateAction extends AbstractAction
 				defnForm.setPublishTxUrl(config.getProperty("destination.mastertx.url"));
 				defnForm.setPublishUserName(config.getProperty("publish.tx.user"));
 				defnForm.setPublishPassword(PSWDSTR);
-				defnForm.setVdefLastUpdated(config.getProperty("vdefchannel.lastcopied.timestamp"));
+
+                defnForm.setChannelStoreUserName(config.getProperty("channelstore.authenticate.user"));
+                defnForm.setChannelStorePassword(PSWDSTR);
+
+                defnForm.setVdefLastUpdated(config.getProperty("vdefchannel.lastcopied.timestamp"));
 				defnForm.setvDefError(config.getProperty("vdefchannel.copy.error"));
 				
 				defnForm.setCveStorageDir(config.getProperty("defensight.cvejson.storagedir.location"));
