@@ -97,6 +97,7 @@ public class DefinitionUpdateAction extends AbstractAction
 		ConfigProps config = null;
 		IConfig tunerConfig = null;
         boolean isRemoteDatabaseEnabled = false;
+        CveUpdateUtil cveupdateObj = null;
 
 		DefinitionUpdateTask(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 				HttpServletResponse response) {
@@ -181,11 +182,13 @@ public class DefinitionUpdateAction extends AbstractAction
 					String chstoreUser = definitionUpdateForm.getChannelStoreUserName();
 					String chstorePwd = definitionUpdateForm.getChannelStorePassword();
 
-				//	System.out.println("DebugInfo: Master Tx Url: " + masterTxUrl);
-				//	System.out.println("DebugInfo: Publish UserName: " + pubUser);
-				//	System.out.println("DebugInfo: Publish Password: " + pubPwd);
-                //	System.out.println("DebugInfo: CS UserName: " + chstoreUser);
-                //  System.out.println("DebugInfo: CS Password: " + chstorePwd);
+                    /*
+					    System.out.println("DebugInfo: Master Tx Url: " + masterTxUrl);
+					    System.out.println("DebugInfo: Publish UserName: " + pubUser);
+					    System.out.println("DebugInfo: Publish Password: " + pubPwd);
+                	    System.out.println("DebugInfo: CS UserName: " + chstoreUser);
+                        System.out.println("DebugInfo: CS Password: " + chstorePwd);
+                    */
 
                     initDefinitionsUpdateConfig();
                     ConfigProps config = getDefinitionsUpdateConfig();
@@ -219,21 +222,21 @@ public class DefinitionUpdateAction extends AbstractAction
                         IApplicationContext context = (IApplicationContext) main.getFeatures().getChild("context");
                         ChannelStoreAuthenticateEngine cse = new ChannelStoreAuthenticateEngine();
                         cse.init(context);
-
                         chstoreUser = config.getProperty("channelstore.authenticate.user");
                         chstorePwd = config.getProperty("channelstore.authenticate.password");
+
                         if (isEncoded(chstorePwd)) {
                             chstorePwd = Password.decode(chstorePwd);
                         }
                         try {
                             csAuthStatus = cse.authenticateUser(chstoreUser, chstorePwd);
-                            System.out.println("DebugInfo: Channel Store Authentication Status: " + csAuthStatus);
+                            System.out.println("LogInfo: Channel Store Authentication Status: " + csAuthStatus);
                         } catch(Exception ex) {
-                           System.out.println("Error Occurred while validate CS credentials - " +ex.getMessage());
-                           ex.printStackTrace();
+                           System.out.println("LogInfo: Error Occurred while validate CS credentials - " + ex.getMessage());
                            errArg = getString(locale, "page.definitions_update.error.invalid.channelstore.creds");
-
+                           ex.printStackTrace();
                         }
+                        
                         if (!csAuthStatus) {
                             definitionUpdateForm.setCveJsonUpdateError("Channel Store Authentication Failed - Invalid Credentials");
                             errArg = getString(locale, "page.definitions_update.error.invalid.channelstore.creds");
@@ -251,12 +254,15 @@ public class DefinitionUpdateAction extends AbstractAction
 
                     String srcUrl = config.getProperty("products.mastertx.url");
 					String dstUrl = masterTxUrl + "/DefenSight/vDef";
+                    vDefCopyUtil vdefcopyObj =  new vDefCopyUtil();
+                    vdefcopyObj.init(main, config);
                     if (isEncoded(pubPwd)) {
                         pubPwd = Password.decode(pubPwd);
                     }
+
                     boolean copyFailed = true;
                     if (csAuthStatus) {
-                        copyFailed = executeVdefChannelCopy(srcUrl, dstUrl, pubUser, pubPwd);
+                        copyFailed = vdefcopyObj.executeVdefChannelCopy(srcUrl, dstUrl, pubUser, pubPwd);
                         errArg = "";
                     }
 
@@ -300,20 +306,18 @@ public class DefinitionUpdateAction extends AbstractAction
 							System.out.println("START THREAD: RunnableJob is being run by " + thread.getName() + " ("
 									+ thread.getId() + ")");
 							initDefinitionsUpdateConfig();
-							ConfigProps config = getDefinitionsUpdateConfig();
+                            cveupdateObj = new CveUpdateUtil(main, getDefinitionsUpdateConfig());
+
+                            ConfigProps config = getDefinitionsUpdateConfig();
 
 							int updateCvejsonStartStep = definitionUpdateForm.getUpdateCvejsonStartStep();
-
 							//System.out.println("updateCvejsonStartStep = " + updateCvejsonStartStep);
-
-							String publishTxUrl = definitionUpdateForm.getPublishTxUrl();
 							String cveStorageDir = definitionUpdateForm.getCveStorageDir();
-							
+
 							Path path = Paths.get(cveStorageDir);
 					        if (!Files.exists(path)) {
 					            try {
 					                Files.createDirectory(path);
-					                System.out.println("Directory created successfully!");
 					                config.setProperty("cvejsonupdate.process.status", "0");
 					                config.setProperty("cvejsonupdate.process.error", "");
 					                config.save();
@@ -328,11 +332,8 @@ public class DefinitionUpdateAction extends AbstractAction
 					                loadFormData(config, definitionUpdateForm);
 					                return;
 					            }
-					        } else {
-					            System.out.println("Directory already exists!");
 					        }
 							
-
 							tunerConfig = (IConfig) features.getChild("tunerConfig");
 							Tools.setTunerConfig(tunerConfig);
 							String tunerInstallDir = tunerConfig.getProperty("marimba.tuner.install.dir");
@@ -355,9 +356,6 @@ public class DefinitionUpdateAction extends AbstractAction
 										? "https://cve.circl.lu/static/circl-cve-search-expanded.json.gz"
 										: urlStr;
 
-								System.out.println("DebugInfo: publishTxUrl ==> " + publishTxUrl);
-								System.out.println("DebugInfo: cveStorageDir ==> " + cveStorageDir);
-
 								try {
 									if (!isNull(cveStorageDir)) {
 										File cvejsonDir = new File(cveStorageDir);
@@ -369,7 +367,8 @@ public class DefinitionUpdateAction extends AbstractAction
 										config.close();
 									}
 
-									boolean downloadfailed = downloadCVEJSON(urlStr, 5, cvejsonZipFile);
+                                    CveUpdateUtil cveupdateObj = new CveUpdateUtil(main, getDefinitionsUpdateConfig());
+									boolean downloadfailed = cveupdateObj.downloadCVEJSON(urlStr, 5, cvejsonZipFile);
 									if (!downloadfailed) {
 										System.out.println("CVE JSON Zip File Download Succeeded...");
 									} else {
@@ -422,7 +421,7 @@ public class DefinitionUpdateAction extends AbstractAction
 
 								config.setProperty("cvejsonupdate.process.status", "3");
 								config.setProperty("cvejsonupdate.process.message",
-										"Subscribing CVE downloader Channel");
+										"Starting of JSON read and parsing json content for DB insertion.");
 								config.setProperty("cvejsonupdate.process.error", "");
 								config.save();
 
@@ -431,167 +430,20 @@ public class DefinitionUpdateAction extends AbstractAction
 									IApplicationContext iappContext = (IApplicationContext) main.getFeatures()
 											.getChild("context");
 
-									String cveDownloaderChannel = fetchCVEDownloaderChannelUrl(iappContext);
-									System.out.println(
-											"DebugInfo: CVE DOWNLOADER Channel URL ==> " + cveDownloaderChannel);
-
-									if (isNull(cveDownloaderChannel)) {
-										System.out.println(
-												"DebugInfo: CVE DOWNLOADER Channel URL not found.. Going to subscribe from Master Transmitter");
-
-										config.setProperty("cvejsonupdate.process.message",
-												"CVE downloader Channel URL not found. Going to subscribe from Master Transmitter");
-										config.setProperty("cvejsonupdate.process.error", "");
-										config.save();
-
-                                        String cvedownloaderUrl = main.getConfig().getProperty("subscriptionmanager.cvedownloader.url");
-                                        IChannel ch = subscribeCveDownloaderChannel(cvedownloaderUrl);
-                                        if (ch != null) {
-                                            String subscribedUrl = ch.getURL();
-                                            System.out.println("DebugInfo: CVE DOWNLOADER Channel subscribedUrl succeeded - " + subscribedUrl);
-                                            config.setProperty("defensight.cvedownloaderchannel.location",  subscribedUrl);
-                                            config.setProperty("cvejsonupdate.process.message", "");
-                                            config.setProperty("cvejsonupdate.process.error", "");
-                                            config.save();
-                                        }
-
-										String cvedownloadChUrl = config
-												.getProperty("defensight.cvedownloaderchannel.location");
-
-										if (isNull(cvedownloadChUrl)) {
-											System.out.println(
-													"DebugInfo: defensight.cvedownloaderchannel.location not present in the properties file.");
-
-											config.setProperty("cvejsonupdate.process.message", "");
-											config.setProperty("cvejsonupdate.process.error",
-													"Not able to subscribe the CVE downloader channel from Master Transmitter.<br/>Please subscribe it manually and then try again.");
-											config.save();
-
-											return;
-										}
-
-										ch = subscribeCveDownloaderChannel(cvedownloadChUrl);
-										System.out.println("ch.getURL() = " + ch.getURL());
-
-										if (ch != null) {
-											String subscribedUrl = ch.getURL();
-											cveDownloaderChannel = subscribedUrl;
-											System.out.println(
-													"DebugInfo: CVE DOWNLOADER Channel subscribedUrl succeeded - "
-															+ subscribedUrl);
-										} else {
-											System.out.println(
-													"DebugInfo: CVE downloader Channel not present on Master Transmitter.");
-
-											config.setProperty("cvejsonupdate.process.message", "");
-											config.setProperty("cvejsonupdate.process.error",
-													"CVE downloader Channel not present on Master Transmitter.");
-											config.save();
-
-											return;
-										}
-									}
-
-									actionString = "cvejson_csvgenerate";
-									config.setProperty("cvejsonupdate.process.status", "4");
-									config.setProperty("cvejsonupdate.process.message",
-											"Generating CSV files from CVE JSON.");
-									config.setProperty("cvejsonupdate.process.error", "");
-									config.save();
-
-									boolean csvStatus = generateCveJsonToCsvFiles(tunerInstallDir,
-											cveDownloaderChannel);
-									File scriptDir = null;
-									if (csvStatus) {
-										System.out.println("DebugInfo: CVE JSON into CSV files generation succeeded - "
-												+ csvStatus);
-
-										config.setProperty("cvejsonupdate.process.message",
-												"Generation of CSV files from CVE JSON succeeded.");
-										config.save();
-
-										File csvFilesDir = new File(cveStorageDir, "csv_data");
-										if (!csvFilesDir.exists())
-											csvFilesDir.mkdirs();
-
-										fetchCVEDownloaderChannelUrl(iappContext);
-
-										if (cveDownloderChPath == null) {
-											config.setProperty("cvejsonupdate.process.message", "");
-											config.setProperty("cvejsonupdate.process.error",
-													"CVE downloader channel path is null");
-											config.save();
-											return;
-										}
-										File cvedownloaderCsvData = new File(cveDownloderChPath);
-
-										Tools.copyDir(cvedownloaderCsvData, csvFilesDir);
-										scriptDir = new File(cveStorageDir, "sqlscripts");
-										if (!scriptDir.exists())
-											scriptDir.mkdirs();
-
-										boolean fileStatus = makeCveSchemaSqlScripts(scriptDir);
-										System.out.println(
-												"DebugInfo: CVE SQL scripts created and updated successfully..."
-														+ fileStatus);
-
-										config.setProperty("cvejsonupdate.process.message",
-												"CVE SQL scripts created and updated successfully.");
-										config.save();
-
-										int csvfilesCnt = csvFilesDir.list().length;
-										System.out.println("DebugInfo: Number of CSV files: " + csvfilesCnt);
-										String csvFilesDirPath = csvFilesDir.getCanonicalPath();
-                                        if (isRemoteDatabaseEnabled) {
-                                            String remoteDBpath = getDefinitionsUpdateConfig().getProperty("defensight.remotedb.storagedir");
-                                            csvFilesDirPath = remoteDBpath + "\\" + "csv_data";
-                                        }
-										updateScriptFile(scriptDir, csvFilesDirPath, csvfilesCnt);
-
-                                        if (isRemoteDatabaseEnabled) {
-                                            config = getDefinitionsUpdateConfig();
-                                            String  remoteStorageDir =  config.getProperty("defensight.remotedb.storagedir");
-                                            File remoteStorageFileDir = new File(remoteStorageDir, "csv_data");
-                                            Tools.copyDir(csvFilesDir, remoteStorageFileDir);
-                                            remoteStorageFileDir = new File(remoteStorageDir, "sqlscripts");
-                                            Tools.copyDir(scriptDir, remoteStorageFileDir);
-                                        }
-									} else {
-										System.out.println(
-												"DebugInfo: CVE JSON into CSV files generation failed - " + csvStatus);
-										config.setProperty("cvejsonupdate.process.error",
-												"CVE JSON into CSV files generation failed - " + csvStatus);
-										config.setProperty("cvejsonupdate.process.message", "");
-										config.save();
-										config.close();
-									}
-
-									config.setProperty("cvejsonupdate.process.status", "5");
-									config.setProperty("cvejsonupdate.process.message",
-											"Updating CVE JSON into DefenSight Database");
-									config.setProperty("cvejsonupdate.process.error", "");
-									config.save();
-
-									actionString = "csvdata_sqldbupdate";
-									String sqlscriptsDirPath = scriptDir.getCanonicalPath() + "\\" + CVE_CREATE_SQL;
-									System.out
-											.println("DebugInfo: SQL scripts directory path ==> " + sqlscriptsDirPath);
-									RunSQLScript rsScript = new RunSQLScript(sqlscriptsDirPath, main);
-
-									if (rsScript.getStatus()) {
-										System.out.println(
-												"DebugInfo: CVE JSON create-tables.sql into DefenSight Database - SUCCEEDED");
-									}
-
-									sqlscriptsDirPath = scriptDir.getCanonicalPath() + "\\" + CVE_RUN_SQL;
-									rsScript = new RunSQLScript(sqlscriptsDirPath, main);
-
-									if (rsScript.getStatus()) {
+                                    // make sure with insert JSON to DB insert confirm by above code
+                                    // (cve_info with child tables)
+                                    boolean dbInsertDone = true;
+                                    File scriptDir = new File(cveStorageDir, "sqlscripts");
+                                    boolean fileStatus = cveupdateObj.makeCveSchemaSqlScripts(scriptDir);
+                                    System.out.println(
+                                            "DebugInfo: CVE SQL <update.sql> created and updated successfully..."
+                                                    + fileStatus);
+									if (dbInsertDone) {
 										System.out.println(
 												"DebugInfo: CVE JSON update bulk insertion into DefenSight Database - SUCCEEDED");
 
-										sqlscriptsDirPath = scriptDir.getCanonicalPath() + "\\" + CVE_UPDATE_SQL;
-										rsScript = new RunSQLScript(sqlscriptsDirPath, main);
+										String sqlscriptsDirPath = scriptDir.getCanonicalPath() + "\\" + CVE_UPDATE_SQL;
+                                        RunSQLScript rsScript  = new RunSQLScript(sqlscriptsDirPath, main);
 										if (rsScript.getStatus()) {
 											System.out.println(
 													"DebugInfo: CVE JSON update-tables.sql into DefenSight Database - SUCCEEDED");
@@ -682,245 +534,9 @@ public class DefinitionUpdateAction extends AbstractAction
 			forward = mapping.findForward("view");
 		}
 
-		private boolean makeCveSchemaSqlScripts(File cvestorageDir) {
-			boolean fileStatus = true;
-			try {
-				File createScriptFile = new File(cvestorageDir, CVE_CREATE_SQL);
-				FileOutputStream fout = new FileOutputStream(createScriptFile);
-				String scriptContent = CREATE_TABLE_SQL;
-				byte[] bytesArray = scriptContent.getBytes();
-				fout.write(bytesArray);
-				fout.flush();
-				fout.close();
-				System.out.println(CVE_CREATE_SQL + " - File written successfully... ");
-
-				File updateScriptFile = new File(cvestorageDir, CVE_UPDATE_SQL);
-				fout = new FileOutputStream(updateScriptFile);
-				scriptContent = UPDATE_TABLE_SQL;
-				bytesArray = scriptContent.getBytes();
-				fout.write(bytesArray);
-				fout.flush();
-				fout.close();
-				System.out.println(UPDATE_TABLE_SQL + " - File written successfully... ");
-
-			} catch (Exception ex) {
-				fileStatus = false;
-				ex.printStackTrace();
-				System.out.println("Failed to create cve setup sql script files: " + ex.getMessage());
-			}
-			return fileStatus;
-		}
-
-		// To update bulk insertion sql script for csv files
-		private void updateScriptFile(File scriptDir, String csvDirPath, int csvFilesCnt) {
-			try {
-
-				String dataSourceName = main.getProperty("subscriptionmanager.db.name");
-
-				File runSqlFile = new File(scriptDir, "run.sql");
-				BufferedWriter bout = new BufferedWriter(
-						new OutputStreamWriter(new FileOutputStream(runSqlFile), "UTF-8"));
-
-				String permString = "Use master;";
-				bout.write(permString);
-				bout.newLine();
-				bout.write("GRANT ADMINISTER BULK OPERATIONS TO inventory;");
-				bout.newLine();
-				permString = "Use " + dataSourceName + ";";
-				bout.write(permString);
-				bout.newLine();
-
-				String scriptContent = "BULK INSERT vendor_info FROM '" + csvDirPath
-						+ "\\csv-vendor-0.csv' WITH (FIELDTERMINATOR = ',', ROWTERMINATOR = '\\n');";
-				bout.write(scriptContent);
-				csvFilesCnt--;
-
-				bout.newLine();
-				scriptContent = "BULK INSERT product_INFO FROM '" + csvDirPath
-						+ "\\csv-product-0.csv' WITH (FIELDTERMINATOR = ',', ROWTERMINATOR = '\\n');";
-				bout.write(scriptContent);
-				csvFilesCnt--;
-				bout.newLine();
-
-				for (int idx = 0; idx < csvFilesCnt; idx++) {
-					scriptContent = "BULK INSERT product_cve_info FROM '" + csvDirPath + "\\csv-product-cve-info-" + idx
-							+ ".csv' WITH (FIELDTERMINATOR = ',', ROWTERMINATOR = '\\n');";
-					bout.write(scriptContent);
-					bout.newLine();
-				}
-
-				permString = "Use master;";
-				bout.write(permString);
-				bout.newLine();
-				bout.write("REVOKE ADMINISTER BULK OPERATIONS FROM inventory;");
-				bout.newLine();
-				permString = "Use " + dataSourceName + ";";
-				bout.write(permString);
-				bout.newLine();
-
-				bout.flush();
-				bout.close();
-				System.out.println("SQL script <run.sql> file updated successfully... ");
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-		}
-
-		private IChannel subscribeCveDownloaderChannel(String chUrl) throws Exception {
-			IChannel cvedownloadCh = null;
-			IApplicationContext context = (IApplicationContext) main.getFeatures().getChild("context");
-			ws = (IWorkspace) context.getFeature("workspace");
-			if (chUrl != null) {
-
-				// Removed try catch
-				cvedownloadCh = ws.getChannel(chUrl);
-				if (cvedownloadCh == null) {
-					cvedownloadCh = ws.getChannelCreate(chUrl, false, null);
-				} else {
-					return cvedownloadCh;
-				}
-
-			}
-			return cvedownloadCh;
-		}
-
-		// Method to download cve jsoz zip file from cve site
-		private boolean downloadCVEJSON(String urlStr, int timeoutMinutes, String resultFile) {
-			boolean downloadFailed = true;
-			System.out.println(" Timeout in minutes  - " + timeoutMinutes);
-			int TIMEOUT_VALUE = timeoutMinutes * 1000 * 60;
-			try {
-
-				URL testUrl = new URL(urlStr);
-				StringBuilder answer = new StringBuilder(100000);
-
-				URLConnection testConnection = testUrl.openConnection();
-				testConnection.setConnectTimeout(TIMEOUT_VALUE);
-				testConnection.setReadTimeout(TIMEOUT_VALUE);
-				testConnection.setRequestProperty("http.protocol.single-cookie-header", "true");
-				testConnection.connect();
-
-				InputStream ip = null;
-
-				try {
-					ip = testConnection.getInputStream();
-					copyFile(ip, resultFile);
-					downloadFailed = false;
-				} catch (IOException ioe) {
-					ioe.printStackTrace();
-					downloadFailed = true;
-				}
-			} catch (SocketTimeoutException ste) {
-				ste.printStackTrace();
-				downloadFailed = true;
-				System.out.println("More than " + TIMEOUT_VALUE + " elapsed.");
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-
-			return downloadFailed;
-		}
-
-		private void copyFile(InputStream source, String fileName) throws IOException {
-			byte[] buff = new byte[1024];
-			int len = -1;
-			OutputStream out = null;
-			String rootDir = getDefinitionsUpdateConfig().getProperty("defensight.cvejson.storagedir.location");
-			try {
-				File fileDir = new File(rootDir);
-				if (!fileDir.exists()) {
-					fileDir.mkdirs();
-				}
-
-				File fos = new File(rootDir, fileName);
-
-				// open the outstream to the file and creates the parent directories if
-				// necessary
-				out = new FileOutputStream(fos);
-
-				// copy from the source to the destination
-				while ((len = source.read(buff)) > 0) {
-					out.write(buff, 0, len);
-				}
-			} finally {
-				source.close();
-				if (out != null) {
-					out.close();
-				}
-			}
-		}
-
-		private boolean generateCveJsonToCsvFiles(String runChannelDir, String cveDownloderChUrl) {
-			boolean resultCLI = true;
-			Vector args = new Vector();
-			args.addElement("runchannel.exe");
-			args.addElement(cveDownloderChUrl);
-			args.addElement("-prepareCsv2");
-
-			String cmdLineStr = Tools.getCommandline(args);
-			// System.out.println("DebugInfo: CVE-Downloader CLI String ==> " + cmdLineStr);
-			try {
-				ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/C", cmdLineStr)
-						.directory(new File(runChannelDir));
-
-				builder.redirectErrorStream(true);
-				Process process = builder.start();
-				BufferedReader r = new BufferedReader(new InputStreamReader(process.getInputStream()));
-				String line;
-				while (true) {
-					line = r.readLine();
-					if (line == null) {
-						break;
-					}
-					if (line != null && line.indexOf("Total time taken") != -1) {
-						resultCLI = true;
-					}
-					System.out.println(" Command execution result :: " + line);
-				}
-
-				int exitCode = process.waitFor();
-				System.out.println("CLI Process Exited with code : " + exitCode);
-
-			} catch (Exception ex) {
-				resultCLI = false;
-				ex.printStackTrace();
-			}
-			return resultCLI;
-		}
 
 		private ConfigProps getDefinitionsUpdateConfig() {
 			return config;
-		}
-
-		private ChannelCopier getCopier(String user, String pwd) {
-			String certId = null;
-			String certPwd = null;
-			IApplicationContext iApplicationContext = (IApplicationContext) main.getFeatures().getChild("context");
-			ChannelCopier copier = new ChannelCopier(main, user, pwd, certId, certPwd, iApplicationContext);
-			return copier;
-		}
-
-		private boolean executeVdefChannelCopy(String srcUrl, String dstUrl, String pubUser, String pubPwd) {
-			boolean failed = true;
-			try {
-				URL src = new URL(srcUrl);
-				URL dst = new URL(dstUrl);
-				Props props = new Props();
-				String user = pubUser;
-				String pwd = pubPwd;
-				copier = getCopier(user, pwd);
-				if (copier == null) {
-					System.out.println("LogInfo: Unable to get the copier instance...");
-					return failed;
-				}
-				if (copier.copyChannel(props, src, dst) == 0) {
-					failed = false;
-				}
-			} catch (Exception ex) {
-				ex.printStackTrace();
-				failed = true;
-			}
-			return failed;
 		}
 
 		private void loadFormData(ConfigProps config, DefinitionUpdateForm defnForm) {
@@ -963,37 +579,6 @@ public class DefinitionUpdateAction extends AbstractAction
 				}
 				defnForm.setCveJsonUpdateThreadRunning(isThreadRunning);
 			}
-		}
-
-		private String fetchCVEDownloaderChannelUrl(IApplicationContext context) throws Exception {
-			String cveDownloaderChUrl = "";
-			File file = new File(context.getDataDirectory());
-			String s = file.getParent();
-			String s1 = s.substring(0, s.indexOf("ch."));
-			String s2 = (new StringBuilder()).append(s1).append("map.txt").toString();
-
-			// Removed Try Catch
-			BufferedReader bufferedreader = new BufferedReader(new FileReader(new File(s2)));
-
-			String s3;
-			do {
-				s3 = bufferedreader.readLine();
-				System.out.println("s3 = " + s3);
-				if (s3 == null)
-					break;
-			} while (!s3.contains("CVEDownloader"));
-
-			if (!isNull(s3)) {
-				String s4 = s3.substring(0, s3.indexOf("="));
-				String s5 = s3.substring(s3.indexOf("=") + 1, s3.length());
-				String s6 = (new StringBuilder()).append(s1).append("\\").append(s5).append("\\data\\cve-save-csv")
-						.toString();
-				cveDownloderChPath = s6;
-				System.out.println("DebugInfo: FilePath of CVE Downloader channel path: " + cveDownloderChPath);
-				cveDownloaderChUrl = s4;
-			}
-
-			return cveDownloaderChUrl;
 		}
 
 		private void initDefinitionsUpdateConfig() {

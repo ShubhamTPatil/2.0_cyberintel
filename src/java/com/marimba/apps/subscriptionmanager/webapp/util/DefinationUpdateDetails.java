@@ -66,7 +66,7 @@ public class DefinationUpdateDetails {
 				// Data Object
 				DefinationUpdateData definationUpdateDataObject = new DefinationUpdateData();
 
-				String masterQuery = "Select top 1 modified,cvss_time from product_cve_info";
+				String masterQuery = "Select top 1 modified,cvss_time from cve_info";
 				PreparedStatement masterQueryPrepareStatement = pool.getConnection().prepareStatement(masterQuery);
 				masterRS = masterQueryPrepareStatement.executeQuery();
 				System.out.println("masterQuery size : " + masterRS.getFetchSize());

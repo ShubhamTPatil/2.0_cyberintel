@@ -73,7 +73,7 @@ public interface ICveUpdateConstants {
             "(type,cve_name,seq,published_date,modified_date,severity, \n" +
             "cvss_score,cvss_base_score,cvss_impact_score,cvss_exploit_score,cvss_vector,nvd_xml_schema,cvss_version) \n" +
             "select 'CVE', name, '90',published ,modified, severity,cvss,cvss , '-1','-1' ,'NA' ,'2.0','2.0' \n" +
-            "from product_cve_info tp with (nolock) \n" +
+            "from cve_info tp with (nolock) \n" +
             "where not exists (select 1 from security_cve_info ts with (nolock) where tp.cve_id = ts.cve_name); \n" +
             "\n" +
             "update security_cve_info set severity='None' where cvss_score is not null and cvss_score = 0; \n" +
