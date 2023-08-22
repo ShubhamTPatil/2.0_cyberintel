@@ -249,7 +249,7 @@
 				  					dataType : 'text json',
 				  					data : {
 				  						action : 'update_cvejson',
-				  						cveStorageDir : cveStorageDir
+				  						cveStorageDir : cveStorageDir,
 				  						updateCvejsonStartStep:	wizardStep
 				  					},
 				  					beforeSend : function() {
