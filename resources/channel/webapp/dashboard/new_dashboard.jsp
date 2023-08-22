@@ -403,12 +403,17 @@ $(function () {
        },
        "aaData": prtyPatchesData,
        "columns": [{},
+        {
+           "data": "CVE-ID"
+        },
        {
            "data": "Patch Name"
        }, {
            "data": "Severity"
        }, {
            "data": "Affected Machines"
+       }, {
+           "data": "Status"
        }],
        'columnDefs': [{
            'targets': 0,
@@ -874,48 +879,47 @@ function createMitigateTable(aaData) {
             </div>
           </div>
           
-          
-          
-          
-          <div class="card overflow-auto">
-                <!-- <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa-solid fa-sliders"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-                    <li><a class="dropdown-item">Critical</a></li>
-                    <li><a class="dropdown-item">High</a></li>
-                    <li><a class="dropdown-item">Medium</a></li>
-                    <li><a class="dropdown-item">Low</a></li>
-                  </ul>
-                </div> -->
+           <div class="col-12">
+              <div class="card overflow-auto">
+                 <div class="filter" style="margin-right:10px;">
+                   <select id="critPatchFilter" class="form-select form-select-sm">
+                    <option value="">Show All</option>
+                    <option value="Patch Assigned">Patch Assigned</option>
+                    <option value="Patch Applied, Reboot required">Patch Applied, Reboot required</option>
+                    <option value="Patch Not Applied">Patch Not Applied</option>
+                    <option value="Patch Failed">Patch Failed</option>
+                    <option value="Patch Not Available">Patch Not Available</option>
+                   </select>
+                 </div>
+
                 <div class="card-body">
-                  <h5 class="card-title">Critical Patches
+                  <h5 class="card-title">Critical Patches </h5>
                     <!-- Button trigger modal -->
+                  <div class="input-group" style="margin-bottom: 10px;margin-left:-20px">
                     <button type="button" id="criPatchesMitigateButton" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                     data-bs-target="#topVulModal" style="margin-left: 20px;">
                     Mitigate Selected
-                  </button>
-                  </h5>
+                   </button>
+                  </div>
+
                   <table id="criticalPatchesTable" class="table" style="width: 100%;">
                     <thead>
                       <tr>
                         <th scope="col"><input type="checkbox" id="criticalPatchesSelectAll"
                             class="selectAll form-check-input"></th>
+                        <th scope="col" style="text-align: left;">CVE-ID</th>
                         <th scope="col" style="text-align: left;">Patch Name</th>
                         <th scope="col" style="text-align: left;">Severity</th>
                         <th scope="col">Affected Machines</th>
+                        <th scope="col" style="text-align: left;">Status</th>
                       </tr>
                     </thead>
                     <tbody>
-
                     </tbody>
                   </table>
                 </div>
-              </div>
-          
-        </div>
+             </div>
+         </div>
       </div>
     </section>
 

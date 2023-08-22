@@ -21,7 +21,9 @@ public class PriorityPatchesBean {
     String patchName;
     String severity;
     String affectedMachines;
-
+    String cveid;
+    String status;
+            
     public String getPatchName() {
         return patchName;
     }
@@ -46,6 +48,21 @@ public class PriorityPatchesBean {
         this.affectedMachines = affectedMachines;
     }
 
+    public String getCveid() {
+        return cveid;
+    }
+
+    public void setCveid(String cveid) {
+        this.cveid = cveid;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
 }
 

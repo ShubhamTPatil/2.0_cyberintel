@@ -35,7 +35,6 @@ public class DefinitionUpdateForm extends AbstractForm {
     private String cveJsonUpdateMsg;
     private String cveJsonUpdateError;
     private String vDefError;
-    private String remoteDatabase;
 
     public String getAction() {
         return action;
@@ -178,13 +177,5 @@ public class DefinitionUpdateForm extends AbstractForm {
 	public void setvDefError(String vDefError) {
 		this.vDefError = vDefError;
 	}
-
-    public String getRemoteDatabase() {
-        return remoteDatabase;
-    }
-
-    public void setRemoteDatabase(String remoteDatabase) {
-        this.remoteDatabase = remoteDatabase;
-    }
 
 }

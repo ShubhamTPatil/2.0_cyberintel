@@ -149,7 +149,6 @@ public class NewDashboardAction extends AbstractAction implements IWebAppConstan
                     session.setAttribute(IUser.PROP_NAMESPACE_SKIPSETTING, "false");
                     forward = mapping.findForward("namespaceaction");
                 } else {
-                    System.out.println("DebugInfo: --- Called forward mapping newdashboard ---");
                     forward = mapping.findForward("newdashboard");
                 }
 

@@ -44,7 +44,6 @@
 			  keyboard: false
 		});
 
-        let remoteDatabase = ''
 		$('#cveUpdateNow').click(function() {
 			/* 
 			let cveStorageDir = $('input[name="cveStorageDir"]').val();
@@ -133,8 +132,7 @@
 							type : 'POST',
 							dataType : 'text json',
 							data : {
-								action : "getCveUpdateStatus",
-								remoteDatabase : remoteDatabase
+								action : "getCveUpdateStatus"
 							},
 							beforeSend : function() {
 							},
@@ -203,7 +201,6 @@
 			$('#smartwizard').smartWizard("reset");
 
 			let cveStorageDir = $('input[name="cveStorageDir"]').val();
-			remoteDatabase = $('input[name="remoteDatabase"]').val();
 			if (typeof cveStorageDir != "undefined" && cveStorageDir != null
 					&& cveStorageDir.trim() != "") {
 				
@@ -218,8 +215,7 @@
 							type : 'POST',
 							dataType : 'text json',
 							data : {
-								action : "getCveUpdateStatus",
-								remoteDatabase: remoteDatabase
+								action : "getCveUpdateStatus"
 							},
 							beforeSend : function() {
 							},
@@ -253,8 +249,7 @@
 				  					dataType : 'text json',
 				  					data : {
 				  						action : 'update_cvejson',
-				  						cveStorageDir : cveStorageDir,
-				  						remoteDatabase : remoteDatabase,
+				  						cveStorageDir : cveStorageDir
 				  						updateCvejsonStartStep:	wizardStep
 				  					},
 				  					beforeSend : function() {
@@ -331,10 +326,6 @@
 			alertModal.show();
 		}
 	}
-
-    function checkRemoteDB(frm) {
-       // do nothing
-    }
 
 </script>
 
@@ -419,14 +410,6 @@
                     <html:text name="definitionUpdateForm" property="cveStorageDir" size="30" styleClass="requiredField form-control" />
                   </div>
                 </div>
-
-                <div class="row g-3 align-items-center">
-                  <div class="col-auto">&nbsp;</div>
-                  <div class="col-auto">
-                    <html:checkbox name="definitionUpdateForm" property="remoteDatabase" styleId="remoteDb" value="true" onclick="checkRemoteDB(this.form);"/>
-                    &nbsp;<webapps:pageText key="cvejson.remotestoragedir"/>
-                  </div>
-                <//div>
 
                 <div class="row">
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">

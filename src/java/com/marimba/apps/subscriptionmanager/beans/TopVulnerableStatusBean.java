@@ -23,7 +23,6 @@ public class TopVulnerableStatusBean {
     String affectedMachines;
     String patchId;
     String status;
-
     String riskScore;
 
     public String getRiskScore() {

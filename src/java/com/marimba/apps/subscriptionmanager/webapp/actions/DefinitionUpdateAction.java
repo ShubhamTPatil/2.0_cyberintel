@@ -98,7 +98,6 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
     String cveDownloderChPath;
     ConfigProps config = null;
     IConfig tunerConfig = null;
-    boolean isRemoteDatabaseEnabled = false;
     CveUpdateUtil cveupdateObj = null;
 
     DefinitionUpdateTask(ActionMapping mapping, ActionForm form, HttpServletRequest request,
@@ -120,26 +119,16 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
 
         action = definitionUpdateForm.getAction();
         System.out.println("DebugInfo: DefinitionUpdate - Action: " + action);
-        String isRemoteDB = definitionUpdateForm.getRemoteDatabase();
 
         if (isEmpty(action)) {
           initDefinitionsUpdateConfig();
           loadFormData(getDefinitionsUpdateConfig(), definitionUpdateForm);
         }
 
-        if (isEmpty(isRemoteDB) || "false".equals(isRemoteDB)) {
-          isRemoteDatabaseEnabled = false;
-        } else {
-          isRemoteDatabaseEnabled = true;
-        }
 
         if ("getCveUpdateStatus".equals(action)) {
           initDefinitionsUpdateConfig();
           config = getDefinitionsUpdateConfig();
-          if (isRemoteDatabaseEnabled) {
-            config.setProperty("defensight.cms.dbconnection.remote", "true");
-            config.save();
-          }
 
           String status = config.getProperty("cvejsonupdate.process.status");
           String error = config.getProperty("cvejsonupdate.process.error");
@@ -622,7 +611,6 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
             config.setProperty("cvejsonupdate.process.message",
                 "Please start the CVE Definitions update process.");
             config.setProperty("vdefchannel.copy.error", "");
-            config.setProperty("defensight.cms.dbconnection.remote", "false");
             if (!config.save()) {
               throw new Exception("Failed to save mitigate configurations");
             }
