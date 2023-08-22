@@ -425,7 +425,7 @@ $(function () {
            }
        },
        {
-           'targets': 1,
+           'targets': 2,
            'className': 'dt-body-left',
            'render': function (data, type, full, meta) {
                const splitArray = data.split(".");
