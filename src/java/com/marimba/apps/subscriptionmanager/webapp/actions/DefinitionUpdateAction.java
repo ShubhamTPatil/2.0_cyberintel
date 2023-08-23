@@ -132,13 +132,11 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
 
           String status = config.getProperty("cvejsonupdate.process.status");
           String error = config.getProperty("cvejsonupdate.process.error");
-          String message = config.getProperty("cvejsonupdate.process.message");
           status = isNull(status) ? "0" : status;
 
           JSONObject json = new JSONObject();
           json.put("status", Integer.valueOf(status));
           json.put("error", error);
-          json.put("message", message);
           //System.out.println("Response : " + json.toString());
           sendJSONResponse(response, json.toString());
 
@@ -305,24 +303,15 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
               if (!Files.exists(path)) {
                 try {
                   Files.createDirectory(path);
-                  config.setProperty("cvejsonupdate.process.status", "0");
-                  config.setProperty("cvejsonupdate.process.error", "");
-                  config.save();
-                  config.close();
-                  loadFormData(config, definitionUpdateForm);
+                  setUpdateCveStatus(config, "0");
                 } catch (Exception e) {
                   System.out.println(
                       "An error occurred while creating the directory: " + e.getMessage());
-                  config.setProperty("cvejsonupdate.process.status", "0");
-                  config.setProperty("cvejsonupdate.process.error",
-                      "CVE download location is invalid");
-                  config.save();
-                  config.close();
-                  loadFormData(config, definitionUpdateForm);
+                  setUpdateCveStatus(config, "0", "CVE download location is invalid");
                   return;
                 }
               }
-
+              
               tunerConfig = (IConfig) features.getChild("tunerConfig");
               Tools.setTunerConfig(tunerConfig);
               String tunerInstallDir = tunerConfig.getProperty("marimba.tuner.install.dir");
@@ -330,11 +319,7 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
               if (updateCvejsonStartStep < 2) {
 
                 config.setProperty("cvejsonupdate.process.thread", "" + thread.getId());
-                config.setProperty("cvejsonupdate.process.status", "1");
-                config.setProperty("cvejsonupdate.process.message",
-                    "CVE JSON Zip File Downloading at " + cveStorageDir);
-                config.setProperty("cvejsonupdate.process.error", "");
-                config.save();
+                setUpdateCveStatus(config, "1");
 
                 // String actionString = "cvejson_download";
                 initDefinitionsUpdateConfig();
@@ -362,27 +347,18 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                     System.out.println("CVE JSON Zip File Download Succeeded...");
                   } else {
                     System.out.println("CVE JSON Zip File Download Failed..");
-                    config.setProperty("cvejsonupdate.process.message", "");
-                    config.setProperty("cvejsonupdate.process.error",
-                        "CVE JSON Zip File Download Failed..");
-                    config.save();
+                    setUpdateCveStatus(config, "1", "CVE JSON Zip File Download Failed..");
                   }
                 } catch (Exception ex) {
                   ex.printStackTrace();
-                  config.setProperty("cvejsonupdate.process.message", "");
-                  config.setProperty("cvejsonupdate.process.error", ex.getMessage());
-                  config.save();
-                  config.close();
+                  setUpdateCveStatus(config, "1", "CVE JSON Zip File Download Failed..");
                 }
 
               }
 
               if (updateCvejsonStartStep < 3) {
 
-                config.setProperty("cvejsonupdate.process.status", "2");
-                config.setProperty("cvejsonupdate.process.message", "Unzipping " + cvejsonZipFile);
-                config.setProperty("cvejsonupdate.process.error", "");
-                config.save();
+                setUpdateCveStatus(config, "2");
 
                 try {
 
@@ -397,28 +373,35 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                   actionString = "cvejson_unzip";
                   Tools.gunzip(jsonZipFile, unzipDst);
 
-                  //Read the data from json file and insert it into DB
-                  CVEDataInsertionUtil cveDataInsertionUtil = new CVEDataInsertionUtil();
-
-                  cveDataInsertionUtil.insertBulkData(main, prepareJsonFilePath(cveDir, cvejsonFile));
-
                 } catch (Exception ex) {
                   ex.printStackTrace();
-                  config.setProperty("cvejsonupdate.process.error", ex.getMessage());
-                  config.setProperty("cvejsonupdate.process.message", "");
-                  config.save();
-                  config.close();
+                  setUpdateCveStatus(config, "2", "Failed to unzip..");
                 }
+              }
+              
+              
+              if(updateCvejsonStartStep < 4) {
+            	  
+            	  setUpdateCveStatus(config, "3");
+            	  
+            	  try {
+	            	  
+	                  String cveDir = getDefinitionsUpdateConfig().getProperty(
+	                          "defensight.cvejson.storagedir.location");
+	              	
+	                  //Read the data from json file and insert it into DB
+	                  CVEDataInsertionUtil cveDataInsertionUtil = new CVEDataInsertionUtil();
+	                  cveDataInsertionUtil.insertBulkData(main, prepareJsonFilePath(cveDir, cvejsonFile));
+	        	  } catch (Exception ex) {
+	                  ex.printStackTrace();
+	                  setUpdateCveStatus(config, "3", "Failed to insert data..");
+	        	  }
               }
 
 
-              if (updateCvejsonStartStep < 6) {
+              if (updateCvejsonStartStep < 5) {
 
-                config.setProperty("cvejsonupdate.process.status", "3");
-                config.setProperty("cvejsonupdate.process.message",
-                    "Starting of JSON read and parsing json content for DB insertion.");
-                config.setProperty("cvejsonupdate.process.error", "");
-                config.save();
+            	setUpdateCveStatus(config, "4");
 
                 try {
 
@@ -433,6 +416,12 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                   System.out.println(
                       "DebugInfo: CVE SQL <update.sql> created and updated successfully..."
                           + fileStatus);
+                  
+                  if(!fileStatus) {
+                	  setUpdateCveStatus(config, "4", "Failed to create scripts...");
+                	  return;
+                  }
+                                   
                   if (dbInsertDone) {
                     System.out.println(
                         "DebugInfo: CVE JSON update bulk insertion into DefenSight Database - SUCCEEDED");
@@ -442,6 +431,9 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                     if (rsScript.getStatus()) {
                       System.out.println(
                           "DebugInfo: CVE JSON update-tables.sql into DefenSight Database - SUCCEEDED");
+                    } else {
+                  	  setUpdateCveStatus(config, "4", "Failed to update tables...");
+                  	  return;
                     }
 
                     long currentTimestampVal = System.currentTimeMillis();
@@ -454,28 +446,20 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                     String dateVal = dateFormat.format(date);
 
                     config = getDefinitionsUpdateConfig();
-                    config.setProperty("cvejsonupdate.process.status", "6");
-                    config.setProperty("cvejsonupdate.process.message", "Completed");
-                    config.setProperty("cvejsonupdate.process.error", "");
                     config.setProperty("defensight.cvejson.lastupdated.timestamp", dateVal);
-                    config.save();
+                    setUpdateCveStatus(config, "5");
                     System.out.println(
                         "LogInfo: defensight.cvejson.lastupdated.timestamp ==> " + dateVal);
                     definitionUpdateForm.setCveJsonLastUpdated(dateVal);
                   } else {
                     System.out.println(
                         "DebugInfo: CVE JSON update into DefenSight Database - FAILED");
-                    config.setProperty("cvejsonupdate.process.error",
-                        "CVE JSON update into DefenSight Database - FAILED");
-                    config.setProperty("cvejsonupdate.process.message", "");
-                    config.save();
-                    config.close();
+                    
+                    setUpdateCveStatus(config, "4", "CVE JSON update into DefenSight Database - FAILED");
                   }
                 } catch (Exception ex) {
                   ex.printStackTrace();
-                  config.setProperty("cvejsonupdate.process.error", ex.getMessage());
-                  config.save();
-                  config.close();
+                  setUpdateCveStatus(config, "4", "CVE JSON update into DefenSight Database - FAILED");
                 }
 
                 setFormData(definitionUpdateForm);
@@ -483,9 +467,7 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                 System.out.println(
                     "END THREAD: RunnableJob is being run by " + thread.getName() + " ("
                         + thread.getId() + ")");
-              }
-            }
-
+              }}
 
           };
 
@@ -531,6 +513,22 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
       }
       forward = mapping.findForward("view");
     }
+    
+    private void setUpdateCveStatus(ConfigProps config, String status, String error) {
+		config.setProperty("cvejsonupdate.process.status", status);
+	    config.setProperty("cvejsonupdate.process.error", error);
+	    config.save();
+	    config.close();
+	    loadFormData(config, definitionUpdateForm);
+    }
+    
+    private void setUpdateCveStatus(ConfigProps config, String status) {
+		config.setProperty("cvejsonupdate.process.status", status);
+	    config.setProperty("cvejsonupdate.process.error", "");
+	    config.save();
+	    config.close();
+	    loadFormData(config, definitionUpdateForm);
+    }
 
     private String prepareJsonFilePath(String cveDir, String cvejsonFile) {
       String jsonFilePath = cveDir + "\\" + cvejsonFile;
@@ -569,7 +567,6 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
         int stepUpdate = isNull(config.getProperty("cvejsonupdate.process.status")) ? 0
             : Integer.valueOf(config.getProperty("cvejsonupdate.process.status"));
         defnForm.setCveJsonUpdateStep(stepUpdate);
-        defnForm.setCveJsonUpdateMsg(config.getProperty("cvejsonupdate.process.message"));
         defnForm.setCveJsonUpdateError(config.getProperty("cvejsonupdate.process.error"));
 
         boolean isThreadRunning = false;
@@ -608,8 +605,6 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
             config.setProperty("defensight.cvejson.lastupdated.timestamp", "Not Updated");
             config.setProperty("cvejsonupdate.process.status", "0");
             config.setProperty("cvejsonupdate.process.error", "");
-            config.setProperty("cvejsonupdate.process.message",
-                "Please start the CVE Definitions update process.");
             config.setProperty("vdefchannel.copy.error", "");
             if (!config.save()) {
               throw new Exception("Failed to save mitigate configurations");
