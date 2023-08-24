@@ -90,7 +90,12 @@ public class CVEDataInsertQueryRunner extends DatabaseAccess {
 
       try {
         connection = pool.getConnection();
-        truncateExistingData(connection);
+
+        if (!truncateExistingData(connection)) {
+          error("giving up on bulk insertion operation");
+          throw new SQLException();
+        }
+
         setupStatements(connection);
         connection.setAutoCommit(false);
 
@@ -119,6 +124,8 @@ public class CVEDataInsertQueryRunner extends DatabaseAccess {
           }
 
           finalizeExecution();
+        } catch (Exception exception) {
+          throw new Exception();
         }
 
         long endTime = System.currentTimeMillis();
@@ -139,7 +146,7 @@ public class CVEDataInsertQueryRunner extends DatabaseAccess {
      *
      * @param connection The database connection to be used for truncating tables.
      */
-    private void truncateExistingData(Connection connection) {
+    private boolean truncateExistingData(Connection connection) {
       try (Statement statement = connection.createStatement()) {
         String[] tablesToTruncate = {"cve_info", "cve_product_info", "cve_vendor_info"};
 
@@ -150,9 +157,10 @@ public class CVEDataInsertQueryRunner extends DatabaseAccess {
         statement.executeBatch();
 
         info("Truncated data from cve_info, cve_product_info, cve_vendor_info tables");
-
+        return true;
       } catch (SQLException e) {
         error("Error Occurred in truncateExistingData()" + e.getMessage());
+        return false;
       }
     }
 
@@ -213,7 +221,7 @@ public class CVEDataInsertQueryRunner extends DatabaseAccess {
     }
 
 
-    private void getVendorAndProductObjects(JsonNode vulnerableProductArray) {
+    private void getVendorAndProductObjects(JsonNode vulnerableProductArray) throws SQLException {
       getCveVendorInfo(vulnerableProductArray, cveVendorInfoStmt);
       getCveProductInfo(vulnerableProductArray, cveProductStmt);
     }
@@ -364,7 +372,7 @@ public class CVEDataInsertQueryRunner extends DatabaseAccess {
      * @param productStatement
      */
     public void getCveProductInfo(JsonNode vulnerableProductArray,
-        PreparedStatement productStatement) {
+        PreparedStatement productStatement) throws SQLException {
       for (JsonNode productNode : vulnerableProductArray) {
         String cpeValue = productNode.asText();
         productIndex++;
@@ -387,6 +395,7 @@ public class CVEDataInsertQueryRunner extends DatabaseAccess {
           }
         } catch (SQLException e) {
           error(e.getMessage());
+          throw new SQLException();
         }
       }
 

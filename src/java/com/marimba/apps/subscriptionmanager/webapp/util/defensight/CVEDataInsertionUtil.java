@@ -5,7 +5,18 @@ import com.marimba.apps.subscriptionmanager.webapp.util.defensight.CVEDataInsert
 
 public class CVEDataInsertionUtil {
 
-  public void insertBulkData(SubscriptionMain main, String jsonFilePath) {
-    new CVEDataInsertQueryRunner(main, jsonFilePath);
+  public boolean insertBulkData(SubscriptionMain main, String jsonFilePath) {
+    try {
+      new CVEDataInsertQueryRunner(main, jsonFilePath);
+      return true;
+    } catch (Exception exception) {
+      error(exception.getMessage());
+      return false;
+    }
   }
+
+  public void error(String message) {
+    System.err.println("ERROR : CVEDataInsertionUtil : " + message);
+  }
+
 }

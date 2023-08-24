@@ -100,6 +100,8 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
     IConfig tunerConfig = null;
     CveUpdateUtil cveupdateObj = null;
 
+    boolean isBulkInserted = false;
+
     DefinitionUpdateTask(ActionMapping mapping, ActionForm form, HttpServletRequest request,
         HttpServletResponse response) {
       super(mapping, form, request, response);
@@ -148,7 +150,6 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
               JSONObject json = new JSONObject();
               json.put("cveJsonUpdateThread", true);
               sendJSONResponse(response, json.toString());
-
               return;
             }
           }
@@ -378,43 +379,45 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                   setUpdateCveStatus(config, "2", "Failed to unzip..");
                 }
               }
-              
-              
-              if(updateCvejsonStartStep < 4) {
-            	  
-            	  setUpdateCveStatus(config, "3");
-            	  
-            	  try {
-	            	  
-	                  String cveDir = getDefinitionsUpdateConfig().getProperty(
-	                          "defensight.cvejson.storagedir.location");
-	              	
-	                  //Read the data from json file and insert it into DB
-	                  CVEDataInsertionUtil cveDataInsertionUtil = new CVEDataInsertionUtil();
-	                  cveDataInsertionUtil.insertBulkData(main, prepareJsonFilePath(cveDir, cvejsonFile));
-	        	  } catch (Exception ex) {
-	                  ex.printStackTrace();
-	                  setUpdateCveStatus(config, "3", "Failed to insert data..");
-	        	  }
-              }
 
+              if (updateCvejsonStartStep < 4) {
+                setUpdateCveStatus(config, "3");
+                try {
+
+                  String cveDir = getDefinitionsUpdateConfig().getProperty(
+                      "defensight.cvejson.storagedir.location");
+                  //Read the data from json file and insert it into DB
+                  CVEDataInsertionUtil cveDataInsertionUtil = new CVEDataInsertionUtil();
+                 isBulkInserted = cveDataInsertionUtil.insertBulkData(main,
+                     prepareJsonFilePath(cveDir, cvejsonFile));
+                  if (!isBulkInserted) {
+                    setUpdateCveStatus(config, "3", "Failed to insert data..");
+                    return;
+                  }
+                } catch (Exception ex) {
+                  ex.printStackTrace();
+                  setUpdateCveStatus(config, "3", "Failed to insert data..");
+                }
+              }
 
               if (updateCvejsonStartStep < 5) {
 
             	setUpdateCveStatus(config, "4");
-
                 try {
-
                   IApplicationContext iappContext = (IApplicationContext) main.getFeatures()
                       .getChild("context");
-
-                  // make sure with insert JSON to DB insert confirm by above code
-                  // (cve_info with child tables)
-                  boolean dbInsertDone = true;
-                  File scriptDir = new File(cveStorageDir, "sqlscripts");
+                  Path sqlScript = Paths.get(cveStorageDir + "\\sqlscripts");
+                  if (!Files.exists(sqlScript)) {
+                    try {
+                      Files.createDirectory(sqlScript);
+                    } catch (IOException e) {
+                      throw new RuntimeException(e);
+                    }
+                  }
+                    File scriptDir = new File(cveStorageDir, "sqlscripts");
                   boolean fileStatus = cveupdateObj.makeCveSchemaSqlScripts(scriptDir);
                   System.out.println(
-                      "DebugInfo: CVE SQL <update.sql> created and updated successfully..."
+                      "DebugInfo: CVE SQL <update.sql> created and updated status"
                           + fileStatus);
                   
                   if(!fileStatus) {
@@ -422,11 +425,12 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                 	  return;
                   }
                                    
-                  if (dbInsertDone) {
+                  if (isBulkInserted) {
                     System.out.println(
                         "DebugInfo: CVE JSON update bulk insertion into DefenSight Database - SUCCEEDED");
 
                     String sqlscriptsDirPath = scriptDir.getCanonicalPath() + "\\" + CVE_UPDATE_SQL;
+
                     RunSQLScript rsScript = new RunSQLScript(sqlscriptsDirPath, main);
                     if (rsScript.getStatus()) {
                       System.out.println(
@@ -454,12 +458,12 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                   } else {
                     System.out.println(
                         "DebugInfo: CVE JSON update into DefenSight Database - FAILED");
-                    
                     setUpdateCveStatus(config, "4", "CVE JSON update into DefenSight Database - FAILED");
                   }
                 } catch (Exception ex) {
                   ex.printStackTrace();
                   setUpdateCveStatus(config, "4", "CVE JSON update into DefenSight Database - FAILED");
+                  error(ex.getMessage());
                 }
 
                 setFormData(definitionUpdateForm);
@@ -672,5 +676,9 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
       out.flush();
     }
 
+  }
+
+  public void error(String message) {
+    System.err.println("ERROR : DefinitionUpdateAction : " + message);
   }
 }
