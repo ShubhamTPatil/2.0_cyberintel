@@ -18,7 +18,7 @@ import java.util.*;
 import java.text.ParseException;
 
 import com.marimba.apps.securitymgr.compliance.DashboardHandler;
-import  com.marimba.apps.subscriptionmanager.webapp.util.defensight.CVEDataInsertionUtil;
+import com.marimba.apps.subscriptionmanager.webapp.util.defensight.CVEDataInsertionUtil;
 import com.marimba.apps.securitymgr.compliance.util.*;
 import com.marimba.intf.application.*;
 import com.marimba.intf.castanet.*;
@@ -120,13 +120,11 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
       try {
 
         action = definitionUpdateForm.getAction();
-        System.out.println("DebugInfo: DefinitionUpdate - Action: " + action);
-
+        info("DefinitionUpdate - Action:" + action);
         if (isEmpty(action)) {
           initDefinitionsUpdateConfig();
           loadFormData(getDefinitionsUpdateConfig(), definitionUpdateForm);
         }
-
 
         if ("getCveUpdateStatus".equals(action)) {
           initDefinitionsUpdateConfig();
@@ -208,10 +206,9 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
             }
             try {
               csAuthStatus = cse.authenticateUser(chstoreUser, chstorePwd);
-              System.out.println("LogInfo: Channel Store Authentication Status: " + csAuthStatus);
+              info("LogInfo: Channel Store Authentication Status: " + csAuthStatus);
             } catch (Exception ex) {
-              System.out.println(
-                  "LogInfo: Error Occurred while validate CS credentials - " + ex.getMessage());
+              error("Error Occurred while validate CS credentials" + ex.getMessage());
               errArg = getString(locale,
                   "page.definitions_update.error.invalid.channelstore.creds");
               ex.printStackTrace();
@@ -223,13 +220,11 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
               errArg = getString(locale,
                   "page.definitions_update.error.invalid.channelstore.creds");
               config.setProperty("channelstore.authentication.succeeded", "false");
-              System.out.println(
-                  "LogInfo: Channel Store Authentication failed - " + "user rejected!");
+              error("Channel Store Authentication failed");
             }
             if (csAuthStatus) {
               config.setProperty("channelstore.authentication.succeeded", "true");
-              System.out.println(
-                  "LogInfo: Channel Store Authentication succeeded - " + "user validated!");
+              info("Channel Store Authentication succeeded");
             }
             config.save();
           } catch (Exception ex) {
@@ -261,17 +256,17 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
             config.setProperty("vdefchannel.lastcopied.timestamp", dateVal);
             config.setProperty("vdefchannel.copy.error", "");
 
-            System.out.println("LogInfo: vdefchannel.lastcopied.timestamp ==> " + dateVal);
-            System.out.println("LogInfo: Copy vDef channel from src=" + srcUrl + " to dst=" + dstUrl
-                + " : succeeded");
+            info("vDef channel last copied timestamp :" + dateVal);
+            info("Copy vDef channel from " + srcUrl + " to " + dstUrl + " is succeed");
 
             definitionUpdateForm.setVdefLastUpdated(dateVal);
             config.save();
             config.close();
-            System.out.println("LogInfo: vDef channel copy operation succeeded from Products Tx..");
+
+            info("vDef channel copy operation succeeded from Products Transmitter");
             definitionUpdateForm.setvDefError("");
           } else {
-            System.out.println("LogInfo: vDef channel copy operation failed from Products Tx.");
+            error("vDef channel copy operation failed from Products Transmitter");
             config.setProperty("vdefchannel.copy.error",
                 getString(locale, "page.definition_update.copy.operation.failed", errArg));
             config.save();
@@ -288,9 +283,8 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
             public void run() {
 
               Thread thread = Thread.currentThread();
-              System.out.println(
-                  "START THREAD: RunnableJob is being run by " + thread.getName() + " ("
-                      + thread.getId() + ")");
+              info("START THREAD: RunnableJob is being run by " + thread.getName() + " ("
+                  + thread.getId() + ")");
               initDefinitionsUpdateConfig();
               cveupdateObj = new CveUpdateUtil(main, getDefinitionsUpdateConfig());
 
@@ -306,13 +300,12 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                   Files.createDirectory(path);
                   setUpdateCveStatus(config, "0", true);
                 } catch (Exception e) {
-                  System.out.println(
-                      "An error occurred while creating the directory: " + e.getMessage());
+                  error("An error occurred while creating the directory:" + e.getMessage());
                   setUpdateCveStatus(config, "0", "CVE download location is invalid", true);
                   return;
                 }
               }
-              
+
               tunerConfig = (IConfig) features.getChild("tunerConfig");
               Tools.setTunerConfig(tunerConfig);
               String tunerInstallDir = tunerConfig.getProperty("marimba.tuner.install.dir");
@@ -322,10 +315,10 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                 config.setProperty("cvejsonupdate.process.thread", "" + thread.getId());
                 setUpdateCveStatus(config, "1", true);
 
-                // String actionString = "cvejson_download";
                 initDefinitionsUpdateConfig();
                 config = getDefinitionsUpdateConfig();
 
+                info("Downloading the CVE JSON Zip File.");
                 String urlStr = config.getProperty("defensight.cvejson.downloadurl");
                 urlStr = (isNull(urlStr))
                     ? "https://cve.circl.lu/static/circl-cve-search-expanded.json.gz" : urlStr;
@@ -345,9 +338,9 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                       getDefinitionsUpdateConfig());
                   boolean downloadfailed = cveupdateObj.downloadCVEJSON(urlStr, 5, cvejsonZipFile);
                   if (!downloadfailed) {
-                    System.out.println("CVE JSON Zip File Download Succeeded...");
+                    info("CVE JSON Zip File Download Succeeded");
                   } else {
-                    System.out.println("CVE JSON Zip File Download Failed..");
+                    error("CVE JSON Zip File Download Failed");
                     setUpdateCveStatus(config, "1", "CVE JSON Zip File Download Failed..", true);
                   }
                 } catch (Exception ex) {
@@ -364,15 +357,17 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                 try {
 
                   File jsonZipFile = new File(cveStorageDir, cvejsonZipFile);
-                  System.out.println(
-                      "DebugInfo: CVE JSON ZipFile Path ==> " + jsonZipFile.getCanonicalPath());
+
+                  info("Downloaded CVE JSON Zip file at " + jsonZipFile.getCanonicalPath());
                   String cveDir = getDefinitionsUpdateConfig().getProperty(
                       "defensight.cvejson.storagedir.location");
                   tunerConfig.setProperty("cvedownloader.storage.directory", cveStorageDir);
                   File unzipDst = new File(cveDir, cvejsonFile);
 
                   actionString = "cvejson_unzip";
+                  info("Unzipping the CVE JSON Zip file");
                   Tools.gunzip(jsonZipFile, unzipDst);
+                  info("File Unzipped successfully");
 
                 } catch (Exception ex) {
                   ex.printStackTrace();
@@ -386,38 +381,39 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
 
                   String cveDir = getDefinitionsUpdateConfig().getProperty(
                       "defensight.cvejson.storagedir.location");
-                  
+
                   String cvejsonFilePath = prepareJsonFilePath(cveDir, cvejsonFile);
                   File cveJsonFile = new File(cvejsonFilePath);
-                  
-                  if(!cveJsonFile.exists()) {
-                	  setUpdateCveStatus(config, "3", "Failed to insert data..", true); 
+
+                  if (!cveJsonFile.exists()) {
+                    setUpdateCveStatus(config, "3", "Failed to insert data..", true);
                   }
-                  
+
                   //Read the data from json file and insert it into DB
+                  info("Started process of Data insertion into DB.");
                   CVEDataInsertionUtil cveDataInsertionUtil = new CVEDataInsertionUtil();
-                 isBulkInserted = cveDataInsertionUtil.insertBulkData(main, cvejsonFilePath);
+                  isBulkInserted = cveDataInsertionUtil.insertBulkData(main, cvejsonFilePath);
                   if (!isBulkInserted) {
-                	  System.out.println(
-                              "DebugInfo: CVE JSON update into DefenSight Database - FAILED");
+                    error("CVE JSON update into DefenSight Database - FAILED");
                     setUpdateCveStatus(config, "3", "Failed to insert data..", false);
                     return;
                   }
-                  
+
                 } catch (Exception ex) {
-                	System.out.println(
-                            "DebugInfo: CVE JSON update into DefenSight Database - FAILED");
+                  error("CVE JSON update into DefenSight Database - FAILED,  Error Message : "
+                      + ex.getMessage());
+
                   ex.printStackTrace();
                   setUpdateCveStatus(config, "3", "Failed to insert data..", false);
                 }
-                
-                System.out.println(
-                        "DebugInfo: CVE JSON update bulk insertion into DefenSight Database - SUCCEEDED");
+                info("Data insertion into Database : SUCCEED");
               }
 
               if (updateCvejsonStartStep < 5) {
 
-            	setUpdateCveStatus(config, "4", false);
+                info("Updating the severity status");
+
+                setUpdateCveStatus(config, "4", false);
                 try {
                   IApplicationContext iappContext = (IApplicationContext) main.getFeatures()
                       .getChild("context");
@@ -429,44 +425,43 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                       throw new RuntimeException(e);
                     }
                   }
-                    File scriptDir = new File(cveStorageDir, "sqlscripts");
+                  File scriptDir = new File(cveStorageDir, "sqlscripts");
                   boolean fileStatus = cveupdateObj.makeCveSchemaSqlScripts(scriptDir);
-                  System.out.println(
-                      "DebugInfo: CVE SQL <update.sql> created and updated status"
-                          + fileStatus);
-                  
-                  if(!fileStatus) {
-                	  setUpdateCveStatus(config, "4", "Failed to create scripts...", false);
-                	  return;
+
+                  if (!fileStatus) {
+                    setUpdateCveStatus(config, "4", "Failed to create scripts...", false);
+                    return;
                   }
 
-                    String sqlscriptsDirPath = scriptDir.getCanonicalPath() + "\\" + CVE_UPDATE_SQL;
+                  String sqlscriptsDirPath = scriptDir.getCanonicalPath() + "\\" + CVE_UPDATE_SQL;
 
-                    RunSQLScript rsScript = new RunSQLScript(sqlscriptsDirPath, main);
-                    if (rsScript.getStatus()) {
-                      System.out.println(
-                          "DebugInfo: CVE JSON update-tables.sql into DefenSight Database - SUCCEEDED");
-                    } else {
-                  	  setUpdateCveStatus(config, "4", "Failed to update tables...", false);
-                  	  return;
-                    }
+                  com.marimba.apps.securitymgr.compliance.util.RunSQLScript rsScript = new com.marimba.apps.securitymgr.compliance.util.RunSQLScript(
+                      sqlscriptsDirPath, main);
+                  if (rsScript.getStatus()) {
+                    info("Severity status update : SUCCEED");
+                  } else {
+                    error("Severity status update : FAILED");
+                    setUpdateCveStatus(config, "4", "Failed to update tables...", false);
+                    return;
+                  }
 
-                    long currentTimestampVal = System.currentTimeMillis();
-                    java.util.Date date = new java.util.Date(currentTimestampVal);
-                    if (locale == null) {
-                      locale = Locale.getDefault();
-                    }
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy, HH:mm:ss z",
-                        locale);
-                    String dateVal = dateFormat.format(date);
+                  long currentTimestampVal = System.currentTimeMillis();
+                  java.util.Date date = new java.util.Date(currentTimestampVal);
+                  if (locale == null) {
+                    locale = Locale.getDefault();
+                  }
+                  SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy, HH:mm:ss z",
+                      locale);
+                  String dateVal = dateFormat.format(date);
 
-                    config = getDefinitionsUpdateConfig();
-                    config.setProperty("defensight.cvejson.lastupdated.timestamp", dateVal);
-                    setUpdateCveStatus(config, "5", true);
-                    System.out.println(
-                        "LogInfo: defensight.cvejson.lastupdated.timestamp ==> " + dateVal);
-                    definitionUpdateForm.setCveJsonLastUpdated(dateVal);
-                 
+                  config = getDefinitionsUpdateConfig();
+                  config.setProperty("defensight.cvejson.lastupdated.timestamp", dateVal);
+                  setUpdateCveStatus(config, "5", true);
+
+                  info("CVE json last updated timestamp : " + dateVal);
+
+                  definitionUpdateForm.setCveJsonLastUpdated(dateVal);
+
                 } catch (Exception ex) {
                   ex.printStackTrace();
                   setUpdateCveStatus(config, "4", "Failed to update tables...", false);
@@ -475,10 +470,10 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
 
                 setFormData(definitionUpdateForm);
                 forward = mapping.findForward("view");
-                System.out.println(
-                    "END THREAD: RunnableJob is being run by " + thread.getName() + " ("
-                        + thread.getId() + ")");
-              }}
+                info("END THREAD: RunnableJob is being run by " + thread.getName() + " ("
+                    + thread.getId() + ")");
+              }
+            }
 
           };
 
@@ -497,7 +492,7 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
             }
           }
 
-          System.out.println("Creating thread with name cveJsonUpdateThread");
+          info("Creating thread with name cveJsonUpdateThread");
           Thread cveJsonUpdateThread = new Thread(update_cvejson_runnable);
           cveJsonUpdateThread.setName("cveJsonUpdateThread");
           cveJsonUpdateThread.start();
@@ -510,12 +505,11 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
 
         } else {
 
-          System.out.println("START - fetch definitions update metadata ");
+          info("START - fetch definitions update metadata");
           DefinitionUpdateHandler definitionUpdateHandler = new DefinitionUpdateHandler(main);
           definitionUpdateResponse = definitionUpdateHandler.getMetaData();
           definitionUpdateForm.setDefinationUpdateResponse(definitionUpdateResponse);
-          System.out.println(
-              "END - fetch definitions update metadata " + definitionUpdateResponse.toString());
+          info("END - fetch definitions update metadata " + definitionUpdateResponse.toString());
           forward = mapping.findForward("view");
         }
 
@@ -524,29 +518,31 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
       }
       forward = mapping.findForward("view");
     }
-    
-    private void setUpdateCveStatus(ConfigProps config, String status, String error, boolean forceUpdate) {
-		config.setProperty("cvejsonupdate.process.status", status);
-	    config.setProperty("cvejsonupdate.process.error", error);
-	    config.setProperty("cvejsonupdate.forceCveUpdate", String.valueOf(forceUpdate));
-	    config.save();
-	    config.close();
-	    loadFormData(config, definitionUpdateForm);
+
+    private void setUpdateCveStatus(ConfigProps config, String status, String error,
+        boolean forceUpdate) {
+      config.setProperty("cvejsonupdate.process.status", status);
+      config.setProperty("cvejsonupdate.process.error", error);
+      config.setProperty("cvejsonupdate.forceCveUpdate", String.valueOf(forceUpdate));
+      config.save();
+      config.close();
+      loadFormData(config, definitionUpdateForm);
     }
-    
+
     private void setUpdateCveStatus(ConfigProps config, String status, boolean forceUpdate) {
-		config.setProperty("cvejsonupdate.process.status", status);
-	    config.setProperty("cvejsonupdate.process.error", "");
-	    config.setProperty("cvejsonupdate.forceCveUpdate", String.valueOf(forceUpdate));
-	    config.save();
-	    config.close();
-	    loadFormData(config, definitionUpdateForm);
+      config.setProperty("cvejsonupdate.process.status", status);
+      config.setProperty("cvejsonupdate.process.error", "");
+      config.setProperty("cvejsonupdate.forceCveUpdate", String.valueOf(forceUpdate));
+      config.save();
+      config.close();
+      loadFormData(config, definitionUpdateForm);
     }
 
     private String prepareJsonFilePath(String cveDir, String cvejsonFile) {
       String jsonFilePath = cveDir + "\\" + cvejsonFile;
       return jsonFilePath;
     }
+
     private ConfigProps getDefinitionsUpdateConfig() {
       return config;
     }
@@ -591,7 +587,8 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
           }
         }
         defnForm.setCveJsonUpdateThreadRunning(isThreadRunning);
-        defnForm.setForceUpdate(Boolean.parseBoolean(config.getProperty("cvejsonupdate.forceCveUpdate")));
+        defnForm.setForceUpdate(
+            Boolean.parseBoolean(config.getProperty("cvejsonupdate.forceCveUpdate")));
       }
     }
 
@@ -657,21 +654,7 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
       if ("update_vdef".equals(action)) {
         return resources.getMessage(locale,
             "page.definitions_update.vdef_copy_operation.waitForCompletion.PleaseWait");
-      } /*
-       * else if ("cvejson_download".equals(actionString)) { return
-       * resources.getMessage(locale,
-       * "page.definitions_update.cvejson_download_operation.waitForCompletion.PleaseWait"
-       * ); } else if ("cvejson_unzip".equals(actionString)) { return
-       * resources.getMessage(locale,
-       * "page.definitions_update.cvejson_unzip_operation.waitForCompletion.PleaseWait"
-       * ); } else if ("cvejson_csvgenerate".equals(actionString)) { return
-       * resources.getMessage(locale,
-       * "page.definitions_update.cvejson_csvupdate_operation.waitForCompletion.PleaseWait"
-       * ); } else if ("csvdata_sqldbupdate".equals(actionString)) { return
-       * resources.getMessage(locale,
-       * "page.definitions_update.cvejsoncsv_into_dbupdate_operation.waitForCompletion.PleaseWait"
-       * ); }
-       */
+      }
       return resources.getMessage(locale, "page.waitForCompletion.PleaseWait");
     }
 
@@ -691,5 +674,9 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
 
   public void error(String message) {
     System.err.println("ERROR : DefinitionUpdateAction : " + message);
+  }
+
+  public void info(String message) {
+    System.out.println("INFO : DefinitionUpdateAction : " + message);
   }
 }

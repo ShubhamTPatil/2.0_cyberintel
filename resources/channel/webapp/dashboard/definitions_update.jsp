@@ -55,9 +55,6 @@
 			
 			if(isForceUpdate === 'true') {
 				cveUpdateNow("force");
-				$('#alertMessage').html('Starting download...');
-				alertModal.show();
-				setTimeout(function() {alertModal.hide();}, 2000);
 			} else {
 				cveUpdateNow("regular");
 			}

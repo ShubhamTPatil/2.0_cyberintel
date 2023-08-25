@@ -201,16 +201,6 @@ public class CveUpdateUtil  implements  ICveUpdateConstants{
     public boolean makeCveSchemaSqlScripts(File scriptFilesDir) {
         boolean fileStatus = true;
         try {
-            /*
-            File createScriptFile = new File(scriptFilesDir, CVE_CREATE_SQL);
-            FileOutputStream fout = new FileOutputStream(createScriptFile);
-            String scriptContent = CREATE_TABLE_SQL;
-            byte[] bytesArray = scriptContent.getBytes();
-            fout.write(bytesArray);
-            fout.flush();
-            fout.close();
-            System.out.println(CVE_CREATE_SQL + " - File written successfully... ");
-            */
             File updateScriptFile = new File(scriptFilesDir, CVE_UPDATE_SQL);
             FileOutputStream fout = new FileOutputStream(updateScriptFile);
             String scriptContent = UPDATE_TABLE_SQL;
