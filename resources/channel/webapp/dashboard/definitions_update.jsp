@@ -51,11 +51,16 @@
 			} else {				
 				cveUpdateNow("regular");
 			} */
-			cveUpdateNow("regular");
-		});
-		
-		$('#cveForceUpdate').click(function() {
-			cveUpdateNow("force");
+			let isForceUpdate = '<bean:write name="definitionUpdateForm" property="forceUpdate" filter="false" />';
+			
+			if(isForceUpdate === 'true') {
+				cveUpdateNow("force");
+				$('#alertMessage').html('Starting download...');
+				alertModal.show();
+				setTimeout(function() {alertModal.hide();}, 2000);
+			} else {
+				cveUpdateNow("regular");
+			}
 		});
 
 		//Adding green/red color to Last Updated On time for CVE Update
@@ -88,21 +93,15 @@
 		
 		if(isThreadRunning) {
 			$('#cveUpdateNow').prop('disabled', true);
-			$('#cveForceUpdate').prop('disabled', true);
 			$('#defUpdateProgress').addClass('progress-bar-animated');
 			asyncCall();
 		} else {
-			if(step == 0) {
-				$('#cveUpdateNow').prop('disabled', true);
-				$('#cveForceUpdate').val('Update Now');
-			} else if(step == 5) {
-				$('#cveUpdateNow').prop('disabled', true);
-				$('#cveForceUpdate').val('Start Over');
-			} else {
 				$('#cveUpdateNow').prop('disabled', false);
-	  		$('#cveForceUpdate').val('Start Over');
-	  		if(error == "") { $('#cveUpdateError').html("Stopped..") }
-			}
+				
+				if(step != 0) {
+					if(error == "") { $('#cveUpdateError').html("Stopped..") }
+				}
+			
 			$('#defUpdateProgress').removeClass('progress-bar-animated');
 		}
 		
@@ -115,9 +114,6 @@
 	
 	
 	function checkAfter10Seconds(timeout) {
-		
-		console.log("timeout = "+timeout);
-		console.log(new Date());
 		
 			  return new Promise(resolve => {
 		    setTimeout(() => {
@@ -151,10 +147,8 @@
   			
   			if(typeof result != "undefined" && typeof result.status != "undefined" && result.status != null) {
   				updateProgressBar(result.status);
-  				if(result.status == 6) {
-  					console.log("Completed");
+  				if(result.status == 5) {
   					$('#cveUpdateNow').prop('disabled', false);
-  					$('#cveForceUpdate').prop('disabled', false);
   					$('#defUpdateProgress').removeClass('progress-bar-animated');
   					break;
   				}
@@ -175,7 +169,6 @@
     		if(typeof result != "undefined" && typeof result.error != "undefined" && result.error != null && result.error.trim() != "") {
   				$('#cveUpdateError').html(result.error);
   				$('#cveUpdateNow').prop('disabled', false);
-  				$('#cveForceUpdate').prop('disabled', false);
   				$('#defUpdateProgress').removeClass('progress-bar-animated');
     			break;
     		} else {
@@ -194,7 +187,6 @@
 					&& cveStorageDir.trim() != "") {
 				
 				$('#cveUpdateNow').prop('disabled', true);
-				$('#cveForceUpdate').prop('disabled', true);
 				$('#defUpdateProgress').addClass('progress-bar-animated');
 				
 				var wizardStep = 0;
@@ -262,6 +254,7 @@
 			
 			switch (step) {
 			case 0:
+			    $('#cveUpdateError').text("");
 				$('#progressParent').hide();
 				break;
 			case 1:
@@ -396,8 +389,8 @@
 
                 <div class="row">
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <input type="button" id="cveForceUpdate" class="btn btn-sm btn-primary" value="Start Over">
-                    <input type="button" id="cveUpdateNow" class="btn btn-sm btn-outline-primary" value="Restart from Failed Point">
+                    <!-- <input type="button" id="cveForceUpdate" class="btn btn-sm btn-primary" value="Start Over"> -->
+                    <input type="button" id="cveUpdateNow" class="btn btn-sm btn-primary" value="UPDATE NOW">
                   </div>
                 </div>
                 

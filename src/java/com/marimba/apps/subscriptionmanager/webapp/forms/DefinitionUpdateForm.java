@@ -35,8 +35,17 @@ public class DefinitionUpdateForm extends AbstractForm {
     private String cveJsonUpdateMsg;
     private String cveJsonUpdateError;
     private String vDefError;
+    private boolean forceUpdate;
 
-    public String getAction() {
+    public boolean isForceUpdate() {
+		return forceUpdate;
+	}
+
+	public void setForceUpdate(boolean forceUpdate) {
+		this.forceUpdate = forceUpdate;
+	}
+
+	public String getAction() {
         return action;
     }
 

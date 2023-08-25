@@ -304,11 +304,11 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
               if (!Files.exists(path)) {
                 try {
                   Files.createDirectory(path);
-                  setUpdateCveStatus(config, "0");
+                  setUpdateCveStatus(config, "0", true);
                 } catch (Exception e) {
                   System.out.println(
                       "An error occurred while creating the directory: " + e.getMessage());
-                  setUpdateCveStatus(config, "0", "CVE download location is invalid");
+                  setUpdateCveStatus(config, "0", "CVE download location is invalid", true);
                   return;
                 }
               }
@@ -320,7 +320,7 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
               if (updateCvejsonStartStep < 2) {
 
                 config.setProperty("cvejsonupdate.process.thread", "" + thread.getId());
-                setUpdateCveStatus(config, "1");
+                setUpdateCveStatus(config, "1", true);
 
                 // String actionString = "cvejson_download";
                 initDefinitionsUpdateConfig();
@@ -348,18 +348,18 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                     System.out.println("CVE JSON Zip File Download Succeeded...");
                   } else {
                     System.out.println("CVE JSON Zip File Download Failed..");
-                    setUpdateCveStatus(config, "1", "CVE JSON Zip File Download Failed..");
+                    setUpdateCveStatus(config, "1", "CVE JSON Zip File Download Failed..", true);
                   }
                 } catch (Exception ex) {
                   ex.printStackTrace();
-                  setUpdateCveStatus(config, "1", "CVE JSON Zip File Download Failed..");
+                  setUpdateCveStatus(config, "1", "CVE JSON Zip File Download Failed..", true);
                 }
 
               }
 
               if (updateCvejsonStartStep < 3) {
 
-                setUpdateCveStatus(config, "2");
+                setUpdateCveStatus(config, "2", true);
 
                 try {
 
@@ -376,33 +376,48 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
 
                 } catch (Exception ex) {
                   ex.printStackTrace();
-                  setUpdateCveStatus(config, "2", "Failed to unzip..");
+                  setUpdateCveStatus(config, "2", "Failed to unzip..", true);
                 }
               }
 
               if (updateCvejsonStartStep < 4) {
-                setUpdateCveStatus(config, "3");
+                setUpdateCveStatus(config, "3", true);
                 try {
 
                   String cveDir = getDefinitionsUpdateConfig().getProperty(
                       "defensight.cvejson.storagedir.location");
+                  
+                  String cvejsonFilePath = prepareJsonFilePath(cveDir, cvejsonFile);
+                  File cveJsonFile = new File(cvejsonFilePath);
+                  
+                  if(!cveJsonFile.exists()) {
+                	  setUpdateCveStatus(config, "3", "Failed to insert data..", true); 
+                  }
+                  
                   //Read the data from json file and insert it into DB
                   CVEDataInsertionUtil cveDataInsertionUtil = new CVEDataInsertionUtil();
-                 isBulkInserted = cveDataInsertionUtil.insertBulkData(main,
-                     prepareJsonFilePath(cveDir, cvejsonFile));
+                 isBulkInserted = cveDataInsertionUtil.insertBulkData(main, cvejsonFilePath);
                   if (!isBulkInserted) {
-                    setUpdateCveStatus(config, "3", "Failed to insert data..");
+                	  System.out.println(
+                              "DebugInfo: CVE JSON update into DefenSight Database - FAILED");
+                    setUpdateCveStatus(config, "3", "Failed to insert data..", false);
                     return;
                   }
+                  
                 } catch (Exception ex) {
+                	System.out.println(
+                            "DebugInfo: CVE JSON update into DefenSight Database - FAILED");
                   ex.printStackTrace();
-                  setUpdateCveStatus(config, "3", "Failed to insert data..");
+                  setUpdateCveStatus(config, "3", "Failed to insert data..", false);
                 }
+                
+                System.out.println(
+                        "DebugInfo: CVE JSON update bulk insertion into DefenSight Database - SUCCEEDED");
               }
 
               if (updateCvejsonStartStep < 5) {
 
-            	setUpdateCveStatus(config, "4");
+            	setUpdateCveStatus(config, "4", false);
                 try {
                   IApplicationContext iappContext = (IApplicationContext) main.getFeatures()
                       .getChild("context");
@@ -421,13 +436,9 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                           + fileStatus);
                   
                   if(!fileStatus) {
-                	  setUpdateCveStatus(config, "4", "Failed to create scripts...");
+                	  setUpdateCveStatus(config, "4", "Failed to create scripts...", false);
                 	  return;
                   }
-                                   
-                  if (isBulkInserted) {
-                    System.out.println(
-                        "DebugInfo: CVE JSON update bulk insertion into DefenSight Database - SUCCEEDED");
 
                     String sqlscriptsDirPath = scriptDir.getCanonicalPath() + "\\" + CVE_UPDATE_SQL;
 
@@ -436,7 +447,7 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                       System.out.println(
                           "DebugInfo: CVE JSON update-tables.sql into DefenSight Database - SUCCEEDED");
                     } else {
-                  	  setUpdateCveStatus(config, "4", "Failed to update tables...");
+                  	  setUpdateCveStatus(config, "4", "Failed to update tables...", false);
                   	  return;
                     }
 
@@ -451,18 +462,14 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
 
                     config = getDefinitionsUpdateConfig();
                     config.setProperty("defensight.cvejson.lastupdated.timestamp", dateVal);
-                    setUpdateCveStatus(config, "5");
+                    setUpdateCveStatus(config, "5", true);
                     System.out.println(
                         "LogInfo: defensight.cvejson.lastupdated.timestamp ==> " + dateVal);
                     definitionUpdateForm.setCveJsonLastUpdated(dateVal);
-                  } else {
-                    System.out.println(
-                        "DebugInfo: CVE JSON update into DefenSight Database - FAILED");
-                    setUpdateCveStatus(config, "4", "CVE JSON update into DefenSight Database - FAILED");
-                  }
+                 
                 } catch (Exception ex) {
                   ex.printStackTrace();
-                  setUpdateCveStatus(config, "4", "CVE JSON update into DefenSight Database - FAILED");
+                  setUpdateCveStatus(config, "4", "Failed to update tables...", false);
                   error(ex.getMessage());
                 }
 
@@ -518,17 +525,19 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
       forward = mapping.findForward("view");
     }
     
-    private void setUpdateCveStatus(ConfigProps config, String status, String error) {
+    private void setUpdateCveStatus(ConfigProps config, String status, String error, boolean forceUpdate) {
 		config.setProperty("cvejsonupdate.process.status", status);
 	    config.setProperty("cvejsonupdate.process.error", error);
+	    config.setProperty("cvejsonupdate.forceCveUpdate", String.valueOf(forceUpdate));
 	    config.save();
 	    config.close();
 	    loadFormData(config, definitionUpdateForm);
     }
     
-    private void setUpdateCveStatus(ConfigProps config, String status) {
+    private void setUpdateCveStatus(ConfigProps config, String status, boolean forceUpdate) {
 		config.setProperty("cvejsonupdate.process.status", status);
 	    config.setProperty("cvejsonupdate.process.error", "");
+	    config.setProperty("cvejsonupdate.forceCveUpdate", String.valueOf(forceUpdate));
 	    config.save();
 	    config.close();
 	    loadFormData(config, definitionUpdateForm);
@@ -582,6 +591,7 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
           }
         }
         defnForm.setCveJsonUpdateThreadRunning(isThreadRunning);
+        defnForm.setForceUpdate(Boolean.parseBoolean(config.getProperty("cvejsonupdate.forceCveUpdate")));
       }
     }
 
@@ -610,6 +620,7 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
             config.setProperty("cvejsonupdate.process.status", "0");
             config.setProperty("cvejsonupdate.process.error", "");
             config.setProperty("vdefchannel.copy.error", "");
+            config.setProperty("cvejsonupdate.forceCveUpdate", String.valueOf(true));
             if (!config.save()) {
               throw new Exception("Failed to save mitigate configurations");
             }
