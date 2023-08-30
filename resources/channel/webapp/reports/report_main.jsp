@@ -144,8 +144,8 @@
                     <div id="FOO_endOfGroupList">&nbsp;</div>
                 </td>
                 <td valign="top" style="padding-left:25px;" align="left">
-                    <div id="FOO_dataDiv" style="height:100px; border:0; margin:0; padding:0; display:block;">
-                        <iframe name="mainFrame" src="<webapps:fullPath path="/reports.do?action=selected_query" />" width="100%" height="100%" frameborder="0" hspace="0" marginheight="0" marginwidth="0" style="padding:0px; margin:0px; border:0px;"></iframe>
+                    <div id="FOO_dataDiv" style="height:100px; border:0; margin:0; padding:0; display:block; overflow:auto;">
+                        <iframe name="mainFrame" src="<webapps:fullPath path="/reports.do?action=selected_query" />" width="110%" height="100%" frameborder="0" hspace="0" marginheight="0" marginwidth="0" style="padding:0px; margin:0px; border:0px;"></iframe>
                     </div>
                     <div id="FOO_endOfData">&nbsp;</div>
                 </td>
