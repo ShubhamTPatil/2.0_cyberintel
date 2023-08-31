@@ -357,6 +357,14 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
                 debug(INFO, "insertScanDetails(), lastInsertedScanRecordId - " + lastInsertedScanRecordId);
                 debug(INFO, "insertScanDetails(), existingComplianceEntryId - " + existingComplianceEntryId);
 
+                // pre-check if content id present or not before insert
+                if (!isContentNameExists(scanType, contentId)) {
+                    debug(INFO, "Security content entry is missing in Database");
+                    error = "Security content missing in Database";
+                    inserted = false;
+                    return false;
+                }
+                
                 pool = getPool();
                 if (pool != null) {
                     debug(DETAILED_INFO, "insertScanDetails(), call procedure with, machineName - " + machineName);
@@ -747,6 +755,46 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
         debug(INFO, "getMachineId(), retVal - " + retVal);
 
         return retVal;
+    }
+
+    // To check security content existing or not from security content tables
+    public  boolean isContentNameExists(String scanType, String contentName) throws SQLException {
+        String sqlStr = "select id from security_" + scanType + "_content \n" +
+                "where content_name = '" + contentName + "'";
+        int contentId = -1;
+        boolean isExists = false;
+        IStatementPool pool = null;
+        try {
+            pool = getPool();
+            if (pool != null) {
+                PreparedStatement stmt = pool.getConnection().prepareStatement(sqlStr);
+                ResultSet rs = stmt.executeQuery();
+                try {
+                    if (rs.next()) {
+                        contentId = rs.getInt(1);
+                        isExists = true;
+                    }
+                } finally {
+                    rs.close();
+                    stmt.close();
+                }
+            }
+        } catch (SQLException e) {
+            if (ERROR) {
+                e.printStackTrace();
+            }
+            contentId = -1;
+        } finally {
+            closePool(pool);
+        }
+        if (contentId != -1) {
+            isExists = true;
+        } else {
+            isExists = false;
+        }
+
+        debug(INFO, "isContentNameExists(): ID: " + contentId + "," +contentName);
+        return isExists;
     }
 
     // To get content id from security compliance data
