@@ -70,18 +70,29 @@ public interface ICveUpdateConstants {
 
 
     public String UPDATE_TABLE_SQL = "insert into security_cve_info \n" +
-            "(type,cve_name,seq,published_date,modified_date,severity, \n" +
-            "cvss_score,cvss_base_score,cvss_impact_score,cvss_exploit_score,cvss_vector,nvd_xml_schema,cvss_version) \n" +
-            "select 'CVE', name, '90',published ,modified, severity,cvss,cvss , '-1','-1' ,'NA' ,'2.0','2.0' \n" +
-            "from cve_info tp with (nolock) \n" +
-            "where not exists (select 1 from security_cve_info ts with (nolock) where tp.cve_id = ts.cve_name); \n" +
-            "\n" +
-            "update security_cve_info set severity='None' where cvss_score is not null and cvss_score = 0; \n" +
-            "update security_cve_info set severity='Low' where cvss_score is not null and ((cvss_score  >= 0.1 and cvss_score <=3.9) or cvss_score=-1); \n" +
-            "update security_cve_info set severity='Medium' where cvss_score is not null and cvss_score >= 4.0 and cvss_score <=6.9; \n" +
-            "update security_cve_info set severity='High' where cvss_score is not null and cvss_score >= 7.0 and cvss_score <=8.9; \n" +
-            "update security_cve_info set severity='Critical' where cvss_score is not null and cvss_score >= 9.0 and cvss_score <=10.0;";
-
+        "(type,cve_name,seq,published_date,modified_date,severity, \n" +
+        "cvss_score,cvss_base_score,cvss_impact_score,cvss_exploit_score,cvss_vector,nvd_xml_schema,cvss_version) \n"
+        +
+        "select 'CVE', name, '90',published ,modified, severity,cvss,cvss , '-1','-1' ,'NA' ,'2.0','2.0' \n"
+        +
+        "from cve_info tp with (nolock) \n" +
+        "where not exists (select 1 from security_cve_info ts with (nolock) where tp.cve_id = ts.cve_name); \n"
+        +
+        "\n" +
+        "update security_cve_info set severity='None' where cvss_score is not null and cvss_score = 0; \n"
+        +
+        "update security_cve_info set severity='Low' where cvss_score is not null and ((cvss_score  >= 0.1 and cvss_score <=3.9) or cvss_score=-1); \n"
+        +
+        "update security_cve_info set severity='Medium' where cvss_score is not null and cvss_score >= 4.0 and cvss_score <=6.9; \n"
+        +
+        "update security_cve_info set severity='High' where cvss_score is not null and cvss_score >= 7.0 and cvss_score <=8.9; \n"
+        +
+        "update security_cve_info set severity='Critical' where cvss_score is not null and cvss_score >= 9.0 and cvss_score <=10.0;"
+        + "INSERT INTO security_cve_patch_info (cve_name, repository_id) " +
+        "SELECT DISTINCT sci.cve_name, ap.repository_id " +
+        "FROM security_cve_info sci WITH (NOLOCK) " +
+        "JOIN all_patch ap WITH (NOLOCK) " +
+        "ON sci.cve_name = ap.[cve id];";
 }
 
 
