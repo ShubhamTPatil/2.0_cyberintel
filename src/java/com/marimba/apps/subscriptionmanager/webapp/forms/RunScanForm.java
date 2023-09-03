@@ -6,6 +6,7 @@
 
 package com.marimba.apps.subscriptionmanager.webapp.forms;
 
+import java.util.Map;
 import org.apache.struts.action.ActionForm;
 
 /**
@@ -20,6 +21,27 @@ public class RunScanForm extends ActionForm {
 	private String action = null;
 	private String responseMsg;
 	private String endDevicesArr;
+
+	private Map<String,String> machineScanResultMap;
+
+	private String scanRespStatusThreadRunning;
+
+	public String getScanRespStatusThreadRunning() {
+		return scanRespStatusThreadRunning;
+	}
+
+	public void setScanRespStatusThreadRunning(String scanRespStatusThreadRunning) {
+		this.scanRespStatusThreadRunning = scanRespStatusThreadRunning;
+	}
+
+	public Map<String, String> getMachineScanResultMap() {
+		return machineScanResultMap;
+	}
+
+	public void setMachineScanResultMap(
+			Map<String, String> machineScanResultMap) {
+		this.machineScanResultMap = machineScanResultMap;
+	}
 
 	public String getRunScanJson() {
 		return runScanJson;
@@ -52,4 +74,7 @@ public class RunScanForm extends ActionForm {
 	public void setEndDevicesArr(String endDevicesArr) {
 		this.endDevicesArr = endDevicesArr;
 	}
+
+
+
 }

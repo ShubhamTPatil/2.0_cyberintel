@@ -22,6 +22,8 @@ import java.util.*;
 
 import com.marimba.webapps.intf.IMapProperty;
 import com.marimba.apps.subscriptionmanager.webapp.util.RunScanHandler;
+import com.google.gson.*;
+import com.marimba.apps.subscriptionmanager.webapp.util.*;
 
 /**
  * RunScanAction w.r.t handle run security scan via infra admin module
@@ -51,7 +53,7 @@ public class RunScanAction extends AbstractAction
         String actionString;
 
         RunScanTask(ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                             HttpServletResponse response) {
+                    HttpServletResponse response) {
             super(mapping, form, request, response);
             this.runScanForm = (RunScanForm) form;
             this.request = request;
@@ -70,14 +72,104 @@ public class RunScanAction extends AbstractAction
                 init(request);
                 action = runScanForm.getAction();
 
-                System.out.println("RUNSCAN: action: " + action);
-                System.out.println("RUNSCAN: action string: " + actionString);
+                String actionString = (request.getQueryString() != null) ? request.getParameter("actionString") : null;
+
+                if(actionString != null && actionString.equalsIgnoreCase("scanResponse")){
+                    action = actionString;
+                    Map<String,String> machineScanResultMap = (Map<String,String>) tenant.getManager("security.scan.machineScanResultMap");
+                    System.out.println("In Scan Reposne section machineScanResultMap is ::"+machineScanResultMap);
+                    if(machineScanResultMap!=null){
+                        RunScanHandler dashboardHandler = new RunScanHandler(main);
+                        Gson g = new Gson();
+                        com.marimba.apps.subscriptionmanager.webapp.util.ScanResultResponse scanResultResponse = g.fromJson(dashboardHandler.getRunScanData(), ScanResultResponse.class);
+
+                        if(scanResultResponse != null){
+                            com.marimba.apps.subscriptionmanager.webapp.util.Data data = scanResultResponse.getData();
+                            Set<com.marimba.apps.subscriptionmanager.webapp.util.Machine> machineSet = data.getMachineList();
+
+                            for(Machine machine : machineSet){
+                                if(machineScanResultMap.containsKey(machine.getMachineName())){
+                                    machine.setScanStatus(machineScanResultMap.get(machine.getMachineName()));
+                                }
+                            }
+
+                            Gson gson = new Gson();
+                            String updatedRunScanJsonResponse = gson.toJson(scanResultResponse);
+                            runScanForm.setRunScanJson(updatedRunScanJsonResponse);
+
+                            runScanForm.setMachineScanResultMap(machineScanResultMap);
+
+                            Map<String,String> selectedMachineMap = (Map<String,String>) tenant.getManager("security.scan.selectedMachineMap");
+                            System.out.println("In Scan Reposne section selected machineMap is ::"+selectedMachineMap);
+                            List<String> selectedList = new ArrayList<String>();
+                            if(selectedMachineMap !=null && selectedMachineMap.size() > 0 ){
+                                for (Map.Entry<String,String> entry : selectedMachineMap.entrySet()) {
+                                    selectedList.add(entry.getKey());
+                                }
+                                runScanForm.setResponseMsg(selectedList.toString());
+                            }
+                            Map<String,String> map = new LinkedHashMap<String,String>();
+                            tenant.setManager("security.scan.selectedMachineMap", map);
+
+                        }
+                        forward = mapping.findForward("success");
+                        return;
+                    }
+                }
 
                 if (isNull(action)) {
                     RunScanHandler dashboardHandler = new RunScanHandler(main);
-                    runScanForm.setRunScanJson(dashboardHandler.getRunScanData());
-                    forward = mapping.findForward("success");
+
+                    Gson g = new Gson();
+                    com.marimba.apps.subscriptionmanager.webapp.util.ScanResultResponse scanResultResponse = g.fromJson(dashboardHandler.getRunScanData(), ScanResultResponse.class);
+
+                    if(scanResultResponse != null) {
+                        com.marimba.apps.subscriptionmanager.webapp.util.Data data = scanResultResponse.getData();
+                        Set<com.marimba.apps.subscriptionmanager.webapp.util.Machine> machineSet = data.getMachineList();
+
+                        List<String> machineNameList = new ArrayList<String>();
+                        for(Machine machine : machineSet){
+                            machineNameList.add(machine.getMachineName());
+                        }
+                        tenant.setManager("security.scan.machineslist", machineNameList);
+
+                        Gson gson = new Gson();
+                        String updatedRunScanJsonResponse = gson.toJson(scanResultResponse);
+                        runScanForm.setRunScanJson(updatedRunScanJsonResponse);
+                    }
+
+                    //forward = mapping.findForward("success");
+                    forward = mapping.findForward("scanStatus");
+                    return;
                 }
+
+
+                if("getAllScanStatus".equals(action)){
+
+                    RunScanHandler runScanHandler = new RunScanHandler(main);
+                    runScanForm.setRunScanJson(runScanHandler.getRunScanData());
+                    if (null != runScanForm && null != runScanForm.getEndDevicesArr() && !runScanForm.getEndDevicesArr().isEmpty()) {
+                        String[] ipPortArr = runScanForm.getEndDevicesArr().split(",");
+                        List<String> endDeviceList = new ArrayList<String>();
+                        Collections.addAll(endDeviceList, ipPortArr);
+                        System.out.println("All machines checking for run security scan status: " + endDeviceList);
+                        if (endDeviceList.size() > 0) {
+                            tenant.setManager("security.scan.machineslist", endDeviceList);
+                            /// MIM Code base
+                            forward = mapping.findForward("getScanStatus");
+                            return;
+                        } else {
+                            responseMsg = "No end point machines for security scan";
+                        }
+                    } else {
+                        System.out.println("Not selected any machines for run security scan");
+                    }
+
+
+
+                }
+
+
 
                 if ("runscan_machines".equals(action)) {
                     RunScanHandler runScanHandler = new RunScanHandler(main);
@@ -88,9 +180,10 @@ public class RunScanAction extends AbstractAction
                         Collections.addAll(endDeviceList, ipPortArr);
                         System.out.println("Selected machines for run security scan: " + endDeviceList);
                         if (endDeviceList.size() > 0) {
-                          tenant.setManager("security.scan.machineslist", endDeviceList);
-                          forward = mapping.findForward("runscan");
-                          return;
+                            tenant.setManager("security.scan.selectedMachineslist", endDeviceList);
+                            /// MIM Code base
+                            forward = mapping.findForward("runscan");
+                            return;
                         } else {
                             responseMsg = "No end point machines for security scan";
                         }
@@ -99,6 +192,9 @@ public class RunScanAction extends AbstractAction
                     }
 
                 }
+
+
+
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -113,7 +209,7 @@ public class RunScanAction extends AbstractAction
                         "page.run_scan.machines_list_operation.waitForCompletion.PleaseWait");
             } else if ("runscan_machines".equals(action)) {
                 return resources.getMessage(locale,
-                       "page.run_scan.runscan_operation.waitForCompletion.PleaseWait");
+                        "page.run_scan.runscan_operation.waitForCompletion.PleaseWait");
             }
             return resources.getMessage(locale, "page.waitForCompletion.PleaseWait");
         }

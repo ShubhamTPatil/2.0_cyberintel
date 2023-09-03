@@ -6,7 +6,17 @@ public class Machine {
 
 	private String machineLastScan;
 
-	public String getMachineName() {
+  private String scanStatus;
+
+  public String getScanStatus() {
+    return scanStatus;
+  }
+
+  public void setScanStatus(String scanStatus) {
+    this.scanStatus = scanStatus;
+  }
+
+  public String getMachineName() {
 		return machineName;
 	}
 
@@ -24,7 +34,7 @@ public class Machine {
 
 	@Override
 	public String toString() {
-		return "Machine [machineName=" + machineName + ", machineLastScan=" + machineLastScan + "]";
+		return "Machine [machineName=" + machineName + ", machineLastScan=" + machineLastScan + ", scanStatus="+scanStatus+"]";
 	}
 
 	@Override
