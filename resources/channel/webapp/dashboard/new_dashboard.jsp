@@ -390,7 +390,7 @@ $(function () {
     prtyPatchesData = prtyPatchesData.replace(/&quot;/g,'"');
     prtyPatchesData=JSON.parse(prtyPatchesData);
 
-   $('#criticalPatchesTable').DataTable({
+   let criPatchesDataTable = $('#criticalPatchesTable').DataTable({
        "destroy": true, // In order to reinitialize the datatable
        "pagination": true, // For Pagination
        "bPaginate": true,
@@ -463,6 +463,38 @@ $(function () {
            }
        }
      });
+
+     /*
+         START Filter for critical patched table
+      */
+      var criStatusIndex = 0;
+      $("#criticalPatchesTable th").each(function (i) {
+        if ($($(this)).html() == "Status") {
+           criStatusIndex = i; return false;
+        }
+      });
+
+      //Use the built in datatables API to filter the existing rows by the Category column
+      $.fn.dataTable.ext.search.push(
+        function (settings, data, dataIndex) {
+          var selectedItem = $('#critPatchFilter').val()
+          var status = data[criStatusIndex];
+          if (selectedItem === "" || status.includes(selectedItem)) {
+            return true;
+          }
+          return false;
+        }
+      );
+
+      //Set the change event for the Status Filter dropdown to redraw the datatable each time
+      //a user selects a new filter.
+      $("#critPatchFilter").change(function (e) {
+         criPatchesDataTable.draw();
+      });
+
+      /*
+         END Filter for critical patched table
+      */
    
    var reportingNotCheckedIn = <bean:write name="newDashboardForm" property="reportingNotCheckedIn"/>;
    var reportingCheckedIn = <bean:write name="newDashboardForm" property="reportingCheckedIn"/>;
