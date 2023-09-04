@@ -14,6 +14,8 @@
     </a></li>
     <li class="nav-item"><a class="nav-link" id="settings" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/dashboard/settings.jsp" title="Settings"> <img src="/spm/images/ant-design_setting-outlined.png" style="height:18px;width:18px">
     </a></li>
+    <li class="nav-item"><a class="nav-link" id="anomalyDetection" data-bs-toggle="tooltip" data-bs-placement="right" href="/spm/dashboard/AnomalyDetection.jsp" title="Anomaly Detection"> <i class="fa-solid fa-recycle" style="color:black;"></i>
+    </a></li>
   </ul>
 </aside>
 </html>
