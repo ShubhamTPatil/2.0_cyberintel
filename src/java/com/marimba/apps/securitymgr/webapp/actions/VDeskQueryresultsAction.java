@@ -168,7 +168,7 @@ public class VDeskQueryresultsAction extends DelayedAction {
                 debug("Column count: " + columnCount);
                 MessageResources messageResource = main.getAppResources();
 
-                int ruleComplianceColumnIndex = -1;
+                int ruleComplianceColumnIndex = -1;               
                 for (int i = 1; i <= columnCount; i++ ) {
                     String columnName = rsmd.getColumnName(i);
                     columnName = (columnName == null || "".equals(columnName) ? "No Column Name" : columnName);
@@ -176,17 +176,17 @@ public class VDeskQueryresultsAction extends DelayedAction {
                     if ("rules_compliance".equals(columnName)) {
                         columnName = "CVSS";
                         ruleComplianceColumnIndex = i;
-                    }
+                    }                   
                     columnsList.add(columnName);
                 }
                 try {
                     while(rs.next()) {
                         List<String> valueList = new LinkedList<String>();
-                        for (int i = 1; i <= columnCount; i++ ) {
+                        for (int i = 1; i <= columnCount; i++ ) {                        	                        	String columnName = rsmd.getColumnName(i);
                             String value = rs.getString(i);
                             if (ruleComplianceColumnIndex != -1 && ruleComplianceColumnIndex == i) {
                                 value = getCVSS(rs.getBytes(i));
-                            }
+                            }                                                      if ("Last Scan Time".equals(columnName)) {                                value = formatDate(value);                            }                            
                             valueList.add(null == value ? "" : value);
                         }
                         valuesList.add(valueList);
@@ -227,7 +227,7 @@ public class VDeskQueryresultsAction extends DelayedAction {
         TimeZone gmtTime = TimeZone.getTimeZone("GMT");
         gmtFormat.setTimeZone(gmtTime);
         return gmtFormat.format(dateTime);
-    }
+    }  //Formating "Last Scan Time" from yyyy-MM-dd HH:mm:ss.S  to yyyy-MM-dd HH:mm:ss    public String formatDate(String inputDateStr) {        SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");        try {                        Date date = inputDateFormat.parse(inputDateStr);                        SimpleDateFormat outputDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");                        return outputDateFormat.format(date);        }         catch (Exception e) {            e.printStackTrace();        }        return null;    }
 
     private String getCVSS(byte[] jsonBytes) {
         StringBuilder sb = new StringBuilder();
@@ -261,7 +261,7 @@ public class VDeskQueryresultsAction extends DelayedAction {
 
     private void debug(String msg) {
         if (DEBUG >= 5) {
-            System.out.println("VDeskQueryresultsAction: " + msg);
+            System.out.println("VDeskQueryresultsAction: " + msg);           
         }
     }
 }
