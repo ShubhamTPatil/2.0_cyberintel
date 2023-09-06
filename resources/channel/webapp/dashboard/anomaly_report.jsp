@@ -27,6 +27,8 @@
 <script type="text/javascript" src="/spm/js/newdashboard/all.min.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/common.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/d3.v6.min.js"></script>
+<script type="text/javascript" src="/spm/js/newdashboard/chartjs.moment.min.js"></script>
+<script type="text/javascript" src="/spm/js/newdashboard/chartjs-adapter-moment.min.js"></script>
 
 
 <script type="text/javascript">
@@ -35,7 +37,7 @@ $(function () {
 
     $('#anomalyReport').addClass('nav-selected');
 
-    var data = [];
+    var data = [{"hostname":"Win-10-VM","anomaly":false,"time":"2023-09-05T16:30:06.719Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.703Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.532Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.700Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.532Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:03.701Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.685Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.681Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.681Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"},{"hostname":"Win-11-VM","anomaly":true,"time":"2023-09-05T16:30:02.679Z"},{"hostname":"Win-12-VM","anomaly":true,"time":"2023-09-05T16:30:01.679Z"},{"hostname":"Win-13-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"},{"hostname":"Win-14-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"}];
 
     /*
     $.ajax({
@@ -48,12 +50,12 @@ $(function () {
         success: function (response) {
             console.log("succuess");
             console.log(JSON.stringify(response));
-            loadHeatMap(data);
+            loadScatterChart(data);
         }
     });
     */
 
-    loadHeatMap(data);
+    loadScatterChart(data);
 
     // Sample data (replace this with your actual data)
     var chart1Data = {
@@ -111,134 +113,87 @@ $(function () {
 
 });
 
-function loadHeatMap(data) {
+function loadScatterChart(jsonData) {
+    // Extract the data into separate arrays for true and false anomalies
+    var trueAnomalies = [];
+    var falseAnomalies = [];
+    
+    var xMin = new Date(jsonData[0].time);
+    var xMax = xMin;
 
-    let numCols = 0;
-    const startTime = new Date().getTime();
-
-    if(data.length == 0) {
-        // Sample data
-        const numRows = 20;
-        numCols = 60;
-        for (let i = 0; i < numRows; i++) {
-            const rowData = [];
-            for (let j = 0; j < numCols; j++) {
-                const time = new Date(startTime + j * 7 * 24 * 60 * 60 * 1000);
-                rowData.push({
-                    state: Math.random() < 0.1 ? 'Anomalous' : (Math.random() < 0.5 ? 'Active' : 'Inactive'),
-                    time: time,
-                    machine: `Machine ${i + 1}`
-                });
-            }
-            data.push(rowData);
+    jsonData.forEach(function (item) {
+        
+        xMin = xMin < new Date(item.time) ? xMin : new Date(item.time);
+        xMax = xMax > new Date(item.time) ? xMax : new Date(item.time);
+    
+        if (item.anomaly) {
+            trueAnomalies.push({ x: new Date(item.time), y: item.hostname });
+        } else {
+            falseAnomalies.push({ x: new Date(item.time), y: item.hostname });
         }
-    } else {
-        numCols = data[0].length;
-    }
+    });
+    
+    xMin = xMin.setSeconds(xMin.getSeconds() - 1)
+    yMin = xMax.setSeconds(xMax.getSeconds() + 1)
+    
+    console.log("xMin = "+xMin)
+    console.log("xMax = "+xMax)
 
-     console.log(data.length)
+    var ctx = document.getElementById('scatterChart').getContext('2d');
 
-     console.log(data)
-
-    // Calculate width and height    
-    const h = data.length * 30;
-    const w = document.getElementById("my_dataviz").clientWidth;
-
-    // Set dimensions and margins
-    const margin = { top: 30, right: 40, bottom: 60, left: 140 };
-    const width = w - margin.left - margin.right;
-    const height = h - margin.top - margin.bottom;
-     
-    // Append SVG element
-    // const svg = d3.select("#my_dataviz")
-    //     .append("svg")
-    //     .attr("width", width)
-    //     .attr("height", height)
-    //     .append("g")
-    //     .attr("transform", `translate(${margin.left},${margin.top})`);
-
-    var svg = d3.select("#my_dataviz")
-        .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform",
-                "translate(" + margin.left + "," + margin.top + ")");
-
-     // Create scales
-     const x = d3.scaleTime()
-         .range([0, width])
-         .domain([new Date(startTime), new Date(startTime + numCols * 7 * 24 * 60 * 60 * 1000)]);
-
-     const y = d3.scaleBand()
-         .range([height, 0])
-         .domain(data.map((_, i) => `Machine ${i + 1}`))
-         .padding(0.01);
-
-     // Calculate cell width based on time interval
-     const cellWidth = width / numCols;
-
-     // Render the heatmap
-     const cells = svg.selectAll("rect")
-         .data(data.flat())
-         .enter().append("rect")
-         .attr("x", (d, i) => i % numCols * cellWidth)
-         .attr("y", (d) => y(d.machine))
-         .attr("width", cellWidth)
-         .attr("height", y.bandwidth())
-         .attr("class", d => `cell-${d.state}`) // Add class based on state
-         .attr("stroke", "white") // Add white stroke for cell borders
-         .style("stroke-width", 1) // Set border width
-         .on('mouseover', function (event, d) {
-             const tooltip = document.getElementById("tooltip");
-             tooltip.innerHTML = `Machine: ${d.machine}<br>Time: ${d.time.toLocaleString()}<br>State: ${d.state}`;
-
-             tooltip.style.display = "block";
-             tooltip.style.left = (event.pageX + 10) + "px";
-             tooltip.style.top = (event.pageY + 10) + "px";
-         })
-         .on('mouseout', function () {
-             document.getElementById("tooltip").style.display = "none";
-         });
-
-     // Add tooltips
-     const tooltip = d3.select("body")
-         .append("div")
-         .attr("id", "tooltip")
-         .style("position", "absolute")
-         .style("z-index", "10")
-         .style("background-color", "gray")
-         .style("padding", "10px")
-         .style("border", "1px solid #ccc")
-         .style("border-radius", "5px")
-         .style("display", "none");
-
-     // Add x-axis (time series)
-     svg.append("g")
-         .attr("transform", `translate(0,${height})`)
-         .call(d3.axisBottom(x));
-
-     // Add y-axis (machine names)
-     svg.append("g")
-         .call(d3.axisLeft(y));
-
-     // Add x-axis label
-     svg.append("text")
-         .attr("class", "axis-label")
-         .attr("x", width / 2)
-         .attr("y", height + margin.bottom - 10)
-         .style("text-anchor", "middle")
-         .text("Time");
-
-     // Add y-axis label
-     svg.append("text")
-         .attr("class", "axis-label")
-         .attr("transform", "rotate(-90)")
-         .attr("x", -height / 2)
-         .attr("y", -margin.left + 20)
-         .style("text-anchor", "middle")
-         .text("Machine Names");
-
+    // Create the scatter chart
+    var scatterChart = new Chart(ctx, {
+        type: 'scatter',
+        data: {
+            datasets: [
+                {
+                    label: 'Anomalies Detected',
+                    data: trueAnomalies,
+                    backgroundColor: 'rgba(255, 0, 0, 0.5)', // Red color for true anomalies
+                    pointRadius: 5 // Adjust point size as needed
+                },
+                {
+                    label: 'Anomalies Not Detected',
+                    data: falseAnomalies,
+                    backgroundColor: 'rgb(129, 133, 137)', // Gray color for false anomalies
+                    pointRadius: 5 // Adjust point size as needed
+                }
+            ]
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'second',
+                        parser: 'moment', // Use Moment.js for parsing dates
+                        tooltipFormat: 'HH:mm:ss' // Customize the tooltip date format as needed
+                    },
+                    position: 'bottom',
+                    title: {
+                        display: true,
+                        text: 'Time'
+                    },
+                    min: xMin,
+                    max: xMax
+                },
+                y: {
+                    type: 'category',
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Hostname'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                }
+            }
+        }
+    });
 }
 
 </script>
@@ -247,49 +202,6 @@ function loadHeatMap(data) {
 
     .form-select {
         width: fit-content; 
-    }
-
-    /* Define styles for different cell states */
-    .cell-Anomalous {
-        fill: maroon;
-    }
-
-    .cell-Active {
-        fill: gray;
-    }
-
-    .cell-Inactive {
-        fill: silver;
-    }
-
-    .d3-tip {
-        font-size: 14px;
-        line-height: 1.5;
-        padding: 10px;
-        background-color: gray;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Define styles for legend */
-    .legend {
-        display: flex;
-        justify-content: space-around;
-        margin-top: -5px;
-        margin-right: 500px;
-    }
-
-    .legend-item {
-        display: inline-flex;
-        align-items: center;
-        margin-right: 5px;
-    }
-
-    .legend-color {
-        width: 12px;
-        height: 12px;
-        margin-right: 5px;
     }
 
 </style>
@@ -331,7 +243,7 @@ function loadHeatMap(data) {
             <div class="row">
 
                 <div class="card info-card">
-                    <div class="card-body" id="heatMapContainer">
+                    <div class="card-body">
                         <h5 class="card-title" style="margin: 0;">Top Level Statistics</h5>
                         <div style="display: inline-flex;">
                 
@@ -371,29 +283,8 @@ function loadHeatMap(data) {
                             </select>
                         </div>
 
-
                         <!-- Create a div where the graph will take place -->
-                        <div id="my_dataviz" style="width: 100%;"></div>
-
-                        <!-- Create a div for the legend -->
-                        <div class="legend">
-                            <div class="legend-container">
-                                <div class="legend-item">
-                                    <div class="legend-color" style="background-color: maroon;"></div>
-                                    Anomalous
-                                </div>
-                                <div class="legend-item">
-                                    <div class="legend-color" style="background-color: gray;"></div>
-                                    Active
-                                </div>
-                                <div class="legend-item">
-                                    <div class="legend-color" style="background-color: silver;"></div>
-                                    Inactive
-                                </div>
-                            </div>
-                        </div>
-
-                        <br/>
+                        <canvas id="scatterChart" width="400" height="50" style="margin-top: 20px; margin-bottom: 20px;"></canvas>
 
                     </div>
                 </div>
