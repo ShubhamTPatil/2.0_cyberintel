@@ -43,7 +43,7 @@ $(function () {
         url: './anomaly.do',
         type: 'POST',
         dataType: 'text json',
-        data: {action: 'heatmapData'},
+        data: {action: 'heatmapData' ,startDate: '2023-09-07T18:50:30.410Z',endDate : '2023-09-07T15:10:30.410Z'},
         beforeSend: function() {},
         complete: function (xhr, status) {},
         success: function (response) {
