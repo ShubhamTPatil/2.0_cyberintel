@@ -50,6 +50,10 @@ $(function () {
             console.log("succuess");
             console.log(JSON.stringify(response));
             loadScatterChart(response);
+        },
+        error: function(xhr, status, error) {
+            // Handle errors here
+            console.error('Error:', error);
         }
     });
 
@@ -146,13 +150,13 @@ function loadScatterChart(jsonData) {
         data: {
             datasets: [
                 {
-                    label: 'Anomalies Detected',
+                    label: 'Anomalous',
                     data: trueAnomalies,
                     backgroundColor: 'rgba(255, 0, 0, 0.5)', // Red color for true anomalies
                     pointRadius: 5 // Adjust point size as needed
                 },
                 {
-                    label: 'Anomalies Not Detected',
+                    label: 'Active',
                     data: falseAnomalies,
                     backgroundColor: 'rgb(129, 133, 137)', // Gray color for false anomalies
                     pointRadius: 5 // Adjust point size as needed
@@ -283,7 +287,7 @@ function loadScatterChart(jsonData) {
                         </div>
 
                         <!-- Create a div where the graph will take place -->
-                        <canvas id="scatterChart" width="400" height="50" style="margin-top: 20px; margin-bottom: 20px;"></canvas>
+                        <canvas id="scatterChart" width="400" height="100" style="margin-top: 20px; margin-bottom: 20px;"></canvas>
 
                     </div>
                 </div>
