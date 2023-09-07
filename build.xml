@@ -11,7 +11,7 @@
 
     <property name="project"              value="security-policy-mgr"/>
     <property name="project.dep"          value="ajax, castanet-tools, checksum, cms-interfaces, cms-webmain, common, copy-sdk,adp-sdk, debug, http, index, io, ldap-intf, osm-ws-client, policy-api, publish-sdk, schedule, sdm-common, security, segment-selector, storage, subscription-common, tools-collections, tools-config, tools-db, tools-dbscript, tools-dbtree, tools-dns, tools-i18n, tools-ldap, tools-logs, tools-mail, tools-net, tools-ptree, tools-regex, tools-remoteadmin, tools-target, tools-token, tools-txlisting, tools-xml, transmitter-interfaces, web-common, webservices, xccdf-util, oval-util"/>
-    <property name="project.dep.3rdparty" value="apache-log4j, apache-oro, apache-regex, apache-poi, apache-ibatis, axis, commons-codec, commons-fileupload, commons-io, commons-lang, commons-logging, commons-mail, commons-validator, gson, jabsorb, itext, javax-mail, jndi-sasl, json-rpc, json-simple, junit, mssql, oracle, oscache, pagination-tag, saaj, struts, wsdl4j, xml-apis, yahp, mapdb, jackson-core, slf4j"/>
+    <property name="project.dep.3rdparty" value="apache-log4j, apache-oro, apache-regex, apache-poi, apache-ibatis, axis, commons-codec, commons-fileupload, commons-io, commons-lang, commons-logging, commons-mail, commons-validator, gson, jabsorb, itext, javax-mail, jndi-sasl, json-rpc, json-simple, junit, mssql, oracle, oscache, pagination-tag, saaj, struts, wsdl4j, xml-apis, yahp, mapdb, jackson-core, slf4j, cosmos"/>
     <property name="channel.name"         value="DefenSight"/>
     <property name="channel.title"        value="DefenSight"/>
 
