@@ -23,6 +23,7 @@ import com.marimba.tools.util.DebugFlag;
 import java.io.IOException;
 import java.io.PrintWriter;
 import com.marimba.intf.util.IConfig;
+import java.util.Arrays;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -56,6 +57,7 @@ public final class AnomalyAction
    */
 
   public final static int DEBUG = DebugFlag.getDebug("DEFENSIGHT/ACTION");
+
   public ActionForward execute(ActionMapping mapping,
       ActionForm form,
       HttpServletRequest request,
@@ -70,25 +72,31 @@ public final class AnomalyAction
     IConfig tunerConfig = (IConfig) features.getChild("tunerConfig");
     AnomalyUtil anomalyUtil = new AnomalyUtil();
     String action = request.getParameter("action");
+    String startDate = request.getParameter("startDate");
+    String endDate = request.getParameter("endDate");
+    List<String> timeInterval = Arrays.asList(startDate, endDate, action);
     if (action == null) {
       return (mapping.findForward("success"));
     }
     if (action.equals("heatmapData")) {
-      String fetchAllData = anomalyUtil.fetchDataForChart(tunerConfig, action);
+      String fetchAllData = anomalyUtil.fetchDataForChart(tunerConfig, timeInterval);
       sendJSONResponse(response, fetchAllData);
     }
     return (mapping.findForward("success"));
   }
+
   protected void sendJSONResponse(HttpServletResponse response, String jsonData) throws Exception {
     PrintWriter out = response.getWriter();
     out.println(jsonData);
     out.flush();
   }
+
   private void debugInfo(String msg) {
     if (DEBUG >= 5) {
       System.out.println("DEBUG:AnomalyAction : " + msg);
     }
   }
+
   private void log(String msg) {
     if (DEBUG >= 3) {
       System.out.println("LogInfo:AnomalyAction : " + msg);
