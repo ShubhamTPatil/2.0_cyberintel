@@ -14,16 +14,16 @@ import com.azure.cosmos.models.CosmosQueryRequestOptions;
 import com.azure.cosmos.models.FeedResponse;
 import com.azure.cosmos.util.CosmosPagedIterable;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.marimba.apps.subscriptionmanager.webapp.bean.anomaly.User;
 import com.marimba.apps.subscriptionmanager.webapp.util.defensight.AnomalyUtil;
+import com.marimba.apps.subscriptionmanager.webapp.bean.anomaly.User;
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
 import com.marimba.apps.subscriptionmanager.TenantHelper;
 import com.marimba.intf.util.IDirectory;
 import com.marimba.tools.util.DebugFlag;
+import com.marimba.apps.subscriptionmanager.webapp.bean.anomaly.pojo.AnomalyReportForm;
 import java.io.IOException;
 import java.io.PrintWriter;
 import com.marimba.intf.util.IConfig;
-import java.util.Arrays;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -71,17 +71,29 @@ public final class AnomalyAction
     IDirectory features = main.getFeatures();
     IConfig tunerConfig = (IConfig) features.getChild("tunerConfig");
     AnomalyUtil anomalyUtil = new AnomalyUtil();
+    AnomalyReportForm anomalyReportForm = (AnomalyReportForm) form;
     String action = request.getParameter("action");
-    String startDate = request.getParameter("startDate");
-    String endDate = request.getParameter("endDate");
-    List<String> timeInterval = Arrays.asList(startDate, endDate, action);
+    String intervalMinutes = request.getParameter("interval");
+    String os = request.getParameter("os");
     if (action == null) {
+      List<User> toplevelStatsData = anomalyUtil.fetchDataForChart(tunerConfig, "heatmapData",
+          "4800");
+      String convertTopLevelStatsDatatoJsonString = "";
+      try {
+        ObjectMapper mapper = new ObjectMapper();
+        convertTopLevelStatsDatatoJsonString = mapper.writeValueAsString(toplevelStatsData);
+
+      } catch (Exception e) {
+
+        e.printStackTrace();
+
+      }
+
+      anomalyReportForm.setTopLevelStats(convertTopLevelStatsDatatoJsonString);
+
       return (mapping.findForward("success"));
     }
-    if (action.equals("heatmapData")) {
-      String fetchAllData = anomalyUtil.fetchDataForChart(tunerConfig, timeInterval);
-      sendJSONResponse(response, fetchAllData);
-    }
+
     return (mapping.findForward("success"));
   }
 

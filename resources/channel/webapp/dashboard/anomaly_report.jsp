@@ -36,18 +36,22 @@ $(function () {
 
     $('#anomalyReport').addClass('nav-selected');
 
-    //var data = [{"hostname":"Win-10-VM","anomaly":false,"time":"2023-09-05T16:30:06.719Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.703Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.532Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.700Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.532Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:03.701Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.685Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.681Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.681Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"},{"hostname":"Win-11-VM","anomaly":true,"time":"2023-09-05T16:30:02.679Z"},{"hostname":"Win-12-VM","anomaly":true,"time":"2023-09-05T16:30:01.679Z"},{"hostname":"Win-13-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"},{"hostname":"Win-14-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"}];
+    var data = [{"hostname":"Win-10-VM","anomaly":false,"time":"2023-09-05T16:30:06.719Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.703Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.532Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.700Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.532Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:03.701Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.685Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.681Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.681Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"},{"hostname":"Win-11-VM","anomaly":true,"time":"2023-09-05T16:30:02.679Z"},{"hostname":"Win-12-VM","anomaly":true,"time":"2023-09-05T16:30:01.679Z"},{"hostname":"Win-13-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"},{"hostname":"Win-14-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"}];
 
+      var vulSeverityData = '<bean:write name="anomalyReportForm" property="topLevelStats"/>';
+       vulSeverityData = vulSeverityData.replace(/&quot;/g,'"');
+       //vulSeverityData=JSON.parse(vulSeverityData);
 
-    $.ajax({
+       console.log(vulSeverityData);
+   /* $.ajax({
         url: './anomaly.do',
         type: 'POST',
         dataType: 'text json',
-        data: {action: 'heatmapData' ,startDate: '2023-09-07T18:50:30.410Z',endDate : '2023-09-07T15:10:30.410Z'},
+        data: {action: 'heatmapData' , interval: 5, os : 'windows'},
         beforeSend: function() {},
         complete: function (xhr, status) {},
         success: function (response) {
-            console.log("succuess");
+            console.log("success");
             console.log(JSON.stringify(response));
             loadScatterChart(response);
         },
@@ -55,10 +59,11 @@ $(function () {
             // Handle errors here
             console.error('Error:', error);
         }
-    });
+    });*/
 
 
-    //loadScatterChart(data);
+    //loadScatterChart(vulSeverityData);
+
 
     // Sample data (replace this with your actual data)
     var chart1Data = {
@@ -212,6 +217,8 @@ function loadScatterChart(jsonData) {
 
 </head>
 <body>
+<html:form name ="anomalyReportForm" action="/anomaly.do" type="com.marimba.apps.subscriptionmanager.webapp.bean.anomaly.pojo.AnomalyReportForm">
+<html:hidden property="action"/>
 
     <jsp:include page="header.jsp" />
 	<jsp:include page="sidebar.jsp" />
@@ -331,6 +338,7 @@ function loadScatterChart(jsonData) {
             </div>
         </div>
 	</section>
-</main> 
+</main>
+</html:form>
 </body>
 </html>
