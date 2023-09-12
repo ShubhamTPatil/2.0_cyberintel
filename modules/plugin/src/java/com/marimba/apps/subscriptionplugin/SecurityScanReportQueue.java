@@ -380,7 +380,7 @@ public class SecurityScanReportQueue implements ISecurityServiceConstants, Timer
             //do nothing...
         }
         deleteReport(lr);
-        plugin.getPluginContext().log(LOG_ERROR_GIVING_UP, LOG_MAJOR, lr.fname);
+        plugin.getPluginContext().log(LOG_ERROR_GIVING_UP, LOG_AUDIT, lr.fname);
     }
 
     public void nukeReport(String reportFileName) {
@@ -397,7 +397,7 @@ public class SecurityScanReportQueue implements ISecurityServiceConstants, Timer
             //do nothing...
         }
         deleteReport(reportFileName);
-        plugin.getPluginContext().log(LOG_ERROR_GIVING_UP, LOG_MAJOR, reportFileName);
+        plugin.getPluginContext().log(LOG_ERROR_GIVING_UP, LOG_AUDIT, reportFileName);
     }
 
     /**
