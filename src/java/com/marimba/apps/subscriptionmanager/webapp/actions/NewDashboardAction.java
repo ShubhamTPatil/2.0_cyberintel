@@ -8,6 +8,7 @@ package com.marimba.apps.subscriptionmanager.webapp.actions;
 import com.marimba.apps.subscription.common.intf.IUser;
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
 import com.marimba.apps.subscriptionmanager.TenantHelper;
+import com.marimba.apps.subscriptionmanager.webapp.util.defensight.AnomalyUtil;
 import com.marimba.intf.msf.*;
 import com.marimba.apps.subscription.common.objects.Target;
 import com.marimba.apps.subscriptionmanager.util.Utils;
@@ -15,6 +16,7 @@ import com.marimba.apps.subscriptionmanager.intf.IErrorConstants;
 import com.marimba.apps.subscriptionmanager.intf.IWebAppConstants;
 import com.marimba.intf.msf.ITenant;
 import com.marimba.intf.util.IConfig;
+import com.marimba.intf.util.IDirectory;
 import com.marimba.webapps.intf.IWebAppsConstants;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -62,7 +64,16 @@ public class NewDashboardAction extends AbstractAction implements IWebAppConstan
                 }
                 main = TenantHelper.getTenantSubMain(context, request.getSession(), reqTenantName);
 
-               	String loggedInUserRole = ((IUserPrincipal)request.getUserPrincipal()).getUserRole();
+                //Starting the thread to make the connection with Cosmos DB for AnomalyReport
+                IDirectory features = main.getFeatures();
+                IConfig tunerConfig = (IConfig) features.getChild("tunerConfig");
+                SubscriptionMain finalMain = main;
+                Thread cosmosConnectionThread = new Thread(AnomalyUtil.getCosmosConectionRunnable(tunerConfig));
+                cosmosConnectionThread.setName("cosmosConnectionThread");
+                cosmosConnectionThread.start();
+                //END
+
+                String loggedInUserRole = ((IUserPrincipal)request.getUserPrincipal()).getUserRole();
                	System.out.println("Logged in user role :" + loggedInUserRole);
             } catch(Exception ex) {
 

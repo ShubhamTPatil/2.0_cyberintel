@@ -38,11 +38,9 @@ $(function () {
 
     var data = [{"hostname":"Win-10-VM","anomaly":false,"time":"2023-09-05T16:30:06.719Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.703Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.532Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.700Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.532Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:03.701Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.685Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.681Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.681Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"},{"hostname":"Win-11-VM","anomaly":true,"time":"2023-09-05T16:30:02.679Z"},{"hostname":"Win-12-VM","anomaly":true,"time":"2023-09-05T16:30:01.679Z"},{"hostname":"Win-13-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"},{"hostname":"Win-14-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"}];
 
-      var vulSeverityData = '<bean:write name="anomalyReportForm" property="topLevelStats"/>';
-       vulSeverityData = vulSeverityData.replace(/&quot;/g,'"');
-       //vulSeverityData=JSON.parse(vulSeverityData);
+      var topLevelStatsData = '<bean:write name="anomalyReportForm" property="topLevelStats"/>';
+      loadScatterChart(JSON.parse(topLevelStatsData.replace(/&quot;/g,'"')));
 
-       console.log(vulSeverityData);
    /* $.ajax({
         url: './anomaly.do',
         type: 'POST',
@@ -125,6 +123,7 @@ function loadScatterChart(jsonData) {
     // Extract the data into separate arrays for true and false anomalies
     var trueAnomalies = [];
     var falseAnomalies = [];
+    var notTrainedAnomalies = [];
     
     var xMin = new Date(jsonData[0].time);
     var xMax = xMin;
@@ -134,16 +133,20 @@ function loadScatterChart(jsonData) {
         xMin = xMin < new Date(item.time) ? xMin : new Date(item.time);
         xMax = xMax > new Date(item.time) ? xMax : new Date(item.time);
     
-        if (item.anomaly) {
+        if (item.anomaly === "true") {
             trueAnomalies.push({ x: new Date(item.time), y: item.hostname });
-        } else {
+        } else if(item.anomaly === "false") {
             falseAnomalies.push({ x: new Date(item.time), y: item.hostname });
+        } else if(item.anomaly === "Not_Trained") {
+            notTrainedAnomalies.push({ x: new Date(item.time), y: item.hostname });
+        } else {
+
         }
     });
     
-    xMin = xMin.setSeconds(xMin.getSeconds() - 1)
-    yMin = xMax.setSeconds(xMax.getSeconds() + 1)
-    
+    //xMin = xMin.setSeconds(xMin.getSeconds() - 1)
+    //yMin = xMax.setSeconds(xMax.getSeconds() + 1)
+
     console.log("xMin = "+xMin)
     console.log("xMax = "+xMax)
 
@@ -158,13 +161,19 @@ function loadScatterChart(jsonData) {
                     label: 'Anomalous',
                     data: trueAnomalies,
                     backgroundColor: 'rgba(255, 0, 0, 0.5)', // Red color for true anomalies
-                    pointRadius: 5 // Adjust point size as needed
+                    pointRadius: 6 // Adjust point size as needed
                 },
                 {
                     label: 'Active',
                     data: falseAnomalies,
                     backgroundColor: 'rgb(129, 133, 137)', // Gray color for false anomalies
-                    pointRadius: 5 // Adjust point size as needed
+                    pointRadius: 6 // Adjust point size as needed
+                },
+                {
+                    label: 'Not Trained',
+                    data: notTrainedAnomalies,
+                    backgroundColor: 'rgb(128,0,128)', // Gray color for false anomalies
+                    pointRadius: 6 // Adjust point size as needed
                 }
             ]
         },
@@ -172,18 +181,13 @@ function loadScatterChart(jsonData) {
             scales: {
                 x: {
                     type: 'time',
-                    time: {
-                        unit: 'second',
-                        parser: 'moment', // Use Moment.js for parsing dates
-                        tooltipFormat: 'HH:mm:ss' // Customize the tooltip date format as needed
-                    },
                     position: 'bottom',
                     title: {
                         display: true,
                         text: 'Time'
                     },
                     min: xMin,
-                    max: xMax
+                    max: xMax,
                 },
                 y: {
                     type: 'category',
