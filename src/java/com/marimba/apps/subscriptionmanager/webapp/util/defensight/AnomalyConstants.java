@@ -19,5 +19,7 @@ public class AnomalyConstants {
         "select count(1) as anomaliesCount, c.host.hostname as hostname from c where c.host.hostname != null AND c.predictions in ('Not_Trained','true') group by c.host.hostname";
     public static String MACHINE_LEVEL_ANOMALY_PIECHART =
         "select count (1) as anomalies, c.host.hostname as hostname,c.winlog.event_id as event_id from c  WHERE c.event.created <= @ctime AND c.event.created >= @ptime AND c.host.hostname=@hostname AND c.predictions != null AND c.winlog.event_id != null group by c.host.hostname, c.winlog.event_id";
+    public static String MACHINE_NAME_LIST =
+        "select distinct c.host.hostname as hostname from c where c.host.hostname != null";
   }
 }
