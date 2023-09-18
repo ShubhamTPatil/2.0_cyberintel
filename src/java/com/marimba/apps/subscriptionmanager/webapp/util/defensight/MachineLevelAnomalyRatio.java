@@ -1,40 +1,1 @@
-package com.marimba.apps.subscriptionmanager.webapp.util.defensight;
-
-public class MachineLevelAnomalyRatio {
-  private String hostname;
-
-  private int anomalies;
-  String event_id;
-
-  public MachineLevelAnomalyRatio() {}
-
-  public MachineLevelAnomalyRatio(String hostname, int anomalies, String event_id) {
-    this.hostname = hostname;
-    this.anomalies = anomalies;
-    this.event_id = event_id;
-  }
-
-  public String getHostname() {
-    return hostname;
-  }
-
-  public void setHostname(String hostname) {
-    this.hostname = hostname;
-  }
-
-  public int getAnomalies() {
-    return anomalies;
-  }
-
-  public void setAnomalies(int anomalies) {
-    this.anomalies = anomalies;
-  }
-
-  public String getEvent_id() {
-    return event_id;
-  }
-
-  public void setEvent_id(String event_id) {
-    this.event_id = event_id;
-  }
-}
+package com.marimba.apps.subscriptionmanager.webapp.util.defensight;public class MachineLevelAnomalyRatio {  String event_id;  private String time;  private String anomaly;  public String getEvent_id() {    return event_id;  }  public void setEvent_id(String event_id) {    this.event_id = event_id;  }  public String getTime() {    return time;  }  public void setTime(String time) {    this.time = time;  }  public String getAnomaly() {    return anomaly.equals("Not_Trained") ? "true" : anomaly;  }  public void setAnomaly(String anomaly) {    this.anomaly = anomaly;  }}

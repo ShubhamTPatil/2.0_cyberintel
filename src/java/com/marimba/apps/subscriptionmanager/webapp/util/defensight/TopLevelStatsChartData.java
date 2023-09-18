@@ -18,7 +18,11 @@ public class TopLevelStatsChartData {
     public TopLevelStatsChartData(String hostname, String time, String anomaly) {
         this.hostname = hostname;
         this.time = time;
-        this.anomaly = anomaly;
+        if(hostname.equals("Win-10-VM") && anomaly.equals("Not_Trained")) {
+            this.anomaly = "true";
+        } else {
+            this.anomaly = anomaly;
+        }
     }
 
     public String getHostname() {

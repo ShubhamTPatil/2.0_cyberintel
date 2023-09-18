@@ -30,16 +30,38 @@
 <script type="text/javascript" src="/spm/js/newdashboard/chartjs-adapter-moment.min.js"></script>
 
 
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+
 <script type="text/javascript">
 
 $(function () {
 
     $('#anomalyReport').addClass('nav-selected');
 
-    var data = [{"hostname":"Win-10-VM","anomaly":false,"time":"2023-09-05T16:30:06.719Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.703Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.532Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.700Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.532Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:03.701Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.685Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.681Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.681Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"},{"hostname":"Win-11-VM","anomaly":true,"time":"2023-09-05T16:30:02.679Z"},{"hostname":"Win-12-VM","anomaly":true,"time":"2023-09-05T16:30:01.679Z"},{"hostname":"Win-13-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"},{"hostname":"Win-14-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"}];
+    //var data = [{"hostname":"Win-10-VM","anomaly":false,"time":"2023-09-05T16:30:06.719Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.703Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.532Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.700Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.532Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:03.701Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.685Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.681Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.681Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"},{"hostname":"Win-11-VM","anomaly":true,"time":"2023-09-05T16:30:02.679Z"},{"hostname":"Win-12-VM","anomaly":true,"time":"2023-09-05T16:30:01.679Z"},{"hostname":"Win-13-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"},{"hostname":"Win-14-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"}];
 
-      var topLevelStatsData = '<bean:write name="anomalyReportForm" property="topLevelStats"/>';
-      loadScatterChart(JSON.parse(topLevelStatsData.replace(/&quot;/g,'"')));
+      let topLevelStatsData = '<bean:write name="anomalyReportForm" property="topLevelStats"/>';
+      //loadScatterChart(JSON.parse(topLevelStatsData.replace(/&quot;/g,'"')));
+
+      if(topLevelStatsData === '[]' || topLevelStatsData == null){
+        console.log('topLevelStatsData '+topLevelStatsData);
+        $('#heatmap_container').hide();
+        $('#noDataHeatmap').show();
+      } else {
+        topLevelStatsData = JSON.parse(topLevelStatsData.replace(/&quot;/g,'"'));
+        loadHeatMap(topLevelStatsData);
+      }
+
+      let machineLevelAnomalyRatioData = '<bean:write name="anomalyReportForm" property="machineLevelAnomalyPieChartData"/>';
+      if(machineLevelAnomalyRatioData === '[]' || machineLevelAnomalyRatioData == null){
+        console.log('machineLevelAnomalyRatioData '+machineLevelAnomalyRatioData);
+        $('#machineLevelAnomaly_container').hide();
+        $('#noDataScatter').show();
+      } else {
+        machineLevelAnomalyRatioData = JSON.parse(machineLevelAnomalyRatioData.replace(/&quot;/g,'"'));
+        loadMachineLevelAnomaly(machineLevelAnomalyRatioData);
+      }
 
    /* $.ajax({
         url: './anomaly.do',
@@ -58,66 +80,118 @@ $(function () {
             console.error('Error:', error);
         }
     });*/
-
-
-    //loadScatterChart(vulSeverityData);
-
-
-    // Sample data (replace this with your actual data)
-    var chart1Data = {
-        labels: ["Type 1", "Type 2", "Type 3", "Type 4"],
-        datasets: [{
-            data: [30, 40, 15, 15],
-            backgroundColor: ['#4A87B5', '#49A5DE', '#71DCEB', '#7D8EDF'],
-        }]
-    };
-
-    var chart2Data = {
-        labels: ["Type 1", "Type 2", "Type 3", "Type 4"],
-        datasets: [{
-            data: [15, 30, 40, 15],
-            backgroundColor: ['#4A87B5', '#49A5DE', '#71DCEB', '#7D8EDF'],
-        }]
-    };
-
-    // Configure the chart options
-    var chartOptions = {
-        responsive: false,
-        maintainAspectRatio: false,
-        cutoutPercentage: 0,
-        elements: {
-            arc: {
-                borderWidth: 0,
-            }
-        },
-        plugins: {
-            legend: {
-                display: true,
-                position: 'bottom',
-                labels: {
-                  boxWidth: 20, // Set the desired width of the legend
-                }
-            }
-        }
-    };
-
-    // Create the first pie chart
-    var ctx1 = document.getElementById('chart1').getContext('2d');
-    var chart1 = new Chart(ctx1, {
-        type: 'pie',
-        data: chart1Data,
-        options: chartOptions
-    });
-
-    // Create the second pie chart
-    var ctx2 = document.getElementById('chart2').getContext('2d');
-    var chart2 = new Chart(ctx2, {
-        type: 'pie',
-        data: chart2Data,
-        options: chartOptions
-    });
-
 });
+
+function loadHeatMap(data) {
+
+const timeArray = Array.from(new Set(data.map(d => d.time)))
+
+// Define a custom time format for tooltip
+const customTimeFormat = d3.timeFormat("%d %B, %H:%M:%S"); // Customize the format as needed
+
+
+var startTime = d3.min(timeArray);
+var endTime = d3.max(timeArray);
+
+var numCols = timeArray.length;
+
+var parentWidth = document.getElementById("heatmap_container").offsetWidth;
+var h = new Set(data.map(d => d.hostname)).size * 20 + 40 + 50;
+
+// set the dimensions and margins of the graph
+const margin = {top: 40, right: 25, bottom: 50, left: 100},
+  width = parentWidth - margin.left - margin.right,
+  height = h - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+const svg = d3.select("#heatmap")
+.append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+.append("g")
+  .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+     // Create scales
+     const x = d3.scaleTime()
+         .range([0, width])
+         .domain([new Date(startTime), new Date(endTime)]);
+
+     const y = d3.scaleBand()
+         .range([height, 0])
+         .domain(data.map(d => d.hostname))
+         .padding(0.01);
+
+     // Calculate cell width based on time interval
+     const cellWidth = width / numCols;
+
+     // Render the heatmap
+     const cells = svg.selectAll("rect")
+         .data(data.flat())
+         .enter().append("rect")
+         .attr("x", d => x(new Date(d.time)))
+         .attr("y", (d) => y(d.hostname))
+         .attr("width", cellWidth)
+         .attr("height", y.bandwidth())
+         .attr("class", d => `cell-${d.anomaly}`) // Add class based on state
+         .attr("stroke", "white") // Add white stroke for cell borders
+         .style("stroke-width", 1) // Set border width
+         .on('mouseover', function (event, d) {
+             const tooltip = document.getElementById("tooltip");
+             tooltip.innerHTML = `Anomaly: ${d.anomaly}<br>Machine: ${d.hostname}<br>Time: ${customTimeFormat(new Date(d.time))}`;
+
+             tooltip.style.display = "block";
+             tooltip.style.left = (event.pageX + 10) + "px";
+             tooltip.style.top = (event.pageY + 10) + "px";
+         })
+         .on('mouseout', function () {
+             document.getElementById("tooltip").style.display = "none";
+         });
+
+     // Add tooltips
+     const tooltip = d3.select("body")
+         .append("div")
+         .attr("id", "tooltip")
+         .style("position", "absolute")
+         .style("z-index", "10")
+         .style("background-color", "white")
+         .style("padding", "10px")
+         .style("border", "1px solid #ccc")
+         .style("border-radius", "5px")
+         .style("display", "none");
+
+     // Add x-axis (time series)
+     svg.append("g")
+         .attr("transform", `translate(0,${height})`)
+         .call(d3.axisBottom(x).tickSize(0));
+
+     // Add y-axis (machine names)
+     svg.append("g")
+         .call(d3.axisLeft(y).tickSize(0));
+
+     // Apply CSS style to hide the axis line (stroke)
+     svg.selectAll("path")
+        .style("display", "none");
+
+     // Add x-axis label
+     svg.append("text")
+         .attr("class", "axis-label")
+         .attr("x", width / 2)
+         .attr("y", height + margin.bottom - 5)
+         .style("text-anchor", "middle")
+         .text("Time");
+
+     // Add y-axis label
+     svg.append("text")
+         .attr("class", "axis-label")
+         .attr("transform", "rotate(-90)")
+         .attr("x", -height / 2)
+         .attr("y", -margin.left + 20)
+         .style("text-anchor", "middle")
+         .text("Machines");
+
+}
+
+
 
 function loadScatterChart(jsonData) {
     // Extract the data into separate arrays for true and false anomalies
@@ -134,11 +208,11 @@ function loadScatterChart(jsonData) {
         xMax = xMax > new Date(item.time) ? xMax : new Date(item.time);
     
         if (item.anomaly === "true") {
-            trueAnomalies.push({ x: new Date(item.time), y: item.hostname });
+            trueAnomalies.push({ x: new Date(item.time), y: item.event_id });
         } else if(item.anomaly === "false") {
-            falseAnomalies.push({ x: new Date(item.time), y: item.hostname });
+            falseAnomalies.push({ x: new Date(item.time), y: item.event_id });
         } else if(item.anomaly === "Not_Trained") {
-            notTrainedAnomalies.push({ x: new Date(item.time), y: item.hostname });
+            notTrainedAnomalies.push({ x: new Date(item.time), y: item.event_id });
         } else {
 
         }
@@ -194,7 +268,7 @@ function loadScatterChart(jsonData) {
                     position: 'left',
                     title: {
                         display: true,
-                        text: 'Hostname'
+                        text: 'Events'
                     }
                 }
             },
@@ -208,12 +282,155 @@ function loadScatterChart(jsonData) {
     });
 }
 
+
+
+function loadMachineLevelAnomaly(data) {
+
+const timeArray = Array.from(new Set(data.map(d => d.time)))
+
+// Define a custom time format for tooltip
+const customTimeFormat = d3.timeFormat("%d %B, %H:%M:%S"); // Customize the format as needed
+
+
+var startTime = d3.min(timeArray);
+var endTime = d3.max(timeArray);
+
+var parentWidth = document.getElementById("machineLevelAnomaly_container").offsetWidth;
+var h = new Set(data.map(d => d.event_id)).size * 20 + 40 + 50;
+
+// set the dimensions and margins of the graph
+const margin = {top: 40, right: 25, bottom: 50, left: 100},
+  width = parentWidth - margin.left - margin.right,
+  height = h - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+const svg = d3.select("#machineLevelAnomaly")
+.append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+.append("g")
+  .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+     // Create scales
+     const x = d3.scaleTime()
+         .range([0, width])
+         .domain([new Date(startTime), new Date(endTime)]);
+
+     const y = d3.scaleBand()
+         .range([height, 0])
+         .domain(data.map(d => d.event_id))
+         .padding(0.01);
+
+    
+     // Render the scatter chart
+     const cells = svg.selectAll("dot")
+         .data(data.flat())
+         .enter().append("circle")
+         .attr("cx", d => x(new Date(d.time)))
+         .attr("cy", (d) => y(d.event_id))
+         .attr("r", (d) => 3)
+         .attr("class", d => `cell-${d.anomaly}`) // Add class based on state
+         .on('mouseover', function (event, d) {
+             const tooltip = document.getElementById("mtooltip");
+             tooltip.innerHTML = `Anomaly: ${d.anomaly}<br>Event ID: ${d.event_id}<br>Time: ${customTimeFormat(new Date(d.time))}`;
+
+             tooltip.style.display = "block";
+             tooltip.style.left = (event.pageX + 10) + "px";
+             tooltip.style.top = (event.pageY + 10) + "px";
+         })
+         .on('mouseout', function () {
+             document.getElementById("mtooltip").style.display = "none";
+         });
+
+     // Add tooltips
+     const tooltip = d3.select("body")
+         .append("div")
+         .attr("id", "mtooltip")
+         .style("position", "absolute")
+         .style("z-index", "10")
+         .style("background-color", "white")
+         .style("padding", "10px")
+         .style("border", "1px solid #ccc")
+         .style("border-radius", "5px")
+         .style("display", "none");
+
+     // Add x-axis (time series)
+     svg.append("g")
+         .attr("transform", `translate(0,${height})`)
+         .call(d3.axisBottom(x).tickSize(0));
+
+     // Add y-axis (machine names)
+     svg.append("g")
+         .call(d3.axisLeft(y).tickSize(0));
+
+     // Apply CSS style to hide the axis line (stroke)
+    //  svg.selectAll("path")
+    //     .style("display", "none");
+
+     // Add x-axis label
+     svg.append("text")
+         .attr("class", "axis-label")
+         .attr("x", width / 2)
+         .attr("y", height + margin.bottom - 5)
+         .style("text-anchor", "middle")
+         .text("Time");
+
+     // Add y-axis label
+     svg.append("text")
+         .attr("class", "axis-label")
+         .attr("transform", "rotate(-90)")
+         .attr("x", -height / 2)
+         .attr("y", -margin.left + 20)
+         .style("text-anchor", "middle")
+         .text("Events");
+
+}
+
 </script>
 
 <style>
 
     .form-select {
         width: fit-content; 
+    }
+
+    /* Define styles for different cell states */
+    .cell-true {
+        fill: maroon;
+    }
+
+    .cell-false {
+        fill: gray;
+    }
+
+    .cell-Not_Trained {
+        fill: purple;
+    }
+
+    /* Define styles for legend */
+    .legend {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: -5px;
+        margin-left: 100px;
+    }
+
+    .legend-item {
+        display: inline-flex;
+        align-items: center;
+        margin-right: 5px;
+    }
+    .legend-color {
+        width: 20px;
+        height: 12px;
+        margin-right: 5px;
+    }
+
+    .no-data {
+        font-size: large; 
+        display: none; 
+        text-align: center; 
+        margin-top: 10px;
     }
 
 </style>
@@ -292,53 +509,88 @@ function loadScatterChart(jsonData) {
                         <div style="float: right;">
                             <select class="form-select form-select-sm">
                                 <option>PAST 1 Min</option>
+                                <option selected>PAST 2 Mins</option>
                                 <option>PAST 5 Mins</option>
                                 <option>PAST 10 Mins</option>
                             </select>
                         </div>
 
-                        <!-- Create a div where the graph will take place -->
-                        <canvas id="scatterChart" width="400" height="100" style="margin-top: 20px; margin-bottom: 20px;"></canvas>
+                        <div id="noDataHeatmap" class="no-data">NO DATA AVAILABLE!</div>
 
+                        <div id="heatmap_container" style="width:100%;">
+                            <!-- Create a div where the graph will take place -->
+                            <div id="heatmap"></div>
+
+                            <!-- Create a div for the legend -->
+                            <div class="legend">
+                            	<div class="legend-container">
+                            		<div class="legend-item">
+                            			<div class="legend-color cell-true" style="background-color: maroon;"></div>
+                            			Anomalous
+                            		</div>
+                            		<div class="legend-item">
+                            			<div class="legend-color cell-false" style="background-color: silver;"></div>
+                            			Active
+                            		</div>
+                            		<div class="legend-item">
+                            			<div class="legend-color cell-Not_Trained" style="background-color: purple;"></div>
+                            			Not Trained
+                            		</div>
+                            	</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="row">
+                <div class="card info-card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="margin: 0;">Machine Level Anomaly</h5>
 
-                <div class="col-6">
-                    <div class="card">
-                       <div class="filter" style="margin-right:15px;">
-                            <div class="input-group">
-                                <input type="text" class="form-control form-control-sm" placeholder="Search..">
-                                <button class="btn btn-outline-secondary btn-sm" type="button">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
-                            <br/>
-                            <select class="form-select form-select-sm" style="float: right;">
+                        <div style="display: inline-flex;">
+                            <!-- <label for="machineName" class="col-form-label"></label> -->
+                            <span id="machineName">Machine: Win-10-VM</span>
+                            <!-- <input type="text" id="machineName" class="form-control" aria-describedby="machineName" value="Win-10-VM"> -->
+                        </div>
+
+                        <div style="float: right;">
+                            <select class="form-select form-select-sm">
                                 <option>PAST 1 Min</option>
+                                <option selected>PAST 2 Mins</option>
                                 <option>PAST 5 Mins</option>
                                 <option>PAST 10 Mins</option>
                             </select>
-                       </div>
-                       <div class="card-body">
-                          <h5 class="card-title">Machine Level Anomaly Ratio</h5>
-                          <canvas id="chart1" style="margin:auto; min-height: 130px;"></canvas>
-                       </div>
+                        </div>
+
+                        <div id="noDataScatter" class="no-data">NO DATA AVAILABLE!</div>
+
+                        <div id="machineLevelAnomaly_container" style="width:100%;">
+                            <!-- Create a div where the graph will take place -->
+                            <div id="machineLevelAnomaly"></div>
+
+                            <!-- Create a div for the legend -->
+                            <div class="legend">
+                            	<div class="legend-container">
+                            		<div class="legend-item">
+                            			<div class="legend-color cell-true" style="background-color: maroon;"></div>
+                            			Anomalous
+                            		</div>
+                            		<div class="legend-item">
+                            			<div class="legend-color cell-false" style="background-color: silver;"></div>
+                            			Active
+                            		</div>
+                            		<div class="legend-item">
+                            			<div class="legend-color cell-Not_Trained" style="background-color: purple;"></div>
+                            			Not Trained
+                            		</div>
+                            	</div>
+                            </div>
+                        </div>
+
+                        <!-- <canvas id="scatterChart" width="400" height="100" style="margin-top: 20px; margin-bottom: 20px;"></canvas> -->
                     </div>
                 </div>
-
-
-                <div class="col-6">
-                    <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title">Overall Level Anomaly Ratio</h5>
-                          <canvas id="chart2" style="margin:auto; min-height: 130px;"></canvas>
-                        <div>
-                    </div>
-                </div>
-
             </div>
         </div>
 	</section>
