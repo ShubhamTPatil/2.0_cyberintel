@@ -28,10 +28,7 @@
 <script type="text/javascript" src="/spm/js/newdashboard/common.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/chartjs.moment.min.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/chartjs-adapter-moment.min.js"></script>
-
-
-<!-- Load d3.js -->
-<script src="https://d3js.org/d3.v6.js"></script>
+<script type="text/javascript" src="/spm/js/newdashboard/d3.v6.min.js"</script></script>
 
 <script type="text/javascript">
 
@@ -284,107 +281,120 @@ function loadScatterChart(jsonData) {
 
 
 
-function loadMachineLevelAnomaly(data) {
+    function loadMachineLevelAnomaly(data) {
 
-const timeArray = Array.from(new Set(data.map(d => d.time)))
+        const timeArray = Array.from(new Set(data.map(d => d.time)))
 
-// Define a custom time format for tooltip
-const customTimeFormat = d3.timeFormat("%d %B, %H:%M:%S"); // Customize the format as needed
+        // Define a custom time format for tooltip
+        const customTimeFormat = d3.timeFormat("%d %B, %H:%M:%S"); // Customize the format as needed
 
+        var startTime = d3.min(timeArray);
+        var endTime = d3.max(timeArray);
 
-var startTime = d3.min(timeArray);
-var endTime = d3.max(timeArray);
+        var parentWidth = document.getElementById("machineLevelAnomaly_container").offsetWidth;
+        var h = new Set(data.map(d => d.event_id)).size * 20 + 40 + 50;
 
-var parentWidth = document.getElementById("machineLevelAnomaly_container").offsetWidth;
-var h = new Set(data.map(d => d.event_id)).size * 20 + 40 + 50;
+        // set the dimensions and margins of the graph
+        const margin = { top: 40, right: 25, bottom: 50, left: 100 },
+            width = parentWidth - margin.left - margin.right,
+            height = h - margin.top - margin.bottom;
 
-// set the dimensions and margins of the graph
-const margin = {top: 40, right: 25, bottom: 50, left: 100},
-  width = parentWidth - margin.left - margin.right,
-  height = h - margin.top - margin.bottom;
+        // append the svg object to the body of the page
+        const svg = d3.select("#machineLevelAnomaly")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-// append the svg object to the body of the page
-const svg = d3.select("#machineLevelAnomaly")
-.append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-.append("g")
-  .attr("transform", `translate(${margin.left}, ${margin.top})`);
+        // Create x and y scales
+        const xScale = d3.scaleTime()
+            .domain([new Date(startTime), new Date(endTime)])
+            .range([0, width]);
 
-     // Create scales
-     const x = d3.scaleTime()
-         .range([0, width])
-         .domain([new Date(startTime), new Date(endTime)]);
+        const yScale = d3.scaleBand()
+            .domain(data.map(d => d.event_id))
+            .range([height, 0])
+            .padding(0.1);
 
-     const y = d3.scaleBand()
-         .range([height, 0])
-         .domain(data.map(d => d.event_id))
-         .padding(0.01);
+        // Create x and y axis
+        const xAxis = d3.axisBottom(xScale).tickSize(-height);
+        const yAxis = d3.axisLeft(yScale).tickSize(-width);
 
-    
-     // Render the scatter chart
-     const cells = svg.selectAll("dot")
-         .data(data.flat())
-         .enter().append("circle")
-         .attr("cx", d => x(new Date(d.time)))
-         .attr("cy", (d) => y(d.event_id))
-         .attr("r", (d) => 3)
-         .attr("class", d => `cell-${d.anomaly}`) // Add class based on state
-         .on('mouseover', function (event, d) {
-             const tooltip = document.getElementById("mtooltip");
-             tooltip.innerHTML = `Anomaly: ${d.anomaly}<br>Event ID: ${d.event_id}<br>Time: ${customTimeFormat(new Date(d.time))}`;
+        // Append x and y axis elements to the SVG
+        svg.append('g')
+            .attr('class', 'x-axis')
+            .attr('transform', `translate(0, ${height})`)
+            .call(xAxis);
 
-             tooltip.style.display = "block";
-             tooltip.style.left = (event.pageX + 10) + "px";
-             tooltip.style.top = (event.pageY + 10) + "px";
-         })
-         .on('mouseout', function () {
-             document.getElementById("mtooltip").style.display = "none";
-         });
+        svg.append('g')
+            .attr('class', 'y-axis')
+            .call(yAxis);
 
-     // Add tooltips
-     const tooltip = d3.select("body")
-         .append("div")
-         .attr("id", "mtooltip")
-         .style("position", "absolute")
-         .style("z-index", "10")
-         .style("background-color", "white")
-         .style("padding", "10px")
-         .style("border", "1px solid #ccc")
-         .style("border-radius", "5px")
-         .style("display", "none");
+        // Style the axis grids
+        svg.selectAll('.x-axis .tick line')
+            .attr('class', 'grid-line');
 
-     // Add x-axis (time series)
-     svg.append("g")
-         .attr("transform", `translate(0,${height})`)
-         .call(d3.axisBottom(x).tickSize(0));
+        svg.selectAll('.y-axis .tick line')
+            .attr('class', 'grid-line');
 
-     // Add y-axis (machine names)
-     svg.append("g")
-         .call(d3.axisLeft(y).tickSize(0));
+        // Add grid lines to the chart
+        svg.selectAll('.grid-line')
+            .attr('stroke', 'lightgray')
+            .attr('stroke-dasharray', '4 4');
 
-     // Apply CSS style to hide the axis line (stroke)
-    //  svg.selectAll("path")
-    //     .style("display", "none");
+        svg.selectAll('.circle')
+            .data(data.flat())
+            .enter()
+            .append('circle')
+            .attr('class', 'circle')
+            .attr('cx', d => xScale(new Date(d.time))) // x-coordinate based on time
+            .attr('cy', d => yScale(d.event_id) + yScale.bandwidth() / 2) // y-coordinate based on string position
+            .attr('r', d => 3) // radius of the circle based on circleValue
+            .attr("class", d => `cell-${d.anomaly}`) // Add class based on state
+            .on('mouseover', function (event, d) {
+                const tooltip = document.getElementById("mtooltip");
+                tooltip.innerHTML = `Anomaly: ${d.anomaly}<br>Event ID: ${d.event_id}<br>Time: ${customTimeFormat(new Date(d.time))}`;
 
-     // Add x-axis label
-     svg.append("text")
-         .attr("class", "axis-label")
-         .attr("x", width / 2)
-         .attr("y", height + margin.bottom - 5)
-         .style("text-anchor", "middle")
-         .text("Time");
+                tooltip.style.display = "block";
+                tooltip.style.left = (event.pageX + 10) + "px";
+                tooltip.style.top = (event.pageY + 10) + "px";
+            })
+            .on('mouseout', function () {
+                document.getElementById("mtooltip").style.display = "none";
+            });
 
-     // Add y-axis label
-     svg.append("text")
-         .attr("class", "axis-label")
-         .attr("transform", "rotate(-90)")
-         .attr("x", -height / 2)
-         .attr("y", -margin.left + 20)
-         .style("text-anchor", "middle")
-         .text("Events");
+        // Add tooltips
+        const tooltip = d3.select("body")
+            .append("div")
+            .attr("id", "mtooltip")
+            .style("position", "absolute")
+            .style("z-index", "10")
+            .style("background-color", "white")
+            .style("padding", "10px")
+            .style("border", "1px solid #ccc")
+            .style("border-radius", "5px")
+            .style("display", "none");
 
-}
+        
+        // Add x-axis label
+        svg.append("text")
+            .attr("class", "axis-label")
+            .attr("x", width / 2)
+            .attr("y", height + margin.bottom - 5)
+            .style("text-anchor", "middle")
+            .text("Time");
+
+        // Add y-axis label
+        svg.append("text")
+            .attr("class", "axis-label")
+            .attr("transform", "rotate(-90)")
+            .attr("x", -height / 2)
+            .attr("y", -margin.left + 20)
+            .style("text-anchor", "middle")
+            .text("Events");
+
+    }
 
 </script>
 
