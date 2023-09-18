@@ -90,7 +90,7 @@ public class RunScanDetails {
 					machineSetObject.add(machineObject);
 				}
 
-				String subQuery1 = "Select top 1 modified,cvss_time from product_cve_info";
+				String subQuery1 = "Select top 1 modified,cvss_time from cve_info";
 				PreparedStatement subQuery1PrepareStatement = pool.getConnection().prepareStatement(subQuery1);
 				subQuery1Rs = subQuery1PrepareStatement.executeQuery();
 
