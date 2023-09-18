@@ -392,7 +392,7 @@ function loadScatterChart(jsonData) {
             .attr("x", -height / 2)
             .attr("y", -margin.left + 20)
             .style("text-anchor", "middle")
-            .text("Events");
+            .text("Event IDs");
 
     }
 
@@ -556,8 +556,8 @@ function loadScatterChart(jsonData) {
             <div class="row">
                 <div class="card info-card">
                     <div class="card-body">
-                        <h5 class="card-title" style="margin: 0;">Machine Level Anomaly</h5>
-
+                        <h5 class="card-title" style="margin: 0;">Machine Level Anomaly <span data-bs-toggle="tooltip" data-bs-placement="right" title="This graph shows the datapoint where Anomalies were detected at particular Time for particular Event."><i
+                            class="fa-solid fa-circle-info text-primary"></i></span></h5>
                         <div style="display: inline-flex;">
                             <!-- <label for="machineName" class="col-form-label"></label> -->
                             <span id="machineName">Machine: Win-10-VM</span>
