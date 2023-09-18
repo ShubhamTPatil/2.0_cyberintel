@@ -59,8 +59,8 @@ public class RunScanDetails {
 		protected void execute(IStatementPool pool) throws SQLException {
 
 			ResultSet masterRS = null;
-			ResultSet subQuery1Rs = null;
-			ResultSet subQuery2Rs = null;
+			ResultSet cveInfoRs = null;
+			ResultSet secDefLastUpdateRs = null;
 
 			try {
 
@@ -90,21 +90,22 @@ public class RunScanDetails {
 					machineSetObject.add(machineObject);
 				}
 
-				String subQuery1 = "Select top 1 modified,cvss_time from cve_info";
-				PreparedStatement subQuery1PrepareStatement = pool.getConnection().prepareStatement(subQuery1);
-				subQuery1Rs = subQuery1PrepareStatement.executeQuery();
+				String cveInfoQuery = "Select top 1 modified,cvss_time from cve_info";
+				PreparedStatement cveInfoPs = pool.getConnection().prepareStatement(cveInfoQuery);
+				cveInfoRs = cveInfoPs.executeQuery();
 
-				while (subQuery1Rs.next()) {
-					dataObject.setcVELastUpdated(subQuery1Rs.getString("modified"));
-					dataObject.setVulDefLastUpdated(subQuery1Rs.getString("cvss_time"));
+				while (cveInfoRs.next()) {
+					dataObject.setcVELastUpdated(cveInfoRs.getString("modified"));
+					dataObject.setVulDefLastUpdated(cveInfoRs.getString("cvss_time"));
 				}
 
-				String subQuery2 = "Select top 1 modified_date from security_cve_info";
-				PreparedStatement subQuery2PrepareStatement = pool.getConnection().prepareStatement(subQuery2);
-				subQuery2Rs = subQuery2PrepareStatement.executeQuery();
+				String secDefLastUpdateQuery = "SELECT TOP 1 modified_date FROM security_cve_info ORDER BY modified_date DESC";
+				PreparedStatement secDefLastUpdatePs = pool.getConnection()
+						.prepareStatement(secDefLastUpdateQuery);
+				secDefLastUpdateRs = secDefLastUpdatePs.executeQuery();
 
-				while (subQuery2Rs.next()) {
-					dataObject.setSecDefLastUpdated(subQuery2Rs.getString("modified_date"));
+				while (secDefLastUpdateRs.next()) {
+					dataObject.setSecDefLastUpdated(secDefLastUpdateRs.getString("modified_date"));
 				}
 				dataObject.setMachineList(machineSetObject);
 
@@ -118,10 +119,10 @@ public class RunScanDetails {
 				Gson gson = new Gson();
 				runScanJsonResponse = gson.toJson(scanResultResponseObject);
 			} finally {
-				if (null != masterRS && null != subQuery1Rs && null != subQuery2Rs) {
+				if (null != masterRS && null != cveInfoRs && null != secDefLastUpdateRs) {
 					masterRS.close();
-					subQuery1Rs.close();
-					subQuery2Rs.close();
+					cveInfoRs.close();
+					secDefLastUpdateRs.close();
 				}
 			}
 		}
