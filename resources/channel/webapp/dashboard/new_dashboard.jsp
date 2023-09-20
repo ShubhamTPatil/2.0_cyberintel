@@ -748,8 +748,7 @@ function createMitigateTable(aaData) {
                   <div class="col-md-4">
                     <p>Reporting</p>
                     <span> Not checked-in </span><br/>
-                    <span id="reportingModelId" data-bs-toggle="modal" data-bs-target="#reportingModal"
-                        style="color: #FF5F60; text-decoration: underline; cursor: pointer;">
+                       <span style="color: #FF5F60;">
                         <bean:write name="newDashboardForm" property="reportingNotCheckedIn"/>
                       </span>
                     <div class="progress" style="margin-bottom:10px;">
