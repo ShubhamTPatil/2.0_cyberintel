@@ -35,8 +35,24 @@
     $(function () {
 
         $('#anomalyReport').addClass('nav-selected');
+        hideLoader();
+
+         // Function to show the loader
+         function showLoader() {
+            $('.loader').addClass('active');
+            $('#content-to-blur').css('filter', 'blur(4px)');
+        }
+
+        // Function to hide the loader
+        function hideLoader() {
+            $('.loader').removeClass('active');
+            $('#content-to-blur').css('filter', 'none');
+        }
 
         $('#topLevelTimeFilter').on('change', function () {
+
+            showLoader();
+
             $.ajax({
                 url: './anomaly.do',
                 type: 'POST',
@@ -45,6 +61,7 @@
                 beforeSend: function () { },
                 complete: function (xhr, status) { },
                 success: function (response) {
+                    hideLoader();
                     console.log("success");
                     console.log(JSON.stringify(response));
                     let topLevelStatsData = response['data'];
@@ -65,9 +82,8 @@
                     console.error('Error:', error);
                 }
             });
-        });
 
-        $('#machineLevelTimeFilter').on('change', function () {
+
             $.ajax({
                 url: './anomaly.do',
                 type: 'POST',
@@ -96,17 +112,20 @@
                     console.error('Error:', error);
                 }
             });
+
         });
 
         $('#machineNameList').on('change', function () {
+            showLoader();
             $.ajax({
                 url: './anomaly.do',
                 type: 'POST',
                 dataType: 'text json',
-                data: { action: 'machineLevelAnomaly', interval: $('#machineLevelTimeFilter').val(), hostname: this.value },
+                data: { action: 'machineLevelAnomaly', interval: $('#topLevelTimeFilter').val(), hostname: this.value },
                 beforeSend: function () { },
                 complete: function (xhr, status) { },
                 success: function (response) {
+                    hideLoader();
                     console.log("success");
                     console.log(JSON.stringify(response));
                     let machineLevelAnomalyRatioData = response['data'];
@@ -143,7 +162,7 @@
             $('#noDataHeatmap').show();
         } else {
             topLevelStatsData = JSON.parse(topLevelStatsData.replace(/&quot;/g, '"'));
-            console.log(JSON.stringify(topLevelStatsData));
+            console.log(topLevelStatsData);
             loadTopLevelStatsChart(topLevelStatsData, prevTime, startTime);
         }
 
@@ -167,37 +186,15 @@
 
 
         let machineLevelAnomalyRatioData = '<bean:write name="anomalyReportForm" property="machineLevelAnomaly"/>';
-        let startTime1 = '<bean:write name="anomalyReportForm" property="machineLevelCurrentTime"/>';
-        let prevTime1 = '<bean:write name="anomalyReportForm" property="machineLevelPrevTime"/>';
-        console.log("machineLevelAnomaly startTime = "+startTime1);
-        console.log("machineLevelAnomaly prevTime = "+prevTime1);
         if (machineLevelAnomalyRatioData === '[]' || machineLevelAnomalyRatioData == null) {
             console.log('machineLevelAnomalyRatioData ' + machineLevelAnomalyRatioData);
             $('#machineLevelAnomaly_container').hide();
             $('#noDataScatter').show();
         } else {
             machineLevelAnomalyRatioData = JSON.parse(machineLevelAnomalyRatioData.replace(/&quot;/g, '"'));
-            console.log(JSON.stringify(machineLevelAnomalyRatioData));
-            loadMachineLevelAnomaly(machineLevelAnomalyRatioData, prevTime1, startTime1);
+            console.log(machineLevelAnomalyRatioData)
+            loadMachineLevelAnomaly(machineLevelAnomalyRatioData, prevTime, startTime);
         }
-
-        /* $.ajax({
-             url: './anomaly.do',
-             type: 'POST',
-             dataType: 'text json',
-             data: {action: 'heatmapData' , interval: 5, os : 'windows'},
-             beforeSend: function() {},
-             complete: function (xhr, status) {},
-             success: function (response) {
-                 console.log("success");
-                 console.log(JSON.stringify(response));
-                 loadScatterChart(response);
-             },
-             error: function(xhr, status, error) {
-                 // Handle errors here
-                 console.error('Error:', error);
-             }
-         });*/
     });
 
     function updateTopLevelStatsChart(data, prevTime, startTime) {
@@ -285,7 +282,7 @@
         // Add x-axis (time series)
         svg.append("g")
             .attr("transform", `translate(0,${height})`)
-            .call(d3.axisBottom(x).tickSize(0));
+            .call(d3.axisBottom(x).tickSize(0).tickFormat(d3.timeFormat("%H:%M:%S")));
 
         // Add y-axis (machine names)
         svg.append("g")
@@ -357,7 +354,7 @@
             .padding(0.1);
 
         // Create x and y axis
-        const xAxis = d3.axisBottom(xScale).tickSize(-height);
+        const xAxis = d3.axisBottom(xScale).tickSize(-height).tickFormat(d3.timeFormat("%H:%M:%S"));
         const yAxis = d3.axisLeft(yScale).tickSize(-width);
 
         // Append x and y axis elements to the SVG
@@ -450,7 +447,7 @@
     }
 
     .cell-false {
-        fill: gray;
+        fill: silver;
     }
 
     .cell-Not_Trained {
@@ -481,6 +478,34 @@
         display: none; 
         text-align: center; 
         margin-top: 10px;
+    }
+
+    .loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.7);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    .loader .spinner-border {
+        width: 3rem;
+        height: 3rem;
+        filter: none;
+    }
+
+    #content-to-blur {
+        filter: blur(4px);
+        transition: filter 0.3s;
+    }
+
+    .loader.active {
+        display: flex;
     }
 
 </style>
@@ -517,9 +542,13 @@
 			</div>
 		</div>
 		
+		<section class="section dashboard" id="content-to-blur">
 
-		
-		<section class="section dashboard">
+            <div class="loader">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
 
             <div class="row">
 
@@ -562,6 +591,8 @@
                                 <option value="2" selected>PAST 2 Mins</option>
                                 <option value="5">PAST 5 Mins</option>
                                 <option value="10">PAST 10 Mins</option>
+                                <option value="20">PAST 20 Mins</option>
+                                <option value="30">PAST 30 Mins</option>
                             </select>
                         </div>
 
@@ -604,15 +635,6 @@
                             </select>
                         </div>
 
-                        <div style="float: right;">
-                            <select id="machineLevelTimeFilter" class="form-select form-select-sm">
-                                <option value="1">PAST 1 Min</option>
-                                <option value="2" selected>PAST 2 Mins</option>
-                                <option value="5">PAST 5 Mins</option>
-                                <option value="10">PAST 10 Mins</option>
-                            </select>
-                        </div>
-
                         <div id="noDataScatter" class="no-data">NO DATA AVAILABLE!</div>
 
                         <div id="machineLevelAnomaly_container" style="width:100%;">
@@ -625,14 +647,6 @@
                             		<div class="legend-item">
                             			<div class="legend-color cell-true" style="background-color: maroon;"></div>
                             			Anomalous
-                            		</div>
-                            		<div class="legend-item">
-                            			<div class="legend-color cell-false" style="background-color: silver;"></div>
-                            			Active
-                            		</div>
-                            		<div class="legend-item">
-                            			<div class="legend-color cell-Not_Trained" style="background-color: purple;"></div>
-                            			Not Trained
                             		</div>
                             	</div>
                             </div>
