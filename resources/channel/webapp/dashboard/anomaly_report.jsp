@@ -590,9 +590,6 @@
                                 <option value="1">PAST 1 Min</option>
                                 <option value="2" selected>PAST 2 Mins</option>
                                 <option value="5">PAST 5 Mins</option>
-                                <option value="10">PAST 10 Mins</option>
-                                <option value="20">PAST 20 Mins</option>
-                                <option value="30">PAST 30 Mins</option>
                             </select>
                         </div>
 
