@@ -32,264 +32,303 @@
 
 <script type="text/javascript">
 
-$(function () {
+    $(function () {
 
-    $('#anomalyReport').addClass('nav-selected');
+        $('#anomalyReport').addClass('nav-selected');
 
-    //var data = [{"hostname":"Win-10-VM","anomaly":false,"time":"2023-09-05T16:30:06.719Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.703Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.532Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.700Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.532Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:03.701Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.685Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.681Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.681Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"},{"hostname":"Win-11-VM","anomaly":true,"time":"2023-09-05T16:30:02.679Z"},{"hostname":"Win-12-VM","anomaly":true,"time":"2023-09-05T16:30:01.679Z"},{"hostname":"Win-13-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"},{"hostname":"Win-14-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"}];
-
-      let topLevelStatsData = '<bean:write name="anomalyReportForm" property="topLevelStats"/>';
-      //loadScatterChart(JSON.parse(topLevelStatsData.replace(/&quot;/g,'"')));
-
-      if(topLevelStatsData === '[]' || topLevelStatsData == null){
-        console.log('topLevelStatsData '+topLevelStatsData);
-        $('#heatmap_container').hide();
-        $('#noDataHeatmap').show();
-      } else {
-        topLevelStatsData = JSON.parse(topLevelStatsData.replace(/&quot;/g,'"'));
-        loadHeatMap(topLevelStatsData);
-      }
-
-      let machineLevelAnomalyRatioData = '<bean:write name="anomalyReportForm" property="machineLevelAnomalyPieChartData"/>';
-      if(machineLevelAnomalyRatioData === '[]' || machineLevelAnomalyRatioData == null){
-        console.log('machineLevelAnomalyRatioData '+machineLevelAnomalyRatioData);
-        $('#machineLevelAnomaly_container').hide();
-        $('#noDataScatter').show();
-      } else {
-        machineLevelAnomalyRatioData = JSON.parse(machineLevelAnomalyRatioData.replace(/&quot;/g,'"'));
-        loadMachineLevelAnomaly(machineLevelAnomalyRatioData);
-      }
-
-   /* $.ajax({
-        url: './anomaly.do',
-        type: 'POST',
-        dataType: 'text json',
-        data: {action: 'heatmapData' , interval: 5, os : 'windows'},
-        beforeSend: function() {},
-        complete: function (xhr, status) {},
-        success: function (response) {
-            console.log("success");
-            console.log(JSON.stringify(response));
-            loadScatterChart(response);
-        },
-        error: function(xhr, status, error) {
-            // Handle errors here
-            console.error('Error:', error);
-        }
-    });*/
-});
-
-function loadHeatMap(data) {
-
-const timeArray = Array.from(new Set(data.map(d => d.time)))
-
-// Define a custom time format for tooltip
-const customTimeFormat = d3.timeFormat("%d %B, %H:%M:%S"); // Customize the format as needed
-
-
-var startTime = d3.min(timeArray);
-var endTime = d3.max(timeArray);
-
-var numCols = timeArray.length;
-
-var parentWidth = document.getElementById("heatmap_container").offsetWidth;
-var h = new Set(data.map(d => d.hostname)).size * 20 + 40 + 50;
-
-// set the dimensions and margins of the graph
-const margin = {top: 40, right: 25, bottom: 50, left: 100},
-  width = parentWidth - margin.left - margin.right,
-  height = h - margin.top - margin.bottom;
-
-// append the svg object to the body of the page
-const svg = d3.select("#heatmap")
-.append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-.append("g")
-  .attr("transform", `translate(${margin.left}, ${margin.top})`);
-
-     // Create scales
-     const x = d3.scaleTime()
-         .range([0, width])
-         .domain([new Date(startTime), new Date(endTime)]);
-
-     const y = d3.scaleBand()
-         .range([height, 0])
-         .domain(data.map(d => d.hostname))
-         .padding(0.01);
-
-     // Calculate cell width based on time interval
-     const cellWidth = width / numCols;
-
-     // Render the heatmap
-     const cells = svg.selectAll("rect")
-         .data(data.flat())
-         .enter().append("rect")
-         .attr("x", d => x(new Date(d.time)))
-         .attr("y", (d) => y(d.hostname))
-         .attr("width", cellWidth)
-         .attr("height", y.bandwidth())
-         .attr("class", d => `cell-${d.anomaly}`) // Add class based on state
-         .attr("stroke", "white") // Add white stroke for cell borders
-         .style("stroke-width", 1) // Set border width
-         .on('mouseover', function (event, d) {
-             const tooltip = document.getElementById("tooltip");
-             tooltip.innerHTML = `Anomaly: ${d.anomaly}<br>Machine: ${d.hostname}<br>Time: ${customTimeFormat(new Date(d.time))}`;
-
-             tooltip.style.display = "block";
-             tooltip.style.left = (event.pageX + 10) + "px";
-             tooltip.style.top = (event.pageY + 10) + "px";
-         })
-         .on('mouseout', function () {
-             document.getElementById("tooltip").style.display = "none";
-         });
-
-     // Add tooltips
-     const tooltip = d3.select("body")
-         .append("div")
-         .attr("id", "tooltip")
-         .style("position", "absolute")
-         .style("z-index", "10")
-         .style("background-color", "white")
-         .style("padding", "10px")
-         .style("border", "1px solid #ccc")
-         .style("border-radius", "5px")
-         .style("display", "none");
-
-     // Add x-axis (time series)
-     svg.append("g")
-         .attr("transform", `translate(0,${height})`)
-         .call(d3.axisBottom(x).tickSize(0));
-
-     // Add y-axis (machine names)
-     svg.append("g")
-         .call(d3.axisLeft(y).tickSize(0));
-
-     // Apply CSS style to hide the axis line (stroke)
-     svg.selectAll("path")
-        .style("display", "none");
-
-     // Add x-axis label
-     svg.append("text")
-         .attr("class", "axis-label")
-         .attr("x", width / 2)
-         .attr("y", height + margin.bottom - 5)
-         .style("text-anchor", "middle")
-         .text("Time");
-
-     // Add y-axis label
-     svg.append("text")
-         .attr("class", "axis-label")
-         .attr("transform", "rotate(-90)")
-         .attr("x", -height / 2)
-         .attr("y", -margin.left + 20)
-         .style("text-anchor", "middle")
-         .text("Machines");
-
-}
-
-
-
-function loadScatterChart(jsonData) {
-    // Extract the data into separate arrays for true and false anomalies
-    var trueAnomalies = [];
-    var falseAnomalies = [];
-    var notTrainedAnomalies = [];
-    
-    var xMin = new Date(jsonData[0].time);
-    var xMax = xMin;
-
-    jsonData.forEach(function (item) {
-        
-        xMin = xMin < new Date(item.time) ? xMin : new Date(item.time);
-        xMax = xMax > new Date(item.time) ? xMax : new Date(item.time);
-    
-        if (item.anomaly === "true") {
-            trueAnomalies.push({ x: new Date(item.time), y: item.event_id });
-        } else if(item.anomaly === "false") {
-            falseAnomalies.push({ x: new Date(item.time), y: item.event_id });
-        } else if(item.anomaly === "Not_Trained") {
-            notTrainedAnomalies.push({ x: new Date(item.time), y: item.event_id });
-        } else {
-
-        }
-    });
-    
-    //xMin = xMin.setSeconds(xMin.getSeconds() - 1)
-    //yMin = xMax.setSeconds(xMax.getSeconds() + 1)
-
-    console.log("xMin = "+xMin)
-    console.log("xMax = "+xMax)
-
-    var ctx = document.getElementById('scatterChart').getContext('2d');
-
-    // Create the scatter chart
-    var scatterChart = new Chart(ctx, {
-        type: 'scatter',
-        data: {
-            datasets: [
-                {
-                    label: 'Anomalous',
-                    data: trueAnomalies,
-                    backgroundColor: 'rgba(255, 0, 0, 0.5)', // Red color for true anomalies
-                    pointRadius: 6 // Adjust point size as needed
-                },
-                {
-                    label: 'Active',
-                    data: falseAnomalies,
-                    backgroundColor: 'rgb(129, 133, 137)', // Gray color for false anomalies
-                    pointRadius: 6 // Adjust point size as needed
-                },
-                {
-                    label: 'Not Trained',
-                    data: notTrainedAnomalies,
-                    backgroundColor: 'rgb(128,0,128)', // Gray color for false anomalies
-                    pointRadius: 6 // Adjust point size as needed
-                }
-            ]
-        },
-        options: {
-            scales: {
-                x: {
-                    type: 'time',
-                    position: 'bottom',
-                    title: {
-                        display: true,
-                        text: 'Time'
-                    },
-                    min: xMin,
-                    max: xMax,
-                },
-                y: {
-                    type: 'category',
-                    position: 'left',
-                    title: {
-                        display: true,
-                        text: 'Events'
+        $('#topLevelTimeFilter').on('change', function () {
+            $.ajax({
+                url: './anomaly.do',
+                type: 'POST',
+                dataType: 'text json',
+                data: { action: 'topLevelStats', interval: this.value },
+                beforeSend: function () { },
+                complete: function (xhr, status) { },
+                success: function (response) {
+                    console.log("success");
+                    console.log(JSON.stringify(response));
+                    let topLevelStatsData = response['data'];
+                    if (topLevelStatsData === '[]' || topLevelStatsData == null) {
+                        console.log('topLevelStatsData ' + topLevelStatsData);
+                        $('#heatmap_container').hide();
+                        $('#noDataHeatmap').show();
+                    } else {
+                        $('#noDataHeatmap').hide();
+                        $('#heatmap_container').show();
+                        topLevelStatsData = JSON.parse(topLevelStatsData);
+                        console.log(JSON.stringify(topLevelStatsData));
+                        updateTopLevelStatsChart(topLevelStatsData,response['prevTime'],response['startTime'])
                     }
+                },
+                error: function (xhr, status, error) {
+                    // Handle errors here
+                    console.error('Error:', error);
                 }
-            },
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'bottom'
+            });
+        });
+
+        $('#machineLevelTimeFilter').on('change', function () {
+            $.ajax({
+                url: './anomaly.do',
+                type: 'POST',
+                dataType: 'text json',
+                data: { action: 'machineLevelAnomaly', interval: this.value, hostname: $('#machineNameList').val() },
+                beforeSend: function () { },
+                complete: function (xhr, status) { },
+                success: function (response) {
+                    console.log("success");
+                    console.log(JSON.stringify(response));
+                    let machineLevelAnomalyRatioData = response['data'];
+                    if (machineLevelAnomalyRatioData === '[]' || machineLevelAnomalyRatioData == null) {
+                        console.log('machineLevelAnomalyRatioData ' + machineLevelAnomalyRatioData);
+                        $('#machineLevelAnomaly_container').hide();
+                        $('#noDataScatter').show();
+                    } else {
+                        $('#machineLevelAnomaly_container').show();
+                        $('#noDataScatter').hide();
+                        machineLevelAnomalyRatioData = JSON.parse(machineLevelAnomalyRatioData);
+                        console.log(JSON.stringify(machineLevelAnomalyRatioData));
+                        updateMachineLevelAnomaly(machineLevelAnomalyRatioData,response['prevTime'],response['startTime']);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Handle errors here
+                    console.error('Error:', error);
                 }
-            }
+            });
+        });
+
+        $('#machineNameList').on('change', function () {
+            $.ajax({
+                url: './anomaly.do',
+                type: 'POST',
+                dataType: 'text json',
+                data: { action: 'machineLevelAnomaly', interval: $('#machineLevelTimeFilter').val(), hostname: this.value },
+                beforeSend: function () { },
+                complete: function (xhr, status) { },
+                success: function (response) {
+                    console.log("success");
+                    console.log(JSON.stringify(response));
+                    let machineLevelAnomalyRatioData = response['data'];
+                    if (machineLevelAnomalyRatioData === '[]' || machineLevelAnomalyRatioData == null) {
+                        console.log('machineLevelAnomalyRatioData ' + machineLevelAnomalyRatioData);
+                        $('#machineLevelAnomaly_container').hide();
+                        $('#noDataScatter').show();
+                    } else {
+                        $('#machineLevelAnomaly_container').show();
+                        $('#noDataScatter').hide();
+                        machineLevelAnomalyRatioData = JSON.parse(machineLevelAnomalyRatioData);
+                        console.log(JSON.stringify(machineLevelAnomalyRatioData));
+                        updateMachineLevelAnomaly(machineLevelAnomalyRatioData,response['prevTime'],response['startTime']);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Handle errors here
+                    console.error('Error:', error);
+                }
+            });
+        });
+
+
+        //var data = [{"hostname":"Win-10-VM","anomaly":false,"time":"2023-09-05T16:30:06.719Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.703Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.533Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.532Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.700Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:04.532Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:03.701Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.685Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:02.525Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.681Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.681Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.683Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:01.519Z"},{"hostname":"Win-10-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"},{"hostname":"Win-11-VM","anomaly":true,"time":"2023-09-05T16:30:02.679Z"},{"hostname":"Win-12-VM","anomaly":true,"time":"2023-09-05T16:30:01.679Z"},{"hostname":"Win-13-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"},{"hostname":"Win-14-VM","anomaly":true,"time":"2023-09-05T16:30:03.679Z"}];
+
+        let topLevelStatsData = '<bean:write name="anomalyReportForm" property="topLevelStats"/>';
+        let startTime = '<bean:write name="anomalyReportForm" property="topLevelStatsCurrentTime"/>';
+        let prevTime = '<bean:write name="anomalyReportForm" property="topLevelStatsPrevTime"/>';
+        console.log("topLevelStats startTime = "+startTime);
+        console.log("topLevelStats prevTime = "+prevTime);
+        if (topLevelStatsData === '[]' || topLevelStatsData == null) {
+            console.log('topLevelStatsData ' + topLevelStatsData);
+            $('#heatmap_container').hide();
+            $('#noDataHeatmap').show();
+        } else {
+            topLevelStatsData = JSON.parse(topLevelStatsData.replace(/&quot;/g, '"'));
+            console.log(JSON.stringify(topLevelStatsData));
+            loadTopLevelStatsChart(topLevelStatsData, prevTime, startTime);
         }
+
+        let machineNameList = '<bean:write name="anomalyReportForm" property="machineNameList"/>';
+
+        if (machineNameList === '[]' || machineNameList == null) {
+        } else {
+            machineNameList = JSON.parse(machineNameList.replace(/&quot;/g, '"'));
+
+            // Select the <select> element by its ID
+            var machineNameSelect = $('#machineNameList');
+
+            // Use a lambda function to append each option to the select element
+            $.each(machineNameList, (index, option) => {
+                machineNameSelect.append($('<option>', {
+                    value: option.hostname,
+                    text: option.hostname
+                }));
+            });
+        }
+
+
+        let machineLevelAnomalyRatioData = '<bean:write name="anomalyReportForm" property="machineLevelAnomaly"/>';
+        let startTime1 = '<bean:write name="anomalyReportForm" property="machineLevelCurrentTime"/>';
+        let prevTime1 = '<bean:write name="anomalyReportForm" property="machineLevelPrevTime"/>';
+        console.log("machineLevelAnomaly startTime = "+startTime1);
+        console.log("machineLevelAnomaly prevTime = "+prevTime1);
+        if (machineLevelAnomalyRatioData === '[]' || machineLevelAnomalyRatioData == null) {
+            console.log('machineLevelAnomalyRatioData ' + machineLevelAnomalyRatioData);
+            $('#machineLevelAnomaly_container').hide();
+            $('#noDataScatter').show();
+        } else {
+            machineLevelAnomalyRatioData = JSON.parse(machineLevelAnomalyRatioData.replace(/&quot;/g, '"'));
+            console.log(JSON.stringify(machineLevelAnomalyRatioData));
+            loadMachineLevelAnomaly(machineLevelAnomalyRatioData, prevTime1, startTime1);
+        }
+
+        /* $.ajax({
+             url: './anomaly.do',
+             type: 'POST',
+             dataType: 'text json',
+             data: {action: 'heatmapData' , interval: 5, os : 'windows'},
+             beforeSend: function() {},
+             complete: function (xhr, status) {},
+             success: function (response) {
+                 console.log("success");
+                 console.log(JSON.stringify(response));
+                 loadScatterChart(response);
+             },
+             error: function(xhr, status, error) {
+                 // Handle errors here
+                 console.error('Error:', error);
+             }
+         });*/
     });
-}
 
+    function updateTopLevelStatsChart(data, prevTime, startTime) {
 
+        d3.select("#heatmap")
+            .select("svg")
+            .remove();
 
-    function loadMachineLevelAnomaly(data) {
+        loadTopLevelStatsChart(data, prevTime, startTime);
+    }
+
+    function loadTopLevelStatsChart(data, prevTime, startTime) {
 
         const timeArray = Array.from(new Set(data.map(d => d.time)))
 
         // Define a custom time format for tooltip
         const customTimeFormat = d3.timeFormat("%d %B, %H:%M:%S"); // Customize the format as needed
 
-        var startTime = d3.min(timeArray);
-        var endTime = d3.max(timeArray);
+        var numCols = timeArray.length;
+
+        var parentWidth = document.getElementById("heatmap_container").offsetWidth;
+        var h = new Set(data.map(d => d.hostname)).size * 20 + 40 + 50;
+
+        // set the dimensions and margins of the graph
+        const margin = { top: 40, right: 25, bottom: 50, left: 100 },
+            width = parentWidth - margin.left - margin.right,
+            height = h - margin.top - margin.bottom;
+
+        // append the svg object to the body of the page
+        const svg = d3.select("#heatmap")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+        // Create scales
+        const x = d3.scaleTime()
+            .range([0, width])
+            .domain([new Date(prevTime), new Date(startTime)]);
+
+        const y = d3.scaleBand()
+            .range([height, 0])
+            .domain(data.map(d => d.hostname))
+            .padding(0.01);
+
+        // Calculate cell width based on time interval
+        const cellWidth = width / numCols;
+
+        // Render the heatmap
+        const cells = svg.selectAll("rect")
+            .data(data.flat())
+            .enter().append("rect")
+            .attr("x", d => x(new Date(d.time)))
+            .attr("y", (d) => y(d.hostname))
+            .attr("width", cellWidth)
+            .attr("height", y.bandwidth())
+            .attr("class", d => `cell-${d.anomaly}`) // Add class based on state
+            .attr("stroke", "white") // Add white stroke for cell borders
+            .style("stroke-width", 1) // Set border width
+            .on('mouseover', function (event, d) {
+                const tooltip = document.getElementById("tooltip");
+                tooltip.innerHTML = `Anomaly: ${d.anomaly}<br>Machine: ${d.hostname}<br>Time: ${customTimeFormat(new Date(d.time))}`;
+
+                tooltip.style.display = "block";
+                tooltip.style.left = (event.pageX + 10) + "px";
+                tooltip.style.top = (event.pageY + 10) + "px";
+            })
+            .on('mouseout', function () {
+                document.getElementById("tooltip").style.display = "none";
+            });
+
+        // Add tooltips
+        const tooltip = d3.select("body")
+            .append("div")
+            .attr("id", "tooltip")
+            .style("position", "absolute")
+            .style("z-index", "10")
+            .style("background-color", "white")
+            .style("padding", "10px")
+            .style("border", "1px solid #ccc")
+            .style("border-radius", "5px")
+            .style("display", "none");
+
+        // Add x-axis (time series)
+        svg.append("g")
+            .attr("transform", `translate(0,${height})`)
+            .call(d3.axisBottom(x).tickSize(0));
+
+        // Add y-axis (machine names)
+        svg.append("g")
+            .call(d3.axisLeft(y).tickSize(0));
+
+        // Apply CSS style to hide the axis line (stroke)
+        svg.selectAll("path")
+            .style("display", "none");
+
+        // Add x-axis label
+        svg.append("text")
+            .attr("class", "axis-label")
+            .attr("x", width / 2)
+            .attr("y", height + margin.bottom - 5)
+            .style("text-anchor", "middle")
+            .text("Time");
+
+        // Add y-axis label
+        svg.append("text")
+            .attr("class", "axis-label")
+            .attr("transform", "rotate(-90)")
+            .attr("x", -height / 2)
+            .attr("y", -margin.left + 20)
+            .style("text-anchor", "middle")
+            .text("Machines");
+
+    }
+
+    function updateMachineLevelAnomaly(data, prevTime, startTime) {
+
+        d3.select("#machineLevelAnomaly")
+            .select("svg")
+            .remove();
+
+        loadMachineLevelAnomaly(data, prevTime, startTime);
+    }
+
+    function loadMachineLevelAnomaly(data, prevTime, startTime ) {
+
+        //const timeArray = Array.from(new Set(data.map(d => d.time)))
+
+        // Define a custom time format for tooltip
+        const customTimeFormat = d3.timeFormat("%d %B, %H:%M:%S"); // Customize the format as needed
 
         var parentWidth = document.getElementById("machineLevelAnomaly_container").offsetWidth;
         var h = new Set(data.map(d => d.event_id)).size * 20 + 40 + 50;
@@ -309,7 +348,7 @@ function loadScatterChart(jsonData) {
 
         // Create x and y scales
         const xScale = d3.scaleTime()
-            .domain([new Date(startTime), new Date(endTime)])
+            .domain([new Date(prevTime), new Date(startTime)])
             .range([0, width]);
 
         const yScale = d3.scaleBand()
@@ -376,7 +415,7 @@ function loadScatterChart(jsonData) {
             .style("border-radius", "5px")
             .style("display", "none");
 
-        
+
         // Add x-axis label
         svg.append("text")
             .attr("class", "axis-label")
@@ -393,6 +432,7 @@ function loadScatterChart(jsonData) {
             .attr("y", -margin.left + 20)
             .style("text-anchor", "middle")
             .text("Event IDs");
+
 
     }
 
@@ -503,10 +543,10 @@ function loadScatterChart(jsonData) {
                                 <option value="optionC">255.255.0.1</option>
                             </select>
 
-                            <select class="form-select form-select-sm">
-                                <option value="choice1">OS</option>
-                                <option value="choiceX">Windows</option>
-                                <option value="choiceY">Linux</option>
+                            <select id="topLevelOsFilter" class="form-select form-select-sm">
+                                <option value="all">All OS</option>
+                                <option value="windows">Windows</option>
+                                <option value="linux">Linux</option>
                             </select>
 
                             <select class="form-select form-select-sm">
@@ -517,11 +557,11 @@ function loadScatterChart(jsonData) {
                             </select>
                         </div>
                         <div style="float: right;">
-                            <select class="form-select form-select-sm">
-                                <option>PAST 1 Min</option>
-                                <option selected>PAST 2 Mins</option>
-                                <option>PAST 5 Mins</option>
-                                <option>PAST 10 Mins</option>
+                            <select id="topLevelTimeFilter" class="form-select form-select-sm">
+                                <option value="1">PAST 1 Min</option>
+                                <option value="2" selected>PAST 2 Mins</option>
+                                <option value="5">PAST 5 Mins</option>
+                                <option value="10">PAST 10 Mins</option>
                             </select>
                         </div>
 
@@ -559,17 +599,17 @@ function loadScatterChart(jsonData) {
                         <h5 class="card-title" style="margin: 0;">Machine Level Anomaly <span data-bs-toggle="tooltip" data-bs-placement="right" title="This graph shows the datapoint where Anomalies were detected at particular Time for particular Event."><i
                             class="fa-solid fa-circle-info text-primary"></i></span></h5>
                         <div style="display: inline-flex;">
-                            <!-- <label for="machineName" class="col-form-label"></label> -->
-                            <span id="machineName">Machine: Win-10-VM</span>
-                            <!-- <input type="text" id="machineName" class="form-control" aria-describedby="machineName" value="Win-10-VM"> -->
+                            <label for="machineNameList" class="col-form-label">Machine: </label>
+                            <select id="machineNameList" class="form-select form-select-sm">
+                            </select>
                         </div>
 
                         <div style="float: right;">
-                            <select class="form-select form-select-sm">
-                                <option>PAST 1 Min</option>
-                                <option selected>PAST 2 Mins</option>
-                                <option>PAST 5 Mins</option>
-                                <option>PAST 10 Mins</option>
+                            <select id="machineLevelTimeFilter" class="form-select form-select-sm">
+                                <option value="1">PAST 1 Min</option>
+                                <option value="2" selected>PAST 2 Mins</option>
+                                <option value="5">PAST 5 Mins</option>
+                                <option value="10">PAST 10 Mins</option>
                             </select>
                         </div>
 
