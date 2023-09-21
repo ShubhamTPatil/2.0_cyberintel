@@ -62,18 +62,18 @@
                 complete: function (xhr, status) { },
                 success: function (response) {
                     hideLoader();
-                    console.log("success");
-                    console.log(JSON.stringify(response));
+                    console.log("topLevelStats success");
+                    //console.log(JSON.stringify(response));
                     let topLevelStatsData = response['data'];
                     if (topLevelStatsData === '[]' || topLevelStatsData == null) {
-                        console.log('topLevelStatsData ' + topLevelStatsData);
+                        //console.log('topLevelStatsData ' + topLevelStatsData);
                         $('#heatmap_container').hide();
                         $('#noDataHeatmap').show();
                     } else {
                         $('#noDataHeatmap').hide();
                         $('#heatmap_container').show();
                         topLevelStatsData = JSON.parse(topLevelStatsData);
-                        console.log(JSON.stringify(topLevelStatsData));
+                        //console.log(JSON.stringify(topLevelStatsData));
                         updateTopLevelStatsChart(topLevelStatsData,response['prevTime'],response['startTime'])
                     }
                 },
@@ -92,18 +92,18 @@
                 beforeSend: function () { },
                 complete: function (xhr, status) { },
                 success: function (response) {
-                    console.log("success");
-                    console.log(JSON.stringify(response));
+                    console.log("machineLevelAnomaly success");
+                    //console.log(JSON.stringify(response));
                     let machineLevelAnomalyRatioData = response['data'];
                     if (machineLevelAnomalyRatioData === '[]' || machineLevelAnomalyRatioData == null) {
-                        console.log('machineLevelAnomalyRatioData ' + machineLevelAnomalyRatioData);
+                        //console.log('machineLevelAnomalyRatioData ' + machineLevelAnomalyRatioData);
                         $('#machineLevelAnomaly_container').hide();
                         $('#noDataScatter').show();
                     } else {
                         $('#machineLevelAnomaly_container').show();
                         $('#noDataScatter').hide();
                         machineLevelAnomalyRatioData = JSON.parse(machineLevelAnomalyRatioData);
-                        console.log(JSON.stringify(machineLevelAnomalyRatioData));
+                        //console.log(JSON.stringify(machineLevelAnomalyRatioData));
                         updateMachineLevelAnomaly(machineLevelAnomalyRatioData,response['prevTime'],response['startTime']);
                     }
                 },
@@ -126,18 +126,18 @@
                 complete: function (xhr, status) { },
                 success: function (response) {
                     hideLoader();
-                    console.log("success");
-                    console.log(JSON.stringify(response));
+                    console.log("machineLevelAnomaly success");
+                    //console.log(JSON.stringify(response));
                     let machineLevelAnomalyRatioData = response['data'];
                     if (machineLevelAnomalyRatioData === '[]' || machineLevelAnomalyRatioData == null) {
-                        console.log('machineLevelAnomalyRatioData ' + machineLevelAnomalyRatioData);
+                        //console.log('machineLevelAnomalyRatioData ' + machineLevelAnomalyRatioData);
                         $('#machineLevelAnomaly_container').hide();
                         $('#noDataScatter').show();
                     } else {
                         $('#machineLevelAnomaly_container').show();
                         $('#noDataScatter').hide();
                         machineLevelAnomalyRatioData = JSON.parse(machineLevelAnomalyRatioData);
-                        console.log(JSON.stringify(machineLevelAnomalyRatioData));
+                        //console.log(JSON.stringify(machineLevelAnomalyRatioData));
                         updateMachineLevelAnomaly(machineLevelAnomalyRatioData,response['prevTime'],response['startTime']);
                     }
                 },
@@ -590,6 +590,10 @@
                                 <option value="1">PAST 1 Min</option>
                                 <option value="2" selected>PAST 2 Mins</option>
                                 <option value="5">PAST 5 Mins</option>
+                                <option value="10">PAST 10 Mins</option>
+                                <option value="15">PAST 15 Mins</option>
+                                <option value="20">PAST 20 Mins</option>
+                                <option value="30">PAST 30 Mins</option>
                             </select>
                         </div>
 
