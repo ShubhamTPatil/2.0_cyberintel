@@ -1,4 +1,4 @@
-package com.marimba.apps.subscriptionmanager.webapp.util.defensight;
+package com.marimba.apps.subscriptionmanager.webapp.bean.anomaly;
 
 public class TopLevelStatsChartData {
     private String hostname;

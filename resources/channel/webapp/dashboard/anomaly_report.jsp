@@ -80,6 +80,8 @@
                 error: function (xhr, status, error) {
                     // Handle errors here
                     console.error('Error:', error);
+                    hideLoader();
+                    return;
                 }
             });
 
@@ -594,6 +596,9 @@
                                 <option value="15">PAST 15 Mins</option>
                                 <option value="20">PAST 20 Mins</option>
                                 <option value="30">PAST 30 Mins</option>
+                                <option value="60">PAST 1 Hour</option>
+                                <option value="120">PAST 2 Hours</option>
+                                <option value="300">PAST 5 Hours</option>
                             </select>
                         </div>
 

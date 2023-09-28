@@ -8,7 +8,7 @@ package com.marimba.apps.subscriptionmanager.webapp.actions;
 import com.marimba.apps.subscription.common.intf.IUser;
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
 import com.marimba.apps.subscriptionmanager.TenantHelper;
-import com.marimba.apps.subscriptionmanager.webapp.util.defensight.AnomalyUtil;
+import com.marimba.apps.subscriptionmanager.webapp.util.defensight.anomalyReport.AnomalyUtil;
 import com.marimba.intf.msf.*;
 import com.marimba.apps.subscription.common.objects.Target;
 import com.marimba.apps.subscriptionmanager.util.Utils;
