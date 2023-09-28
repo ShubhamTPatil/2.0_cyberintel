@@ -16,63 +16,75 @@ import static com.marimba.apps.subscriptionmanager.webapp.util.defensight.anomal
 
 public class MachineLevelAnomalyUtil {
 
-    public CosmosPagedIterable<MachineLevelAnomaly> populateMachineLevelAnomaly(
-            IConfig tunerConfig, String hostname, OffsetDateTime currentTime, OffsetDateTime prevTime) {
+  public CosmosPagedIterable<MachineLevelAnomaly> populateMachineLevelAnomaly(
+      IConfig tunerConfig, String hostname, OffsetDateTime currentTime, OffsetDateTime prevTime) {
 
-        getCosmosConnection(tunerConfig);
-        CosmosQueryRequestOptions options = new CosmosQueryRequestOptions();
+    getCosmosConnection(tunerConfig);
+    CosmosQueryRequestOptions options = new CosmosQueryRequestOptions();
 
-        if(hostname == null) {
-            return null;
-        }
-
-        debugInfo("populateMachineLevelAnomaly query: \n SELECT c.winlog.event_id as event_id, c.predictions as anomaly, c.event.created as time FROM c  WHERE c.event.created <= '"+currentTime.toString()+"' AND c.event.created >= '"+prevTime.toString()+"' AND c.host.hostname = '"+hostname+"' AND c.predictions = 'true' AND c.event.created != null AND c.winlog.event_id != null");
-
-        options.setPartitionKey(new PartitionKey(AnomalyConstants.PARTITION_KEY));
-        ArrayList<SqlParameter> paramList = new ArrayList<SqlParameter>();
-
-        paramList.add(new SqlParameter("@ctime", currentTime.toString()));
-        paramList.add(new SqlParameter("@ptime", prevTime.toString()));
-        paramList.add(new SqlParameter("@hostname", hostname));
-
-        return executeQueryForMachineLevelAnomaly(
-                new SqlQuerySpec(AnomalyConstants.Queries.MACHINE_LEVEL_ANOMALY, paramList));
+    if (hostname == null) {
+      return null;
     }
 
-    /**
-     * Fetch MachineNameList
-     * @param tunerConfig tunerConfig for properties stored in prefs.txt
-     * @param prevTime Previous Time
-     * @return CosmosPagedIterable<MachineNameList>
-     */
-    public CosmosPagedIterable<MachineNameList> fetchMachineNameList(IConfig tunerConfig, OffsetDateTime prevTime) {
+    debugInfo(
+        "populateMachineLevelAnomaly query: \n SELECT c.winlog.event_id as event_id, c.predictions as anomaly, c.event.created as time FROM c  WHERE c.event.created <= '"
+            + currentTime.toString() + "' AND c.event.created >= '" + prevTime.toString()
+            + "' AND c.host.hostname = '" + hostname
+            + "' AND c.predictions = 'true' AND c.event.created != null AND c.winlog.event_id != null");
 
-        ArrayList<SqlParameter> paramList = new ArrayList<SqlParameter>();
-        paramList.add(new SqlParameter("@ptime", prevTime.toString()));
+    options.setPartitionKey(new PartitionKey(AnomalyConstants.PARTITION_KEY));
+    ArrayList<SqlParameter> paramList = new ArrayList<SqlParameter>();
 
-        debugInfo("fetchMachineNameList query: \n select distinct c.host.hostname as hostname from c where c.host.hostname != null AND c.event.created >= '"+prevTime.toString()+"'");
+    paramList.add(new SqlParameter("@ctime", currentTime.toString()));
+    paramList.add(new SqlParameter("@ptime", prevTime.toString()));
+    paramList.add(new SqlParameter("@hostname", hostname));
 
-        getCosmosConnection(tunerConfig);
-        return executeQueryForMachineNameList(new SqlQuerySpec(AnomalyConstants.Queries.MACHINE_NAME_LIST, paramList));
-    }
+    return executeQueryForMachineLevelAnomaly(
+        new SqlQuerySpec(AnomalyConstants.Queries.MACHINE_LEVEL_ANOMALY, paramList));
+  }
 
-    /**
-     * Execute Query For MachineLevelAnomaly
-     * @param querySpec Query and SQLParams: @ctime, @ptime, @hostname
-     * @return CosmosPagedIterable<MachineLevelAnomaly>
-     */
-    private CosmosPagedIterable<MachineLevelAnomaly> executeQueryForMachineLevelAnomaly(
-            SqlQuerySpec querySpec) {
-        return container.queryItems(
-                querySpec, new CosmosQueryRequestOptions(), MachineLevelAnomaly.class);
-    }
+  /**
+   * Fetch MachineNameList
+   *
+   * @param tunerConfig tunerConfig for properties stored in prefs.txt
+   * @param prevTime    Previous Time
+   * @return CosmosPagedIterable<MachineNameList>
+   */
+  public CosmosPagedIterable<MachineNameList> fetchMachineNameList(IConfig tunerConfig,
+      OffsetDateTime prevTime) {
 
-    /**
-     * Execute Query For MachineNameList
-     * @param querySpec Query and SQLParam: @ptime
-     * @return CosmosPagedIterable<MachineNameList>
-     */
-    private CosmosPagedIterable<MachineNameList> executeQueryForMachineNameList(SqlQuerySpec querySpec) {
-        return container.queryItems(querySpec, new CosmosQueryRequestOptions(), MachineNameList.class);
-    }
+    ArrayList<SqlParameter> paramList = new ArrayList<SqlParameter>();
+    paramList.add(new SqlParameter("@ptime", prevTime.toString()));
+
+    debugInfo(
+        "fetchMachineNameList query: \n select distinct c.host.hostname as hostname from c where c.host.hostname != null AND c.event.created >= '"
+            + prevTime.toString() + "'");
+
+    getCosmosConnection(tunerConfig);
+    return executeQueryForMachineNameList(
+        new SqlQuerySpec(AnomalyConstants.Queries.MACHINE_NAME_LIST, paramList));
+  }
+
+  /**
+   * Execute Query For MachineLevelAnomaly
+   *
+   * @param querySpec Query and SQLParams: @ctime, @ptime, @hostname
+   * @return CosmosPagedIterable<MachineLevelAnomaly>
+   */
+  private CosmosPagedIterable<MachineLevelAnomaly> executeQueryForMachineLevelAnomaly(
+      SqlQuerySpec querySpec) {
+    return container.queryItems(
+        querySpec, new CosmosQueryRequestOptions(), MachineLevelAnomaly.class);
+  }
+
+  /**
+   * Execute Query For MachineNameList
+   *
+   * @param querySpec Query and SQLParam: @ptime
+   * @return CosmosPagedIterable<MachineNameList>
+   */
+  private CosmosPagedIterable<MachineNameList> executeQueryForMachineNameList(
+      SqlQuerySpec querySpec) {
+    return container.queryItems(querySpec, new CosmosQueryRequestOptions(), MachineNameList.class);
+  }
 }
