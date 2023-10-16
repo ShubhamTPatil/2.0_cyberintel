@@ -7,6 +7,7 @@ package com.marimba.apps.subscriptionmanager.webapp.util;
 import java.io.*;
 import java.net.*;
 import java.util.*;
+import java.util.List;
 
 import com.marimba.rpc.*;
 
@@ -18,6 +19,7 @@ import com.marimba.intf.logs.ILog;
 import com.marimba.intf.remoteadmin.*;
 import com.marimba.tools.remoteadmin.*;
 import com.marimba.tools.remoteadmin.rpc.*;
+import com.marimba.tools.remoteadmin.util.*;
 import com.marimba.tools.remoteadmin.RemoteAdminMgr;
 import com.marimba.tools.remoteadmin.rpc.RPCTunerSession;
 import com.marimba.intf.castanet.IChannel;
@@ -28,11 +30,7 @@ import com.marimba.tools.logs.*;
 import com.marimba.tools.config.*;
 import com.marimba.tools.target.*;
 import com.marimba.tools.gui.StringResources;
-
-import com.marimba.tools.remoteadmin.rpc.*;
-import com.marimba.tools.remoteadmin.test.*;
-import com.marimba.tools.remoteadmin.util.*;
-import com.sun.javafx.collections.MappingChange;
+import com.marimba.apps.subscriptionmanager.webapp.util.*;
 
 /**
  * RemoteAdmin Util w.r.t kick off security service scan in RunScan feature
@@ -44,22 +42,19 @@ import com.sun.javafx.collections.MappingChange;
 public class RemoteAdminHandler  {
     RPC rpc;
     ILog log;
-    ConfigUtil config;
+    IConfig config;
     IConfig tunerConfig;
-    Hashtable tuners;
-    Hashtable sessions;
-    Hashtable deployments;
-    URL[] knownTuners;
-    IServiceLocator locator;
-    StringResources logRes;
     Credentials credentials;
     RemoteAdminMgr mgr;
     TunerSession session;
     String status;
     Hashtable <String, String> channelStatus = new Hashtable<String, String>();
-    
+    boolean isSecurityScannerFound = false;
+
     public void init(IConfig config, IConfig tunerConfig) {
         try {
+            this.config = config;
+            this.tunerConfig = tunerConfig;
             rpc = new RPC();
             config = new ConfigUtil(config);
             credentials = new Credentials();
@@ -118,6 +113,52 @@ public class RemoteAdminHandler  {
 
     public String getChannelStatus(String url) {
         return channelStatus.get(url);    
+    }
+
+    public void fetchCurrentSecurityScanStatus(List<String> machineList, String remoteMachineTunerAdminUserName, String remoteMachineTunerAdminPassword) {
+        isSecurityScannerFound = false;
+        try {
+            String id = createUUID();
+            credentials.setCredentials("tuner", remoteMachineTunerAdminUserName, "plain:" + remoteMachineTunerAdminPassword);
+
+            int total_targets = machineList.size();
+            for (int i = 0; i < total_targets; i++) {
+                String hostname = "http://" + machineList.get(i).trim();
+                URL remoteMachineURL = new URL(hostname);
+                session = new RPCTunerSession(id, mgr, remoteMachineURL, credentials);
+                ChannelMgr cmgr = null;
+                ITunerAdmin tunerAdmin = (ITunerAdmin) session.getAdmin("tuner");
+                String channelURL = "";
+                if (tunerAdmin != null) {
+                    cmgr = (ChannelMgr) tunerAdmin.getChannelMgr();
+                    ITunerChannel channel[] = cmgr.getAllChannels();
+                    ITunerChannel tunerChannel = null;
+                    channelURL = "";
+                    for (int j = 0; i < channel.length; j++) {
+                        channelURL = channel[i].getURL().toString();
+                        if (channelURL.toString().endsWith("vInspector")) {
+                            tunerChannel = channel[j];
+                            isSecurityScannerFound = true;
+                            break;
+                        }
+                    }
+                    if (isSecurityScannerFound) {
+                        int currentChStatus = tunerChannel.getStatus();
+                        channelStatus.put(channelURL, String.valueOf(currentChStatus));
+                    }
+                } else {
+                    channelStatus.put(channelURL, "Failed to connect tuner");
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            status = ex.toString();
+
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 
     public String getChannelStatusInfo(String url) {

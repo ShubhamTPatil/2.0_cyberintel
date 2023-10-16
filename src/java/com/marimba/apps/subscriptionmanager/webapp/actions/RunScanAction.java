@@ -162,7 +162,17 @@ public class RunScanAction extends AbstractAction
                         String[] ipPortArr = runScanForm.getEndDevicesArr().split(",");
                         List<String> endDeviceList = new ArrayList<String>();
                         Collections.addAll(endDeviceList, ipPortArr);
-                        System.out.println("All machines checking for run security scan status: " + endDeviceList);
+                        String remoteAdminUser = "admin";
+                        String remoteAdminPwd = ""; 
+                        // Get current status of security scan on selected end-point machines.
+                        remoteAdminHandler.fetchCurrentSecurityScanStatus(endDeviceList,
+                                remoteAdminUser, remoteAdminPwd);
+                        for(int idx = 0; idx < endDeviceList.size(); idx++) {
+                           String chUrl = "http://" + endDeviceList.get(idx).trim();
+                            String chStatus = remoteAdminHandler.getChannelStatusInfo(chUrl);
+                            System.out.println("LogInfo: Channel Url: " + chUrl + ", Status: " + chStatus);
+                        }
+                        
                         if (endDeviceList.size() > 0) {
                             tenant.setManager("security.scan.machineslist", endDeviceList);
                             /// MIM Code base
