@@ -140,7 +140,9 @@
                             </logic:equal>
                             <th nowrap><webapps:pageText key="rule.severity"/></th>
                             <th nowrap><webapps:pageText key="rule.status"/></th>
-                            <th nowrap><webapps:pageText key="rule.references"/></th>
+                            <logic:equal name="vDeskResultsForm" property="displayPath" value="/Vulnerability Assessment/Machine Level Compliance">
+                                <th nowrap><webapps:pageText key="rule.references"/></th>
+                            </logic:equal>
                             <th nowrap><webapps:pageText key="rule.fix"/></th>
                         </tr>
                     </thead>
@@ -603,8 +605,17 @@ function showMachineEvents(machine, contentId) {
                 }
                 details += '<td>' + value.rule_severity + '</td>';
                 details += '<td>' + value.status + '</td>';
-                details += '<td>' + value.rule_ref + '</td>';
-                details += '<td>' + value.rule_fix + '</td>';
+
+                if (queryDisplayPath == '/Vulnerability Assessment/Machine Level Compliance') {
+                     details += '<td>' + value.rule_ref + '</td>';
+                }
+
+                var rulFix = value.rule_fix;
+                if (!rulFix && rulFix.length == 0) {
+                    details += '<td> Custom </td>';
+                }else{
+                    details += '<td>' + rulFix + '</td>';
+                }
                 details += '</tr>';
             });
             if (queryDisplayPath == '/Vulnerability Assessment/Machine Level Compliance') {
