@@ -5,6 +5,7 @@
 
 package com.marimba.apps.subscriptionmanager.webapp.actions;
 
+import com.marimba.tools.util.DebugFlag;
 import java.io.*;
 import java.net.*;
 import java.net.URL;
@@ -54,6 +55,7 @@ import com.marimba.tools.txlisting.*;
 import com.marimba.tools.txlisting.TransmitterListing;
 import com.marimba.tools.util.Password;
 import com.marimba.tools.util.Props;
+import com.marimba.apps.securitymgr.compliance.util.CveUpdateUtil;
 
 import com.marimba.tools.config.*;
 import com.marimba.apps.subscriptionmanager.webapp.forms.DefinitionUpdateForm;
@@ -67,6 +69,8 @@ import com.marimba.apps.subscriptionmanager.webapp.forms.DefinitionUpdateForm;
 
 public class DefinitionUpdateAction extends AbstractAction implements IWebAppConstants,
     ISubscriptionConstants, ICveUpdateConstants {
+
+  protected static int DEBUG = DebugFlag.getDebug("DEFEN/ERROR");
 
   protected Task createTask(ActionMapping mapping, ActionForm form, HttpServletRequest request,
       HttpServletResponse response) {
@@ -211,7 +215,9 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
               error("Error Occurred while validate CS credentials" + ex.getMessage());
               errArg = getString(locale,
                   "page.definitions_update.error.invalid.channelstore.creds");
-              ex.printStackTrace();
+              if (DEBUG >= 5) {
+                ex.printStackTrace();
+              }
             }
 
             if (!csAuthStatus) {
@@ -228,7 +234,10 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
             }
             config.save();
           } catch (Exception ex) {
-            ex.printStackTrace();
+            error(ex.getMessage());
+            if (DEBUG >= 5) {
+              ex.printStackTrace();
+            }
           }
 
           String srcUrl = config.getProperty("products.mastertx.url");
@@ -322,7 +331,6 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                 String urlStr = config.getProperty("defensight.cvejson.downloadurl");
                 urlStr = (isNull(urlStr))
                     ? "https://cve.circl.lu/static/circl-cve-search-expanded.json.gz" : urlStr;
-
                 try {
                   if (!isNull(cveStorageDir)) {
                     File cvejsonDir = new File(cveStorageDir);
@@ -336,16 +344,22 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
 
                   CveUpdateUtil cveupdateObj = new CveUpdateUtil(main,
                       getDefinitionsUpdateConfig());
-                  boolean downloadfailed = cveupdateObj.downloadCVEJSON(urlStr, 5, cvejsonZipFile);
-                  if (!downloadfailed) {
+
+                  boolean downloadStatus = cveupdateObj.downloadCVEJSON(urlStr, 5, cvejsonZipFile);
+                  if (!downloadStatus) {
                     info("CVE JSON Zip File Download Succeeded");
                   } else {
-                    error("CVE JSON Zip File Download Failed");
-                    setUpdateCveStatus(config, "1", "CVE JSON Zip File Download Failed..", true);
+                    setUpdateCveStatus(config, "1", "Failed to connect, please try after sometime",
+                        true);
+                    return;
                   }
                 } catch (Exception ex) {
-                  ex.printStackTrace();
-                  setUpdateCveStatus(config, "1", "CVE JSON Zip File Download Failed..", true);
+                  error(ex.getMessage());
+                  if (DEBUG >= 5) {
+                    ex.printStackTrace();
+                  }
+                  setUpdateCveStatus(config, "1", "Failed to connect, please try after sometime",
+                      true);
                 }
 
               }
@@ -370,7 +384,10 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                   info("File Unzipped successfully");
 
                 } catch (Exception ex) {
-                  ex.printStackTrace();
+                  error(ex.getMessage());
+                  if (DEBUG >= 5) {
+                    ex.printStackTrace();
+                  }
                   setUpdateCveStatus(config, "2", "Failed to unzip..", true);
                 }
               }
@@ -392,7 +409,9 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                   //Read the data from json file and insert it into DB
                   info("Started process of Data insertion into DB.");
                   CVEDataInsertionUtil cveDataInsertionUtil = new CVEDataInsertionUtil();
+
                   isBulkInserted = cveDataInsertionUtil.insertBulkData(main, cvejsonFilePath);
+
                   if (!isBulkInserted) {
                     error("CVE JSON update into DefenSight Database - FAILED");
                     setUpdateCveStatus(config, "3", "Failed to insert data..", false);
@@ -403,7 +422,9 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                   error("CVE JSON update into DefenSight Database - FAILED,  Error Message : "
                       + ex.getMessage());
 
-                  ex.printStackTrace();
+                  if (DEBUG >= 5) {
+                    ex.printStackTrace();
+                  }
                   setUpdateCveStatus(config, "3", "Failed to insert data..", false);
                 }
                 info("Data insertion into Database : SUCCEED");
@@ -463,7 +484,9 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                   definitionUpdateForm.setCveJsonLastUpdated(dateVal);
 
                 } catch (Exception ex) {
-                  ex.printStackTrace();
+                  if (DEBUG >= 5) {
+                    ex.printStackTrace();
+                  }
                   setUpdateCveStatus(config, "4", "Failed to update tables...", false);
                   error(ex.getMessage());
                 }
@@ -514,7 +537,11 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
         }
 
       } catch (Exception ex) {
-        ex.printStackTrace();
+        error(ex.getMessage());
+        if (DEBUG >= 5) {
+          ex.printStackTrace();
+        }
+
       }
       forward = mapping.findForward("view");
     }

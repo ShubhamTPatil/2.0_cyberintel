@@ -93,15 +93,9 @@
 			$('#defUpdateProgress').addClass('progress-bar-animated');
 			asyncCall();
 		} else {
-				$('#cveUpdateNow').prop('disabled', false);
-				
-				if(step != 0) {
-					if(error == "") { $('#cveUpdateError').html("Stopped..") }
-				}
-			
+			$('#cveUpdateNow').prop('disabled', false);
 			$('#defUpdateProgress').removeClass('progress-bar-animated');
 		}
-		
 
 		setTimeout(() => {
   		updateProgressBar(step);
