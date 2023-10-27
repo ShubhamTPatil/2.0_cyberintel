@@ -322,7 +322,7 @@ $(function () {
             type: 'POST',
             dataType: 'text json',
             data: {action: 'mitigate'},
-            beforeSend: function() {},
+            beforeSend: function() {  },
             complete: function (xhr, status) {},
             success: function (response) {
               topVulMitigateInfo = response;
@@ -366,9 +366,11 @@ $(function () {
         })
         // console.log(patchgroups);
         if (patchgroups.length == 0) {
+          $('#applyPatchesRes').text("Please select at least one end point. ");
           console.log("No machines and patch groups selected for mitigate operation..");
           return;
         }
+        $('#applyPatchesRes').text("");
         console.log("Selected Patch Groups with Machines for Mitigation: "+patchgroups);
         var queryStr = "?machinepatchgroups=" + patchgroups;
         $.ajax({
@@ -379,10 +381,9 @@ $(function () {
             beforeSend: function() { $('#applyPatchesRes').text("Patches Deployment has been initiated...");},
             complete: function (xhr, status) {},
             success: function (response) {
-            	//console.log(response);
-            	$('#applyPatchesRes').text(response);
+            	console.log(JSON.stringify(response));
+            	$('#applyPatchesRes').text(JSON.stringify(response));
         }});
-
     });
 
 
@@ -618,6 +619,22 @@ function createMitigateTable(aaData) {
     </div>
 
     <section class="section dashboard">
+
+      
+      <nav style="background-color: #fff;">
+        <div class="nav nav-tabs nav-title" id="nav-tab" role="tablist">
+          <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+            type="button" role="tab" aria-controls="nav-home" aria-selected="true"
+            style="background-color: #fff; z-index:1;">Vulnerability Assessment</button>
+          <a href="/spm/configDashboard.do" class="nav-link">Configuration Assessment</a>
+        </div>
+      </nav>
+
+      <br/>
+
+      <div class="tab-content" id="nav-tabContent">
+        
+
       <div class="row">
         <div class="col-lg-8">
 
@@ -952,6 +969,7 @@ function createMitigateTable(aaData) {
              </div>
          </div>
       </div>
+    </div>
     </section>
 
     

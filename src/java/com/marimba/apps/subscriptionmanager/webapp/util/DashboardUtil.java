@@ -431,36 +431,36 @@ public class DashboardUtil {
       String policyMgrUrl, String masterTx,
       String runChannelDir, String cmsUser, String cmsPwd) {
     Map<String, String> deployResult = new LinkedHashMap<String, String>();
-    try {
-      int size = machinePatchGroupList.size();
-      String machineName = "";
-      String patchGroupName = "";
-      boolean resultCLI = false;
-      for (int i = 0; i < size; i++) {
-        String machinePatchGrp = machinePatchGroupList.get(i);
-        String[] data = machinePatchGrp.split("@");
-        logInfo("\tMachine: " + data[0] + "\t" + "patchgroup: " + data[1]);
-        machineName = data[0];
-        patchGroupName = data[1];
 
-        Vector args = new Vector();
-        args.addElement(runChannelDir + "\\" + "runchannel.exe");
-        args.addElement(policyMgrUrl);
-        args.addElement("-patchsubscribe");
-        args.addElement(machineName);
-        args.addElement("machine");
-        args.addElement(
-            masterTx + "/PatchManagement/PatchGroups/" + patchGroupName + "=assign");
-        args.addElement("-user");
-        args.addElement("\"" + cmsUser + "\"");
-        args.addElement("-password");
-        args.addElement("\"" + cmsPwd + "\"");
+    int size = machinePatchGroupList.size();
+    String machineName = "";
+    String patchGroupName = "";
+    boolean resultCLI = false;
+    for (String machinePatchGrp : machinePatchGroupList) {
+      String[] data = machinePatchGrp.split("@");
+      logInfo("\tMachine: " + data[0] + "\t" + "patchgroup: " + data[1]);
+      machineName = data[0];
+      patchGroupName = data[1];
 
-        String cmdLineStr = getCommandline(args);
-        logInfo("LogInfo: Mitigate CLI: " + cmdLineStr);
-        ProcessBuilder builder = new ProcessBuilder("cmd.exe", cmdLineStr);
+      Vector args = new Vector();
+      args.addElement(runChannelDir + "\\" + "runchannel.exe");
+      args.addElement(policyMgrUrl);
+      args.addElement("-patchsubscribe");
+      args.addElement(machineName);
+      args.addElement("machine");
+      args.addElement(
+          masterTx + "/PatchManagement/PatchGroups/" + patchGroupName + "=assign");
+      args.addElement("-user");
+      args.addElement("\"" + cmsUser + "\"");
+      args.addElement("-password");
+      args.addElement("\"" + cmsPwd + "\"");
 
-        builder.redirectErrorStream(true);
+      String cmdLineStr = getCommandline(args);
+      logInfo("LogInfo: Mitigate CLI: " + cmdLineStr);
+      ProcessBuilder builder = new ProcessBuilder("cmd.exe", cmdLineStr);
+      builder.redirectErrorStream(true);
+
+      try {
         Process process = Runtime.getRuntime().exec(cmdLineStr);
         if (process != null) {
           BufferedReader r = new BufferedReader(
@@ -484,17 +484,12 @@ public class DashboardUtil {
         } else {
           logInfo("CLI execution failed");
           deployResult.put(machineName, (patchGroupName + "@" + "Failed"));
-
         }
+      } catch (Exception e) {
+        logInfo("LogInfo: CLI Process failed with exception: " + e.getMessage());
+        deployResult.put(machineName, (patchGroupName + "@" + "Failed"));
       }
-    } catch (IOException ioe) {
-      ioe.printStackTrace();
-    } catch (InterruptedException ie) {
-      ie.printStackTrace();
-    } catch (Exception ex) {
-      ex.printStackTrace();
     }
-
     return deployResult;
   }
 
