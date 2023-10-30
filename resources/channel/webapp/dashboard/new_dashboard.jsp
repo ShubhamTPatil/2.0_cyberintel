@@ -370,7 +370,15 @@ $(function () {
           //console.log("No machines and patch groups selected for mitigate operation..");
           return;
         }
-        $('#applyPatchesRes').text("");
+
+        $('#applyPatchesRes').text("Patches Deployment has been initiated..."); 
+
+        $('input[name=topVulMitCheck]:checked').each(function () {
+          $(this).prop('checked', false); 
+          $(this).prop('disabled', true);
+          $(this).parent().parent().css( "background-color", "lightgray" );
+        });
+        
         //console.log("Selected Patch Groups with Machines for Mitigation: "+patchgroups);
         var queryStr = "?machinepatchgroups=" + patchgroups;
         $.ajax({
@@ -378,15 +386,7 @@ $(function () {
             type: 'POST',
             dataType: 'text json',
             data: {action: 'apply_patches'},
-            beforeSend: function() { 
-              $('#applyPatchesRes').text("Patches Deployment has been initiated..."); 
-
-              $('input[name=topVulMitCheck]:checked').each(function () {
-                $(this).prop('checked', false); 
-                $(this).prop('disabled', true);
-                $(this).parent().parent().css( "background-color", "lightgray" );
-              });
-            },
+            beforeSend: function() { },
             complete: function (xhr, status) {},
             success: function (response) {
             	//console.log(JSON.stringify(response));
