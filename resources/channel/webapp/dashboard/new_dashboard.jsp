@@ -367,22 +367,30 @@ $(function () {
         // console.log(patchgroups);
         if (patchgroups.length == 0) {
           $('#applyPatchesRes').text("Please select at least one end point. ");
-          console.log("No machines and patch groups selected for mitigate operation..");
+          //console.log("No machines and patch groups selected for mitigate operation..");
           return;
         }
         $('#applyPatchesRes').text("");
-        console.log("Selected Patch Groups with Machines for Mitigation: "+patchgroups);
+        //console.log("Selected Patch Groups with Machines for Mitigation: "+patchgroups);
         var queryStr = "?machinepatchgroups=" + patchgroups;
         $.ajax({
             url: './newDashboard.do' + queryStr,
             type: 'POST',
             dataType: 'text json',
             data: {action: 'apply_patches'},
-            beforeSend: function() { $('#applyPatchesRes').text("Patches Deployment has been initiated...");},
+            beforeSend: function() { 
+              $('#applyPatchesRes').text("Patches Deployment has been initiated..."); 
+
+              $('input[name=topVulMitCheck]:checked').each(function () {
+                $(this).prop('checked', false); 
+                $(this).prop('disabled', true);
+                $(this).parent().parent().css( "background-color", "lightgray" );
+              });
+            },
             complete: function (xhr, status) {},
             success: function (response) {
-            	console.log(JSON.stringify(response));
-            	$('#applyPatchesRes').text(JSON.stringify(response));
+            	//console.log(JSON.stringify(response));
+            	//$('#applyPatchesRes').text(" ");
         }});
     });
 
