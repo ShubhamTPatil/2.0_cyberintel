@@ -39,7 +39,7 @@ $(function () {
 </script>
 
 <body>
-<html:form name ="newDashboardForm" action="/newDashboard.do" type="com.marimba.apps.subscriptionmanager.webapp.forms.NewDashboardViewForm">
+<html:form name ="configDashboardForm" action="/configDashboard.do" type="com.marimba.apps.subscriptionmanager.webapp.forms.ConfigDashboardViewForm">
 <html:hidden property="action"/>
 
   <jsp:include page="header.jsp" />
@@ -97,7 +97,7 @@ $(function () {
                             <div class="row d-flex justify-content-center">
                               <div align="center">
                                 <i class="fa fa-laptop"></i><br />
-                                <span class="text-muted small">10</span><br />
+                                <span class="text-muted small"><bean:write name="configDashboardForm" property="machinesCount"/></span><br />
                                 <span class="text-muted small">Enrolled</span>
                               </div>
                             </div>
@@ -118,7 +118,7 @@ $(function () {
                             <div class="row d-flex justify-content-center">
                               <div align="center">
                                 <i class="fa-brands fa-windows"></i><br />
-                                <span class="text-muted small">20</span><br />
+                                <span class="text-muted small"><bean:write name="configDashboardForm" property="machineWindowsCount"/></span><br />
                                 <span class="text-muted small">Windows</span>
                               </div>
                             </div>
@@ -127,7 +127,7 @@ $(function () {
                             <div class="row d-flex justify-content-center">
                               <div align="center">
                                 <i class="fa-brands fa-linux"></i><br />
-                                <span class="text-muted small">30</span><br />
+                                <span class="text-muted small"><bean:write name="configDashboardForm" property="machineLinuxCount"/></span><br />
                                 <span class="text-muted small">Linux</span>
                               </div>
                             </div>
@@ -136,7 +136,7 @@ $(function () {
                             <div class="row d-flex justify-content-center">
                               <div align="center">
                                 <i class="fa-brands fa-apple"> </i><br />
-                                <span class="text-muted small">20</span><br />
+                                <span class="text-muted small"><bean:write name="configDashboardForm" property="machineMacCount"/></span><br />
                                 <span class="text-muted small">Mac</span>
                               </div>
                             </div>
@@ -160,7 +160,7 @@ $(function () {
                             <div class="row d-flex justify-content-center">
                               <div align="center">
                                 <i class="fa fa-crosshairs"></i><br />
-                                <span class="text-muted small">20</span><br />
+                                <span class="text-muted small"><bean:write name="configDashboardForm" property="configScanCount"/></span><br />
                                 <span class="text-muted small">Configuration Scan</span>
                               </div>
                             </div>
