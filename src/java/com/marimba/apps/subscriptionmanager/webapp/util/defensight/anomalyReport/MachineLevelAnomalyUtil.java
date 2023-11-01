@@ -19,7 +19,8 @@ public class MachineLevelAnomalyUtil {
   public CosmosPagedIterable<MachineLevelAnomaly> populateMachineLevelAnomaly(
       IConfig tunerConfig, String hostname, OffsetDateTime currentTime, OffsetDateTime prevTime) {
 
-    getCosmosConnection(tunerConfig);
+    if(!getCosmosConnection(tunerConfig)) return null;
+
     CosmosQueryRequestOptions options = new CosmosQueryRequestOptions();
 
     if (hostname == null) {
@@ -53,6 +54,8 @@ public class MachineLevelAnomalyUtil {
   public CosmosPagedIterable<MachineNameList> fetchMachineNameList(IConfig tunerConfig,
       OffsetDateTime prevTime) {
 
+    if(!getCosmosConnection(tunerConfig)) return null;
+
     ArrayList<SqlParameter> paramList = new ArrayList<SqlParameter>();
     paramList.add(new SqlParameter("@ptime", prevTime.toString()));
 
@@ -60,7 +63,6 @@ public class MachineLevelAnomalyUtil {
         "fetchMachineNameList query: \n select distinct c.host.hostname as hostname from c where c.host.hostname != null AND c.event.created >= '"
             + prevTime.toString() + "'");
 
-    getCosmosConnection(tunerConfig);
     return executeQueryForMachineNameList(
         new SqlQuerySpec(AnomalyConstants.Queries.MACHINE_NAME_LIST, paramList));
   }

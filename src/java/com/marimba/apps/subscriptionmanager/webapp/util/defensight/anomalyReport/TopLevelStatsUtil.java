@@ -36,7 +36,7 @@ public class TopLevelStatsUtil {
 
     debugInfo("populateTopLevelStatsData:: AnomalyUtil.populateTopLevelStatsData getting called.");
 
-    getCosmosConnection(tunerConfig);
+    if(!getCosmosConnection(tunerConfig)) return null;
 
     HashMap<OffsetDateTime, OffsetDateTime> intervals = createEqualSixtyTimeIntervals(prevTime,
         currentTime);

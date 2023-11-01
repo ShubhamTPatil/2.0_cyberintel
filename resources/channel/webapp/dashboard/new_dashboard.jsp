@@ -374,7 +374,8 @@ $(function () {
         $('#applyPatchesRes').text("Patches Deployment has been initiated..."); 
 
         $('input[name=topVulMitCheck]:checked').each(function () {
-          $(this).prop('checked', false); 
+          $(this).prop('checked', false);
+          $(this).css( "background-color", "green");
           $(this).prop('disabled', true);
           $(this).parent().parent().css( "background-color", "lightgray" );
         });

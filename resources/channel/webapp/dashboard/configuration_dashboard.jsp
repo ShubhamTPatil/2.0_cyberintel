@@ -27,13 +27,132 @@
 <script type="text/javascript" src="/spm/js/newdashboard/all.min.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/common.js"></script>
 
+<script type="text/javascript" src="/spm/js/newdashboard/chartjs.hammer.js"></script>
+<script type="text/javascript" src="/spm/js/newdashboard/chartjs-plugin-zoom.js"></script>
+
 <script type="text/javascript">
 
 $(function () {
 
-    $('#dashboard').addClass('nav-selected');
+  $('#dashboard').addClass('nav-selected');
 
-});
+
+  var ctx = document.getElementById('myChart').getContext('2d');
+
+  const data = {
+    labels: ["January", "February", "March", "April", "May", "June"],
+    datasets: [
+      {
+        label: "Dataset 1",
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        borderColor: "rgb(255, 99, 132)",
+        borderWidth: 1,
+        data: [10, 15, 13, 20, 18, 25],
+        stack: "Stack 0",
+      },
+      {
+        label: "Dataset 2",
+        backgroundColor: "rgba(201, 203, 207, 0.2)",
+        borderColor: "rgb(201, 203, 207)",
+        borderWidth: 1,
+        data: [5, 8, 10, 12, 15, 20],
+        stack: "Stack 0",
+      },
+      {
+        label: "Dataset 3",
+        backgroundColor: "rgba(255, 205, 86, 0.2)",
+        borderColor: "rgb(255, 205, 86)",
+        borderWidth: 1,
+        data: [5, 8, 10, 12, 15, 20],
+        stack: "Stack 0",
+      }
+    ],
+  };
+
+  console.log(data);
+
+  const config = {
+    type: "bar",
+    data: data,
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: "Chart.js Bar Chart - Stacked",
+        },
+      },
+      responsive: false,
+      interaction: {
+        intersect: false,
+      },
+      scales: {
+        x: {
+          stacked: true,
+        },
+        y: {
+          stacked: true,
+        },
+      },
+    },
+  };
+
+  var barChart = new Chart(ctx, config);
+
+
+
+  /* Line Chart */
+  var ctxLineChart = document.getElementById('lineChart').getContext('2d');
+
+  var chartData = {
+    labels: ["January", "February", "March", "April", "May", "June"],
+    datasets: [
+      {
+        label: 'Dataset 1',
+        borderColor: 'red',
+        data: [10, 15, 13, 20, 18, 25]
+      },
+      {
+        label: 'Dataset 2',
+        borderColor: 'blue',
+        data: [5, 8, 10, 12, 15, 20]
+      }
+    ]
+  };
+
+  var lineChartConfig = {
+    type: 'line',
+    data: chartData,
+    options: {
+      responsive: false,
+      scales: {
+        y: {
+          min: 0,
+          max: 30
+        }
+      },
+      plugins: {
+        zoom: {
+          zoom: {
+            wheel: {
+              enabled: true,
+            },
+            pinch: {
+              enabled: true,
+            },
+            mode: 'xy'
+          },
+          pan: {
+            enabled: true,
+            mode: 'xy'
+          }
+        }
+      }
+    }
+  };
+
+  var myChart = new Chart(ctxLineChart, lineChartConfig);
+
+  });
 
 
 </script>
@@ -169,6 +288,53 @@ $(function () {
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              <div class="col-lg-12">
+            
+                <div class="card">
+                  <div class="card-body pb-0">
+                    <h5 class="card-title">Failed Rules for different Profiles</h5>
+                    <div>
+                      <div>
+                        <div style="display: block; padding: 0 10px 16px 10px;">
+                          <canvas id="myChart" style="width: 100%"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                
+              </div>
+
+
+            </div>
+          </div>
+
+
+          <div class="col-lg-4">
+            <div class="card">
+              <div class="card-body pb-0">
+                <h5 class="card-title">Overall Compliance Summary</h5>
+                <div style="position: relative; width: 100%; margin: auto;">
+                  <h1>Doughnut Chart</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body pb-0">
+                <h5 class="card-title">History Trend</h5>
+                <div style="position: relative; width: 100%; margin: auto;">
+                  <canvas id="lineChart" style="width: 100%"></canvas>
                 </div>
               </div>
             </div>
