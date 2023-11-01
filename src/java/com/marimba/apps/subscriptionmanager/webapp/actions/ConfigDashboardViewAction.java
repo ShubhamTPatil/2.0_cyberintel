@@ -64,13 +64,13 @@ public class ConfigDashboardViewAction extends AbstractAction implements IWebApp
           int totalMacMachineCount = dashboardHandler.getEnrolledMachinesByOS("MAC");
 
           // Config Scanned Machines Count
-          int vScanMachinesCount = dashboardHandler.getVScanMachinesCount("vscan");
+          int configScanMachinesCount = dashboardHandler.getVScanMachinesCount("configscan");
 
           dashboardForm.setMachinesCount(String.valueOf(totalMachineCount));
           dashboardForm.setMachineWindowsCount(String.valueOf(totalWindowsMachineCount));
           dashboardForm.setMachineLinuxCount(String.valueOf(totalLinuxMachineCount));
           dashboardForm.setMachineMacCount(String.valueOf(totalMacMachineCount));
-          dashboardForm.setConfigScanCount(String.valueOf(vScanMachinesCount));
+          dashboardForm.setConfigScanCount(String.valueOf(configScanMachinesCount));
 
           forward = mapping.findForward("view");
         }

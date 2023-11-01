@@ -79,6 +79,7 @@ public class DashboardHandler implements ComplianceConstants {
         return count;
     }
 
+
     //total number of machine by Patch Scan
     public int getPatchScanMachinesCount(String scanType) {
         int count = 0;

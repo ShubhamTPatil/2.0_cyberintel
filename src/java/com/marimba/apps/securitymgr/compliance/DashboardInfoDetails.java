@@ -1671,6 +1671,10 @@ public class DashboardInfoDetails implements ComplianceConstants {
                               " where exists (select 1 from inv_security_oval_compliance  soc where \n" +
                               " soc.machine_id = im.id and soc.content_name like '%oval.vulnerability%' and soc.finished_at >= DATEADD(day, -1, GETDATE()))";
 
+            String configScanSQL = "select  COUNT(*) as vscan_count from inv_machine im \n" +
+                    " where exists (select 1 from inv_security_xccdf_compliance  soc where \n" +
+                    " soc.machine_id = im.id and soc.content_name like '%xccdf%' and soc.finished_at >= DATEADD(day, -1, GETDATE()))";
+
             String patchScanSQL = "select  COUNT(*) as patchscan_count from inv_machine im \n" +
                                   " where exists (select 1 from inv_security_oval_compliance  soc where \n" +
                                   " soc.machine_id = im.id and soc.content_name like '%oval.patch%' and soc.finished_at >= DATEADD(day, -1, GETDATE()))";
@@ -1680,6 +1684,8 @@ public class DashboardInfoDetails implements ComplianceConstants {
                 st = pool.getConnection().prepareStatement(vscanSQL);
             } else if ("patchscan".equalsIgnoreCase(scanType)) {
                 st = pool.getConnection().prepareStatement(patchScanSQL);
+            }else if ("configscan".equalsIgnoreCase(scanType)) {
+                st = pool.getConnection().prepareStatement(configScanSQL);
             }
 
             ResultSet rs = st.executeQuery();
