@@ -335,6 +335,7 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
                 String overallCompliance = securityComplianceBean.getOverallCompliance();
                 String individualCompliance = securityComplianceBean.getIndividualCompliance();
                 String machineName = securityComplianceBean.getMachineName();
+
                 if ((securityComplianceForMachine != null) && (machineName == null)) {
                     machineName = securityComplianceForMachine;
                 }
@@ -375,7 +376,13 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
                     CallableStatement poolStmt = pool.getConnection().prepareCall(addScanDetailsStmt);
                     poolStmt.setString(1, machineName);
                     poolStmt.setString(2, ((contentId == null) || (contentId.trim().length() < 1)) ? " " : contentId);
+
+                    int profileId = getProfieIdFromProfileDesc(scanType, pool, profileTitle);
+                    if (profileId > 0) {
+                        profileID = Integer.toString(profileId);
+                    }
                     poolStmt.setString(3, ((profileID == null) || (profileID.trim().length() < 1)) ? " " : profileID);
+
                     poolStmt.setString(4, ((targetName == null) || (targetName.trim().length() < 1)) ? " " : targetName);
 
                     String dateFormat = "MM-dd-yyyy HH:mm:ss";
@@ -568,6 +575,23 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
             debug(INFO, "insertScanDetails(), inserted - " + inserted);
         }
         return inserted;
+    }
+
+    public int getProfieIdFromProfileDesc(String scanType, IStatementPool pool,
+        String description) {
+        try {
+            String sql = "select * from security_" + scanType + "_profile where profile_desc ='"
+                + description
+                + "' and is_custom_profile = 1";
+            PreparedStatement st = pool.getConnection().prepareStatement(sql);
+            ResultSet resultSet = st.executeQuery();
+            while (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+        }
+        return 0;
     }
 
     private void deleteOvalRuleComplianceData(int complianceId) throws SQLException {

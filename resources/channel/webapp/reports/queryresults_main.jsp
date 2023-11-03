@@ -334,7 +334,8 @@ $(document).ready(function() {
                     var datatableRow = table.row(row).data();
                     var machineName = datatableRow[1];
                     var contentId = datatableRow[3];
-                    showMachineEvents(machineName, contentId);
+                    var profileId = datatableRow[4];
+                    showMachineEvents(machineName, contentId, profileId);
                 }
             });
         }
@@ -579,10 +580,10 @@ function doSubmit(form, act) {
     form.action.value = act;
     form.submit();
 }
-function showMachineEvents(machine, contentId) {
+function showMachineEvents(machine, contentId, profileId) {
     $.ajax({
         url: './rule_results.do', type: 'GET', dataType: 'json',
-        data: {action: 'rule_details', machine : machine, contentId: contentId, queryDisplayPath: queryDisplayPath},
+        data: {action: 'rule_details', machine : machine, contentId: contentId, profileId : profileId, queryDisplayPath: queryDisplayPath},
         beforeSend: function() {
             if ($.fn.dataTable.isDataTable(ruleDetailsDataTable)) {
                 if ($.fn.dataTable.isDataTable(ruleDetailsDataTableSelector)) {
