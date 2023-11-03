@@ -361,7 +361,7 @@ $(function () {
 
     $('#topVulMitApplyPatches').click(function () {
         let patchgroups = [];
-        $('input[name=topVulMitCheck]:checked').each(function () {
+        $('input[name=topVulMitCheck]:checked:enabled').each(function () {
             patchgroups.push($(this).val());
         })
         // console.log(patchgroups);
@@ -373,9 +373,8 @@ $(function () {
 
         $('#applyPatchesRes').text("Patches Deployment has been initiated..."); 
 
-        $('input[name=topVulMitCheck]:checked').each(function () {
-          $(this).prop('checked', false);
-          $(this).css( "background-color", "green");
+        $('input[name=topVulMitCheck]:checked:enabled').each(function () {
+          //$(this).prop('checked', false);
           $(this).prop('disabled', true);
           $(this).parent().parent().css( "background-color", "lightgray" );
         });
@@ -383,16 +382,17 @@ $(function () {
         //console.log("Selected Patch Groups with Machines for Mitigation: "+patchgroups);
         var queryStr = "?machinepatchgroups=" + patchgroups;
         $.ajax({
-            url: './newDashboard.do' + queryStr,
-            type: 'POST',
-            dataType: 'text json',
-            data: {action: 'apply_patches'},
-            beforeSend: function() { },
-            complete: function (xhr, status) {},
-            success: function (response) {
-            	//console.log(JSON.stringify(response));
-            	//$('#applyPatchesRes').text(" ");
-        }});
+          url: './newDashboard.do' + queryStr,
+          type: 'POST',
+          dataType: 'text json',
+          data: { action: 'apply_patches' }/*,
+          beforeSend: function () { },
+          complete: function (xhr, status) { },
+          success: function (response) {
+            //console.log(JSON.stringify(response));
+            //$('#applyPatchesRes').text(" ");
+          }*/
+        });
     });
 
 
