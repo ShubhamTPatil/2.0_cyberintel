@@ -711,12 +711,10 @@ function createMitigateTable(aaData) {
                   </div>
                 </div>
 
-
-
                 <div class="col-md-6">
                   <div class="card info-card customers-card">
                     <div class="card-body">
-                      <h5 class="card-title" style="margin: 0;">Scanned Devices <span>| In last 24 hours</span></h5>
+                      <h5 class="card-title" style="margin: 0;">Scanned Devices</h5>
                       <hr class="divider" />
 
                       <div class="row">
