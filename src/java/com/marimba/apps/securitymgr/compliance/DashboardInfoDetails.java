@@ -1902,6 +1902,116 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
     }
 
+    public static class GetConfigProfileComplianceData extends DatabaseAccess {
+        Map<String, String> complianceResult = new LinkedHashMap<String, String>();
+
+        String profileId;
+
+
+        public GetConfigProfileComplianceData(SubscriptionMain main, String profileId) {
+            GetConfigProfileComplianceInfo result = new GetConfigProfileComplianceInfo(main,profileId);
+            try {
+                runQuery(result);
+
+                int compliant = result.getCompliant();
+                int nonCompliant = result.getNonCompliant();
+                complianceResult.put("compliant", String.valueOf(compliant));
+                complianceResult.put("nonCompliant", String.valueOf(nonCompliant));
+
+            } catch (Exception dae) {
+                dae.printStackTrace();
+            }
+        }
+
+        public Map<String, String> getResult() {
+            return complianceResult;
+        }
+    }
+
+    public static class GetConfigProfileDropdownData extends DatabaseAccess {
+        Map<String, String> complianceResult = new LinkedHashMap<String, String>();
+
+        public Map<String, String> getComplianceResult() {
+            return complianceResult;
+        }
+
+        public GetConfigProfileDropdownData(SubscriptionMain main) {
+
+        }
+
+        protected void execute(IStatementPool pool) throws SQLException {
+            PreparedStatement st = null;
+
+            st = pool.getConnection().prepareStatement("select profile_id,profile_title FROM inv_security_xccdf_compliance");
+
+            ResultSet rs = st.executeQuery();
+            try {
+                while (rs.next()) {
+                    int profileId =  rs.getInt("profile_id");
+                    String profileTitle = rs.getString("profile_title");
+                    complianceResult.put(String.valueOf(profileId),profileTitle);
+                }
+            } finally {
+                rs.close();
+            }
+
+        }
+
+        public Map<String, String> getResult() {
+            return complianceResult;
+        }
+    }
+
+    static class GetConfigProfileComplianceInfo extends QueryExecutor {
+        int compliant = 0;
+        int nonCompliant = 0;
+        String profileId;
+
+
+
+        GetConfigProfileComplianceInfo(SubscriptionMain main, String profileId) {
+            super(main);
+            this.profileId = profileId;
+        }
+
+
+
+        protected void execute(IStatementPool pool) throws SQLException {
+            PreparedStatement st = null;
+
+            st = pool.getConnection().prepareStatement("select count(distinct machine_name) as 'Count' , overall_compliant_level as 'Type' \n" +
+                    "from inv_security_xccdf_compliance group by overall_compliant_level having count(*) > 0");
+
+            ResultSet rs = st.executeQuery();
+            try {
+                while (rs.next()) {
+                    int count =  rs.getInt("Count");
+                    String type = rs.getString("Type");
+                    if ("COMPLIANT".equalsIgnoreCase(type)) {
+                        compliant = count;
+                    } else if ("NON-COMPLIANT".equalsIgnoreCase(type)) {
+                        nonCompliant = count;
+                    }
+                }
+            } finally {
+                rs.close();
+            }
+
+        }
+
+        public int getCompliant() {
+            return compliant;
+        }
+
+        public int getNonCompliant() {
+            return nonCompliant;
+        }
+
+        public String getProfileId() { return profileId; }
+    }
+
+
+
     private static void debug(String msg) {
 
         if (IAppConstants.DEBUG5) System.out.println("DashboardInfoDetails: " + msg);

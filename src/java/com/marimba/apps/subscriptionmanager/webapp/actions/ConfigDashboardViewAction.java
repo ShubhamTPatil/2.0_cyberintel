@@ -16,10 +16,7 @@ import com.marimba.apps.subscriptionmanager.webapp.forms.ConfigDashboardViewForm
 import com.marimba.apps.subscriptionmanager.webapp.forms.NewDashboardViewForm;
 import com.sun.jmx.snmp.tasks.Task;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -66,11 +63,28 @@ public class ConfigDashboardViewAction extends AbstractAction implements IWebApp
           // Config Scanned Machines Count
           int configScanMachinesCount = dashboardHandler.getVScanMachinesCount("configscan");
 
+
           dashboardForm.setMachinesCount(String.valueOf(totalMachineCount));
           dashboardForm.setMachineWindowsCount(String.valueOf(totalWindowsMachineCount));
           dashboardForm.setMachineLinuxCount(String.valueOf(totalLinuxMachineCount));
           dashboardForm.setMachineMacCount(String.valueOf(totalMacMachineCount));
           dashboardForm.setConfigScanCount(String.valueOf(configScanMachinesCount));
+
+
+          //to get the profile dropdown
+
+
+          //to get Profile Compliant and Non Compliant
+          Map<String,String> profileCompliantMap = new LinkedHashMap<String,String>();
+          String profileId = "Test";
+          profileCompliantMap = dashboardHandler.getConfigComplianceByProfile(profileId);
+
+          dashboardForm.setConfigProfileCompliant(profileCompliantMap.get("compliant"));
+          dashboardForm.setConfigProfileNonCompliant(profileCompliantMap.get("nonCompliant"));
+
+          //To Set Profile Dropdown
+          Map<String,String> configProfileDropdown = dashboardHandler.getConfigProfileDropdown();
+          dashboardForm.setConfigProfileDropdown(configProfileDropdown);
 
           forward = mapping.findForward("view");
         }

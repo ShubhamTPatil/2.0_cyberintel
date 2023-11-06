@@ -1,5 +1,8 @@
 package com.marimba.apps.subscriptionmanager.webapp.forms;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class ConfigDashboardViewForm extends AbstractForm{
 
 
@@ -10,6 +13,12 @@ public class ConfigDashboardViewForm extends AbstractForm{
     private String machineMacCount = "0";
 
     private String configScanCount = "0";
+
+    Map<String, String> configProfileDropdown = new LinkedHashMap<String, String>();
+
+    private String configProfileCompliant = "0";
+
+    private String configProfileNonCompliant = "0";
 
 
     public String getMachinesCount() {
@@ -58,5 +67,29 @@ public class ConfigDashboardViewForm extends AbstractForm{
 
     public void setConfigScanCount(String configScanCount) {
         this.configScanCount = configScanCount;
+    }
+
+    public Map<String, String> getConfigProfileDropdown() {
+        return configProfileDropdown;
+    }
+
+    public void setConfigProfileDropdown(Map<String, String> configProfileDropdown) {
+        this.configProfileDropdown = configProfileDropdown;
+    }
+
+    public String getConfigProfileCompliant() {
+        return configProfileCompliant;
+    }
+
+    public void setConfigProfileCompliant(String configProfileCompliant) {
+        this.configProfileCompliant = configProfileCompliant;
+    }
+
+    public String getConfigProfileNonCompliant() {
+        return configProfileNonCompliant;
+    }
+
+    public void setConfigProfileNonCompliant(String configProfileNonCompliant) {
+        this.configProfileNonCompliant = configProfileNonCompliant;
     }
 }

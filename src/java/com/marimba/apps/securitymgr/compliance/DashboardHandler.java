@@ -184,6 +184,26 @@ public class DashboardHandler implements ComplianceConstants {
         return result;
     }
 
+    public Map<String, String> getConfigComplianceByProfile(String profileId) {
+        Map<String, String> result = new LinkedHashMap<String, String>();
+        try {
+            result = new DashboardInfoDetails.GetConfigProfileComplianceData(main, profileId).getResult();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return result;
+    }
+
+    public Map<String, String> getConfigProfileDropdown() {
+        Map<String, String> result = new LinkedHashMap<String, String>();
+        try {
+            result = new DashboardInfoDetails.GetConfigProfileDropdownData(main).getResult();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return result;
+    }
+
     // Get Compliance Reporting NotChecked info
     public List<ReportingNotCheckedInBean> getComplianceReportNotCheckedIn() {
         List<ReportingNotCheckedInBean> rptNotCheckedIn = new ArrayList<ReportingNotCheckedInBean>();
