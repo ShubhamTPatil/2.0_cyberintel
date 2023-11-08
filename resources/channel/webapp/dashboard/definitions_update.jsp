@@ -31,7 +31,6 @@
 <script type="text/javascript" src="/spm/js/newdashboard/common.js"></script>
 
 <script type="text/javascript">
-
 	$(function() {
 		
 		$('#definitionsUpdate').addClass('nav-selected');
@@ -81,8 +80,11 @@
 		const step = <bean:write name="definitionUpdateForm" property="cveJsonUpdateStep" filter="false" />;
 		
 		const error = '<bean:write name="definitionUpdateForm" property="cveJsonUpdateError" filter="false" />';
+		if(error != null || error != ''){
+			$('#progressParent').hide();
+		}
 		$('#cveUpdateError').html(error);
-		
+
 		const vDefError = '<bean:write name="definitionUpdateForm" property="vDefError" filter="false" />';
 		$('#vDefError').html(vDefError);
 		
@@ -90,11 +92,13 @@
 		
 		if(isThreadRunning) {
 			$('#cveUpdateNow').prop('disabled', true);
+			$('#progressParent').show();
 			$('#defUpdateProgress').addClass('progress-bar-animated');
 			asyncCall();
 		} else {
 			$('#cveUpdateNow').prop('disabled', false);
 			$('#defUpdateProgress').removeClass('progress-bar-animated');
+			$('#progressParent').hide();
 		}
 
 		setTimeout(() => {
@@ -141,6 +145,7 @@
   				if(result.status == 5) {
   					$('#cveUpdateNow').prop('disabled', false);
   					$('#defUpdateProgress').removeClass('progress-bar-animated');
+            $('#progressParent').hide();
   					break;
   				}
   		  }
@@ -161,6 +166,7 @@
   				$('#cveUpdateError').html(result.error);
   				$('#cveUpdateNow').prop('disabled', false);
   				$('#defUpdateProgress').removeClass('progress-bar-animated');
+  				$('#progressParent').hide();
     			break;
     		} else {
     			$('#cveUpdateError').text("");
@@ -178,10 +184,10 @@
 					&& cveStorageDir.trim() != "") {
 				
 				$('#cveUpdateNow').prop('disabled', true);
+				$('#progressParent').show();
 				$('#defUpdateProgress').addClass('progress-bar-animated');
-				
+
 				var wizardStep = 0;
-				
 			    	$.ajax({
 							url : './definitionupdate.do',
 							type : 'POST',
@@ -205,6 +211,7 @@
 				  	    		}
 				  					
 				  					wizardStep = (typeof response != "undefined" && typeof response.status != "undefined" && response.status != null) ? response.status : 0;
+
 				  					updateProgressBar(wizardStep);
 				  				}
 				  				else {
@@ -245,7 +252,7 @@
 			
 			switch (step) {
 			case 0:
-			    $('#cveUpdateError').text("");
+			  $('#cveUpdateError').text("");
 				$('#progressParent').hide();
 				break;
 			case 1:
@@ -263,6 +270,7 @@
 			case 5:
 				setProgressBarWidth('100%');
 				$('#defUpdateProgress').removeClass('progress-bar-animated');
+				$('#progressParent').hide();
 				break;
 			default:
 				$('#progressParent').hide();
@@ -272,9 +280,12 @@
 		}
 		
 		function setProgressBarWidth(width) {
-			$('#defUpdateProgress').css('width', width);
-			$('#defUpdateProgressWidth').text(width);
-			$('#progressParent').show();
+		const error = $('#cveUpdateError').text();
+		 if(error == ''){
+		 $('#defUpdateProgress').css('width', width);
+     			$('#defUpdateProgressWidth').text(width);
+     			$('#progressParent').show();
+		 }
 		}
 
 	function doSubmit(frm, action) {
