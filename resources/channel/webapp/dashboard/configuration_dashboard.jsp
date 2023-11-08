@@ -51,7 +51,7 @@ var ctx1 = $("#complianceDonutChart");
                 {
                     data: pieChartData,
                     backgroundColor: [
-                        "#FF5F60", "#D4733A"
+                        "#71DCEB", "#FF5F60"
                     ]
                 }
             ]
@@ -67,18 +67,14 @@ var ctx1 = $("#complianceDonutChart");
                     fontColor: "#111"
                 },
                 legend: {
-                    display: false,
-                    position: "bottom",
-                    labels: {
-                        fontColor: "#333",
-                        fontSize: 16
-                    }
+                    display: true,
+                    position: "bottom"
                 },
                 tooltip: {
                     callbacks: {
                         label: function (context) {
                             let label = context.dataset.label || '';
-                            return label + " " + context.parsed + '%';
+                            return label + " " + context.parsed + "" + (context.parsed == 1) ? 'Machine' : ' Machines';
                         }
                     }
                 }
@@ -95,6 +91,7 @@ var ctx1 = $("#complianceDonutChart");
   barChartSeverityData = barChartSeverityData.replace(/&quot;/g,'"');
   barChartSeverityData=JSON.parse(barChartSeverityData);
 
+  /*
   const data = {
     labels: ["January", "February", "March", "April", "May", "June"],
     datasets: [
@@ -123,7 +120,7 @@ var ctx1 = $("#complianceDonutChart");
         stack: "Stack 0",
       }
     ],
-  };
+  }; */
 
   console.log(barChartSeverityData);
 
@@ -136,6 +133,10 @@ var ctx1 = $("#complianceDonutChart");
           display: false,
           text: "Chart.js Bar Chart - Stacked",
         },
+        legend: {
+          display: true,
+          position: "bottom",
+        }
       },
       responsive: false,
       interaction: {
@@ -363,9 +364,7 @@ var ctx1 = $("#complianceDonutChart");
                   </div>
                 </div>
                 
-                
               </div>
-
 
             </div>
           </div>
@@ -375,10 +374,30 @@ var ctx1 = $("#complianceDonutChart");
             <div class="card">
               <div class="card-body pb-0">
                 <h5 class="card-title">Overall Compliance Summary</h5>
+                <hr class="divider" />
+                
+                <div class="row" style="margin-bottom: 10px;">
+                  <div class="col-sm-12">
+                    <div align="center">
+                      <span class="small"><bean:write name="configDashboardForm" property="configProfileCompliant"/></span><br />
+                      <span class="small lowColor"><b>Compliant Machines</b></span>
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div align="center">
+                      <span class="small"><bean:write name="configDashboardForm" property="configProfileNonCompliant"/></span><br />
+                      <span class="small criticalColor"><b>Non-Compliant Machines</b></span>
+                    </div>
+                  </div>
+                </div>
+                <br/>
+                <div>
                 <div style="position: relative; width: 100%; margin: auto;">
                   <canvas id="complianceDonutChart" style="margin:auto; min-height: 130px;">
                   </canvas>
                 </div>
+                </div>
+                <br/>
               </div>
             </div>
           </div>
