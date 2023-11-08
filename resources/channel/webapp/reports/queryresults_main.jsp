@@ -36,19 +36,28 @@
    			resize: none;
 		}
         .bootstrap-dialog-message {overflow-wrap: anywhere;}
+
+        .card-title {
+            padding: 20px 0 15px 0;
+            font-size: 18px;
+            font-weight: 500;
+            color: #012970;
+        }
     </style>
     <%
         ServletContext context =  pageContext.getServletContext();
         String load_dbdata_status = (String) context.getAttribute("load_dbdata_status");
     %>
 </head>
-<body id="body_div" style="border: 1px solid #c3c3c3;">
+<body style="background-color: #fff;">
 <html:form action="/queryresults.do" type="com.marimba.apps.securitymgr.webapp.forms.VDeskQueryresultsForm">
 <html:hidden property="action"/>
 <html:hidden styleId="displayPath" property="displayPath"/>
 <html:hidden styleId="reportStatus" property="reportStatus"/>
-<section class="content-header"><h1><bean:write name="vDeskResultsForm" property="displayPath"/></h1></section>
-<section class="content">
+<h5 class="card-title" style="margin: 0;"><bean:write name="vDeskResultsForm" property="displayPath"/></h5>
+<hr style="margin: 0 0 10px 0; border-width: 2px; color: inherit; border: 0; border-top: 2px solid; opacity: .25;" />
+
+<section class="content" style="padding: 0;">
     <div class="row" style="display:none">
         <div class="col-sm-12">
             <div class="pageInfo" style="padding: 5px 5px 25px;">&nbsp;</div>
@@ -60,14 +69,22 @@
             </logic:messagesPresent>
         </div>
     </div>
+    
     <div class="row">
         <div class="col-sm-12">
+
+            <div style="font-size: medium; background-color: #d9edf7; padding: .5rem!important; margin-bottom: .5rem!important; --bs-text-opacity: 1; color: rgba(var(--bs-dark-rgb),var(--bs-text-opacity))!important;">
+                <b>Report Ran at:</b>&nbsp;<bean:write name="vDeskResultsForm" property="queryRanAt"/>
+            </div>
+
+<!--             
             <table class="table no-border">
                 <tr>
                     <td width="10%"><b>Report Ran at:</b>&nbsp;<bean:write name="vDeskResultsForm" property="queryRanAt"/></td>
                 </tr>
             </table>
-            <hr>
+            <hr> -->
+
             <table id="results_table" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <logic:present name="vDeskResultsForm" property="columnsList">
                     <thead>
@@ -106,7 +123,8 @@
     </div>
     <div class="row">
         <div class="col-sm-12">
-            <div id="pageNav">&nbsp;</div>
+            <!-- <div id="pageNav">&nbsp;</div> -->
+            <hr style="margin: 0 0 10px 0; border-width: 2px; color: inherit; border: 0; border-top: 2px solid; opacity: .25;" />
         </div>
     </div>
 </section>

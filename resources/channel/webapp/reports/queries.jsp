@@ -9,15 +9,28 @@
 <%@ include file="/includes/common_js.jsp" %>
 <%@ taglib uri="/WEB-INF/app.tld" prefix="sm" %>
 
+<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/bootstrap-icons.min.css"/>
+<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/all.min.css"/>
+<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/datatables.min.css"/>
+<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/style.css"/>
+
+<script type="text/javascript" src="/spm/js/newdashboard/jquery.min.js"></script>
+<script type="text/javascript" src="/spm/js/newdashboard/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/spm/js/newdashboard/chart.umd.js"></script>
+<script type="text/javascript" src="/spm/js/newdashboard/datatables.min.js"></script>
+<script type="text/javascript" src="/spm/js/newdashboard/all.min.js"></script>
+<script type="text/javascript" src="/spm/js/newdashboard/common.js"></script>
+
+
 <link rel="stylesheet" type="text/css" href="/spm/includes/easyui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="/spm/includes/easyui/themes/icon.css">
-<link rel="stylesheet" type="text/css" href="/spm/css/bootstrap-datepicker3.min.css"/>
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" type="text/css" href="/spm/css/bootstrap-datepicker3.min.css"/> -->
+<!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"> -->
 <link rel="stylesheet" type="text/css" href="/spm/includes/assets/adminlte/css/adminlte.min.css">
-<link rel="stylesheet" type="text/css" href="/spm/css/_all-skins.min.css"/>
-<link rel="stylesheet" type="text/css" href="/spm/css/application.css"/>
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
-<link rel="stylesheet" type="text/css" href="/spm/css/application.css"/>
+<!-- <link rel="stylesheet" type="text/css" href="/spm/css/_all-skins.min.css"/> -->
+<!-- <link rel="stylesheet" type="text/css" href="/spm/css/application.css"/> -->
+<!-- <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"> -->
 <link rel="stylesheet" type="text/css" href="/spm/css/fuelux.css">
 
 <script type="text/javascript" src="/shell/common-rsrc/js/master.js"></script>
@@ -25,12 +38,12 @@
 <script type="text/javascript" src="/shell/common-rsrc/js/table.js"></script>
 <script type="text/javascript" src="/shell/common-rsrc/js/domMenu.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
-<script type="text/javascript" src="/spm/js/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="/spm/js/jquery.min.js"></script> -->
 <script type="text/javascript" src="/spm/js/jstree.min.js"></script>
 <script type="text/javascript" src="/spm/js/jstreegrid.js"></script>
 
 <script type="text/javascript" src="/spm/includes/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="/spm/js/bootstrap-datepicker.js"></script>
+<!-- <script type="text/javascript" src="/spm/js/bootstrap-datepicker.js"></script> -->
 <script type="text/javascript" src="/spm/js/wizard.js"></script>
 
 <style type="text/css">
@@ -55,10 +68,17 @@
     #tx_channel_tree .channel {background: url(../assets/img/package.gif);background-size: 16px 14px;background-repeat: no-repeat;margin-right: -3px;margin-top: 6px;}
     #tx_channel_tree .transmitter {background: url(../assets/img/master.gif);background-size: 22px 19px;background-repeat: no-repeat;}
 </style>
-<body>
+<body style="background-color: #fff;">
 <script type="text/javascript" src="/shell/common-rsrc/js/wz_tooltip.js"></script>
 
 <html:form name="vDeskReportForm" action="/reports.do" type="com.marimba.apps.securitymgr.webapp.forms.VDeskReportForm">
+
+    <h5 class="card-title" style="margin: 0;"><webapps:pageText key="reports"/></h5>
+    <hr class="divider" />
+    <div id="dataSection" style="height: 100px; width:100%; overflow:auto; padding-left:5px; line-height: 5px; display: none;"></div>
+    <div id="query_content_tree" style="font-size: small;">&nbsp;</div>
+    
+<!-- 
     <table width="320" cellspacing="0" cellpadding="0" border="0">
         <tr><td class="tableTitle">&nbsp;<webapps:pageText key="reports"/></td></tr>
     </table>
@@ -66,7 +86,9 @@
         <div id="dataSection" style="height: 100px; width:100%; overflow:auto; padding-left:5px; line-height: 5px;">
         <div id="query_content_tree">&nbsp;</div>
         </div>
-    </div>
+    </div> -->
+
+
 </html:form>
 <div id="endOfGui"></div>
 <script type="text/javascript">
@@ -95,7 +117,7 @@ $('#query_content_tree').on('changed.jstree', function (e, data) {
     }
     top.frames['mainFrame'].location.href = '/spm/reports.do?action=selected_query&path='+ r.join(', ');
   })
-resizeDataSection('dataSection','endOfGui');
+//resizeDataSection('dataSection','endOfGui');
 $(document).ready(function() {
     loadTxContentTree();
 });

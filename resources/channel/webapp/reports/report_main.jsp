@@ -9,7 +9,9 @@
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
 <%@ taglib uri="/WEB-INF/webapps.tld" prefix="webapps" %>
 <%@ taglib uri="/WEB-INF/app.tld" prefix="sm" %>
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
 
     <title><webapps:pageText key="Title"/></title>
@@ -18,23 +20,21 @@
     <meta http-equiv="Expires" content="0">
     <meta http-equiv="Cache-control" content="no-cache">
 
-    <script language="javascript" src="/shell/common-rsrc/js/master.js"></script>
-    <script language="javascript" src="/spm/includes/selectoption.js"></script>
-    <script language="JavaScript" src="/shell/common-rsrc/js/table.js"></script>
-    <script language="JavaScript" src="/shell/common-rsrc/js/tableSync.js"></script>
+    <link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/bootstrap-icons.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/all.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/datatables.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/style.css"/>
 
-    <script language="javascript" src="/shell/common-rsrc/js/ypSlideOutMenusC.js"></script>
-    <script language="javascript" src="/shell/common-rsrc/js/domMenu.js"></script>
+	<script type="text/javascript" src="/spm/js/newdashboard/jquery.min.js"></script>
+	<script type="text/javascript" src="/spm/js/newdashboard/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="/spm/js/newdashboard/chart.umd.js"></script>
+	<script type="text/javascript" src="/spm/js/newdashboard/datatables.min.js"></script>
+	<script type="text/javascript" src="/spm/js/newdashboard/all.min.js"></script>
+	<script type="text/javascript" src="/spm/js/newdashboard/common.js"></script>
 
-  <!-- These two lines of code need to be here in order for overlib to work.  They have to be placed outside the form in the head section -->
-
-<div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
-<script language="JavaScript" src="/shell/common-rsrc/js/overlib.js"></script>
-<script language="JavaScript" src="/shell/common-rsrc/js/intersect.js"></script>
-
-<script type="text/javascript" src="/shell/common-rsrc/js/master.js"></script>
-<script type="text/javascript" src="/shell/common-rsrc/js/intersect.js"></script>
 <script type="text/javascript">
+    
     function CMSEventHandler() {
         this.handlers = new Array();
         this.addHandler = CMSEventHandler_addHandler;
@@ -65,6 +65,7 @@
     document.onmouseup = function (event) {
         CMSOnMouseUpHandler.handleEvent(event);
     }
+
     //This function sets the tabIndex of all form elements that use the tags: input, textarea, and select
     function setTabIndex() {
         var allINPUT = document.getElementsByTagName("input");
@@ -81,22 +82,11 @@
 
     CMSOnLoadHandler.addHandler("setTabIndex();");
 </script>
-<div id="divTooltip"></div>
-<script type="text/javascript" src="/shell/common-rsrc/js/tooltips.js"></script>
 
 <%--
 <%@ include file="/includes/startHeadSection.jsp" %>
 <jsp:include page="/common-rsrc/header/header.jsp" flush="false"/>
 --%>
-
-<script type="text/javascript" src="/spm/js/jquery.min.js"></script>
-<script type="text/javascript" src="/spm/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/spm/js/bootstrap-dialog.min.js"></script>
-<script type="text/javascript" src="/spm/js/datatables.min.js"></script>
-
-<link rel="stylesheet" type="text/css" href="/spm/css/bootstrap.min.css"/>
-<link rel="stylesheet" type="text/css" href="/spm/css/bootstrap-dialog.min.css"/>
-<link rel="stylesheet" type="text/css" href="/spm/css/datatables.min.css"/>
 
 <style type="text/css">
     .slider-arrow {
@@ -111,19 +101,7 @@
         padding-right: 5px;
     }
 </style>
-	<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/bootstrap-icons.min.css"/>
-	<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/all.min.css"/>
-	<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/datatables.min.css"/>
-	<link rel="stylesheet" type="text/css" href="/spm/css/newdashboard/style.css"/>
-
-	<script type="text/javascript" src="/spm/js/newdashboard/jquery.min.js"></script>
-	<script type="text/javascript" src="/spm/js/newdashboard/bootstrap.bundle.min.js"></script>
-	<script type="text/javascript" src="/spm/js/newdashboard/chart.umd.js"></script>
-	<script type="text/javascript" src="/spm/js/newdashboard/datatables.min.js"></script>
-	<script type="text/javascript" src="/spm/js/newdashboard/all.min.js"></script>
-	<script type="text/javascript" src="/spm/js/newdashboard/common.js"></script>
-
+	
 </head>
 <body>
 <html:form name="vDeskReportForm" action="/reports.do" type="com.marimba.apps.securitymgr.webapp.forms.VDeskReportForm">
@@ -133,6 +111,46 @@
 <jsp:include page="/dashboard/sidebar.jsp" />
 
   <main id="main" class="main">
+
+    <div class="pagetitle">
+
+        <div class="d-flex bd-highlight justify-content-center">
+          <div class="p-2 flex-grow-1 bd-highlight">
+            <span class="pagename">Scan Results</span>
+            <span data-bs-toggle="tooltip" data-bs-placement="right" title="Scan Results"><i
+                class="fa-solid fa-circle-info text-primary"></i></span>
+          </div>
+          <div class="refresh p-2 bd-highlight text-primary align-self-center" data-bs-toggle="tooltip" data-bs-placement="right"
+            title="Refresh" style="cursor: pointer;"><i class="fa-solid fa-arrows-rotate"></i></div>
+          <div class="p-2 bd-highlight text-primary align-self-center"> <a href="/shell/dashboard.do"> <i class="fa-solid fa-chevron-left"
+                style="margin-right: 5px;"></i>CMS Home</a>
+          </div>
+        </div>
+  
+      </div>
+
+    <section class="section dashboard">
+
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="card info-card customers-card">
+                    <div class="card-body">
+                        <iframe name="queries" src="<webapps:fullPath path="/reports.do?action=left" />" width="100%" frameborder="0" style="height: 80vh;padding:0px; margin:0px; border:0px; min-height: 400px;"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="card info-card customers-card">
+                    <div class="card-body">
+                        <iframe name="mainFrame" src="<webapps:fullPath path="/reports.do?action=selected_query" />" width="100%" frameborder="0" hspace="0" marginheight="0" marginwidth="0" style="height: 80vh; padding:0px; margin:0px; border:0px; min-height: 400px;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+<!-- 
     <div align="center" style="padding-top:6px;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <table cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -151,14 +169,17 @@
                 </td>
             </tr>
         </table>
-    </div>
+    </div> -->
+
   </main>
 </html:form>
     <script type="text/javascript">
-        CMSOnResizeHandler.addHandler("resizeDataSection('FOO_dataDiv','FOO_endOfData',0);");
-        CMSOnResizeHandler.addHandler("resizeDataSection('FOO_GROUP_LISTING_iframe','FOO_endOfGroupList',0);");
-        resizeDataSection('FOO_dataDiv','FOO_endOfData',0);
-        resizeDataSection('FOO_GROUP_LISTING_iframe','FOO_endOfGroupList',0);
+    
+        // CMSOnResizeHandler.addHandler("resizeDataSection('FOO_dataDiv','FOO_endOfData',0);");
+        // CMSOnResizeHandler.addHandler("resizeDataSection('FOO_GROUP_LISTING_iframe','FOO_endOfGroupList',0);");
+        // resizeDataSection('FOO_dataDiv','FOO_endOfData',0);
+        // resizeDataSection('FOO_GROUP_LISTING_iframe','FOO_endOfGroupList',0);
+    
     </script>
 </body>
 </html>
