@@ -377,10 +377,10 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
                     poolStmt.setString(1, machineName);
                     poolStmt.setString(2, ((contentId == null) || (contentId.trim().length() < 1)) ? " " : contentId);
 
-                    int profileId = getProfieIdFromProfileDesc(scanType, pool, profileTitle);
+                    /*int profileId = getProfieIdFromProfileDesc(scanType, pool, profileTitle);
                     if (profileId > 0) {
                         profileID = Integer.toString(profileId);
-                    }
+                    }*/
                     poolStmt.setString(3, ((profileID == null) || (profileID.trim().length() < 1)) ? " " : profileID);
 
                     poolStmt.setString(4, ((targetName == null) || (targetName.trim().length() < 1)) ? " " : targetName);
@@ -577,7 +577,7 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
         return inserted;
     }
 
-    public int getProfieIdFromProfileDesc(String scanType, IStatementPool pool,
+   /* public int getProfieIdFromProfileDesc(String scanType, IStatementPool pool,
         String description) {
         try {
             String sql = "select * from security_" + scanType + "_profile where profile_desc ='"
@@ -592,7 +592,7 @@ public class DbDataStorage implements ISecurityServiceConstants, IDatabaseClient
             System.out.println(exception.getMessage());
         }
         return 0;
-    }
+    }*/
 
     private void deleteOvalRuleComplianceData(int complianceId) throws SQLException {
         IStatementPool deleteStmtPool = null;
