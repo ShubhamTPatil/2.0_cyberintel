@@ -36,8 +36,64 @@ $(function () {
 
   $('#dashboard').addClass('nav-selected');
 
+    var pieChartData = [];
+    pieChartData.push(<bean:write name="configDashboardForm" property="configProfileCompliant"/>);
+    pieChartData.push(<bean:write name="configDashboardForm" property="configProfileNonCompliant"/>);
+
+
+var ctx1 = $("#complianceDonutChart");
+    // label: "Severity",
+    var chart1 = new Chart(ctx1, {
+        type: "doughnut",
+        data: {
+            labels: ["Compliant", "Non Compliant"],
+            datasets: [
+                {
+                    data: pieChartData,
+                    backgroundColor: [
+                        "#FF5F60", "#D4733A"
+                    ]
+                }
+            ]
+        },
+        options: {
+            responsive: false,
+            plugins: {
+                title: {
+                    display: false,
+                    position: "top",
+                    text: "Doughnut Chart",
+                    fontSize: 18,
+                    fontColor: "#111"
+                },
+                legend: {
+                    display: false,
+                    position: "bottom",
+                    labels: {
+                        fontColor: "#333",
+                        fontSize: 16
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            let label = context.dataset.label || '';
+                            return label + " " + context.parsed + '%';
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+
+
 
   var ctx = document.getElementById('myChart').getContext('2d');
+
+  var barChartSeverityData = '<bean:write name="configDashboardForm" property="barChartData"/>';
+  barChartSeverityData = barChartSeverityData.replace(/&quot;/g,'"');
+  barChartSeverityData=JSON.parse(barChartSeverityData);
 
   const data = {
     labels: ["January", "February", "March", "April", "May", "June"],
@@ -69,15 +125,15 @@ $(function () {
     ],
   };
 
-  console.log(data);
+  console.log(barChartSeverityData);
 
   const config = {
     type: "bar",
-    data: data,
+    data: barChartSeverityData,
     options: {
       plugins: {
         title: {
-          display: true,
+          display: false,
           text: "Chart.js Bar Chart - Stacked",
         },
       },
@@ -100,7 +156,7 @@ $(function () {
 
 
 
-  /* Line Chart */
+  /* Line Chart
   var ctxLineChart = document.getElementById('lineChart').getContext('2d');
 
   var chartData = {
@@ -151,6 +207,7 @@ $(function () {
   };
 
   var myChart = new Chart(ctxLineChart, lineChartConfig);
+  */
 
   });
 
@@ -319,7 +376,8 @@ $(function () {
               <div class="card-body pb-0">
                 <h5 class="card-title">Overall Compliance Summary</h5>
                 <div style="position: relative; width: 100%; margin: auto;">
-                  <h1>Doughnut Chart</h1>
+                  <canvas id="complianceDonutChart" style="margin:auto; min-height: 130px;">
+                  </canvas>
                 </div>
               </div>
             </div>
@@ -328,6 +386,7 @@ $(function () {
 
         </div>
 
+        <!--
         <div class="row">
           <div class="col-lg-12">
             <div class="card">
@@ -340,6 +399,7 @@ $(function () {
             </div>
           </div>
         </div>
+        -->
 
       </div>
 

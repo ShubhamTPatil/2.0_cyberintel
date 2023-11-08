@@ -1,5 +1,7 @@
 package com.marimba.apps.subscriptionmanager.webapp.forms;
 
+import com.marimba.apps.securitymgr.utils.json.JSONObject;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -20,6 +22,10 @@ public class ConfigDashboardViewForm extends AbstractForm{
 
     private String configProfileNonCompliant = "0";
 
+
+    private String barChartData;
+
+    private String lineChartData;
 
     public String getMachinesCount() {
         return machinesCount;
@@ -91,5 +97,21 @@ public class ConfigDashboardViewForm extends AbstractForm{
 
     public void setConfigProfileNonCompliant(String configProfileNonCompliant) {
         this.configProfileNonCompliant = configProfileNonCompliant;
+    }
+
+    public String getBarChartData() {
+        return barChartData;
+    }
+
+    public void setBarChartData(String barChartData) {
+        this.barChartData = barChartData;
+    }
+
+    public String getLineChartData() {
+        return lineChartData;
+    }
+
+    public void setLineChartData(String lineChartData) {
+        this.lineChartData = lineChartData;
     }
 }

@@ -6,6 +6,8 @@ package com.marimba.apps.securitymgr.compliance;
 
 import com.marimba.apps.securitymgr.db.DatabaseAccess;
 import com.marimba.apps.securitymgr.db.QueryExecutor;
+import com.marimba.apps.securitymgr.utils.json.JSONArray;
+import com.marimba.apps.securitymgr.utils.json.JSONObject;
 import com.marimba.apps.securitymgr.view.SCAPBean;
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
 import com.marimba.apps.subscriptionmanager.beans.*;
@@ -2011,6 +2013,76 @@ public class DashboardInfoDetails implements ComplianceConstants {
         }
 
         public String getProfileId() { return profileId; }
+    }
+
+    public static class GetConfigDashboardBarChartDataInfo extends DatabaseAccess {
+        JSONArray jsonArray = new JSONArray();
+
+        public GetConfigDashboardBarChartDataInfo(SubscriptionMain main) {
+
+            GetConfigDashboardBarChartData result = new GetConfigDashboardBarChartData(main);
+
+            try {
+                runQuery(result);
+                //  count = result.getScanCount();
+                jsonArray = result.getConfigDashboardBarChartDataInfo();
+            } catch (Exception dae) {
+                dae.printStackTrace();
+            }
+        }
+
+        public JSONArray getJsonArray() {
+            return jsonArray;
+        }
+    }
+
+    static class GetConfigDashboardBarChartData extends QueryExecutor {
+        JSONArray jsonArray = new JSONArray();
+
+        GetConfigDashboardBarChartData(SubscriptionMain main) {
+            super(main);
+
+        }
+
+        protected void execute(IStatementPool pool) throws SQLException {
+
+            String sqlStr = "select a.profile_id, a.profile_title, a.profile_name, c.rule_severity, b.definition_result,count(*) failed_rule_count " +
+                    "from inv_security_xccdf_compliance a, "+
+                    "xccdf_rules_comp_result_view b,"+
+                    "security_xccdf_group_rule c "+
+                    "where a.compliance_id=b.compliance_id and b.definition_name= c.rule_name and b.definition_result='fail'"+
+                    "group by c.rule_severity,b.definition_result, a.profile_id, a.profile_title, a.profile_name";
+
+            PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
+            ResultSet rs = st.executeQuery();
+            try {
+                while(rs.next()) {
+                    int profileId = rs.getInt("profile_id");
+                    String profileName = rs.getString("profile_name");
+                    String profileTitle = rs.getString("profile_title");
+                    String ruleSeverity = rs.getString("rule_severity");
+                    int failedRuleCount = rs.getInt("failed_rule_count");
+
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("profileId",profileId);
+                    jsonObject.put("profileName",profileName);
+                    jsonObject.put("profileTitle",profileTitle);
+                    jsonObject.put("ruleSeverity",ruleSeverity);
+                    jsonObject.put("failedRuleCount",failedRuleCount);
+
+                    jsonArray.put(jsonObject);
+                }
+            } finally {
+                rs.close();
+            }
+        }
+
+        public JSONArray getConfigDashboardBarChartDataInfo() {
+            return jsonArray;
+        }
+
+
+
     }
 
 

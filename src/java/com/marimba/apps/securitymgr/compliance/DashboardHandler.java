@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.marimba.apps.securitymgr.utils.json.JSONArray;
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
 import com.marimba.apps.subscriptionmanager.beans.*;
 import com.marimba.apps.subscriptionmanager.compliance.intf.ComplianceConstants;
@@ -202,6 +203,17 @@ public class DashboardHandler implements ComplianceConstants {
             ex.printStackTrace();
         }
         return result;
+    }
+
+    public JSONArray getConfigDashboardBarChartDataInfo(){
+        JSONArray jsonArray = new JSONArray();
+        try {
+            jsonArray = new DashboardInfoDetails.GetConfigDashboardBarChartDataInfo(main).getJsonArray();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return jsonArray;
     }
 
     // Get Compliance Reporting NotChecked info
