@@ -1460,7 +1460,10 @@ public class DashboardInfoDetails implements ComplianceConstants {
                     "where status != 'Patch Applied' order by cve_id";
 
             // Taken results from derived table
-            String sqlStr = "select * from ds_derived_crit_patches";
+            String sqlStr = "select * from ds_derived_crit_patches " +
+                    "where exists (select count(machine_name) " +
+                    "from inv_security_oval_compliance " +
+                    "group by machine_name having count(machine_name) > 0) ";
 
             PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
             ResultSet rs = st.executeQuery();
