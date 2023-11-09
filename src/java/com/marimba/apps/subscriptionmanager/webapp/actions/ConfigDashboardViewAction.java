@@ -191,7 +191,6 @@ public class ConfigDashboardViewAction extends AbstractAction implements IWebApp
 
           dashboardForm.setBarChartData(barChartData.toString());
 
-
           //Data fetch for Line Chart
           JSONObject lineChartData = new JSONObject();
 
@@ -213,14 +212,14 @@ public class ConfigDashboardViewAction extends AbstractAction implements IWebApp
           jObject1.put("borderColor","red");
 
           JSONObject jObject2 = new JSONObject();
-          jObject1.put("label","Profile2");
-          jObject1.put("data","[5, 7, 6, 10, 9]");
-          jObject1.put("borderColor","blue");
+            jObject2.put("label","Profile2");
+            jObject2.put("data","[5, 7, 6, 10, 9]");
+            jObject2.put("borderColor","blue");
 
           JSONObject jObject3 = new JSONObject();
-          jObject1.put("label","Profile3");
-          jObject1.put("data","[4, 30, 19, 25, 24]");
-          jObject1.put("borderColor","yellow");
+            jObject3.put("label","Profile3");
+            jObject3.put("data","[4, 30, 19, 25, 24]");
+            jObject3.put("borderColor","yellow");
 
           jDataSetArray.put(jObject1);
           jDataSetArray.put(jObject2);

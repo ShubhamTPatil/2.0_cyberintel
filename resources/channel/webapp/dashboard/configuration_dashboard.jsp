@@ -91,7 +91,7 @@ var ctx1 = $("#complianceDonutChart");
   barChartSeverityData = barChartSeverityData.replace(/&quot;/g,'"');
   barChartSeverityData=JSON.parse(barChartSeverityData);
 
-  /*
+
   const data = {
     labels: ["January", "February", "March", "April", "May", "June"],
     datasets: [
@@ -120,7 +120,7 @@ var ctx1 = $("#complianceDonutChart");
         stack: "Stack 0",
       }
     ],
-  }; */
+  };
 
   console.log(barChartSeverityData);
 
@@ -157,21 +157,21 @@ var ctx1 = $("#complianceDonutChart");
 
 
 
-  /* Line Chart
+  //Line Chart
   var ctxLineChart = document.getElementById('lineChart').getContext('2d');
 
   var chartData = {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: ["Jun 23","Jul 23", "Aug 23", "Sept 23", "Oct 23", "Nov 23" ],
     datasets: [
       {
-        label: 'Dataset 1',
+        label: 'Profile 1',
         borderColor: 'red',
-        data: [10, 15, 13, 20, 18, 25]
+        data: [25, 21, 17, 12, 9, 5]
       },
       {
-        label: 'Dataset 2',
+        label: 'Profile 2',
         borderColor: 'blue',
-        data: [5, 8, 10, 12, 15, 20]
+        data: [50, 38, 31, 25, 19, 9]
       }
     ]
   };
@@ -181,25 +181,19 @@ var ctx1 = $("#complianceDonutChart");
     data: chartData,
     options: {
       responsive: false,
-      scales: {
-        y: {
-          min: 0,
-          max: 30
-        }
-      },
       plugins: {
         zoom: {
           zoom: {
             wheel: {
-              enabled: true,
+              enabled: false,
             },
             pinch: {
-              enabled: true,
+              enabled: false,
             },
             mode: 'xy'
           },
           pan: {
-            enabled: true,
+            enabled: false,
             mode: 'xy'
           }
         }
@@ -208,7 +202,7 @@ var ctx1 = $("#complianceDonutChart");
   };
 
   var myChart = new Chart(ctxLineChart, lineChartConfig);
-  */
+
 
   });
 
@@ -405,7 +399,7 @@ var ctx1 = $("#complianceDonutChart");
 
         </div>
 
-        <!--
+
         <div class="row">
           <div class="col-lg-12">
             <div class="card">
@@ -418,7 +412,7 @@ var ctx1 = $("#complianceDonutChart");
             </div>
           </div>
         </div>
-        -->
+
 
       </div>
 
