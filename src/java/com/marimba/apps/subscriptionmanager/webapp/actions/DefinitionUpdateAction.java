@@ -5,6 +5,7 @@
 
 package com.marimba.apps.subscriptionmanager.webapp.actions;
 
+import com.marimba.intf.util.IDirectory;
 import com.marimba.tools.util.DebugFlag;
 import java.io.*;
 import java.net.*;
@@ -184,8 +185,16 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
             chstorePwd = config.getProperty("channelstore.authenticate.password");
           }
 
+          IDirectory features = main.getFeatures();
+          IConfig tunerConfig = (IConfig) features.getChild("tunerConfig");
+          String prouctMastertxURL = tunerConfig.getProperty("products.mastertx.url");
+
           if (config != null) {
             config.setProperty("destination.mastertx.url", masterTxUrl);
+            if (prouctMastertxURL != null && !prouctMastertxURL.isEmpty()) {
+              config.setProperty("products.mastertx.url",
+                  prouctMastertxURL);
+            }
             config.setProperty("publish.tx.user", pubUser);
             config.setProperty("publish.tx.password", pubPwd);
             config.setProperty("channelstore.authenticate.user", chstoreUser);
@@ -621,43 +630,49 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
 
     private void initDefinitionsUpdateConfig() {
       File rootDir = main.getDataDirectory();
-      if (rootDir != null && rootDir.isDirectory()) {
-        File configFile = new File(rootDir, "definitions_update_config.txt");
-        try {
-          String cvedownloaderUrl = main.getConfig()
-              .getProperty("subscriptionmanager.cvedownloader.url");
 
-          if (!configFile.exists()) {
-            config = new ConfigProps(configFile);
-            config.setProperty("products.mastertx.url",
-                "http://marimbastaging.harman.com/Clarinet/m9004f/Current/vDef");
-            config.setProperty("destination.mastertx.url", "");
-            config.setProperty("publish.tx.user", "");
-            config.setProperty("publish.tx.password", "");
-            config.setProperty("channelstore.authenticate.user", "");
-            config.setProperty("channelstore.authenticate.password", "");
-            config.setProperty("defensight.cvejson.downloadurl",
-                "https://cve.circl.lu/static/circl-cve-search-expanded.json.gz");
-            config.setProperty("defensight.cvedownloaderchannel.location", cvedownloaderUrl);
-            config.setProperty("vdefchannel.lastcopied.timestamp", "Not Updated");
-            config.setProperty("defensight.cvejson.lastupdated.timestamp", "Not Updated");
-            config.setProperty("cvejsonupdate.process.status", "0");
-            config.setProperty("cvejsonupdate.process.error", "");
-            config.setProperty("vdefchannel.copy.error", "");
-            config.setProperty("cvejsonupdate.forceCveUpdate", String.valueOf(true));
-            if (!config.save()) {
-              throw new Exception("Failed to save mitigate configurations");
+      Optional.ofNullable(rootDir)
+          .filter(File::isDirectory)
+          .map(dir -> new File(dir, "definitions_update_config.txt"))
+          .ifPresent(configFile -> {
+            try {
+              IDirectory features = main.getFeatures();
+              IConfig tunerConfig = (IConfig) features.getChild("tunerConfig");
+
+              String cvedownloaderUrl = main.getConfig()
+                  .getProperty("subscriptionmanager.cvedownloader.url");
+
+              config = Optional.of(configFile)
+                  .filter(file -> !file.exists())
+                  .map(file -> new ConfigProps(file))
+                  .map(cfg -> {
+                    String productMasterUrl = tunerConfig.getProperty("products.mastertx.url");
+                    if (productMasterUrl != null && !productMasterUrl.isEmpty()) {
+                      cfg.setProperty("products.mastertx.url",
+                          productMasterUrl);
+                    }
+                    cfg.setProperty("destination.mastertx.url", "");
+                    cfg.setProperty("publish.tx.user", "");
+                    cfg.setProperty("publish.tx.password", "");
+                    cfg.setProperty("channelstore.authenticate.user", "");
+                    cfg.setProperty("channelstore.authenticate.password", "");
+                    cfg.setProperty("defensight.cvejson.downloadurl", "https://cve.circl.lu/static/circl-cve-search-expanded.json.gz");
+                    cfg.setProperty("defensight.cvedownloaderchannel.location", cvedownloaderUrl);
+                    cfg.setProperty("vdefchannel.lastcopied.timestamp", "Not Updated");
+                    cfg.setProperty("defensight.cvejson.lastupdated.timestamp", "Not Updated");
+                    cfg.setProperty("cvejsonupdate.process.status", "0");
+                    cfg.setProperty("cvejsonupdate.process.error", "");
+                    cfg.setProperty("vdefchannel.copy.error", "");
+                    cfg.setProperty("cvejsonupdate.forceCveUpdate", String.valueOf(true));
+                    return cfg.save() ? cfg : null;
+                  })
+                  .orElseGet(() -> new ConfigProps(configFile));
+            } catch (Exception ioe) {
+              ioe.printStackTrace();
+              // REMIND, log something here
+              config = null;
             }
-            config.close();
-          } else {
-            config = new ConfigProps(configFile);
-          }
-        } catch (Exception ioe) {
-          ioe.printStackTrace();
-          // REMIND, log something here
-          config = null;
-        }
-      }
+          });
     }
 
     private String encode(String passwd) {
