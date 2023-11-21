@@ -92,30 +92,24 @@ var ctx1 = $("#complianceDonutChart");
   barChartSeverityData=JSON.parse(barChartSeverityData);
 
 
-  const data = {
-    labels: ["January", "February", "March", "April", "May", "June"],
+  const dataChartData = {
+    labels: ["Stig 1", "Stig 2", "Stig 3", "Stig 4", "Stig 5", "Stig 6"],
     datasets: [
       {
-        label: "Dataset 1",
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
-        borderColor: "rgb(255, 99, 132)",
-        borderWidth: 1,
+        label: "Compliant",
+        backgroundColor: "rgba(255, 99, 132)",
         data: [10, 15, 13, 20, 18, 25],
         stack: "Stack 0",
       },
       {
-        label: "Dataset 2",
-        backgroundColor: "rgba(201, 203, 207, 0.2)",
-        borderColor: "rgb(201, 203, 207)",
-        borderWidth: 1,
+        label: "Non-Compliant",
+        backgroundColor: "rgba(201, 203, 207)",
         data: [5, 8, 10, 12, 15, 20],
         stack: "Stack 0",
       },
       {
-        label: "Dataset 3",
-        backgroundColor: "rgba(255, 205, 86, 0.2)",
-        borderColor: "rgb(255, 205, 86)",
-        borderWidth: 1,
+        label: "Unknown",
+        backgroundColor: "rgba(255, 205, 86)",
         data: [5, 8, 10, 12, 15, 20],
         stack: "Stack 0",
       }
@@ -126,7 +120,7 @@ var ctx1 = $("#complianceDonutChart");
 
   const config = {
     type: "bar",
-    data: barChartSeverityData,
+    data: dataChartData,
     options: {
       plugins: {
         title: {
@@ -136,7 +130,7 @@ var ctx1 = $("#complianceDonutChart");
         legend: {
           display: true,
           position: "bottom",
-        }
+        },
       },
       responsive: false,
       interaction: {
@@ -150,10 +144,34 @@ var ctx1 = $("#complianceDonutChart");
           stacked: true,
         },
       },
+      onClick: handleBarChartClick,
     },
   };
 
   var barChart = new Chart(ctx, config);
+
+  function handleBarChartClick(event, elements) {
+
+    if (elements.length > 0) {
+      var datasetIndex = elements[0].datasetIndex;
+      var dataIndex = elements[0].index;
+
+      console.log("datasetIndex = " + datasetIndex);
+      console.log("dataIndex = " + dataIndex);
+
+      var value = dataChartData.datasets[datasetIndex].data[dataIndex];
+      console.log('Clicked on value:', value);
+      console.log('Clicked on:', dataChartData.labels[dataIndex], ', ', dataChartData.datasets[datasetIndex].label);
+
+      $('#machinesModalLabel').html(dataChartData.labels[dataIndex] +' - '+dataChartData.datasets[datasetIndex].label);
+
+      var machinesModal = new bootstrap.Modal(document.getElementById('machinesModal'), {
+        keyboard: false
+      })
+      machinesModal.show();
+
+    }
+  }
 
 
 
@@ -412,12 +430,41 @@ var ctx1 = $("#complianceDonutChart");
             </div>
           </div>
         </div>
-
-
       </div>
-
-
     </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="machinesModal" tabindex="-1" aria-labelledby="machinesModalLabel" aria-hidden="true">
+      <div class="modal-dialog" style="max-width:800px;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="machinesModalLabel"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <table id="machinesModalTable" class="table table-borderless" style="width: 100%;">
+              <thead>
+                <tr>
+                  <th><input type="checkbox" class="selectAll form-check-input" id="machinesModalTableSelectAll">
+                  </th>
+                  <th scope="col">Machine Name</th>
+                  <th scope="col">Profile Title</th>
+                  <th scope="col">Result</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+          	<span id="applyPatchesRes"></span>
+            <button type="button" class="btn btn-outline-primary btn-sm" data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </main>
 </body>
 </html>
