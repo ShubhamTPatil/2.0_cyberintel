@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.marimba.apps.securitymgr.utils.json.JSONArray;
+import com.marimba.apps.securitymgr.utils.json.JSONObject;
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
 import com.marimba.apps.subscriptionmanager.beans.*;
 import com.marimba.apps.subscriptionmanager.compliance.intf.ComplianceConstants;
@@ -209,6 +210,28 @@ public class DashboardHandler implements ComplianceConstants {
         JSONArray jsonArray = new JSONArray();
         try {
             jsonArray = new DashboardInfoDetails.GetConfigDashboardBarChartDataInfo(main).getJsonArray();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return jsonArray;
+    }
+
+    public JSONArray getConfigDashboardBarChartDataByContentId(){
+        JSONArray jsonArray = new JSONArray();
+        try {
+            jsonArray = new DashboardInfoDetails.GetConfigDashboardBarChartDataInfoByContentId(main).getJsonArray();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return jsonArray;
+    }
+
+    public JSONArray getBarChartMachineDataByContentId(String contentId, String complianceType){
+        JSONArray jsonArray = new JSONArray();
+        try {
+            jsonArray = new DashboardInfoDetails.GetMachineDataInfoByContentId(main,contentId,complianceType).getJsonArray();
         } catch (Exception ex) {
             ex.printStackTrace();
         }

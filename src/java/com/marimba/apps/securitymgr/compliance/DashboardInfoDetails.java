@@ -2085,6 +2085,167 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
     }
 
+    public static class GetConfigDashboardBarChartDataInfoByContentId extends DatabaseAccess {
+        JSONArray jsonArray = new JSONArray();
+
+        public GetConfigDashboardBarChartDataInfoByContentId(SubscriptionMain main) {
+
+            GetConfigDashboardBarChartDataByContentId result = new GetConfigDashboardBarChartDataByContentId(main);
+
+            try {
+                runQuery(result);
+                //  count = result.getScanCount();
+                jsonArray = result.getConfigDashboardBarChartDataInfoByContentId();
+            } catch (Exception dae) {
+                dae.printStackTrace();
+            }
+        }
+
+        public JSONArray getJsonArray() {
+            return jsonArray;
+        }
+    }
+
+    static class GetConfigDashboardBarChartDataByContentId extends QueryExecutor {
+        JSONArray jsonArray = new JSONArray();
+
+        GetConfigDashboardBarChartDataByContentId(SubscriptionMain main) {
+            super(main);
+
+        }
+
+        protected void execute(IStatementPool pool) throws SQLException {
+
+            String sqlStr = "select a.content_id, a.content_title, a.content_name,a.overall_compliant_level,count(a.overall_compliant_level) compliant_count " +
+                    "from inv_security_xccdf_compliance a, "+
+                    "xccdf_rules_comp_result_view b "+
+                    "where a.content_id=b.content_id "+
+                    "group by a.content_id, a.content_title, a.content_name,a.overall_compliant_level";
+
+            PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
+            ResultSet rs = st.executeQuery();
+            try {
+                while(rs.next()) {
+                    int contentId = rs.getInt("content_id");
+                    String contentName = rs.getString("content_name");
+                    String contentTitle = rs.getString("content_title");
+                    String overallCompliantLevel = rs.getString("overall_compliant_level");
+                    int compliantCount = rs.getInt("compliant_count");
+
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("contentId",contentId);
+                    jsonObject.put("contentName",contentName);
+                    jsonObject.put("contentTitle",contentTitle);
+                    jsonObject.put("overallCompliantLevel",overallCompliantLevel);
+                    jsonObject.put("compliantCount",compliantCount);
+
+                    jsonArray.put(jsonObject);
+                }
+            } finally {
+                rs.close();
+            }
+        }
+
+        public JSONArray getConfigDashboardBarChartDataInfoByContentId() {
+            return jsonArray;
+        }
+
+
+
+    }
+
+
+    public static class GetMachineDataInfoByContentId extends DatabaseAccess {
+        JSONArray jsonArray = new JSONArray();
+
+        public GetMachineDataInfoByContentId(SubscriptionMain main, String contentId, String complianceType) {
+
+            GetMachineDataByContentId result = new GetMachineDataByContentId(main,contentId,complianceType);
+
+            try {
+                runQuery(result);
+                //  count = result.getScanCount();
+                jsonArray = result.getMachineDataInfoByContentId();
+            } catch (Exception dae) {
+                dae.printStackTrace();
+            }
+        }
+
+        public JSONArray getJsonArray() {
+            return jsonArray;
+        }
+    }
+
+    static class GetMachineDataByContentId extends QueryExecutor {
+        JSONArray jsonArray = new JSONArray();
+
+        String contentId="";
+        String complianceType="";
+
+        GetMachineDataByContentId(SubscriptionMain main, String contentId, String complianceType) {
+            super(main);
+            this.contentId = contentId;
+            this.complianceType=complianceType;
+
+        }
+
+        protected void execute(IStatementPool pool) throws SQLException {
+
+            String sqlStr = "select machine_name,content_id, content_name, content_title,\n" +
+                    "       profile_id,profile_name,profile_title,rules_compliance \n" +
+                    "from inv_security_xccdf_compliance\n" +
+                    "where content_id= "+contentId+" and overall_compliant_level= '"+complianceType+"'\n";
+
+            PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
+            ResultSet rs = st.executeQuery();
+            try {
+                while(rs.next()) {
+
+                    String machineName = rs.getString("machine_name");
+
+                    int contentId = rs.getInt("content_id");
+                    String contentName = rs.getString("content_name");
+                    String contentTitle = rs.getString("content_title");
+
+                    int profileId = rs.getInt("profile_id");
+                    String profileName = rs.getString("profile_name");
+                    String profileTitle = rs.getString("profile_title");
+
+                    byte rulesCompliance[]  = rs.getBytes("rules_compliance");
+
+
+                    JSONObject jsonObject = new JSONObject();
+
+                    jsonObject.put("machineName",machineName);
+
+                    jsonObject.put("contentId",contentId);
+                    jsonObject.put("contentName",contentName);
+                    jsonObject.put("contentTitle",contentTitle);
+
+                    jsonObject.put("profileId",profileId);
+                    jsonObject.put("profileName",profileName);
+                    jsonObject.put("profileTitle",profileTitle);
+
+                    jsonObject.put("rulesCompliance",rulesCompliance);
+
+                    //jsonObject.put(jsonObject);
+
+                    jsonArray.put(jsonObject);
+
+                }
+            } finally {
+                rs.close();
+            }
+        }
+
+        public JSONArray getMachineDataInfoByContentId() {
+            return jsonArray;
+        }
+
+
+
+    }
+
 
 
     private static void debug(String msg) {
