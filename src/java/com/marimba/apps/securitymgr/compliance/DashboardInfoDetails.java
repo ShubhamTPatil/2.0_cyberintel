@@ -2116,10 +2116,9 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
         protected void execute(IStatementPool pool) throws SQLException {
 
-            String sqlStr = "select a.content_id, a.content_title, a.content_name,a.overall_compliant_level,count(a.overall_compliant_level) compliant_count " +
-                    "from inv_security_xccdf_compliance a, "+
-                    "xccdf_rules_comp_result_view b "+
-                    "where a.content_id=b.content_id "+
+            String sqlStr = "select a.content_id, a.content_title, a.content_name,a.overall_compliant_level,\n" +
+                    "count(a.machine_id) compliant_count           \n" +
+                    "from  inv_security_xccdf_compliance a  \n" +
                     "group by a.content_id, a.content_title, a.content_name,a.overall_compliant_level";
 
             PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
@@ -2195,6 +2194,8 @@ public class DashboardInfoDetails implements ComplianceConstants {
                     "       profile_id,profile_name,profile_title,rules_compliance \n" +
                     "from inv_security_xccdf_compliance\n" +
                     "where content_id= "+contentId+" and overall_compliant_level= '"+complianceType+"'\n";
+
+            System.out.print("GetMachineDataByContentId query::"+sqlStr);
 
             PreparedStatement st = pool.getConnection().prepareStatement(sqlStr);
             ResultSet rs = st.executeQuery();

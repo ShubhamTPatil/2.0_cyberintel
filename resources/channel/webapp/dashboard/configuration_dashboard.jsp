@@ -216,11 +216,15 @@ var ctx1 = $("#complianceDonutChart");
 
       var value = barChartSeverityData.datasets[datasetIndex].data[dataIndex];
       //console.log('Clicked on value:', value);
-      //console.log('Clicked on:', barChartSeverityData.labels[dataIndex], ', ', barChartSeverityData.datasets[datasetIndex].label);
+      console.log('Clicked on updated:', barChartSeverityData.labels[dataIndex], ', ', barChartSeverityData.datasets[datasetIndex].label);
 
-      $('#machinesModalLabel').html(barChartSeverityData.labels[dataIndex] + ' - ' + barChartSeverityData.datasets[datasetIndex].label);
 
       //[{"profileName":"xccdf_org.ssgproject.content_profile_C2S","profileId":4,"contentId":2,"rulesCompliance":"63/168","contentTitle":"Guide to the Secure Configuration of CentOS 7","profileTitle":"C2S for Red Hat Enterprise Linux 7","machineName":"vmcentos-qaendpoint","contentName":"xccdf_org.ssgproject.content_benchmark_CENTOS-7"}]
+
+        var contId = barChartSeverityData.labels[dataIndex];
+        var compType = barChartSeverityData.datasets[datasetIndex].label;
+
+        $('#machinesModalLabel').html(contId + ' - ' + compType);
 
       $.ajax({
         url: './configDashboard.do',
@@ -228,8 +232,8 @@ var ctx1 = $("#complianceDonutChart");
         dataType: 'text json',
         data: {
           action: "getMachineByContent",
-          contentId: barChartSeverityData.labels[dataIndex],
-          complianceType: barChartSeverityData.datasets[datasetIndex].label
+          contentId: contId,
+          complianceType: compType
         },
         beforeSend: function () { },
         complete: function (xhr, status) { },

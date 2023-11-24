@@ -151,25 +151,25 @@ public class ConfigDashboardViewAction extends AbstractAction implements IWebApp
           //Preparing 4 object using severity
 
           JSONObject criticalJsonObject = new JSONObject();
-          criticalJsonObject.put("label", "Non Compliant");
+          criticalJsonObject.put("label", "NON-COMPLIANT");
           criticalJsonObject.put("backgroundColor", "#FF5F60");
           criticalJsonObject.put("data", nonCompliantList);
           criticalJsonObject.put("stack", "Stack 0");
 
           JSONObject highJsonObject = new JSONObject();
-          highJsonObject.put("label", "Unknown");
+          highJsonObject.put("label", "UNKNOWN");
           highJsonObject.put("backgroundColor", "#D4733A");
           highJsonObject.put("data", unknownList);
           highJsonObject.put("stack", "Stack 0");
 
           JSONObject mediumJsonObject = new JSONObject();
-          mediumJsonObject.put("label", "Not Applicable");
+          mediumJsonObject.put("label", "NOT APPLICABLE");
           mediumJsonObject.put("backgroundColor", "#F3CC63");
           mediumJsonObject.put("data", notApplicableList);
           mediumJsonObject.put("stack", "Stack 0");
 
           JSONObject lowJsonObject = new JSONObject();
-          lowJsonObject.put("label", "Compliant");
+          lowJsonObject.put("label", "COMPLIANT");
           lowJsonObject.put("backgroundColor", "#71DCEB");
           lowJsonObject.put("data", compliantList);
           lowJsonObject.put("stack", "Stack 0");
@@ -227,8 +227,10 @@ public class ConfigDashboardViewAction extends AbstractAction implements IWebApp
           forward = mapping.findForward("view");
         } else if (action.equalsIgnoreCase("getMachineByContent")) {
 
-          String contentId = "2";
-          String complianceType = "NON-COMPLIANT";
+          String contentId = request.getParameter("contentId");
+          String complianceType = request.getParameter("complianceType");
+
+          System.out.println("Content Id : "+contentId+" and Compliance Type ::"+complianceType);
 
           JSONArray jsonArrayData = dashboardHandler.getBarChartMachineDataByContentId(contentId,
               complianceType);
