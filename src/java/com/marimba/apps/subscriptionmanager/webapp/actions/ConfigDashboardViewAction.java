@@ -1,7 +1,6 @@
 /**
- * Copyright 2022-2023, Harman International. All Rights Reserved.
- * Confidential and Proprietary Information of Harman International.
- * Author: Abhinav Satpute
+ * Copyright 2022-2023, Harman International. All Rights Reserved. Confidential and Proprietary
+ * Information of Harman International. Author: Abhinav Satpute
  */
 
 package com.marimba.apps.subscriptionmanager.webapp.actions;
@@ -28,9 +27,11 @@ import org.apache.struts.action.ActionForm;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ConfigDashboardViewAction extends AbstractAction implements IWebAppConstants, ISubscriptionConstants {
+public class ConfigDashboardViewAction extends AbstractAction implements IWebAppConstants,
+    ISubscriptionConstants {
 
-  protected Task createTask(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+  protected Task createTask(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+      HttpServletResponse response) {
 
     return new ConfigAssessDashboardTask(mapping, form, request, response);
 
@@ -52,7 +53,7 @@ public class ConfigDashboardViewAction extends AbstractAction implements IWebApp
 
       String action = request.getParameter("action");
 
-      System.out.println("ConfigDashboardViewAction action = "+action);
+      System.out.println("ConfigDashboardViewAction action = " + action);
 
       try {
         DashboardHandler dashboardHandler = new DashboardHandler(main);
@@ -66,19 +67,16 @@ public class ConfigDashboardViewAction extends AbstractAction implements IWebApp
           // Config Scanned Machines Count
           int configScanMachinesCount = dashboardHandler.getVScanMachinesCount("configscan");
 
-
           dashboardForm.setMachinesCount(String.valueOf(totalMachineCount));
           dashboardForm.setMachineWindowsCount(String.valueOf(totalWindowsMachineCount));
           dashboardForm.setMachineLinuxCount(String.valueOf(totalLinuxMachineCount));
           dashboardForm.setMachineMacCount(String.valueOf(totalMacMachineCount));
           dashboardForm.setConfigScanCount(String.valueOf(configScanMachinesCount));
 
-
           //to get the profile dropdown
 
-
           //to get Profile Compliant and Non Compliant
-          Map<String,String> profileCompliantMap = new LinkedHashMap<String,String>();
+          Map<String, String> profileCompliantMap = new LinkedHashMap<String, String>();
           String strProfileId = "All";
           profileCompliantMap = dashboardHandler.getConfigComplianceByProfile(strProfileId);
 
@@ -86,11 +84,10 @@ public class ConfigDashboardViewAction extends AbstractAction implements IWebApp
           dashboardForm.setConfigProfileNonCompliant(profileCompliantMap.get("nonCompliant"));
 
           //To Set Profile Dropdown
-          Map<String,String> configProfileDropdown = dashboardHandler.getConfigProfileDropdown();
+          Map<String, String> configProfileDropdown = dashboardHandler.getConfigProfileDropdown();
           dashboardForm.setConfigProfileDropdown(configProfileDropdown);
 
-
-         JSONArray jsonArray =  dashboardHandler.getConfigDashboardBarChartDataByContentId();
+          JSONArray jsonArray = dashboardHandler.getConfigDashboardBarChartDataByContentId();
 
           //To Set Data for Bar Chart Data
           JSONObject barChartData = new JSONObject();
@@ -98,55 +95,53 @@ public class ConfigDashboardViewAction extends AbstractAction implements IWebApp
           JSONArray jsonProfileResultArray = new JSONArray();
 
           Set<Integer> setContentId = new HashSet<Integer>();
-         for(int i=0; i < jsonArray.length(); i++){
-           JSONObject jsonObject =  jsonArray.getJSONObject(i);
-           int contentId = jsonObject.getInt("contentId");
-             setContentId.add(contentId);
-         }
+          for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+            int contentId = jsonObject.getInt("contentId");
+            setContentId.add(contentId);
+          }
 
-         List<Integer> compliantList = new ArrayList<Integer>();
-         List<Integer> nonCompliantList = new ArrayList<Integer>();
-         List<Integer> unknownList = new ArrayList<Integer>();
-         List<Integer> notApplicableList = new ArrayList<Integer>();
+          List<Integer> compliantList = new ArrayList<Integer>();
+          List<Integer> nonCompliantList = new ArrayList<Integer>();
+          List<Integer> unknownList = new ArrayList<Integer>();
+          List<Integer> notApplicableList = new ArrayList<Integer>();
 
           JSONArray jsonProfileNameArray = new JSONArray(setContentId);
-          barChartData.put("labels",jsonProfileNameArray);
+          barChartData.put("labels", jsonProfileNameArray);
 
-          for(int j=0; j < jsonProfileNameArray.length(); j++){
+          for (int j = 0; j < jsonProfileNameArray.length(); j++) {
 
-              compliantList.add(0);
-              nonCompliantList.add(0);
-              unknownList.add(0);
-              notApplicableList.add(0);
+            compliantList.add(0);
+            nonCompliantList.add(0);
+            unknownList.add(0);
+            notApplicableList.add(0);
 
-
-            for(int i=0; i < jsonArray.length(); i++) {
-              JSONObject jsonObject =  jsonArray.getJSONObject(i);
+            for (int i = 0; i < jsonArray.length(); i++) {
+              JSONObject jsonObject = jsonArray.getJSONObject(i);
               int dbContentId = jsonObject.getInt("contentId");
               String contentName = jsonObject.getString("contentName");
               String contentTitle = jsonObject.getString("contentTitle");
               int compliantCount = jsonObject.getInt("compliantCount");
               String overallCompliantLevel = jsonObject.getString("overallCompliantLevel");
 
+              if (jsonProfileNameArray.getInt(j) == dbContentId) {
 
-              if( jsonProfileNameArray.getInt(j)== dbContentId){
-
-                switch (overallCompliantLevel){
+                switch (overallCompliantLevel) {
 
                   case "COMPLIANT":
-                      compliantList.add(j,compliantCount);
+                    compliantList.add(j, compliantCount);
                     break;
 
                   case "NON-COMPLIANT":
-                      nonCompliantList.add(j,compliantCount);
+                    nonCompliantList.add(j, compliantCount);
                     break;
 
                   case "NOT APPLICABLE":
-                      notApplicableList.add(j,compliantCount);
+                    notApplicableList.add(j, compliantCount);
                     break;
 
                   case "UNKNOWN":
-                      unknownList.add(j,compliantCount);
+                    unknownList.add(j, compliantCount);
                     break;
                 }
               }
@@ -156,29 +151,28 @@ public class ConfigDashboardViewAction extends AbstractAction implements IWebApp
           //Preparing 4 object using severity
 
           JSONObject criticalJsonObject = new JSONObject();
-          criticalJsonObject.put("label","Non Compliant");
-          criticalJsonObject.put("backgroundColor","#FF5F60");
-          criticalJsonObject.put("data",nonCompliantList);
-          criticalJsonObject.put("stack","Stack 0");
+          criticalJsonObject.put("label", "Non Compliant");
+          criticalJsonObject.put("backgroundColor", "#FF5F60");
+          criticalJsonObject.put("data", nonCompliantList);
+          criticalJsonObject.put("stack", "Stack 0");
 
           JSONObject highJsonObject = new JSONObject();
-          highJsonObject.put("label","Unknown");
-          highJsonObject.put("backgroundColor","#D4733A");
-          highJsonObject.put("data",unknownList);
-          highJsonObject.put("stack","Stack 0");
+          highJsonObject.put("label", "Unknown");
+          highJsonObject.put("backgroundColor", "#D4733A");
+          highJsonObject.put("data", unknownList);
+          highJsonObject.put("stack", "Stack 0");
 
           JSONObject mediumJsonObject = new JSONObject();
-          mediumJsonObject.put("label","Not Applicable");
-          mediumJsonObject.put("backgroundColor","#F3CC63");
-          mediumJsonObject.put("data",notApplicableList);
-          mediumJsonObject.put("stack","Stack 0");
+          mediumJsonObject.put("label", "Not Applicable");
+          mediumJsonObject.put("backgroundColor", "#F3CC63");
+          mediumJsonObject.put("data", notApplicableList);
+          mediumJsonObject.put("stack", "Stack 0");
 
           JSONObject lowJsonObject = new JSONObject();
-          lowJsonObject.put("label","Compliant");
-          lowJsonObject.put("backgroundColor","#71DCEB");
-          lowJsonObject.put("data",compliantList);
-          lowJsonObject.put("stack","Stack 0");
-
+          lowJsonObject.put("label", "Compliant");
+          lowJsonObject.put("backgroundColor", "#71DCEB");
+          lowJsonObject.put("data", compliantList);
+          lowJsonObject.put("stack", "Stack 0");
 
           JSONArray jsonDataSetArray = new JSONArray();
           jsonDataSetArray.put(criticalJsonObject);
@@ -186,54 +180,9 @@ public class ConfigDashboardViewAction extends AbstractAction implements IWebApp
           jsonDataSetArray.put(mediumJsonObject);
           jsonDataSetArray.put(lowJsonObject);
 
-          barChartData.put("datasets",jsonDataSetArray);
+          barChartData.put("datasets", jsonDataSetArray);
 
-        System.out.println("Bar Chart Data Content Id ::"+barChartData);
-
-            JSONArray jsonArrayData =  dashboardHandler.getBarChartMachineDataByContentId("2","NON-COMPLIANT");
-
-            System.out.println("Bar Chart Data Machine Data by Content Id ::"+jsonArrayData);
-
-            JSONArray uiJSONArray = new JSONArray();
-
-            for(int i=0; i < jsonArrayData.length(); i++){
-               JSONObject jsonObject =  jsonArrayData.getJSONObject(i);
-
-               if(jsonObject.get("rulesCompliance") != null) {
-                   byte data[] = (byte[]) jsonObject.get("rulesCompliance");
-                   String result = getCVSS(data);
-                   jsonObject.put("rulesCompliance", result);
-               }
-                uiJSONArray.put(jsonObject);
-            }
-
-            System.out.println("UI JSON Array Bar Chart Data Machine Data by Content Id ::"+uiJSONArray);
-
-
-
-
-
-        if(action !=null && action.equalsIgnoreCase("getMachineByContent")){
-
-
-            String contentId="";
-            String complianceType="";
-
-            //JSONArray jsonArrayTest =  dashboardHandler.getBarChartMachineDataByContentId(contentId,complianceType);
-
-
-
-
-
-
-        }
-
-
-
-
-
-
-
+          System.out.println("Bar Chart Data Content Id ::" + barChartData);
 
           dashboardForm.setBarChartData(barChartData.toString());
 
@@ -247,119 +196,135 @@ public class ConfigDashboardViewAction extends AbstractAction implements IWebApp
           jsonLabelArray.put("Oct 2023");
           jsonLabelArray.put("Nov 2023");
 
-          lineChartData.put("labels",jsonLabelArray);
-
+          lineChartData.put("labels", jsonLabelArray);
 
           JSONArray jDataSetArray = new JSONArray();
 
           JSONObject jObject1 = new JSONObject();
-          jObject1.put("label","Profile1");
-          jObject1.put("data","[10, 15, 13, 20, 18]");
-          jObject1.put("borderColor","red");
+          jObject1.put("label", "Profile1");
+          jObject1.put("data", "[10, 15, 13, 20, 18]");
+          jObject1.put("borderColor", "red");
 
           JSONObject jObject2 = new JSONObject();
-            jObject2.put("label","Profile2");
-            jObject2.put("data","[5, 7, 6, 10, 9]");
-            jObject2.put("borderColor","blue");
+          jObject2.put("label", "Profile2");
+          jObject2.put("data", "[5, 7, 6, 10, 9]");
+          jObject2.put("borderColor", "blue");
 
           JSONObject jObject3 = new JSONObject();
-            jObject3.put("label","Profile3");
-            jObject3.put("data","[4, 30, 19, 25, 24]");
-            jObject3.put("borderColor","yellow");
+          jObject3.put("label", "Profile3");
+          jObject3.put("data", "[4, 30, 19, 25, 24]");
+          jObject3.put("borderColor", "yellow");
 
           jDataSetArray.put(jObject1);
           jDataSetArray.put(jObject2);
           jDataSetArray.put(jObject3);
-          lineChartData.put("datasets",jDataSetArray);
+          lineChartData.put("datasets", jDataSetArray);
 
-          System.out.println("Line Chart Data ::"+lineChartData);
+          System.out.println("Line Chart Data ::" + lineChartData);
 
           dashboardForm.setLineChartData(lineChartData.toString());
 
+          forward = mapping.findForward("view");
+        } else if (action.equalsIgnoreCase("getMachineByContent")) {
+
+          String contentId = "2";
+          String complianceType = "NON-COMPLIANT";
+
+          JSONArray jsonArrayData = dashboardHandler.getBarChartMachineDataByContentId(contentId,
+              complianceType);
+
+          //System.out.println("Bar Chart Data Machine Data by Content Id ::" + jsonArrayData);
+
+          JSONArray uiJSONArray = new JSONArray();
+
+          for (int i = 0; i < jsonArrayData.length(); i++) {
+            JSONObject jsonObject = jsonArrayData.getJSONObject(i);
+
+            if (jsonObject.get("rulesCompliance") != null) {
+              byte[] data = (byte[]) jsonObject.get("rulesCompliance");
+              String result = getCVSS(data);
+              jsonObject.put("rulesCompliance", result);
+            }
+            uiJSONArray.put(jsonObject);
+          }
+
+          System.out.println(
+              "UI JSON Array Bar Chart Data Machine Data by Content Id ::" + uiJSONArray);
+          sendJSONResponse(response, uiJSONArray.toString());
           forward = mapping.findForward("view");
         }
 
       } catch (Exception ex) {
         ex.printStackTrace();
       }
-
-      if(action == null) {
-        forward = mapping.findForward("view");
-      }
-      else if(action.equals("testReact")) {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("test","success");
-        try {
-          sendJSONResponse(response, String.valueOf(jsonObject));
-        } catch (Exception e) {
-          throw new RuntimeException(e);
-        }
-      }
     }
 
-    protected void sendJSONResponse(HttpServletResponse response, String jsonData) throws Exception {
+    protected void sendJSONResponse(HttpServletResponse response, String jsonData)
+        throws Exception {
       PrintWriter out = response.getWriter();
       out.println(jsonData);
       out.flush();
     }
 
-      private String getCVSS(byte[] jsonBytes) {
+    private String getCVSS(byte[] jsonBytes) {
 
-          StringBuilder sb = new StringBuilder();
+      StringBuilder sb = new StringBuilder();
 
+      int num;
 
+      String cvss = "0/0";
 
-          int num;
+      if (jsonBytes == null) {
+        return cvss;
+      }
 
-          String cvss = "0/0";
+      ByteArrayInputStream bInput = new ByteArrayInputStream(jsonBytes);
 
-          if (jsonBytes == null) return  cvss;
+      while ((num = bInput.read()) != -1) {
 
-          ByteArrayInputStream bInput = new ByteArrayInputStream(jsonBytes);
-
-          while( (num = bInput.read()) != -1 ) {
-
-              sb.append((char) num);
-
-          }
-
-          int total = 0;
-
-          int passCount =0;
-
-          try {
-
-              JSONObject jsonObject = new JSONObject(sb.toString());
-
-              if (jsonBytes == null || jsonObject.length() == 0) return  cvss;
-
-              JSONObject jsonObject1 = jsonObject.getJSONObject("rules_compliance");
-
-              Iterator iterator = jsonObject1.keys();
-
-              while (iterator.hasNext()) {
-
-                  total ++;
-
-                  String key = (String)iterator.next();
-
-                  if ("pass".equalsIgnoreCase(jsonObject1.getString(key))) {
-
-                      passCount++;
-
-                  }
-
-              }
-
-          } catch (Exception e) {
-
-              e.printStackTrace();
-
-          }
-
-          return String.valueOf(passCount)+ "/" +String.valueOf(total);
+        sb.append((char) num);
 
       }
+
+      int total = 0;
+
+      int passCount = 0;
+
+      try {
+
+        JSONObject jsonObject = new JSONObject(sb.toString());
+
+        if (jsonObject.length() == 0) {
+          return cvss;
+        }
+
+        JSONObject jsonObject1 = jsonObject.getJSONObject("rules_compliance");
+
+        Iterator iterator = jsonObject1.keys();
+
+        while (iterator.hasNext()) {
+
+          total++;
+
+          String key = (String) iterator.next();
+
+          if ("pass".equalsIgnoreCase(jsonObject1.getString(key))) {
+
+            passCount++;
+
+          }
+
+        }
+
+      } catch (Exception e) {
+
+        e.printStackTrace();
+
+      }
+
+      return String.valueOf(passCount) + "/" + String.valueOf(total);
+
+    }
 
   }
 }

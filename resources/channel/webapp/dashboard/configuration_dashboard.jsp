@@ -83,8 +83,6 @@ var ctx1 = $("#complianceDonutChart");
     });
 
 
-
-
   var ctx = document.getElementById('myChart').getContext('2d');
 
   var barChartSeverityData = '<bean:write name="configDashboardForm" property="barChartData"/>';
@@ -116,11 +114,11 @@ var ctx1 = $("#complianceDonutChart");
     ],
   };
 
-  console.log(barChartSeverityData);
+  //console.log(barChartSeverityData);
 
   const config = {
     type: "bar",
-    data: dataChartData,
+    data: barChartSeverityData,
     options: {
       plugins: {
         title: {
@@ -139,10 +137,19 @@ var ctx1 = $("#complianceDonutChart");
       scales: {
         x: {
           stacked: true,
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: "Security Technical Implementation Guides (STIGs)"
+          }
         },
         y: {
           stacked: true,
-        },
+          title: {
+            display: true,
+            text: "Number of Machines"
+          }
+        }
       },
       onClick: handleBarChartClick,
     },
@@ -150,29 +157,115 @@ var ctx1 = $("#complianceDonutChart");
 
   var barChart = new Chart(ctx, config);
 
+  
+
+  
+  function showMachinesModalTable(machinesModalData) {
+    
+    $('#machinesModalTable').DataTable().clear();
+
+    let machinesModalTable = $('#machinesModalTable').DataTable({
+         "destroy": true, // In order to reinitialize the datatable
+         "pagination": true, // For Pagination
+         "bPaginate": true,
+         "sorting": false, // For sorting
+         "ordering": false,
+         "searching": true,
+         language: {
+             search: "_INPUT_",
+             searchPlaceholder: "Search..."
+         },
+         "aaData": machinesModalData,
+         "columns": [
+          {
+            "data": "machineName",
+            "title": "Machine Name"
+          },
+         {
+            "data": "profileName",
+            "title": "Profile Title"
+         }, {
+            "title": "Result",
+            "data": "rulesCompliance"
+         }, {}],
+         'columnDefs': [{
+             'targets': 3,
+             'searchable': false,
+             'orderable': false,
+             'className': 'dt-body-center',
+             'render': function (data, type, full, meta) {
+                let machineName = '\''+full["machineName"]+'\'';
+                return '<input type="button" onClick="showConfigReport('+machineName+','+full["contentId"]+','+full["profileId"]+')" class="view-details btn btn-sm btn-primary" value="View Details">';
+            }
+          }]
+       });
+      // $('#machinesModalTable').on('click','.view-details',() => {
+      //   showConfigReport();
+      // })
+    }
+  
+
   function handleBarChartClick(event, elements) {
 
     if (elements.length > 0) {
       var datasetIndex = elements[0].datasetIndex;
       var dataIndex = elements[0].index;
 
-      console.log("datasetIndex = " + datasetIndex);
-      console.log("dataIndex = " + dataIndex);
+      //console.log("datasetIndex = " + datasetIndex);
+      //console.log("dataIndex = " + dataIndex);
 
-      var value = dataChartData.datasets[datasetIndex].data[dataIndex];
-      console.log('Clicked on value:', value);
-      console.log('Clicked on:', dataChartData.labels[dataIndex], ', ', dataChartData.datasets[datasetIndex].label);
+      var value = barChartSeverityData.datasets[datasetIndex].data[dataIndex];
+      //console.log('Clicked on value:', value);
+      //console.log('Clicked on:', barChartSeverityData.labels[dataIndex], ', ', barChartSeverityData.datasets[datasetIndex].label);
 
-      $('#machinesModalLabel').html(dataChartData.labels[dataIndex] +' - '+dataChartData.datasets[datasetIndex].label);
+      $('#machinesModalLabel').html(barChartSeverityData.labels[dataIndex] + ' - ' + barChartSeverityData.datasets[datasetIndex].label);
 
-      var machinesModal = new bootstrap.Modal(document.getElementById('machinesModal'), {
-        keyboard: false
-      })
-      machinesModal.show();
+      //[{"profileName":"xccdf_org.ssgproject.content_profile_C2S","profileId":4,"contentId":2,"rulesCompliance":"63/168","contentTitle":"Guide to the Secure Configuration of CentOS 7","profileTitle":"C2S for Red Hat Enterprise Linux 7","machineName":"vmcentos-qaendpoint","contentName":"xccdf_org.ssgproject.content_benchmark_CENTOS-7"}]
+
+      $.ajax({
+        url: './configDashboard.do',
+        type: 'POST',
+        dataType: 'text json',
+        data: {
+          action: "getMachineByContent",
+          contentId: barChartSeverityData.labels[dataIndex],
+          complianceType: barChartSeverityData.datasets[datasetIndex].label
+        },
+        beforeSend: function () { },
+        complete: function (xhr, status) { },
+        success: function (response) {
+          //console.log(response);
+          //console.log(JSON.stringify(response));
+
+          let machinesModalData = [{
+            machineName: "vmcentos-qaendpoint",
+            profileTitle: "C2S for Red Hat Enterprise Linux 7",
+            result: "63/168",
+            profileId: "4",
+            contentId: "2"
+          }];
+
+          showMachinesModalTable(response);
+
+          var machinesModal = new bootstrap.Modal(document.getElementById('machinesModal'), {
+            keyboard: false
+          })
+          machinesModal.show();
+        }
+      });
 
     }
-  }
 
+    //http://localhost:8888/spm/rule_results.do?action=rule_details&machine=vmcentos-qaendpoint&contentId=2&profileId=4&queryDisplayPath=%2FConfiguration%20Assessment%2FMachine%20Level%20Compliance
+
+    /*
+    action: rule_details
+    machine: vmcentos-qaendpoint
+    contentId: 2
+    profileId: 4
+    queryDisplayPath: /Configuration Assessment/Machine Level Compliance
+    */
+  }
 
 
   //Line Chart
@@ -223,6 +316,76 @@ var ctx1 = $("#complianceDonutChart");
 
 
   });
+
+  function setConfigReportData(data) {
+
+      $('#configReportModalTable').DataTable().clear();
+
+      let configReportModalTable = $('#configReportModalTable').DataTable({
+        "destroy": true, // In order to reinitialize the datatable
+        "pagination": true, // For Pagination
+        "bPaginate": true,
+        "sorting": false, // For sorting
+        "ordering": false,
+        "searching": true,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search..."
+        },
+        "aaData": data,
+        "columns": [
+          {
+            "title": "Title",
+            "data": "rule_title",
+          },
+          {
+            "title": "Severity",
+            "data": "rule_severity"
+          }, {
+            "title": "Status",
+            "data": "status"
+          }, {
+            "title": "Solution",
+            "data": "rule_fix"
+          }],
+        'columnDefs': [{
+          'targets': 0,
+          'className': 'dt-body-left',
+        }, {
+          'targets': 3,
+          'className': 'dt-body-left',
+        }]
+      });
+
+    }
+
+  function showConfigReport(machineName, contentId, profileId) {
+    $.ajax({
+        url: './rule_results.do',
+        type: 'POST',
+        dataType: 'text json',
+        data: {
+          action: "rule_details",
+          machine: machineName,
+          contentId: contentId,
+          profileId: profileId,
+          queryDisplayPath: "/Configuration Assessment/Machine Level Compliance"
+        },
+        beforeSend: function() {},
+        complete: function (xhr, status) {},
+        success: function (response) {
+          //console.log(response);
+          //console.log(JSON.stringify(response));
+
+          $('#configReportModalLabel').html("Configuration assessment results for "+machineName);
+          setConfigReportData(response['result']);
+
+          var configReportModal = new bootstrap.Modal(document.getElementById('configReportModal'), {
+            keyboard: false
+          });
+          configReportModal.show();
+    }});
+  }
 
 
 </script>
@@ -445,8 +608,6 @@ var ctx1 = $("#complianceDonutChart");
             <table id="machinesModalTable" class="table table-borderless" style="width: 100%;">
               <thead>
                 <tr>
-                  <th><input type="checkbox" class="selectAll form-check-input" id="machinesModalTableSelectAll">
-                  </th>
                   <th scope="col">Machine Name</th>
                   <th scope="col">Profile Title</th>
                   <th scope="col">Result</th>
@@ -458,7 +619,36 @@ var ctx1 = $("#complianceDonutChart");
             </table>
           </div>
           <div class="modal-footer">
-          	<span id="applyPatchesRes"></span>
+            <button type="button" class="btn btn-outline-primary btn-sm" data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="configReportModal" tabindex="-1" aria-labelledby="configReportModalLabel" aria-hidden="true">
+      <div class="modal-dialog" style="max-width:90%;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="configReportModalLabel"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <table id="configReportModalTable" class="table table-striped table-bordered" style="width: 100%;">
+              <thead>
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Severity</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Solution</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
             <button type="button" class="btn btn-outline-primary btn-sm" data-bs-dismiss="modal">Cancel</button>
           </div>
         </div>
