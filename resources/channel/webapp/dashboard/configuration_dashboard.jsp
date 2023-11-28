@@ -159,51 +159,80 @@ var ctx1 = $("#complianceDonutChart");
 
   
 
-  
+
   function showMachinesModalTable(machinesModalData) {
-    
+
     $('#machinesModalTable').DataTable().clear();
 
     let machinesModalTable = $('#machinesModalTable').DataTable({
-         "destroy": true, // In order to reinitialize the datatable
-         "pagination": true, // For Pagination
-         "bPaginate": true,
-         "sorting": false, // For sorting
-         "ordering": false,
-         "searching": true,
-         language: {
-             search: "_INPUT_",
-             searchPlaceholder: "Search..."
-         },
-         "aaData": machinesModalData,
-         "columns": [
-          {
-            "data": "machineName",
-            "title": "Machine Name"
-          },
-         {
-            "data": "profileName",
-            "title": "Profile Title"
-         }, {
-            "title": "Result",
-            "data": "rulesCompliance"
-         }, {}],
-         'columnDefs': [{
-             'targets': 3,
-             'searchable': false,
-             'orderable': false,
-             'className': 'dt-body-center',
-             'render': function (data, type, full, meta) {
-                let machineName = '\''+full["machineName"]+'\'';
-                return '<input type="button" onClick="showConfigReport('+machineName+','+full["contentId"]+','+full["profileId"]+')" class="view-details btn btn-sm btn-primary" value="View Details">';
-            }
-          }]
-       });
-      // $('#machinesModalTable').on('click','.view-details',() => {
-      //   showConfigReport();
-      // })
-    }
-  
+      "destroy": true, // In order to reinitialize the datatable
+      "pagination": true, // For Pagination
+      "bPaginate": true,
+      "sorting": false, // For sorting
+      "ordering": false,
+      "searching": true,
+      language: {
+        search: "_INPUT_",
+        searchPlaceholder: "Search..."
+      },
+      "aaData": machinesModalData,
+      "columns": [
+        {
+          "data": "machineName",
+          "title": "Machine Name"
+        },
+        {
+          "data": "profileName",
+          "title": "Profile Title"
+        }, {
+          "title": "Result",
+          "data": "rulesCompliance"
+        }, {}],
+      'columnDefs': [{
+        'targets': 3,
+        'searchable': false,
+        'orderable': false,
+        'className': 'dt-body-center',
+        'render': function (data, type, full, meta) {
+          let machineName = '\'' + full["machineName"] + '\'';
+          return '<input type="button" onClick="showConfigReport(' + machineName + ',' + full["contentId"] + ',' + full["profileId"] + ')" class="view-details btn btn-sm btn-primary" value="View Details">';
+        }
+      }]
+    });
+    // $('#machinesModalTable').on('click','.view-details',() => {
+    //   showConfigReport();
+    // })
+
+    //Get the column index for the Status column to be used in the method below ($.fn.dataTable.ext.search.push)
+    //This tells datatables what column to filter on when a user selects a value from the dropdown.
+    //It's important that the text used here (Status) is the same for used in the header of the column to filter
+    var statusIndex = 0;
+    $("#machinesModalTable th").each(function (i) {
+      if ($($(this)).html() == "Profile Title") {
+        statusIndex = i; return false;
+      }
+    });
+
+    //Use the built in datatables API to filter the existing rows by the Category column
+    $.fn.dataTable.ext.search.push(
+      function (settings, data, dataIndex) {
+        var selectedItem = $('#machinesModalFilter').val()
+        var status = data[statusIndex];
+        if (selectedItem === "" || status.includes(selectedItem)) {
+          return true;
+        }
+        return false;
+      }
+    );
+
+    //Set the change event for the Status Filter dropdown to redraw the datatable each time
+    //a user selects a new filter.
+    $("#machinesModalFilter").change(function (e) {
+      machinesModalTable.draw();
+    });
+
+  }
+
 
   function handleBarChartClick(event, elements) {
 
@@ -216,7 +245,7 @@ var ctx1 = $("#complianceDonutChart");
 
       var value = barChartSeverityData.datasets[datasetIndex].data[dataIndex];
       //console.log('Clicked on value:', value);
-      console.log('Clicked on updated:', barChartSeverityData.labels[dataIndex], ', ', barChartSeverityData.datasets[datasetIndex].label);
+      //console.log('Clicked on updated:', barChartSeverityData.labels[dataIndex], ', ', barChartSeverityData.datasets[datasetIndex].label);
 
 
       //[{"profileName":"xccdf_org.ssgproject.content_profile_C2S","profileId":4,"contentId":2,"rulesCompliance":"63/168","contentTitle":"Guide to the Secure Configuration of CentOS 7","profileTitle":"C2S for Red Hat Enterprise Linux 7","machineName":"vmcentos-qaendpoint","contentName":"xccdf_org.ssgproject.content_benchmark_CENTOS-7"}]
@@ -241,15 +270,24 @@ var ctx1 = $("#complianceDonutChart");
           //console.log(response);
           //console.log(JSON.stringify(response));
 
-          let machinesModalData = [{
-            machineName: "vmcentos-qaendpoint",
-            profileTitle: "C2S for Red Hat Enterprise Linux 7",
-            result: "63/168",
-            profileId: "4",
-            contentId: "2"
-          }];
-
           showMachinesModalTable(response);
+
+          $('#machinesModalFilter')
+            .append($("<option></option>")
+              .attr("value", "")
+              .text("Show All"));
+
+          let profileFilterData = new Set();
+          response.forEach(x => {
+            profileFilterData.add(x['profileName']);
+          });
+
+          profileFilterData.forEach(profileName => {
+            $('#machinesModalFilter')
+              .append($("<option></option>")
+                .attr("value", profileName)
+                .text(profileName));
+          })
 
           var machinesModal = new bootstrap.Modal(document.getElementById('machinesModal'), {
             keyboard: false
@@ -609,6 +647,15 @@ var ctx1 = $("#complianceDonutChart");
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
+            <div class="row">
+              <div class="col-1">
+                <label for="machinesModalFilter" class="col-form-label">Profile:&nbsp;</label>
+              </div>
+              <div class="col-11">
+                <select id="machinesModalFilter" class="form-select form-select-sm"></select>
+              </div>
+            </div>
+            <br />
             <table id="machinesModalTable" class="table table-borderless" style="width: 100%;">
               <thead>
                 <tr>
