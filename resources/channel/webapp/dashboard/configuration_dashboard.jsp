@@ -148,6 +148,9 @@ var ctx1 = $("#complianceDonutChart");
           title: {
             display: true,
             text: "Number of Machines"
+          },
+          ticks: {
+            precision: 0
           }
         }
       },
@@ -273,7 +276,7 @@ var ctx1 = $("#complianceDonutChart");
           showMachinesModalTable(response);
 
           $('#machinesModalFilter')
-            .append($("<option></option>")
+            .html($("<option></option>")
               .attr("value", "")
               .text("Show All"));
 
