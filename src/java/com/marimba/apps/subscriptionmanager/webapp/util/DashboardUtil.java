@@ -9,19 +9,15 @@ package com.marimba.apps.subscriptionmanager.webapp.util;
 import java.io.*;
 import java.util.*;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import com.marimba.apps.subscriptionmanager.beans.MitigatePatchesBean;
 import com.marimba.apps.subscriptionmanager.beans.PriorityPatchesBean;
 import com.marimba.apps.subscriptionmanager.beans.ReportingNotCheckedInBean;
 import com.marimba.apps.subscriptionmanager.beans.TopVulnerableStatusBean;
 import com.marimba.tools.util.DebugFlag;
-import java.util.stream.Collectors;
-
 
 /**
- * Dashboard Util w.r.t make dashboard content as JSON
+ * Dashboard Util
+ * w.r.t make dashboard content as JSON
  *
  * @author Nandakumar Sankaralingam
  * @version: $Date$, $Revision$
@@ -397,42 +393,54 @@ public class DashboardUtil {
     return jsonData;
   }
 
-  public String makeMitigateResultJSON(Map<String, String> deployResult) {
-    ObjectMapper objectMapper = new ObjectMapper();
-    List<Map<String, String>> jsonList = deployResult.entrySet().stream()
-        .map(entry -> {
-          String machineName = entry.getKey();
-          String valStr = entry.getValue();
-          String[] resultData = valStr.split("@");
-
-          // Create a map for each entry
-          Map<String, String> jsonMap = new HashMap<>();
-          jsonMap.put("Machine", machineName);
-          jsonMap.put("PatchGroup", resultData[0]);
-          jsonMap.put("ResultStatus", resultData[1]);
-
-          return jsonMap;
-        })
-        .collect(Collectors.toList());
-
-    try {
-      // Convert the list to a JSON string
-      String jsonData = objectMapper.writeValueAsString(jsonList);
-      logInfo("makeMitigateResultJSON() : " + jsonData);
-      return Optional.ofNullable(jsonData).orElse(null);
-
-    } catch (JsonProcessingException e) {
-      e.printStackTrace();
+    public String makeMitigateResultJSON(Map<String, String> deployResult) {
+        String jsonData = "[";
+        int idx = 0;
+        int size = deployResult.size();
+        try {
+            StringBuilder sb = new StringBuilder();
+            for (Map.Entry entry : deployResult.entrySet()) {
+                String machineName = (String) entry.getKey();
+                String valStr = (String) entry.getValue();
+                String[] resultData = valStr.split("@");
+                sb.append("{");
+                sb.append("\"Machine\"");
+                sb.append(":");
+                sb.append("\"");
+                sb.append(machineName);
+                sb.append("\"");
+                sb.append(",");
+                sb.append("\"PatchGroup\"");
+                sb.append(":");
+                sb.append("\"");
+                sb.append(resultData[0]);
+                sb.append("\"");
+                sb.append(",");
+                sb.append("\"ResultStatus\"");
+                sb.append(":");
+                sb.append("\"");
+                sb.append(resultData[1]);
+                sb.append("\"");
+                sb.append("}");
+                if (idx == (size - 1)) {
+                    break;
+                } else {
+                    idx++;
+                    sb.append(",");
+                }
+            }
+            jsonData = jsonData + sb.toString() + "]";
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return jsonData;
     }
-    return null;
-  }
 
   public Map<String, String> executeMitigateCLI(List<String> machinePatchGroupList,
       String policyMgrUrl, String masterTx,
       String runChannelDir, String cmsUser, String cmsPwd) {
     Map<String, String> deployResult = new LinkedHashMap<String, String>();
 
-    int size = machinePatchGroupList.size();
     String machineName = "";
     String patchGroupName = "";
     boolean resultCLI = false;
@@ -475,18 +483,22 @@ public class DashboardUtil {
             if (line != null && line.indexOf("Policy Manager succeeded") != -1) {
               resultCLI = true;
             }
-            System.out.println(" Command execution result :: " + line);
+           // System.out.println(" Command execution result :: " + line);
           }
           int exitCode = process.waitFor();
-          logInfo("LogInfo: CLI Process Exited with code : " + exitCode);
-          String resultStr = (resultCLI) ? "success" : "failed";
+          logInfo("LogInfo: Policy CLI process exited with code: " + exitCode + " for the machine: " + machineName +
+                  ", PatchGroup: " + patchGroupName);
+          String resultStr = (resultCLI) ? "Success" : "Failed";
           deployResult.put(machineName, (patchGroupName + "@" + resultStr));
+          logInfo("LogInfo: Policy CLI-Patch Group Deployment process status: " + resultStr + " for the machine: " + machineName +
+                    ", PatchGroup: " + patchGroupName);
         } else {
-          logInfo("CLI execution failed");
+          logInfo("LogInfo: Policy CLI execution failed for the machine: " + machineName +
+                  ", PatchGroup: " + patchGroupName);
           deployResult.put(machineName, (patchGroupName + "@" + "Failed"));
         }
       } catch (Exception e) {
-        logInfo("LogInfo: CLI Process failed with exception: " + e.getMessage());
+        logInfo("LogInfo: Policy CLI Process failed with exception: " + e.getMessage());
         deployResult.put(machineName, (patchGroupName + "@" + "Failed"));
       }
     }
@@ -512,14 +524,14 @@ public class DashboardUtil {
     return command.toString();
   }
 
-  public static void debug(String str) {
+  private static void debug(String str) {
     if (DEBUG) {
       System.out.println("DashboardUtil.java :: [" + new Date().toString() + "] ==> " + str);
     }
   }
 
-  public static void logInfo(String str) {
-    System.out.println("INFO : DashboardUtil.java" + str);
+  private void logInfo(String str) {
+    System.out.println("INFO: " + str);
 
   }
 
