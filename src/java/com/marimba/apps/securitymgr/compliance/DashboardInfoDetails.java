@@ -1403,6 +1403,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
                     "where ap.repository_id = patchgrp.patch\n" +
                     "and im.id = ap.machine_id\n" +
                     "and ap.repository_id  IN( " + repIDs + ") \n" +
+                    "and (ap.current_status = 'Missing' or ap.current_status = 'Available-SP') " +
                     "and exists (select 1 from ldapsync_targets_marimba ltm \n" +
                     "               where ltm.marimba_table_primary_id = im.id) \n" +
                     "order by im.name";
