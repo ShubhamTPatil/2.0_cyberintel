@@ -71,21 +71,6 @@ function vDefUrlRequired(flag) {
 	return flag;
 }
 
-function cveDownloaderRequired(flag) {
-	if(isEmpty($('input[name="value(cvedownloader.url)"]').val())) {
-		$('#cve-downloader-url-error').html("<webapps:pageText key="empty.cveDownloader" />");
-		if(!flag) {
-  		$('html, body').animate({
-          scrollTop: $('#vDefCard').offset().top
-      }, 2000);
-		}
-		flag = true;
-	} else {
-		$('#cve-downloader-url-error').html("");
-	}
-	return flag;
-}
-
 function vMediateUrlRequired(flag) {
 	if(isEmpty($('input[name="value(customscanner.url)"]').val())) {
 		$('#vMediate-url-error').html("<webapps:pageText key="empty.vMediate" />");
@@ -188,7 +173,6 @@ function doSubmit(frm) {
 	
 	flag = vInspectorUrlRequired(flag);
 	flag = vDefUrlRequired(flag);
-	flag = cveDownloaderRequired(flag);
 	flag = vMediateUrlRequired(flag);
 	flag = dbDetailsRequired(flag);
 	flag = dbConnectionRequired(flag);
@@ -549,32 +533,6 @@ function checkElasticServerStatus(){
                     <tr>
                       <td align="right" valign="top"><span class="textGeneral"><webapps:pageText key="infoSubscribePassword" /></span></td>
                       <td valign="top"><html:password name="setPluginForm" property="securityInfoPassword" styleId="securityInfoPassword" onfocus="changePublishPassword(document.forms.setPluginForm['value(changedInfoSubPassword)'],document.forms.setPluginForm,document.getElementById('securityInfoPassword'))'])" styleClass="optionalField" /></td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
-
-              <div class="card" id="cveCard">
-                <div class="card-body">
-                  <div class="card-title">
-                    <webapps:pageText key="cvedownloader.hdr" />
-                    <span id="cve-downloader-url-error" class="text-danger" style="float: right; font-size: medium;"></span>
-                  </div>
-
-                  <webapps:pageText key="cvedownloader.sectInfo" />
-                  <br /> <br />
-                  <table border="0" cellspacing="1" cellpadding="5">
-                    <tr valign="middle">
-                      <td align="right" valign="top"><webapps:pageText key="cvedownloder.info.channel" /></td>
-                      <td valign="top"><html:text property="value(cvedownloader.url)" styleId="port5" size="65" maxlength="110" styleClass="requiredField" /> <webapps:txbrowser field="port5" styleId="cvedownloaderBrowse" /></td>
-                    </tr>
-                    <tr>
-                      <td align="right" valign="top"><span class="textGeneral"><webapps:pageText key="cveSubscribeUserName" /></span></td>
-                      <td valign="top"><html:text property="value(cvedownloader.subscribeuser)" size="20" styleClass="optionalField" /></td>
-                    </tr>
-                    <tr>
-                      <td align="right" valign="top"><span class="textGeneral"><webapps:pageText key="cveSubscribePassword" /></span></td>
-                      <td valign="top"><html:password name="setPluginForm" property="cvedownloaderPassword" styleId="cvedownloaderPassword" onfocus="changePublishPassword(document.forms.setPluginForm['value(changedCveSubPassword)'],document.forms.setPluginForm,document.getElementById('cvedownloaderPassword'))'])" styleClass="optionalField" /></td>
                     </tr>
                   </table>
                 </div>

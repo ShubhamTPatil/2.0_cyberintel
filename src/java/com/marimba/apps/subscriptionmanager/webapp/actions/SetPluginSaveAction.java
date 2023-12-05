@@ -231,22 +231,6 @@ public final class SetPluginSaveAction extends AbstractAction {
             userPluginProps.setProperty("subscriptionmanager.securityinfo.subscribepassword", smmain.getConfig().getProperty("subscriptionmanager.securityinfo.subscribepassword"));
         }
 
-        // cvedownloader info channel
-        parameter = getPropertyValue(formbean,"cvedownloader.url");
-        userPluginProps.setProperty("subscriptionmanager.cvedownloader.url", (parameter != null) ? parameter : null);
-
-        parameter = getPropertyValue(formbean,"cvedownloader.subscribeuser");
-        userPluginProps.setProperty("subscriptionmanager.cvedownloader.subscribeuser", (parameter != null) ? parameter : null);
-
-        String cveSubscribePassword = getPropertyValue(formbean, "cvedownloader.subscribepassword");
-
-        if(null != cveSubscribePassword && !PASSWORD_STR.equals(cveSubscribePassword)) {
-            cveSubscribePassword = Password.encode(cveSubscribePassword);
-            userPluginProps.setProperty("subscriptionmanager.cvedownloader.subscribepassword",cveSubscribePassword);
-        } else {
-            userPluginProps.setProperty("subscriptionmanager.cvedownloader.subscribepassword", smmain.getConfig().getProperty("subscriptionmanager.cvedownloader.subscribepassword"));
-        }
-
         // custom scanner channel
         parameter = getPropertyValue(formbean,"customscanner.url");
         userPluginProps.setProperty("subscriptionmanager.customscanner.url", (parameter != null) ? parameter : null);

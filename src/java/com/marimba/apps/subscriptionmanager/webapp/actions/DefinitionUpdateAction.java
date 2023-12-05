@@ -100,7 +100,6 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
     ActionMapping mapping;
     String action;
     String actionString;
-    String cveDownloderChPath;
     ConfigProps config = null;
     IConfig tunerConfig = null;
     CveUpdateUtil cveupdateObj = null;
@@ -639,9 +638,6 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
               IDirectory features = main.getFeatures();
               IConfig tunerConfig = (IConfig) features.getChild("tunerConfig");
 
-              String cvedownloaderUrl = main.getConfig()
-                  .getProperty("subscriptionmanager.cvedownloader.url");
-
               config = Optional.of(configFile)
                   .filter(file -> !file.exists())
                   .map(file -> new ConfigProps(file))
@@ -657,7 +653,6 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                     cfg.setProperty("channelstore.authenticate.user", "");
                     cfg.setProperty("channelstore.authenticate.password", "");
                     cfg.setProperty("defensight.cvejson.downloadurl", "https://cve.circl.lu/static/circl-cve-search-expanded.json.gz");
-                    cfg.setProperty("defensight.cvedownloaderchannel.location", cvedownloaderUrl);
                     cfg.setProperty("vdefchannel.lastcopied.timestamp", "Not Updated");
                     cfg.setProperty("defensight.cvejson.lastupdated.timestamp", "Not Updated");
                     cfg.setProperty("cvejsonupdate.process.status", "0");

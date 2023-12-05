@@ -50,19 +50,18 @@ public class SetPluginForm extends AbstractForm implements LDAPConstants,IMapPro
     String dbPassword;
     String customScannerPasswrod;
     String securityInfoPassword;
-    String cvedownloaderPassword;
     Map props = new HashMap();
     private String disableModify = "false";
 
     //These are the properties used for saving to the ldapconfig
     public final String[] configprops = {
-            "publishurl", "securityinfo.url","cvedownloader.url","customscanner.url","ldaphost", "basedn", "binddn",
+            "publishurl", "securityinfo.url","customscanner.url","ldaphost", "basedn", "binddn",
             "bindpasswd", "bindpasswd2", "poolsize", "usessl", "authmethod",
             "publishurl.username", "publishurl.password", "publishurl.subscribeuser", "publishurl.subscribepassword", "lastpublishedtime", "publishcounter",
             "vendor", "lastgoodhostexptime", "pallowprov", "noautodiscover","pluginStatus",
             "repeaterInsert", "elasticurl", "cveFiltersDir",
             "db.hostname", "db.port", "db.name", "db.thread.min", "db.thread.max", "db.type", "db.username", "db.password",
-            "securityinfo.subscribeuser", "securityinfo.subscribepassword", "cvedownloader.subscribeuser", "cvedownloader.subscribepassword",
+            "securityinfo.subscribeuser", "securityinfo.subscribepassword",
             "customscanner.subscribeuser", "customscanner.subscribepassword"
     };
 
@@ -292,11 +291,6 @@ public class SetPluginForm extends AbstractForm implements LDAPConstants,IMapPro
             return;
         }
 
-        if ("cvedownloader.subscribepassword".equals(property) || "cvedownloader.subscribepassword".equals(property)) {
-            encodeAndSet("changedCveSubPassword", property, value, props);
-            return;
-        }
-
         if ("customscanner.subscribepassword".equals(property) || "customscanner.subscribepassword".equals(property)) {
             encodeAndSet("changedCustomSubPassword", property, value, props);
             return;
@@ -337,11 +331,6 @@ public class SetPluginForm extends AbstractForm implements LDAPConstants,IMapPro
             value = getValue( property );
             if( "true".equals( value ) && ( getValue( "securityinfo.subscribepassword" ) != null ) ){
                 encodeAndSet("changedInfoSubPassword", "securityinfo.subscribepassword", getValue( "securityinfo.subscribepassword" ), props);
-            }
-        } else if( "changedCveSubPassword".equals( property ) ){
-            value = getValue( property );
-            if( "true".equals( value ) && ( getValue( "cvedownloader.subscribepassword" ) != null ) ){
-                encodeAndSet("changedCveSubPassword", "cvedownloader.subscribepassword", getValue( "cvedownloader.subscribepassword" ), props);
             }
         } else if( "changedCustomSubPassword".equals( property ) ){
             value = getValue( property );
@@ -421,8 +410,6 @@ public class SetPluginForm extends AbstractForm implements LDAPConstants,IMapPro
             setDBPassword(value);
         } else if("securityinfo.subscribepassword".equalsIgnoreCase(property)) {
         	setSecurityInfoPassword(Password.decode(value));
-        } else if("cvedownloader.subscribepassword".equalsIgnoreCase(property)) {
-            setCvedownloaderPassword(Password.decode(value));
         } else if("customscanner.subscribepassword".equalsIgnoreCase(property)) {
         	setCustomScannerPassword(Password.decode(value));
         }
@@ -461,30 +448,11 @@ public class SetPluginForm extends AbstractForm implements LDAPConstants,IMapPro
         }
     }
 
-    public void setCvedownloaderPassword(String ppasswd) {
-        if(null != ppasswd && !"".equals(ppasswd.trim()) && !PASSWORD_STR.equals(ppasswd)) {
-            props.put("cvedownloader.subscribepassword", ppasswd);
-            this.cvedownloaderPassword = PASSWORD_STR;
-        } else if(null != ppasswd && "".equals(ppasswd.trim())) {
-            props.put("cvedownloader.subscribepassword", "");
-            this.cvedownloaderPassword = "";
-        } else {
-            this.cvedownloaderPassword = "";
-        }
-    }
-
     public String getSecurityInfoPassword() {
         if(null != props.get("securityinfo.subscribepassword") && !"".equals(props.get("securityinfo.subscribepassword"))) {
             this.securityInfoPassword = PASSWORD_STR;
         }
         return securityInfoPassword;
-    }
-
-    public String getCvedownloaderPassword() {
-        if(null != props.get("cvedownloader.subscribepassword") && !"".equals(props.get("cvedownloader.subscribepassword"))) {
-            this.cvedownloaderPassword = PASSWORD_STR;
-        }
-        return cvedownloaderPassword;
     }
 
     public String getCustomScannerPassword() {
