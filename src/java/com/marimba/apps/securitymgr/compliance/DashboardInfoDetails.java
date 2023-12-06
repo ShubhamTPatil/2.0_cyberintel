@@ -1923,6 +1923,8 @@ public class DashboardInfoDetails implements ComplianceConstants {
                 int nonCompliant = result.getNonCompliant();
                 complianceResult.put("compliant", String.valueOf(compliant));
                 complianceResult.put("nonCompliant", String.valueOf(nonCompliant));
+        complianceResult.put("notApplicable", String.valueOf(result.getNotApplicable()));
+        complianceResult.put("unknown", String.valueOf(result.getUnknown()));
 
             } catch (Exception dae) {
                 dae.printStackTrace();
@@ -1971,6 +1973,8 @@ public class DashboardInfoDetails implements ComplianceConstants {
     static class GetConfigProfileComplianceInfo extends QueryExecutor {
         int compliant = 0;
         int nonCompliant = 0;
+        int notApplicable = 0;
+        int unknown = 0;
         String profileId;
 
 
@@ -1997,6 +2001,10 @@ public class DashboardInfoDetails implements ComplianceConstants {
                         compliant = count;
                     } else if ("NON-COMPLIANT".equalsIgnoreCase(type)) {
                         nonCompliant = count;
+          } else if ("NOT APPLICABLE".equalsIgnoreCase(type)) {
+            notApplicable = count;
+          } else if ("UNKNOWN".equalsIgnoreCase(type)) {
+            unknown = count;
                     }
                 }
             } finally {
@@ -2011,6 +2019,14 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
         public int getNonCompliant() {
             return nonCompliant;
+        }
+
+        public int getNotApplicable() {
+          return notApplicable;
+        }
+
+        public int getUnknown() {
+          return unknown;
         }
 
         public String getProfileId() { return profileId; }

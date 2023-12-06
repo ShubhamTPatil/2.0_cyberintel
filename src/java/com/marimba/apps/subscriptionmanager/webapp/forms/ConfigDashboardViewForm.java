@@ -22,6 +22,10 @@ public class ConfigDashboardViewForm extends AbstractForm{
 
     private String configProfileNonCompliant = "0";
 
+    private String configProfileUnknown = "0";
+
+    private String configProfileNotApplicable = "0";
+
 
     private String barChartData;
 
@@ -97,6 +101,22 @@ public class ConfigDashboardViewForm extends AbstractForm{
 
     public void setConfigProfileNonCompliant(String configProfileNonCompliant) {
         this.configProfileNonCompliant = configProfileNonCompliant;
+    }
+
+    public String getConfigProfileUnknown() {
+        return configProfileUnknown;
+    }
+
+    public void setConfigProfileUnknown(String configProfileUnknown) {
+        this.configProfileUnknown = configProfileUnknown;
+    }
+
+    public String getConfigProfileNotApplicable() {
+        return configProfileNotApplicable;
+    }
+
+    public void setConfigProfileNotApplicable(String configProfileNotApplicable) {
+        this.configProfileNotApplicable = configProfileNotApplicable;
     }
 
     public String getBarChartData() {

@@ -39,6 +39,8 @@ $(function () {
     var pieChartData = [];
     pieChartData.push(<bean:write name="configDashboardForm" property="configProfileCompliant"/>);
     pieChartData.push(<bean:write name="configDashboardForm" property="configProfileNonCompliant"/>);
+    pieChartData.push(<bean:write name="configDashboardForm" property="configProfileNotApplicable"/>);
+    pieChartData.push(<bean:write name="configDashboardForm" property="configProfileUnknown"/>);
 
 
 var ctx1 = $("#complianceDonutChart");
@@ -46,12 +48,12 @@ var ctx1 = $("#complianceDonutChart");
     var chart1 = new Chart(ctx1, {
         type: "doughnut",
         data: {
-            labels: ["Compliant", "Non Compliant"],
+            labels: ["Compliant", "Non-Compliant", 'Not Applicable', 'Unknown'],
             datasets: [
                 {
                     data: pieChartData,
                     backgroundColor: [
-                        "#71DCEB", "#FF5F60"
+                        "#71DCEB", "#FF5F60", "#F3CC63", "#D4733A"
                     ]
                 }
             ]
@@ -67,14 +69,14 @@ var ctx1 = $("#complianceDonutChart");
                     fontColor: "#111"
                 },
                 legend: {
-                    display: true,
+                    display: false,
                     position: "bottom"
                 },
                 tooltip: {
                     callbacks: {
                         label: function (context) {
                             let label = context.dataset.label || '';
-                            return label + " " + context.parsed + "" + (context.parsed == 1) ? 'Machine' : ' Machines';
+                            return (' ' + label + '' +context.parsed + ' Machines');
                         }
                     }
                 }
@@ -88,7 +90,6 @@ var ctx1 = $("#complianceDonutChart");
   var barChartSeverityData = '<bean:write name="configDashboardForm" property="barChartData"/>';
   barChartSeverityData = barChartSeverityData.replace(/&quot;/g,'"');
   barChartSeverityData=JSON.parse(barChartSeverityData);
-
 
   const dataChartData = {
     labels: ["Stig 1", "Stig 2", "Stig 3", "Stig 4", "Stig 5", "Stig 6"],
@@ -137,14 +138,23 @@ var ctx1 = $("#complianceDonutChart");
       scales: {
         x: {
           stacked: true,
+          grid: {
+            display: false,
+          },
           beginAtZero: true,
           title: {
             display: true,
             text: "Security Technical Implementation Guides (STIGs)"
+          },
+          ticks: {
+            display: false
           }
         },
         y: {
           stacked: true,
+          grid: {
+            display: false,
+          },
           title: {
             display: true,
             text: "Number of Machines"
@@ -155,14 +165,13 @@ var ctx1 = $("#complianceDonutChart");
         }
       },
       onClick: handleBarChartClick,
+      barThickness: 40,
     },
   };
 
   var barChart = new Chart(ctx, config);
 
   
-
-
   function showMachinesModalTable(machinesModalData) {
 
     $('#machinesModalTable').DataTable().clear();
@@ -171,8 +180,8 @@ var ctx1 = $("#complianceDonutChart");
       "destroy": true, // In order to reinitialize the datatable
       "pagination": true, // For Pagination
       "bPaginate": true,
-      "sorting": false, // For sorting
-      "ordering": false,
+      "sorting": true, // For sorting
+      "ordering": true,
       "searching": true,
       language: {
         search: "_INPUT_",
@@ -192,6 +201,9 @@ var ctx1 = $("#complianceDonutChart");
           "data": "rulesCompliance"
         }, {}],
       'columnDefs': [{
+        'targets': 0,
+        'className': 'text-nowrap'
+      },{
         'targets': 3,
         'searchable': false,
         'orderable': false,
@@ -205,7 +217,7 @@ var ctx1 = $("#complianceDonutChart");
     // $('#machinesModalTable').on('click','.view-details',() => {
     //   showConfigReport();
     // })
-
+/*
     //Get the column index for the Status column to be used in the method below ($.fn.dataTable.ext.search.push)
     //This tells datatables what column to filter on when a user selects a value from the dropdown.
     //It's important that the text used here (Status) is the same for used in the header of the column to filter
@@ -227,15 +239,24 @@ var ctx1 = $("#complianceDonutChart");
         return false;
       }
     );
-
+*/
     //Set the change event for the Status Filter dropdown to redraw the datatable each time
     //a user selects a new filter.
     $("#machinesModalFilter").change(function (e) {
+
+      machinesModalTable.clear();
+
+      if($('#machinesModalFilter').val() === "") {
+        machinesModalTable.rows.add(machinesModalData);
+      } else {
+        let newData = machinesModalData.filter(record => record['profileName'] === $('#machinesModalFilter').val());
+        machinesModalTable.rows.add(newData);
+      }
+
       machinesModalTable.draw();
     });
 
   }
-
 
   function handleBarChartClick(event, elements) {
 
@@ -250,13 +271,12 @@ var ctx1 = $("#complianceDonutChart");
       //console.log('Clicked on value:', value);
       //console.log('Clicked on updated:', barChartSeverityData.labels[dataIndex], ', ', barChartSeverityData.datasets[datasetIndex].label);
 
-
       //[{"profileName":"xccdf_org.ssgproject.content_profile_C2S","profileId":4,"contentId":2,"rulesCompliance":"63/168","contentTitle":"Guide to the Secure Configuration of CentOS 7","profileTitle":"C2S for Red Hat Enterprise Linux 7","machineName":"vmcentos-qaendpoint","contentName":"xccdf_org.ssgproject.content_benchmark_CENTOS-7"}]
 
-        var contId = barChartSeverityData.labels[dataIndex];
-        var compType = barChartSeverityData.datasets[datasetIndex].label;
+      var contId = barChartSeverityData.contentIds[dataIndex];
+      var compType = barChartSeverityData.datasets[datasetIndex].label;
 
-        $('#machinesModalLabel').html(contId + ' - ' + compType);
+      $('#machinesModalLabel').html(barChartSeverityData.labels[dataIndex] + ' - ' + compType);
 
       $.ajax({
         url: './configDashboard.do',
@@ -321,12 +341,12 @@ var ctx1 = $("#complianceDonutChart");
     datasets: [
       {
         label: 'Profile 1',
-        borderColor: 'red',
+        color: 'red',
         data: [25, 21, 17, 12, 9, 5]
       },
       {
         label: 'Profile 2',
-        borderColor: 'blue',
+        color: 'blue',
         data: [50, 38, 31, 25, 19, 9]
       }
     ]
@@ -336,8 +356,27 @@ var ctx1 = $("#complianceDonutChart");
     type: 'line',
     data: chartData,
     options: {
+      tension: 0.4,
       responsive: false,
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: "Finished scan time"
+          }
+        },
+        y: {
+          title: {
+            display: true,
+            text: "Number of failed rules"
+          }
+        },
+      },
       plugins: {
+        legend: {
+            display: true,
+            position: "bottom"
+        },
         zoom: {
           zoom: {
             wheel: {
@@ -359,25 +398,18 @@ var ctx1 = $("#complianceDonutChart");
 
   var myChart = new Chart(ctxLineChart, lineChartConfig);
 
-
-  });
-
-  function setConfigReportData(data) {
-
-      $('#configReportModalTable').DataTable().clear();
-
-      let configReportModalTable = $('#configReportModalTable').DataTable({
+  let configReportModalTable = $('#configReportModalTable').DataTable({
         "destroy": true, // In order to reinitialize the datatable
         "pagination": true, // For Pagination
         "bPaginate": true,
-        "sorting": false, // For sorting
-        "ordering": false,
+        "sorting": true, // For sorting
+        "ordering": true,
         "searching": true,
         language: {
           search: "_INPUT_",
           searchPlaceholder: "Search..."
         },
-        "aaData": data,
+        "aaData": [],
         "columns": [
           {
             "title": "Title",
@@ -402,7 +434,22 @@ var ctx1 = $("#complianceDonutChart");
         }]
       });
 
-    }
+  });
+
+  function setConfigReportData(data) {
+
+    let configReportModalTable = $('#configReportModalTable').DataTable();
+
+    console.log('setConfigReportData');
+    console.log(data);
+
+    console.log(JSON.stringify(data));
+
+    configReportModalTable.clear();
+    configReportModalTable.rows.add(data);
+    configReportModalTable.draw();
+    
+  }
 
   function showConfigReport(machineName, contentId, profileId) {
     $.ajax({
@@ -463,7 +510,6 @@ var ctx1 = $("#complianceDonutChart");
 
     <section class="section dashboard">
 
-      
       <nav style="background-color: #fff;">
         <div class="nav nav-tabs nav-title" id="nav-tab" role="tablist">
           <a href="/spm/newDashboard.do" class="nav-link">Vulnerability Assessment</a>
@@ -505,7 +551,7 @@ var ctx1 = $("#complianceDonutChart");
                   </div>
   
   
-                  <div class="col-md-4">
+                  <div class="col-md-5">
                     <div class="card info-card">
                       <div class="card-body">
                         <h5 class="card-title" style="margin: 0;">OS Types</h5>
@@ -545,8 +591,7 @@ var ctx1 = $("#complianceDonutChart");
                   </div>
   
   
-  
-                  <div class="col-md-6">
+                  <div class="col-md-5">
                     <div class="card info-card customers-card">
                       <div class="card-body">
                         <h5 class="card-title" style="margin: 0;">Scanned Devices <span>| In last 24 hours</span></h5>
@@ -558,7 +603,7 @@ var ctx1 = $("#complianceDonutChart");
                               <div align="center">
                                 <i class="fa fa-crosshairs"></i><br />
                                 <span class="text-muted small"><bean:write name="configDashboardForm" property="configScanCount"/></span><br />
-                                <span class="text-muted small">Configuration Scan</span>
+                                <span class="text-muted small">By Configuration</span>
                               </div>
                             </div>
                           </div>
@@ -573,11 +618,11 @@ var ctx1 = $("#complianceDonutChart");
             
                 <div class="card">
                   <div class="card-body pb-0">
-                    <h5 class="card-title">Failed Rules for different Profiles</h5>
+                    <h5 class="card-title">STIGs Compliance Overview</h5>
                     <div>
                       <div>
                         <div style="display: block; padding: 0 10px 16px 10px;">
-                          <canvas id="myChart" style="width: 100%"></canvas>
+                          <canvas id="myChart" height="250" style="width: 100%"></canvas>
                         </div>
                       </div>
                     </div>
@@ -597,23 +642,39 @@ var ctx1 = $("#complianceDonutChart");
                 <hr class="divider" />
                 
                 <div class="row" style="margin-bottom: 10px;">
-                  <div class="col-sm-12">
+                  <div class="col-1"></div>
+                  <div class="col-5">
                     <div align="center">
                       <span class="small"><bean:write name="configDashboardForm" property="configProfileCompliant"/></span><br />
-                      <span class="small lowColor"><b>Compliant Machines</b></span>
+                      <span class="small lowColor"><b>Compliant</b></span>
                     </div>
                   </div>
-                  <div class="col-sm-12">
+                  <div class="col-5">
                     <div align="center">
                       <span class="small"><bean:write name="configDashboardForm" property="configProfileNonCompliant"/></span><br />
-                      <span class="small criticalColor"><b>Non-Compliant Machines</b></span>
+                      <span class="small criticalColor"><b>Non-Compliant</b></span>
                     </div>
                   </div>
+                  <div class="col-1"></div>
+                  <div class="col-1"></div>
+                  <div class="col-5">
+                    <div align="center">
+                      <span class="small"><bean:write name="configDashboardForm" property="configProfileNotApplicable"/></span><br />
+                      <span class="small mediumColor"><b>Not Applicable</b></span>
+                    </div>
+                  </div>
+                  <div class="col-5">
+                    <div align="center">
+                      <span class="small"><bean:write name="configDashboardForm" property="configProfileUnknown"/></span><br />
+                      <span class="small highColor"><b>Unknown</b></span>
+                    </div>
+                  </div>
+                  <div class="col-1"></div>
                 </div>
                 <br/>
                 <div>
                 <div style="position: relative; width: 100%; margin: auto;">
-                  <canvas id="complianceDonutChart" style="margin:auto; min-height: 130px;">
+                  <canvas id="complianceDonutChart" height="285" style="margin:auto; width: 100%;">
                   </canvas>
                 </div>
                 </div>
@@ -621,8 +682,6 @@ var ctx1 = $("#complianceDonutChart");
               </div>
             </div>
           </div>
-
-
         </div>
 
 
@@ -632,7 +691,7 @@ var ctx1 = $("#complianceDonutChart");
               <div class="card-body pb-0">
                 <h5 class="card-title">History Trend</h5>
                 <div style="position: relative; width: 100%; margin: auto;">
-                  <canvas id="lineChart" style="width: 100%"></canvas>
+                  <canvas id="lineChart" height="400" style="width: 100%"></canvas>
                 </div>
               </div>
             </div>
@@ -659,7 +718,7 @@ var ctx1 = $("#complianceDonutChart");
               </div>
             </div>
             <br />
-            <table id="machinesModalTable" class="table table-borderless" style="width: 100%;">
+            <table id="machinesModalTable" class="table table-striped table-bordered" style="width: 100%;">
               <thead>
                 <tr>
                   <th scope="col">Machine Name</th>

@@ -83,6 +83,9 @@ public class ConfigDashboardViewAction extends AbstractAction implements IWebApp
           dashboardForm.setConfigProfileCompliant(profileCompliantMap.get("compliant"));
           dashboardForm.setConfigProfileNonCompliant(profileCompliantMap.get("nonCompliant"));
 
+          dashboardForm.setConfigProfileUnknown(profileCompliantMap.get("unknown"));
+          dashboardForm.setConfigProfileNotApplicable(profileCompliantMap.get("notApplicable"));
+
           //To Set Profile Dropdown
           Map<String, String> configProfileDropdown = dashboardHandler.getConfigProfileDropdown();
           dashboardForm.setConfigProfileDropdown(configProfileDropdown);
@@ -92,13 +95,27 @@ public class ConfigDashboardViewAction extends AbstractAction implements IWebApp
           //To Set Data for Bar Chart Data
           JSONObject barChartData = new JSONObject();
 
-          JSONArray jsonProfileResultArray = new JSONArray();
-
-          Set<Integer> setContentId = new HashSet<Integer>();
+          Set<Integer> setOfContentId = new HashSet<Integer>();
+          Set<String> setOfContentTitles = new HashSet<>();
           for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
             int contentId = jsonObject.getInt("contentId");
-            setContentId.add(contentId);
+            setOfContentId.add(contentId);
+            String contentTitle = jsonObject.getString("contentTitle");
+
+            // Removed everything after word STIG
+            contentTitle = contentTitle.replaceAll("STIG"+".*","STIG");
+
+            // Replaced word "Security Technical Implementation Guide" to word STIG and removed everything after it
+            contentTitle = contentTitle.replaceAll("Security Technical Implementation Guide"+".*","STIG");
+
+            // Replaced "Red Hat Enterprise Linux" with "RHEL"
+            contentTitle = contentTitle.replaceAll("Red Hat Enterprise Linux","RHEL");
+
+            // Removed "Guide to the "
+            contentTitle = contentTitle.replaceAll("Guide to the ","");
+
+            setOfContentTitles.add(contentTitle);
           }
 
           List<Integer> compliantList = new ArrayList<Integer>();
@@ -106,10 +123,13 @@ public class ConfigDashboardViewAction extends AbstractAction implements IWebApp
           List<Integer> unknownList = new ArrayList<Integer>();
           List<Integer> notApplicableList = new ArrayList<Integer>();
 
-          JSONArray jsonProfileNameArray = new JSONArray(setContentId);
-          barChartData.put("labels", jsonProfileNameArray);
+          JSONArray jsonContentTitleArray = new JSONArray(setOfContentId);
+          barChartData.put("contentIds", jsonContentTitleArray);
 
-          for (int j = 0; j < jsonProfileNameArray.length(); j++) {
+          JSONArray jsonContentNameArray = new JSONArray(setOfContentTitles);
+          barChartData.put("labels", jsonContentNameArray);
+
+          for (int j = 0; j < jsonContentTitleArray.length(); j++) {
 
             compliantList.add(0);
             nonCompliantList.add(0);
@@ -124,7 +144,7 @@ public class ConfigDashboardViewAction extends AbstractAction implements IWebApp
               int compliantCount = jsonObject.getInt("compliantCount");
               String overallCompliantLevel = jsonObject.getString("overallCompliantLevel");
 
-              if (jsonProfileNameArray.getInt(j) == dbContentId) {
+              if (jsonContentTitleArray.getInt(j) == dbContentId) {
 
                 switch (overallCompliantLevel) {
 
@@ -150,35 +170,35 @@ public class ConfigDashboardViewAction extends AbstractAction implements IWebApp
 
           //Preparing 4 object using severity
 
-          JSONObject criticalJsonObject = new JSONObject();
-          criticalJsonObject.put("label", "NON-COMPLIANT");
-          criticalJsonObject.put("backgroundColor", "#FF5F60");
-          criticalJsonObject.put("data", nonCompliantList);
-          criticalJsonObject.put("stack", "Stack 0");
+          JSONObject compliantJsonObject = new JSONObject();
+          compliantJsonObject.put("label", "Compliant");
+          compliantJsonObject.put("backgroundColor", "#71DCEB");
+          compliantJsonObject.put("data", compliantList);
+          compliantJsonObject.put("stack", "Stack 0");
 
-          JSONObject highJsonObject = new JSONObject();
-          highJsonObject.put("label", "UNKNOWN");
-          highJsonObject.put("backgroundColor", "#D4733A");
-          highJsonObject.put("data", unknownList);
-          highJsonObject.put("stack", "Stack 0");
+          JSONObject nonCompliantJsonObject = new JSONObject();
+          nonCompliantJsonObject.put("label", "Non-Compliant");
+          nonCompliantJsonObject.put("backgroundColor", "#FF5F60");
+          nonCompliantJsonObject.put("data", nonCompliantList);
+          nonCompliantJsonObject.put("stack", "Stack 0");
 
-          JSONObject mediumJsonObject = new JSONObject();
-          mediumJsonObject.put("label", "NOT APPLICABLE");
-          mediumJsonObject.put("backgroundColor", "#F3CC63");
-          mediumJsonObject.put("data", notApplicableList);
-          mediumJsonObject.put("stack", "Stack 0");
+          JSONObject notApplicableJsonObject = new JSONObject();
+          notApplicableJsonObject.put("label", "Not Applicable");
+          notApplicableJsonObject.put("backgroundColor", "#F3CC63");
+          notApplicableJsonObject.put("data", notApplicableList);
+          notApplicableJsonObject.put("stack", "Stack 0");
 
-          JSONObject lowJsonObject = new JSONObject();
-          lowJsonObject.put("label", "COMPLIANT");
-          lowJsonObject.put("backgroundColor", "#71DCEB");
-          lowJsonObject.put("data", compliantList);
-          lowJsonObject.put("stack", "Stack 0");
+          JSONObject unknownJsonObject = new JSONObject();
+          unknownJsonObject.put("label", "Unknown");
+          unknownJsonObject.put("backgroundColor", "#D4733A");
+          unknownJsonObject.put("data", unknownList);
+          unknownJsonObject.put("stack", "Stack 0");
 
           JSONArray jsonDataSetArray = new JSONArray();
-          jsonDataSetArray.put(criticalJsonObject);
-          jsonDataSetArray.put(highJsonObject);
-          jsonDataSetArray.put(mediumJsonObject);
-          jsonDataSetArray.put(lowJsonObject);
+          jsonDataSetArray.put(compliantJsonObject);
+          jsonDataSetArray.put(nonCompliantJsonObject);
+          jsonDataSetArray.put(notApplicableJsonObject);
+          jsonDataSetArray.put(unknownJsonObject);
 
           barChartData.put("datasets", jsonDataSetArray);
 
@@ -228,7 +248,7 @@ public class ConfigDashboardViewAction extends AbstractAction implements IWebApp
         } else if (action.equalsIgnoreCase("getMachineByContent")) {
 
           String contentId = request.getParameter("contentId");
-          String complianceType = request.getParameter("complianceType");
+          String complianceType = request.getParameter("complianceType").toUpperCase();
 
           System.out.println("Content Id : "+contentId+" and Compliance Type ::"+complianceType);
 
