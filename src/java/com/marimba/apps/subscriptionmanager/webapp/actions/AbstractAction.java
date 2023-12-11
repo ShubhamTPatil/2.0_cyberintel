@@ -30,6 +30,7 @@ import com.marimba.intf.msf.ITenant;
 import com.marimba.intf.msf.ITenantManager;
 import com.marimba.intf.msf.task.ITaskMgr;
 import com.marimba.intf.msf.wakeonwan.IWakeManager;
+import com.marimba.intf.util.IConfig;
 import com.marimba.intf.util.IDirectory;
 import com.marimba.tools.ldap.LDAPPagedSearch;
 import com.marimba.tools.util.URLUTF8Encoder;
@@ -84,13 +85,15 @@ public abstract class AbstractAction extends DelayedAction implements IWebAppCon
     protected Map<String, String> LDAPVarsMap;
     protected String tenantName;
     protected IChannel channel;
-
+    protected IConfig tunerConfig;
+    
     protected void init(HttpServletRequest request) {
         try {
             this.context = getServlet().getServletConfig().getServletContext();
             this.features = (IDirectory) context.getAttribute(MGR_FEATURES);
             this.server = (IServer) features.getChild(MGR_SERVER);
             this.tenantMgr = (ITenantManager) features.getChild("tenantMgr");
+            this.tunerConfig = (IConfig) features.getChild("tunerConfig");
             String tenantName = TenantHelper.getTenantName(request);
             if(null != tenantName && !"admin".equalsIgnoreCase(tenantName)) {
                 this.tenant = TenantHelper.getTenantObject(tenantMgr, tenantName);
@@ -135,6 +138,11 @@ public abstract class AbstractAction extends DelayedAction implements IWebAppCon
         }
         return false;
     }
+    
+    protected IConfig getTunerConfig() {
+        return this.tunerConfig;
+    }
+
     protected boolean hasLocalDBConfig(ITenant tenant) {
         try {
             return ("local".equals(tenant.getAccessControlMgr().getActive()));

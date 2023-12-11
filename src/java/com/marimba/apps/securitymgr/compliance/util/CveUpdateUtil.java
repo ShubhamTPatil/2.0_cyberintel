@@ -65,41 +65,40 @@ public class CveUpdateUtil implements ICveUpdateConstants {
   }
 
   // Method to download cve jsoz zip file from cve site
-
   public boolean downloadCVEJSON(String urlStr, int timeoutMinutes, String resultFile) {
-    int TIMEOUT_VALUE = timeoutMinutes * 1000 * 60;
+      boolean downloadFailed = true;
+      int TIMEOUT_VALUE = timeoutMinutes * 1000 * 60;
+      info("Time limit for processing cve download operation : " + timeoutMinutes);
+      try {
 
-    info("Time limit for processing cve download operation : " + timeoutMinutes);
-    try {
-      URL url = new URL(urlStr);
+          URL testUrl = new URL(urlStr);
+          StringBuilder answer = new StringBuilder(100000);
 
-      HttpURLConnection openConnection = (HttpURLConnection) url.openConnection();
-      openConnection.setConnectTimeout(TIMEOUT_VALUE);
-      openConnection.setReadTimeout(TIMEOUT_VALUE);
-      openConnection.setRequestProperty("http.protocol.single-cookie-header", "true");
-      openConnection.connect();
+          URLConnection urlConnection = testUrl.openConnection();
+          urlConnection.setConnectTimeout(TIMEOUT_VALUE);
+          urlConnection.setReadTimeout(TIMEOUT_VALUE);
+          urlConnection.setRequestProperty("http.protocol.single-cookie-header", "true");
+          urlConnection.connect();
 
-      try (InputStream ip = openConnection.getInputStream()) {
-        copyFile(ip, resultFile);
-        return false;
-      } catch (IOException ioe) {
-        if (DEBUG >= 5) {
-          ioe.printStackTrace();
-        }
+          InputStream ip = null;
+
+          try {
+              ip = urlConnection.getInputStream();
+              copyFile(ip, resultFile);
+              downloadFailed = false;
+          } catch (IOException ioe) {
+              ioe.printStackTrace();
+              downloadFailed = true;
+          }
+      } catch (SocketTimeoutException ste) {
+          ste.printStackTrace();
+          downloadFailed = true;
+          info("More than " + TIMEOUT_VALUE + " elapsed.");
+      } catch (Exception ex) {
+          ex.printStackTrace();
       }
-    } catch (SocketTimeoutException ste) {
-      if (DEBUG >= 5) {
-        ste.printStackTrace();
-      }
 
-      info("Processing tine is taking more than" + TIMEOUT_VALUE + "elapsed.");
-    } catch (Exception ex) {
-      if (DEBUG >= 5) {
-        ex.printStackTrace();
-      }
-      error(ex.getMessage());
-    }
-    return true;
+      return downloadFailed;
   }
 
   private void copyFile(InputStream source, String fileName) throws IOException {
