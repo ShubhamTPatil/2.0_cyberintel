@@ -30,11 +30,23 @@
 <script type="text/javascript" src="/spm/js/newdashboard/chartjs.hammer.js"></script>
 <script type="text/javascript" src="/spm/js/newdashboard/chartjs-plugin-zoom.js"></script>
 
+<!-- Export report as a file -->
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+
 <script type="text/javascript">
+
+let configReportModalTable;
 
 $(function () {
 
   $('#dashboard').addClass('nav-selected');
+
+  configReportModalTable = $('#configReportModalTable').DataTable({});
 
     var pieChartData = [];
     pieChartData.push(<bean:write name="configDashboardForm" property="configProfileCompliant"/>);
@@ -70,7 +82,10 @@ var ctx1 = $("#complianceDonutChart");
                 },
                 legend: {
                     display: false,
-                    position: "bottom"
+                    position: "bottom",
+                    labels: {
+                      boxWidth: 20, // Set the desired width of the legend
+                    }
                 },
                 tooltip: {
                     callbacks: {
@@ -129,6 +144,9 @@ var ctx1 = $("#complianceDonutChart");
         legend: {
           display: true,
           position: "bottom",
+          labels: {
+            boxWidth: 20, // Set the desired width of the legend
+          }
         },
       },
       responsive: false,
@@ -172,7 +190,7 @@ var ctx1 = $("#complianceDonutChart");
   var barChart = new Chart(ctx, config);
 
   
-  function showMachinesModalTable(machinesModalData) {
+  function showMachinesModalTable(machinesModalData, contentTitle) {
 
     $('#machinesModalTable').DataTable().clear();
 
@@ -210,7 +228,10 @@ var ctx1 = $("#complianceDonutChart");
         'className': 'dt-body-center',
         'render': function (data, type, full, meta) {
           let machineName = '\'' + full["machineName"] + '\'';
-          return '<input type="button" onClick="showConfigReport(' + machineName + ',' + full["contentId"] + ',' + full["profileId"] + ')" class="view-details btn btn-sm btn-primary" value="View Details">';
+          let profileTitle = '\'' + full["profileName"] + '\'';
+          let finishedAt = '\'' + full["finishedAt"] + '\'';
+          contentTitle = '\'' + contentTitle + '\'';
+          return '<input type="button" onClick="showConfigReport(' + machineName + ',' + full["contentId"] + ',' + contentTitle + ',' + full["profileId"] + ',' + profileTitle + ',' + finishedAt +')" class="view-details btn btn-sm btn-primary" value="View Details">';
         }
       }]
     });
@@ -273,10 +294,11 @@ var ctx1 = $("#complianceDonutChart");
 
       //[{"profileName":"xccdf_org.ssgproject.content_profile_C2S","profileId":4,"contentId":2,"rulesCompliance":"63/168","contentTitle":"Guide to the Secure Configuration of CentOS 7","profileTitle":"C2S for Red Hat Enterprise Linux 7","machineName":"vmcentos-qaendpoint","contentName":"xccdf_org.ssgproject.content_benchmark_CENTOS-7"}]
 
-      var contId = barChartSeverityData.contentIds[dataIndex];
-      var compType = barChartSeverityData.datasets[datasetIndex].label;
+      let contId = barChartSeverityData.contentIds[dataIndex];
+      let compType = barChartSeverityData.datasets[datasetIndex].label;
+      let contentTitle = barChartSeverityData.labels[dataIndex];
 
-      $('#machinesModalLabel').html(barChartSeverityData.labels[dataIndex] + ' - ' + compType);
+      $('#machinesModalLabel').html(contentTitle + ' - <b>' + compType + '</b>');
 
       $.ajax({
         url: './configDashboard.do',
@@ -293,7 +315,7 @@ var ctx1 = $("#complianceDonutChart");
           //console.log(response);
           //console.log(JSON.stringify(response));
 
-          showMachinesModalTable(response);
+          showMachinesModalTable(response,contentTitle);
 
           $('#machinesModalFilter')
             .html($("<option></option>")
@@ -332,29 +354,93 @@ var ctx1 = $("#complianceDonutChart");
     */
   }
 
+   //Line Chart
+   var contentLineChartCtx = document.getElementById('contentLineChart').getContext('2d');
+
+var contentLineChartData = {
+  labels: ["Jun 23","Jul 23", "Aug 23", "Sept 23", "Oct 23", "Nov 23" ],
+  datasets: [
+    {
+      label: 'Windows 10 STIG',
+      data: [25, 21, 17, 12, 9, 5]
+    },
+    {
+      label: 'RHEL 8 STIG',
+      data: [50, 38, 31, 25, 19, 9]
+    }
+  ]
+};
+
+var contentLineChartConfig = {
+  type: 'line',
+  data: contentLineChartData,
+  options: {
+    tension: 0.4,
+    responsive: false,
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Finished scan time"
+        }
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Number of failed rules"
+        }
+      },
+    },
+    plugins: {
+      legend: {
+          display: true,
+          position: "bottom",
+          labels: {
+            boxWidth: 20, // Set the desired width of the legend
+          }
+      },
+      zoom: {
+        zoom: {
+          wheel: {
+            enabled: false,
+          },
+          pinch: {
+            enabled: false,
+          },
+          mode: 'xy'
+        },
+        pan: {
+          enabled: false,
+          mode: 'xy'
+        }
+      }
+    }
+  }
+};
+
+var contentLineChart = new Chart(contentLineChartCtx, contentLineChartConfig);
+
 
   //Line Chart
-  var ctxLineChart = document.getElementById('lineChart').getContext('2d');
+  var profileLineChartCtx = document.getElementById('profileLineChart').getContext('2d');
 
-  var chartData = {
+  var profileLineChartData = {
     labels: ["Jun 23","Jul 23", "Aug 23", "Sept 23", "Oct 23", "Nov 23" ],
     datasets: [
       {
-        label: 'Profile 1',
-        color: 'red',
+        label: 'CAT I Only',
         data: [25, 21, 17, 12, 9, 5]
       },
       {
-        label: 'Profile 2',
-        color: 'blue',
+        label: 'I - Mission Critical Classified',
         data: [50, 38, 31, 25, 19, 9]
       }
     ]
   };
 
-  var lineChartConfig = {
+  var profileLineChartConfig = {
     type: 'line',
-    data: chartData,
+    data: profileLineChartData,
     options: {
       tension: 0.4,
       responsive: false,
@@ -375,7 +461,10 @@ var ctx1 = $("#complianceDonutChart");
       plugins: {
         legend: {
             display: true,
-            position: "bottom"
+            position: "bottom",
+            labels: {
+              boxWidth: 20, // Set the desired width of the legend
+            }
         },
         zoom: {
           zoom: {
@@ -396,20 +485,57 @@ var ctx1 = $("#complianceDonutChart");
     }
   };
 
-  var myChart = new Chart(ctxLineChart, lineChartConfig);
+  var profileLineChart = new Chart(profileLineChartCtx, profileLineChartConfig);
 
-  let configReportModalTable = $('#configReportModalTable').DataTable({
-        "destroy": true, // In order to reinitialize the datatable
-        "pagination": true, // For Pagination
-        "bPaginate": true,
-        "sorting": true, // For sorting
-        "ordering": true,
-        "searching": true,
+
+  });
+
+  function setConfigReportData(machineName, data, contentTitle, profileTitle, finishedAt) {
+
+    configReportModalTable.destroy();
+
+    configReportModalTable = $('#configReportModalTable').DataTable({
+        destroy: true,
+        dom: 'Bfrtip',
+        buttons: [
+          /*{
+            extend: 'excelHtml5',
+            title: machineName+'_ConfigurationReport_'+finishedAt,
+            className: 'btn btn-sm btn-primary'
+          },
+          {
+            extend: 'csvHtml5',
+            title: machineName+'_ConfigurationReport_'+finishedAt,
+            className: 'btn btn-sm btn-primary'
+          },*/
+          {
+            extend: 'pdfHtml5',
+            text: 'Export',
+            title: machineName+'_ConfigurationReport_'+finishedAt,
+            className: 'btn btn-sm btn-outline-primary float-start',
+            customize: function(doc) {
+              
+              doc.content[0].text = "Configuration Scan Report";
+
+              let text = "Machine Name: "+machineName+"\n"
+                +"Scan Type: Configuration\n"
+                +"Content Title: "+ contentTitle +"\n"
+                +"Profile Title: "+ profileTitle +"\n"
+                +"Scan Finished At: "+ finishedAt +"\n";
+
+              let margin = [0,0,0,12];
+
+              let updatedText = {text: text, margin: margin};
+
+              doc.content.splice(1,0,updatedText);
+            }
+          },
+        ],
         language: {
           search: "_INPUT_",
           searchPlaceholder: "Search..."
         },
-        "aaData": [],
+        "aaData": data,
         "columns": [
           {
             "title": "Title",
@@ -434,24 +560,19 @@ var ctx1 = $("#complianceDonutChart");
         }]
       });
 
-  });
+      
+    // console.log('setConfigReportData');
+    // console.log(data);
 
-  function setConfigReportData(data) {
+    // console.log(JSON.stringify(data));
 
-    let configReportModalTable = $('#configReportModalTable').DataTable();
+    // configReportModalTable.clear();
+    // configReportModalTable.rows.add(data);
+    // configReportModalTable.draw();
 
-    console.log('setConfigReportData');
-    console.log(data);
-
-    console.log(JSON.stringify(data));
-
-    configReportModalTable.clear();
-    configReportModalTable.rows.add(data);
-    configReportModalTable.draw();
-    
   }
 
-  function showConfigReport(machineName, contentId, profileId) {
+  function showConfigReport(machineName, contentId, contentTitle, profileId, profileTitle, finishedAt) {
     $.ajax({
         url: './rule_results.do',
         type: 'POST',
@@ -469,13 +590,40 @@ var ctx1 = $("#complianceDonutChart");
           //console.log(response);
           //console.log(JSON.stringify(response));
 
-          $('#configReportModalLabel').html("Configuration assessment results for "+machineName);
-          setConfigReportData(response['result']);
+          $('#configReportModalLabel').html("Configuration assessment results for <b>"+machineName+"</b>");
+          setConfigReportData(machineName, response['result'], contentTitle, profileTitle, finishedAt);
+
+          $('#configReportStatusFilter')
+            .html($("<option></option>")
+              .attr("value", "")
+              .text("Status"));
+
+          let configReportStatusFilterData = new Set();
+          response['result'].forEach(x => {
+            configReportStatusFilterData.add(x['status']);
+          });
+
+          configReportStatusFilterData.forEach(status => {
+            $('#configReportStatusFilter')
+              .append($("<option></option>")
+                .attr("value", status)
+                .text(status));
+          })
 
           var configReportModal = new bootstrap.Modal(document.getElementById('configReportModal'), {
             keyboard: false
           });
           configReportModal.show();
+
+          $("#configReportStatusFilter").change(function (e) {
+            if($('#configReportStatusFilter').val() === "") {
+              setConfigReportData(machineName, response['result'], contentTitle, profileTitle, finishedAt);
+            } else {
+              let data = response['result'].filter(x => x.status === $('#configReportStatusFilter').val());
+              setConfigReportData(machineName, data, contentTitle, profileTitle, finishedAt);
+            }
+          })
+          
     }});
   }
 
@@ -684,18 +832,29 @@ var ctx1 = $("#complianceDonutChart");
           </div>
         </div>
 
-
         <div class="row">
-          <div class="col-lg-12">
+          <div class="col-lg-6">
             <div class="card">
               <div class="card-body pb-0">
-                <h5 class="card-title">History Trend</h5>
+                <h5 class="card-title">Historical Compliance for STIGs</h5>
                 <div style="position: relative; width: 100%; margin: auto;">
-                  <canvas id="lineChart" height="400" style="width: 100%"></canvas>
+                  <canvas id="contentLineChart" height="300" style="width: 100%"></canvas>
                 </div>
               </div>
             </div>
           </div>
+
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-body pb-0">
+                <h5 class="card-title">Historical Compliance for Profiles</h5>
+                <div style="position: relative; width: 100%; margin: auto;">
+                  <canvas id="profileLineChart" height="300" style="width: 100%"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -748,6 +907,11 @@ var ctx1 = $("#complianceDonutChart");
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
+            <div style="margin-left:15px; float:right;">
+              <select id="configReportStatusFilter" class="form-select form-select-sm" style="width:fit-content; float:left;">
+              </select>
+            </div>
+
             <table id="configReportModalTable" class="table table-striped table-bordered" style="width: 100%;">
               <thead>
                 <tr>

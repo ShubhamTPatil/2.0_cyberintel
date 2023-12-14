@@ -2208,7 +2208,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
         protected void execute(IStatementPool pool) throws SQLException {
 
             String sqlStr = "select machine_name,content_id, content_name, content_title,\n" +
-                    "       profile_id,profile_name,profile_title,rules_compliance \n" +
+                    "       profile_id,profile_name,profile_title,rules_compliance,finished_at \n" +
                     "from inv_security_xccdf_compliance\n" +
                     "where content_id= "+contentId+" and overall_compliant_level= '"+complianceType+"'\n";
 
@@ -2231,6 +2231,8 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
                     byte rulesCompliance[]  = rs.getBytes("rules_compliance");
 
+                    String finishedAt = rs.getString("finished_at");
+
 
                     JSONObject jsonObject = new JSONObject();
 
@@ -2246,7 +2248,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
 
                     jsonObject.put("rulesCompliance",rulesCompliance);
 
-                    //jsonObject.put(jsonObject);
+                    jsonObject.put("finishedAt",finishedAt);
 
                     jsonArray.put(jsonObject);
 
