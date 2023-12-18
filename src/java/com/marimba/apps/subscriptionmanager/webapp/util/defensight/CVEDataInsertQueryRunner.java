@@ -4,12 +4,27 @@ import com.marimba.apps.securitymgr.db.DatabaseAccess;
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
 import com.marimba.intf.db.IStatementPool;
 import com.marimba.apps.subscriptionmanager.webapp.bean.CVEFormBean;
+import com.marimba.apps.subscriptionmanager.webapp.bean.cve.RootCVEBean;
+import com.marimba.apps.subscriptionmanager.webapp.bean.cve.VulnerabilitiesBean;
+import com.marimba.apps.subscriptionmanager.webapp.bean.cve.CVEBean;
+import com.marimba.apps.subscriptionmanager.webapp.bean.cve.CVSSMetricsV2Bean;
+import com.marimba.apps.subscriptionmanager.webapp.bean.cve.CVSSDataBean;
+import com.marimba.apps.subscriptionmanager.webapp.api.RestClient;
+import com.marimba.apps.subscriptionmanager.webapp.bean.cve.CVSSMetricsV3Bean;
+import com.marimba.apps.subscriptionmanager.webapp.bean.cve.ConfigurationBean;
+import com.marimba.apps.subscriptionmanager.webapp.bean.cve.NodeBean;
+import com.marimba.apps.subscriptionmanager.webapp.bean.cve.CPEMatchBean;
+import com.marimba.apps.subscriptionmanager.webapp.bean.cve.DescriptionBean;
+import com.marimba.intf.util.IConfig;
+import com.marimba.apps.subscriptionmanager.webapp.util.defensight.ILogger;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Timestamp;
 
 import com.fasterxml.jackson.core.JsonFactory;
@@ -18,6 +33,23 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+
 
 /**
  * @Author Yogesh Pawar
@@ -30,20 +62,18 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 public class CVEDataInsertQueryRunner extends DatabaseAccess {
 
 
-  public CVEDataInsertQueryRunner(SubscriptionMain main, String jsonFilePath) {
+  public CVEDataInsertQueryRunner(SubscriptionMain main, String jsonFilePath, IConfig tunerConfig,
+      LinkedHashMap<String, String> errorMap) {
     try {
-
-      runQuery(new InsertCveDetailsInBulk(main, jsonFilePath));
-
+      runQuery(new InsertCveDetailsInBulk(main, jsonFilePath, tunerConfig, errorMap));
     } catch (Exception ex) {
-
       ex.printStackTrace();
-
     }
 
   }
 
-  class InsertCveDetailsInBulk extends com.marimba.apps.securitymgr.db.QueryExecutor {
+  class InsertCveDetailsInBulk extends com.marimba.apps.securitymgr.db.QueryExecutor implements
+      ILogger {
 
     String jsonDir;
 
@@ -69,12 +99,64 @@ public class CVEDataInsertQueryRunner extends DatabaseAccess {
     int childBatchRowCounter = 0;
     int childBatchCounter = 0;
 
+    private String url;
 
-    public InsertCveDetailsInBulk(SubscriptionMain main, String jsonFilePath) {
+    private String apiKey;
+
+    DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+
+    LinkedHashMap<String, String> error;
+
+    List<String> failedEndpoints = new ArrayList<>();
+
+    boolean isUpdate = Boolean.FALSE;
+
+    IConfig tunerConfig;
+
+
+    public InsertCveDetailsInBulk(SubscriptionMain main, String jsonFilePath, IConfig tunerConfig,
+        LinkedHashMap<String, String> error) {
       super(main);
       this.jsonFilePath = jsonFilePath;
       this.jsonFactory = new JsonFactory();
       this.objectMapper = new ObjectMapper();
+      this.tunerConfig = tunerConfig;
+      this.error = error;
+      this.url = tunerConfig.getProperty("defensight.cve.api.url");
+      this.apiKey = tunerConfig.getProperty("defensight.cve.api.key");
+    }
+
+
+    /**
+     * On the basis of total records prepare the pagination endpoints to fetch the remaining
+     * records.
+     *
+     * @param url
+     * @param totalRecords
+     * @param startIndex
+     * @return
+     */
+    private List<String> getApiEndpoint(String url, int totalRecords, int startIndex) {
+      List<String> apiEndpoints = new ArrayList<>();
+      int resultPerPage = 2000;
+
+      int totalPages = (int) Math.ceil((double) totalRecords / resultPerPage);
+      for (int page = 0; page < totalPages; page++) {
+        String modifyUrl;
+        int currentIndex = startIndex + (page) * resultPerPage;
+        if (startIndex != 0) {
+          modifyUrl = url + "?resultsPerPage=" + resultPerPage + "&startIndex=" + currentIndex;
+        } else {
+          if (isUpdate) {
+            modifyUrl = url + "&resultsPerPage=" + resultPerPage + "&startIndex=" + currentIndex;
+          } else {
+            modifyUrl = url + "?resultsPerPage=" + resultPerPage + "&startIndex=" + currentIndex;
+
+          }
+        }
+        apiEndpoints.add(modifyUrl);
+      }
+      return apiEndpoints;
     }
 
     /**
@@ -84,83 +166,361 @@ public class CVEDataInsertQueryRunner extends DatabaseAccess {
      * @param pool The statement pool to retrieve database connections.
      */
     protected void execute(IStatementPool pool) {
-      int batchSize = 4000;
-      int rowCount = 0;
+
+      error = new LinkedHashMap<>(); //Instanciating error message
       long startTime = System.currentTimeMillis();
 
       try {
+        List<String> allEndpoints = null;
+        RootCVEBean rootCVEBean = callApi();
         connection = pool.getConnection();
 
-        if (!truncateExistingData(connection)) {
-          error("giving up on bulk insertion operation");
-          throw new SQLException();
-        }
+        int totalResults = rootCVEBean.getTotalResults();
 
-        setupStatements(connection);
-        connection.setAutoCommit(false);
+        HashMap<Integer, String> lastInsertIndex = getLastInsertedIndex(connection);
+        Map.Entry<Integer, String> entry = lastInsertIndex.entrySet().iterator().next();
+        int lastInsertedIndex = entry.getKey();
+        String lastModifyDate = entry.getValue();
 
-        try (FileInputStream fis = new FileInputStream(jsonFilePath)) {
-          jsonParser = createJsonParser(fis);
-
-          while (jsonParser.nextToken() != null) {
-            JsonNode recordNode = objectMapper.readTree(jsonParser);
-            processRecordNode(recordNode);
-            rowCount++;
-            if (rowCount % batchSize == 0) {
-              batchCounter++;
-              executeBatchStatements();
-              info(" **** Executed Parent Batch ****", batchCounter);
-              rowCount = 0;
+        if (lastInsertedIndex == 0 && lastModifyDate == null) {
+          setupStatements(connection);
+          setCveInformation(rootCVEBean, cveInfoStmt, cveProductStmt);
+          executeBatchStatements(cveInfoStmt, cveProductStmt); //insert first 2K records.
+          allEndpoints = getApiEndpoint(url, totalResults, 2000);
+          asyncApiCall(8, allEndpoints);
+        } else {
+          if (lastInsertedIndex != 0 && lastInsertedIndex < totalResults
+              || lastInsertedIndex <= totalResults) {
+            if (lastInsertedIndex != totalResults) {
+              int count = totalResults - lastInsertedIndex;
+              setupStatements(connection);
+              allEndpoints = getApiEndpoint(url, count, lastInsertedIndex);
+              asyncApiCall(8,
+                  allEndpoints); //Insert the all new published and remaining records from where its fails in last operation.
             }
+            updateCveInformation(url,
+                lastModifyDate); //check the modified records since last insertion and into DB.
           }
-
-          //if the {batchSize} and {childBatchSize} is less than threshold value and rowCount > 0
-          // then execute the all batch and insert remaining data into db.
-          if (rowCount > 0) {
-            batchCounter++;
-            executeBatchStatements();
-            info("**** Executed remaining all Batch ****", batchCounter);
-
-          }
-
-          finalizeExecution();
-        } catch (Exception exception) {
-          throw new Exception();
         }
 
-        long endTime = System.currentTimeMillis();
-        printExecutionSummary(startTime, endTime);
-
+        //if api gives 403 error or fail to send response.
+        if (failedEndpoints != null && !failedEndpoints.isEmpty() && failedEndpoints.size() > 0) {
+          asyncApiCall(8, failedEndpoints);
+        }
       } catch (Exception e) {
         error("Error Occurred in ()" + e.getMessage());
       }
     }
 
+
     /**
-     * Before inserting the bulk data truncate the existing old records
+     * This method will update the existing cve information.
+     *
+     * @param url
+     * @param lstModifyDate
+     */
+    private void updateCveInformation(String url, String lstModifyDate) {
+      try {
+        isUpdate = Boolean.TRUE;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        String currentDate = currentDateTime.format(formatter);
+        LocalDateTime lastUpdatedDate = LocalDateTime.parse(lstModifyDate, outputFormatter);
+        String lastModifyDateTime = lastUpdatedDate.format(
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS"));
+
+        JsonNode response = RestClient.build(
+                url + "?lastModStartDate=" + lastModifyDateTime + "&lastModEndDate=" + currentDate)
+            .executeGetRequest();
+
+        RootCVEBean cveBean = parseJsonToBean(response);
+
+        if (cveBean.getTotalResults() < 2000) {
+          setupUpdateStatement(connection);
+          setUpdateCveInformation(cveBean, cveInfoStmt);
+          executeBatchStatements(cveInfoStmt);
+        } else {
+          //update the first page = first 2000 records.
+          setupUpdateStatement(connection);
+          setUpdateCveInformation(cveBean, cveInfoStmt);
+          executeBatchStatements(cveInfoStmt);
+
+          url = url + "?lastModStartDate=" + lastModifyDateTime + "&lastModEndDate=" + currentDate;
+          List<String> updateEndpoint = getApiEndpoint(url, cveBean.getTotalResults(), 2000);
+          asyncApiCall(8, updateEndpoint);
+        }
+      } catch (Exception exception) {
+        handleError(exception);
+      }
+    }
+
+    /**
+     * Check the last inserted index and date.
      *
      * @param connection
+     * @return
      */
-    /**
-     * Truncates the existing data from specific tables in the database.
-     *
-     * @param connection The database connection to be used for truncating tables.
-     */
-    private boolean truncateExistingData(Connection connection) {
-      try (Statement statement = connection.createStatement()) {
-        String[] tablesToTruncate = {"cve_info", "cve_product_info", "cve_vendor_info"};
-
-        for (String table : tablesToTruncate) {
-          statement.addBatch("TRUNCATE TABLE " + table);
+    private HashMap<Integer, String> getLastInsertedIndex(Connection connection) {
+      try {
+        String fetchIndexQuery = "select MAX(id) as lastInsertId, MAX(last_update) as lastUpdateDate  from cve_info;";
+        PreparedStatement prepareStatement = connection.prepareStatement(fetchIndexQuery);
+        ResultSet resultSet = prepareStatement.executeQuery();
+        HashMap<Integer, String> lstInsertedIndexAndDate = new HashMap<>();
+        while (resultSet.next()) {
+          String lstDate = resultSet.getString(2);
+          if (lstDate != null) {
+            StringBuffer date = new StringBuffer(lstDate);
+            int length = 23 - date.length();
+            for (int i = 0; i < length; i++) {
+              date.append("0");
+            }
+            lstInsertedIndexAndDate.put(resultSet.getInt(1), date.toString());
+            return lstInsertedIndexAndDate;
+          }
+        }
+        if (lstInsertedIndexAndDate.isEmpty()) {
+          lstInsertedIndexAndDate.put(0, null);
+          return lstInsertedIndexAndDate;
         }
 
-        statement.executeBatch();
-
-        info("Truncated data from cve_info, cve_product_info, cve_vendor_info tables");
-        return true;
       } catch (SQLException e) {
-        error("Error Occurred in truncateExistingData()" + e.getMessage());
-        return false;
+        handleError(e);
+      }
+      return null;
+    }
+
+    /**
+     * It is accepting the batch size and list of url (total pages to be fetched.) and processing
+     * the multiple  request parallel
+     *
+     * @param apiBatch
+     * @param allEndpoints
+     */
+    private void asyncApiCall(int apiBatch, List<String> allEndpoints) {
+      try {
+        ExecutorService executorService = Executors.newFixedThreadPool(apiBatch);
+        List<CompletableFuture<JsonNode>> futures = new ArrayList<>();
+        for (int i = 0; i < allEndpoints.size(); i += apiBatch) {
+          List<String> batch = allEndpoints.subList(i, Math.min(i + apiBatch, allEndpoints.size()));
+          Thread.sleep(6000);
+          for (String endPoint : batch) {
+            Thread.sleep(6000);
+            futures.add(CompletableFuture.supplyAsync(() -> (JsonNode) callApi(endPoint, apiKey),
+                executorService));
+          }
+
+          CompletableFuture<Void> batchAllOf = CompletableFuture.allOf(
+              futures.toArray(new CompletableFuture[0]));
+          batchAllOf.get();
+
+          for (CompletableFuture<JsonNode> future : futures) {
+            JsonNode result = future.get();
+            ObjectMapper objectMapper = new ObjectMapper();
+            if (result != null) {
+              RootCVEBean cveBean = objectMapper.treeToValue(result, RootCVEBean.class);
+              if (cveBean != null && !cveBean.getVulnerabilities().isEmpty()) {
+                if (!isUpdate) { //if it there is no data inserted in db then do the insertion operation
+                  setCveInformation(cveBean, cveInfoStmt, cveProductStmt);
+                  executeBatchStatements(cveInfoStmt, cveProductStmt);
+                } else {
+                  setUpdateCveInformation(cveBean, cveInfoStmt);
+                  executeBatchStatements(cveInfoStmt);
+                }
+              }
+            }
+          }
+          futures.clear();
+        }
+        executorService.shutdown();
+      } catch (Exception exception) {
+        handleError(exception);
+      }
+    }
+
+    /**
+     * Construct the prepared statement by reading the @{RootCVEBean} and update the records
+     *
+     * @param rootCVEBean
+     * @param preparedStmt
+     */
+    private void setUpdateCveInformation(RootCVEBean rootCVEBean, PreparedStatement preparedStmt) {
+      error = new LinkedHashMap<>();
+      try {
+        for (VulnerabilitiesBean vulnerabilitiesBean : rootCVEBean.getVulnerabilities()) {
+          CVEBean cveBean = vulnerabilitiesBean.getCveBean();
+          LocalDateTime dateTime = LocalDateTime.parse(cveBean.getLastModifyDate(),
+              DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+          dateTime.format(outputFormatter);
+          preparedStmt.setTimestamp(1, Timestamp.valueOf(dateTime.format(outputFormatter)));
+
+          LocalDateTime publishDate = LocalDateTime.parse(cveBean.getPublishDate(),
+              DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+          dateTime.format(outputFormatter);
+          preparedStmt.setTimestamp(2, Timestamp.valueOf(publishDate));
+
+          if (cveBean.getMetrics().getCvssMetricV2() != null) {
+            for (CVSSMetricsV2Bean cvssMetricsV2Bean : cveBean.getMetrics().getCvssMetricV2()) {
+              if (!cvssMetricsV2Bean.getSeverity().isEmpty()) {
+                preparedStmt.setString(3, cvssMetricsV2Bean.getSeverity());
+              } else {
+                preparedStmt.setString(3, null);
+              }
+              String source = cvssMetricsV2Bean.getV2Source();
+              if (!source.isEmpty() && source.equalsIgnoreCase("nvd@nist.gov")) {
+                CVSSDataBean cvssDataBean = cvssMetricsV2Bean.getCvssData();
+                if (!cvssDataBean.getBaseScore().isEmpty()) {
+                  preparedStmt.setString(4, cvssDataBean.getBaseScore());
+                } else {
+                  preparedStmt.setString(4, null);
+                }
+              } else {
+                preparedStmt.setString(4, null);
+              }
+              preparedStmt.setString(5, null);
+            }
+          } else {
+            preparedStmt.setString(3, null);
+            preparedStmt.setString(4, "-1");
+            preparedStmt.setString(5, "-1");
+          }
+          if (cveBean.getMetrics().getCvssMetricV3() != null) {
+            for (CVSSMetricsV3Bean cvssMetricsV3Bean : cveBean.getMetrics().getCvssMetricV3()) {
+              String source = cvssMetricsV3Bean.getV3Source();
+              if (!source.isEmpty() && source.equalsIgnoreCase("nvd@nist.gov")) {
+                CVSSDataBean cvssDataBean = cvssMetricsV3Bean.getCvssData();
+                preparedStmt.setString(5, cvssDataBean.getBaseScore());
+                preparedStmt.setString(3,
+                    cvssDataBean.getBaseV3Severity()); //if v3 cvss is present then override the v2 cvss severity
+              } else {
+                preparedStmt.setString(5, "-1");
+
+              }
+            }
+          }
+          preparedStmt.setTimestamp(6, Timestamp.valueOf(publishDate));
+
+          if (cveBean.getDescription() != null) {
+            for (DescriptionBean descriptionBean : cveBean.getDescription()) {
+              if (descriptionBean.getLanguage().equalsIgnoreCase("en")) {
+                preparedStmt.setString(7, descriptionBean.getValue());
+              }
+            }
+          } else {
+            preparedStmt.setString(7, null);
+          }
+          LocalDateTime currentDateTime = LocalDateTime.now();
+          preparedStmt.setTimestamp(8, Timestamp.valueOf(currentDateTime.format(outputFormatter)));
+          preparedStmt.setString(9, cveBean.getId()); //where cve_id = cve_id
+          preparedStmt.addBatch(); //batch size will be the same  as result per page size
+        }
+      } catch (Exception exception) {
+        error(exception.getMessage());
+        error.put("ERROR", exception.getMessage());
+      }
+    }
+
+    /**
+     * Construct the cve_product and cve_info table statement to insert the data into DB
+     *
+     * @param rootCVEBean
+     * @param prepearedStmt
+     */
+    private void setCveInformation(RootCVEBean rootCVEBean, PreparedStatement... prepearedStmt) {
+      error = new LinkedHashMap<>();
+      try {
+        for (VulnerabilitiesBean vulnerabilitiesBean : rootCVEBean.getVulnerabilities()) {
+          CVEBean cveBean = vulnerabilitiesBean.getCveBean();
+          prepearedStmt[0].setString(1, cveBean.getId());
+          LocalDateTime dateTime = LocalDateTime.parse(cveBean.getLastModifyDate(),
+              DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+          dateTime.format(outputFormatter);
+          prepearedStmt[0].setTimestamp(2, Timestamp.valueOf(dateTime.format(outputFormatter)));
+
+          LocalDateTime publishDate = LocalDateTime.parse(cveBean.getPublishDate(),
+              DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+          dateTime.format(outputFormatter);
+          prepearedStmt[0].setTimestamp(3, Timestamp.valueOf(publishDate));
+
+          if (cveBean.getMetrics().getCvssMetricV2() != null) {
+            for (CVSSMetricsV2Bean cvssMetricsV2Bean : cveBean.getMetrics().getCvssMetricV2()) {
+              if (!cvssMetricsV2Bean.getSeverity().isEmpty()) {
+                prepearedStmt[0].setString(4, cvssMetricsV2Bean.getSeverity());
+              } else {
+                prepearedStmt[0].setString(4, null);
+              }
+              String source = cvssMetricsV2Bean.getV2Source();
+              if (!source.isEmpty() && source.equalsIgnoreCase("nvd@nist.gov")) {
+                CVSSDataBean cvssDataBean = cvssMetricsV2Bean.getCvssData();
+                if (!cvssDataBean.getBaseScore().isEmpty()) {
+                  prepearedStmt[0].setString(5, cvssDataBean.getBaseScore());
+                } else {
+                  prepearedStmt[0].setString(5, null);
+                }
+              } else {
+                prepearedStmt[0].setString(5, null);
+              }
+              prepearedStmt[0].setString(6, null);
+            }
+          } else {
+            prepearedStmt[0].setString(4, null);
+            prepearedStmt[0].setString(5, null);
+            prepearedStmt[0].setString(6, null);
+          }
+          prepearedStmt[0].setTimestamp(7, Timestamp.valueOf(publishDate));
+
+          prepearedStmt[0].setString(8,
+              null); //setting null as api dose not provides the cwe value.
+          prepearedStmt[0].setString(9, cveBean.getId());
+
+          if (cveBean.getDescription() != null) {
+            for (DescriptionBean descriptionBean : cveBean.getDescription()) {
+              if (descriptionBean.getLanguage().equalsIgnoreCase("en")) {
+                prepearedStmt[0].setString(10, descriptionBean.getValue());
+              }
+            }
+          } else {
+            prepearedStmt[0].setString(10, null);
+
+          }
+          LocalDateTime currentDateTime = LocalDateTime.now();
+          prepearedStmt[0].setTimestamp(11,
+              Timestamp.valueOf(currentDateTime.format(outputFormatter)));
+
+          if (cveBean.getMetrics().getCvssMetricV3() != null) {
+            for (CVSSMetricsV3Bean cvssMetricsV3Bean : cveBean.getMetrics().getCvssMetricV3()) {
+              String source = cvssMetricsV3Bean.getV3Source();
+              if (!source.isEmpty() && source.equalsIgnoreCase("nvd@nist.gov")) {
+                CVSSDataBean cvssDataBean = cvssMetricsV3Bean.getCvssData();
+                prepearedStmt[0].setString(6, cvssDataBean.getBaseScore());
+                prepearedStmt[0].setString(4,
+                    cvssDataBean.getBaseV3Severity()); //if v3 cvss is present then override the v2 cvss severity
+              }
+            }
+          }
+
+          //Insert product Statement
+          if (cveBean.getConfiguration() != null) {
+            for (ConfigurationBean configurationBean : cveBean.getConfiguration()) {
+              if (configurationBean.getNodes() != null) {
+                for (NodeBean nodeBean : configurationBean.getNodes()) {
+                  if (nodeBean.getCpeMatch() != null) {
+                    for (CPEMatchBean cpeMatchBean : nodeBean.getCpeMatch()) {
+                      prepearedStmt[1].setString(1, cpeMatchBean.getCepCriteria());
+                      prepearedStmt[1].setString(2, cpeMatchBean.getMatchCriteriaId());
+                      prepearedStmt[1].setString(3, cveBean.getId());
+                      prepearedStmt[1].addBatch();
+                    }
+                  }
+                }
+              }
+            }
+          }
+          cveIndex++;
+          prepearedStmt[0].addBatch();
+        }
+      } catch (Exception exception) {
+        error(exception.getMessage());
+        error.put("ERROR", exception.getMessage());
       }
     }
 
@@ -175,7 +535,9 @@ public class CVEDataInsertQueryRunner extends DatabaseAccess {
       try {
         return jsonFactory.createParser(fis);
       } catch (IOException ioe) {
-        ioe.printStackTrace();
+        handleError(ioe);
+        error.put("ERROR", ioe.getMessage());
+
       }
       return null;
     }
@@ -192,10 +554,18 @@ public class CVEDataInsertQueryRunner extends DatabaseAccess {
 
       // Initialize prepared statements for CVE information
       cveInfoStmt = getProductCveStatement(connection); // Prepared statement for CVE information
-      cveVendorInfoStmt = getVendorStatement(
-          connection); // Prepared statement for vendor information
       cveProductStmt = getProductStatement(
           connection); // Prepared statement for product information
+    }
+
+    private void setupUpdateStatement(Connection connection) throws SQLException {
+      connection.setAutoCommit(false);
+      cveInfoStmt = getCVEUpdateStatement(connection);
+    }
+
+    private PreparedStatement getCVEUpdateStatement(Connection connection) throws SQLException {
+      return connection.prepareStatement(
+          "UPDATE cve_info SET modified=?, published=?, severity=?, v2_cvss=?, v3_cvss=?, cvss_time=?, summary=?,last_update=? WHERE cve_id=?");
     }
 
 
@@ -273,7 +643,7 @@ public class CVEDataInsertQueryRunner extends DatabaseAccess {
      */
     public PreparedStatement getProductStatement(Connection connection) throws SQLException {
       return connection.prepareStatement(
-          "INSERT INTO cve_product_info (id, name, version, cve_id) VALUES (?, ?, ?, ?)");
+          "INSERT INTO cve_product_info (criteria,  match_criteria_id, cve_id) VALUES (?, ?, ?)");
     }
 
     /**
@@ -297,8 +667,8 @@ public class CVEDataInsertQueryRunner extends DatabaseAccess {
      */
     public PreparedStatement getProductCveStatement(Connection connection) throws SQLException {
       return connection.prepareStatement(
-          "INSERT INTO cve_info (id, name, modified, published, severity, cvss, cvss_time, cwe, cve_id, summary) "
-              + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+          "INSERT INTO cve_info (name, modified, published, severity, v2_cvss,v3_cvss, cvss_time, cwe, cve_id, summary,last_update ) "
+              + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     }
 
     /**
@@ -333,6 +703,8 @@ public class CVEDataInsertQueryRunner extends DatabaseAccess {
         productCveStatement.addBatch();
       } catch (SQLException | JsonProcessingException | IllegalArgumentException e) {
         handleError((Exception) e);
+        error.put("ERROR", e.getMessage());
+
       }
     }
 
@@ -359,6 +731,8 @@ public class CVEDataInsertQueryRunner extends DatabaseAccess {
           break;
         } catch (SQLException e) {
           error(e.getMessage());
+          error.put("ERROR", e.getMessage());
+
         }
       }
     }
@@ -394,8 +768,7 @@ public class CVEDataInsertQueryRunner extends DatabaseAccess {
             info("### Executed Child Batch ###", childBatchCounter);
           }
         } catch (SQLException e) {
-          error(e.getMessage());
-          throw new SQLException();
+          handleError(e);
         }
       }
 
@@ -415,21 +788,71 @@ public class CVEDataInsertQueryRunner extends DatabaseAccess {
       }
     }
 
+    @Override
     public void info(String message, int counters) {
       System.out.println("INFO : InsertCveDetailsInBulk : " + message + " : " + counters);
     }
 
+    @Override
     public void info(String message) {
       System.out.println("INFO : InsertCveDetailsInBulk : " + message);
 
     }
 
+    @Override
     public void error(String message) {
       System.err.println("ERROR : InsertCveDetailsInBulk : " + message);
     }
 
-    private void handleError(Exception e) {
+    @Override
+    public void handleError(Exception e) {
       error(e.getMessage());
     }
+
+    public int getBatchCounter() {
+      return batchCounter;
+    }
+
+
+    private JsonNode callApi(String endpoint, String apiKey) {
+      JsonNode response = null;
+      try {
+        response = RestClient.build(endpoint).addHeader("Authorization", "Bearer " + apiKey)
+            .executeGetRequest();
+        if (response == null) {
+          failedEndpoints.add(endpoint);
+        }
+      } catch (URISyntaxException e) {
+        handleError(e);
+      }
+      return response;
+    }
+
+    /**
+     * fetch the first page from nvd.
+     */
+    public RootCVEBean callApi() {
+      try {
+        JsonNode jsonResponse = RestClient.build(url).addHeader("Authorization", "Bearer " + apiKey)
+            .executeGetRequest();
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.treeToValue(jsonResponse, RootCVEBean.class);
+      } catch (Exception e) {
+        handleError(e);
+      }
+      return null;
+    }
+
+    private RootCVEBean parseJsonToBean(JsonNode response) {
+      try {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.treeToValue(response, RootCVEBean.class);
+      } catch (Exception exception) {
+        handleError(exception);
+      }
+
+      return null;
+    }
   }
+
 }

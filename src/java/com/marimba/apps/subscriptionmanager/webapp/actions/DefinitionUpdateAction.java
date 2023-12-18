@@ -129,7 +129,7 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
         // Initialize tuner config
         tunerConfig = getTunerConfig();
         if (tunerConfig == null) {
-            tunerConfig = (IConfig) main.getFeatures().getChild("tunerConfig");
+          tunerConfig = (IConfig) main.getFeatures().getChild("tunerConfig");
         }
 
         if (isEmpty(action)) {
@@ -358,14 +358,14 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                   CveUpdateUtil cveupdateObj = new CveUpdateUtil(main,
                       getDefinitionsUpdateConfig());
 
-                  boolean downloadStatus = cveupdateObj.downloadCVEJSON(urlStr, 5, cvejsonZipFile);
+                /*  boolean downloadStatus = cveupdateObj.downloadCVEJSON(urlStr, 5, cvejsonZipFile);
                   if (!downloadStatus) {
                     info("CVE JSON Zip File Download Succeeded");
                   } else {
                     setUpdateCveStatus(config, "1", "Failed to connect, please try after sometime",
                         true);
                     return;
-                  }
+                  }*/
                 } catch (Exception ex) {
                   error(ex.getMessage());
                   if (DEBUG >= 5) {
@@ -392,7 +392,7 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
 
                   actionString = "cvejson_unzip";
                   info("Unzipping the CVE JSON Zip file");
-                  Tools.gunzip(jsonZipFile, unzipDst);
+                  // Tools.gunzip(jsonZipFile, unzipDst);
                   info("File Unzipped successfully");
 
                 } catch (Exception ex) {
@@ -414,15 +414,16 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                   String cvejsonFilePath = prepareJsonFilePath(cveDir, cvejsonFile);
                   File cveJsonFile = new File(cvejsonFilePath);
 
-                  if (!cveJsonFile.exists()) {
-                    setUpdateCveStatus(config, "3", "Failed to insert data..", true);
-                  }
+                  //if (!cveJsonFile.exists()) {
+                  // setUpdateCveStatus(config, "3", "Failed to insert data..", true);
+                  // }
 
                   //Read the data from json file and insert it into DB
                   info("Started process of Data insertion into DB.");
                   CVEDataInsertionUtil cveDataInsertionUtil = new CVEDataInsertionUtil();
 
-                  isBulkInserted = cveDataInsertionUtil.insertBulkData(main, cvejsonFilePath);
+                  isBulkInserted = cveDataInsertionUtil.insertBulkData(main, cvejsonFilePath,
+                      tunerConfig);
 
                   if (!isBulkInserted) {
                     error("CVE JSON update into DefenSight Database - FAILED");
@@ -472,6 +473,8 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                       sqlscriptsDirPath, main);
                   if (rsScript.getStatus()) {
                     info("Severity status update : SUCCEED");
+                    setUpdateCveStatus(config, "3", "Update the CVE information", false);
+
                   } else {
                     error("Severity status update : FAILED");
                     setUpdateCveStatus(config, "4", "Failed to update tables...", false);
@@ -632,47 +635,48 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
     }
 
 
-     private void initDefinitionsUpdateConfig() {
-          File rootDir = main.getDataDirectory();
-          if (rootDir != null && rootDir.isDirectory()) {
-              File configFile = new File(rootDir, "definitions_update_config.txt");
-              try {
-                  String productMasterUrl = tunerConfig.getProperty("products.mastertx.url");
-                  if (!configFile.exists()) {
-                      config = new ConfigProps(configFile);
-                      if (!isNull(productMasterUrl)) {
-                          config.setProperty("products.mastertx.url", productMasterUrl);
-                      }
-                      config.setProperty("destination.mastertx.url", "");
-                      config.setProperty("publish.tx.user", "");
-                      config.setProperty("publish.tx.password", "");
-                      config.setProperty("channelstore.authenticate.user", "");
-                      config.setProperty("channelstore.authenticate.password", "");
-                      config.setProperty("defensight.cvejson.downloadurl", "https://cve.circl.lu/static/circl-cve-search-expanded.json.gz");
-                      config.setProperty("vdefchannel.lastcopied.timestamp", "Not Updated");
-                      config.setProperty("defensight.cvejson.lastupdated.timestamp", "Not Updated");
-                      config.setProperty("cvejsonupdate.process.status", "0");
-                      config.setProperty("cvejsonupdate.process.error", "");
-                      config.setProperty("vdefchannel.copy.error", "");
-                      config.setProperty("cvejsonupdate.forceCveUpdate", String.valueOf(true));
-                      if (!config.save()) {
-                          throw new Exception("Failed to save mitigate configurations");
-                      }
-                      
-                      config.close();
-                  } else {
-                      config = new ConfigProps(configFile);
-                  }
-              } catch (Exception ioe) {
-                  ioe.printStackTrace();
-                  // REMIND, log something here
-                  info("Unable to create definitions_update_config.txt configuration file");
-                  config = null;
-              }
-          }
-      }
+    private void initDefinitionsUpdateConfig() {
+      File rootDir = main.getDataDirectory();
+      if (rootDir != null && rootDir.isDirectory()) {
+        File configFile = new File(rootDir, "definitions_update_config.txt");
+        try {
+          String productMasterUrl = tunerConfig.getProperty("products.mastertx.url");
+          if (!configFile.exists()) {
+            config = new ConfigProps(configFile);
+            if (!isNull(productMasterUrl)) {
+              config.setProperty("products.mastertx.url", productMasterUrl);
+            }
+            config.setProperty("destination.mastertx.url", "");
+            config.setProperty("publish.tx.user", "");
+            config.setProperty("publish.tx.password", "");
+            config.setProperty("channelstore.authenticate.user", "");
+            config.setProperty("channelstore.authenticate.password", "");
+            config.setProperty("defensight.cvejson.downloadurl",
+                "https://cve.circl.lu/static/circl-cve-search-expanded.json.gz");
+            config.setProperty("vdefchannel.lastcopied.timestamp", "Not Updated");
+            config.setProperty("defensight.cvejson.lastupdated.timestamp", "Not Updated");
+            config.setProperty("cvejsonupdate.process.status", "0");
+            config.setProperty("cvejsonupdate.process.error", "");
+            config.setProperty("vdefchannel.copy.error", "");
+            config.setProperty("cvejsonupdate.forceCveUpdate", String.valueOf(true));
+            if (!config.save()) {
+              throw new Exception("Failed to save mitigate configurations");
+            }
 
-      private String encode(String passwd) {
+            config.close();
+          } else {
+            config = new ConfigProps(configFile);
+          }
+        } catch (Exception ioe) {
+          ioe.printStackTrace();
+          // REMIND, log something here
+          info("Unable to create definitions_update_config.txt configuration file");
+          config = null;
+        }
+      }
+    }
+
+    private String encode(String passwd) {
       return BASE64 + Password.encode(passwd);
     }
 
