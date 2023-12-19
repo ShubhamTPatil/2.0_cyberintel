@@ -473,8 +473,6 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                       sqlscriptsDirPath, main);
                   if (rsScript.getStatus()) {
                     info("Severity status update : SUCCEED");
-                    setUpdateCveStatus(config, "3", "Update the CVE information", false);
-
                   } else {
                     error("Severity status update : FAILED");
                     setUpdateCveStatus(config, "4", "Failed to update tables...", false);

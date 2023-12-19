@@ -98,7 +98,8 @@ public interface ICveUpdateConstants {
       "JOIN all_patch ap WITH (NOLOCK) " +
       "ON sci.cve_name = ap.[cve id];";
 
-  public String UPDATE_TABLE_SQL = "insert into security_cve_info \n"
+  public String UPDATE_TABLE_SQL = "truncate table security_cve_info;\n"
+      + "insert into security_cve_info \n"
       + "(type,cve_name,seq,published_date,modified_date,severity, \n"
       + "cvss_score,cvss_base_score,cvss_impact_score,cvss_exploit_score,cvss_vector,nvd_xml_schema,cvss_version) \n"
       + "select 'CVE', name, '90',published ,modified, severity, \n"
