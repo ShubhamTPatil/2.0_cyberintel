@@ -395,39 +395,53 @@ $(function () {
         });
     });
 
-
-    var prtyPatchesData = '<bean:write name="newDashboardForm" property="priorityPatchesData"/>';
-    prtyPatchesData = prtyPatchesData.replace(/&quot;/g,'"');
-    prtyPatchesData=JSON.parse(prtyPatchesData);
-
-   let criPatchesDataTable = $('#criticalPatchesTable').DataTable({
+   criPatchesDataTable = $('#criticalPatchesTable').DataTable({
        "destroy": true, // In order to reinitialize the datatable
        "pagination": true, // For Pagination
-       "bPaginate": true,
-       "sorting": false, // For sorting
-       "ordering": false,
-       "searching": true,
+       "server": true,
+       "serverSide": true,
+       "processing": true,
+       "searching": false,
+       "ajax": {
+           "url": './criticalPatchDashboard.do',
+           "data": function(req) {
+               req.page = req.start / req.length + 1,
+               req.pageSize = req.length
+               req.filter = $('#critPatchFilter').find(":selected").val();
+               req.search = $('#critPatchSearch').val();
+           }
+       },
+     
+      'fnDrawCallback': function(oSettings) {
+           $('#criticalPatchesTable_filter').each(function() {
+               $(this).append($('#criPatchesMitigateButton'));
+           });
+       },
        language: {
            search: "_INPUT_",
            searchPlaceholder: "Search..."
        },
-       "aaData": prtyPatchesData,
        "columns": [{},
-        {
-           "data": "CVE-ID"
-        },
-       {
-           "data": "Patch Name"
-       }, {
-           "data": "Severity"
-       }, {
-           "data": "Affected Machines"
-       }, {
-           "data": "Status"
-       }],
+           {
+              "title": "CVE-ID",
+              "data": "cveId"
+           },
+          {
+              "title": "Patch Name",
+              "data": "patchId"
+          }, {
+              "title": "Severity",
+               "data": "severity"
+          }, {
+              "title": "Affected Machines",
+              "data": "affectedMachines"
+          }, {
+              "title": "Status",
+              "data": "status"
+          }],
        'columnDefs': [{
            'targets': 0,
-           'searchable': true,
+           'searchable': false, 
            'orderable': false,
            'className': 'dt-body-center',
            'render': function (data, type, full, meta) {
@@ -473,6 +487,10 @@ $(function () {
            }
        }
      });
+
+    $("#btnCritPatchSearch").click(function(event) {
+    	criPatchesDataTable.draw();
+    });
 
      /*
          START Filter for critical patched table
@@ -936,7 +954,7 @@ function createMitigateTable(aaData) {
           
            <div class="col-12">
               <div class="card overflow-auto">
-                 <div class="filter" style="margin-right:10px;">
+                 <div class="filter" style="margin-right:-40px;">
                    <select id="critPatchFilter" class="form-select form-select-sm">
                     <option value="">Show All</option>
                     <option value="Patch Assigned">Patch Assigned</option>
@@ -950,11 +968,18 @@ function createMitigateTable(aaData) {
                 <div class="card-body">
                   <h5 class="card-title">Critical Patches </h5>
                     <!-- Button trigger modal -->
-                  <div class="input-group" style="margin-bottom: 10px;margin-left:-20px">
+                  <div class="input-group" style="margin-bottom: 10px;margin-left:0px; width:130%;">
+                  
+                     <input type="search" class="form-control" placeholder="Search CVE-ID or Patch ID" id="critPatchSearch">
+                          <button type="button" id="btnCritPatchSearch" class="btn btn-primary btn-sm">
+                               <i class="fas fa-search"></i>
+                           </button>
                     <button type="button" id="criPatchesMitigateButton" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                    data-bs-target="#topVulModal" style="margin-left: 20px;">
+                    data-bs-target="#topVulModal" style="margin-left:10px;">
                     Mitigate Selected
                    </button>
+                 
+                                      
                   </div>
 
                   <table id="criticalPatchesTable" class="table" style="width: 100%;">
