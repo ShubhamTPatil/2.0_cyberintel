@@ -79,9 +79,15 @@ public class CriticalPatchDashboardAction extends AbstractAction {
 
     } catch (Exception exception) {
     	if (DEBUG >= 5) {
-            debugError(exception);
+    		
+    		debugError(exception);
           }
-          error(exception.getMessage());
+    	
+    	if (DEBUG >= 3) {
+    		info(exception.getMessage());
+          }
+    	error(exception.getMessage());
+         
           }
 
     
@@ -171,9 +177,13 @@ public class CriticalPatchDashboardAction extends AbstractAction {
 
         } catch (Exception sqlException) {
           if (DEBUG >= 3) {
+        	  info(sqlException.getMessage());
+        	  }
+          if (DEBUG >= 5) {
         	  debugError(sqlException);
             }
-            info(sqlException.getMessage());
+          
+          error(sqlException.getMessage());
         }
 
         finally {
@@ -228,8 +238,13 @@ public class CriticalPatchDashboardAction extends AbstractAction {
           }
         } catch (SQLException sqlException) {
           if (DEBUG >= 5) {
-            debugError(sqlException);
-          }
+        	  debugError(sqlException);
+        	  
+            }
+          if (DEBUG >= 3) {
+      		info(sqlException.getMessage());
+            }
+          
           error(sqlException.getMessage());
         }
       }
@@ -272,9 +287,14 @@ public class CriticalPatchDashboardAction extends AbstractAction {
           return fetchCritPatchQuery;
         } catch (Exception exception) {
           if (DEBUG >= 3) {
-                debugError(exception);
+        	  info(exception.getMessage());  
           }
-            info(exception.getMessage());
+          if (DEBUG >= 5) {
+        	  debugError(exception);
+      		
+            }
+           
+          error(exception.getMessage());
        }
         
         return null;
@@ -308,9 +328,14 @@ public class CriticalPatchDashboardAction extends AbstractAction {
 
         } catch (Exception exception) {
         	if (DEBUG >= 5) {
-                debugError(exception);
+        		debugError(exception);
+        		
               }
-              error(exception.getMessage());
+        	if (DEBUG >= 3) {
+        		info(exception.getMessage());
+              }
+              
+        	error(exception.getMessage()); 
         }
       }
 
@@ -328,9 +353,15 @@ public class CriticalPatchDashboardAction extends AbstractAction {
     out.flush();
 
   }
-
-  public void debugError(Exception exception) {
-    exception.printStackTrace();
+  public void info(String msg) {
+	  System.out.println("INFO: CriticalPatchDashboardAction.java :: [" + new Date().toString() + "] ==> "  + msg);
+  }
+  
+  public void error(String str) {
+	  System.err.println("ERROR: CriticalPatchDashboardAction.java:: [" + new Date().toString() + "] ==> "  + str);
+  }
+  public void debugError(Exception ex) {
+    ex.printStackTrace();
   }
 
 }
