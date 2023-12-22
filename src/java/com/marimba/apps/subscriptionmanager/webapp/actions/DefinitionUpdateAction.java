@@ -490,6 +490,8 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
 
                   config = getDefinitionsUpdateConfig();
                   config.setProperty("defensight.cvejson.lastupdated.timestamp", dateVal);
+                  config.setProperty("cvejsonupdate.process.message",
+                      "CVE SQL scripts created and updated successfully.");
                   setUpdateCveStatus(config, "5", true);
 
                   info("CVE json last updated timestamp : " + dateVal);
