@@ -196,8 +196,7 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
           if (config != null) {
             config.setProperty("destination.mastertx.url", masterTxUrl);
             if (!isNull(prouctMastertxURL)) {
-              config.setProperty("products.mastertx.url",
-                  prouctMastertxURL);
+              config.setProperty("products.mastertx.url", prouctMastertxURL);
             }
             config.setProperty("publish.tx.user", pubUser);
             config.setProperty("publish.tx.password", pubPwd);
@@ -423,7 +422,7 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
                   CVEDataInsertionUtil cveDataInsertionUtil = new CVEDataInsertionUtil();
 
                   isBulkInserted = cveDataInsertionUtil.insertBulkData(main, cvejsonFilePath,
-                      tunerConfig);
+                      config);
 
                   if (!isBulkInserted) {
                     error("CVE JSON update into DefenSight Database - FAILED");
@@ -659,6 +658,9 @@ public class DefinitionUpdateAction extends AbstractAction implements IWebAppCon
             config.setProperty("cvejsonupdate.process.error", "");
             config.setProperty("vdefchannel.copy.error", "");
             config.setProperty("cvejsonupdate.forceCveUpdate", String.valueOf(true));
+            config.setProperty("defensight.cve.api.url",
+                "https://services.nvd.nist.gov/rest/json/cves/2.0");
+            config.setProperty("defensight.cve.api.key", "7ca09635-d4da-4f18-99ca-285b82bfc6b7");
             if (!config.save()) {
               throw new Exception("Failed to save mitigate configurations");
             }

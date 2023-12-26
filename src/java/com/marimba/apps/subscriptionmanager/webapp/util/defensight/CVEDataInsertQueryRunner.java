@@ -17,6 +17,7 @@ import com.marimba.apps.subscriptionmanager.webapp.bean.cve.CPEMatchBean;
 import com.marimba.apps.subscriptionmanager.webapp.bean.cve.DescriptionBean;
 import com.marimba.intf.util.IConfig;
 import com.marimba.apps.subscriptionmanager.webapp.util.defensight.ILogger;
+import com.marimba.tools.config.ConfigProps;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -62,10 +63,10 @@ import org.apache.http.impl.client.HttpClients;
 public class CVEDataInsertQueryRunner extends DatabaseAccess {
 
 
-  public CVEDataInsertQueryRunner(SubscriptionMain main, String jsonFilePath, IConfig tunerConfig,
+  public CVEDataInsertQueryRunner(SubscriptionMain main, String jsonFilePath, ConfigProps definitionConfig,
       LinkedHashMap<String, String> errorMap) {
     try {
-      runQuery(new InsertCveDetailsInBulk(main, jsonFilePath, tunerConfig, errorMap));
+      runQuery(new InsertCveDetailsInBulk(main, jsonFilePath, definitionConfig, errorMap));
     } catch (Exception ex) {
       ex.printStackTrace();
     }
@@ -111,19 +112,19 @@ public class CVEDataInsertQueryRunner extends DatabaseAccess {
 
     boolean isUpdate = Boolean.FALSE;
 
-    IConfig tunerConfig;
+    ConfigProps definitionConfig;
 
 
-    public InsertCveDetailsInBulk(SubscriptionMain main, String jsonFilePath, IConfig tunerConfig,
+    public InsertCveDetailsInBulk(SubscriptionMain main, String jsonFilePath, ConfigProps definitionConfig,
         LinkedHashMap<String, String> error) {
       super(main);
       this.jsonFilePath = jsonFilePath;
       this.jsonFactory = new JsonFactory();
       this.objectMapper = new ObjectMapper();
-      this.tunerConfig = tunerConfig;
+      this.definitionConfig = definitionConfig;
       this.error = error;
-      this.url = tunerConfig.getProperty("defensight.cve.api.url");
-      this.apiKey = tunerConfig.getProperty("defensight.cve.api.key");
+      this.url = definitionConfig.getProperty("defensight.cve.api.url");
+      this.apiKey = definitionConfig.getProperty("defensight.cve.api.key");
     }
 
 

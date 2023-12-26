@@ -3,6 +3,7 @@ package com.marimba.apps.subscriptionmanager.webapp.util.defensight;
 import com.marimba.apps.subscriptionmanager.SubscriptionMain;
 import com.marimba.apps.subscriptionmanager.webapp.util.defensight.CVEDataInsertQueryRunner;
 import com.marimba.intf.util.IConfig;
+import com.marimba.tools.config.ConfigProps;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -11,9 +12,9 @@ public class CVEDataInsertionUtil {
 
   LinkedHashMap<String, String> errors = new LinkedHashMap<>();
 
-  public boolean insertBulkData(SubscriptionMain main, String jsonFilePath, IConfig tunerConfig) {
+  public boolean insertBulkData(SubscriptionMain main, String jsonFilePath, ConfigProps definitionConfig) {
     try {
-      new CVEDataInsertQueryRunner(main, jsonFilePath, tunerConfig, errors);
+      new CVEDataInsertQueryRunner(main, jsonFilePath, definitionConfig, errors);
 
       if (errors.isEmpty()) {
         return true;
