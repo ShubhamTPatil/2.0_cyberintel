@@ -9,8 +9,8 @@
   <property name="base"                 location="../../../../.."/>
   <property name="project"              value="security-plugin"/>
   <basename property="project.version"  file="../.."/>
-  <property name="project.dep"          value="tools-i18n,tools-gui,desktop,checksum,tools-ldap,subscription-common,web-common,common,tools-xml,tools-config,tools-dns,tools-common,tools-net,schedule,ldap-intf,transmitter-interfaces,webservices,osm-ws-client,http,security,castanet-tools,tools-db"/>
-  <property name="project.dep.3rdparty" value="saaj, mssql, oracle"/>
+  <property name="project.dep"          value="tools-i18n,tools-gui,desktop,checksum,tools-ldap,subscription-common,web-common,common,tools-xml,tools-config,tools-dns,tools-common,tools-net,schedule,ldap-intf,transmitter-interfaces,webservices,osm-ws-client,http,security,castanet-tools,tools-db,"/>
+  <property name="project.dep.3rdparty" value="saaj, mssql, oracle, elastic-search-client,commons-logging,commons-codec,jackson-core,apache-http-client"/>
   <property name="channel.name"         value="SecurityPlugin"/>
   <property name="channel.title"        value="Security Plugin"/>
   <property name="include.shared-jsp"   value="true"/>
