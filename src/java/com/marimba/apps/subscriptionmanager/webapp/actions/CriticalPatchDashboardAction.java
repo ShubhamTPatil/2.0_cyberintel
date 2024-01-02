@@ -13,6 +13,7 @@ import org.apache.struts.action.ActionMapping;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.apache.commons.lang.StringUtils;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -309,7 +310,8 @@ public class CriticalPatchDashboardAction extends AbstractAction {
 
             String patchId = rs.getString(2);
 
-            String severity = rs.getString(3);
+            String severity = rs.getString(3).toLowerCase();
+            severity = StringUtils.capitalize(severity);
 
             String affectedMachines = rs.getString(4);
 

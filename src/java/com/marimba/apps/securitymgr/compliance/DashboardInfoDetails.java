@@ -1256,7 +1256,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
             ResultSet rs = st.executeQuery();
             try {
                 while(rs.next()) {
-                 String severity = rs.getString("severity_name");
+                 String severity = rs.getString("severity_name").toLowerCase();
                  String severityCnt = String.valueOf(rs.getInt("severity_count"));
                  vulStatsInfo.put(severity, severityCnt);
                 }
@@ -1289,7 +1289,7 @@ public class DashboardInfoDetails implements ComplianceConstants {
             try {
                 int idx = 0;
                 while(rs.next()) {
-                    String severity = rs.getString("severity");
+                    String severity = rs.getString("severity").toLowerCase();
                     String severityCnt = String.valueOf(rs.getInt("vulnerable_count"));
                     String ageingDays = String.valueOf(rs.getInt("ageing_days"));
                     vulAgeingInfo.put(severity + ":" + String.valueOf(idx), severityCnt + "," + ageingDays);

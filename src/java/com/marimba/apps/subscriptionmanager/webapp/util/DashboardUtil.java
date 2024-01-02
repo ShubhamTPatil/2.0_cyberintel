@@ -149,13 +149,13 @@ public class DashboardUtil {
         String keyStr = (String) entry.getKey();
         String valStr = (String) entry.getValue();
         //  System.out.println("key: " + keyStr + ", value :" +valStr);
-        if (keyStr != null && keyStr.indexOf("Critical") != -1) {
+        if (keyStr != null && keyStr.indexOf("critical") != -1) {
           criticalDataSet.add(valStr);
-        } else if (keyStr != null && keyStr.indexOf("High") != -1) {
+        } else if (keyStr != null && keyStr.indexOf("high") != -1) {
           highDataSet.add(valStr);
-        } else if (keyStr != null && keyStr.indexOf("Medium") != -1) {
+        } else if (keyStr != null && keyStr.indexOf("medium") != -1) {
           mediumDataSet.add(valStr);
-        } else if (keyStr != null && keyStr.indexOf("Low") != -1) {
+        } else if (keyStr != null && keyStr.indexOf("low") != -1) {
           lowDataSet.add(valStr);
         }
       }
@@ -198,7 +198,7 @@ public class DashboardUtil {
 
       size = highDataSet.size();
       if (size > 0) {
-        sb.append(",");
+            if (criticalDataSet.size()> 0) sb.append(",");
         sb.append("{");
         sb.append("\"label\": \"High\"");
         sb.append(",");
@@ -234,7 +234,7 @@ public class DashboardUtil {
 
       size = mediumDataSet.size();
       if (size > 0) {
-        sb.append(",");
+          if (highDataSet.size()> 0) sb.append(",");
         sb.append("{");
         sb.append("\"label\": \"Medium\"");
         sb.append(",");
@@ -270,7 +270,7 @@ public class DashboardUtil {
 
       size = lowDataSet.size();
       if (size > 0) {
-        sb.append(",");
+          if (mediumDataSet.size()> 0) sb.append(",");
         sb.append("{");
         sb.append("\"label\": \"Low\"");
         sb.append(",");
