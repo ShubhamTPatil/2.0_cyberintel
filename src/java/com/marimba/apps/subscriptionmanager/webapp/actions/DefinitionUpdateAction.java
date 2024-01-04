@@ -42,7 +42,6 @@ import com.marimba.intf.castanet.IWorkspace;
 import com.marimba.tools.config.*;
 
 import com.marimba.tools.util.Props;
-import com.sun.jmx.snmp.tasks.Task;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;

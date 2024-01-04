@@ -11,7 +11,6 @@ import com.marimba.apps.subscriptionmanager.intf.IWebAppConstants;
 import com.marimba.apps.subscriptionmanager.webapp.forms.RunScanForm;
 import com.marimba.intf.util.IConfig;
 import com.marimba.tools.config.ConfigProps;
-import com.sun.jmx.snmp.tasks.Task;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionForm;
